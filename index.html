@@ -8,236 +8,20 @@
     <meta name="author" content="Carlos Guedes">
 
     <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <style>
-
-    /* GLOBAL STYLES
-    -------------------------------------------------- */
-    /* Padding below the footer and lighter body text */
-
-    body {
-      padding-bottom: 40px;
-      color: #5a5a5a;
-    }
-
-    /* CUSTOMIZE THE NAVBAR
-    -------------------------------------------------- */
-    /* Special class on .container surrounding .navbar, used for positioning it into place. */
-    .navbar-wrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 10;
-      margin-top: 20px;
-      margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
-    }
-    .navbar-wrapper .navbar {
-
-    }
-
-    /* Remove border and change up box shadow for more contrast */
-    .navbar .navbar-inner {
-      border: 0;
-      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-              box-shadow: 0 2px 10px rgba(0,0,0,.25);
-    }
-
-    /* Downsize the brand/project name a bit */
-    .navbar .brand {
-      padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
-      font-size: 16px;
-      font-weight: bold;
-      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
-    }
-
-    /* Navbar links: increase padding for taller navbar */
-    .navbar .nav > li > a {
-      padding: 15px 20px;
-    }
-
-    /* Offset the responsive button for proper vertical alignment */
-    .navbar .btn-navbar {
-      margin-top: 10px;
-    }
-
-
-
-    /* CUSTOMIZE THE CAROUSEL
-    -------------------------------------------------- */
-
-    /* Carousel base class */
-    .carousel {
-      margin-bottom: 60px;
-    }
-
-    .carousel .container {
-      position: relative;
-      z-index: 9;
-    }
-
-    .carousel-control {
-      height: 80px;
-      margin-top: 0;
-      font-size: 120px;
-      text-shadow: 0 1px 1px rgba(0,0,0,.4);
-      background-color: transparent;
-      border: 0;
-      z-index: 10;
-    }
-
-    .carousel .item {
-      height: 500px;
-    }
-    .carousel img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      height: 500px;
-    }
-
-    .carousel-caption {
-      background-color: transparent;
-      position: static;
-      max-width: 550px;
-      padding: 0 20px;
-      margin-top: 100px;
-    }
-    .carousel-caption h1,
-    .carousel-caption .lead {
-      margin: 0;
-      line-height: 1.25;
-      color: #fff;
-      text-shadow: 0 1px 1px rgba(0,0,0,.4);
-    }
-    .carousel-caption .btn {
-      margin-top: 10px;
-    }
-
-
-    .carousel, .carousel img { max-height: 300px; }
-
-
-    /* MARKETING CONTENT
-    -------------------------------------------------- */
-
-    /* Center align the text within the three columns below the carousel */
-    .marketing .span4 {
-      text-align: center;
-    }
-    .marketing h2 {
-      font-weight: normal;
-    }
-    .marketing .span4 p {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-
-
-
-    /* RESPONSIVE CSS
-    -------------------------------------------------- */
-
-    @media (max-width: 979px) {
-
-      .container.navbar-wrapper {
-        margin-bottom: 0;
-        width: auto;
-      }
-      .navbar-inner {
-        border-radius: 0;
-        margin: -20px 0;
-      }
-
-      .carousel .item {
-        height: 500px;
-      }
-      .carousel img {
-        width: auto;
-        height: 500px;
-      }
-
-      .featurette {
-        height: auto;
-        padding: 0;
-      }
-      .featurette-image.pull-left,
-      .featurette-image.pull-right {
-        display: block;
-        float: none;
-        max-width: 40%;
-        margin: 0 auto 20px;
-      }
-    }
-
-
-    @media (max-width: 767px) {
-
-      .navbar-inner {
-        margin: -20px;
-      }
-
-      .carousel {
-        margin-left: -20px;
-        margin-right: -20px;
-      }
-      .carousel .container {
-
-      }
-      .carousel .item {
-        height: 300px;
-      }
-      .carousel img {
-        height: 300px;
-      }
-      .carousel-caption {
-        width: 65%;
-        padding: 0 70px;
-        margin-top: 100px;
-      }
-      .carousel-caption h1 {
-        font-size: 30px;
-      }
-      .carousel-caption .lead,
-      .carousel-caption .btn {
-        font-size: 18px;
-      }
-
-      .marketing .span4 + .span4 {
-        margin-top: 40px;
-      }
-
-      .featurette-heading {
-        font-size: 30px;
-      }
-      .featurette .lead {
-        font-size: 18px;
-        line-height: 1.5;
-      }
-
-    }
-    </style>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css" >
+    <link rel="stylesheet" href="css/site.css" >
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="bootstrap/js/html5shiv.js"></script>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="bootstrap/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="bootstrap/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="favicon.ico">
+    <!-- Fav -->
+    <link rel="shortcut icon" href="favicon.ico">
   </head>
 
   <body>
-
-
-
     <!-- NAVBAR
     ================================================== -->
     <div class="navbar-wrapper">
@@ -292,7 +76,7 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>Carlos Guedes</h1>
-              <p class="lead"><em>Tagline...</em></p>
+              <p class="lead"><em>Live as if you were to die tomorrow. Learn as if you were to live forever.</em></p>
             </div>
           </div>
         </div>
@@ -302,7 +86,7 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>Carlos Guedes</h1>
-              <p class="lead"><em>Tagline...</em></p>
+              <p class="lead"><em>Live as if you were to die tomorrow. Learn as if you were to live forever.</em></p>
             </div>
           </div>
         </div>
@@ -312,7 +96,7 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>Carlos Guedes</h1>
-              <p class="lead"><em>Tagline...</em></p>
+              <p class="lead"><em>Live as if you were to die tomorrow. Learn as if you were to live forever.</em></p>
             </div>
           </div>
         </div>        
@@ -322,7 +106,7 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>Carlos Guedes</h1>
-              <p class="lead"><em>Tagline...</em></p>
+              <p class="lead"><em>Live as if you were to die tomorrow. Learn as if you were to live forever.</em></p>
             </div>
           </div>
         </div>  
@@ -332,7 +116,7 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>Carlos Guedes</h1>
-              <p class="lead"><em>Tagline...</em></p>
+              <p class="lead"><em>Live as if you were to die tomorrow. Learn as if you were to live forever.</em></p>
             </div>
           </div>
         </div>  
@@ -354,30 +138,34 @@
       <div class="row">
         <div class="span4">
           <img class="img-circle" src="images/tiles/blog.png">
-          <h2>Blog</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+          <h2>Writing</h2>
+          <p>The writing exercise requires the structuring of ideas, and wonder how others will read our texts. On my blog you can find technical and non-technical articles on diverse topics.</p>
+          <p><a class="btn" href="#">More info &raquo;</a></p>
         </div><!-- /.span4 -->
         <div class="span4">
           <img class="img-circle" src="images/tiles/projects.png">
           <h2>Projects</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+          <p>Only the continuous exercise of writing and code analysis allows a professional software development and teaching is continually updated. Here are the current projects that develop or developed.</p>
+          <p><a class="btn" href="#">More info &raquo;</a></p>
         </div><!-- /.span4 -->
         <div class="span4">
           <img class="img-circle" src="images/tiles/talks.png">
           <h2>Talks</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+          <p>The oral and live performance is also a essencial competence. In this section I list the talks and training sessions that I did.</p>
+          <p><a class="btn" href="#">More info &raquo;</a></p>
         </div><!-- /.span4 -->
       </div><!-- /.row -->
 
 
       <!-- FOOTER -->
-      <footer style="margin-top: 50px">
-        <p class="pull-right"><a href="#">Back to top</a></p>
+      <footer>
         <p>&copy; 2013 Carlos Guedes &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
       </footer>
+      <div class="row" >
+        <div class="span12">
+          <p style="font-size:12px" class="muted">Disclamer: Opinions expressed herein are mine and do not represent my employer's view in any way.</p>
+        </div>
+      </div>
 
     </div><!-- /.container -->
 
@@ -391,11 +179,9 @@
     <script>
       !function ($) {
         $(function(){
-          // carousel demo
           $('#myCarousel').carousel()
         })
       }(window.jQuery)
     </script>
-    <script src="bootstrap/js/holder.js"></script>
   </body>
 </html>
