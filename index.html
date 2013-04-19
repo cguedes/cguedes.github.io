@@ -22,6 +22,8 @@
   </head>
 
   <body>
+    <script type="text/x-handlebars">
+
     <!-- NAVBAR
     ================================================== -->
     <div class="navbar-wrapper">
@@ -43,7 +45,6 @@
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -127,34 +128,8 @@
     </div><!-- /.carousel -->
 
 
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
-    <div class="container marketing">
-
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        <div class="span4">
-          <img class="img-circle" src="images/tiles/projects.png">
-          <h2>Projects</h2>
-          <p>Only the continuous exercise of writing and code analysis allows a professional software development and teaching is continually updated. Here are the current projects that develop or developed.</p>
-          <p><a class="btn" href="#">More info &raquo;</a></p>
-        </div><!-- /.span4 -->
-        <div class="span4">
-          <img class="img-circle" src="images/tiles/talks.png">
-          <h2>Talks</h2>
-          <p>The spoken and live performance are also essencial competences. In this section I list the talks and training sessions that I did.</p>
-          <p><a class="btn" href="#">More info &raquo;</a></p>
-        </div><!-- /.span4 -->
-        <div class="span4">
-          <img class="img-circle" src="images/tiles/blog.png">
-          <h2>Writing</h2>
-          <p>The writing exercise requires the structuring of ideas, and wonder how others will read our texts. On my blog you can find technical and non-technical articles on diverse topics.</p>
-          <p><a class="btn" href="#">More info &raquo;</a></p>
-        </div><!-- /.span4 -->
-      </div><!-- /.row -->
+    <div class="container">
+      {{outlet}}
 
 
       <!-- FOOTER -->
@@ -163,19 +138,59 @@
       </footer>
       <div class="row" >
         <div class="span12">
-          <p style="font-size:12px" class="muted">Disclamer: Opinions expressed herein are mine and do not represent my employer's view in any way.</p>
+          <p style="font-size:12px" class="muted">Disclamer: Opinions expressed herein are mine and do not represent my employer''s view in any way.</p>
         </div>
       </div>
 
     </div><!-- /.container -->
 
+    </script>
 
+    <script type="text/x-handlebars" id="index">
+      <div class="marketing">
+        <div class="row">
+          <div class="span4">
+            <img class="img-circle" src="images/tiles/projects.png">
+            <h2>Projects</h2>
+            <p>Only the continuous exercise of writing and code analysis allows a professional software development and teaching is continually updated. Here are the current projects that develop or developed.</p>
+            <p><a class="btn" href="#">More info &raquo;</a></p>
+          </div><!-- /.span4 -->
+          <div class="span4">
+            <img class="img-circle" src="images/tiles/talks.png">
+            <h2>Talks</h2>
+            <p>The spoken and live performance are also essencial competences. In this section I list the talks and training sessions that I did.</p>
+            <p><a class="btn" href="#">More info &raquo;</a></p>
+          </div><!-- /.span4 -->
+          <div class="span4">
+            <img class="img-circle" src="images/tiles/blog.png">
+            <h2>Writing</h2>
+            <p>The writing exercise requires the structuring of ideas, and wonder how others will read our texts. On my blog you can find technical and non-technical articles on diverse topics.</p>
+            <p><a class="btn" href="#">More info &raquo;</a></p>
+          </div><!-- /.span4 -->
+        </div><!-- /.row -->
+      </div><!-- /.marketing -->
+    </script>  
+
+    <script type="text/x-handlebars" id="about">
+      This is the about content...
+    </script>  
+
+    <script type="text/x-handlebars" id="contact">
+      My contact info...
+    </script>  
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/libs/jquery-1.9.1.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- emberJS -->
+    <script src="js/libs/handlebars-1.0.0-rc.3.js"></script>
+    <script src="js/libs/ember-1.0.0-rc.2.js"></script>
+    <script src="js/libs/showdown.js"></script>
+    <script src="js/libs/moment.js"></script>
+    <script src="js/app.js"></script>
+
     <script>
       !function ($) {
         $(function(){
