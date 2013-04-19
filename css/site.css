@@ -50,12 +50,6 @@
     padding: 15px 20px;
   }
 
-  /* Offset the responsive button for proper vertical alignment */
-  .navbar .btn-navbar {
-    margin-top: 10px;
-  }
-
-
 
   /* CUSTOMIZE THE CAROUSEL
   -------------------------------------------------- */
@@ -146,7 +140,8 @@
     }
     .navbar-inner {
       border-radius: 0;
-      margin: -20px 0;
+      margin: 0 0;
+      padding-right: 0;
     }
 
     .carousel .item {
@@ -176,6 +171,8 @@
 
     .navbar-inner {
       margin: -20px;
+      margin-right: 0;
+      padding-right: 0;
     }
 
     .carousel {
@@ -232,6 +229,8 @@
   @media (max-width: 480px) { 
     .navbar-inner {
       margin: -20px;
+      margin-right: 0;
+      padding-right: 0;
     }
     .carousel {
       margin-left: -20px;
