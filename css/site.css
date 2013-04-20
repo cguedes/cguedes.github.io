@@ -50,6 +50,9 @@
     padding: 15px 20px;
   }
 
+  .navbar .nav > li > a.active {
+    color: white;
+  }
 
   /* CUSTOMIZE THE CAROUSEL
   -------------------------------------------------- */
