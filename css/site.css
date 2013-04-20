@@ -127,6 +127,11 @@
     margin-right: 10px;
   }
 
+  .marketing .img-circle {
+      width: 140px;
+      height: 140px;
+  }
+
 
 
   /* RESPONSIVE CSS
