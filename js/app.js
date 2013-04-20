@@ -11,6 +11,8 @@ App.Router.reopen({
 App.Router.map(function() {
   this.resource("about");
   this.resource("contact");
+  this.resource("projects");
+  this.resource("talks");
 });
 
 

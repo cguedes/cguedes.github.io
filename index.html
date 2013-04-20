@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
     <link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.min.css" >
     <link rel="stylesheet" href="css/site.css" >
+    <link rel="stylesheet" href="css/pages.css" >
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -38,25 +39,24 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
+
             
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <ul class="nav">
+              <li>{{#linkTo "index"}}Home{{/linkTo}}</li>
+              <li>{{#linkTo "about"}}About{{/linkTo}}</li>
+
+            </ul>
+
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Project 1</a></li>
-                    <li><a href="#">Project 2</a></li>
-                    <li><a href="#">Project 3</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul>
-                </li>
+                <li>{{#linkTo "contact"}}Contact{{/linkTo}}</li>
+                <li>{{#linkTo "projects"}}Projects{{/linkTo}}</li>
+                <li>{{#linkTo "talks"}}Talks{{/linkTo}}</li>
+                <li><a href="http://cguedes.wordpress.com">Writing</a></li>
+              </ul>
+              <ul class="nav pull-right">
+                <li><a href="http://cguedes.github.com">See me on GitHub</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!-- /.navbar-inner -->
@@ -165,14 +165,21 @@
             <img class="img-circle" src="images/tiles/blog.png">
             <h2>Writing</h2>
             <p>The writing exercise requires the structuring of ideas, and wonder how others will read our texts. On my blog you can find technical and non-technical articles on diverse topics.</p>
-            <p><a class="btn" href="#">More info &raquo;</a></p>
+            <p><a class="btn" href="http://cguedes.wordpress.com">More info &raquo;</a></p>
           </div><!-- /.span4 -->
         </div><!-- /.row -->
       </div><!-- /.marketing -->
     </script>  
 
     <script type="text/x-handlebars" id="about">
-      This is the about content...
+    <div class="about">
+      <img src="images/cguedes-profile-photo.jpg" class="pull-left img-polaroid profile-photo"  />
+      <p><strong>Carlos Guedes</strong> combines the teaching activities at <a href="http://www.isel.pt"><abbr title="Instituto Superior de Engenharia de Lisboa">ISEL</abbr></a>, and research and development at <a href="http://www.cc.isel.ipl.pt"><abbr title="Centro de Cálculo do ISEL">CCISEL</abbr></a>, with work at <a href="http://www.coriant.com">Coriant</a> (former <a href="http://www.nokiasiemensnetworks.com/">Nokia Siemens Networks</a> optical networks division).</p>
+      <p>Since 2011, cooperates with Coriant, integrating the team of software architecture of <abbr title="Telecommunications Network Management System">TNMS</abbr> project, developed with J2EE stack. Previously worked at <a href="http://www.sapo.pt/">SAPO</a>, as a consultant by <a href="http://www.rupeal.com">RUPEAL</a>, having participated in the development of <a href="http://sdb.sapo.pt">SAPO Service Delivery Broker</a>.</p>
+      <p>While teacher at ISEL, since 2005, he teaches courses related with <em>programming</em>, <em>web application development</em> and <em>systems and information technology</em>, collaborating actively in the curriculum of Internet Programming, Software Lab and Computer Graphics. As member of CCISEL, since 2001, regularly participates in R&amp;D and training courses for industry and governmental institutions.</p>
+      <p>In 2012 collaborated with <a href="http://www.microsoft.pt">Microsoft Portugal</a> in the release of <a href="http://msdn.microsoft.com/en-US/windows">Windows 8</a>, having participated in training sessions regarding the platform in the role of <a href="http://www.devcamps.ms/windows">Windows Camps instructor</a>.</p>
+      <p>It is also author and responsible of the eLearning platform <a href="http://www.thoth.cc.e.ipl.pt">Thoth</a>, used in many of the courses of <a href="http://www.adeetc.isel.pt">ADEETC</a> at ISEL.</p>
+    </div>
     </script>  
 
     <script type="text/x-handlebars" id="contact">
