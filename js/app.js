@@ -30,7 +30,7 @@ App.Router.map(function() {
   this.resource("about");
   this.resource("contacts");
   this.resource("projects");
-  this.resource("talks");
+  this.resource("training");
   this.resource("blog");
 });
 
