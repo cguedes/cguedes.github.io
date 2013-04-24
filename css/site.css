@@ -62,6 +62,11 @@
     margin-bottom: 60px;
   }
 
+  .carousel .carousel-indicators {
+    bottom: 15px;
+    top: inherit;
+  }
+
   .carousel .container {
     position: relative;
     z-index: 9;
