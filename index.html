@@ -46,15 +46,15 @@
             <ul class="nav">
               <li>{{#linkTo "index"}}Home{{/linkTo}}</li>
               <li>{{#linkTo "about"}}About{{/linkTo}}</li>
-
+              <li>{{#linkTo "contacts"}}Contacts{{/linkTo}}</li>
             </ul>
 
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li>{{#linkTo "contacts"}}Contacts{{/linkTo}}</li>
                 <li>{{#linkTo "projects"}}Projects{{/linkTo}}</li>
+                <li><a href="http://blog.cgued.es">Blog</a></li>
+                <li>{{#linkTo "academia"}}Academia{{/linkTo}}</li>
                 <li>{{#linkTo "training"}}Training{{/linkTo}}</li>
-                <li>{{#linkTo "blog"}}Blog{{/linkTo}}</li>
               </ul>
               <ul class="nav pull-right">
                 <li><a href="http://github.com/cguedes">See me on GitHub</a></li>
@@ -179,14 +179,14 @@
             <img class="img-circle" src="images/tiles/projects.png">
             <h2>Projects</h2>
             <p>Only the continuous exercise of writing and code analysis allows a professional software development and teaching is continually updated. Here are the current projects that develop or developed.</p>
-            <p>{{#linkTo projects class="btn"}}More info &raquo;{{/linkTo}}</p>
+            <p>{{#linkTo projects class="btn"}}List of projects &raquo;{{/linkTo}}</p>
           </div><!-- /.span3 -->
           <div class="span3">
             <img class="img-circle" src="images/tiles/blog.png">
             <h2>Blog</h2>
             <p>The writing practive is not easy. It requires the structuring of ideas and the hability to create a distance enough to citicize and improve out work. 
                On my blog you can find writings regarding gtechnical and non-technical articles on diverse topics.</p>
-            <p>{{#linkTo blog class="btn"}}More info &raquo;{{/linkTo}}</p>
+            <p><a class="btn" href="http://blog.cgued.es">Navigate to blog &raquo;</a></p>
           </div><!-- /.span3 -->
           <div class="span3">
             <img class="img-circle" src="images/tiles/isel.png">
@@ -262,77 +262,29 @@
     </script>  
 
     <script type="text/x-handlebars" id="academia">
-      <div class="academia">
+      <div class="academia inner-page">
       <div class="row">
-        <div class="span8">
+        <div class="span12">
+          <h2>
+            <img class="img-circle" src="images/tiles/isel.png" />
+            Academia
+          </h2>
 
-        </div>
-        <div class="span4">
-        
-        </div>
-
-        <div class="pull-right well" >
-          <h4>Menu</h4>
-          <ul class="nav nav-list" data-spy="affix" >
-            <li class="active"><a href="#">Courses</a></li>
-            <li><a href="#">Projecto e Seminário [LEIC] (pós-bolonha)</a></li>
-            ...
-          </ul>
-        </div>
-
-        <h2>Academia</h2>
-          <h3>Courses (sorted by lective semester)</h3>
+          <h3>Courses</h3>
           <ul>
-            <li><b>[2s0809]</b></li>
-            <ul>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/POO/">Programação Orientada Por Objectos</a></b> (2º semestre)</li>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/PI/">Programação na Internet</a></b> (5º semestre)</li>
-            </ul>
-
-            <li><b>[1s0809]</b></li>
-            <ul>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/PG/">Programação</a></b> (1º semestre)</li>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/PI/">Programação na Internet</a></b> (5º semestre)</li>
-            </ul>
-
-            <li><b>[2s0708]</b></li>
-            <ul>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/PI/">Programação na Internet</a></b> (5º semestre)</li>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/sinfoconhecimento/licenciatura/si1/">Sistemas de Informação 1</a></b> (4º semestre)</li>
-            </ul>
-
-            <li><b>[1s0708]</b></li>
-            <ul>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/CG/">Computação Gráfica</a></b> (3º/5º semestre - UC optativa)</li>
-            </ul>
-
-            <li><b>[2s0607]</b></li>
-            <ul>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/PG/">Programação</a></b> (1º semestre)</li>
-            </ul>
-
-            <li><b>[1s0607]</b></li>
-            <ul>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/CG/">Computação Gráfica</a></b> (3º/5º semestre - UC optativa)</li>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/PI/">Programação na Internet</a></b> (5º semestre)</li>
-            </ul>
-
-            <li><b>[2s0506]</b></li>
-            <ul>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/Programacao_Ver_2005_2006/PG/">Programação 1 - Telecomunicações</a></b> (1º semestre)</li>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/Programacao_Ver_2005_2006/TI/">Tecnologias da Internet</a></b> (6º semestre)</li>
-            </ul>
-
-            <li><b>[1s0506]</b></li>
-            <ul>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/Programacao_Inv_2005_2006/PG2i/">Programação 2 - Informática</a></b> (2º semestre)</li>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/Programacao_Inv_2005_2006/TI/">Tecnologias da Internet</a></b> (6º semestre)</li>
-            </ul>
-
-            <li><b>[2s0405]</b></li>
-            <ul>
-              <li><b><a href="http://www.deetc.isel.ipl.pt/programacao/Programacao_Ver_2004_2005/PG2i/">Programação 2 - Informática</a></b> (6º semestre)</li>
-            </ul>
+            {{#each courses}}
+              <li><b>[{{lectiveSemester}}]</b></li>
+              <ul>
+                {{#each courses}}
+                <li><b>
+                      {{acronym}}: 
+                      <a {{bindAttr href="webLink"}}>{{name}}</a>
+                    </b> 
+                    ({{curricularSemester}} curricular semester)
+                </li>
+                {{/each}}
+              </ul>
+            {{/each}}
           </ul>
 
           <h3>Projecto e Seminário [LEIC] (pós-bolonha)</h3>
@@ -428,9 +380,17 @@
               <b>Alunos: </b>Luís Trindade e Ricardo Reis<br>
               <b>Função: </b>Orientador, em conjunto com o Eng. Luís Falcão<br>
             </li>
-          </ul>
+          </ul>        
+        </div>
       </div>
     </script>  
+
+    <script type="text/x-handlebars" id="training">
+      <div class="training inner-page">
+        Loading................................................... until the day I have time to write this section.
+      </div>
+    </script>  
+
 
     <!-- Le javascript
     ================================================== -->
