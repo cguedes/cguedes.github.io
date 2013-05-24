@@ -11,6 +11,7 @@
     border-top: solid 1px lightgray;
     padding-top: 5px;
     margin-top: 30px;
+    clear: both;
   }
 
   /* CUSTOMIZE THE NAVBAR
@@ -124,13 +125,13 @@
   -------------------------------------------------- */
 
   /* Center align the text within the three columns below the carousel */
-  .marketing .span4 {
+  .marketing .span3 {
     text-align: center;
   }
   .marketing h2 {
     font-weight: normal;
   }
-  .marketing .span4 p {
+  .marketing .span3 p {
     margin-left: 10px;<
     margin-right: 10px;
   }
@@ -220,7 +221,7 @@
       font-size: 14px;
     }
 
-    .marketing .span4 + .span4 {
+    .marketing .span3 + .span3 {
       margin-top: 40px;
     }
 

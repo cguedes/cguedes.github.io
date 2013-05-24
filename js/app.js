@@ -31,6 +31,7 @@ App.Router.map(function() {
   this.resource("contacts");
   this.resource("projects");
   this.resource("training");
+  this.resource("academia");
   this.resource("blog");
 });
 

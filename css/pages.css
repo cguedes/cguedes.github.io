@@ -1,3 +1,12 @@
+  /* All inner pages
+  -------------------------------------------------- */
+  .page .inner-page img.img-circle {
+    float: right;
+    width:  100px;
+    height: 100px;
+  }
+
+
   /* ABOUT PAGE
   -------------------------------------------------- */
   .about { }
@@ -7,6 +16,30 @@
     margin-bottom: 15px;
   }
 
+  /* PROJECTS PAGE
+  -------------------------------------------------- */
+  .projects { }
+
+  .projects dl {
+    padding-right: 10em;
+  }
+
+  .projects dl dt {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .projects dl dt img {
+    margin-right: .5em;
+    margin-bottom: .5em;
+    width: 57px;
+    height: 57px;
+  }
+
+  .projects dl dd {
+    padding-top: .5em;
+    margin-bottom: 2em;
+  }
 
 
   /* RESPONSIVE CSS
@@ -22,3 +55,4 @@
   @media (max-width: 480px) { 
 
   }
+
