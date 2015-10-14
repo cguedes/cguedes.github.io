@@ -1,0 +1,239 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	notas[]
+["notas.wrl#notas"]
+
+EXTERNPROTO	trocos[]
+["trocos_total.wrl#trocos_total"]
+
+EXTERNPROTO	ecran[]
+["ecran_total.wrl#ecra_total"]
+
+EXTERNPROTO moedasecartoes 
+[
+	field SFColor cor_relevo
+	field SFColor cor_especular_relevo
+	field SFFloat brilho_relevo
+	
+	field SFColor cor_fundo
+	field SFColor cor_especular_fundo
+	field SFFloat brilho_fundo
+]
+["moedasecartoes.wrl#moedasecartoes"]
+
+
+PROTO caixaIntermedia
+[]
+{
+	Transform{ 
+		children Shape{
+			appearance Appearance 
+			{
+				material Material {
+					diffuseColor 0.196 0.196 0.392
+					specularColor 0.2 0.2 0.6
+					shininess 0.1
+				}
+			}
+			geometry Box {size 45 93 3}
+		}
+	}
+}
+
+
+PROTO frente_1 
+[]
+{
+	Transform {
+		children Shape{
+				appearance Appearance 
+				{
+					material Material {
+						diffuseColor 0.196 0.196 0.392
+						specularColor 0.2 0.2 0.6
+						shininess 0.1
+					}
+				}
+				geometry Extrusion 
+				{
+					crossSection [0 0 ,11.62 3.5 , 11.62 0, 0 0]
+					spine[0 0 0 , 45 0 0]
+				}
+		}			
+	}
+}
+
+#Espaço entre topo e moedasecartoes
+PROTO frente_3[]
+{
+	Transform{ 
+		children Shape{
+			appearance Appearance 
+			{
+				material Material {
+					diffuseColor 0.196 0.196 0.392
+					specularColor 0.2 0.2 0.6
+					shininess 0.1
+				}
+			}
+			geometry Box {size 45 6 0.0001}
+		}
+	}
+}
+
+#Espaço entre as moedasecartoes e o ecran
+PROTO frente_3_5[]
+{
+	Transform{ 
+		children Shape{
+			appearance Appearance 
+			{
+				material Material {
+					diffuseColor 0.196 0.196 0.392
+					specularColor 0.2 0.2 0.6
+					shininess 0.1
+				}
+			}
+			geometry Box {size 45 4.5 0.0001}
+		}
+	}
+}
+
+#Espaço entre o ecran e as notas
+PROTO frente_5[]
+{
+	Transform{ 
+		children Shape{
+			appearance Appearance 
+			{
+				material Material {
+					diffuseColor 0.196 0.196 0.392
+					specularColor 0.2 0.2 0.6
+					shininess 0.1
+				}
+			}
+			geometry Box {size 45 4.5 0.0001}
+		}
+	}
+}
+#Espaço entre as notas e a portinhola
+PROTO frente_7[]
+{
+	Transform{ 
+		children Shape{
+			appearance Appearance 
+			{
+				material Material {
+					diffuseColor 0.196 0.196 0.392
+					specularColor 0.2 0.2 0.6
+					shininess 0.1
+				}
+			}
+			geometry Box {size 45 16.8801 0.0001}
+		}
+	}
+}
+
+#tampa lateral
+PROTO tampalateral []
+{
+	Transform {
+		children Shape{
+			appearance Appearance { 
+							material Material { 
+		    							diffuseColor 0.196 0.196 0.392
+										specularColor 0.2 0.2 0.6
+										shininess 0.1
+							}
+			}
+			geometry Box { size 0.0001 61.40 3.5}
+		}
+	}
+}	
+
+
+#Juntar toda a parte da frente
+PROTO frente_maquina[]
+{
+	Transform{
+		children[
+			Transform{
+				translation	22.5 46.5 1.5
+				children caixaIntermedia{}
+			}
+			Transform{
+				translation	0 93 3
+				children frente_1{}
+			}	
+			Transform{
+				translation	22.5 78.38 6.5
+				children frente_3{}
+			}
+			Transform{
+				translation	22.5 69.13 6.5
+				children frente_3_5{}
+			}
+			Transform{
+				children ecran {}
+				translation 0 45.38 6.5 
+			}
+			Transform{
+				translation	22.5 43.13 6.5
+				children frente_5{}
+			}
+			Transform{
+				translation	22.5 28.44 6.5
+				children frente_7{}
+			}
+			Transform{
+				translation	0 36.88 6.52 #somado 0.02 pois tinha sido tirado na criação
+				children notas{}
+			}			
+			Transform{
+				translation	0 71.38 6.501
+				children moedasecartoes{
+										cor_relevo 0 0 0
+										cor_especular_relevo 0.05 0.05 0.05
+										brilho_relevo 0.1 
+										#RGB 50 50 100
+										cor_fundo 0.196 0.196 0.392
+										cor_especular_fundo 0.2 0.2 0.6
+										brilho_fundo 0.1
+				}
+			}
+			Transform{
+				translation	0 0 2.98 
+				children trocos{}
+			}
+			#tampa lateral direita
+			Transform{
+				translation	45 50.69 4.75 
+				children tampalateral{}
+			}
+			#tampa lateral esquerda
+			Transform{
+				translation	0 50.69 4.75 
+				children tampalateral{}
+			}
+		]
+	}
+}
+
+#frente_maquina{}
+###noção de origem TEST ONLY
+
+#	Shape 
+#	{
+#		geometry Box{size 10 1 1}
+#		appearance Appearance {material Material {diffuseColor 1 0 0 }}
+#	}
+#	Shape 
+#	{
+#		geometry Box{size 1 10 1}
+#		appearance Appearance {material Material {diffuseColor 0 1 0 }}
+#	}
+#	Shape 
+#	{
+#		geometry Box{size 1 1 10}
+#		appearance Appearance {material Material {diffuseColor 0 0 1 }}
+#	}

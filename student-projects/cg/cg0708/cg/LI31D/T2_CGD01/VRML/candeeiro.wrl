@@ -1,0 +1,215 @@
+#VRML V2.0 utf8
+
+PROTO newCylinder [field SFVec3f trans 0 0 0, field SFFloat rad 0,field SFFloat heig 0
+, field SFColor color1 1 1 1,field SFRotation rot 0 0 0 0]{
+	Group {
+		children [
+			Transform {
+				translation	IS trans
+				rotation IS	rot
+				children Shape {
+					geometry Cylinder {
+						radius IS rad
+						height IS heig
+					}
+					appearance Appearance {material Material{ diffuseColor IS color1}}
+				}
+			}
+		]
+	}
+}
+
+PROTO lamapada [field SFColor color1 1 1 1,field SFColor color2 0.5 0.5 0.5, field SFColor color3 1 1 1]{
+	Group {
+		children [
+			newCylinder	{trans 114.7 1.5 1.5, rad 1.4, heig 1.5, color1 IS color3, rot 0 0 1 -1.7}
+			newCylinder	{trans -0.5 1.5 1.5 rad 1.4,heig 1.5,color1 IS color1 ,rot 0 0 1 -1.57}
+			newCylinder {trans 1 1.5 1.5, rad 1.3, heig 2, color1 IS color2 , rot 0 0 1 -1.57}
+			newCylinder	{trans 57 1.5 1.5, rad 1.5, heig 110, color1 IS color1 , rot 0 0 1 -1.57}
+			newCylinder	{trans 113 1.5 1.5, rad 1.3, heig 2, color1 IS color2 , rot 0 0  1 -1.57}
+		]
+	}
+}
+
+
+PROTO caixa [field SFVec3f trans 0 0 0,field SFColor color1 1 1 1, field SFColor color2 1 1 1,field SFVec3f medi1 0 0 0]{
+	Group {
+		children [
+			Transform {
+				translation	IS trans
+				children [
+					Shape {
+						geometry Box {size IS medi1}
+						appearance Appearance {material	Material {diffuseColor IS color1}}
+					}
+				]
+			}
+			Shape {
+				geometry Extrusion {
+					crossSection	[0 0, 120 0,120 25, 0 25, 0 0, 2 2, 118 2, 118 23, 2 23, 2 2, 0 0]
+					spine [0 0 0,0 12 0]
+					endCap	TRUE
+					beginCap TRUE
+					solid FALSE
+				}
+				appearance Appearance {material	Material {diffuseColor IS color2}}
+			}
+		]
+	}
+}
+
+#tipo rectangular
+PROTO panelGrande  [field SFColor color1 0.5 0.5 0.5,field SFVec3f sizes 0 0 0]{
+	Shape {
+		geometry Box{size IS sizes}
+		appearance Appearance {material	Material {diffuseColor IS color1}}
+	}
+}
+
+
+PROTO separate []{
+	Transform {
+		translation	3 1.6 12
+			children panelGrande {sizes 0.1 3 20}
+	}
+		
+}
+
+PROTO candeeiroOrigem []{
+	Group {
+		children [
+			
+			caixa {trans 60 12 12.5, color1 0.5 0.5 0.5, color2 1 1 1, medi1 120 0.5 25}
+			Transform {
+				translation	3 6 6
+				children lamapada {}
+			}
+			Transform {
+				translation	3 6 15
+				children lamapada {}
+			}
+			Transform {
+				translation	60 6.4 10.7
+				children panelGrande {sizes	116 7.5 0.1}
+			}
+			Transform {
+				translation	60 6.4 14
+				children panelGrande {sizes	116 7.5 0.1}
+			}
+
+			Transform {
+				translation	60 6.3 3.7
+				children panelGrande {sizes 116 7.5 0.1}
+			}
+			Transform {
+				translation	60 6.3 21.6
+				children panelGrande {sizes	116 7.5 0.1}
+			}
+			Transform {
+				translation	60 1.35 2.8
+				rotation 1 0 0 0.6
+				children panelGrande {sizes 116 3 0.1}
+			}
+			Transform {
+				translation	60 1.35 22.5
+				rotation 1 0 0 -0.6
+				children panelGrande {sizes	116 3 0.1}
+			}
+			Transform {
+				translation	60 1.35 13.1
+				rotation 1 0 0 0.6
+				children panelGrande {sizes	116 3 0.1}
+			}
+			Transform {
+				translation	60 1.35 11.6
+				rotation 1 0 0 -0.6
+				children panelGrande {sizes	116 3 0.1}
+			}
+			Transform {
+				translation	0.3 0 0
+				children separate {}
+			}
+			Transform {
+				translation	6 0 0
+				children separate {}
+			}
+			Transform {
+				translation	12 0 0
+				children separate {}
+			}
+			Transform {
+				translation	18 0 0
+				children separate {}
+			}
+			Transform {
+				translation	24 0 0
+				children separate {}
+			}
+			Transform {
+				translation	30 0 0
+				children separate {}
+			}
+			Transform {
+				translation	36 0 0
+				children separate {}
+			}
+			Transform {
+				translation	42 0 0
+				children separate {}
+			}
+			Transform {
+				translation	48 0 0
+				children separate {}
+			}
+			Transform {
+				translation	54 0 0
+				children separate {}
+			}
+			Transform {
+				translation	60 0 0
+				children separate {}
+			}
+			Transform {
+				translation	66 0 0
+				children separate {}
+			}
+			Transform {
+				translation	72 0 0
+				children separate {}
+			}
+			Transform {
+				translation	78 0 0
+				children separate {}
+			}
+			Transform {
+				translation	84 0 0
+				children separate {}
+			}
+			Transform {
+				translation	90 0 0
+				children separate {}
+			}
+			Transform {
+				translation	96 0 0
+				children separate {}
+			}
+			Transform {
+				translation	102 0 0
+				children separate {}
+			}
+			Transform {
+				translation	108 0 0
+				children separate {}
+			}
+			Transform {
+				translation	114 0 0
+				children separate {}
+			}
+		]
+	}
+}
+
+candeeiroOrigem {}
+
+
+

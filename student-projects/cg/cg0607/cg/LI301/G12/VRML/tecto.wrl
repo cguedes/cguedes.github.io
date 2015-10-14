@@ -1,0 +1,118 @@
+#VRML V2.0 utf8
+PROTO interruptor[]{
+	Group {
+		children [
+			Transform {
+				translation	7.4 1 -16.19
+				children [
+					Shape {
+					geometry Box { size	0.03 0.05 0.02 }
+					appearance Appearance {
+						material Material {
+							diffuseColor .8 .16 0
+							specularColor .5 .5 .5
+							emissiveColor .15 .03 0
+							ambientIntensity 0
+							}
+						}
+					}
+					Shape {
+					geometry Box { size	0.05 0.07 0.01 }
+					appearance Appearance {
+						material Material {
+							diffuseColor .75 .75 .75
+							specularColor .5 .5 .5
+							emissiveColor .15 .15 .15
+							ambientIntensity 0
+							}
+						}
+					}
+				] 
+			}
+		]
+	}
+}
+
+PROTO iluminacao[
+  field SFVec3f pos 0 0 0
+]{ 
+	Transform {
+		translation	IS pos
+		children [
+			#Parte exterior da caixa da lampada
+			Transform {
+				translation	0.2 -0.005 -0.2
+				children Shape {
+					geometry Cylinder { height 0.01 radius 0.1 }
+					appearance Appearance { 
+						material Material {
+							diffuseColor .61 .61 .61
+							specularColor .39 .39 .39
+							ambientIntensity .25
+							shininess .11
+						}
+					}
+				}
+			}
+			#Vidro da caixa da lampada
+			Transform {
+				translation	0.2 -0.0105 -0.2
+				children Shape {
+					geometry Cylinder { height 0.001 radius 0.08 }
+					appearance Appearance {
+						material Material {
+							diffuseColor .36 .36 .36
+							specularColor .94 .94 .94
+							emissiveColor 0 .36 .27
+							ambientIntensity 0
+							shininess .23
+							transparency .68
+						}
+					}
+				}
+			}
+
+		]
+	} 
+}
+
+PROTO tecto[]{
+	Group {
+		children [
+			Shape {
+				geometry Extrusion { crossSection [0.1 -0.1, 7.6 -0.1, 7.6 -16.2, 0.1 -16.2, 0.1 -10.8, 2.7 -10.8, 2.7 -9.1, 0.1 -9.1, 0.1 -0.1]
+					spine [0 2.9 0, 0 3 0]
+				}
+				appearance Appearance { material Material { diffuseColor 1 1 1 } }
+			}
+			Transform {
+				translation	1.35 2.6 -9.95
+				children Shape {
+					geometry Box { size	2.7 0.8 1.5 }
+					appearance Appearance { material Material { diffuseColor 1 1 0.502 } }
+				}
+			}
+			iluminacao { pos 0.5 2.9 -1.8 }
+			iluminacao { pos 1.5 2.9 -1.8 }
+			iluminacao { pos 0.5 2.9 -3.6 }
+			iluminacao { pos 1.5 2.9 -3.6 }
+			iluminacao { pos 0.5 2.9 -5.4 }
+			iluminacao { pos 1.5 2.9 -5.4 }
+			iluminacao { pos 0.5 2.9 -7.2 }
+			iluminacao { pos 1.5 2.9 -7.2 }
+			iluminacao { pos 0.5 2.9 -12.6 }
+			iluminacao { pos 1.5 2.9 -12.6 }
+			iluminacao { pos 0.5 2.9 -14.4 }
+			iluminacao { pos 1.5 2.9 -14.4 }
+			iluminacao { pos 7.1 2.9 -15 }
+			iluminacao { pos 7.1 2.9 -13.7 }
+			iluminacao { pos 7.1 2.9 -12.4 }
+			iluminacao { pos 7.1 2.9 -11.1 }
+			iluminacao { pos 7.1 2.9 -9.8 }
+			iluminacao { pos 7.1 2.9 -8.5 }
+			iluminacao { pos 5 2.9 -1.8 }
+		]
+	}
+}
+
+tecto {}

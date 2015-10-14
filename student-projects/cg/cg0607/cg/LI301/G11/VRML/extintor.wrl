@@ -1,0 +1,228 @@
+#VRML V2.0 utf8
+
+
+
+
+PROTO bot
+[
+]
+{
+
+	Shape {	appearance Appearance { material Material {diffuseColor 1 0 0 } }
+		geometry Cylinder {
+			bottom TRUE
+			height 0.5
+			 radius	0.08
+			 side TRUE
+			 top TRUE
+		}
+	}
+}
+
+PROTO mang
+[
+]
+{
+
+	Shape {	appearance Appearance { material Material { diffuseColor 0.5 0.5 0.5 } }
+		geometry Cylinder {
+			bottom TRUE
+			height 0.65
+			radius 0.01
+			side TRUE
+			top	TRUE
+		}
+	}
+}
+
+
+PROTO ponta
+[
+]
+{
+
+	Shape {
+		 appearance	Appearance { material Material { diffuseColor 0.5 0.5 0.5 }}
+		geometry Cylinder {
+		   bottom FALSE
+		   height 0.05
+		   radius 0.02
+		   side	TRUE
+		   top TRUE
+		}
+	 
+	 
+	 }
+}
+
+PROTO altura
+[
+]
+{
+
+	Shape {
+		appearance Appearance {material Material { diffuseColor 0.5 0.5 0.5 } }
+	
+	
+		geometry Cylinder {
+			bottom TRUE
+			height 0.06
+			radius 0.01
+			side TRUE
+			top TRUE		
+		}
+	}
+}
+
+
+
+PROTO largura
+[
+]
+{
+
+	Shape {
+		appearance Appearance {material Material { diffuseColor 0.5 0.5 0.5 } }
+	
+	
+		geometry Cylinder {
+			bottom TRUE
+			height 0.14
+			radius 0.01
+			side TRUE
+			top TRUE		
+		}
+	}
+}
+
+
+PROTO esfera
+[
+]
+{
+
+	Shape {
+		appearance Appearance {material Material { diffuseColor 0.5 0.5 0.5}}
+	
+		geometry Sphere	{
+			
+		  radius 0.02
+		}
+	
+	}
+}
+
+
+PROTO esfera_topo
+[
+]
+{
+
+Shape {
+		appearance Appearance {material Material { diffuseColor 1 0 0}}
+	
+		geometry Sphere	{
+			
+		  radius 0.08
+		}
+	
+	}	
+
+
+
+}
+
+
+PROTO pega
+[
+]
+{
+
+	Shape {	appearance Appearance {material Material { diffuseColor 1 0 0}}
+		
+		geometry Cylinder {
+		
+			bottom TRUE
+			height 0.045
+			radius 0.005
+			side TRUE
+			top	TRUE
+
+		
+		}
+
+	}
+}
+
+
+PROTO ext
+[
+]
+{
+
+Transform {
+	children [
+			Transform {
+			  children bot{}
+			}
+		
+		
+			Transform {
+				translation	0 0.32 0
+				children esfera	{}
+			}
+			Transform {
+				translation	0  0.34 0
+				children altura	{}
+			}
+			Transform {
+				translation	0 0.37 0
+				scale 0.5  0.5 0.5 
+				children esfera	{}
+			}
+			Transform {
+				translation	0.07 0.37 0
+				rotation 1 1 0 3.14
+				children largura {}
+			}
+			
+			Transform {
+				translation	0.14 0.045 0
+				children mang{}
+			}
+		   	Transform {
+				translation	0.14 -0.28 0
+				children ponta{}
+			}
+			
+			Transform {
+			   scale 0.5 0.5 0.5
+				translation	0.14 0.37 0
+				children esfera	{}
+			}
+
+			Transform {
+				translation	-0.01 0.38 0
+				rotation 0 1 1 0.5
+				children pega {}
+			}
+
+			Transform {
+				translation	-0.01 0.37 0.0
+				rotation 1 1 0 3.14
+				children pega {}
+			}
+			Transform {
+				translation	0 0.25 0
+				children esfera_topo {}
+			}
+
+
+
+		]
+		
+	}
+
+}
+
+ext{}

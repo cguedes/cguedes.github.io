@@ -1,0 +1,87 @@
+#VRML V2.0 utf8
+
+#escala: metros
+
+EXTERNPROTO Rope [exposedField SFRotation laceRot] "res/Rope.wrl#Hang"
+
+EXTERNPROTO Human [
+	exposedField SFRotation	leftHand 
+	exposedField SFRotation	rightHand 
+ 	exposedField SFRotation	leftFeet
+	exposedField SFRotation	rightFeet
+	exposedField SFVec3f headT
+	field SFBool headHat
+
+] "res/Human.wrl#Human"
+
+
+
+Transform {
+	children [
+		DEF	hang Transform {
+			   children	[
+				   Transform{
+						translation	0 -2.33 .15
+			    		children DEF hanged Human {
+							headHat	FALSE
+							headT 0 -.03 .03
+	
+							leftHand 0 -1  0 1.57 
+							rightHand 0 -1  0 1.57
+							leftFeet 1 0 0	1.20
+							rightFeet 1 0 0	1.20
+						}
+					}
+					Transform {
+						scale .06 .06 .06
+						translation	0 -.48 0
+						children Rope {laceRot -1 0 0 .578}
+					}
+				
+			   ]
+		}
+		Viewpoint {
+			description	"Grupo 10 - Hanged"
+			position -4 0 4
+			orientation -0.20639526359877966 -0.9747267111459115 -0.08549171739218593 0.803662582430532
+		}
+	]
+}
+		
+DEF	ObjTimer TimeSensor	{
+	startTime 0
+	stopTime 0
+	cycleInterval 5
+	enabled	TRUE
+	loop TRUE	
+}
+
+DEF	RopeROT OrientationInterpolator {
+	key	[0 .5  1]
+	keyValue [0 0 1 -.10,
+			  0 0 1 .10,
+			  0 0 1 -.10]
+}
+
+DEF	feetROT OrientationInterpolator {
+	key	[0 .015 .03	.47 .485 .5 .515 .53	.97 .985 1]
+	keyValue [1 0 0	1.20,
+			  1 0 0 1,
+			  1 0 0	1.20,
+			  
+			  1 0 0	1.20,
+			  1 0 0 1,
+			  1 0 0	1.20,
+			  1 0 0 1,
+			  1 0 0	1.20,
+			  
+			  1 0 0	1.20,
+			  1 0 0 1,
+			  1 0 0	1.20,]
+}
+
+ROUTE ObjTimer.fraction_changed TO RopeROT.set_fraction
+ROUTE RopeROT.value_changed	TO hang.rotation
+
+ROUTE ObjTimer.fraction_changed	TO feetROT.set_fraction
+ROUTE feetROT.value_changed	TO hanged.rightFeet

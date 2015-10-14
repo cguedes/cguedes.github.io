@@ -1,0 +1,156 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Degrau [] ["Degrau.wrl#Degrau"]
+
+PROTO Mid [] {
+	Transform {
+		children [
+			Shape {
+				geometry Box { size	1 .125 .33 }
+				appearance Appearance {
+					material Material {
+						diffuseColor .404 .424 .427
+						emissiveColor .05 .05 .05
+						ambientIntensity .1
+						shininess .04
+						specularColor .04 .03 .1
+					}
+				}
+			}			
+		]
+	}
+}
+
+PROTO Degraus [] {
+	Transform {
+		children [
+
+			Transform {
+				translation	 0 0.225 4
+				children [ Degrau {} ]
+			}
+			Transform {
+				translation	2.8 .15 4.89
+				children [
+					Mid	{}
+				 ]
+			}
+			Transform {
+				translation	-2.7 .15 4.89
+				children [
+					Mid	{}
+				 ]
+			}			
+
+			Transform {
+				scale 1 2 1
+				translation 0 .35 2.5
+				children [ Degrau {} ]
+			}
+			Transform {
+				translation	2.8 .4 3.4
+				children [
+					Mid	{}
+				 ]
+			}
+			Transform {
+				translation	-2.7 .4 3.4
+				children [
+					Mid	{}
+				 ]
+			}
+
+			Transform {
+				scale 1 3 1
+				translation 0 .475 1
+				children [ Degrau {} ]
+			}
+			Transform {
+				translation	2.8 .65 1.91
+				children [
+					Mid	{}
+				 ]
+			}
+			Transform {
+				translation	-2.7 .65 1.91
+				children [
+					Mid	{}
+				 ]
+			}
+
+			Transform {
+				scale 1 4 1
+				translation	 0 .6 -.5
+				children [ Degrau {} ]
+			}
+			Transform {
+				translation	2.8 .9 .42
+				children [
+					Mid	{}
+				 ]
+			}
+			Transform {
+				translation	-2.7 .9 .42
+				children [
+					Mid	{}
+				 ]
+			}
+
+			Transform {
+				scale 1 5 1
+				translation 0 .725 -2
+				children [ Degrau {} ]
+			}
+			Transform {
+				translation	2.8 1.15 -1.07
+				children [
+					Mid	{}
+				 ]
+			}
+			Transform {
+				translation	-2.7 1.15 -1.07
+				children [
+					Mid	{}
+				 ]
+			}
+
+			Transform {
+				scale 1 6 1
+				translation 0 .85 -3.5
+				children [ Degrau {} ]
+			}
+			Transform {
+				translation	2.8 1.4 -2.56
+				children [
+					Mid	{}
+				 ]
+			}
+			Transform {
+				translation	-2.7 1.4 -2.56
+				children [
+					Mid	{}
+				 ]
+			}
+
+			Transform {
+				scale 1 7 1.5
+				translation 0 .975 -5.375
+				children [ Degrau {} ]
+			}
+			Transform {
+				translation	2.8 1.65 -4.05
+				children [
+					Mid	{}
+				 ]
+			}
+			Transform {
+				translation	-2.7 1.65 -4.05
+				children [
+					Mid	{}
+				 ]
+			}
+		]
+	}
+}
+
+Degraus	{}

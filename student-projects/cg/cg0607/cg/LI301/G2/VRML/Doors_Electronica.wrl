@@ -1,0 +1,392 @@
+#VRML V2.0 utf8
+
+PROTO Door[]{
+	Group {
+		children[
+
+			Transform{
+				translation	0 0 -0.0115
+				rotation 1 0 0 1.5708
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor  0.8 0.4 0
+							}
+						}
+
+						geometry Extrusion {
+							beginCap          TRUE
+							crossSection      [0 0, 0 1.985, 0.882 1.985, 0.882 0, 0 0]
+							endCap            TRUE
+							scale             1 1
+							solid             TRUE
+							spine             [0 0 0, 0 0.023 0]
+
+						}
+					}
+				]
+
+			}
+		]
+	}
+}
+
+
+PROTO Puxador[]{
+	Group {
+		children [
+			Transform {
+				translation	0.14 0 0
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Cylinder{
+							height 0.01
+							radius 0.03
+							side TRUE
+						}
+
+						appearance Appearance {
+							material Material {
+								diffuseColor 1 0 0
+							}
+						}
+					}
+				]
+			}
+
+		Transform {
+				translation 0.13 0 0.03
+				children [
+					Shape {
+						appearance Appearance { material Material { diffuseColor 1 0 0 }}
+						geometry Extrusion {
+							crossSection [0.0100		0.0000	, 0.0098		0.0017	, 0.0094		0.0034	, 0.0087		0.0050	, 0.0077		0.0064	, 0.0064		0.0077	, 0.0050		0.0087	, 0.0034		0.0094	, 0.0017		0.0098	, 0.0000		0.0100	, -0.0017		0.0098	, -0.0034		0.0094	, -0.0050		0.0087	, -0.0064		0.0077	, -0.0077		0.0064	, -0.0087		0.0050	, -0.0094		0.0034	, -0.0098		0.0017	, -0.0100		0.0000	, -0.0098		-0.0017	, -0.0094		-0.0034	, -0.0087		-0.0050	, -0.0077		-0.0064	, -0.0064		-0.0077	, -0.0050		-0.0087	, -0.0034		-0.0094	, -0.0017		-0.0098	, 0.0000		-0.0100	, 0.0017		-0.0098	, 0.0034		-0.0094	, 0.0050		-0.0087	, 0.0064		-0.0077	, 0.0077		-0.0064	, 0.0087		-0.0050	, 0.0094		-0.0034	, 0.0098		-0.0017	, 0.0100		0.0000]
+							spine [0.0098 0 -0.017, 0.0100	0	0.0000	, 0.0098	0	0.0017	, 0.0094	0	0.0034	, 0.0087	0	0.0050	, 0.0077	0	0.0064	, 0.0064	0	0.0077	, 0.0050	0	0.0087	, 0.0034	0	0.0094	, 0.0017	0	0.0098	, 0.0000	0	0.0100, -0.0017 0 0.0098]
+							creaseAngle	1
+							solid FALSE
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation	0.14 0 0.01
+				rotation 1 0 0 1.57
+				children [
+					Shape{
+						geometry Cylinder {
+							radius 0.013
+							height 0.01
+							side TRUE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor  1 0 0
+
+							}
+						}
+					}
+				]
+			}
+			Transform {
+				translation	0.07 0 0.04
+				rotation 0 0 1 1.57
+				children [
+					Shape{
+						geometry Cylinder {
+							radius 0.01
+							height 0.12
+							side TRUE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor  1 0 0
+
+							}
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation 0.01 0 0.03
+				rotation 0 0 1 3.1415
+				children [
+					Shape {
+						appearance Appearance { material Material { diffuseColor 1 0 0 }}
+						geometry Extrusion {
+							crossSection [0.0100		0.0000	, 0.0098		0.0017	, 0.0094		0.0034	, 0.0087		0.0050	, 0.0077		0.0064	, 0.0064		0.0077	, 0.0050		0.0087	, 0.0034		0.0094	, 0.0017		0.0098	, 0.0000		0.0100	, -0.0017		0.0098	, -0.0034		0.0094	, -0.0050		0.0087	, -0.0064		0.0077	, -0.0077		0.0064	, -0.0087		0.0050	, -0.0094		0.0034	, -0.0098		0.0017	, -0.0100		0.0000	, -0.0098		-0.0017	, -0.0094		-0.0034	, -0.0087		-0.0050	, -0.0077		-0.0064	, -0.0064		-0.0077	, -0.0050		-0.0087	, -0.0034		-0.0094	, -0.0017		-0.0098	, 0.0000		-0.0100	, 0.0017		-0.0098	, 0.0034		-0.0094	, 0.0050		-0.0087	, 0.0064		-0.0077	, 0.0077		-0.0064	, 0.0087		-0.0050	, 0.0094		-0.0034	, 0.0098		-0.0017	, 0.0100		0.0000]
+							spine [0.0098 0 -0.017, 0.0100	0	0.0000	, 0.0098	0	0.0017	, 0.0094	0	0.0034	, 0.0087	0	0.0050	, 0.0077	0	0.0064	, 0.0064	0	0.0077	, 0.0050	0	0.0087	, 0.0034	0	0.0094	, 0.0017	0	0.0098	, 0.0000	0	0.0100, -0.0017 0 0.0098]
+							creaseAngle	1
+							solid FALSE
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+
+
+PROTO DoorLeft[]{
+	Group {
+		children[
+
+			Door{}
+					
+			Transform {
+				translation	0.692 -0.9925 0.0115
+				children Puxador{}
+			}
+
+			Transform {
+				translation	0.692 -0.9925 -0.0115
+				rotation 1 0 0 3.1415
+				children Puxador{}
+			}											
+		]	
+
+	}
+}
+
+PROTO Ombreira[]{
+	Transform {
+		children Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor  0.8 0.4 0
+				}
+			}
+			geometry Extrusion {
+				crossSection [0 0, 0 2.11, 0.095 2.11, 0.095 0.125, 1.859 0.125, 1.859 2.11, 1.954 2.11, 1.954 0, 0 0]
+				spine [0 0 0, 0 0.253 0]
+				solid FALSE
+			}
+		}
+	}
+}
+
+PROTO Doors_Electronica[]{
+	Group {
+		children [
+
+			Transform {
+				translation	-0.095 0 0
+				rotation 1 0 0 1.5708
+				children Ombreira {}
+			}
+
+			Transform {
+				translation	1.766 -0.095 0.1265
+				rotation 0 1 0 3.1415
+				children Door{}
+			}
+
+			DEF Do Transform {
+				translation	0 -0.095 0.1265
+				children [
+					DoorLeft {}
+
+					DEF	TS TouchSensor {
+						enabled	TRUE
+					}
+				]
+			}
+
+			DEF	Timer TimeSensor {
+				cycleInterval 3.0
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	DoorMove Script {
+				field SFBool open FALSE
+				field SFFloat angle 1.5708
+				eventIn	SFFloat	set_fraction
+				eventOut SFRotation	value_changed
+
+				url	"javascript:
+				function set_fraction( frac, timestamp ){
+					if(open == false){
+						x = angle * frac;
+						value_changed[0] = 0;
+						value_changed[1] = 1;
+						value_changed[2] = 0;
+						value_changed[3] = x;
+						if(x == angle){
+							open = true;
+						}
+					}
+					else{
+						x = angle *(1 - frac);
+						value_changed[0] = 0;
+						value_changed[1] = 1;
+						value_changed[2] = 0;
+						value_changed[3] = x;
+						if(x == 0){
+							open = false;
+						}
+					}
+				}
+				"
+			}
+		]
+	}
+
+	ROUTE TS.touchTime TO Timer.startTime
+	ROUTE Timer.fraction_changed TO DoorMove.set_fraction
+	ROUTE DoorMove.value_changed TO	Do.rotation
+}
+
+#Doors_Electronica {}
+
+PROTO Door2[]{
+	Group {
+		children[
+
+			Transform{
+				translation	0 0 -0.0115
+				rotation 1 0 0 1.5708
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor  0.8 0.4 0
+							}
+						}
+
+						geometry Extrusion {
+							beginCap          TRUE
+							crossSection      [0 0, 0 1.985, 0.765 1.985, 0.765 0, 0 0]
+							endCap            TRUE
+							scale             1 1
+							solid             TRUE
+							spine             [0 0 0, 0 0.023 0]
+
+						}
+					}
+				]
+
+			}
+		]
+	}
+}
+
+
+PROTO DoorLeft2[]{
+	Group {
+		children[
+
+			Door2{}
+					
+			Transform {
+				translation	0.585 -0.9925 0.0115
+				children Puxador{}
+			}
+
+			Transform {
+				translation	0.585 -0.9925 -0.0115
+				rotation 1 0 0 3.1415
+				children Puxador{}
+			}											
+		]	
+
+	}
+}
+
+PROTO Ombreira2[]{
+	Transform {
+		children Shape {
+			appearance Appearance {
+				material Material {
+					diffuseColor  0.8 0.4 0
+				}
+			}
+			geometry Extrusion {
+				crossSection [0 0, 0 2.11, 0.095 2.11, 0.095 0.125, 1.625 0.125, 1.625 2.11, 1.72 2.11, 1.72 0, 0 0]
+				spine [0 0 0, 0 0.253 0]
+				solid FALSE
+			}
+		}
+	}
+}
+
+PROTO Doors_Gabinetes[]{
+	Group {
+		children [
+
+			Transform {
+				translation	-0.095 0 0
+				rotation 1 0 0 1.5708
+				children Ombreira2 {}
+			}
+
+			Transform {
+				translation	1.53 -0.125 0.1265
+				rotation 0 1 0 3.1415
+				children Door2{}
+			}
+
+			DEF Do2 Transform {
+				translation	0 -0.125 0.1265
+				children [
+					DoorLeft2 {}
+
+					DEF	TS2 TouchSensor {
+						enabled	TRUE
+					}
+				]
+			}
+
+			DEF	Timer2 TimeSensor {
+				cycleInterval 3.0
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	DoorMove2 Script {
+				field SFBool open FALSE
+				field SFFloat angle -1.5708
+				eventIn	SFFloat	set_fraction
+				eventOut SFRotation	value_changed
+
+				url	"javascript:
+				function set_fraction( frac, timestamp ){
+					if(open == false){
+						x = angle * frac;
+						value_changed[0] = 0;
+						value_changed[1] = 1;
+						value_changed[2] = 0;
+						value_changed[3] = x;
+						if(x == angle){
+							open = true;
+						}
+					}
+					else{
+						x = angle *(1 - frac);
+						value_changed[0] = 0;
+						value_changed[1] = 1;
+						value_changed[2] = 0;
+						value_changed[3] = x;
+						if(x == 0){
+							open = false;
+						}
+					}
+				}
+				"
+			}
+		]
+	}
+
+	ROUTE TS2.touchTime TO Timer2.startTime
+	ROUTE Timer2.fraction_changed TO DoorMove2.set_fraction
+	ROUTE DoorMove2.value_changed TO Do2.rotation
+}
+
+Doors_Gabinetes	{}
+

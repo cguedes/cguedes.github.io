@@ -1,0 +1,437 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Axis [ ] "axis.wrl#Axis"
+Transform {
+	scale	0.02 .02 0.02
+	children Axis {  }
+}
+
+Background {
+    skyColor [ .0 .0 .8 ]
+}
+
+
+DEF Entry Viewpoint {
+    position 0.625 0 0.4
+    description "Entry"
+}
+
+
+
+
+PROTO Frame [] {
+	Shape {
+		geometry Extrusion {
+			crossSection [
+				-.025	 .055,
+				 .025	 .055,
+				 .025	-.055,
+				 .015	-.055,
+				 .015	 .045,
+				-.025	 .045,
+				-.025	 .055
+			]
+
+			spine [
+				0 -.8 0, 0 0 0, 0 .8 0 
+			]
+			#solid FALSE
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 0.5 0.5 0.5						
+			}
+		}
+	}
+}
+
+
+
+
+PROTO WindowS [] {
+	
+	Group {
+		children [
+#			outer frame
+			Transform {
+				translation	-.015 .8 -.045
+				children Frame { }							
+			}
+			Transform {
+				rotation 0 0 1 3.141592653590
+				translation 1.215 .8 -.045
+				children Frame { }
+			}
+			Transform {
+				scale 1 0.75 1
+				rotation 0 0 1 1.57079632679
+				translation 0.6 -.015 -.045
+				children Frame { }
+			}
+			Transform {
+				scale 1 0.75 1
+				rotation 0 0 1 -1.57079632679
+				translation 0.6 1.615 -.045
+				children Frame { }
+			}
+			DEF	Square Transform {
+				translation	-0.020 -0.020 0.005
+				children	   
+		    	Shape {				
+					geometry Box { size	0.04 0.04 0.01 }
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.5 0.5 0.5						
+						}
+					}
+				}
+			}
+			Transform {								
+				translation 1.24 0 0.0
+				children USE Square
+			}
+			Transform {								
+				translation 0 1.64 0
+				children USE Square
+			}
+			Transform {								
+				translation 1.24 1.64 0.0
+				children USE Square
+			}
+			
+			#glass frame
+			DEF AnimWindowLeft Transform {
+
+				translation	.01 .01 -.1
+				children [
+					##### animation begin #####
+					DEF TouchWindowLeft TouchSensor {  }
+					DEF	TimerWindowLeft TimeSensor	{  }
+					
+					DEF	PositionWindowLeft PositionInterpolator {
+						key		 [0, 1]						
+						keyValue [.54 .01 -.1, .01 .01 -.1] # initialize keys to actual position
+						
+					}
+
+					DEF SlideWindowLeft Script {		    	
+						eventIn	 SFTime 	click
+						field	 SFNode		position     USE AnimWindowLeft
+						field	 SFNode		interpolator USE PositionWindowLeft
+						eventOut SFTime		startTimer
+    					url "../PROTOS/scriptWindow.js"
+	
+					}
+					Sound {
+						minBack	50
+						minFront 50
+						maxBack	100
+						maxFront 100
+						source DEF SoundWindowLeft AudioClip {url "../SFX/soundwindow.wav" }
+					}
+					##### animation end #####
+
+					DEF Glass Group {
+						children [
+
+							#frame						
+							Group {
+								children [
+									Transform {
+										translation	.025 .79 0.005					
+										children
+										DEF f Shape {
+											geometry Box {
+												size 0.05 1.58 0.01
+											}
+											appearance Appearance {
+												material Material {
+													diffuseColor 0.8 0.8 0.8						
+												}
+											}
+										}				
+									}
+									Transform {
+										translation	.59 .79 0.005					
+										children USE f
+									}								
+									Transform {
+										rotation 0 0 1 -1.57079632679
+										scale 1 0.335 1
+										translation	.314 .025 0.005					
+										children USE f						
+									}
+									Transform {
+										rotation 0 0 1 -1.57079632679
+										scale 1 .335 1
+										translation	.314 1.555 0.005					
+										children USE f						
+									}
+								]	
+							}				
+		
+							#glass
+							Transform {
+								translation	.325 0.79 .006
+								children
+								Shape {
+									geometry Box {
+										size .55 1.48 0.002
+									}
+									appearance Appearance {
+										material Material {
+											diffuseColor 0.9 0.9 1
+											transparency 0.75
+										}
+										texture	ImageTexture { url "../GFX/glass.png" }
+									}
+								}
+							}
+						]						
+					}				
+				]		
+
+				
+			}
+
+			DEF AnimWindowRight Transform {
+				translation	.575 .01 -.09
+				children [
+					##### animation begin #####
+					DEF TouchWindowRight  TouchSensor { }
+					DEF	TimerWindowRight  TimeSensor	{ }
+					
+					DEF	PositionWindowRight PositionInterpolator {
+						key		 [0, 1]
+						keyValue [.01 .01 -.09, .575 .01 -.09] # initialize keys to actual position
+					}
+
+					DEF SlideWindowRight Script {		    	
+						eventIn	 SFTime 	click
+					    field	 SFNode		position     USE AnimWindowRight
+						field	 SFNode		interpolator USE PositionWindowRight
+						eventOut SFTime		startTimer
+    					url "../PROTOS/scriptWindow.js"	
+					}
+					Sound {
+						minBack	50
+						minFront 50
+						maxBack	100
+						maxFront 100
+						source DEF SoundWindowRight AudioClip {url "../SFX/soundwindow.wav" }
+					}
+					##### animation end #####
+
+					USE Glass
+			   ]
+			}					
+		]
+	}	 	
+
+	#Left window
+	ROUTE TouchWindowLeft.touchTime			TO	SlideWindowLeft.click
+	ROUTE SlideWindowLeft.startTimer		TO	TimerWindowLeft.startTime				
+	ROUTE SlideWindowLeft.startTimer		TO	SoundWindowLeft.startTime				
+	ROUTE TimerWindowLeft.fraction_changed	TO	PositionWindowLeft.set_fraction								
+	ROUTE PositionWindowLeft.value_changed	TO	AnimWindowLeft.set_translation
+
+	#Right window
+	ROUTE TouchWindowRight.touchTime		TO	SlideWindowRight.click
+	ROUTE SlideWindowRight.startTimer		TO	TimerWindowRight.startTime				
+	ROUTE SlideWindowRight.startTimer		TO	SoundWindowRight.startTime
+	ROUTE TimerWindowRight.fraction_changed	TO	PositionWindowRight.set_fraction								
+	ROUTE PositionWindowRight.value_changed	TO	AnimWindowRight.set_translation
+}
+
+				   
+PROTO WindowL [] {
+	Group {
+		children [
+#			outer frame
+			Transform {
+				translation	-.015 .8 -.045
+				children Frame { }
+							
+			}
+			Transform {
+				rotation 0 0 1 3.141592653590
+				translation 2.515 .8 -.045
+				children Frame { }
+			}
+			Transform {
+				scale 1 1.5625 1
+				rotation 0 0 1 1.57079632679
+				translation 1.25 -.015 -.045
+				children Frame { }
+			}
+			Transform {
+				scale 1 1.5625 1
+				rotation 0 0 1 -1.57079632679
+				translation 1.25 1.615 -.045
+				children Frame { }
+			}
+			DEF	Square Transform {
+				translation	-0.020 -0.020 0.005
+				children	   
+		    	Shape {				
+					geometry Box { size	0.04 0.04 0.01 }
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.5 0.5 0.5						
+						}
+					}
+				}
+			}
+			Transform {								
+				translation 2.54 0 0.0
+				children USE Square
+			}
+			Transform {								
+				translation 0 1.64 0
+				children USE Square
+			}
+			Transform {								
+				translation 2.54 1.64 0.0
+				children USE Square
+			}
+			
+			#glass frame
+			DEF AnimWindowLeft Transform {
+				translation	.01 .01 -.1
+				children [
+					##### animation begin #####
+					DEF TouchWindowLeft TouchSensor {  }
+					DEF	TimerWindowLeft TimeSensor	{  }
+					
+					DEF	PositionWindowLeft PositionInterpolator {
+						key		 [0, 1]						
+						keyValue [1.14 .01 -.1, .01 .01 -.1] # initialize keys to actual position							
+					}
+
+					DEF SlideWindowLeft Script {		    	
+						eventIn	 SFTime 	click
+						field	 SFNode		position     USE AnimWindowLeft
+						field	 SFNode		interpolator USE PositionWindowLeft
+						eventOut SFTime		startTimer
+    					url "../PROTOS/scriptWindow.js"	
+					}
+					Sound {
+						minBack	50
+						minFront 50
+						maxBack	100
+						maxFront 100
+						source DEF SoundWindowLeft AudioClip {url "../SFX/soundwindow.wav" }
+					}
+					##### animation end #####
+					DEF Glass Group {
+						children [
+							#frame						
+							Group {
+								children [
+									Transform {
+										translation	.025 .79 0.005					
+										children
+										DEF f Shape {
+											geometry Box {
+												size 0.05 1.58 0.01
+											}
+											appearance Appearance {
+												material Material {
+													diffuseColor 0.8 0.8 0.8						
+												}
+											}
+										}				
+									}
+									Transform {
+										translation	1.24 .79 0.005					
+										children USE f
+									}								
+									Transform {
+										rotation 0 0 1 -1.57079632679
+										scale 1 0.754 1
+										translation	.62 .025 0.005					
+										children USE f						
+									}
+									Transform {
+										rotation 0 0 1 -1.57079632679
+										scale 1 0.754 1
+										translation	.62 1.555 0.005					
+										children USE f						
+									}
+								]	
+							}				
+		
+							#glass
+							Transform {
+								translation	.625 0.79 .006
+								children
+								Shape {
+									geometry Box {
+										size 1.2 1.48 0.002
+									}
+									appearance Appearance {
+										material Material {
+											diffuseColor 0.9 0.9 1
+											transparency 0.75
+										}
+										texture	ImageTexture { url "../GFX/glass.png" }
+									}
+								}
+							}
+						]
+					}
+				]
+			}
+			DEF AnimWindowRight Transform {
+				translation	1.225 .01 -.09
+				children [
+					##### animation begin #####
+					DEF TouchWindowRight TouchSensor {  }
+					DEF	TimerWindowRight TimeSensor	{  }
+					
+					DEF	PositionWindowRight PositionInterpolator {
+						key		 [0, 1]						
+						keyValue [.01 .01 -.09, 1.225 .01 -.09] # initialize keys to actual position
+						
+					}
+
+					DEF SlideWindowRight Script {		    	
+						eventIn	 SFTime 	click							
+						field	 SFNode		position     USE AnimWindowRight
+						field	 SFNode		interpolator USE PositionWindowRight
+						eventOut SFTime		startTimer
+    					url "../PROTOS/scriptWindow.js"
+	
+					}
+					Sound {
+						minBack	50
+						minFront 50
+						maxBack	100
+						maxFront 100
+						source DEF SoundWindowRight AudioClip {url "../SFX/soundwindow.wav" }
+					}
+					##### animation end #####
+
+				    USE Glass
+				]
+			}					
+		]
+	}
+
+	#Left window
+	ROUTE TouchWindowLeft.touchTime			TO	SlideWindowLeft.click
+	ROUTE SlideWindowLeft.startTimer		TO	TimerWindowLeft.startTime
+	ROUTE SlideWindowLeft.startTimer		TO	SoundWindowLeft.startTime								
+	ROUTE TimerWindowLeft.fraction_changed	TO	PositionWindowLeft.set_fraction								
+	ROUTE PositionWindowLeft.value_changed	TO	AnimWindowLeft.set_translation
+
+	#Right window
+	ROUTE TouchWindowRight.touchTime		TO	SlideWindowRight.click
+	ROUTE SlideWindowRight.startTimer		TO	TimerWindowRight.startTime
+	ROUTE SlideWindowRight.startTimer		TO	SoundWindowRight.startTime								
+	ROUTE TimerWindowRight.fraction_changed	TO	PositionWindowRight.set_fraction								
+	ROUTE PositionWindowRight.value_changed	TO	AnimWindowRight.set_translation
+}
+
+
+WindowL	{ }

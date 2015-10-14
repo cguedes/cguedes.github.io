@@ -1,0 +1,93 @@
+#VRML V2.0 utf8
+
+
+PROTO LuzQuarto[]{
+	Group {
+		children [
+
+			DEF	LuzTecto PointLight {
+			  intensity	1
+			  color	1 1 1
+			  location 1.645 2.195 1.31 
+			radius 5
+			on FALSE
+			}
+		
+
+			 Transform {
+				 translation 0.6 1.5 -0.1
+				 rotation 0 1 0 1.5708
+    				  children [
+        				DEF LightSwitch TouchSensor { }
+        				Shape {
+        				  geometry Box { size 0.01 0.1 0.1 }
+        				  appearance Appearance { material Material { emissiveColor 1 1 1 } }
+        				}
+    				  ]
+			 } 
+
+			DEF ToogleButtonQuarto Script {
+			  field    SFBool on FALSE
+			  eventIn  SFBool set_active
+			  eventOut SFBool on_changed
+			  url "javascript:
+			   function set_active( set, timestamp ) {
+    			 if(set == FALSE) return;
+    			 if(on == TRUE)   on = FALSE;
+    			 else             on = TRUE;
+    			 on_changed = on;
+			  }"
+			}
+
+#				DEF	LuzEntrada SpotLight {
+#			  intensity	1
+#			  color	1 1 1
+#			  direction	0 -1 1
+#			  location 0 2.4 -0.5 
+#				radius 2
+#				on FALSE
+#			}
+			DEF	LuzEntrada PointLight {
+			  intensity	1
+			  color	1 1 1
+			  
+			  location 0 2.4 -0.5 
+				radius 2
+				on FALSE
+			}
+
+	
+
+			 Transform {
+				 translation 0.45 1.5 -0.1
+				 rotation 0 1 0 1.5708
+    				  children [
+        				DEF LightSwitch1 TouchSensor { }
+        				Shape {
+        				  geometry Box { size 0.01 0.1 0.1 }
+        				  appearance Appearance { material Material { emissiveColor 1 1 1 } }
+        				}
+    				  ]
+			 } 
+
+			DEF ToogleButtonQuarto1 Script {
+			  field    SFBool on FALSE
+			  eventIn  SFBool set_active
+			  eventOut SFBool on_changed
+			  url "javascript:
+			   function set_active( set, timestamp ) {
+    			 if(set == FALSE) return;
+    			 if(on == TRUE)   on = FALSE;
+    			 else             on = TRUE;
+    			 on_changed = on;
+			  }"
+			}
+		
+		]
+		ROUTE  LightSwitch.isActive	 TO	ToogleButtonQuarto.set_active
+		ROUTE ToogleButtonQuarto.on_changed TO LuzTecto.on
+		ROUTE  LightSwitch1.isActive	 TO	ToogleButtonQuarto1.set_active
+		ROUTE ToogleButtonQuarto1.on_changed TO LuzEntrada.on
+	}
+
+}

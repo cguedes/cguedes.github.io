@@ -1,0 +1,56 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Axis [ ] "axis_prof.wrl#Axis"
+
+EXTERNPROTO	Mesa [] "Mesa.wrl#Mesa"
+EXTERNPROTO	Cadeira [] "Cadeira.wrl#Cadeira"
+
+EXTERNPROTO	MesaSimples [] "LOD1\Mesa.wrl#Mesa"
+EXTERNPROTO	CadeiraSimples [] "LOD1\Cadeira.wrl#Cadeira"
+
+PROTO MesaECadeiras[] {
+	Group {
+		children [
+			LOD{
+					range [4.0]
+					level [Mesa{} , MesaSimples{}]
+			}
+			Transform {
+				translation	-0.46 0 0.325
+				rotation 0 1 0 3.14
+				children 
+				LOD{
+					range [4.0]
+					level [Cadeira{} , CadeiraSimples{}]
+				}
+			}
+			Transform {
+				translation	0.46 0 0.325
+				rotation 0 1 0 3.14
+				children 
+				LOD{
+					range [4.0]
+					level [Cadeira{} , CadeiraSimples{}]
+				}
+			}
+			Transform {
+				translation	-0.46 0 -0.325
+				children 
+				LOD{
+					range [4.0]
+					level [Cadeira{} , CadeiraSimples{}]
+				}
+			}
+			Transform {
+				translation	0.46 0 -0.325
+				children 
+				LOD{
+					range [4.0]
+					level [Cadeira{} , CadeiraSimples{}]
+				}
+			}
+		]
+	}
+}
+
+MesaECadeiras { }

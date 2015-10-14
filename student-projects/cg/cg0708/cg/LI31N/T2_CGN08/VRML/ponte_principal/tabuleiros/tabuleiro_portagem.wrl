@@ -1,0 +1,140 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	portagem[field SFRotation rot field SFVec3f pos] "portagem/portagem.wrl"
+EXTERNPROTO grad200 [field SFRotation rot field SFVec3f pos	field SFFloat tam] "gradeamento_rails/gradeamento200_novo.wrl"
+EXTERNPROTO grad100 [field SFRotation rot field SFVec3f pos ] "gradeamento_rails/gradeamento100_novo.wrl"
+EXTERNPROTO Pilar [	field SFVec3f pos	field SFRotation rot	field SFVec3f escala	field SFVec3f reset	field SFVec3f posBase
+] "../pilares/pilar_14m.wrl"
+
+PROTO tab_portagem[field SFRotation rot 1 0 0 -1.57079 field SFVec3f pos 0 0 0 ]
+{
+	Transform {
+		children [
+			NavigationInfo {}
+
+			Shape {
+				geometry Extrusion {
+					crossSection [
+						-15.5 0, -15.3 .5, -14.1 .5, -14.1 0, -.1 0, -.0500002 .4,
+						-.0500002 1, -.0500002 -5, -11.5 -5, -13.5 -1, -15.1 -1,
+						-15.1 0, -15.5 0
+					]
+					spine [	0 -450 0, 0 0 0, 0 450 0 ] 
+
+					scale [ 1 1, 4.9 1, 1 1	]
+				}
+				appearance Appearance { 
+					textureTransform TextureTransform { scale 5 10 }
+					texture ImageTexture { url "../imagens/betao.jpg" } 
+				}
+			}
+
+			### Lado direito ... sem escala ###
+			Shape {
+				geometry Extrusion {
+					crossSection [
+						-.3 -5, -.3 0, -.25 .4, -.25 1, -.05 1, -.05 .4, 0 0, 14 0,
+						14 .5, 15.2 .5, 15.4 0, 15 0, 15 -1, 13.3 -1, 11.2 -5, -.3 -5
+					]
+					spine [	0 -450 0, 0 450 0 ] 
+				}
+				appearance Appearance { 
+					textureTransform TextureTransform { scale 5 10 }
+					texture ImageTexture { url "../imagens/betao.jpg" }	
+				}
+			}	
+		
+			#### Estrada ####	
+			Shape {
+				geometry Extrusion {
+					crossSection [-14.1 .1, 0 .1, 0 0, -14.1 0, -14.1 .1]
+					spine [0 -450 0, 0 0 0, 0 450 0	] 
+
+					scale [	1 1, 4.9 1, 1 1	]
+				}
+				appearance Appearance { 
+					textureTransform TextureTransform { scale 4 40}
+					texture ImageTexture { url "../imagens/estrada1.jpg" } 
+					material Material { emissiveColor 0.6 0.6 0.6}
+				}
+			}
+
+			Transform {
+				children[
+					 Shape {
+						geometry Box { size 14 0.1 900 }
+						appearance Appearance { 
+							textureTransform TextureTransform {	scale 1 80 }
+							texture ImageTexture { url "../imagens/estrada.jpg" }
+							material Material { emissiveColor 0.6 0.6 0.6}
+						}
+					}
+				]
+				rotation 1 0 0 1.57079
+				translation	7 0 0
+			}
+
+			### PORTAGEM ####
+		 	Transform { rotation 0 0 1 3.14158 children portagem { rot 1 0 0 1.57059 pos 1.8 -7 10 } }
+
+			### Gradeamento ###
+			Transform { rotation 0 0 1 -1.57079 translation 15.1 -350 1.5 children grad200{ rot 1 0 0 1.57079} } 
+			Transform { rotation 0 0 1 -1.57079 translation 15.1 -150 1.5 children grad200{ rot 1 0 0 1.57079} } 
+			Transform { rotation 0 0 1 -1.57079 translation 15.1   50 1.5 children grad200{ rot 1 0 0 1.57079} } 
+			Transform { rotation 0 0 1 -1.57079 translation 15.1  250 1.5 children grad200{ rot 1 0 0 1.57079} } 
+			Transform { rotation 0 0 1 -1.57079 translation 15.1  400 1.5 children grad100{ rot 1 0 0 1.57079} }
+		   
+		    Transform { rotation 0 0 1 1.697 translation -28 -350 1.5 children grad200{ rot 1 0 0 1.57079} } 
+			Transform { rotation 0 0 1 1.697 translation -53.3 -151 1.5 children grad200{ rot 1 0 0 1.57079} } 
+			Transform { scale 0.52 1 1 rotation 0 0 1 1.697 translation -69.2 -25.5 1.5 children grad100{ rot 1 0 0 1.57079} } 
+
+			Transform { scale 0.52 1 1 rotation 0 0 1 1.44458 translation -69.2 25.5 1.5 children grad100{ rot 1 0 0 1.57079} } 
+			Transform { rotation 0 0 1 1.44458 translation -53.3 151 1.5 children grad200{ rot 1 0 0 1.57079} } 
+			Transform { rotation 0 0 1 1.44458 translation -28   350 1.5 children grad200{ rot 1 0 0 1.57079} } 
+
+			#### Pilares ####
+			Pilar { pos -30 220 -14 rot 1 0 0 1.57}
+			Pilar { pos -65 10 -14 rot 1 0 0 1.57}
+			Pilar { pos -20 10 -14 rot 1 0 0 1.57}
+			Pilar { pos -30 -220 -14 rot 1 0 0 1.57}
+
+			## Placa deserto ##
+			Transform {
+				children [
+					Transform {
+						children [ 
+							Shape { 
+								geometry Box { size	1 7 0.05 } 
+								appearance Appearance { material Material { diffuseColor 0.1 0.1 0.1}}
+							}
+						]
+					}
+					Transform {
+						children [ 
+							Shape { 
+								geometry Box { size	8 5 0.05 } 
+								appearance Appearance { material Material { diffuseColor 0.1 0.1 0.1}}
+							}
+						]
+						translation	0 5 0.02
+					}
+					Transform {
+						children [ 
+							Shape { 
+								geometry Box { size	8 5 0.01 } 
+								appearance Appearance { texture ImageTexture { url "../imagens/placa_deserto.jpg" }}
+							}
+						]
+						translation	0 5 0.055
+					}
+				]
+				rotation 1 0 0 1.57
+				translation	0 455 3
+			}
+
+		]
+		rotation IS	rot
+		translation	IS pos
+	}		
+}
+tab_portagem {}

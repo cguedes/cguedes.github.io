@@ -1,0 +1,103 @@
+#VRML V2.0 utf8
+
+PROTO Axe [ field SFColor boxColour 1 0 0, field MFString name "O",field SFRotation rotate 0 0 0 0] {
+	Transform {			   
+		translation	0,1.5,0			   #translacao sobre letra cone e cilindro
+		children [
+			Shape { 
+				geometry Cylinder {	
+							height 3 
+							#radius .05
+              radius .01 
+				}
+				appearance Appearance {
+        				material Material { 
+							diffuseColor IS boxColour
+						}
+				}
+
+			}
+			Shape	{#cilindros pequenos grandes
+				geometry Cylinder {	
+							height 100 
+							radius .01 
+				}
+				appearance Appearance {
+        				material Material { 
+							diffuseColor IS boxColour
+						}
+				}
+			}
+			Transform{#ponta seta
+				translation	0,1.5,0	  #translação qe afecta o cone e a letra
+				children [
+					Shape {
+						geometry Cone {
+							height 0.5, 
+							bottomRadius 0.1
+						}
+						appearance Appearance {
+        					material Material { 
+								diffuseColor IS boxColour
+							}
+						}
+					}
+					Transform {#letras
+						rotation IS rotate
+						translation	0,0.5,0	  #translacao so letra
+						children  Shape	{
+							geometry Text {
+								string    IS name
+								length    30 
+								fontStyle FontStyle { 
+									family       	"VERDANA"
+									horizontal   	TRUE
+									justify      	"BEGIN"
+									language     	""
+									leftToRight  	TRUE
+									size         	0.5          
+									spacing      	1.0          
+									style        	"BOLD"
+									topToBottom  	TRUE
+								}
+							}	
+							appearance Appearance {
+								material Material { 
+									diffuseColor IS boxColour
+								}	
+							}
+						}
+					}
+				]
+			}			  	
+		]				   
+	}
+}
+
+
+
+
+PROTO eixos[]
+{
+	Group {
+		children [
+			Transform {
+				children Axe { name "X", rotate 0,0,1, 1.57 }
+				rotation 0,0,1, -1.57 
+			}
+
+			Axe { boxColour 0 1 0, name "Y" }
+				  
+			Transform {
+				children Axe { boxColour 0 0 1, name "Z", rotate 1,0,0, -1.57 }
+				rotation 1,0,0, 1.57
+			}
+			Shape 
+			{
+				geometry Sphere	{ radius 0.02}
+			}
+		]
+	}
+}
+
+eixos	{}

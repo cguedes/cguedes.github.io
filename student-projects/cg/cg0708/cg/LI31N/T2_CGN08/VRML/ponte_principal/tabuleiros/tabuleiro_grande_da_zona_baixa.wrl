@@ -1,0 +1,112 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	tab_largo[field SFVec3f pos  field SFRotation rot field SFVec3f escala] 											"tabuleiro_baixo_com_espaco_seguranca_final.wrl"
+
+EXTERNPROTO	tab_1000[field SFVec3f pos  field SFRotation rot ] "tabuleiro_baixo_1000_final.wrl"
+
+EXTERNPROTO carro [	field SFVec3f pos field SFRotation rot field SFColor cor ]	"../carro/carro.wrl"
+EXTERNPROTO carro_policia [	field SFVec3f pos  field SFRotation rot ] "../carro/policia.wrl"
+
+EXTERNPROTO	tab_parte_com_alto [ field SFVec3f pos field SFRotation rot] 
+											"tabuleiro_parte_do_alto_final.wrl"
+EXTERNPROTO tab_portagem [ field SFVec3f pos	field SFRotation rot ] "tabuleiro_portagem_final.wrl"
+
+NavigationInfo { type ["WALK", "ANY"] }
+
+PROTO tabuleiro_grande_da_zona_baixa[field SFVec3f pos 0 0 0 field SFRotation rot 0 0 0 0]
+{
+	Transform {
+			children [
+			
+			Viewpoint {
+				fieldOfView 1 
+				position 14 5 -5975
+				orientation 0 1 0 -0.45
+				description "Placa Deserto" 
+				jump TRUE 
+			}
+
+			## antes fica a parte da ponte principal + curva ##	
+			carro_policia { pos 8.5 0.1 50 rot 0 1 0 -1.2}
+			tab_largo { pos 0.05 0 200}
+			tab_1000	  { pos 0 0 -500 }
+			tab_largo { pos 0.05 0 -1000 }
+			tab_1000	  { pos 0 0 -1700 }
+			tab_largo { pos 0.05 0 -2200}
+			# zona do alto
+			tab_parte_com_alto { pos 15.55 1 -3900 }
+			tab_largo{ pos 0 0 -3900 }
+			tab_1000  { pos 0 0 -4600 }
+			#zona de terra... margem sul
+			# portagem #
+			tab_portagem { pos 15.65 0 -5550 }
+			Transform {
+				children [
+					DEF trans1 Transform {
+						children[ 
+							Viewpoint {
+								description	"Corrida - Carros Portagem"
+								position 8.5 2 -5542
+								fieldOfView 0.785398
+								orientation	0 -1 0 3.14	
+							}
+						]
+					}
+					
+					DEF carro1 Transform {
+						children [
+							carro { pos 6.5 0.1 -5533 rot 0 1 0 1.57 cor 0.876 0.129 0.129 } 
+							Viewpoint {
+								description	"Corrida - Dentro Carro1"
+								position 5.9 1.15 -5533.2
+								fieldOfView 0.785398
+								orientation	0 -1 0 3.14	
+							}	
+						]
+					}
+					DEF carro2 Transform {
+						children [
+						   carro { pos 12 0.1 -5533 rot 0 1 0 1.57 cor 0.278 0.38 0.72 } 
+						   Viewpoint {
+								description	"Corrida - Dentro Carro2"
+								position 11.4 1.15 -5533.2
+								fieldOfView 0.785398
+								orientation	0 -1 0 3.14	
+							}	
+						]
+					}
+					
+					DEF	TouchStart1 TouchSensor {}	
+				]
+			}
+			DEF Position1 PositionInterpolator {
+    			key      [  0.0     0.1       0.2       0.3        0.4       0.5        0.6      0.7       0.8       0.9       0.95          1    ]
+    			keyValue [ 0 0 0, 4 0 520, 0 0 1000, 0 0 1650 , 3 30 2130, 0 30 2635,  0 0 3126, 1 0 3525, 0 0 4000, 0 0 4500,  0 0 5000   0 0 5561 ]
+			}
+			DEF Position2 PositionInterpolator {
+    			key      [  0.0     0.1      0.2       0.3         0.4       0.5         0.6      0.7       0.8       0.9       0.95        1    ]
+    			keyValue [ 0 0 0, 0 0 510, 0 0 1000, -2 0 1650 ,0 30 2130, -1 30 2635, 0 0 3125, 0 0 3522, -2 0 4000, 0 0 4500, 0 0 5000  0 0 5560 ]
+			}
+			DEF Position3 PositionInterpolator {
+    			key      [  0.0     0.1      0.2       0.3       0.4       0.5          0.6      0.7       0.8       0.9      0.95         1    ]
+    			keyValue [ 0 0 0, 0 0 508, 0 0 998, 0 0 1650 ,0 30 2130, 0 30 2635,  0 0 3125, 0 0 3521, 0 0 4000, 0 0 4500, 0 0 4999,  0 0 5558 ]
+			}			
+		]
+		rotation IS	rot
+		translation	IS pos
+	}
+	
+	DEF Timer1 TimeSensor { cycleInterval 40.0  loop FALSE  }
+	ROUTE TouchStart1.touchTime TO Timer1.startTime
+	
+
+	ROUTE Timer1.fraction_changed TO Position1.set_fraction
+	ROUTE Position1.value_changed TO carro1.translation
+	ROUTE Timer1.fraction_changed TO Position2.set_fraction
+	ROUTE Position2.value_changed TO carro2.translation
+
+	ROUTE Timer1.fraction_changed TO Position3.set_fraction
+	ROUTE Position3.value_changed TO trans1.translation
+}
+tabuleiro_grande_da_zona_baixa{}
+

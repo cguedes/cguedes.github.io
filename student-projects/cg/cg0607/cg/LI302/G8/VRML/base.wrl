@@ -1,0 +1,161 @@
+#VRML V2.0 utf8
+
+PROTO BaseCasa [
+	exposedField SFVec3f translation 0 0 0
+	exposedField SFRotation rotation 0 0 1 0
+] {
+
+	PROTO base 
+	[
+		exposedField SFRotation rotate 0 0 0 0 
+		exposedField SFVec3f translate 0 0 0
+		field SFVec3f BoxSize .15 .15 .02
+		field SFColor diffuseColor .1 .1 .1
+	]
+	{
+		Transform
+		{
+			rotation IS	rotate
+			translation	IS translate
+
+			children
+			[
+				Shape 
+				{
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS	diffuseColor
+						}
+				
+					}
+					geometry Box 
+					{
+						size IS	BoxSize
+					}
+				}
+		
+			]
+		}
+	}
+
+	PROTO bmaior
+	[
+		field SFRotation rotM 0 0 0 0
+		field SFVec3f trnsM 0 0 0
+		field SFColor  diffuseColor .1 .1 .1
+	]
+	{
+		Transform
+		{
+			rotation IS	rotM
+			translation	IS trnsM
+			children 
+			[
+				base{rotate 1 0 0 1.57 translate 0 .08 0 BoxSize .15 3.26 .02 diffuseColor IS diffuseColor }
+				base{rotate 1 0 0 1.57 translate 0 -.08 0 BoxSize .15 3.26 .02 diffuseColor IS diffuseColor }
+				base{rotate 0 1 0 1.57 translate .065 0 0 BoxSize 3.26 .15 .02 diffuseColor IS diffuseColor }
+
+				base{translate 0 0 1.62 diffuseColor IS diffuseColor }
+				base{translate 0 0 -1.62 diffuseColor IS diffuseColor }
+
+				base{translate 0 0 .7125 diffuseColor IS diffuseColor }
+				base{translate 0 0 -.7125 diffuseColor IS diffuseColor }
+
+				base{translate 0 0 .5625 diffuseColor IS diffuseColor }
+				base{translate 0 0 -.5625 diffuseColor IS diffuseColor }
+			]	
+		}
+	}
+
+	PROTO bmenor
+	[
+		field SFRotation rotm 0 0 0 0
+		field SFVec3f trnsm 0 0 0
+		field SFColor diffuseColor .1 .1 .1
+	]
+	{
+		Transform 
+		{
+			rotation IS	rotm
+			translation	IS trnsm
+			children 
+			[
+				base{rotate 1 0 0 1.57 translate 0 .08 0 BoxSize .15 1.695 .02 diffuseColor IS diffuseColor }
+				base{rotate 1 0 0 1.57 translate 0 -.08 0 BoxSize .15 1.695 .02 diffuseColor IS diffuseColor  }
+				base{rotate 0 1 0 1.57 translate .065 0 0 BoxSize 1.695 .15 .02 diffuseColor IS diffuseColor }
+				base{translate 0 0 .075 diffuseColor IS diffuseColor }
+				base{translate 0 0 -.075 diffuseColor IS diffuseColor }
+			]	
+		}
+	}
+
+	PROTO Suporte [
+		field SFRotation rotation 0 0 0 0
+		field SFVec3f translation 0 0 0
+	] {
+		Transform {
+			rotation IS	rotation
+			translation	IS translation
+			children [
+				bmenor{rotm 0 1 0 1.57 trnsm -.9215 -.01 .77 diffuseColor .2 .2 .2}
+				bmenor{rotm 0 1 0 -1.57 trnsm -.9215 -.01 -2.34 diffuseColor .2 .2 .2}
+
+
+				bmaior {rotM 0 0 1 3.14 trnsM -.15 -.01 -.787 diffuseColor .2 .2 .2}
+				bmaior {trnsM -1.695 -.01 -.787 diffuseColor .2 .2 .2}
+			]
+		}
+	}
+	PROTO EsqueletoInterior [
+		field SFRotation rotation 0 0 0 0
+		field SFVec3f translation 0 0 0
+	] {
+	Transform {
+			rotation IS	rotation
+			translation	IS translation
+
+			children [
+				bmenor{rotm 0 1 0 -1.57 trnsm -.8765 2.46 .77}
+				bmenor{rotm 0 1 0 1.57 trnsm -.8765 2.46 -2.34}
+
+				bmaior {trnsM -.05 2.46 -.787}
+				bmaior {rotM 0 0 1 3.14 trnsM -1.76 2.46 -.787}
+
+				bmenor{rotm 0 1 0 -1.57 trnsm -.8765 4.8 .77}
+				bmenor{rotm 0 1 0 1.57 trnsm -.8765 4.8 -2.34}
+
+				bmaior {trnsM -.05 4.8 -.787}
+				bmaior {rotM 0 0 1 3.14 trnsM -1.76 4.8 -.787}
+
+				base {BoxSize .15 4.8 .15 translate -.05 2.5 .77}
+				base {BoxSize .15 4.8 .15 translate -1.76 2.5 .77}
+
+				base {BoxSize .15 4.8 .15 translate -.05 2.5 -2.34}
+				base {BoxSize .15 4.8 .15 translate -1.76 2.5 -2.34}
+
+				base {BoxSize 1.8 .03 .12 translate -.9 2.46 -1.43}
+				base {BoxSize 1.8 .03 .12 translate -.9 2.46 -.15}
+
+				base {BoxSize 1.8 .03 .12 translate -.9 4.8 -1.43}
+				base {BoxSize 1.8 .03 .12 translate -.9 4.8 -.15}
+
+				base {BoxSize .12 2.34 .12 translate -.9 3.64 -1.43}
+				base {BoxSize .12 2.34 .12 translate -.9 3.64 -.15}
+
+			]
+		}
+	}
+
+
+	Transform {
+		translation	IS translation
+		rotation IS	rotation
+		children [
+			Suporte	{}
+			EsqueletoInterior {}
+		]
+	}
+}
+

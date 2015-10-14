@@ -1,0 +1,26 @@
+#VRML V2.0 utf8
+# dimensões:
+# x: 1.64
+# y: 0.10
+# z: 0.82
+
+EXTERNPROTO	Axis [ ] "axis_prof.wrl#Axis"
+
+
+PROTO Luz [] {
+	Shape {
+		geometry Box {
+			 size 0.82 0.1 1.64
+		}
+		appearance Appearance {
+			material Material {
+				emissiveColor 1 1 1
+				ambientIntensity 1
+				shininess 1
+			}
+		}
+	}
+}
+
+
+Luz { }

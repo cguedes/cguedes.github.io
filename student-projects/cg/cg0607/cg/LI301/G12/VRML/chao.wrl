@@ -1,0 +1,39 @@
+#VRML V2.0 utf8
+
+#Chao
+PROTO chao [] {
+	Group {
+		children [
+			Transform {
+				translation	3.85 -0.005 -8.15
+				children Shape {
+					geometry Box { size	7.7 0.01 16.3 }
+					appearance Appearance { texture ImageTexture {url "txChao.jpg"}
+						textureTransform TextureTransform {scale 20 30}
+						material Material {
+							diffuseColor .75 .75 .75
+							specularColor .5 .5 .5
+							emissiveColor .15 .15 .15
+							ambientIntensity 0
+						}
+					}
+				}
+			}
+			Transform {
+				translation	1.35 0.005 -9.95
+				children Shape {
+					geometry Box { size	2.5 0.01 1 }
+					appearance Appearance { material Material {
+						diffuseColor .5 .3 .19 
+						specularColor .08 .08 .05
+						emissiveColor .12 .13 .08
+						ambientIntensity .0833
+						shininess .17 }
+					}
+				}
+			}
+		]
+	}
+}
+
+chao {}

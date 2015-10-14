@@ -1,0 +1,490 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	candeeiro [
+	exposedField SFVec3f trans
+	exposedField SFBool	luz
+] "candeeiro.wrl"
+
+EXTERNPROTO lampadaFora [
+	exposedField SFVec3f trans
+	exposedField SFRotation	rot
+	exposedField SFBool	luz
+] "lampadaFora.wrl"
+
+PROTO Electricidade [
+	exposedField SFVec3f translation 1.51 .2 2.33
+	exposedField SFRotation rotation 0 1 0 3.14
+	eventOut SFBool	luzLigada
+] {
+
+	PROTO horizbox [
+		field SFVec3f coord 0 0 0
+		field SFVec3f tam 0.32 0.08 0.02
+	] {
+		Transform {
+			translation	IS coord
+			children [
+				Shape {
+					geometry Box {
+						size IS	tam
+					}
+ 					appearance Appearance {
+						material Material {
+							diffuseColor .8 .85 .6
+							specularColor .58 .58 .58
+							ambientIntensity .2
+							shininess .65
+						}
+					}
+				}
+			]
+		}
+	}
+
+	PROTO vertbox  [
+		exposedField SFVec3f coord 0 0 0
+		exposedField SFRotation	rot 0 0 0 0
+	] {
+		Transform {
+			translation	IS coord
+			rotation IS	rot
+			children [
+				Shape {
+					geometry Extrusion { 
+    					crossSection [ 1 -1, -1 -1, -1 1, 1 -1 ] 
+    					orientation 0 0 1 0
+    					scale 0.02 0.01
+    					solid TRUE
+    					spine [0 -0.12 0, 0 0.12 0]
+
+
+					}
+ 					appearance Appearance {
+						material Material {
+							diffuseColor .8 .85 .6
+							specularColor .58 .58 .58
+							ambientIntensity .2
+							shininess .65
+						}
+					}
+				}
+			]
+		}
+	}
+
+	PROTO interruptorUp [exposedField SFVec3f coord 0 0 0] {
+		Transform {
+			translation	IS coord
+			children [
+				Shape {
+					geometry Box {
+						size 0.02 0.06 0.01
+
+					}
+					appearance Appearance {
+						material Material {
+							diffuseColor .8 .8 .8
+						}
+					}
+				}
+				Transform {
+					rotation 0 0 1 1.57
+					translation	0 0 0.008
+					children [
+						Shape {
+							geometry Cylinder {
+								bottom TRUE
+								top	TRUE
+								height 0.02
+								radius 0.003
+							}
+							appearance Appearance {
+								material Material {
+									diffuseColor 0.7 0.3 0.2
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	}
+
+	PROTO interruptorDown [
+		exposedField SFVec3f coord 0 0 0
+		exposedField SFColor cor 0 0 0
+	] {
+		Transform {
+			translation	IS coord
+			children [
+				Shape {
+					geometry Box {
+						size 0.04 0.06 0.01
+
+					}
+					appearance Appearance {
+						material Material {
+							diffuseColor .8 .8 .8
+						}
+					}
+				}
+				Transform {
+					rotation 1 0 0 .4
+					translation	0.0 0 0.006
+					children [
+						Shape {
+							geometry Box {
+								size 0.035 0.03 0.002
+							}
+							appearance Appearance {
+								material Material {
+									diffuseColor IS	cor
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	}
+	PROTO Calha
+	[
+		field SFVec3f translation -.12 -.6 0
+		field SFVec3f size .26 .08 .06
+		field SFVec3f size1 .26 .02 .06
+		field SFRotation rotation 0 0 0 0
+	]
+	{
+		Transform 
+		{
+			rotation IS	rotation
+			translation	IS translation
+
+			children 
+			[
+				Transform 
+				{
+					translation	0 -.05 0
+					children 
+					[
+						Shape 
+						{
+							appearance Appearance 
+							{
+								material Material 
+								{
+									diffuseColor .9 .9 .68
+								}
+							}
+							geometry Box 
+							{
+								size IS	size1
+							}
+						}
+					]
+				}
+				Transform 
+				{
+					translation	0 .05 0
+					children 
+					[
+						Shape 
+						{
+							appearance Appearance 
+							{
+								material Material 
+								{
+									diffuseColor .9 .9 .68
+								}
+							}
+							geometry Box 
+							{
+								size IS	size1
+							}
+						}
+					]
+				}
+				Shape 
+				{
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor .96 .96 .7
+						}
+					}
+					geometry Box 
+					{
+						size IS	size
+					}
+				}
+			]
+		}
+	}
+
+	PROTO Espelho
+	[
+		field MFString url ["Tomadaelec.png"]
+		field SFVec3f translate 0 0 0
+		field SFRotation rotate 0 0 0 0
+		exposedField SFBool enabled FALSE
+		eventOut SFBool ligado
+	]
+	{
+		Transform 
+		{
+			translation	IS translate
+			rotation IS	rotate
+			children 
+			[
+				Shape 
+				{
+					appearance Appearance 
+					{
+						texture	ImageTexture 
+						{
+							url	IS url
+						}
+					}
+					geometry Box {size .08 .08 .01}
+				}
+				DEF	interr TouchSensor {
+					enabled	IS enabled
+				}
+			]
+		}
+
+		DEF ToggleLight Script {
+			field	SFBool state TRUE
+			eventIn	SFBool toggle
+    		eventOut SFBool ligado IS ligado
+
+			url "vrmlscript:
+			function toggle(active) 
+			{
+				if(active) {
+					state=!state;
+					ligado=state;
+				}
+			}"
+		}
+
+		ROUTE interr.isActive TO ToggleLight.toggle
+	}			 
+
+	PROTO mainCaixa [] {
+		Group {
+			children [
+				Shape {
+					geometry Box {
+						size 0.32 0.40 0.08
+					}
+					appearance Appearance {
+						material Material {
+							diffuseColor .8 .85 .6
+							specularColor .58 .58 .58
+							shininess .65
+						}
+					}
+				}
+
+
+				DEF	tr Transform {
+					translation	0.16 0 0.065
+					children [
+						Transform {
+							translation	-0.16 0 0
+							children [
+								Shape {
+									geometry Box {
+										size 0.32 0.4 0.01
+									}
+									appearance Appearance {
+										material Material {
+											diffuseColor .2 .1 0
+											specularColor .58 .58 .58
+											shininess .9
+											transparency 0.3
+										}
+									}
+								}
+								DEF TouchTampa TouchSensor { }
+							]
+						}
+					]
+				}
+
+				interruptorUp	{ coord -0.07 0.075 0.055 }
+				interruptorUp	{ coord -0.05 0.075 0.055 }
+				interruptorUp	{ coord -0.03 0.075 0.055 }
+				interruptorUp	{ coord -0.01 0.075 0.055 }
+				interruptorUp	{ coord 0.01 0.075 0.055 }
+
+				interruptorDown	{ coord -0.05 -0.075 0.055 }
+				interruptorDown	{
+					coord 0.01 -0.075 0.055
+					cor 1 0.5 0
+				}
+
+				horizbox {coord 0 0.16 0.05}
+				horizbox {coord 0 -0.16 0.05}
+				horizbox {
+					coord 0 0 0.05
+					tam 0.32 0.06 0.02
+				}
+
+				vertbox {coord -0.14 0 0.05}
+				vertbox {
+					rot	0 0 1 3.1415
+					coord 0.14 0 0.05
+				}
+
+				Transform {
+					translation	-0.12 -0.4 -0.02
+					children [
+						Shape {
+							geometry Cylinder {
+								bottom FALSE
+								top	FALSE
+								radius 0.01
+								height 0.4
+							}
+							appearance Appearance {
+								material Material {
+									diffuseColor 1 1 0.6
+								}
+							}
+						}
+					]
+				}
+
+				Transform {
+					translation	-0.12 -0.35 0
+					children 
+					[
+						Shape 
+						{
+							appearance Appearance 
+							{
+								material Material 
+								{
+									diffuseColor .9 .9 .8
+								}
+							}
+							geometry Box {
+								size 0.1 0.2 0.06
+							}
+						}
+					]
+				}
+				Calha{}
+				Calha{rotation 0 0 1 1.57 translation .09 -.43 0 size .455 .08 .06 size1 .455 .02 .06}
+			
+				Calha{rotation 0 0 1 1.57 translation -.33 1.12 0 size 1.37 .08 .06  size1 0 0 0}
+
+				Calha{rotation 0 0 1 1.57 translation -.33 -.11 0 size 1.1 .08 .06  size1 1.1 .02 .06}
+
+				Calha{translation -1.16 .225 1.42 size .06 .08 3.01  size1 .06 .02 3.01}
+				Calha{translation -1.16 -.24 -.025 size .06 .08 .83 rotation 1 0 0 1.57  size1 .06 .02 .83}
+			]
+		}
+
+		DEF TimerOpenTampa TimeSensor {
+			cycleInterval 2.0
+			loop          FALSE
+			startTime     0.0
+			stopTime      0.0
+		}
+
+		DEF InterpOpenTampa OrientationInterpolator {
+			key		[ 0, 1 ]
+			keyValue	[ 0 1 0 0, 0 1 0 1.57 ]
+		}
+
+		DEF TimerCloseTampa TimeSensor {
+			cycleInterval 2.0
+			loop          FALSE
+			startTime     0.0
+			stopTime      0.0
+		}
+
+		DEF InterpCloseTampa OrientationInterpolator {
+			key		[ 0, 1 ]
+			keyValue	[ 0 1 0 1.57, 0 1 0 0 ]
+		}
+
+		DEF ToggleTampa Script {
+			field	 SFBool state FALSE  
+			eventIn  SFTime toggle
+			eventOut SFTime startClose
+			eventOut SFTime startOpen
+			url "vrmlscript:
+			function toggle(curtime) {
+				state = !state;
+				if (state) {
+					startOpen = curtime;
+					startClose = 0;
+				}
+				else {
+					startOpen = 0;
+					startClose = curtime;
+				}
+			}"
+
+		}
+
+		ROUTE TouchTampa.touchTime				TO ToggleTampa.toggle
+		ROUTE ToggleTampa.startClose			TO TimerCloseTampa.startTime
+		ROUTE ToggleTampa.startOpen				TO TimerOpenTampa.startTime
+		ROUTE TimerCloseTampa.fraction_changed	TO InterpCloseTampa.set_fraction
+		ROUTE InterpCloseTampa.value_changed	TO tr.set_rotation
+		ROUTE TimerOpenTampa.fraction_changed	TO InterpOpenTampa.set_fraction
+		ROUTE InterpOpenTampa.value_changed		TO tr.set_rotation
+	}
+
+	Group {
+		children [
+			Transform {
+				translation	IS translation
+				rotation IS	rotation
+				children [
+					mainCaixa {}
+					DEF cand1 candeeiro {trans -.44 1.63 .82}
+					DEF cand2 candeeiro {trans -.44 1.63 2.1}
+
+					DEF interruptor Espelho	{url "Interruptor.png" translate -.33 .39 .03 enabled TRUE }
+
+
+					Espelho	{url "TomadaElec.png" translate -1.13 .225 1.2 rotate 0 1 0 1.57}
+					Espelho	{url "TomadaElec.png" translate -1.13 .225 1.35 rotate 0 1 0 1.57}
+					Espelho	{url "TomadaLAN.png" translate -1.13 .225 1.5 rotate 0 1 0 1.57}
+					Espelho	{url "TomadaElec.png" translate -1.13 .225 2.1 rotate 0 1 0 1.57}
+					Espelho	{url "TomadaLAN.png" translate -1.13 .225 2.25 rotate 0 1 0 1.57}
+				]
+			}
+			DEF lf1 lampadaFora	{
+				trans 2.075 3.1 1.578
+				rot 0 1 0 -.6
+			}
+			DEF lf2 lampadaFora	{
+				trans 2.08 3.1 0.15
+				rot 0 1 0 .6
+			}
+			DEF lf3 lampadaFora	{
+				trans	1.8 3.1 .15
+				rot 0 1 0 -3.74
+			}
+			DEF lf4 lampadaFora	{
+				trans	1.8 3.1 1.578
+				rot		0 1 0 3.74
+			}
+		]
+	}
+	ROUTE interruptor.ligado TO cand1.luz
+	ROUTE interruptor.ligado TO cand2.luz
+	ROUTE interruptor.ligado TO lf1.luz
+	ROUTE interruptor.ligado TO lf2.luz
+	ROUTE interruptor.ligado TO lf3.luz
+	ROUTE interruptor.ligado TO lf4.luz
+}
+

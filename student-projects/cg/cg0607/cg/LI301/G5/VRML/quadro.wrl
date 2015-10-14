@@ -1,0 +1,122 @@
+#VRML V2.0 utf8
+
+# Importar a definição do prototipo AXIS, localizada no ficheiro axis.wrl
+EXTERNPROTO Eixo [
+
+]
+"eixo.wrl#Eixos"
+
+
+
+PROTO BoxVermelha 
+[]
+{
+	Shape {
+		appearance Appearance { material Material { diffuseColor 1 0 0 } }
+		geometry Box {
+			size 10 2 2
+		}
+	}
+}
+
+PROTO Tampo
+[
+]
+{
+	Transform {
+	rotation 1 0 0 -1.57
+	translation	 0 0 2
+	children
+		Shape {
+			geometry Extrusion{	
+				crossSection [2 2,10 2,10 0, 240 0, 240 2, 248 2, 248 10, 250 10,250 110,248 110,248 118,240 118, 240 120, 10 120, 10 118, 2 118, 2 110,0 110,0 10, 2 10, 2 2 ]            	
+				spine [0 0 0, 0 2 0]
+				solid FALSE
+				}		  
+			appearance Appearance {
+			  material Material {
+				diffuseColor  1 1 1 
+			  } 
+	    	}
+		}
+
+	
+	}
+}
+
+
+				   
+PROTO Adorno
+[ 
+
+
+]
+{
+	Transform {
+	rotation 1 0 0 -1.57
+	translation	 0 0 2
+	children
+		Shape {
+			geometry Extrusion{	
+				crossSection [0 0, 10 0, 10 2, 2 2, 2 10, 0 10, 0 0 ]            	
+				spine [0 0 0, 0 2 0]
+				solid FALSE
+				}		  
+			appearance Appearance {
+			  material Material {
+				diffuseColor  1 0 0
+			  } 
+	    	}
+		}
+
+	
+	}
+	
+}
+
+PROTO Quadro
+[	
+]
+{
+	Transform {
+		children [
+			Transform {
+				children Tampo {}
+			}	
+			Transform {
+				children Adorno {}
+			}
+			Transform {
+				translation	0 120 0
+				rotation  0 0 1 -1.57
+				children Adorno {}
+			}
+
+			Transform {
+				translation	250 0 0
+				rotation  0 0 1 1.57
+				children Adorno {}
+			}
+			Transform {
+				translation	250 120 0
+				rotation  0 0 1 3.14
+				children Adorno {}
+			}
+			
+		]
+	}
+}
+
+
+
+
+
+Transform {
+				
+	scale 0.01 0.01 0.01
+	children Quadro {}
+}
+
+
+
+Eixo {}

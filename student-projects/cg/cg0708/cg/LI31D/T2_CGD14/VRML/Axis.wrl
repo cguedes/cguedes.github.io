@@ -1,0 +1,105 @@
+#VRML V2.0 utf8
+
+PROTO XAxis[field SFColor axisColor 1 0 0]
+{
+	Group {
+		children [
+			#Linha
+			Transform {
+				rotation 0 0 1 -1.571
+				children [
+					Shape{
+						appearance Appearance {
+							material Material {
+								diffuseColor IS axisColor
+							}
+						}
+						geometry Cylinder {
+							height 100
+							radius 0.1
+						}
+					}
+				]
+			}
+	 
+			#Cilindro
+			Transform {
+				rotation 0 0 1 -1.571
+				translation	20 0 0
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor IS axisColor
+							}
+						}
+						geometry Cylinder {
+							height 40
+							radius 1
+						}
+					}
+				]
+			}
+
+			#Cone
+			Transform {
+				rotation 0 0 1 -1.571
+				translation	42 0 0
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor IS axisColor
+							}
+						}
+						geometry Cone {
+							height 4
+							bottomRadius 2
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+
+PROTO Axis[]{
+	Group {
+		children [
+			#Esfera central
+			Shape {
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+					}
+				}
+				geometry Sphere	{
+					radius 2
+				}
+			}
+
+			#Eixo XX
+			XAxis{}
+	
+			#Eixo YY
+			Transform {
+				rotation 0 0 1 1.571
+				children [
+					XAxis{axisColor 0 1 0}
+				]
+			}
+
+			#Eixo ZZ
+			Transform {
+				rotation 0 1 0 -1.571
+				children [
+					XAxis{axisColor 0 0 1}
+				]
+			}
+		]
+	}
+}
+
+Axis {}
+	

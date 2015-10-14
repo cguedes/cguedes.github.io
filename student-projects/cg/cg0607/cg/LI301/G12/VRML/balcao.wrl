@@ -1,0 +1,361 @@
+#VRML V2.0 utf8
+
+PROTO balcaoFrenteBAixo [field SFColor cor 0 0 0] {
+	
+	Transform {		  
+		translation	1 0.15 0.2
+		children
+		Shape {
+			geometry Box { size	2 0.3 0.40 }
+			appearance Appearance { material Material { diffuseColor IS cor
+			specularColor .29 .3 .29
+			ambientIntensity 0
+			shininess .08
+		} }
+		}
+	}
+}
+
+
+PROTO balcaoFrentealto [] {
+	Transform {
+		translation	1 0.5 0.25
+		children
+	Shape {		 
+		geometry Box {size 2 1 0.5}
+		
+		appearance Appearance { material Material { 
+		specularColor .31 .77 .8
+		ambientIntensity .286
+		shininess 1
+		emissiveColor .00392 0 .557
+		transparency .376
+		diffuseColor 0 .5 0
+	} 
+}
+	}
+}
+}
+PROTO balcaoFrentealto2 [] {
+	Transform {
+		translation	1 0.5 0.25
+		children
+	Shape {		 
+		geometry Box {size 2 1 0.5}
+		
+		appearance Appearance { material Material { 
+		specularColor .31 .77 .8
+		ambientIntensity .286
+		shininess 1
+		emissiveColor .00392 0 .557
+		transparency .376
+		diffuseColor 0 .5 0
+	} 
+}
+	}
+}
+}
+PROTO ParteleirabalcaoFrentealto [] {
+	Transform {
+		translation	1 0.1 0.25
+		children
+	Shape {		 
+		geometry Box {size 2 0.01 0.5}
+		
+		appearance Appearance { material Material { 
+		specularColor .31 .77 .8
+		ambientIntensity .286
+		shininess 1
+		emissiveColor .00392 0 .557
+		diffuseColor 0 .5 0
+	} 
+}
+	}
+}
+}
+
+PROTO balcaomeiobaixo []
+{
+		Transform {
+		translation	1.25 0.5 -2.5
+		children
+	Shape {	
+   	 
+		geometry Box {size 0.5 1 5}
+		
+		appearance Appearance { texture ImageTexture { url ["txAzulejo.JPG"] }
+				textureTransform TextureTransform { scale 11 3 }
+				material Material {
+					diffuseColor 1 .851 0
+					specularColor .871 .251 .251
+					ambientIntensity .157
+					shininess 1
+				}
+			}
+		}
+	}
+}
+
+
+PROTO balcaomeioalto []
+{
+		Transform {
+		translation	0.25 0.5 -2.5
+		children
+	Shape {		 
+		geometry Box {size 0.7 0.2 5}
+		
+		appearance Appearance { material Material { 
+		specularColor .67 .46 .44
+		ambientIntensity .137
+		shininess .17
+		diffuseColor .57 .58 .58
+										} 
+								}
+	}
+		}
+
+} 
+PROTO balcaomeioBaixo[field SFColor cor 0 0 0]
+{
+		Transform {
+		translation	0.25 0.15 1
+		children
+	Shape {		 
+		geometry Box {size 0.5 0.3 2}
+		
+		appearance Appearance { material Material { diffuseColor IS cor
+			specularColor .29 .3 .29
+			ambientIntensity 0
+			shininess .08
+										} 
+								}
+	}
+		}
+
+}
+
+PROTO balcaomeioAlto [] {
+	Transform {
+		translation	0.25 0.8 1
+		children
+	Shape {		 
+		geometry Box {size 0.5 1 2}
+		
+		appearance Appearance { material Material { 
+		specularColor .31 .77 .8
+		ambientIntensity .286
+		shininess 1
+		emissiveColor .00392 0 .557
+		transparency .376
+		diffuseColor 0 .5 0
+	} 
+}
+	}
+}
+}
+
+PROTO ParteleirabalcaomeioAlto [] {
+	Transform {
+		translation	0.25 0.8 1
+		children
+	Shape {		 
+		geometry Box {size 0.5 0.01 2}
+		
+		appearance Appearance { material Material { 
+		specularColor .31 .77 .8
+		ambientIntensity .286
+		shininess 1
+		emissiveColor .00392 0 .557
+		diffuseColor 0 .5 0
+	} 
+}
+	}
+}
+}
+
+
+PROTO balcaoEntradaFrenteBAixo [field SFColor cor 0 0 0] {
+	
+	Transform {		  
+		translation	0.75 0.15 0.2
+		children
+		Shape {
+			geometry Box { size	1.5 0.3 0.40 }
+			appearance Appearance { material Material { diffuseColor IS cor
+			specularColor .29 .3 .29
+			ambientIntensity 0
+			shininess .08
+		} }
+		}
+	}
+}
+
+
+PROTO balcaoEntradaalto [] {
+	Transform {
+		translation	0.75 0.5 0.25
+		children
+	Shape {		 
+		geometry Box {size 1.5 1 0.5}
+		
+		appearance Appearance { material Material { 
+		specularColor .31 .77 .8
+		ambientIntensity .286
+		shininess 1
+		emissiveColor .00392 0 .557
+		transparency .376
+		diffuseColor 0 .5 0
+	} 
+}
+	}
+}
+}
+PROTO ParteleirabalcaoEntradaalto [] {
+	Transform {
+		translation	0.75 0.5 0.25
+		children
+	Shape {		 
+		geometry Box {size 1.5 0.01 0.5}
+		
+		appearance Appearance { material Material { 
+		specularColor .31 .77 .8
+		ambientIntensity .286
+		shininess 1
+		emissiveColor .00392 0 .557
+		diffuseColor 0 .5 0
+	} 
+}
+	}
+}
+}
+
+PROTO BalcaoCaixaRegistadora[field SFColor cor 0 0 0]
+{
+	Transform {translation 0.25 0.45 0.25
+		children
+		Shape {
+			geometry Box { size	0.5 0.9 0.5 }
+			appearance Appearance { material Material { diffuseColor IS cor
+			specularColor .29 .3 .29
+			ambientIntensity 0
+			shininess .08
+		} }
+		}
+	}
+}
+PROTO BalcaoDentro[field SFColor cor .61 .61 .61]
+{
+	Transform {translation 0.25 0.4 4.2
+		children
+		Shape {
+			geometry Box { size	0.5 0.8 7 }
+			appearance Appearance { material Material { diffuseColor IS cor
+			specularColor .39 .39 .39
+			ambientIntensity .25
+			shininess .11
+		} }
+		}
+	}
+}
+
+
+
+
+PROTO BALCAO[]
+{
+
+	Group 
+	{
+		children [
+			Transform 
+			{
+				translation	0 0.3 0
+				children balcaoFrentealto {}
+			}
+				Transform 
+			{
+				translation	0 0.8 0
+				children ParteleirabalcaoFrentealto {}
+			}
+				Transform 
+			{
+				translation	0 0.4 0
+				children ParteleirabalcaoFrentealto {}
+			}
+			
+			
+			balcaoFrenteBAixo {}
+			Transform 
+			{
+			translation 1.1 0 5
+			 children balcaomeiobaixo{}
+			}
+			
+			Transform 
+			{
+			translation	2.1 0.6 5
+			 children balcaomeioalto{}
+			}
+
+			Transform {
+				translation	2.1 0 5
+				children balcaomeioBaixo{}
+			}
+				Transform {
+				translation	2.1 0 5
+				children balcaomeioAlto{}
+			}
+
+					Transform {
+				translation	2.1 -0.2 5
+				children ParteleirabalcaomeioAlto{}
+			}
+
+
+						Transform {
+				translation	2.1 0.2 5
+				children ParteleirabalcaomeioAlto{}
+			}
+			
+
+				Transform 
+			{
+				translation	2.6 0.3 6.5
+				children balcaoEntradaalto {}
+			}
+			
+			balcaoFrenteBAixo {}
+			Transform 
+			{
+			translation 2.6 0 6.6
+			children balcaoEntradaFrenteBAixo {}
+			}
+			Transform {
+				translation	4.1 0 6.5
+				children BalcaoCaixaRegistadora{}
+			}
+			Transform {
+				translation	4.1 0 -2
+				children BalcaoDentro{}
+			}
+					Transform 
+			{
+				translation	2.6 0.1 6.5
+				children ParteleirabalcaoEntradaalto {}
+			}
+			
+					Transform 
+			{
+				translation	2.6 0.5 6.5
+				children ParteleirabalcaoEntradaalto {}
+			}
+			
+
+				
+		]
+	}
+}
+
+BALCAO{}
+

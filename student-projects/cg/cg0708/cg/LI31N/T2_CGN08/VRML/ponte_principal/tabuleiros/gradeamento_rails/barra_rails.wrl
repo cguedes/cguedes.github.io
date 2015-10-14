@@ -1,0 +1,52 @@
+#VRML V2.0 utf8
+
+PROTO barra_rail[ field SFVec3f pos 0 0 0]
+{
+	Transform {
+		children [
+			#barra b1
+			Transform {
+				children [
+					Shape
+					{
+						geometry Box { size 0.5 0.1 0.15 }
+						appearance Appearance { material Material { diffuseColor 0.8 0.8 0.8 } }
+					}
+				]
+				rotation 0 0 1 1.570
+			}
+			#barra parafusos
+			Transform {
+				children [
+					Shape
+					{
+						geometry Box { size 0.35 0.04 0.08 }
+						appearance Appearance { material Material { diffuseColor 0.8 0.8 0.8 } }
+					}
+				]
+				translation	0 -0.23 0
+				rotation 0 1 0 1.570
+			}
+	
+			#parafuso
+			Transform {
+				children [
+					DEF parafuso Shape
+					{
+						geometry Cylinder { height 0.05 radius 0.02}
+						appearance Appearance { material Material { diffuseColor 0.8 0.8 0.8 } }
+					}
+				]
+				translation	0 -0.20 -0.15
+			}
+			#parafuso  
+			Transform {
+				children USE parafuso
+				translation	0 -0.20 0.15
+			}
+		]
+		translation	IS pos
+	}
+	 		
+}
+barra_rail {}

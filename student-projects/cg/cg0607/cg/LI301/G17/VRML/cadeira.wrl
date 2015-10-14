@@ -1,0 +1,128 @@
+#VRML V2.0 utf8
+# dimensões:
+# x: 0.46
+# y: ~0.9
+# z: 0.5622
+
+
+EXTERNPROTO	Axis [ ] "axis_prof.wrl#Axis"
+Transform {
+	scale 0.1 0.1 0.1
+	children Axis {  }
+}
+
+PROTO Estofo1 [] {
+	Shape {
+		geometry Box {
+			size 0.37 0.27 0.03
+		}
+		appearance Appearance {
+			texture	ImageTexture { url	["imagens/estofo.jpg"] }
+			textureTransform TextureTransform { scale 1 1 }
+		}
+	}
+}
+
+PROTO Estofo2 [] {
+	Shape {
+		geometry Box {
+			size 0.37 0.03 0.43
+		}
+		appearance Appearance {
+			texture	ImageTexture { url	["imagens/estofo.jpg"] }
+			textureTransform TextureTransform { scale 1 1 }
+		}
+	}
+}
+
+PROTO PernaLateral[] {
+	Shape {
+		geometry Extrusion {
+    		crossSection [
+					-0.015 -0.015, 
+					 0.015 -0.015, 
+					 0.015  0.015, 
+					-0.015  0.015, 
+					-0.015 -0.015
+			]
+			spine [ 
+					0	-0.45 	0, 
+					0	0 		0.0394,
+					0	0.30	-0.0135
+
+			]
+    		orientation 0 1 0 0
+    		ccw FALSE
+		}
+		appearance Appearance {
+			texture	ImageTexture {
+				url	["imagens/madeira.JPG"]
+			}
+		}
+	}
+}
+
+PROTO Perna[] {
+	Shape {
+		geometry Extrusion {
+    		crossSection [
+					-0.015 -0.015, 
+					 0.015 -0.015, 
+					 0.015  0.015, 
+					-0.015  0.015, 
+					-0.015 -0.015
+			]
+			spine [ 
+					0 -0.45 0.2943
+					0 0 0.2150
+					0 0 -0.2150
+					0 0.30 -0.2679
+			]
+    		orientation 0 1 0 0
+    		ccw FALSE
+		}
+		appearance Appearance {
+			texture	ImageTexture {
+				url	["imagens/madeira.JPG"]
+			}
+		}
+	}
+}
+
+PROTO Cadeira [] {
+	Transform {
+		translation	0 0.45 0
+		children [
+			Group {
+				children [
+					Transform {
+						rotation 1 0 0 -0.1745
+						translation	0 0.20 -0.2503
+						children Estofo1 { }
+					}
+					Transform {
+						children Estofo2 { }
+					}
+					Transform {
+						translation	-0.23 0 -0.2544
+						children PernaLateral { }
+					}
+					Transform {
+						translation	-0.20 0 0
+						children Perna { }
+					}
+					Transform {
+						translation	0.23 0 -0.2544
+						children PernaLateral { }
+					}
+					Transform {
+						translation	0.20 0 0
+						children Perna { }
+					}
+				]
+			}
+		]
+	}
+}
+
+Cadeira { }

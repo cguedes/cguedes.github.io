@@ -1,0 +1,65 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO placas [
+	field SFVec3f size
+	field SFRotation rotate
+	field SFVec3f translate
+	field SFColor diffuseColor
+	field SFFloat transparency
+	field SFFloat shininess
+	exposedField MFString url
+] "placas.wrl"
+
+EXTERNPROTO	grelha [
+	exposedField SFVec3f translate
+] "grelha.wrl"
+
+PROTO Exterior[]
+{
+	Transform 
+	{
+		translation	1 0 0
+		children
+		[
+
+			#paredes laterais
+			placas{translate 0 0 1.61}
+			placas{}
+			placas{translate 1.92 0 1.61}
+			placas{translate 1.92 0 0}
+
+			#parede frontal
+			placas {size .02 0.98 1.9 translate .96 0 -.805 rotate 0 1 0 1.57}
+
+			#parede traseira & porta
+			placas {size .02 2.3 .95 translate .475 .66 2.575 rotate 0 1 0 1.57}
+			placas {size .02 2.3 .25 translate 1.8 .66 2.575 rotate 0 1 0 1.57}
+
+			placas {size .02 .175 1.4 translate 0.965 1.91 2.575 rotate 0 1 0 1.57}
+
+			placas {size .02 1.51 .25 translate 1.8 2.57 2.575 rotate 0 1 0 1.57}
+			placas {size .02 1.51 .25 translate .13 2.57 2.575 rotate 0 1 0 1.57}
+
+			placas {size .02 0.98 1.9 translate .96 3.825 2.575 rotate 0 1 0 1.57}
+
+			grelha {translate .96 1.97 2.57}
+
+			# Barras verticais
+			placas {size .02 2.3 .15 translate 1.92 .66 2.5}
+			placas {size .02 2.3 .15 translate 0 .66 2.5}
+			placas {size .02 2.5 .15 translate 1.92 3.07 2.5}
+			placas {size .02 2.5 .15 translate 0 3.07 2.5}
+
+			#Parapeito
+			placas {size  .25 0.05 3.25 translate .12 .5 .8 diffuseColor .6 .6 .6}
+			placas {size  .25 0.05 3.25 translate 1.8 .5 .8 diffuseColor .6 .6 .6}
+			placas {size  1.5 0.05 .27 translate .96 .5 -.69 diffuseColor .6 .6 .6}
+
+			#Tapar buracos :P
+			placas {size .01 .98 .5 translate .001 0 .8 diffuseColor 0 0 0}
+			placas {size .01 .98 .5 translate 1.899 0 .8 diffuseColor 0 0 0}
+			placas {size .01 .98 .5 translate .001 0 2.3 diffuseColor 0 0 0}
+			placas {size .01 .98 .5 translate 1.899 0 2.3 diffuseColor 0 0 0}
+		] 
+	}
+}

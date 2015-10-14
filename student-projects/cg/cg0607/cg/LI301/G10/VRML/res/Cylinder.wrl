@@ -1,0 +1,111 @@
+#VRML V2.0 utf8
+
+
+#EXTERNPROTO	Cilindro [
+#	field SFBool bottom
+#	field SFBool top
+#	field SFBool side
+#	field SFFloat height
+#	field SFFloat radius
+#	field SFFloat radiusBottom
+#	field SFBool IsScale
+#	field SFColor color
+#]
+#"Cylinder.wrl#Cilindro"
+
+PROTO Cilindro [
+	field SFBool bottom TRUE
+	field SFBool top TRUE
+	field SFBool side TRUE
+	field SFFloat height 2
+	field SFFloat radius 1
+	field SFFloat radiusBottom 1
+	field SFBool IsScale FALSE
+	field SFColor color 1 1 1
+
+]{
+
+	
+	
+Transform {
+	children  Shape {
+		geometry DEF cil Extrusion {
+			solid FALSE
+			creaseAngle	0.785
+			beginCap IS	top
+			endCap IS bottom
+			crossSection [1.00 0.00, 0.92 -0.38, 0.71 -0.71, 0.38 -0.92, 0.00 -1.00, -0.38 -0.92, -0.71 -0.71, -0.92 -0.38, -1.00 -0.00, -0.92 0.38, -0.71 0.71, -0.38 0.92, 0.00 1.00, 0.38 0.92, 0.71 0.71, 0.92 0.38, 1.00 0.00]
+							
+		}
+		appearance Appearance {
+			material Material {diffuseColor IS color}
+		}
+		
+	}
+}	
+
+DEF	init Script {
+	field SFFloat altura IS	height
+    eventOut MFVec3f spine	
+    field SFVec3f auxSpine 0 0 0
+
+	field SFBool IsScale IS	IsScale
+	field SFFloat raio IS radius
+	field SFFloat raioFundo IS radiusBottom
+	eventOut MFVec2f scale
+	field SFVec2f auxScale 0 0
+
+
+	url	["javascript: 
+		
+		function initialize() {
+			if(IsScale == FALSE){
+				raioFundo = raio;
+			}
+			//top
+			auxSpine[1] = altura/2;
+			spine[0] = auxSpine;
+
+			auxScale[0] = raio;
+			auxScale[1] = raio;
+			scale[0] = auxScale;
+
+			//bottom
+			auxSpine[1] = -altura/2;
+			spine[1] = auxSpine;
+
+			auxScale[0] = raioFundo ;
+			auxScale[1] = raioFundo ;
+			scale[1] = auxScale;
+
+		}	
+	"]
+}
+ROUTE init.spine TO	cil.set_spine
+ROUTE init.scale TO	cil.set_scale
+	
+}
+
+
+#exemplo
+
+Cilindro {
+	color 1	0 0 
+	height 2
+	radius 3
+	top	FALSE
+}
+
+
+
+Cilindro {
+	IsScale	TRUE
+	top FALSE
+	radiusBottom .5
+	height 4
+	radius 1
+}
+
+
+
+

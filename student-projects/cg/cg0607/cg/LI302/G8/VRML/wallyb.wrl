@@ -1,0 +1,422 @@
+#VRML V2.0 utf8
+
+Background 
+{
+	groundColor	[0 1 0, 0 .5 0]
+	groundAngle	1.57
+	skyColor	[0 0 1, 0 .76 1]
+	skyAngle	1.57
+}
+
+PROTO sting []
+{
+	Transform
+	{
+		translation	0 .55 0
+		children 
+		[
+			Shape 
+			{
+				appearance Appearance 
+				{
+					material Material{diffuseColor 1 1 1}
+				}
+				geometry Cone 
+				{
+					height	3
+					bottomRadius .3
+				}
+			}
+		]
+	}
+}
+
+PROTO antenna []
+{	
+	DEF atr Transform {
+		children [
+	Group
+	{
+		children 
+		[
+			Transform 
+			{
+				rotation 0 0 1 -.2
+				children 
+				[
+					Transform
+					{
+						children 
+						[
+							Shape 
+							{
+								appearance Appearance 
+								{
+									material DEF branco Material {diffuseColor 1 1 1}
+								}
+								geometry Cylinder 
+								{
+									height	.4
+									radius	.05
+								}
+							}
+						]
+					}
+					Transform
+					{
+						translation	.465 .52 0
+						rotation 0 0 1 -.94
+						children 
+						[
+							Shape 
+							{
+								appearance Appearance 
+								{
+									material USE branco
+								}
+								geometry Cylinder 
+								{
+									height	1.2
+									radius	.05
+								}
+							}
+						]
+					}
+					Transform
+					{
+						translation	1 0.9 0
+						children 
+						[
+							Shape 
+							{
+								appearance Appearance 
+								{
+									material USE branco
+								}
+								geometry Sphere{radius .1}
+							}
+						]
+					}		
+				]	 
+			}		 
+		]			 
+	}
+
+	DEF api	OrientationInterpolator
+			{ 
+	       		key		[0 .5 1]  
+				keyValue	[ 0 0 0 0, 0 0 1 .3, 0 0 0 0] 
+			}
+		
+	DEF ats TimeSensor
+		{ 
+				loop		TRUE
+			} 
+		]
+	}
+	ROUTE ats.fraction_changed	TO api.set_fraction  
+	ROUTE api.value_changed	TO atr.set_rotation
+}
+
+PROTO eye[]
+{
+	Transform 
+	{
+		rotation 0 1 0 1.57
+		children 
+		[
+			Shape 
+			{
+				appearance Appearance 
+				{
+					texture ImageTexture 
+					{
+						url	"eye.gif"
+						repeatS	FALSE
+						repeatT	FALSE
+					}
+					material Material{diffuseColor 1 1 1}
+				}	
+				geometry Sphere{radius .6}	
+			}
+		]
+	}
+}
+
+PROTO head []
+{
+	Group
+	{
+		children 
+		[
+			Transform 
+			{
+				children 
+				[
+					Shape 
+					{
+						appearance Appearance
+						{
+							material Material{diffuseColor 1 1 0}
+						}
+						geometry Sphere{}
+					}
+
+					Transform 
+					{
+						scale 1.1 1 1
+						translation	.35 .35 .35
+						children[eye{}]
+					}
+
+					Transform 
+					{
+						scale 1.1 1 1
+						translation	.35 .35 -.35
+						rotation 0 1 0 .4
+						children[eye{}]
+					}
+
+					Transform 
+					{
+						translation	1.2 -.12 0
+						children 
+						[				
+							Shape 
+							{
+								appearance Appearance 
+								{
+									material Material 
+									{
+										diffuseColor 0 0 0								
+										specularColor 1 1 1
+										ambientIntensity 0
+										shininess .5
+									}
+								}
+								geometry Sphere{radius .5}					
+							}
+						]
+					}
+					
+					Transform 
+					{
+						translation	0 1 -.4
+						rotation 0 1 0 .5
+						children[antenna{}]
+					}
+
+					Transform 
+					{
+						translation	0 1 .4
+						rotation 0 1 0 -.5
+						children[antenna{}]
+					}
+				]	 
+			}		 
+		]			 
+	}				 
+}
+
+PROTO leg [] 
+{
+	DEF	Ltr Transform {
+		children [
+	Transform 
+	{
+		scale 1.2 2 1.2
+		rotation 0 0 0 0
+		children 
+		[
+			Shape 
+			{
+				appearance Appearance 
+				{
+					material Material 
+					{
+						diffuseColor .408 .255 0								
+						ambientIntensity 0
+						shininess 1
+					}
+				}
+				geometry Sphere{radius .35}					
+			}
+		]
+	}
+	DEF Lpi	PositionInterpolator
+			{ 
+	       		key		[0 .5 1]  
+				keyValue	[ 0 -.3 0, 0 0 0, 0 -.3 0] 
+			}
+		
+			DEF Lts TimeSensor
+			{ 
+				loop		TRUE
+			} 
+		]
+	}
+	ROUTE Lts.fraction_changed	TO Lpi.set_fraction  
+	ROUTE Lpi.value_changed	TO Ltr.set_translation
+}
+
+
+PROTO wing [] 
+{
+	DEF Wtr Transform
+	{
+		children 
+		[
+			Transform 
+			{
+				translation	0 1 0
+				scale 1 1.5 .1
+				children 
+				[
+					Shape 
+					{			
+						appearance Appearance 
+						{
+							material Material 
+							{
+								diffuseColor 1 1 1
+								transparency	0.3						
+							}
+						}						
+						geometry Sphere{radius .9}					
+					}
+				]
+			}
+			DEF Wpi	OrientationInterpolator
+			{ 
+	       		key		[0 .5 1]  
+				keyValue	[ 0 0 0 0, 1 0 0 2.57, 0 0 0 0] 
+			}
+		
+			DEF Wts TimeSensor
+			{ 
+				cycleInterval	.1  
+				loop		TRUE
+			} 
+		]
+	}
+	ROUTE Wts.fraction_changed	TO Wpi.set_fraction  
+	ROUTE Wpi.value_changed	TO Wtr.set_rotation
+
+}
+
+PROTO body [] 
+{
+	Transform 
+	{
+		scale 1 1.3 1
+		rotation 0 0 1 1.57
+		children 
+		[
+			Shape 
+			{	
+				appearance Appearance 
+				{
+					texture ImageTexture 
+					{
+						url	["body.gif"]
+						repeatT	FALSE
+					}
+					material Material 
+					{
+						diffuseColor 1 1 0								
+						#specularColor 1 1 1
+						#ambientIntensity 0
+						shininess 1
+					}
+				}
+				geometry Sphere{radius 1.8}					
+			}
+		]
+	}
+}
+
+PROTO bee [] 
+{
+	DEF	btr Transform {
+		children [
+	Group 
+	{
+		children	
+		[	
+			body{} #corpo
+
+			Transform #head
+			{	
+				translation	2.5 -.5 0
+				rotation 0 0 1 -.5
+				children[head{}]
+			}
+
+			Transform 
+			{
+				translation	-.75 -2.4 -.5
+				rotation 0 1 1 -1
+				children[leg{}]
+			}
+		
+			Transform 
+			{
+				translation	-.75 -2.4 .5
+				rotation 0 -1 1 -1
+				children[leg{}]
+			}
+		
+			Transform 
+			{
+				translation	.75 -2.4 -.5
+				rotation 0 1 1 1
+				children[leg{}]
+			}				
+	
+			Transform 
+			{
+				translation	.75 -2.4 .5
+				rotation 0 -1 1 1
+				children[leg{}]
+			}
+	
+			Transform 
+			{
+				translation	0 1.4 1
+				children[wing{}]
+			}
+
+			Transform 
+			{
+				translation	0 1.4 -1
+				rotation 0 1 0 3.14
+				children[wing{}]
+			}
+
+			Transform 
+			{
+				translation	-3 -.5 0
+				rotation 0 0 1 1.57
+				children[sting{}]
+			}
+		]
+	}
+
+	DEF bpi	PositionInterpolator
+			{ 
+	       		key		[0 .5 1]  
+				keyValue	[ 0 0 0, 0 -1 0, 0 0 0] 
+			}
+		
+			DEF bts TimeSensor
+			{ 
+				loop		TRUE
+			} 
+		]
+	}
+	ROUTE bts.fraction_changed	TO bpi.set_fraction  
+	ROUTE bpi.value_changed	TO btr.set_translation
+}
+
+
+bee{}

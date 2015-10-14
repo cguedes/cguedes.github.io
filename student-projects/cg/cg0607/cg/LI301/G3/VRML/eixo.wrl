@@ -1,0 +1,141 @@
+#VRML V2.0 utf8
+
+PROTO Eixo 
+[ 
+	field SFColor corEixo 0 0 0 
+] 
+{
+	Group {
+		children [
+			# Cilindro da linha
+			Shape {
+				geometry Cylinder { 
+					bottom TRUE
+					height 20
+					radius 0.009
+					top	TRUE
+					side TRUE
+	    		}
+				appearance Appearance {
+					material Material {
+						diffuseColor IS corEixo
+					}
+				}
+			}
+			# Cilindro do eixo
+			Shape {
+				geometry Cylinder { 
+					bottom TRUE
+					height 4
+					radius 0.07
+					top	TRUE
+					side TRUE
+	    		}
+				appearance Appearance {
+					material Material {
+						diffuseColor IS corEixo
+					}
+				}
+			}
+			# Cone colocado no topo do cilindro
+			Transform {
+				translation	0 2.125 0
+				children 
+					Shape {
+						geometry Cone {
+							bottom TRUE
+							height 0.25
+							bottomRadius 0.15
+							side TRUE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor  IS corEixo
+							}
+						}
+		
+					}
+			}
+		]
+	}
+}
+
+PROTO EixoComLetra [
+	field MFString letra ""
+	field SFColor cor 0 0 0
+	field SFRotation rotacaoEixo 0 0 0 0
+	field SFVec3f translacaoEixo 0 0 0
+	field SFVec3f translacaoLetra 0 0 0
+]
+{
+	Group {
+		children [
+			# Colocar o eixo na posiçao correcta
+			Transform {
+				rotation IS rotacaoEixo
+				translation IS translacaoEixo
+				children Eixo { corEixo IS cor} 
+			}
+			# Colocar letra na posiçao correcta
+			Transform {
+				translation	IS translacaoLetra
+				children Billboard {
+    				axisOfRotation    0 1 0
+    				children
+					[
+					Shape {
+						geometry Text {
+							string IS letra
+							length 0.5
+							fontStyle FontStyle { 
+								family       	"VERDANA"
+								horizontal   	TRUE
+								justify      	"BEGIN"
+								language     	""
+								leftToRight  	FALSE
+								size         	0.5          
+								spacing      	0.5          
+								style        	""
+								topToBottom  	TRUE
+							}		
+						}
+						appearance Appearance	{
+							material Material {
+								diffuseColor IS	cor
+							}
+						}
+					}
+					]
+				}
+				
+			}
+		]
+	}
+}
+
+
+PROTO tresEixos [] {
+
+
+	Transform {
+		children [
+			# Esfera na origem
+			Shape {
+				geometry Sphere	{
+					radius 0.15
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+					}
+				}
+			}
+				
+			EixoComLetra {cor 1 0 0, letra "X", rotacaoEixo 0 0 1 -1.57, translacaoEixo 2 0 0,translacaoLetra 4.5 0 0}
+			EixoComLetra {cor 0 1 0, letra "Y", translacaoEixo 0 2 0, translacaoLetra 0.25 4.25 0}
+			EixoComLetra {cor 0 0 1, letra "Z", rotacaoEixo 1 0 0 1.57, translacaoEixo 0 0 2,translacaoLetra  0.25 0 4.25}	
+		]
+	}
+}
+
+tresEixos{}

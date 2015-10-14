@@ -1,0 +1,750 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO eixo []
+"Eixo.wrl#Referencial"
+
+PROTO Lateral [] {
+
+	Transform {
+
+		children [
+			Shape {
+	
+				geometry Extrusion {
+		
+					crossSection [-8 0, 8 0, 8 4, 3.8 4, -8 1.5, -8 0, 
+					7.50		1.50	,
+7.50		1.59	,
+7.48		1.67	,
+7.47		1.76	,
+7.44		1.84	,
+7.41		1.92	,
+7.37		2.00	,
+7.32		2.07	,
+7.27		2.14	,
+7.21		2.21	,
+7.14		2.27	,
+7.07		2.32	,
+7.00		2.37	,
+6.92		2.41	,
+6.84		2.44	,
+6.76		2.47	,
+6.67		2.48	,
+6.59		2.50	,
+6.50		2.50	,
+6.41		2.50	,
+6.33		2.48	,
+6.24		2.47	,
+6.16		2.44	,
+6.08		2.41	,
+6.00		2.37	,
+5.93		2.32	,
+5.86		2.27	,
+5.79		2.21	,
+5.73		2.14	,
+5.68		2.07	,
+5.63		2.00	,
+5.59		1.92	,
+5.56		1.84	,
+5.53		1.76	,
+5.52		1.67	,
+5.50		1.59	,
+5.50		1.50	,
+5.50		1.41	,
+5.52		1.33	,
+5.53		1.24	,
+5.56		1.16	,
+5.59		1.08	,
+5.63		1.00	,
+5.68		0.93	,
+5.73		0.86	,
+5.79		0.79	,
+5.86		0.73	,
+5.93		0.68	,
+6.00		0.63	,
+6.08		0.59	,
+6.16		0.56	,
+6.24		0.53	,
+6.33		0.52	,
+6.41		0.50	,
+6.50		0.50	,
+6.59		0.50	,
+6.67		0.52	,
+6.76		0.53	,
+6.84		0.56	,
+6.92		0.59	,
+7.00		0.63	,
+7.07		0.68	,
+7.14		0.73	,
+7.21		0.79	,
+7.27		0.86	,
+7.32		0.93	,
+7.37		1.00	,
+7.41		1.08	,
+7.44		1.16	,
+7.47		1.24	,
+7.48		1.33	,
+7.50		1.41	,
+7.50		1.50	,
+]
+
+					solid FALSE
+
+					spine [0 0 0, 0 0.2 0]
+		
+				}
+	
+				appearance Appearance {material Material {diffuseColor .4 .4 .4
+				specularColor .77 .77 .77
+				ambientIntensity .25
+				shininess .6
+			}}
+			
+			}
+	 
+		]
+
+		rotation 1 0 0 -1.5708
+	}
+	
+}
+
+PROTO Lateral_Fechada [] {
+
+	Transform {
+
+		children [
+			Shape {
+	
+				geometry Extrusion {
+		
+					crossSection [-8 0, 8 0, 8 4, 3.8 4, -8 1.5, -8 0]
+
+					solid FALSE
+
+					spine [0 0 0, 0 0.2 0]
+		
+				}
+	
+				appearance Appearance {material Material {diffuseColor .4 .4 .4
+				specularColor .77 .77 .77
+				ambientIntensity .25
+				shininess .6}}
+			
+			}
+	 
+		]
+
+		rotation 1 0 0 -1.5708
+	}
+	
+}
+
+PROTO Tampa_cima [] {
+
+	Group {
+
+		children [
+	 Transform {
+
+		children [
+			Shape {
+	
+				geometry Extrusion {
+		
+					crossSection [0 0, 0 1, 12.5 2.5, 12.5 1.5, 12.3 1.5, 12.3 1.3, 12.3 2.3, 1 1, 1 0, 0 0 ]
+					
+					solid TRUE
+					beginCap TRUE
+					endCap TRUE
+
+					spine [0 0 0, 0 10 0]
+					
+				}
+	
+				appearance Appearance {material Material {diffuseColor .4 .4 .4
+				specularColor .77 .77 .77
+				ambientIntensity .25
+				shininess .6
+			}}
+			
+			}
+	 
+		]
+
+		
+		rotation 1 0 0 -1.5708
+
+		
+	}
+
+	#Espelho
+
+	DEF Espelho Transform {
+	
+			children [
+			Shape {
+	
+				geometry Extrusion {
+		
+					crossSection [4 4.5, 4 -4.5, -4 -4.5, -4 4.5, 4 4.5 ]
+					solid TRUE
+					beginCap TRUE
+					endCap TRUE
+
+					spine [0 0 0, 0 0.2 0]
+					
+				}
+	
+				appearance Appearance {texture ImageTexture {url "espelho.png"}}
+			
+			}
+	 
+		]
+
+		translation	7 1.5 -5
+		rotation 0 0 1 0.12
+
+		
+	}
+
+	
+]
+	
+}
+}
+
+
+ 
+PROTO Tampa_cima_rodar [] {
+
+	DEF tampa Transform {rotation 0 1 0 3.14 children Tampa_cima{}}
+	
+}
+
+
+
+
+PROTO Parte_Tras [] {
+
+	 Transform {
+
+		children [
+			Shape {
+	
+				geometry Extrusion {
+		
+					crossSection [0 4, 4 4, 4 0, 3.8 0, 3.8 3.8, 0 3.8  ]
+
+					solid FALSE
+					beginCap TRUE
+					endCap TRUE
+
+					spine [0 0 0, 0 10 0]
+					
+				}
+	
+				appearance Appearance {material Material {diffuseColor .4 .4 .4
+				specularColor .77 .77 .77
+				ambientIntensity .25
+				shininess .6}}
+			
+			}
+	 
+		]
+
+		rotation 1 0 0 -1.5708
+
+		
+	}
+	
+}
+
+PROTO Parte_baixo[] {
+
+
+	Transform {
+
+		children [
+			Shape {
+	
+				geometry Extrusion {
+		
+					crossSection [	0 0, 16 0, 16 10, 0 10,	0 0
+									12.00		5.00	,	
+									11.98		5.35	,	
+									11.94		5.69	,
+									11.86		6.04	,
+									11.76		6.37	,
+									11.63		6.69	,
+									11.46		7.00	,
+									11.28		7.29	,
+									11.06		7.57	,
+									10.83		7.83	,
+									10.57		8.06	,
+									10.29		8.28	,
+									10.00		8.46	,
+									9.69		8.63	,
+									9.37		8.76	,
+									9.04		8.86	,
+									8.69		8.94	,
+									8.35		8.98	,
+									8.00		9.00	,
+									7.65		8.98	,
+									7.31		8.94	,
+									6.96		8.86	,
+									6.63		8.76	,
+									6.31		8.63	,
+									6.00		8.46	,
+									5.71		8.28	,
+									5.43		8.06	,
+									5.17		7.83	,
+									4.94		7.57	,
+									4.72		7.29	,
+									4.54		7.00	,
+									4.37		6.69	,
+									4.24		6.37	,
+									4.14		6.04	,
+									4.06		5.69	,
+									4.02		5.35	,
+									4.00		5.00	,
+									 
+									4.02		4.65	,
+									4.06		4.31	,
+									4.14		3.96	,
+									4.24		3.63	,
+									4.37		3.31	,
+									4.54		3.00	,
+									4.72		2.71	,
+									4.94		2.43	,
+									5.17		2.17	,
+									5.43		1.94	,
+									5.71		1.72	,
+									6.00		1.54	,
+									6.31		1.37	,
+									6.63		1.24	,
+									6.96		1.14	,
+									7.31		1.06	,
+									7.65		1.02	,
+									8.00		1.00	,
+									8.35		1.02	,
+									8.69		1.06	,
+									9.04		1.14	,
+									9.37		1.24	,
+									9.69		1.37	,
+									10.00		1.54	,
+									10.29		1.72	,
+									10.57		1.94	,
+									10.83		2.17	,
+									11.06		2.43	,
+									11.28		2.71	,
+									11.46		3.00	,
+									11.63		3.31	,
+									11.76		3.63	,
+									11.86		3.96	,
+									11.94		4.31	,
+									11.98		4.65	,
+									12.00		5.00	,  
+							   ]
+
+					solid FALSE
+					beginCap TRUE
+					endCap TRUE
+
+					spine [0 0 0, 0 0.001 0]
+					
+				}
+	
+				appearance Appearance {material Material {diffuseColor .4 .4 .4
+				specularColor .77 .77 .77
+				ambientIntensity .25
+				shininess .6}}
+			
+			}
+	 
+		]
+
+	}
+}
+
+PROTO Parte_baixo_pequena[] {
+
+
+	Transform {
+
+		children [
+			Shape {
+	
+				geometry Extrusion {
+		
+					crossSection [0 0, 0 10, 10 10, 10 0, 0 0 
+
+									9.00		5.00	,
+									8.98		5.35	,
+									8.94		5.69	,
+									8.86		6.04	,
+									8.76		6.37	,
+									8.63		6.69	,
+									8.46		7.00	,
+									8.28		7.29	,
+									8.06		7.57	,
+									7.83		7.83	,
+									7.57		8.06	,
+									7.29		8.28	,
+									7.00		8.46	,
+									6.69		8.63	,
+									6.37		8.76	,
+									6.04		8.86	,
+									5.69		8.94	,
+									5.35		8.98	,
+									5.00		9.00	,
+									4.65		8.98	,
+									4.31		8.94	,
+									3.96		8.86	,
+									3.63		8.76	,
+									3.31		8.63	,
+									3.00		8.46	,
+									2.71		8.28	,
+									2.43		8.06	,
+									2.17		7.83	,
+									1.94		7.57	,
+									1.72		7.29	,
+									1.54		7.00	,
+									1.37		6.69	,
+									1.24		6.37	,
+									1.14		6.04	,
+									1.06		5.69	,
+									1.02		5.35	,
+									1.00		5.00	,
+									1.02		4.65	,
+									1.06		4.31	,
+									1.14		3.96	,
+									1.24		3.63	,
+									1.37		3.31	,
+									1.54		3.00	,
+									1.72		2.71	,
+									1.94		2.43	,
+									2.17		2.17	,
+									2.43		1.94	,
+									2.71		1.72	,
+									3.00		1.54	,
+									3.31		1.37	,
+									3.63		1.24	,
+									3.96		1.14	,
+									4.31		1.06	,
+									4.65		1.02	,
+									5.00		1.00	,
+									5.35		1.02	,
+									5.69		1.06	,
+									6.04		1.14	,
+									6.37		1.24	,
+									6.69		1.37	,
+									7.00		1.54	,
+									7.29		1.72	,
+									7.57		1.94	,
+									7.83		2.17	,
+									8.06		2.43	,
+									8.28		2.71	,
+									8.46		3.00	,
+									8.63		3.31	,
+									8.76		3.63	,
+									8.86		3.96	,
+									8.94		4.31	,
+									8.98		4.65	,
+									9.00		5.00	,
+
+									
+							   ]
+
+					solid FALSE
+					beginCap TRUE
+					endCap TRUE
+
+					spine [0 0 0, 0 0.001 0]
+					
+				}
+	
+				appearance Appearance {material Material {diffuseColor .4 .4 .4
+				specularColor .77 .77 .77
+				ambientIntensity .25
+				shininess .6}}
+			
+			}
+	 
+		]
+
+	}
+
+}
+
+PROTO Lupa[] {
+
+
+	Transform {
+
+		children [
+			Shape {	  
+				
+							geometry Extrusion {
+		
+					crossSection [
+
+									-3.00		0.00	,
+-2.99		-0.26	,
+-2.95		-0.52	,
+-2.90		-0.78	,
+-2.82		-1.03	,
+-2.72		-1.27	,
+-2.60		-1.50	,
+-2.46		-1.72	,
+-2.30		-1.93	,
+-2.12		-2.12	,
+-1.93		-2.30	,
+-1.72		-2.46	,
+-1.50		-2.60	,
+-1.27		-2.72	,
+-1.03		-2.82	,
+-0.78		-2.90	,
+-0.52		-2.95	,
+-0.26		-2.99	,
+0.00		-3.00	,
+0.26		-2.99	,
+0.52		-2.95	,
+0.78		-2.90	,
+1.03		-2.82	,
+1.27		-2.72	,
+1.50		-2.60	,
+1.72		-2.46	,
+1.93		-2.30	,
+2.12		-2.12	,
+2.30		-1.93	,
+2.46		-1.72	,
+2.60		-1.50	,
+2.72		-1.27	,
+2.82		-1.03	,
+2.90		-0.78	,
+2.95		-0.52	,
+2.99		-0.26	,
+3.00		0.00	,
+
+							    ]
+
+					solid FALSE
+					beginCap FALSE
+					endCap FALSE
+
+					spine [1.00	0.00	0.00	,
+							1.00	0.00	0.09	,
+							0.98	0.00	0.17	,
+							0.97	0.00	0.26	,
+							0.94	0.00	0.34	,
+							0.91	0.00	0.42	,
+							0.87	0.00	0.50	,
+							0.82	0.00	0.57	,
+							0.77	0.00	0.64	,
+							0.71	0.00	0.71	,
+							0.64	0.00	0.77	,
+							0.57	0.00	0.82	,
+							0.50	0.00	0.87	,
+							0.42	0.00	0.91	,
+							0.34	0.00	0.94	,
+							0.26	0.00	0.97	,
+							0.17	0.00	0.98	,
+							0.09	0.00	1.00	,
+							0.00	0.00	1.00	,
+							-0.09	0.00	1.00	,
+							-0.17	0.00	0.98	,
+							-0.26	0.00	0.97	,
+							-0.34	0.00	0.94	,
+							-0.42	0.00	0.91	,
+							-0.50	0.00	0.87	,
+							-0.57	0.00	0.82	,
+							-0.64	0.00	0.77	,
+							-0.71	0.00	0.71	,
+							-0.77	0.00	0.64	,
+							-0.82	0.00	0.57	,
+							-0.87	0.00	0.50	,
+							-0.91	0.00	0.42	,
+							-0.94	0.00	0.34	,
+							-0.97	0.00	0.26	,
+							-0.98	0.00	0.17	,
+							-1.00	0.00	0.09	,
+							-1.00	0.00	0.00	,
+							-1.00	0.00	-0.09	,
+							-0.98	0.00	-0.17	,
+							-0.97	0.00	-0.26	,
+							-0.94	0.00	-0.34	,
+							-0.91	0.00	-0.42	,
+							-0.87	0.00	-0.50	,
+							-0.82	0.00	-0.57	,
+							-0.77	0.00	-0.64	,
+							-0.71	0.00	-0.71	,
+							-0.64	0.00	-0.77	,
+							-0.57	0.00	-0.82	,
+							-0.50	0.00	-0.87	,
+							-0.42	0.00	-0.91	,
+							-0.34	0.00	-0.94	,
+							-0.26	0.00	-0.97	,
+							-0.17	0.00	-0.98	,
+							-0.09	0.00	-1.00	,
+							0.00	0.00	-1.00	,
+							0.09	0.00	-1.00	,
+							0.17	0.00	-0.98	,
+							0.26	0.00	-0.97	,
+							0.34	0.00	-0.94	,
+							0.42	0.00	-0.91	,
+							0.50	0.00	-0.87	,
+							0.57	0.00	-0.82	,
+							0.64	0.00	-0.77	,
+							0.71	0.00	-0.71	,
+							0.77	0.00	-0.64	,
+							0.82	0.00	-0.57	,
+							0.87	0.00	-0.50	,
+							0.91	0.00	-0.42	,
+							0.94	0.00	-0.34	,
+							0.97	0.00	-0.26	,
+							0.98	0.00	-0.17	,
+							1.00	0.00	-0.09	,
+							1.00	0.00	0.00	,
+
+						]
+					
+				}
+	
+				appearance Appearance {material	Material {diffuseColor 1 1 1 }
+					}}
+			
+			
+	 
+		]
+
+		rotation 0 0 1 3.14
+
+	}
+
+}
+
+
+PROTO Peca_completa[]{
+
+	Group {
+	
+		children [
+		
+		
+			Transform {	children   Lateral {} }
+		
+			Transform {
+			
+				translation	0 0 -10
+			
+				children   Lateral_Fechada {}
+			
+			}
+
+			Transform {
+			
+
+				translation	4 0 0
+				children   Parte_Tras {}
+			
+			}
+		
+			Transform {
+			
+
+				translation	-8 0 -10
+				children   Parte_baixo {}
+			
+			}
+
+			Transform {
+			
+
+				translation	-5 0.0005 -10
+				children   Parte_baixo_pequena {}
+			
+			}
+
+			Transform {
+			
+
+				translation	0 0.1 -5
+				children   Lupa {}
+			
+			}
+
+			DEF move Transform {
+			
+
+				translation	3.5 3 -10.1
+				rotation	0 0 1 0.
+				
+				children  Tampa_cima_rodar {}
+			
+			}
+
+		
+			DEF	Touch TouchSensor {enabled TRUE }
+	
+
+
+			DEF	Timer TimeSensor	{
+				cycleInterval 2 #segundos - tempo de abrir
+				loop FALSE
+				startTime 0
+				stopTime 0
+			}
+
+			DEF	Rodar Script {
+				eventIn	SFFloat	set_fraction
+				eventOut SFRotation	value_changed
+				field SFBool status FALSE
+				field SFFloat rotacao1 -1.57
+				field SFFloat rotacao2 -1.57
+				url	"rotacaoTampa.js"
+			
+		
+	
+			ROUTE Touch.touchTime TO Timer.startTime
+			ROUTE Timer.fraction_changed	TO Rodar.set_fraction
+			ROUTE Rodar.value_changed TO move.rotation
+
+}
+		
+		
+		
+		
+		
+		
+		]
+	
+	
+	
+	
+	
+	}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Peca_completa {}

@@ -1,0 +1,220 @@
+#VRML V2.0 utf8
+
+PROTO PortaDir [] {
+	Transform {
+		children [
+			DEF PortaD Transform {
+				translation	0 0 0.5
+				children [
+					Shape {
+						geometry Box { size	.1 2.2 1 }
+						appearance Appearance {
+							texture	ImageTexture {
+								url	"Porta.jpg"
+							}
+						}
+					}
+				]
+			}
+			DEF Sensor1 TouchSensor {}
+
+			DEF PortaFechar OrientationInterpolator {
+				key [0 1]
+				keyValue [	0 0 0 0,
+							0 1 0 -1.57,
+						 ]
+			}
+
+			DEF PAClose PositionInterpolator {
+    			key [ 0 0.5 1 ]
+    			keyValue [
+							0 0 .5,
+							-.25 0 .3,
+							-.5 0 0		
+						 ]
+    		}
+			
+			DEF PortaAbrir OrientationInterpolator {
+            	key [0 1] 
+				keyValue [	0 1 0 -1.57, 
+							0 1 0 0
+						 ]
+        	}
+
+			DEF PAOpen PositionInterpolator {
+    			key [ 0 0.5 1 ]
+    			keyValue [
+						-.5 0 0,
+						-.25 0 0.25,
+						0 0 0.5		
+						 ]
+    		}
+
+			DEF CloseTimer TimeSensor {
+            	stopTime 1
+            	cycleInterval 2 # Vai demorar este numero de segundos a abrir a porta
+            	ROUTE CloseTimer.fraction_changed TO PortaFechar.set_fraction
+				ROUTE CloseTimer.fraction_changed TO PAClose.set_fraction
+				ROUTE PAClose.value_changed TO PortaD.translation
+            	ROUTE PortaFechar.value_changed TO PortaD.rotation
+				
+        	 }
+
+			 DEF OpenTimer TimeSensor {
+            	stopTime 1
+            	cycleInterval 2 # Vai demorar este numero de segundos a abrir a porta
+            	ROUTE OpenTimer.fraction_changed TO PortaAbrir.set_fraction
+				ROUTE OpenTimer.fraction_changed TO PAOpen.set_fraction
+				ROUTE PAOpen.value_changed TO PortaD.translation
+            	ROUTE PortaAbrir.value_changed TO PortaD.rotation
+				
+        	 }
+
+			 DEF ToggleDoor Script {
+				  field  SFBool  state TRUE  
+				  eventIn  SFTime toggle
+				  eventOut SFTime startClose
+				  eventOut SFTime startOpen
+				  url "vrmlscript:
+					 function toggle(curtime) {
+					  state = !state;
+					  if (state) {
+    					startOpen = curtime;
+    					startClose = -1;
+					  }
+					  else
+					  {
+    					startOpen = -1;
+    					startClose = curtime;
+					  }
+					 }
+				  "	
+			  }
+		]
+		ROUTE Sensor1.touchTime	TO ToggleDoor.toggle
+		ROUTE ToggleDoor.startClose TO CloseTimer.startTime
+		ROUTE ToggleDoor.startOpen TO OpenTimer.startTime
+	}
+}
+
+PROTO PortaEsq [] {
+	Transform {
+		children [
+			DEF PortaE Transform {
+				translation	0 0 0.5
+				rotation 0 1 0 1.57
+				children [
+					Shape {
+						geometry Box { size	1 2.2 .1 }
+						appearance Appearance {
+							texture	ImageTexture {
+								url	"Porta.jpg"
+							}
+						}
+					}
+				]
+			}
+
+			DEF Sensor1 TouchSensor {}
+
+			DEF PortaFechar OrientationInterpolator {
+				key [0 1]	#tem 2 posiçoes, que vão ser indicadas a seguir em keyvalue
+				keyValue [	0 1 0 1.57,
+							0 1 0 3.14,
+						 ]
+			}
+
+			DEF PAClose PositionInterpolator {
+    			key [ 0 0.5 1 ]
+    			keyValue [
+							0 0 .5,
+							.25 0 .25,
+							.5 0 .0		
+						 ]
+    		}
+			
+			DEF PortaAbrir OrientationInterpolator {
+            	key [0 1] 
+				keyValue [	0 1 0 3.14,
+							0 1 0 1.57, 
+							0 0 0 0
+						 ]
+        	}
+
+			DEF PAOpen PositionInterpolator {
+    			key [ 0 0.5 1 ]
+    			keyValue [
+							.5 0 .0,	
+							.25 0 .25,
+							0 0 0.5		
+						 ]
+    		}
+
+			DEF CloseTimer TimeSensor {
+            	stopTime 1
+            	cycleInterval 2 # Vai demorar este numero de segundos a abrir a porta
+            	ROUTE CloseTimer.fraction_changed TO PortaFechar.set_fraction
+				ROUTE CloseTimer.fraction_changed TO PAClose.set_fraction
+				ROUTE PAClose.value_changed TO PortaE.translation
+            	ROUTE PortaFechar.value_changed TO PortaE.rotation
+				
+        	 }
+
+			 DEF OpenTimer TimeSensor {
+            	stopTime 1
+            	cycleInterval 2 # Vai demorar este numero de segundos a abrir a porta
+            	ROUTE OpenTimer.fraction_changed TO PortaAbrir.set_fraction
+				ROUTE OpenTimer.fraction_changed TO PAOpen.set_fraction
+				ROUTE PAOpen.value_changed TO PortaE.translation
+            	ROUTE PortaAbrir.value_changed TO PortaE.rotation
+				
+        	 }
+
+			 DEF ToggleDoor Script {
+				  field  SFBool  state TRUE  
+				  eventIn  SFTime toggle
+				  eventOut SFTime startClose
+				  eventOut SFTime startOpen
+				  url "vrmlscript:
+					 function toggle(curtime) {
+					  state = !state;
+					  if (state) {
+    					startOpen = curtime;
+    					startClose = -1;
+					  }
+					  else
+					  {
+    					startOpen = -1;
+    					startClose = curtime;
+					  }
+					 }
+				  "	
+			  }
+		]
+		ROUTE Sensor1.touchTime	TO ToggleDoor.toggle
+		ROUTE ToggleDoor.startClose TO CloseTimer.startTime
+		ROUTE ToggleDoor.startOpen TO OpenTimer.startTime
+	}
+}
+
+
+
+PROTO Porta [] {
+	Transform { # Porta
+		children [
+	
+			Transform {
+				children PortaDir {}
+			}
+			
+			Transform {
+				translation	-2 0 0
+				children PortaEsq {}
+			}
+		]
+
+	}
+
+}
+
+Porta {}

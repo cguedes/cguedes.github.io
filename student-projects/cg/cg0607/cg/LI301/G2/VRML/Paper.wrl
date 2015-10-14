@@ -1,0 +1,256 @@
+#VRML V2.0 utf8
+
+
+EXTERNPROTO	axle[]
+"Coordinate axle.wrl#CoordinateAxle"
+Transform {
+	scale 0.01 0.01	0.01
+	children axle{}
+}
+
+#Ficheiro com a definição de um jornal
+
+PROTO Page[
+	field MFString pag1 ""
+	field MFString pag2 ""
+]{
+	Group {
+		children [
+			Transform {
+				translation	0 0.00005 0
+				children Shape {
+					appearance Appearance {
+						material Material {}
+						texture	ImageTexture {
+							url IS pag1
+						}
+					}
+
+					geometry Box {
+						size 0.28 0.0001 0.4
+					}
+				}
+			}
+
+			Transform {
+				translation	0 -0.00005 0
+				rotation 1 0 0 3.1416
+				children Shape {
+					appearance Appearance {
+						material Material {}
+						texture	ImageTexture {
+							url IS pag2
+						}
+						textureTransform TextureTransform {
+							rotation 3.1416 
+						}
+					}
+
+					geometry Box {
+						size 0.28 0.0001 0.4
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO Paper[]{
+	Group {
+		children [
+			DEF Pag1 Transform {
+				center 0 0 0
+				children Transform {
+					translation	0.14 0.0005 0
+					children[ 
+						Page {
+							pag1 "Images\Page1.jpg"
+							pag2 ""
+						}
+
+						DEF	TS1 TouchSensor	{ enabled TRUE }
+					]
+				}
+			}
+
+			DEF Pag2 Transform {
+				center 0 0 0
+				children Transform {
+					translation	0.14 0.0003 0
+					children[ 
+						Page {
+							pag1 "Images\Carlos.jpg"
+							pag2 ""
+						}
+
+						DEF	TS2 TouchSensor	{ enabled TRUE }
+					]
+				}
+			}
+
+			DEF Pag3 Transform {
+				center 0 0 0
+				children Transform {
+					translation	0.14 0.0001 0
+					children[ 
+						Page {
+							pag1 "Images\Eduardo.jpg"
+							pag2 ""
+						}
+
+						DEF	TS3 TouchSensor	{ enabled TRUE }
+					]
+				}
+			}
+
+			DEF Pag4 Transform {
+				center 0 0 0
+				children Transform {
+					translation	0.14 -0.0001 0
+					children[ 
+						Page {
+							pag1 "Images\Rui.jpg"
+							pag2 ""
+						}
+
+						DEF	TS4 TouchSensor	{ enabled TRUE }
+					]
+				}
+			}
+
+			DEF Pag5 Transform {
+				center 0 0 0
+				children Transform {
+					translation	0.14 -0.0003 0
+					children[ 
+						Page {
+							pag1 "Images\PageFinal.jpg"
+							pag2 ""
+						}
+
+						DEF	TS5 TouchSensor	{ enabled TRUE }
+					]
+				}
+			}
+
+			DEF Pag6 Transform {
+				center 0 0 0
+				children Transform {
+					translation	0.14 -0.0005 0
+					children[ 
+						Page {
+							pag1 "Images\End.jpg"
+							pag2 ""
+						}
+
+						DEF	TS6 TouchSensor	{ enabled TRUE }
+					]
+				}
+			}
+
+			DEF	Timer1 TimeSensor {
+				cycleInterval 2.0
+				enabled	TRUE
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	Timer2 TimeSensor {
+				cycleInterval 4.0
+				enabled	TRUE
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	Timer3 TimeSensor {
+				cycleInterval 6.0
+				enabled	TRUE
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	Timer4 TimeSensor {
+				cycleInterval 6.0
+				enabled	TRUE
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	Timer5 TimeSensor {
+				cycleInterval 6.0
+				enabled	TRUE
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	Timer6 TimeSensor {
+				cycleInterval 6.0
+				enabled	TRUE
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	OI1 OrientationInterpolator	{
+				key	[0.0 1.0]
+				keyValue [0 0 1 0, 0 0 1 -3.1416]
+			}
+
+			DEF	OI2 OrientationInterpolator	{
+				key	[0.0 1.0]
+				keyValue [0 0 1 0, 0 0 1 -3.1416]
+			}
+
+			DEF	OI3 OrientationInterpolator	{
+				key	[0.0 1.0]
+				keyValue [0 0 1 0, 0 0 1 -3.1416]
+			}
+
+			DEF	OI4 OrientationInterpolator	{
+				key	[0.0 1.0]
+				keyValue [0 0 1 0, 0 0 1 -3.1416]
+			}
+
+			DEF	OI5 OrientationInterpolator	{
+				key	[0.0 1.0]
+				keyValue [0 0 1 0, 0 0 1 -3.1416]
+			}
+
+			DEF	OI6 OrientationInterpolator	{
+				key	[0.0 1.0]
+				keyValue [0 0 1 0, 0 0 1 -3.1416]
+			}
+		]
+	}
+
+	ROUTE TS1.touchTime	TO Timer1.startTime
+	ROUTE Timer1.fraction_changed TO OI1.set_fraction
+	ROUTE OI1.value_changed	TO Pag1.rotation
+
+	ROUTE TS2.touchTime	TO Timer2.startTime
+	ROUTE Timer2.fraction_changed TO OI2.set_fraction
+	ROUTE OI2.value_changed	TO Pag2.rotation
+
+	ROUTE TS3.touchTime	TO Timer3.startTime
+	ROUTE Timer3.fraction_changed TO OI3.set_fraction
+	ROUTE OI3.value_changed	TO Pag3.rotation
+
+	ROUTE TS4.touchTime	TO Timer4.startTime
+	ROUTE Timer4.fraction_changed TO OI4.set_fraction
+	ROUTE OI4.value_changed	TO Pag4.rotation
+
+	ROUTE TS5.touchTime	TO Timer5.startTime
+	ROUTE Timer5.fraction_changed TO OI5.set_fraction
+	ROUTE OI5.value_changed	TO Pag5.rotation
+
+	ROUTE TS6.touchTime	TO Timer6.startTime
+	ROUTE Timer6.fraction_changed TO OI6.set_fraction
+	ROUTE OI6.value_changed	TO Pag6.rotation
+}
+
+Paper {}

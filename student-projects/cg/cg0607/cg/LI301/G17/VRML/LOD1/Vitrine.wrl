@@ -1,0 +1,159 @@
+#VRML V2.0 utf8
+# dimensões:
+# x: 1.41
+# y: 0.86
+# z: 0.61
+
+EXTERNPROTO	Livro [] "Objectos.wrl#LivroFechado"
+
+PROTO	Base [
+]{
+	Group	{
+		children [
+			Transform	{
+				children
+					Shape	{
+						geometry Box {
+							size 1.41 0.02 0.61
+						}
+						appearance Appearance	{material	Material { diffuseColor	1 1 1 } }
+					}
+			}
+			Transform	{
+				children
+				Shape	{
+					geometry Extrusion {
+						crossSection [
+						-0.745 -0.345, 0.745 -0.345, 0.745 0.345, -0.745 0.345,	-0.745 -0.345,
+						-0.705 -0.305, 0.705 -0.305, 0.705 0.305, -0.705 0.305,	-0.705 -0.305, -0.745 -0.345
+						]
+						spine	[0 -0.01 0, 0 0.01 0]
+						ccw	FALSE
+					}
+					appearance Appearance { material Material	{ diffuseColor 0.84 0.65 0.06 }	}
+				}
+			}
+		]
+	}
+}
+
+PROTO	Suporte	[
+]{
+	Shape	{
+		geometry Cylinder {
+			radius 0.02
+			height 0.86
+		}
+		appearance Appearance	{	material	Material	{ diffuseColor 0.9 0.9 0.9 } }
+	}
+}
+
+
+PROTO	Vidro_superior [
+]{
+	Shape	{
+		geometry Box {
+			size 1.4 0.005 0.60
+		}
+		appearance Appearance	{
+			material Material {
+				diffuseColor 1 1 1
+				transparency 0.9
+			} 
+		}	
+	}
+}
+
+PROTO	Vidro_lateral[
+]{
+	Shape	{
+		geometry Box {
+			size 0.52 0.21 0.005 
+		}
+		appearance Appearance	{
+			material Material {
+				diffuseColor 1 1 1
+				transparency 0.9
+			} 
+		}
+	}
+}
+
+PROTO	Vidro_posterior [
+]{
+	Shape	{
+		geometry Box {
+			size 1.32 0.21 0.005 
+		}
+		appearance Appearance	{
+			material Material {
+				diffuseColor 1 1 1
+				transparency 0.9
+			} 
+		}
+	}
+}	
+
+PROTO	Vitrine [
+]{
+	Group	{
+		children [
+			Transform	{
+				translation	0 0.64 0
+				children Base	{}
+			}
+			Transform	{
+				translation	0 0.865 0
+				children Vidro_superior	{}
+			}
+			Transform{
+				translation	0.68 0.43 0.28
+				children Suporte {}
+			}
+				Transform{
+				translation	-0.68 0.43 0.28
+				children Suporte {}
+			}
+				Transform{
+				translation	0.68 0.43 -0.28
+				children Suporte {}
+			}
+				Transform{
+				translation	-0.68 0.43 -0.28
+				children Suporte {}
+			}
+			Transform	{
+				translation	-0.68 0.755 0
+				rotation 0 1 0 1.57
+				children Vidro_lateral {}
+			}
+			Transform	{
+				translation	0.68 0.755 0
+				rotation 0 1 0 1.57
+				children Vidro_lateral {}
+			}
+			Transform	{
+				translation	0 0.755 -0.28
+				children Vidro_posterior {}
+			}
+			Transform	{
+				translation	0 0.755 0.28
+				children Vidro_posterior {}
+			}
+			Transform	{
+				translation -0.4 0.665 0
+				children Livro {}
+			}
+			Transform	{
+				translation 0 0.665 0
+				children Livro {}
+			}
+			Transform	{
+				translation 0.4 0.665 0
+				children Livro {}
+			}
+		]
+	}
+}
+
+Vitrine {}

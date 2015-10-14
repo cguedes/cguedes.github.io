@@ -1,0 +1,41 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO placas [
+	field SFVec3f size
+	field SFRotation rotate
+	field SFVec3f translate
+	field SFColor diffuseColor
+	field SFFloat transparency
+	field SFFloat shininess
+	exposedField MFString url
+] "placas.wrl"
+
+PROTO Interior[]
+{
+	Transform 
+	{
+		translation	1 0 0
+		children
+		[
+			placas{size .02 .98 3.17 translate .23 0.01 .99 diffuseColor 1 1 1}
+			placas{size .02 .98 3.17 translate 1.69 0.01 .99 diffuseColor 1 1 1}
+			placas{size .02 .98 1.48 translate .96 0.01 -.6 diffuseColor 1 1 1 rotate 0 1 0 1.57}
+			
+			placas {size .8 2.3 .02 translate .47 .67 2.37 diffuseColor 1 1 1}
+
+			#Ombreira
+			placas {size .2 2.3 .02 translate .88 .66 2.46 diffuseColor .6 .6 .6 rotate 0 1 0 1.57}
+			placas {size .06 2.31 .01 translate .92 .67 2.57 diffuseColor .6 .6 .6}
+
+			placas {size .16 2.3 .02 translate 1.689 .66 2.50 diffuseColor .6 .6 .6 rotate 0 1 0 1.57}
+
+			#Chão	
+			placas{size	1.85 0.02 3.25 translate 1 -.475 .95 diffuseColor .3 .3 .3}
+
+			#Tecto
+			placas{size	1.85 0.02 3.25 translate .95 2 .95 diffuseColor .3 .3 .3}
+
+			placas{size	1.95 0.06 3.4 translate .96 4.35 .9 diffuseColor .3 .3 .3}
+		]
+	}
+}

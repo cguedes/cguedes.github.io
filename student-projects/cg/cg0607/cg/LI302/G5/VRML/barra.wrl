@@ -1,0 +1,107 @@
+#VRML V2.0 utf8
+
+PROTO barraParade []{
+
+	Transform	{
+		children [
+			Shape {
+				geometry Box {size 1.5 0.20 0.15}
+				appearance Appearance {material Material {diffuseColor 0.3 0.3 0.3 shininess 1 }}
+			}
+	Transform {
+		translation	0 0 0.073
+		children [
+			Shape {
+				geometry Box {size 1.5 0.15 0.005}
+				appearance Appearance {material Material {diffuseColor 0.4 0.4 0.4 shininess 0.5 }}
+  			}
+		]
+	}
+]
+
+}
+
+}
+
+
+
+PROTO tomada []{
+
+	Transform	{
+		children [
+			Shape {
+				geometry Box {size 0.066 0.09 0.08}
+				appearance Appearance { texture ImageTexture {url "tomada.jpg"}}
+			}					
+		]
+
+	}
+
+}
+PROTO tomada1 []{
+
+	Transform	{
+		children [
+			Shape {
+				geometry Box {size 0.10 0.09 0.08}
+				appearance Appearance { texture ImageTexture {url "rede.jpg"}}
+			}					
+		
+				]
+
+			
+
+	}
+
+}
+
+
+
+
+PROTO barraFinal[]{
+	
+	Transform {
+	
+		children [
+				barraParade{}
+		
+				Transform {
+					
+					translation -0.7 0 0.036	 
+					children [
+						tomada{}
+					
+					]
+				}
+
+					Transform {
+					
+					translation -0.636 0 0.036	 
+					children [
+						tomada{}
+					
+					]
+				}
+
+					Transform {
+					
+					translation -0.572 0 0.036	 
+					children [
+						tomada{}
+					
+					]
+				}
+				Transform {
+				
+					translation -0.4 0 0.036	 
+					children [
+						tomada1{}
+					
+					]
+				}
+		]
+	}
+}
+
+									
+barraFinal {}

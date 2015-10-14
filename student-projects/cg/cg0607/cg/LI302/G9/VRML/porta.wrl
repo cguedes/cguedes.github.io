@@ -1,0 +1,399 @@
+#VRML V2.0 utf8
+#porta
+
+
+
+PROTO topo []{
+Transform {
+	children Shape {
+		geometry Box {
+			size 0.66 0.17 0.04
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .14 .14 .14
+				emissiveColor .13 .13 .13
+				ambientIntensity 0
+			}
+		}
+	}
+	translation	0.44 0 0
+}
+}
+
+
+
+PROTO tiras []{
+Transform {
+	children Shape {
+		geometry Box {
+			size 0.66 0.105 0.03
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .135 .135 .135
+				emissiveColor .125 .125 .125
+				ambientIntensity 0
+			}
+		}
+	}
+	translation	0.44 0 0
+}
+}
+
+
+PROTO omb1 []{
+Transform {
+	children Shape {
+		geometry Box {
+			size 0.035 2.1 0.09
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .14 .14 .14
+				emissiveColor .13 .13 .13
+				ambientIntensity 0
+			}
+		}
+	}
+	translation	-0.01 0.017 -0.02
+}
+}
+PROTO omb2[]{
+Transform {
+	children Shape {
+		geometry Box {
+			size 0.05 2.1 0.02
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .14 .14 .14
+				emissiveColor .13 .13 .13
+				ambientIntensity 0
+			}
+		}
+	}
+	translation	0 0.017 -0.03
+}
+}
+
+
+
+PROTO macaneta []{
+	Transform {
+		children Shape {
+			geometry Cylinder {
+				height 0.03
+				radius 0.025
+			}
+			appearance Appearance {
+				material Material {
+				diffuseColor .57 .58 .58
+				specularColor .67 .46 .44
+				ambientIntensity .137
+				shininess .17
+				}
+			}
+		}
+		rotation 1 0 0 1.57
+		translation	0.82 0 0.05
+		
+	}
+}
+
+######################### fora ############################################################
+DEF	myporta Transform {
+	children [
+DEF	Aporta Group {
+
+	children [
+
+
+
+Transform {
+	children Shape {
+		geometry Box {
+			size 0.11 2.06 0.04
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .14 .14 .14
+				emissiveColor .13 .13 .13
+				ambientIntensity 0
+			}
+		}
+	}
+	translation	0.055 0 0
+}
+Transform {
+	children Shape {
+		geometry Box {
+			size 0.12 2.06 0.04
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .14 .14 .14
+				emissiveColor .13 .13 .13
+				ambientIntensity 0
+			}
+		}
+	}
+	translation	0.83 0 0
+}
+
+
+Transform {
+	translation	0 0.945 0
+	children topo {}
+}
+
+Transform {
+	translation	0 -0.945 0
+	children topo {}
+}
+################################ inner ##########################
+
+Transform {
+	children Shape {
+		geometry Box {
+			size 0.66 1.735 0.02
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .1 .1 .1
+				emissiveColor .1 .1 .1
+				ambientIntensity 0
+			}
+		}
+	}
+	translation	0.44 0 0
+}
+
+
+################################ tiras ###########################
+
+
+
+Transform {
+	translation	0 0.8 0
+	children tiras {}
+}
+Transform {
+	translation	0 0.685 0
+	children tiras {}
+}
+Transform {
+	translation	0 0.57 0
+	children tiras {}
+}
+Transform {
+	translation	0 0.455 0
+	children tiras {}
+}
+Transform {
+	translation	0 0.34 0
+	children tiras {}
+}
+Transform {
+	translation	0 0.225 0
+	children tiras {}
+}
+Transform {
+	translation	0 0.11 0
+	children tiras {}
+}
+Transform {
+	translation	0 -0.005 0
+	children tiras {}
+}
+Transform {
+	translation	0 -0.12 0
+	children tiras {}
+}
+Transform {
+	translation	0 -0.235 0
+	children tiras {}
+}
+Transform {
+	translation	0 -0.35 0
+	children tiras {}
+}
+Transform {
+	translation	0 -0.465 0
+	children tiras {}
+}
+Transform {
+	translation	0 -0.58 0
+	children tiras {}
+}
+Transform {
+	translation	0 -0.695 0
+	children tiras {}
+}
+Transform {
+	translation	0 -0.81 0
+	children tiras {}
+}
+Transform {
+	translation	0 -0.925 0
+	children tiras {}
+}
+
+
+
+
+########################## macaneta ######################
+
+DEF	t Group	{
+	children [
+DEF	myTouch_open TouchSensor{ enabled TRUE}
+DEF	myTouch_close TouchSensor{ enabled FALSE}
+Transform {
+	children macaneta {}
+}
+Transform {
+	translation	0 0 -0.1
+	children macaneta {}
+}
+]}
+
+
+Transform {
+	children Shape {
+		geometry Cylinder {
+			height 0.1
+			radius 0.015
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .57 .58 .58
+				specularColor .67 .46 .44
+				ambientIntensity .137
+				shininess .17
+			}
+		}
+	}
+	rotation 1 0 0 1.57
+	translation	0.82 0 0
+}
+Transform {
+	children Shape {
+		geometry Cylinder {
+			height 0.05
+			radius 0.035
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .57 .58 .58
+				specularColor .67 .46 .44
+				ambientIntensity .137
+				shininess .17
+			}
+		}
+	}
+	rotation 1 0 0 1.57
+	translation	0.82 0 0
+}
+]}
+]}
+
+######################################### ombreira ########################
+
+Transform {
+	children omb1{}
+}
+Transform {
+	children omb2 {}
+}
+Transform {
+	translation	0.91 0 0
+	children omb1{}
+}
+Transform {
+	translation	0.89 0 0
+	children omb2 {}
+}
+Transform {
+	children Shape {
+		geometry Box {
+			size 0.89 0.035 0.09
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .14 .14 .14
+				emissiveColor .13 .13 .13
+				ambientIntensity 0
+			}
+		}
+	}
+	translation	0.445 1.05 -0.02
+}
+
+Transform {
+	children Shape {
+		geometry Box {
+			size 0.89 0.05 0.02
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .14 .14 .14
+				emissiveColor .13 .13 .13
+				ambientIntensity 0
+			}
+		}
+	}
+	translation	0.445 1.03 -0.03
+}
+
+################################Animação através de script#####################
+
+DEF	myDoorOpenInterpolator OrientationInterpolator {
+	key	[0, 0.25, 0.5, 0.75, 1]
+	keyValue [0 1 0 0, 0 1 0 -0.3925, 0 1 0 -0.785, 0 1 0 -1.1775, 0 1 0 -1.57]
+}
+DEF	myDoorCloseInterpolator OrientationInterpolator {
+	key	[0, 0.25, 0.5, 0.75, 1]
+	keyValue [0 1 0 -1.57, 0 1 0 -1.1775, 0 1 0 -0.785, 0 1 0 -0.3925, 0 1 0 0]
+}
+
+DEF	time1 TimeSensor	{
+	cycleInterval 5 loop FALSE stopTime	1
+}
+DEF	time2 TimeSensor	{
+	cycleInterval 5 loop FALSE stopTime	1
+}
+
+ROUTE myTouch_open.touchTime TO time1.startTime
+ROUTE myTouch_close.touchTime TO time2.startTime
+ROUTE time1.fraction_changed TO myDoorOpenInterpolator.set_fraction
+ROUTE time2.fraction_changed TO myDoorCloseInterpolator.set_fraction
+ROUTE myDoorOpenInterpolator.value_changed TO myporta.rotation
+ROUTE myDoorCloseInterpolator.value_changed TO myporta.rotation
+
+
+DEF	EnableSwitch Script	{
+	eventIn	SFTime touch
+	eventOut SFBool	enable1
+	eventOut SFBool	enable2
+	field SFBool inicial TRUE
+
+	url	"javascript:
+	function touch(value) {
+		if(inicial == TRUE){
+			enable1 = FALSE;
+			enable2 = TRUE;
+			inicial = FALSE;
+		}
+		else{
+			enable1 = TRUE;
+			enable2 = FALSE;
+			inicial = TRUE	;
+		}
+	}
+	"
+}
+
+ROUTE myTouch_open.touchTime  TO EnableSwitch.touch
+ROUTE myTouch_close.touchTime TO EnableSwitch.touch
+ROUTE EnableSwitch.enable1    TO myTouch_open.enabled
+ROUTE EnableSwitch.enable2    TO myTouch_close.enabled

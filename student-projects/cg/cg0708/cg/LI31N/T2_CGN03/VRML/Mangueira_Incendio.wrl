@@ -1,0 +1,94 @@
+#VRML V2.0 utf8
+
+PROTO lado[field SFVec3f coordenates 1 1 1]	{
+	Group {
+		children Shape {
+			geometry Box {size IS coordenates }
+			appearance Appearance {material  Material {diffuseColor 0.925 0.137 0}}
+		}
+	}
+}
+
+PROTO CaixaMangueira[field SFVec3f coord 1 1 1]{
+	Group{
+		children [
+			Transform {
+				children lado {coordenates IS coord}
+			}
+			Transform {
+				translation	0.2835 0.2835 0
+				rotation 0 0 1 1.5707
+				children lado {coordenates IS coord}
+			}
+			Transform {
+				translation 0.582 0 0	
+				children lado {coordenates IS coord}
+			}
+			Transform {
+				translation	0.2835 -0.2835 0
+				rotation 0 0 1 1.5707
+				children lado {coordenates IS coord}
+			}
+		]
+	}
+}
+
+PROTO Porta[field SFVec3f coord 1 1 1]{
+	Group{
+		children [
+			Transform {
+				translation	0.067 0 0
+				children lado {coordenates IS coord}
+			}
+			Transform {
+				translation	 0.298	0.216 0
+				rotation 0 0 1 1.5707
+				children lado {coordenates IS coord}
+			}
+			Transform {
+				translation	0.515 0 0
+				children lado {coordenates IS coord}
+			}
+			Transform {
+				translation	0.2839 -0.217 0
+				rotation 0 0 1 1.5707
+				children lado {coordenates IS coord}
+			}
+			Transform {
+				translation	0.29 0 0
+				children  Shape	{
+					geometry Box {size 0.334 0.334 0.005}
+					appearance Appearance {material Material {diffuseColor 1 1 1 transparency 0.2}}
+				}
+			}
+		
+		]
+	}
+}
+PROTO Letras[field MFString letras ""]{
+	Group {
+		children Shape {
+				geometry Text {string IS letras length  0.1 fontStyle FontStyle {size 0.1}}
+				appearance Appearance {material  Material {diffuseColor 0 0 0}	}
+			}
+	}
+}
+
+PROTO SistemaIncendio[]{
+	Group {
+		children [
+			Transform {
+				children CaixaMangueira	{coord 0.030 0.597 0.021}
+			}
+			Transform {
+				children Porta	{coord 0.10 0.534 0.019}
+			}
+			Transform {
+				translation	0.25 0 0.005
+				children Letras	{letras "S.I."}
+			}
+		] 
+	}
+}
+SistemaIncendio	{}
+

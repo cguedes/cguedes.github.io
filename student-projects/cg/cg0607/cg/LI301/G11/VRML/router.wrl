@@ -1,0 +1,117 @@
+#VRML V2.0 utf8
+
+PROTO topo_antena[]{
+	Shape {
+		geometry Cone {
+		
+		bottomRadius 0.002
+		bottom TRUE
+		height 0.004
+		side TRUE
+		}
+		appearance Appearance {
+			material Material {
+			
+			diffuseColor 0 0 0}
+		}
+	}
+
+}
+PROTO antena_barra[]{
+	Shape {
+		geometry Cylinder {
+			bottom TRUE 
+			height 0.04
+			radius 0.002
+			side TRUE 
+			top TRUE
+		 }
+		 appearance	Appearance {
+			 material Material 
+			 {
+			 diffuseColor  0 0 0
+			 }
+		}
+	
+	}
+}
+
+PROTO antena[]{
+	Group	{
+		children [
+			Transform {
+			
+				children antena_barra {}
+			}
+
+			Transform {
+				translation	0 0.022 0
+				children topo_antena {}
+			}
+		]
+	}
+}
+
+
+
+PROTO route[]{
+	Shape {
+	
+		geometry Box {
+		size 0.07 0.015 0.05
+		}
+		appearance Appearance {
+			material Material {
+		diffuseColor  0 0 0
+			}
+		}
+	}
+	   
+}
+
+PROTO botao[]{
+
+	Shape {
+		geometry Box {
+		size  0.001 0.005 0.001
+		
+		}
+		appearance Appearance {material Material {diffuseColor  0 1 0}
+		}
+	}
+
+
+}
+PROTO router[]{
+
+	Group {
+	
+		children [
+			
+			Transform {
+				translation	-0.030 0.015 -0.020
+				children antena {}
+			}
+			Transform {
+				children route {}
+			
+			}
+			Transform {
+			translation	0 0 0.026
+			children botao{}
+			}
+			Transform {
+			translation	-0.01 0 0.026
+			children botao{}
+			}
+			Transform {
+			translation	0.01 0 0.026
+			children botao{}
+			}
+		]
+
+	}
+
+
+}
+

@@ -1,0 +1,23 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	tab[]  "tabuleiro_parte_do_alto.wrl"
+EXTERNPROTO	tab_longe[] "tabuleiro_parte_do_alto_longe.wrl"
+
+PROTO tab_parte_do_alto_final[field SFVec3f pos 0 0 0 field SFRotation rot 0 0 0 0]
+{
+	Transform {
+		children [
+			LOD	{
+				range [1250]
+				center 0 0 750
+				level [
+					tab{}
+					tab_longe {}
+				]
+			}
+		]
+		rotation IS	rot
+		translation	IS pos	
+	}
+}
+tab_parte_do_alto_final  {}

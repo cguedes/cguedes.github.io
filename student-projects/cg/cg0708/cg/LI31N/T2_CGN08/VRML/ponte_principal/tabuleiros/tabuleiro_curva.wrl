@@ -1,0 +1,179 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO grad10 [field SFRotation rot field SFVec3f pos] "gradeamento_rails/gradeamento10_novo.wrl"
+EXTERNPROTO grad100 [ field SFRotation rot  field SFVec3f pos ] "gradeamento_rails/gradeamento100_novo.wrl"
+EXTERNPROTO	grad200[ field	SFVec3f	pos  field SFRotation rot] "gradeamento_rails/gradeamento200_novo.wrl"
+
+EXTERNPROTO	candeeiros[field SFVec3f pos field SFRotation rot] "../outros/candeeiros_2.wrl"
+
+EXTERNPROTO	pilar[ field SFVec3f pos  field SFRotation rot	field SFVec3f escala  field SFVec3f posBase
+] "../pilares/pilar_45m.wrl"
+
+EXTERNPROTO suporte_localidades [ field SFVec3f pos	field SFRotation rot] "suporte_vias/suporte_localidades.wrl"
+EXTERNPROTO telefone_SOS [ field SFVec3f pos ] "suporte_vias/telefone_SOS.wrl"
+EXTERNPROTO velocidade_maxima [	field SFVec3f pos field SFRotation rot] "suporte_vias/velocidade_maxima.wrl"
+
+
+
+PROTO tabuleiro_curva[field SFVec3f pos 0 0 0 field SFRotation rot 0 0 0 0]
+{
+	Transform {
+		children [
+			Viewpoint {
+				fieldOfView 0.785398 
+				position 10 5 470
+				orientation 0 -1 0 3.14 
+				description "Suporte Localidades" 
+				jump TRUE 
+			}
+			Viewpoint {
+				fieldOfView 0.785398 
+				position 160 10 -180
+				orientation 0 -1 0 3.14 
+				description "Vista Lateral da Ponte" 
+				jump FALSE 
+			}
+			Transform {
+				children [
+					Shape {
+						geometry Extrusion {
+							crossSection [
+								0 0, .2 .5, 1.4 .5, 1.4 0, 15.4 0, 15.45 .4, 15.45 1, 15.65 1,
+								15.65 .4, 15.7 0, 29.7 0, 29.7 .5, 30.9 .5, 31.1 0, 30.7 0,
+								30.7 -1, 29 -1, 26.9 -5, 4 -5, 2 -1, .4 -1, .4 0, 0 0
+							]
+							spine [
+								334 -390 0, 303.801 -334.044 0, 269.92 -271.264 0, 219.459 -177.762 0, 164 -75 0,
+								111 35 0, 78 130 0, 63 182 0, 53 230 0, 41 299 0, 33 370 0,
+								33 417.2 0, 33 460.4 0, 33 529.6 0, 33 596 0
+							]
+						}
+						appearance Appearance { 
+							textureTransform TextureTransform { scale 5 10 
+						}
+							texture ImageTexture { url "../imagens/betao.jpg" }
+							#material Material { emissiveColor 0.5 0.5 0.5}
+						}
+					}
+				]
+				rotation 1 0 0 1.57079
+			}
+			###### Estrada ######
+			Transform {
+				children [
+					Shape {
+						geometry Extrusion {
+							crossSection [
+								1.4 -.1, 1.4 0, 29.7 0, 29.7 -.1, 1.4 -.1
+							]
+							spine [
+								334 -390 0, 303.801 -334.044 0, 269.92 -271.264 0, 219.459 -177.762 0,
+								164 -75 0, 111 35 0, 78 130 0, 63 182 0, 53 230 0, 41 299 0,
+								33 370 0, 33 417.2 0, 33 460.4 0, 33 529.6 0, 33 596 0
+							]
+						}
+						appearance Appearance { 
+							textureTransform TextureTransform { scale 4 80 
+						}
+							texture ImageTexture { url "../imagens/estrada.jpg" }
+							material Material {emissiveColor .6 .6 .6 
+						}
+						}
+					}
+				]
+				rotation 1 0 0 1.57079
+				translation	0 0.05 0
+			}
+
+			#### candeeiros ####
+
+			candeeiros { pos 31 0.5 580 }
+			candeeiros { pos 31 0.5 540 }
+			candeeiros { pos 31 0.5 500 }
+			candeeiros { pos 31 0.5 460 }
+			candeeiros { pos 31 0.5 420 }
+			candeeiros { pos 31 0.5 380 }
+			candeeiros { rot 0 1 0 -0.05 pos 34.6 0.5 340 }
+			candeeiros { rot 0 1 0 -0.06 pos 38.8 0.5 300 }
+			candeeiros { rot 0 1 0 -0.08 pos 45.8 0.5 260 }
+			candeeiros { rot 0 1 0 -0.08 pos 52.95 0.5 220 }
+			candeeiros { rot 0 1 0 -0.18 pos 61.6 0.5 180 }
+			candeeiros { rot 0 1 0 -0.22 pos 73 0.5 140 }
+			candeeiros { rot 0 1 0 -0.23 pos 86.1 0.5 100.5 }
+			candeeiros { rot 0 1 0 -0.27 pos 100 0.5 60.5 }
+			candeeiros { rot 0 1 0 -0.48 pos 116.2 0.5 20 }
+			candeeiros { rot 0 1 0 -0.48 pos 135.5 0.5 -20 }
+			candeeiros { rot 0 1 0 -0.49 pos 154.6 0.5 -60 }
+			candeeiros { rot 0 1 0 -0.53 pos 184 0.5 -116 }
+			candeeiros { rot 0 1 0 -0.53 pos 204 0.5 -153.2 }
+			candeeiros { rot 0 1 0 -0.53 pos 234 0.5 -209 }
+			candeeiros { rot 0 1 0 -0.53 pos 264 0.5 -264.7 }
+			candeeiros { rot 0 1 0 -0.53 pos 294 0.5 -319.7 }
+
+
+			#### Pilares #####
+			pilar { pos 18 -44 580 escala 1 0.97 1 posBase 0 -0.55 0}
+			pilar { pos 18 -42 505 escala 1 0.95 1 posBase 0 -2 0}
+			pilar { pos 18 -40 430 escala 1 0.92 1 posBase 0 -4 0 }
+			
+			pilar { rot 0 1 0 -0.2 pos 22 -37 355 escala 1 0.89 1 posBase 0 -6 0 }
+			pilar { rot 0 1 0 -0.3 pos 28 -35 280 escala 1 0.86 1 posBase 0 -8 0 }
+			pilar { rot 0 1 0 -0.35 pos 42 -33 205 escala 1 0.82 1 posBase 0 -10 0 }
+			pilar { rot 0 1 0 -0.37 pos 62 -30.5 130 escala 1 0.70 1 posBase 0 -12 0 }
+			pilar { rot 0 1 0 -0.42 pos 87 -28 55 escala 1 0.62 1 posBase 0 -14 0 }
+			pilar { rot 0 1 0 -0.48 pos 120 -25 -20 escala 1 0.52 1 posBase 0 -14 0 }
+			pilar { rot 0 1 0 -0.48 pos 157 -23 -95 escala 1 0.43 1 posBase 0 -14 0 }
+
+			pilar { rot 0 1 0 -0.48 pos 198 -20.5 -170 escala 1 0.35 1 posBase 0 -14 0 }
+			pilar { rot 0 1 0 -0.48 pos 238 -17 -245 escala 1 0.33 1 posBase 0 -14 0 }
+			pilar { rot 0 1 0 -0.48 pos 280 -14.5 -320 escala 1 0.28 1 posBase 0 -16 0 }
+
+
+			### Suporte Localidades ###
+			suporte_localidades	{ rot 0 1 0 3.14158 pos 10.2 0 490} 
+
+			### Telefone SOS ###
+			telefone_SOS { pos 32.4 0.5 440 }
+			telefone_SOS { pos 2.8 0.5 440 }
+			telefone_SOS { pos 170 0.5 -87.5 }
+			telefone_SOS { pos 143 0.5 -100 }
+			
+
+			### Sinal Velocidade Máxima ###
+			velocidade_maxima { rot 0 1 0 2.6 pos 251 1 -300 }
+			velocidade_maxima { rot 0 1 0 2.6 pos 265 1 -295 }
+
+			### Gradeamento ###
+			Transform { scale 1.13 1 1 rotation 0 1 0 1.57079 translation 2.2 1.5 483 children grad200 { } }
+			Transform { scale 1.13 1 1 rotation 0 1 0 -1.57079 translation 32.7 1.5 483 children grad200 { } }
+
+			Transform { scale 0.728 1 1 rotation 0 1 0 1.4605 translation 6.2 1.5 333 children grad100 { } }
+			Transform { scale 0.715 1 1 rotation 0 1 0 -1.682 translation 36.7 1.5 334.5  children grad100 { } }
+
+			Transform { scale 0.712 1 1 rotation 0 1 0 1.398 translation 16.28 1.5 261.5 children grad100 { } }
+			Transform { scale 0.712 1 1 rotation 0 1 0 -1.745 translation 46.9 1.5 263.5  children grad100 { } }
+
+			Transform { scale 0.53 1 1 rotation 0 1 0 1.365 translation 27.8 1.5 200  children grad100 { } } 
+			Transform { scale 0.5 1 1 rotation 0 1 0 -1.777 translation 58 1.5 205  children grad100 { } } 
+
+			Transform { scale 0.57 1 1 rotation 0 1 0 1.291 translation 41.3 1.5 146.5  children grad100 { } } 
+			Transform { scale 0.54 1 1 rotation 0 1 0 -1.852 translation 70.7 1.5 154.5  children grad100 { } } 
+
+			Transform { rotation 0 1 0 1.236 translation 65.6 1.5 72  children grad100 { } } 
+			Transform { rotation 0 1 0 -1.907 translation 94.6 1.5 81.5  children grad100 { } } 
+
+			Transform { scale 1.27 1 1 rotation 0 1 0 1.124 translation 109.4 1.5 -32.5  children grad100 { } } 
+			Transform { scale 1.22 1 1 rotation 0 1 0 -2.019 translation 137.8 1.5 -21  children grad100 { } } 
+
+			Transform { scale 1.79 1 1 rotation 0 1 0 4.21708 translation 248.9 1.5 -233 children grad200 { } }
+			Transform { scale 1.79 1 1 rotation 0 1 0 1.07549 translation 221.8 1.5 -247 children grad200 { } }
+
+		]
+		rotation IS	rot
+		translation	IS pos
+	}
+
+		
+}
+
+tabuleiro_curva {}

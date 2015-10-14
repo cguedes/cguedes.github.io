@@ -1,0 +1,144 @@
+#VRML V2.0 utf8
+
+
+EXTERNPROTO Conjunto_Porta [field MFString num]
+"Porta.wrl#Conjunto_Porta"
+
+EXTERNPROTO	SistemaIncendio[]
+"Mangueira_Incendio.wrl#SistemaIncendio"
+
+EXTERNPROTO	Quadro_Electrico[]
+"Quadro_Electrico.wrl#Quadro_Electrico"
+
+EXTERNPROTO	Paredes_Corredor[]
+"Paredes.wrl#Paredes_Corredor"
+
+EXTERNPROTO	PontosDeLuz[]
+"LuzesCorredor.wrl#PontosDeLuz"
+
+EXTERNPROTO	Camera[]
+"Camara.wrl#Camara"
+
+EXTERNPROTO	JanelaCorredor[]
+"Janela.wrl#JanelaCorredor"
+
+EXTERNPROTO	Sensor[]
+"Sensor.wrl#Sensor"
+
+
+
+
+
+PROTO Place_Porta[field SFVec3f posicao 0 0 0 field  SFRotation rotate 0 0 0 0 field MFString number ""]{
+
+	Transform {
+		translation	IS posicao
+		rotation IS	rotate
+		children Conjunto_Porta {num IS number }
+	}
+}	   
+
+PROTO Portas[]{
+	Group {
+		children [
+			#lado 1
+			Transform {
+				children	Place_Porta {posicao 0 0 -0.026 number "49"}
+			}
+		 
+			Transform {
+				children	Place_Porta {posicao 2.865 0 -0.026 number "48"}				 
+			}
+			Transform {
+				children	Place_Porta {posicao 5.73 0 -0.026 number "47"}
+			}
+			Transform {
+				children	Place_Porta {posicao 8.595 0 -0.026 number "46"}				 
+			}
+			Transform {
+				children	Place_Porta {posicao 11.46 0 -0.026 number "45"}
+			}
+			#lado 2
+			Transform {
+				children	Place_Porta {posicao 0.10 0 1.61 rotate  0 1 0 3.14159 number "44"}				 
+			}
+			Transform {
+				children	Place_Porta {posicao 2.965 0 1.61 rotate 0 1 0 3.14159 number "43"}
+			}
+			Transform {
+				children	Place_Porta {posicao 5.83 0 1.61 rotate 0 1 0 3.14159 number "42"}
+			}
+			Transform {
+				children	Place_Porta {posicao 8.695 0 1.61  rotate 0 1 0 3.14159 number "41"}				 
+			}
+			Transform {
+				children	Place_Porta {posicao 12.56 0 1.61 rotate 0 1 0 3.14159 number "WC"}
+			}
+		] 
+	}
+}
+
+
+PROTO Corredor[]{
+	Group {
+		children [
+			
+			Portas {}
+
+			Transform {
+				translation	11 0 1.54
+				rotation 0 1 0 3.14159
+				children SistemaIncendio {}
+			}
+			Transform {
+				translation	10.1 0.7 1.54
+				rotation 0 1 0 3.14159
+				children Quadro_Electrico {}
+			}
+			Transform {
+				translation	-0.9 1 0.22
+				rotation 0 1 0 1.5708
+				children Camera	{}
+				
+			}
+			Transform {
+				translation	-1.1625 -0.990 1.654
+				#rotation 0 1 0 3.14
+				children Paredes_Corredor{}
+			}
+
+			#tecto
+			Transform {
+				translation	6.518 1.405 0.79
+				children Shape {
+					geometry Box {size  15.465 0.02 1.725}
+					appearance Appearance {material Material {diffuseColor 0.9412 1 1}}
+				}  
+			}
+			#chão
+			Transform {
+				translation	6.518 -0.999 0.79
+				children Shape {
+					geometry Box {size  15.465 0.02 1.725}
+					appearance Appearance {material Material {diffuseColor 0.2392 0.1686 0.1216}}
+				}
+			}
+			#janela
+			Transform {						 
+				translation	 -1.1625 0.475 0.82
+				rotation  0 1 0 1.5708
+				children JanelaCorredor	{}
+			}
+			
+			PontosDeLuz {}
+			Transform {
+				translation	7 1.38 0.79
+				children Sensor {}
+			}
+			
+		
+		]
+	}
+}
+
+Corredor {}

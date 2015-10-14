@@ -1,0 +1,142 @@
+#VRML V2.0 utf8
+
+ EXTERNPROTO	Candeeiro [ ]
+"Candeeiro.wrl#Candeeiro"
+
+
+
+PROTO LuzCorredor  []{
+	Group {
+		children [
+			DEF Luz SpotLight { 
+				on FALSE
+    			intensity 1 
+    			ambientIntensity 0 
+    			color 1 1 1 
+    			location 0 -0.15 0 
+    			direction 0 -1 0 
+    			attenuation 1 0 0 
+    			radius 2.5 
+				cutOffAngle	1.5708 
+				beamWidth 1.57
+    					 
+						
+			}
+		
+			Transform {
+				translation	0.4475 1.35 0.8
+				children USE Luz
+			}
+
+			Transform {
+				translation	 3.3275 1.35 0.8
+				children USE Luz
+			}
+
+			Transform {
+				translation	 6.2075 1.35 0.8
+				children USE Luz
+			}
+
+			Transform {
+				translation	9.0875 1.35 0.8
+				children USE Luz
+			}
+
+			Transform {
+				translation	 11.9675 1.35 0.8
+				children USE Luz
+			}
+
+			Transform {
+				translation	14 1.35 0.8
+				children USE Luz
+			}
+
+			Transform {
+				 translation	13 0 0.05
+				 rotation 0 1 0 1.5708
+    				  children [
+        				DEF Interruptor TouchSensor { }
+        				Shape {
+        				  geometry Box { size 0.01 0.1 0.1 }
+        				  appearance Appearance { material Material { emissiveColor 1 1 1 } }
+        				}
+    				  ]
+			 } 
+
+			DEF ToogleButton Script {
+			  field    SFBool on FALSE
+			  eventIn  SFBool set_active
+			  eventOut SFBool on_changed
+			  url "javascript:
+			   function set_active( set, timestamp ) {
+    			 if(set == FALSE) return;
+    			 if(on == TRUE)   on = FALSE;
+    			 else             on = TRUE;
+    			 on_changed = on;
+			  }"
+			}
+		]
+		ROUTE  Interruptor.isActive	 TO	ToogleButton.set_active
+		ROUTE ToogleButton.on_changed TO Luz.on
+	}
+}
+
+
+
+
+
+
+
+   PROTO PlaceCandeeiro[field SFVec3f pos 0 0 0
+]{
+	Group{
+		children[
+			Transform {
+				translation	IS pos
+						children Candeeiro {}
+					}
+		]
+				
+	}
+}
+
+
+PROTO PontosDeLuz[]{
+	Group {
+		children [
+			LuzCorredor{}
+	
+			Transform{
+			children PlaceCandeeiro {pos 0.4475 1.35 0.8}
+			}
+
+	
+			Transform{
+			children PlaceCandeeiro {pos 3.3275 1.35 0.8}
+			}
+
+	
+			Transform{
+			children PlaceCandeeiro {pos 6.2075 1.35 0.8}
+			}
+
+	
+			Transform{
+			children PlaceCandeeiro {pos 9.0875 1.35 0.8}
+			}
+
+	
+			Transform{
+			children PlaceCandeeiro {pos 11.9675 1.35 0.8}
+			}
+
+	
+			Transform{
+			children PlaceCandeeiro {pos 14 1.35 0.8}
+			}
+
+		]	
+	}
+}

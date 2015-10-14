@@ -1,0 +1,179 @@
+#VRML V2.0 utf8
+EXTERNPROTO	encaixe [field SFColor color1] "janela.wrl#encaixe" 
+EXTERNPROTO	axis [] "axis.wrl#axis"
+PROTO caixa [field SFColor col 0.2 0.2 0.33] {
+	Shape {
+		appearance Appearance  {
+			material Material {diffuseColor	IS col}
+			texture	ImageTexture {url "Texturas\porta.jpg"}
+		}
+		geometry Box {size 65 190 5}
+	}
+}
+
+#falta o mecanismo de pegar a porta a parede
+PROTO portaOrigem [field SFColor col 0.2 0.2 0.36]{
+	DEF PortaAnimation Transform {
+		children 
+		Transform {
+			translation	-87.5 0 -3.5
+			children [
+				DEF	forms1 Group {
+					children [
+						Transform {
+							translation 0 0 3
+							children  Shape {
+							geometry Extrusion {
+							crossSection [0 0, 0 215, 87 215, 87 0, 0 0, 11 17, 11 198, 76 198, 76 17, 11 17, 0 0]
+							spine [0 0 0, 0 0 -7]
+							beginCap TRUE
+							endCap TRUE
+							solid FALSE
+							}
+							appearance DEF color Appearance {
+								material Material {diffuseColor IS col}
+								texture	ImageTexture {url "Texturas\porta.jpg"}
+							}
+						
+						}
+						}
+					]
+				}
+				#definição de porta
+				Group {
+					children [
+						 Transform {
+							translation 43 28 0 
+							 children [
+								 DEF forms2 Shape {
+									geometry Box { size	60 11 5}
+									appearance USE color
+								}
+							]
+						}			
+						Transform {
+							translation	43 41 0 
+							children USE forms2
+						}
+
+						Transform {
+							translation	43 54 0 
+							children USE forms2
+						}
+				
+						Transform {
+							translation	43 67 0 
+							children USE forms2
+						}
+
+						Transform {
+							translation	43 79 0 
+							children USE forms2
+						}
+			
+						Transform {
+							translation	43 93 0 
+							children USE forms2
+						}
+
+						Transform {
+							translation	43 106 0 
+							children USE forms2
+						}
+
+						Transform {
+							translation	43 119 0 
+							children USE forms2
+						}
+
+						Transform {
+							translation	43 132 0 
+							children USE forms2
+						}
+
+						Transform {
+							translation	43 145 0
+							children USE forms2
+						}
+
+						Transform {
+							translation	43 158 0
+							children USE forms2
+						}
+						Transform {
+							translation	43 171 0 
+							children USE forms2
+						}
+						Transform {
+							translation	43 184 0 
+							children USE forms2
+						}
+						Transform {
+							translation	43 112 0
+							children caixa{}
+						}
+						DEF macaneta Transform 	{
+							translation 5 90 5
+							children[ 
+								DEF macanetaFora Transform{
+									children Shape { 
+										geometry Sphere { radius 3.5}
+                						appearance Appearance { material Material { diffuseColor 0.7 0.7 0.7 } }	
+								
+									}
+								}
+								Transform{
+									translation	0 0 -11
+									children Shape { 
+										geometry Sphere { radius 3.5}
+                						appearance Appearance { material Material { diffuseColor 0.7 0.7 0.7 } }	
+								
+									}
+								}
+								
+								DEF PuxadorSwitch TouchSensor {}
+							]
+							
+						}
+						Transform {
+							translation	87 170 5
+							scale 2 8 4
+							children encaixe {color1 0.2 0.2 0.3}
+						}
+						Transform {
+							translation	87 40 5
+							scale 2 8 4
+							children encaixe {color1 0.2 0.2 0.3}
+						}
+					]		
+				}	
+			]
+		}
+	}
+	DEF	AbrirPorta Script{
+		field SFBool aberta FALSE
+		eventIn  SFFloat set_fraction
+		eventOut SFRotation fractionChanged
+		url "javascript:
+		function set_fraction( frac, timestamp ) {
+			var angulo = -1.57;
+			fractionChanged[0] = 0;    									
+			fractionChanged[1] = 1;
+			fractionChanged[2] = 0;				 
+			fractionChanged[3] = aberta ? angulo*(1-frac) : angulo*(frac);
+			if (frac == 1)
+				aberta = !aberta;
+		}"
+	}
+	DEF	TimerAnim TimeSensor {
+		loop FALSE
+		cycleInterval 1
+	}
+	ROUTE PuxadorSwitch.touchTime TO TimerAnim.startTime
+	ROUTE TimerAnim.fraction_changed TO	AbrirPorta.set_fraction
+	ROUTE AbrirPorta.fractionChanged TO PortaAnimation.rotation
+
+
+}
+axis{}
+ portaOrigem{}

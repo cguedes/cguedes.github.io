@@ -1,0 +1,237 @@
+#VRML V2.0 utf8
+#candeeiro
+Viewpoint {
+	position 0.75 0 1.5
+}
+############################ parte de dentro ############################
+Transform {
+children Shape {
+	geometry Extrusion {
+		crossSection [-0.10 0.05, 0.10 0.05, 0.10 -0.05, 0.06 0.03, 0.04 0.03, 0 -0.05, -0.04 0.03, -0.06 0.03, -0.10 -0.05, -0.10 0.05]
+		spine [0 0 0, 1.5 0 0]
+		ccw	TRUE
+		
+	}
+	appearance Appearance {
+		material Material {
+			diffuseColor .57 .58 .58
+			specularColor .67 .46 .44
+			ambientIntensity .137
+			shininess .17
+		}
+	}
+	
+}
+rotation 1 0 0 -1.57
+}
+
+############################### parte de fora ##############################
+
+Transform {
+	children Shape {
+		geometry Extrusion {
+			crossSection [-0.0025 -0.0505, -0.0025 0.05, 0.0025 0.05, 0.0025 -0.0505, -0.0025 -0.0505]
+			spine [0 0 -0.1, 0 0 0.1, 1.5 0 0.1, 1.5 0 -0.1, 0 0 -0.1]
+			ccw	TRUE
+		}		
+		appearance	Appearance	{
+			material Material {
+				diffuseColor .4 .4 .4
+				specularColor .455 .455 .455
+				ambientIntensity .25
+				shininess .6
+			}
+		}												   
+	}
+}
+
+############################## lampadas ###############################
+
+PROTO lamp[]{
+	Transform {
+	rotation 0 0 1 1.57
+	translation	0.75	0 0
+	children Shape {
+		geometry Cylinder {
+			height 1.46 
+			radius 0.01
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 0 0 0
+				specularColor .89 .89 .89
+				emissiveColor 1 .843 .439
+				ambientIntensity 0
+				shininess .05
+			}
+		}
+	}
+}
+}
+Transform {
+	translation	0 0 0.05
+	children lamp {}
+}
+Transform {
+	translation	0 0 -0.05
+	children lamp {}
+}
+
+PROTO encaixe[]{
+	Transform {
+		rotation 0 0 1 1.57
+		translation	0 0 0
+		children Shape {
+			geometry Cylinder {
+				height 0.02
+				radius 0.01
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor .15 .15 .15
+					specularColor .098 .098 .098
+					ambientIntensity 0
+					shininess .06
+				}
+			}
+		}
+	}
+}
+Transform {
+	translation	0.01 0 0.05
+	children encaixe {}
+}
+Transform {
+	translation	0.01 0 -0.05
+	children encaixe {}
+}
+Transform {
+	translation	1.49 0 0.05
+	children encaixe {}
+}
+Transform {
+	translation	1.49 0 -0.05
+	children encaixe {}
+}
+
+
+
+############################### tiras #######################################
+
+PROTO tira[]{
+	Transform {
+		translation	0 -0.025 0
+	 	children Shape {
+			geometry Box {
+				size 0.001 0.025 0.2 
+			}
+			appearance Appearance {
+				material Material {
+					 diffuseColor .57 .58 .58
+					specularColor .67 .46 .44
+					ambientIntensity .137
+					shininess .17
+				}
+			}
+		}
+	}
+}
+
+Transform {
+	translation	0.06 0 0
+	children tira {}
+}
+Transform {
+	translation	0.12 0 0
+	children tira {}
+}
+Transform {
+	translation	0.18 0 0
+	children tira {}
+}
+Transform {
+	translation	0.24 0 0
+	children tira {}
+}
+Transform {
+	translation	0.30 0 0
+	children tira {}
+}
+Transform {
+	translation	0.36 0 0
+	children tira {}
+}
+Transform {
+	translation	0.42 0 0
+	children tira {}
+}
+Transform {
+	translation	0.48 0 0
+	children tira {}
+}
+Transform {
+	translation	0.54 0 0
+	children tira {}
+}
+Transform {
+	translation	0.60 0 0
+	children tira {}
+}
+Transform {
+	translation	0.66 0 0
+	children tira {}
+}
+Transform {
+	translation	0.72 0 0
+	children tira {}
+}
+Transform {
+	translation	0.78 0 0
+	children tira {}
+}
+Transform {
+	translation	0.84 0 0
+	children tira {}
+}
+Transform {
+	translation	0.90 0 0
+	children tira {}
+}
+Transform {
+	translation	0.96 0 0
+	children tira {}
+}
+Transform {
+	translation	1.02 0 0
+	children tira {}
+}
+Transform {
+	translation	1.08 0 0
+	children tira {}
+}
+Transform {
+	translation	1.14 0 0
+	children tira {}
+}
+Transform {
+	translation	1.20 0 0
+	children tira {}
+}
+Transform {
+	translation	1.26 0 0
+	children tira {}
+}
+Transform {
+	translation	1.32 0 0
+	children tira {}
+}
+Transform {
+	translation	1.38 0 0
+	children tira {}
+}
+Transform {
+	translation	1.44 0 0
+	children tira {}
+}
+
+

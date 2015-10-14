@@ -1,0 +1,22 @@
+#VRML V2.0 utf8
+
+PROTO colchao[]{
+	Shape {
+		geometry Box { size 1.9 .17 .84 }
+		appearance Appearance {
+			material Material {  }#diffuseColor .2 .3 .5 }
+			texture	ImageTexture { url ["camaText.jpg"]}
+		}
+	}
+}
+
+PROTO col[]{
+	Transform {
+		children [
+			Transform { children colchao {} }
+		]
+	}
+}
+
+
+col{}

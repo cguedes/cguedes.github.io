@@ -1,0 +1,124 @@
+#VRML V2.0 utf8
+
+#Define o tipo de navegação (STUDY)
+NavigationInfo{
+	type "EXAMINE"
+}
+
+    
+
+#Define ponto de vista inicial
+Viewpoint {
+   position 0 0 2
+   description "Visao inicial"
+}
+
+#------------------------------------ TORRE PC ------------------------------------ 
+#	baseado no PC "Fujitsu Siemens P 2510"
+#	link: http://www.misco.co.uk/productinformation/~128782~WW~/Fujitsu%20Siemens%20Esprimo%20P%202510%20Micro%20Tower%20PC.htm
+#
+#	DIMENSOES:	largura: 20.3cm
+#				altura: 39.2cm
+#				comprimento: 39cm 
+#---------------------------------------------------------------------------------- 
+
+PROTO torrePC [ ]{
+	Transform {
+		translation	0 0.196 0
+		children
+		Group {
+			children [
+			Shape {
+				geometry Box { size 0.203 0.392 0.388 }
+				#geometry Cylinder{ height 0.5 radius 0.5 bottom TRUE side TRUE top FALSE } 
+				appearance Appearance {
+					material Material { diffuseColor 0.4 0.4 0.4 }
+				}
+			},
+			#Parte da FRENTE
+			Transform {
+				translation	0 0 0.1944
+				children Shape {
+					geometry Box { size 0.203 0.392 0.001 }
+					#geometry Cylinder{ height 0.5 radius 0.5 bottom TRUE side TRUE top FALSE } 
+					appearance Appearance {
+						texture	ImageTexture { url ["imgs/TowerFront.jpg"] }
+					}
+				}	
+			},
+			#Parte de TRAS
+			Transform {
+				translation	0 0 -0.1944
+				children Shape {
+					geometry Box { size 0.203 0.392 0.001 }
+					#geometry Cylinder{ height 0.5 radius 0.5 bottom TRUE side TRUE top FALSE } 
+					appearance Appearance {
+						texture	ImageTexture { url ["imgs/TowerBack.jpg"] }
+					}
+				}	
+			}
+			]
+		}
+	}
+}
+
+
+
+#------------------------------------ ERCA PC ------------------------------------ 
+#	baseado no ECRA "SAMSUNG SM720N 17 TFT"
+#	link: http://www.misco.co.uk/productinformation/~129254~WW~/SAMSUNG%20SM720N%2017%20%20TFT.htm
+#
+#	DIMENSOES:	largura: 40.7 cm
+#				altura: 37.2 cm
+#				comprimento: 0.176 cm 
+#---------------------------------------------------------------------------------- 
+PROTO ecra [ ]{
+
+	Transform {
+		children [
+			Transform {
+
+				rotation 1 0 0 -0.2
+				translation	0 0.307 0.0
+
+				#----------monitor (ecra)----------
+				children [
+					Shape {
+						geometry Box { size 0.407 0.372 0.0175 }
+						appearance Appearance {
+							material Material { diffuseColor 0.8 0.8 0.8 }
+						}			
+					},
+					#Parte da frente
+					Transform {
+						translation	0 0 0.00875
+						children Shape {
+							geometry Box { size 0.407 0.372 0.001 }
+							appearance Appearance {
+								texture	ImageTexture { url ["imgs/ecraFront.JPG"] }
+							}
+						}	
+					}
+				]
+			}, #fim do Group ----------monitor (ecra)----------
+
+			#----------base do monitor---------- (larg=20cm, alt=40cm, compr=20cm)
+			Shape {
+				geometry Extrusion {
+					crossSection [	0.1 -0.1, -0.1 -0.1, -0.1 0.1, 0.1 0.1, 0.1 -0.1]
+					spine [ 0 0 0,  0 0.02 0,  0 0.03 0,
+							0 0.04 0,  0 0.15 0,  0 0.2 0]
+					scale [	1 1, 1 1, 0.5 0.5, 0.25 0.25, 0.15 0.15, 0.1 0.1 ]
+					solid FALSE					
+				}
+				appearance Appearance { material Material { diffuseColor 0.4 .4 .4 }  }			
+			}
+		]
+
+}
+}
+
+
+
+#ecra {	}
+#torrePC{}

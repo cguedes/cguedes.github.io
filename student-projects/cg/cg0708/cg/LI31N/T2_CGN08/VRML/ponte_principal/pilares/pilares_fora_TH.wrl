@@ -1,0 +1,49 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	axisXYZ[] "../Axis/axisXYZ.wrl"
+
+PROTO pilares_TH[ field SFVec3f pos 0 0 0 ] 
+{
+	Transform {
+		children [
+			#axisXYZ	{}
+			#### LOD DOS PILARES ####
+			LOD{
+				range [700]
+				center 0.0 0.0 0.0
+				level [
+					Shape {
+						geometry Extrusion {
+							spine [	0 0 3, 0 0 -3 ]
+							crossSection [
+								-16 -24.75, -16 24, -15.6 24, -15.6 20, 15.6 20, 15.6 24,
+								16 24, 16 -24.75, 10 -24.75, 10 15.25, -10 15.25, -10 -24.75,
+								-16 -24.75
+							]
+						}
+						appearance Appearance { 
+							textureTransform TextureTransform { scale 2 10 }
+							texture	ImageTexture { url "../imagens/betao.jpg" }		
+						}
+					}
+					Shape {
+						geometry Extrusion {
+							spine [	0 0 3, 0 0 -3 ]
+							crossSection [
+								-16 -24.75, -16 24, -15.6 24, -15.6 20, 15.6 20, 15.6 24,
+								16 24, 16 -24.75, 10 -24.75, 10 15.25, -10 15.25, -10 -24.75,
+								-16 -24.75
+							]
+						}
+						appearance Appearance {
+							material Material { diffuseColor 0.8 0.8 0.8}
+						}
+					}
+				] # level
+			} # transform	
+		]  # children
+		translation	IS pos
+	}
+}
+pilares_TH {}
+

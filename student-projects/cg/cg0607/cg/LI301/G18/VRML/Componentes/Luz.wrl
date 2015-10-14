@@ -1,0 +1,272 @@
+#VRML V2.0 utf8
+EXTERNPROTO mesa [
+
+]
+"Mesa.wrl#Mesa"
+
+PROTO SuporteLampada[
+	field SFVec3f tamanhoBarra .03 1 .01, # (largura, comprimento, espessura)
+	field SFVec3f tamanhoLaterais .03 .01 .03, # (largura, espessura, comprimento)
+	field SFVec3f posicaoLateral1 0 .5 0.01,
+	field SFVec3f posicaoLateral2 0 -.5 0.01,
+	field SFColor corSuporte .8 .8 .8,
+]{
+	Transform {
+		children [
+			Shape {
+				appearance Appearance {
+					material Material {
+					  diffuseColor .8 .8 .8
+					}
+				}
+				geometry Box {
+				  size IS tamanhoBarra
+				}
+			}
+			Transform {
+				translation IS posicaoLateral1
+				children [
+					DEF laterais Transform { 
+						children [
+							Shape {
+								appearance Appearance {
+									material Material {
+									  diffuseColor IS corSuporte
+									}
+								}
+								geometry Box {
+									size IS	tamanhoLaterais
+								}
+							}
+							Transform {
+								translation	0 0 .005
+								children [ 
+									Shape	{
+										appearance Appearance {
+											material Material {
+											  diffuseColor IS corSuporte
+											}
+										}
+										geometry Cylinder {
+											radius .015
+											height .01
+										}
+									}
+								]
+							}
+						]
+					}					
+				]
+			}
+			Transform {
+				translation	IS posicaoLateral2
+				children [
+					USE laterais
+				]
+			}
+		]
+	}
+}
+PROTO Lampada[
+	field SFFloat comprimento1 .98,
+	field SFFloat diametro1 .01,
+	field SFFloat comprimento2 0.99, 
+	field SFFloat diametro2 .009,
+	field SFFloat raioIluminacao 5
+	field	SFBool on FALSE
+  eventIn SFBool set_on
+	field SFColor emissiveColor .1 .1 .1
+]{
+	Group {
+		children [
+
+      DEF luz PointLight {
+        color 0.8 0.8 0.8
+				intensity .4
+        radius IS	raioIluminacao
+        ambientIntensity 0.2
+        on IS on
+				#attenuation	.1 .1 .1
+				location 0 0 0
+			}
+			DEF cor Shape {
+				appearance Appearance {
+					material DEF materialLampada Material {
+					  emissiveColor	IS emissiveColor
+					  diffuseColor 1 1 1
+					  shininess .9
+					}
+				}
+				geometry Cylinder {
+				  height IS comprimento1
+				  radius IS diametro1
+				}
+			}
+			Shape {	   
+				appearance Appearance {
+					material Material {
+					  diffuseColor .5 .5 .5
+					}
+				}
+				geometry Cylinder {#borda da lampada
+				  height IS comprimento2
+				  radius IS diametro2
+				}
+			}
+      DEF sCor Script {
+				eventIn	SFBool set_on IS set_on
+				eventOut SFColor color_changed
+				eventOut SFBool	on
+				field	MFColor	cores[.1 .1 .1 .9 .9 .9]
+				url"javascript:
+				function set_on(b){
+					color_changed=cores[b?1:0];
+					on = !on;
+				}
+				"
+        ROUTE sCor.color_changed TO materialLampada.set_emissiveColor
+				ROUTE	sCor.on TO luz.on
+      }
+		]
+	}
+}
+PROTO Luz[
+	field SFVec3f tamanhoBarra .03 1 .01,
+	field SFVec3f tamanhoLaterais .03 .01 .03,
+	field SFVec3f posicaoLateral1 0 .5 0.01,
+	field SFVec3f posicaoLateral2 0 -.5 0.01,
+	field SFColor corSuporte .8 .8 .8, 
+	field SFFloat comprimento1 .98,
+	field SFFloat diametro1 .01,
+	field SFFloat comprimento2 0.99, 
+	field SFFloat diametro2 .009,
+	field SFFloat raioIluminacao 3,
+	eventIn SFBool set_on
+	field SFBool on FALSE
+	field SFColor emissiveColor .1 .1 .1
+]{
+	Group {
+		children [
+			SuporteLampada {}
+			Transform {
+				translation	0 0 .02
+				children [
+					Lampada	{ 
+						set_on IS set_on
+						on IS	on
+						emissiveColor	IS emissiveColor
+					}
+				]
+			}
+		]
+	}
+}
+PROTO	GrupoLuzes[
+	eventIn SFBool set_on
+	field SFBool on FALSE
+	field SFColor emissiveColor .1 .1 .1
+]{
+	Group {
+    children [
+      Transform {
+				rotation 1 0 0 1.57
+        translation 0 0.5 0
+        children [
+          DEF luz Luz {
+						set_on IS set_on
+						on IS	on
+						emissiveColor	IS emissiveColor
+					}
+					Transform {
+          	translation 0.1 0 0
+          	children [
+            	USE luz
+          	]
+        	} 
+        ]
+      }
+    ]
+  }   
+}
+PROTO	Armacao[]{
+	Group	{
+		children[
+	  	Shape	{
+				appearance Appearance	{
+					material Material	{
+						diffuseColor 1 0 0
+					}
+				}
+				geometry Extrusion {
+					crossSection 
+					[
+						0 0,
+						0 0.03,
+						0.03 0.03,
+						0.03 1.23,
+						0.27 1.23,
+						0.27 0.03,
+						0 0.03,
+						0 1.26,
+						0.3 1.26,
+						0.3 0,
+						0 0
+					]
+					spine	[0 0 0, 0 -0.15 0]
+
+					solid	FALSE
+				}
+			}
+			Transform		{
+				translation	-0.15 0 0.63
+				children Shape	{
+					appearance Appearance	{
+						material Material	{
+							diffuseColor 1 0 0
+						}
+					}
+					geometry Box 	{
+						size  0.30 0.05 1.26
+					}					
+				}
+			}
+		]
+	}
+}
+PROTO	ConjuntoLuz[eventIn SFBool set_on]
+{
+	Transform		{
+		rotation 0 1 0 1.57
+		children	[
+			Armacao	{}
+			Transform		{
+				translation	-.20 -.6 0.63
+				children	GrupoLuzes{set_on IS set_on}
+			}
+		]
+	}
+}
+PROTO	ConjuntoLuzCorredor[]
+{
+	Transform	{
+		rotation 0 1 0 1.57
+		children[
+			Armacao	{}
+			Transform	{
+				translation	-.20 -.6 0.63
+				children[	
+					GrupoLuzes{ 
+						on TRUE 
+						emissiveColor	.9 .9 .9
+					}
+				]
+			}
+		]
+	}
+}
+
+
+
+#Inline {
+#	url	["..\\Componentes\\eixos.wrl"]
+#}

@@ -1,0 +1,166 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Axis [ ] "axis.wrl#Axis"
+Transform {
+	scale	0.10 0.10 0.10
+	children Axis {  }
+}
+
+PROTO Screen []{	
+	Group {
+		children [
+			DEF	TouchCanvas TouchSensor { }
+			DEF	TimerCanvas TimeSensor { cycleInterval 3}
+			DEF	ScaleCanvas CoordinateInterpolator {
+						key			[0, 1]
+						keyValue	[
+							#start position
+							2.4	 0   	 0.0025,
+							0	 0		 0.0025,
+							0	 0		 0.0025,
+							2.4	 0		 0.0025,
+
+							2.4	 0		-0.0025,
+							0	 0		-0.0025,
+							0	 0		-0.0025,
+							2.4	 0		-0.0025,
+
+
+							#finnish position
+							2.4	-1.7	 0.0025,
+							0	-1.7	 0.0025,
+							0	 0		 0.0025,
+							2.4	 0		 0.0025,
+
+							2.4	-1.7	-0.0025,
+							0	-1.7	-0.0025,
+							0	 0		-0.0025,
+							2.4	 0		-0.0025							
+						]
+			}
+			Sound	{
+				maxBack		100
+				maxFront	100
+				minBack		50
+				minFront	50
+				source DEF SoundScreen AudioClip { url "../SFX/soundscreen.wav" }
+			}			
+			Group {
+				children [		
+					
+					Shape { 
+						geometry Box { size 2.45 0.1 0.05 }
+						appearance DEF case Appearance {						
+					    	
+							material Material {
+								specularColor 1 1 1								
+								ambientIntensity .6
+								shininess .3
+								emissiveColor 0 0 0
+							} 
+						}						
+					}
+					Transform {
+						rotation 0 1 0 1.57079632679
+						translation	0 0 -0.025
+						children
+						Transform {
+							rotation 1 0 0 1.57079632679
+							children
+							Shape {
+								geometry Cylinder { height 2.45 radius 0.05 }
+								appearance USE case
+							}
+						}
+					}
+				]
+			}
+			Transform {					
+				translation	-1.2 0 -0.01
+				children [						
+					Shape {						
+						geometry IndexedFaceSet {
+							coord DEF Canvas Coordinate {
+								point [
+									2.4	-1.7	0.0025,
+									0	-1.7	0.0025,
+									0	0	0.0025,
+									2.4	0	0.0025,
+
+									2.4	-1.7	-0.0025,
+									0	-1.7	-0.0025,
+									0	0	-0.0025,
+									2.4	0	-0.0025,
+								]									}
+							
+								coordIndex [
+									0, 1, 2, 3, -1,
+									5, 4, 7, 6,	-1,
+									4, 0, 3, 7, -1,
+									1, 5, 6, 2, -1,
+									3, 2, 6, 7, -1,
+									4, 5, 1, 0, -1,
+								]
+							
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor .75 .75 .75
+								specularColor 1 1 1
+								shininess 0.1
+								emissiveColor 0 0 0
+								ambientIntensity 0.3
+							}
+						    texture ImageTexture { url "../GFX/texture.png" repeatS TRUE repeatT TRUE}
+							textureTransform TextureTransform { scale 0.4 0.4 }
+						}
+					}					
+				]
+			}									  
+		]
+
+	}
+	DEF	ScriptCanvas Script {
+		eventIn	 SFTime click
+		field	 SFNode	position     USE Canvas
+		field	 SFNode	interpolator USE ScaleCanvas
+		eventOut SFTime	startTimer
+
+		url	"javascript:
+		function click(value) {
+			//do nothing if the object didn't reach the finnish position
+			var height			= position.point[0][1];
+			var heightFinnish	= interpolator.keyValue[8][1];
+			if (height != heightFinnish) return 0; 
+			//swap start <-> finnish
+			var vertexNumber = 8;
+			var tmp = new MFVec3f();
+			//backup start position
+			for(var i = 0; i < vertexNumber; ++i)
+				tmp[i] = interpolator.keyValue[i]
+			//replace start position with finnish position
+			for(var i = 0; i < vertexNumber; ++i)
+				interpolator.keyValue[i] = interpolator.keyValue[i + vertexNumber];
+			//restore original start position to finnish position
+			for(var i = 0; i < vertexNumber; ++i)
+				interpolator.keyValue[i + vertexNumber] = tmp[i];
+			//start timer
+			startTimer = value;						
+		}
+		"			
+	}
+
+	ROUTE TouchCanvas.touchTime			TO	ScriptCanvas.click
+	ROUTE ScriptCanvas.startTimer		TO	TimerCanvas.startTime				
+	ROUTE ScriptCanvas.startTimer		TO	SoundScreen.startTime
+	ROUTE TimerCanvas.fraction_changed	TO	ScaleCanvas.set_fraction								
+	ROUTE ScaleCanvas.value_changed		TO	Canvas.point
+}
+
+ 
+
+PROTO ButtonScreen []{
+
+}
+
+Screen {}

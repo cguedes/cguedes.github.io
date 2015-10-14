@@ -1,0 +1,143 @@
+#VRML V2.0 utf8
+
+PROTO Azulejo[]
+{
+	Transform {
+		rotation 1 0 0 1.57
+		translation	0.15 -0.025 0.15 
+		
+		children Shape {
+			geometry Box {
+				size .3 .3 .02
+			}
+			appearance Appearance {
+				material Material	{}
+				texture	ImageTexture {
+					url	["..//..//fotos//chao_corredor.JPG"]
+				}
+			}
+		}
+	}
+}
+
+#azulejo	{}
+
+PROTO FilaAzulejos[field SFVec3f posicao 0 0 0]
+{
+	Transform 
+	{
+		translation	IS posicao
+		children 
+		[
+			Transform{children DEF azulejo Azulejo{}}
+			Transform{translation 0.3 0 0 children USE azulejo }
+			Transform{translation 0.6 0 0 children USE azulejo }
+			Transform{translation 0.9 0 0 children USE azulejo }
+			Transform{translation 1.2 0 0 children USE azulejo }
+			Transform{translation 1.5 0 0 children USE azulejo }
+			Transform{scale .8 1 1 translation 1.8 0 0 children USE azulejo }
+		]
+	}
+}
+
+
+PROTO ChaoCorredor[	#53*7 
+]{
+	Group {
+		children [
+				FilaAzulejos {}
+				FilaAzulejos {posicao 0 0 0.3}
+				FilaAzulejos {posicao 0 0 0.6}
+				FilaAzulejos {posicao 0 0 0.9}
+				FilaAzulejos {posicao 0 0 1.2}
+				FilaAzulejos {posicao 0 0 1.5}
+				FilaAzulejos {posicao 0 0 1.8}
+				FilaAzulejos {posicao 0 0 2.1}
+				FilaAzulejos {posicao 0 0 2.4}
+				FilaAzulejos {posicao 0 0 2.7}
+
+				FilaAzulejos {posicao 0 0 3.0}
+				FilaAzulejos {posicao 0 0 3.3}
+				FilaAzulejos {posicao 0 0 3.6}
+				FilaAzulejos {posicao 0 0 3.9}
+				FilaAzulejos {posicao 0 0 4.2}
+				FilaAzulejos {posicao 0 0 4.5}
+				FilaAzulejos {posicao 0 0 4.8}
+				FilaAzulejos {posicao 0 0 5.1}
+				FilaAzulejos {posicao 0 0 5.4}
+				FilaAzulejos {posicao 0 0 5.7}
+
+				FilaAzulejos {posicao 0 0 6.0}
+				FilaAzulejos {posicao 0 0 6.3}
+				FilaAzulejos {posicao 0 0 6.6}
+				FilaAzulejos {posicao 0 0 6.9}
+				FilaAzulejos {posicao 0 0 7.2}
+				FilaAzulejos {posicao 0 0 7.5}
+				FilaAzulejos {posicao 0 0 7.8}
+				FilaAzulejos {posicao 0 0 8.1}
+				FilaAzulejos {posicao 0 0 8.4}
+				FilaAzulejos {posicao 0 0 8.7}
+
+				FilaAzulejos {posicao 0 0 9.0}
+				FilaAzulejos {posicao 0 0 9.3}
+				FilaAzulejos {posicao 0 0 9.6}
+				FilaAzulejos {posicao 0 0 9.9}
+				FilaAzulejos {posicao 0 0 10.2}
+				FilaAzulejos {posicao 0 0 10.5}
+				FilaAzulejos {posicao 0 0 10.8}
+				FilaAzulejos {posicao 0 0 11.1}
+				FilaAzulejos {posicao 0 0 11.4}
+				FilaAzulejos {posicao 0 0 11.7}
+
+				FilaAzulejos {posicao 0 0 12.0}
+				FilaAzulejos {posicao 0 0 12.3}
+				FilaAzulejos {posicao 0 0 12.6}
+				FilaAzulejos {posicao 0 0 12.9}
+				FilaAzulejos {posicao 0 0 13.2}
+				FilaAzulejos {posicao 0 0 13.5}
+				FilaAzulejos {posicao 0 0 13.8}
+				FilaAzulejos {posicao 0 0 14.1}
+				FilaAzulejos {posicao 0 0 14.4}
+				FilaAzulejos {posicao 0 0 14.7}
+
+				FilaAzulejos {posicao 0 0 15.0}
+				FilaAzulejos {posicao 0 0 15.3}
+				FilaAzulejos {posicao 0 0 15.6}
+				FilaAzulejos {posicao 0 0 15.9}
+				FilaAzulejos {posicao 0 0 16.2}
+				FilaAzulejos {posicao 0 0 16.5}
+				FilaAzulejos {posicao 0 0 16.8}
+				FilaAzulejos {posicao 0 0 17.1}
+				FilaAzulejos {posicao 0 0 17.4}
+				FilaAzulejos {posicao 0 0 17.7}
+				FilaAzulejos {posicao 0 0 18.0}
+		]
+	}
+}
+PROTO ChaoSala [
+]{
+	Group	{
+		children [
+			Shape	{
+				geometry ElevationGrid {
+						xDimension 8#7????
+    				zDimension 11#10????
+    				xSpacing 1
+    				zSpacing 1
+						solid	TRUE
+    				height .001
+				}
+				appearance Appearance	{
+					material Material	{}
+					texture	ImageTexture 					{
+						url	["..//..//fotos//chao_sala.JPG"]
+					}
+				}
+			}
+		]
+	}
+}
+
+#Inline {
+#	url	["..\\Componentes\\eixos.wrl"]
+#}

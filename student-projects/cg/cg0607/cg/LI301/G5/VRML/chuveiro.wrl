@@ -1,0 +1,598 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Eixos [] "eixo.wrl#Eixos"
+
+
+
+# ESTE CHUVEIRO
+# RESPEITA A NORMA HMN
+
+
+
+PROTO Bacia
+[]
+{
+	Shape {
+		appearance Appearance { material Material { diffuseColor 0.6 0.6 0.6 } }
+		geometry Extrusion {
+    		crossSection [1 0, 0.984807753	0.173648178, 0.939692621 0.342020143, 0.866025404 0.5,
+					0.766044443	0.64278761, 0.64278761 0.766044443, 0.5	0.866025404,
+					0.342020143	0.939692621, 0.173648178 0.984807753,
+					6.12574E-17	1, -0.173648178	0.984807753, -0.342020143 0.939692621,
+					-0.5 0.866025404, -0.64278761 0.766044443, -0.766044443	0.64278761,
+					-0.866025404 0.5, -0.939692621 0.342020143, -0.984807753 0.173648178,
+					-1 1.22515E-16, -0.984807753 -0.173648178, -0.939692621	-0.342020143,
+					-0.866025404 -0.5, -0.766044443	-0.64278761, -0.64278761 -0.766044443,
+					-0.5 -0.866025404, -0.342020143	-0.939692621, -0.173648178 -0.984807753,
+					-1.83772E-16 -1, 0.173648178 -0.984807753, 0.342020143 -0.939692621,
+					0.5	-0.866025404, 0.64278761 -0.766044443, 0.766044443 -0.64278761,
+					0.866025404	-0.5, 0.939692621 -0.342020143,
+					1 0]
+			creaseAngle 0.5
+			spine [0 0 0, 0 2 0, 0 2.5 0,0 2.7 0,0 4 0, 0 6 0, 0 8 0]
+            scale [2 2 , 2 2, 3.5 3.5, 4.5 4.5, 7 7, 10 10, 12 12]
+			endCap FALSE
+			beginCap FALSE
+			solid FALSE
+			ccw	FALSE
+		}
+	}
+}
+
+
+
+PROTO Canto_cano		  # canto com 3.5 de altura e 3 de margem pa colocar o tubo, GENERICO
+[field SFColor cor 1 1 0] 
+{
+	Transform {
+		translation	1 0 1
+		children [
+			Shape
+			{
+				appearance Appearance { material Material {diffuseColor IS cor}  }
+				geometry Extrusion {
+					#circulo trigonometrico - dois metros de diametro
+					crossSection [1	0,0.984807753	0.173648178	,0.939692621	0.342020143	,0.866025404	0.5	,0.766044443	0.64278761	,0.64278761	0.766044443	,0.5	0.866025404	,
+						0.342020143	0.939692621	,0.173648178	0.984807753	,6.12574E-17	1	,-0.173648178	0.984807753	,-0.342020143	0.939692621	,-0.5	0.866025404	,
+						-0.64278761	0.766044443	,-0.766044443	0.64278761	,-0.866025404	0.5	,-0.939692621	0.342020143	,-0.984807753	0.173648178	,-1	1.22515E-16	,
+						-0.984807753	-0.173648178	,-0.939692621	-0.342020143	,-0.866025404	-0.5	,-0.766044443	-0.64278761,-0.64278761	-0.766044443,
+						-0.5	-0.866025404,-0.342020143	-0.939692621	,-0.173648178	-0.984807753,-1.83772E-16	-1	,0.173648178	-0.984807753	,0.342020143	-0.939692621,
+						0.5	-0.866025404	,0.64278761	-0.766044443	,0.766044443	-0.64278761	,0.866025404	-0.5	,0.939692621	-0.342020143	,0.984807753	-0.173648178	,1 0]
+					spine [ 0 0 0, 0 0.5 0, 0.5 2 0, 1 2.6 0, 1.5 3 0, 2 3.25 0, 2.5 3.5 0, 3 3.5 0]
+					ccw	FALSE
+					solid FALSE
+					endCap FALSE
+					beginCap FALSE
+					creaseAngle	0.5
+				}
+			}
+		]
+	}
+}
+
+PROTO Suporte				   #nao se mediu a altura do suporte, 6 centimetros e momento
+[]
+{
+	Shape {
+		appearance Appearance { material Material {diffuseColor 1 1 0}  }
+			geometry Extrusion {
+				crossSection [1	0,0.984807753	0.173648178	,0.939692621	0.342020143	,0.866025404	0.5	,0.766044443	0.64278761	,0.64278761	0.766044443	,0.5	0.866025404	,
+						0.342020143	0.939692621	,0.173648178	0.984807753	,6.12574E-17	1	,-0.173648178	0.984807753	,-0.342020143	0.939692621	,-0.5	0.866025404	,
+						-0.64278761	0.766044443	,-0.766044443	0.64278761	,-0.866025404	0.5	,-0.939692621	0.342020143	,-0.984807753	0.173648178	,-1	1.22515E-16	,
+						-0.984807753	-0.173648178	,-0.939692621	-0.342020143	,-0.866025404	-0.5	,-0.766044443	-0.64278761,-0.64278761	-0.766044443,
+						-0.5	-0.866025404,-0.342020143	-0.939692621	,-0.173648178	-0.984807753,-1.83772E-16	-1	,0.173648178	-0.984807753	,0.342020143	-0.939692621,
+						0.5	-0.866025404	,0.64278761	-0.766044443	,0.766044443	-0.64278761	,0.866025404	-0.5	,0.939692621	-0.342020143	,0.984807753	-0.173648178	,1	0]
+				spine [0 0 0, 0 1 0, 0 2 0, 0 4 0, 0 6 0]
+				scale [12 12, 12 12, 6 6, 2 2, 2 2]
+				ccw	FALSE
+				solid FALSE
+				endCap FALSE
+				creaseAngle	0.5
+			}
+	}
+}
+
+PROTO Tubo		   #GENERICO
+[ field SFFloat altura 4, field SFFloat raio 2, field SFRotation rot 0 0 0 0, field SFColor cor 1 1 0]
+{
+	Transform {
+		rotation IS rot
+		children 
+			Shape {
+				appearance Appearance { 
+					material Material { 
+						diffuseColor IS cor 
+						
+					} 
+				}
+				geometry Cylinder {
+					bottom TRUE
+					top	TRUE
+					height IS altura
+					radius IS raio
+					side TRUE
+				}
+			}
+	}
+}
+
+PROTO TuboAgua		   #nao é generico
+[ exposedField SFFloat transp 0]
+{
+	Shape {
+		appearance Appearance { 
+			material Material { 
+				diffuseColor 0.57 0.88 0.9
+				transparency IS	transp
+			} 
+		}
+		geometry Cylinder {
+			bottom TRUE
+			top	TRUE
+			height 40
+			radius 0.25
+			side TRUE
+		}
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+PROTO Agua 
+[
+	field SFVec3f transl 0 0 0, 
+	exposedField SFFloat transparencia 0.5
+]
+{
+	Transform {
+		translation	IS transl
+		children [
+			TuboAgua { transp 1}
+			Transform {
+				translation	2 0 1
+				children TuboAgua { transp IS transparencia }
+			}
+			Transform {
+				translation	0 -3 2
+				children TuboAgua { transp IS transparencia }
+			}
+			Transform {
+				translation	-2 0 3
+				children TuboAgua { transp IS transparencia }
+			}
+			Transform {
+				translation	0 3 4
+				children TuboAgua { transp IS transparencia }
+			}
+			Transform {
+				translation	2 0 -1
+				children TuboAgua { transp IS transparencia }
+			}
+			Transform {
+				translation	0 -3 -2
+				children TuboAgua { transp IS transparencia }
+			}
+			Transform {
+				translation	-2 0 -3
+				children TuboAgua { transp IS transparencia }
+			}
+			Transform {
+				translation	0 3 -4
+				children TuboAgua { transp IS transparencia }
+			}
+		]
+	}
+}
+
+PROTO Chuva
+[
+	exposedField SFFloat transp 1, eventIn SFTime startAnimation,
+	field SFFloat minYpos 0
+	
+]
+{
+	Group { 
+		children [
+			DEF ChuvaAnim Transform {
+				children [
+					DEF a1 Agua {transparencia IS transp }
+					DEF a2 Agua {transl 5 -5 0, transparencia IS transp }
+					DEF a3 Agua {transl -5 5 0, transparencia IS transp }
+					DEF a4 Agua {transl -5 -5 0, transparencia IS transp }
+					DEF a5 Agua {transl 5 5 0, transparencia IS transp }
+				]
+			}
+			DEF	TimerAnim TimeSensor {
+				loop FALSE
+				cycleInterval 0.2
+				startTime IS startAnimation
+			}
+			DEF	AbrirChuveiro Script {
+				field SFBool running FALSE
+				field SFFloat limite IS minYpos
+				field SFInt32 counter 0
+				eventIn  SFFloat set_fraction
+				eventIn  SFTime incCount
+				eventIn  SFBool mostrarChuva
+				eventOut SFVec3f fractionChanged
+				eventOut SFBool runningChanged
+				eventOut SFFloat mostrarChuvaChanged
+				url "javascript:
+					function set_fraction( frac, timestamp ) {
+						var yPos = (frac)*limite;
+						if (yPos <= limite) yPos = 0;
+						fractionChanged[0] = 0; fractionChanged[1] = yPos; fractionChanged[2] = 0;
+					}
+					function incCount(timestamp2, timestamp) {
+						counter = counter +1;
+						running = TRUE;
+						if (counter == 15) {
+							counter = 0;
+							running = FALSE;
+						}
+						runningChanged = running;
+					}					
+					function mostrarChuva(estado, timestamp) {
+						mostrarChuvaChanged = estado ? 0.8 : 1;
+					}
+				"
+			}
+			Sound {
+				source DEF Som AudioClip {
+					url "Sons\chuveiro.wav"
+					set_startTime IS startAnimation
+				}
+				maxBack	1500
+				minBack	1500
+				maxFront 1500
+				minFront 1500
+				priority 0
+			}
+		]
+	}
+	ROUTE TimerAnim.fraction_changed TO	AbrirChuveiro.set_fraction
+	ROUTE AbrirChuveiro.fractionChanged	TO ChuvaAnim.translation
+	ROUTE TimerAnim.cycleTime TO AbrirChuveiro.incCount
+	ROUTE AbrirChuveiro.runningChanged TO AbrirChuveiro.mostrarChuva
+	ROUTE AbrirChuveiro.runningChanged TO TimerAnim.loop
+	ROUTE AbrirChuveiro.mostrarChuvaChanged	TO a1.transparencia
+	ROUTE AbrirChuveiro.mostrarChuvaChanged	TO a2.transparencia
+	ROUTE AbrirChuveiro.mostrarChuvaChanged	TO a3.transparencia
+	ROUTE AbrirChuveiro.mostrarChuvaChanged	TO a4.transparencia
+	ROUTE AbrirChuveiro.mostrarChuvaChanged	TO a5.transparencia
+
+	
+}
+
+
+PROTO Lava_Olhos 
+[]
+{
+	Group {
+		children [
+			Transform {
+				translation	0 0 0
+				children Tubo {altura 18, raio 1, rot 0 0 1 -1.57, cor 1 1 0}
+			}
+			Transform {
+				translation	-12 3.5 0
+				rotation 1 0 0 3.1416
+				children Transform {
+					translation	-1 0 -1
+					children Canto_cano	{}
+				}
+			}
+			Transform {
+				translation	12 3.5 0
+				rotation 0 0 1 3.1416
+				children Transform {
+					translation	-1 0 -1
+					children Canto_cano	{}
+				}
+			}
+			Transform {
+				translation	-13 3.5 -1
+				children Canto_cano	{}
+			}
+			Transform {
+				rotation 0 1 0 3.1416
+				translation 12 3.5 0
+				children Transform {
+					translation	-1 0 -1
+					children Canto_cano	{}
+				}
+			}
+			Transform {
+				translation	0 -4 0
+				children Tubo {altura 8, raio 1, rot 0 0 0 0 cor 1 1 0}
+			}
+			Transform {
+				translation	-9.35 7.35 0
+				rotation 0 0 1 0.785
+				children Tubo { altura 2, raio 2, rot 0 0 1 1.57, cor 1 1 0}
+			}
+			Transform {
+				translation	9.35 7.35 0
+				rotation 0 0 1 -0.785
+				children Tubo { altura 2, raio 2, rot 0 0 1 1.57, cor 1 1 0}
+			}
+		]
+	}
+}
+
+PROTO Suporte_Chuveiro
+[]
+{
+	Group {
+		children [
+			Group {
+				children [
+					Tubo {altura 1, raio 3, rot 1 0 0 1.57}
+					Transform {
+						rotation 0 0 1 -0.785
+						translation	5 5 -1
+						children Shape {
+							appearance Appearance { material Material { diffuseColor 1 1 0 } }
+							geometry Box { 
+								size 1 15 1
+							}
+						}
+					}
+					Transform {
+						translation	10.25 -14.2 -1
+						children Tubo { altura 50, raio	0.5, rot 0 0 0 0, cor 1 1 0}
+					}
+					Transform {
+			
+						translation	10.25 -44 -6
+						children Tubo { altura 15, raio	0.5, rot 1 0 0 0.785, cor 1 1 0}
+					}
+					Transform {
+						translation	10.25 -44 4				
+			
+						children Tubo {altura 15, raio 0.5, rot 1 0 0 -0.785, cor 1 1 0}
+					}
+					Transform {
+						translation	10.25 -49.2 -1				
+						children Tubo {altura 20.6, raio 0.5, rot 1 0 0 1.57, cor 1 1 0}
+					}
+					DEF	PuxadorSwitch TouchSensor {}
+				]
+			}
+			
+			Transform {	#para por a chuva no sitio certo!
+				translation 53 -50 2.5
+				children
+				DEF Chuva1 Chuva{transp	1,minYpos -25}
+			}
+			Transform {	#para por a chuva no sitio certo!
+				translation 53 -75 2.5
+				children
+				DEF Chuva2 Chuva{transp	1,minYpos -60}
+			}
+			Transform {	#para por a chuva no sitio certo!
+				translation 53 -105 2.5
+				children
+				DEF Chuva3 Chuva{transp	1,minYpos -85}
+			}
+			Transform {	#para por a chuva no sitio certo!
+				translation 53 -160 2.5
+				children
+				DEF Chuva4 Chuva{transp	1,minYpos -70}
+			}
+		]
+		ROUTE PuxadorSwitch.touchTime TO Chuva1.startAnimation
+		ROUTE PuxadorSwitch.touchTime TO Chuva2.startAnimation
+		ROUTE PuxadorSwitch.touchTime TO Chuva3.startAnimation
+		ROUTE PuxadorSwitch.touchTime TO Chuva4.startAnimation
+	}
+}
+
+PROTO CaixaTexto			  #é genérico	 , tem o X e o Z trocados pra ser + facil
+[
+	field MFString myUrl "", field SFVec3f mySize 1 10 10
+]
+{
+	Transform {
+		rotation 1 0 0 -1.57
+		children [ 
+			Shape {
+				appearance Appearance {
+					material Material	{ 
+						diffuseColor	1 1 0						
+					}
+				}
+				geometry Box {
+					size IS	mySize
+				}
+			}
+			Transform {
+				translation	0.5 0 0
+				scale 0.01 1 1
+				children
+					Shape {
+						appearance Appearance { 
+							texture	ImageTexture {
+								url IS myUrl
+							}
+							material Material {}
+						}
+						geometry Box {
+							size IS mySize
+						}
+					}
+			}
+			
+
+		]
+	}
+}
+
+PROTO Suporte_HowToUse
+[]
+{
+	Group {
+		children [
+			Transform {
+				rotation 1 0 0 1.57
+				children [
+					Tubo { altura 18, raio 1, rot 0 0 1 -1.57, cor 1 1 0}
+					Transform {
+						translation	-12 3.5 0
+						rotation 1 0 0 3.1416
+						children Transform {
+							translation	-1 0 -1
+							children Canto_cano	{}
+						}
+					}
+					Transform {
+						translation	12 3.5 0
+						rotation 0 0 1 3.1416
+						children Transform {
+							translation	-1 0 -1
+							children Canto_cano	{}
+						}
+					}
+					Transform {
+						translation	3 0 0
+						children Tubo { altura 6, raio 1.5, rot	0 0 1 -1.57, cor 0.5 0.5 0.5 }
+					}
+					Transform {
+						translation	3 -6.5 0
+						children CaixaTexto	{myUrl "Texturas\Avisos\chuveiro_empurre.jpg", mySize 1 10 10}
+							
+					}
+				]
+			}
+		]
+	}
+}
+
+
+
+
+PROTO Chuveiro 
+[]
+{
+	Group {
+		children [
+			Transform {
+				translation	12 0 85
+				rotation 0 1 0 1.57
+				children [
+  					Transform {
+						children Suporte {}
+					}
+					#
+					Transform {
+						translation	0 126 0	#6 (altura do suporte) + 120 (metade da altura do chuveiro
+						children Tubo { altura 240, raio 2 , rot 0 0 0 0, cor 1 1 0}
+					}
+					Transform {
+						translation	0 246 0 #pa por na origem precisa de -1 0 -1, pa por em cima do xuveiro precisa 246
+						#ficou -2 no translation pk a escala eh feita primeiro
+						scale 2 2 2
+						children 
+						Transform {
+							translation	-1 0 -1
+							children Canto_cano	{}
+						}
+					}
+					Transform {
+						translation	20 253 0
+						children Tubo {altura 6, raio 3.5, rot 0 0 1 -1.57, cor	0.5 0.5 0.5}
+					}
+					Transform {
+						translation	20 253 -3.5
+						children Suporte_Chuveiro {}
+					}
+					Transform {
+						translation	36 253 0 #0 246 0 + 6 7 0 (medidas do canto_cano vezes 2, devido ah escala k este sofreu) + (30 0 0) pk a rotaçao eh feita primeiro 
+						children Tubo {altura 60, raio 2, rot 0 0 1 -1.57, cor 1 1 0}
+					}
+					Transform {
+						translation	66 253 0
+						rotation	0 0 1 -1.57		  #ou rodar PI sobre o Y e ajustar translation
+						scale 2 2 2
+						children	
+						Transform {
+							translation	-1 0 -1
+							children Canto_cano	{}						
+						}
+					}
+					Transform {
+						translation	73 242 0
+						children Tubo {altura 10, raio 2, rot 0 0 0 0, cor 1 1 0}
+					}
+					Transform {
+						translation	73 237 0 #
+						rotation 1 0 0 3.1416
+						children Bacia {}
+					}
+					Transform {
+						translation	0 100 0
+						children Tubo { altura 6, raio 3.5, rot 0 0 0 0, cor 0.5 0.5 0.5}
+					}
+					Transform {
+						translation	14.5 100 0
+						children Tubo { altura 24, raio 2, rot 0 0 1 -1.57, cor 1 1 0}
+					}
+					Transform {
+						translation	32 107 0		   #devia ser 32.5 pelas contas, ficou menos 0.5 pk o canto_cano nao eh perfeito
+						rotation	0 0 1 3.1416		  
+						scale 2 2 2
+						children	
+						Transform {
+							translation	-1 0 -1
+							children Canto_cano	{}						
+						}
+					}
+					Transform {
+						translation	32 112 0
+						children Tubo { altura 10, raio 2, rot 0 0 0 0, cor 1 1 0}
+					}
+					Transform {
+						translation	32 117 0
+						children Bacia{}
+					}
+					Transform {
+						translation	32 125 0
+						rotation 0 1 0 1.57
+						children Lava_Olhos	{}
+					}
+					Transform {
+						translation	12 100 -5.5
+						children Suporte_HowToUse {}
+					}
+					Transform {
+						translation	2.5 150 0
+						children CaixaTexto	{myUrl "Texturas\Avisos\chuveiro.jpg", mySize 1 35 15}
+					}
+					
+				]	
+			}
+		]
+	}
+}
+
+
+
+			  
+#Bacia {}
+#Canto_cano {}
+
+Transform {
+	scale 0.01 0.01 0.01
+	children [
+		Chuveiro {}
+	
+	]
+}
+	#Eixos {}

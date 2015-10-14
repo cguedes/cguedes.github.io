@@ -1,0 +1,455 @@
+#VRML V2.0 utf8
+#NavigationInfo { headlight FALSE type ["EXAMINE", "WALK", "ANY"] }
+EXTERNPROTO	Madeira [] "Madeira.wrl#Madeira"
+EXTERNPROTO	Axis [] "axis.wrl#Axis"
+PROTO light[
+	field SFColor boxColour	  0.5 0.5 0.5
+	exposedField SFColor diffuseColor 0.8 0.8 0.8
+	field SFRotation rotation 0 0 0 0
+]	
+{	 
+	Group{	
+		children[			
+			Transform	{
+				rotation 0 0 1 1.57
+			
+				children [
+					Shape{ 	
+						geometry Cylinder {
+    						radius 0.02
+    						height 1
+						}
+						appearance Appearance{ 
+							material Material{
+								diffuseColor IS boxColour
+								transparency 0.01
+								ambientIntensity 1
+							} 
+						}
+					}
+				]		
+			} 		
+		]
+	}		  
+}
+PROTO CaboCandeeiro[]
+{
+	Shape {
+		geometry Cylinder {
+			radius 0.005
+			height 0.95
+		}
+		appearance Appearance {material	Material {diffuseColor 0 0 0}}
+	}
+
+
+}
+
+PROTO barra	 [
+	field SFColor boxColour	  0.8 0.8 0.8
+	exposedField SFColor diffuseColor 0.8 0.8 0.8
+	field SFRotation rotation 0 0 0 0
+]
+{
+	Transform {
+				
+		children[
+			Shape{  
+				geometry	Box {
+					size 0.003 0.01 0.20 
+				}
+				appearance Appearance{ 
+					material Material{diffuseColor IS boxColour} 
+					texture	ImageTexture {url "con1_1.png"}
+				}
+			}
+		]
+	}
+}
+
+PROTO candeeiro[
+	field SFColor boxColour	  0.8 0.8 0.8
+	exposedField SFColor diffuseColor 0.8 0.8 0.8 
+
+]{
+	Transform {
+		children [
+
+			
+			Transform	{
+				translation	0.4 0.525 0.07
+				children [CaboCandeeiro {}]
+			
+			}
+			Transform	{
+				translation	0.4 0.525 -0.07
+				children [CaboCandeeiro {}]
+			
+			}
+			Transform	{
+				translation	-0.4 0.525 0.07
+				children [CaboCandeeiro {}]
+			
+			}
+			Transform	{
+				translation	-0.4 0.525 -0.07
+				children [CaboCandeeiro {}]
+			
+			}		
+			Transform {
+				translation	0 0.025 -0.05
+				children [ light { boxColour 0.8 0.8 0.8 diffuseColor 0.3 0.3 0.3 rotation 0 0 0 0 }]
+			}
+
+			Transform {
+				translation	0 0.025 0.05
+				children [light { boxColour 0.8 0.8 0.8 diffuseColor 0.3 0.3 0.3 rotation 0 0 0 0 }]
+			}
+			
+			Transform {	   
+				translation	0 0.049 0
+				children [
+					Shape{  
+						geometry	Box {
+							size 1.06 0.003 0.2
+						}
+						appearance Appearance{ material Material{diffuseColor IS boxColour} }
+					}
+				]
+			}
+			Transform {
+				children[
+					Shape {
+    	    			geometry Extrusion {
+        					crossSection [-0.53 -0.1, 0.53 -0.1, 0.53 0.1, -0.53 0.1, -0.533 0.103, 0.533 0.103, 0.533 -0.103, -0.533 -0.103]
+        					spine [0 0 0, 0 0.05 0]
+	       				}
+        				appearance Appearance { 
+							material Material { diffuseColor 0.6 0.6 0.6 }
+							texture	ImageTexture {url "con1_1.png"}
+					    }
+    				}  
+				]
+			}
+			Transform {
+				translation	0 0.025 0
+				children[
+					Shape{  
+						geometry	Box {
+							size 1.06 0.05 0.003
+						}
+						appearance Appearance{ 
+							material Material{diffuseColor IS boxColour} 
+							texture	ImageTexture {url "con1_1.png"}
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation	0 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	0.06625 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	0.1325 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	0.19875 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	0.265 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	0.33122 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	0.39747 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	0.46372 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			
+			Transform {
+				translation	-0.06625 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	-0.1325 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	-0.19875 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	-0.265 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	-0.33122 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	-0.39747 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	-0.46372 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	-0.53 0.008 0  
+				children[ barra	{boxColour 0.8 0.8 0.8 diffuseColor 0.8 0.8 0.8}]
+			}
+			Transform {
+				translation	-0.53 0.025 0  
+				children[
+					Shape{  
+						geometry	Box {
+							size 0.003 0.05 0.20 
+						}
+						appearance Appearance{
+						    material Material{diffuseColor IS boxColour}
+							texture	ImageTexture {url "con1_1.png"}
+					    }
+					}
+				]
+			}
+		]
+		}
+}
+	
+PROTO Centro[
+	field SFColor boxColour	  0.8 0.8 0.8
+	exposedField SFColor diffuseColor 0.8 0.8 0.8
+	
+]
+{
+	Group	{
+		children [
+			Transform {
+				 
+				children[
+					
+					DEF Interruptor Script {
+						field    SFBool on FALSE
+						  eventIn  SFBool set_active
+						  eventOut SFBool on_changed
+						  url "javascript:
+						   function set_active( set, timestamp ) {
+    						 if(set == FALSE) return;
+    						 if(on == TRUE)   on = FALSE;
+    						 else             on = TRUE;
+    						 on_changed = on;
+						  }"
+					}
+					DEF	LuzLampada1 SpotLight {
+						intensity 1
+						ambientIntensity 1
+						color 1 1 1
+	
+						location 2 3 2
+						beamWidth 0.570796
+						cutOffAngle	0.398
+#						cutOffAngle	1
+						direction 0 -1 0
+						on FALSE
+						attenuation 0.5 0 0.5
+						ROUTE Interruptor.on_changed TO LuzLampada1.on
+					}
+					
+					DEF	LuzLampada2 SpotLight {
+						intensity 1
+						ambientIntensity 1
+						color 1 1 1
+
+						location 0.4 3 2
+						beamWidth 1.570796
+#						cutOffAngle	0.785398
+						cutOffAngle	1
+						direction 0 -1 0
+						on FALSE
+						attenuation 0.5 0 0.5
+						ROUTE Interruptor.on_changed TO LuzLampada2.on
+					}
+					DEF	LuzLampada3 SpotLight {
+						intensity 1
+						ambientIntensity 1
+						color 1 1 1
+	
+						location -1.3 3 2
+						beamWidth 1.570796
+#						cutOffAngle	0.785398
+						cutOffAngle	1
+						direction 0 -1 0
+						on FALSE
+						attenuation 0.5 0 0.5
+						ROUTE Interruptor.on_changed TO LuzLampada3.on
+					}
+					DEF	LuzLampada4 SpotLight {
+						intensity 1
+						ambientIntensity 1
+						color 1 1 1
+	
+						location -3 3 2
+						beamWidth 1.570796
+#						cutOffAngle	0.785398
+						cutOffAngle	1
+						direction 0 -1 0
+						on FALSE
+						attenuation 0.5 0 0.5
+						ROUTE Interruptor.on_changed TO LuzLampada4.on
+					}
+					DEF	LuzLampada5 SpotLight {
+						intensity 1
+						ambientIntensity 1
+						color 1 1 1
+	
+						location 2 3 -2.6
+						beamWidth 1.570796
+#						cutOffAngle	0.785398
+						cutOffAngle	1
+						direction 0 -1 0
+						on FALSE
+						attenuation 0.5 0 0.5
+						ROUTE Interruptor.on_changed TO LuzLampada5.on
+					}
+					DEF	LuzLampada6 SpotLight {
+						intensity 1
+						ambientIntensity 1
+						color 1 1 1
+	
+						location 0.4 3 -2.6
+						beamWidth 1.570796
+#						cutOffAngle	0.785398
+						cutOffAngle	1
+						direction 0 -1 0
+						on FALSE
+						attenuation 0.5 0 0.5
+						ROUTE Interruptor.on_changed TO LuzLampada6.on
+					}
+					DEF	LuzLampada7 SpotLight {
+						intensity 1
+						ambientIntensity 1
+						color 1 1 1
+	
+						location -1.3 3 -2.6
+						beamWidth 1.570796
+#						cutOffAngle	0.785398
+						cutOffAngle	1
+						direction 0 -1 0
+						on FALSE
+						attenuation 0.5 0 0.5
+						ROUTE Interruptor.on_changed TO LuzLampada7.on
+					}
+					DEF	LuzLampada8 SpotLight {
+						intensity 1
+						ambientIntensity 1
+						color 1 1 1
+
+						location -3 3 -2.6
+						beamWidth 1.570796
+#						cutOffAngle	0.785398
+						cutOffAngle	1
+						direction 0 -1 0
+						on FALSE
+						attenuation 0.5 0 0.5
+						ROUTE Interruptor.on_changed TO LuzLampada8.on
+					}
+					DEF Reflexo_Candeeiro DirectionalLight {
+								direction 0.0 1 0.0  
+    							ambientIntensity 1
+								intensity 1
+    							color 1 1 1
+								on FALSE
+								ROUTE Interruptor.on_changed TO Reflexo_Candeeiro.on
+					}
+					#Interruptor da parede
+					Transform {
+						translation	-4.35 1.2 -0.6
+						children [
+							DEF Sensor TouchSensor { }
+        					Shape {
+        						geometry Box { size 0.07 0.07 0.07 }
+        						appearance Appearance { 
+									material Material { 
+										emissiveColor 0.1 0.1 0.1 
+										diffuseColor  0.1 0.1 0.1
+									}
+								    texture	ImageTexture {
+										url	"reflt3_11.jpg"
+									}
+								}
+        						ROUTE Sensor.isActive TO Interruptor.set_active
+							}
+					
+						]
+					}
+					Transform {
+						rotation 0 1 0 1.57
+						translation	2 3 2
+						children [candeeiro	{}]
+					}
+					Transform {
+						rotation 0 1 0 1.57
+						translation	0.4 3 2
+						children [candeeiro	{}]
+					}
+					Transform {
+						rotation 0 1 0 1.57
+						translation	-1.3 3 2
+						children [candeeiro	{}]
+					}
+					Transform {
+						rotation 0 1 0 1.57
+						translation	-3 3 2
+						children [candeeiro	{}]
+					}
+					Transform {
+						rotation 0 1 0 1.57
+						translation	2 3 -2.6
+						children [candeeiro	{}]
+					}
+					Transform {
+						rotation 0 1 0 1.57
+						translation	0.4 3 -2.6
+						children [candeeiro	{}]
+					}
+					Transform {
+						rotation 0 1 0 1.57
+						translation	-1.3 3 -2.6
+						children [candeeiro	{}]
+					}
+					Transform {
+						rotation 0 1 0 1.57
+						translation	-3 3 -2.6
+						children [candeeiro	{}]
+					}
+					Madeira{}]
+			}
+			
+
+					
+		]
+	}
+				
+}
+
+
+  		
+Centro {}
+
+
+
+
+

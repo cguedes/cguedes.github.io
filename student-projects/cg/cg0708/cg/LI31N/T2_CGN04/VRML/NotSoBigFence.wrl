@@ -1,0 +1,66 @@
+#VRML V2.0 utf8
+
+#VRML V2.0 utf8
+
+EXTERNPROTO	BigFence []
+"BigFence.wrl"
+
+PROTO NotSoBigFence [
+]
+{
+	Transform {
+		children [
+			Group {
+			}
+			Transform  {
+				children [
+					BigFence {}
+				]
+			}
+
+			Transform  {
+				translation	3 0 0
+				children [
+					BigFence {}
+				]
+			}
+
+			Transform  {
+				translation	6 0 0
+				children [
+					BigFence {}
+				]
+			}
+
+			Transform  {
+				translation	9 0 0
+				children [
+					BigFence {}
+				]
+			}
+
+			Transform  {
+				translation	12 0 0
+				children [
+					BigFence {}
+				]
+			}
+
+
+
+		]
+	}
+}
+		
+
+
+
+
+NotSoBigFence {}
+
+
+
+
+				
+
+

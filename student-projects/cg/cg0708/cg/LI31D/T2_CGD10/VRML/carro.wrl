@@ -1,0 +1,112 @@
+#VRML V2.0 utf8
+
+PROTO RODA[]{
+	Transform{
+		 rotation 1 0 0 1.5708
+		 children Shape{
+			 geometry Cylinder {height 0.1 radius 0.4}
+			 appearance	Appearance{
+				 texture	ImageTexture { url "jantes.jpg" }
+			 }
+		 
+		 }
+	}
+}
+
+
+PROTO LUZES []{
+	Group {
+		children [
+			Transform {
+				translation 1.5 -0.25 0.5
+				children
+				DEF LUZ Shape {
+					geometry Sphere	{ radius 0.25	}
+					appearance Appearance {
+						material Material { 
+							diffuseColor 1 1 0 }
+					}
+	
+				}
+			}
+			Transform {
+				translation	1.5 -0.25 -0.5 
+				children USE LUZ
+			}
+		
+			PointLight	{
+				location 1.5 -0.25 0
+			}
+
+		]
+
+	}
+
+}
+
+
+PROTO CAR []{ 
+	Group { 
+		children [
+			Shape {			  
+				geometry Box { size 3 1.5 2 }
+				appearance	Appearance{
+					material Material{
+
+						diffuseColor .39 1 .39 
+					
+					}
+
+				}
+			}
+			Transform {
+				translation	-0.25 1.1 0
+				children  
+				Shape {			  
+					geometry Box { size 1.5 0.7 2 }
+					appearance	Appearance{
+						material Material{
+
+							diffuseColor .39 0.5 .39 
+					
+						}
+
+					}
+				}
+
+			}
+			LUZES {}
+			Transform { # RODA DIANTEIRA DTA
+				translation	0.85 -1 0.95
+				children RODA {}
+			}
+			Transform {	# RODA DIANTEIRA ESQ
+				translation	0.85 -1 -0.95
+				children RODA {}
+			}
+			Transform {	# RODA TRASEIRA DTA
+				translation	-0.85 -1 0.95
+				children RODA {}
+			}
+			Transform {	# RODA TRASEIRA ESQ
+
+				translation	-0.85 -1 -0.95
+				children RODA {}
+			}
+		]
+
+	}
+}
+Transform {
+	translation	5 -2 0
+	children
+	Shape {
+		geometry Box {size 10 1 3}
+		appearance Appearance {
+			material Material {
+				diffuseColor 1 1 0
+			}
+		}
+	}			 
+}
+CAR {}

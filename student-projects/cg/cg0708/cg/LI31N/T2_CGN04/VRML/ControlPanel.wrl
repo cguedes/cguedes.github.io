@@ -1,0 +1,222 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	PosteIluminacao [
+	eventIn	SFBool on
+]
+"PosteIluminacao.wrl"
+
+EXTERNPROTO	LightSwitch [
+	exposedField SFVec3f translation 
+	eventOut SFBool	OnOrOff
+]
+"LightSwitch.wrl"
+
+
+
+#DEF GroupIluminacao Group { 
+#	children [
+#		Transform {
+#			children [
+#				DEF	PosteIluminacao1 PosteIluminacao {
+#				}
+#				Shape  {
+#			geometry Sphere	{
+#				radius 1
+#			}
+#			appearance Appearance {
+#				material Material {
+
+#				}
+#			}
+#		}		
+
+#			]
+
+			
+#		}
+		
+#		Transform {
+#			translation	5 0 0
+#			children [
+#				DEF	PosteIluminacao2 PosteIluminacao {
+#				}
+
+#				Shape  {
+#			geometry Sphere	{
+#				radius 1
+#			}
+#			appearance Appearance {
+#				material Material {
+
+#				}
+#			}
+#		}
+
+#			]
+#		}
+			
+
+#	]
+#}		
+
+
+ 
+Group {  
+
+	 children [  
+		DEF ps ProximitySensor {  
+			center 0 0 0  
+			size 1000 1000 1000
+		}  
+
+
+DEF cp Transform {  
+	children  [
+		Transform {
+			translation	0.7 0.35 -1
+			children [	
+				Transform {
+					translation	-0.045 0 0
+				children Shape	{			
+					geometry Box {
+						#size 0.1 0.2 0.01
+						size 0.1 0.1 0.001
+				}
+				appearance Appearance {
+					texture	ImageTexture {
+						url	"images/ControlPanel.png"
+					}
+				}
+			}
+
+			}	
+				#Postes de iluminação 1
+				Transform {
+					translation	-0.08 0.035 0
+					scale 0.2 0.2 0.01
+					children DEF Light1 LightSwitch {
+					#ROUTE Light1.OnOrOff TO	PosteIluminacao1.on
+					}
+				}
+				#Postes de iluminação 2
+				Transform {
+					translation	-0.055 0.035 0
+					scale 0.2 0.2 0.01
+					children DEF Light2 LightSwitch {
+					#ROUTE Light2.OnOrOff TO	PosteIluminacao2.on
+				}
+			}
+				#Postes de iluminação 3
+				Transform {
+					translation	-0.08 -0.000 0
+					scale 0.2 0.2 0.01
+					children DEF Light3 LightSwitch {
+					#ROUTE Light3.OnOrOff TO	PosteIluminacao2.on
+				}
+			}
+				#Postes de iluminação 4
+				Transform {
+					translation	-0.055 -0.000 0
+					scale 0.2 0.2 0.01
+					children DEF Light4 LightSwitch {
+					#ROUTE Light3.OnOrOff TO	PosteIluminacao2.on
+				}
+			}
+
+				#Postes de iluminação 5
+				Transform {
+					translation	-0.08 -0.035 0
+					scale 0.2 0.2 0.01
+					children DEF Light5 LightSwitch {
+					#ROUTE Light3.OnOrOff TO	PosteIluminacao2.on
+				}
+			}
+				#Postes de iluminação 6
+				Transform {
+					translation	-0.055 -0.035 0
+					scale 0.2 0.2 0.01
+					children DEF Light6 LightSwitch {
+					#ROUTE Light3.OnOrOff TO	PosteIluminacao2.on
+				}
+			}
+
+				#Postes pequenos de iluminação 1
+				Transform {
+					translation	-0.03 0.035 0
+					scale 0.15 0.15 0.01
+					children DEF Light7 LightSwitch {
+					#ROUTE Light3.OnOrOff TO	PosteIluminacao2.on
+				}
+			}
+				#Postes pequenos de iluminação 2
+				Transform {
+					translation	-0.01 0.035 0
+					scale 0.15 0.15 0.01
+					children DEF Light8 LightSwitch {
+					#ROUTE Light3.OnOrOff TO	PosteIluminacao2.on
+				}
+			}
+
+				#Postes pequenos de iluminação 3
+				Transform {
+					translation	-0.03 0.0 0
+					scale 0.15 0.15 0.01
+					children DEF Light9 LightSwitch {
+					#ROUTE Light3.OnOrOff TO	PosteIluminacao2.on
+				}
+			}
+				#Postes pequenos de iluminação 4
+				Transform {
+					translation	-0.01 0.0 0
+					scale 0.15 0.15 0.01
+					children DEF Light10 LightSwitch {
+					#ROUTE Light3.OnOrOff TO	PosteIluminacao2.on
+				}
+			}
+
+				#Postes pequenos de iluminação 5
+				Transform {
+					translation	-0.03 -0.035 0
+					scale 0.15 0.15 0.01
+					children DEF Light11 LightSwitch {
+					#ROUTE Light3.OnOrOff TO	PosteIluminacao2.on
+				}
+			}
+				#Postes pequenos de iluminação 6
+				Transform {
+					translation	-0.01 -0.035 0
+					scale 0.15 0.15 0.01
+					children DEF Light12 LightSwitch {
+					#ROUTE Light3.OnOrOff TO	PosteIluminacao2.on
+				}
+			}
+
+
+		]
+
+		}		
+		
+
+	]
+			
+			
+				
+}
+
+
+ ]
+}  
+	  
+
+  
+ROUTE ps.position_changed TO cp.set_translation  
+ROUTE ps.orientation_changed TO cp.set_rotation 
+
+
+
+
+
+
+
+
+

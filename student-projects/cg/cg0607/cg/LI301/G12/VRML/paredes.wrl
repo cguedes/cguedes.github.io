@@ -1,0 +1,204 @@
+#VRML V2.0 utf8
+
+PROTO paredeJanelaInf [field SFColor cor 1 1 0.502] {
+	Transform {
+		translation	0.05 0.45 -0.51
+		children Shape {
+			geometry Box { size	0.1 0.9 1.025 }
+			appearance Appearance { material Material { diffuseColor IS	cor	} }
+		}
+	}
+}
+
+PROTO paredeJanelaSup [field SFColor cor 1 1 0.502] {
+	Transform {
+		translation	0.05 0.445 -0.51
+		children Shape {
+			geometry Box { size	0.1 0.89 1.025 }
+			appearance Appearance { material Material { diffuseColor IS	cor	} }
+		}
+	}
+}
+
+#Parede interior da entrada
+PROTO paredeInterior [field SFColor cor 1 1 0.502] {
+	Transform {
+		translation 1.35 1.5 -0.05
+		children Shape {
+			geometry Box { size 2.7 3 0.1 }
+			appearance Appearance { material Material { diffuseColor IS cor } }
+		}
+	}
+}
+
+#Parede superior esquerda
+PROTO paredeEsquerdaFrente [field SFColor cor 1 1 0.502] {
+	Transform {
+		translation 0.05 1.5 -2.7
+		children Shape {
+			geometry Box { size 0.1 3 5.4 }
+			appearance Appearance { material Material { diffuseColor IS cor } }
+		}
+	}
+}
+
+#Parede com porta entrada
+PROTO paredeEntrada[field SFColor cor 1 1 0.502]{
+	Transform {
+		rotation 1 0 0 1.571
+		translation	0 0 -0.1
+		children Shape {
+			appearance Appearance { material Material { diffuseColor IS cor} }
+			geometry Extrusion {
+				crossSection [0 0, 2.5 0, 2.5 -2.2, 3.7 -2.2, 3.7 0.0, 6.5 0, 6.5 -2.2, 7.5 -2.2, 7.5 0, 7.6 0, 7.6 -3, 0 -3, 0 0]
+				spine [0 0 0,0 0.1 0]
+			}
+		}
+	}	
+}
+
+#Parede superior centro
+PROTO paredeFrente [field SFColor cor 1 1 0.502] {
+	Transform {
+		translation 3.8 1.5 -0.05
+		children Shape {
+			geometry Box { size 7.6 3 0.1 }
+			appearance Appearance { material Material { diffuseColor IS cor } }
+		}
+	}
+}
+
+#Parede lado direito
+PROTO paredeDireita[field SFColor cor 1 1 0.502] {
+	Transform {
+		translation 0.05 1.5 -8.15
+		children Shape {
+			geometry Box { size 0.1 3 16.3 }
+			appearance Appearance { material Material { diffuseColor IS cor } }
+		}
+	}
+}
+
+
+PROTO paredes[] {
+	Group {
+		children [
+			paredeEntrada {}
+			Transform {
+				translation	7.6 0 0
+				children paredeDireita {}
+			}
+			Transform {
+				translation	0 0 -0.5
+				children paredeJanelaInf {}
+			}
+			Transform {
+				translation	0 0 -4.5
+				children paredeJanelaInf {}
+			}
+			Transform {
+				translation	0 0 -6
+				children paredeJanelaInf {}
+			}
+			Transform {
+				translation	0 2.11 -0.5
+				children paredeJanelaSup {}
+			}
+			Transform {
+				translation	0 2.11 -4.5
+				children paredeJanelaSup {}
+			}
+			Transform {
+				translation	0 2.11 -6
+				children paredeJanelaSup {}
+
+			}
+			Transform {
+				translation	0 0 -11
+				children paredeJanelaInf {}
+			}
+			Transform {
+				translation	0 0 -14.5
+				children paredeJanelaInf {}
+			}
+			Transform {
+				translation	0 2.11 -11
+				children paredeJanelaSup {}
+			}
+			Transform {
+				translation	0 2.11 -14.5
+				children paredeJanelaSup {}
+			}
+			#Parede inferior esquerda 1
+			Transform {
+				translation 0.05 1.5 -0.3
+				children Shape {
+					geometry Box { size 0.1 3 0.4 }
+					appearance Appearance { material Material { diffuseColor 1 1 0.502 } }
+				}
+			}
+			#Parede inferior esquerda 2
+			Transform {
+				translation 0.05 1.5 -3.01
+				children Shape {
+					geometry Box { size 0.1 3 2.98 }
+					appearance Appearance { material Material { diffuseColor 1 1 0.502 } }
+				}
+			}
+			#Parede inferior esquerda 3
+			Transform {
+				translation 0.05 1.5 -5.761
+				children Shape {
+					geometry Box { size 0.1 3 0.48 }
+					appearance Appearance { material Material { diffuseColor 1 1 0.502 } }
+				}
+			}
+			#Parede inferior esquerda 4
+			Transform {
+				translation 0.05 1.5 -8.06
+				children Shape {
+					geometry Box { size 0.1 3 2.08 }
+					appearance Appearance { material Material { diffuseColor 1 1 0.502 } }
+				}
+			}
+			#Parede superior esquerda 1
+			Transform {
+				translation 0.05 1.5 -10.9
+				children Shape {
+					geometry Box { size 0.1 3 0.2 }
+					appearance Appearance { material Material { diffuseColor 1 1 0.502 } }
+				}
+			}
+			#Parede superior esquerda 2
+			Transform {
+				translation 0.05 1.5 -13.26
+				children Shape {
+					geometry Box { size 0.1 3 2.48 }
+					appearance Appearance { material Material { diffuseColor 1 1 0.502 } }
+				}
+			}
+			#Parede superior esquerda 3
+			Transform {
+				translation 0.05 1.5 -15.86
+				children Shape {
+					geometry Box { size 0.1 3 0.68 }
+					appearance Appearance { material Material { diffuseColor 1 1 0.502 } }
+				}
+			}
+			Transform {
+				translation	0 0 -16.2
+				children paredeFrente {}
+			}
+			Transform {
+				translation	0 0 -9.1
+				children paredeInterior {}
+			}
+			Transform {
+				translation	0 0 -10.7
+				children paredeInterior {}
+			}
+
+		]
+	}
+}
+paredes{}

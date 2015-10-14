@@ -1,0 +1,274 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	axis[]	"Sem3.wrl#axis"
+EXTERNPROTO	Tampa_Reciclagem[] "Tampa_Reciclagem.wrl#Tampa_Reciclagem"
+EXTERNPROTO	Caixote_Reciclagem[field SFColor Cor] "Caixote_Reciclagem.wrl#Caixote"
+
+PROTO lateralReciclagem[]
+{
+	Transform {
+		rotation 1 0 0 -1.570796
+		children [
+		
+			Shape {
+				appearance Appearance {
+					material Material { diffuseColor 1 1 1 }
+				}
+    			geometry Extrusion { 
+    				crossSection 
+					[
+					 0.05 0,0 0.57,0.09 0.57,0.14 0,0.04 0,		    
+					]
+    				spine [0 0 0, 0 0.045 0]
+					solid FALSE
+				}
+			}
+		]
+	}
+}
+PROTO lateralReciclagem2[]
+{
+	Transform{
+		rotation 1 0 0 1.570796
+		translation	0.115 0.25 -0.045 
+		children [
+			Transform {
+			    rotation 0 1 0  0.098174770424681038701957605727484
+				children [
+					Shape {
+						appearance Appearance {
+							material Material { diffuseColor 1 1 1 }
+						}
+    					geometry Extrusion { 
+    						crossSection 
+							[
+							0	0	,
+							0.006407484	0.056237764	,
+							0.0054631	0.051977923	,
+							0.004593204	0.047702249	,
+							0.003798062	0.043412045	,
+							0.003077915	0.039108616	,
+							0.002432983	0.034793275	,
+							0.001863462	0.030467336	,
+							0.001369526	0.026132116	,
+							0.000951325	0.021788936	,
+							0.000608987	0.017439119	,
+							0.000342616	0.013083989	,
+							0.000152293	0.008724874	,
+							3.80763E-05	4.36E-03	,
+							0.000152293	8.72E-03	,
+							0.000342616	1.31E-02	,
+							0.000608988	1.74E-02	,
+							0.000951326	2.18E-02	,
+							0.001369526	2.61E-02	,
+							0.001863462	3.05E-02	,
+							0.002432983	3.48E-02	,
+							0.003077915	3.91E-02	,
+							0.003798062	4.34E-02	,
+							0.004593204	4.77E-02	,
+							0.0054631	5.20E-02	,
+							0.006407484	5.62E-02	,
+							0.007426069	6.05E-02	,
+							0.008518544	6.47E-02	,
+							0.009684576	6.89E-02	,
+							0.010923811	7.31E-02	,
+							0.012235871	7.73E-02	,
+							0.013620356	8.14E-02	,
+							0.015076845	8.55E-02	,
+							0.016604894	8.96E-02	,
+							0.018204036	9.37E-02	,
+							0.019873787	9.77E-02	,
+							0.021613636	1.02E-01	,
+							0.023423053	1.06E-01	,
+							0.025301489	1.10E-01	,
+							0.027248369	1.13E-01	,
+							0.029263102	1.17E-01	,
+							0.031345073	1.21E-01	,
+							0.033493649	1.25E-01	,
+							0.035708175	1.29E-01	,
+							0.037987976	1.32E-01	,
+							0.040332358	1.36E-01	,
+							0.042740607	1.40E-01	,
+							0.045211989	1.43E-01	,
+							0.047745752	1.47E-01	,
+							0.050341123	1.50E-01	,
+							0.052997312	1.54E-01	,
+							0.05571351	1.57E-01	,
+							0.058488889	1.61E-01	,
+							0.061322605	1.64E-01	,
+							0.064213794	1.67E-01	,
+							0.067161575	1.70E-01	,
+							0.07016505	1.74E-01	,
+							0.073223305	1.77E-01	,
+							0.076335408	1.80E-01	,
+							0.07950041	1.83E-01	,
+							0.082717349	1.86E-01	,
+							0.085985243	1.89E-01	,
+							0.089303098	1.92E-01	,
+							0.092669902	1.94E-01	,
+							0.096084631	1.97E-01	,
+							0.099546244	2.00E-01	,
+							0.103053687	2.02E-01	,
+							0.106605891	2.05E-01	,
+							0.110201774	2.07E-01	,
+							0.113840241	2.10E-01	,
+							0.117520184	2.12E-01	,
+							0.121240481	2.14E-01	,
+							0.125	2.17E-01	,
+							0.128797595	2.19E-01	,
+							0.132632109	2.21E-01	,
+							0.136502375	2.23E-01	,
+							0.140407213	2.25E-01	,
+							0.144345435	2.27E-01	,
+							0.148315839	2.28E-01	,
+							0.152317218	2.30E-01	,
+							0.156348352	2.32E-01	,
+							0.160408013	2.33E-01	,
+							0.164494964	2.35E-01	,
+							0.168607962	2.36E-01	,
+							0.172745752	2.38E-01	,
+							0.176907074	2.39E-01	,
+							0.181090661	2.40E-01	,
+							0.185295239	2.41E-01	,
+							0.189519526	2.43E-01	,
+							0.193762237	2.44E-01	,
+							0.198022077	2.45E-01	,
+							0.202297751	2.45E-01	,
+							0.206587956	2.46E-01	,
+							0.210891384	2.47E-01	,
+							0.215206725	2.48E-01	,
+							0.219532664	2.48E-01	,
+							0.223867884	2.49E-01	,
+							0.228211064	2.49E-01	,
+							0.232560882	2.49E-01	,
+							0.236916011	2.50E-01	,
+							0.241275126	2.50E-01	,
+							0.245636899	2.50E-01	,
+							0.25	2.50E-01	,
+							0.26 0.275,0 0.25 , 0 0,
+		 		
+							]
+    						spine [0 0 0, 0 0.045 0]
+							solid FALSE
+						}
+					}
+				]
+			}
+		]
+	}	
+}
+
+PROTO base_Reciclagem[]
+{
+	Transform{
+		rotation 1 0 0 1.570796
+		translation	0.115 0.25 -0.036 
+		children [
+			Transform {
+			   rotation 0 1 0  0.098174770424681038701957605727484
+				children [
+		
+					Shape {
+						appearance Appearance {
+							material Material { diffuseColor 1 1 1} 
+						}
+    					geometry Extrusion { 
+    						crossSection 
+							[
+							0 0.25,	
+							0.25	2.50E-01	,
+							0.26 0.275,0 0.25 , 0 0.25,
+							]	
+    						spine [0 0 0, 0 0.65 0]
+							solid FALSE
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+
+PROTO Pedal[]
+{
+
+	Transform {
+		rotation 0 0 1 1.570796
+		children [
+
+			Shape {
+				appearance Appearance {
+					material Material { diffuseColor 1 1 1 }
+	
+				}
+    			geometry Extrusion { 
+    				crossSection 
+					[0 0,0.03 0,0.015 0.05,0 0 
+					]
+    				spine [0 0 0, 0 0.26 0]
+					solid FALSE
+				}
+			}
+		]
+	}
+}
+
+
+PROTO Reciclagem[]
+{
+	Group {
+		children [
+			DEF Lateral Transform {
+				children [
+					lateralReciclagem {}
+					lateralReciclagem2{}
+				]
+			}
+			Transform {
+				translation	0 0 -0.657
+				children USE Lateral
+			}
+			Transform {		 
+				translation	0.0215 0.5656 -0.351
+				children [
+					Tampa_Reciclagem{}
+				]
+			}
+			Transform {	
+				translation	0 0 -0.65
+				children [base_Reciclagem{} ]
+			}
+			Transform{
+				translation	0.37 0.03 -0.23
+				children [
+					Transform {
+						children [Caixote_Reciclagem{Cor 0 1 0}]
+					}
+					Transform {
+						translation	0 0 -0.21
+						children [
+							Transform {
+								children [Caixote_Reciclagem{Cor 0 0.2 1}]
+							}
+							Transform {
+								translation	0 0 -0.21
+								children [Caixote_Reciclagem{Cor 1 1 0}]
+							}
+						]
+					}
+				]
+			}
+			Transform {
+				rotation 0 1 0 1.570796
+				children[
+					Transform {
+						rotation 1 0 0 -0.370
+						translation	0.48 0 0.4 
+						children Pedal {}
+					}
+				]
+			}
+		]
+	}
+}

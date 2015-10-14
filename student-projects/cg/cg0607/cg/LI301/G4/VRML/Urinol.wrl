@@ -1,0 +1,376 @@
+#VRML V2.0 utf8
+
+#atençao primeiro cilindro centrado na origem
+PROTO torneira_urinol[]{
+
+	Group {
+		children [
+			#mais junto da parede
+  			Transform {
+				translation	 0.02 0 0 
+				children [
+					Transform {
+						scale 0.01 0.01 0.01
+						rotation 0 0 1 -1.57
+						translation	0.0125 0 0
+						children[
+							Shape{
+								  appearance Appearance {	
+									   material Material { 
+											diffuseColor 0.8 0.8 0.8 
+									   }
+								   }
+								   geometry Cylinder { 						
+					    				bottom TRUE 
+										height 0.5
+										radius 3
+										side TRUE 
+										top TRUE  }
+							}
+						]	
+					}
+					#2º
+					Transform {
+						scale 0.01 0.01 0.01
+						rotation 0 0 1 -1.57
+						translation	-0.005 0 0 
+						children [
+							Shape{
+							  appearance Appearance {	
+								   material Material { 
+										diffuseColor 0.8 0.8 0.8 
+								   }
+							   }
+							   geometry Cylinder { 						
+					    			bottom TRUE 
+									height 4
+									radius 2.5
+									side TRUE 
+									top TRUE  }
+							}
+						]
+					}
+					#3º
+					Transform {
+						scale 0.01 0.01 0.01
+						rotation 0 0 1 -1.57
+						translation	-0.0325 0 0
+						children [
+							Shape{
+							  appearance Appearance {	
+								   material Material { 
+										diffuseColor 0.8 0.8 0.8 
+								   }
+							   }
+							   geometry Cylinder { 						
+					    			bottom TRUE 
+									height 2
+									radius 2
+									side TRUE 
+									top TRUE  }
+							}
+						]
+					}
+					#4º
+					Transform {
+						scale 0.01 0.01 0.01
+						rotation 0 0 1 -1.57
+						translation	-0.0525 0 0
+						children [
+							Shape{
+								  appearance Appearance {	
+									   material Material { 
+											diffuseColor 0.8 0.8 0.8 
+									   }
+								   }
+								   geometry Cylinder { 						
+					    				bottom TRUE 
+										height 2
+										radius 1.5
+										side TRUE 
+										top TRUE  }
+							}
+						]
+					}
+					#Botão autocolismo
+					DEF botao Transform {
+						children [
+							Transform {
+								scale 0.01 0.01 0.01
+								rotation 0 0 1 -1.57
+								translation	-0.0725 0 0
+								children [					
+									Shape{
+										  appearance Appearance {	
+											   material Material { 
+													diffuseColor 0.8 0.8 0.8 
+											   }
+										   }
+										   geometry Cylinder { 						
+					    						bottom TRUE 
+												height 2
+												radius 2
+												side TRUE 
+												top TRUE  }
+									}
+									DEF	TSurinol TouchSensor {
+										enabled	TRUE
+									}
+								]
+							}
+						]
+					}
+				
+					DEF	urinolTimer TimeSensor	{
+						cycleInterval 3 #segundos - tempo de abrir
+						loop FALSE
+						startTime 0
+						stopTime 0
+					}
+
+					DEF PosInterpolator PositionInterpolator {
+						key      [0.0   0.5   1.0]
+						keyValue [0 0 0, 0.02 0 0, 0 0 0]
+					}
+
+					Sound {
+						source DEF	SomUrinol AudioClip {
+						url	"Sons\urinol.wav"
+						loop FALSE
+					}
+					}
+
+				]
+			}
+			#ligação urinol
+
+		   	Transform {
+				scale 0.01 0.01 0.01
+				translation	-0.0125 -0.1 0
+				children [					
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 20
+								radius 0.5
+								side TRUE 
+								top TRUE  }
+					}
+				]
+			}
+			#cilindro mesmo antes do urinol
+
+		   	Transform {
+				scale 0.01 0.01 0.01
+				translation	-0.0125 -0.21 0
+				children [					
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 2
+								radius 1.5
+								side TRUE 
+								top TRUE  }
+					}
+				]
+			}
+		]
+		ROUTE TSurinol.touchTime TO urinolTimer.startTime
+		ROUTE urinolTimer.fraction_changed	TO PosInterpolator.set_fraction
+		ROUTE PosInterpolator.value_changed TO botao.translation
+		ROUTE TSurinol.touchTime TO SomUrinol.startTime
+	}
+}
+
+PROTO tubo_urinol[]{
+
+	Group {
+		children [
+  			Transform {
+				scale 0.01 0.01 0.01
+				translation	0 0.03 0.03 
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE
+								height 8
+								radius 3
+								side TRUE 
+								top TRUE 
+							
+							}
+					}
+				]	
+			}
+			# ligaçao
+			Transform {
+				scale 0.01 0.01 0.01
+				rotation 0 0 1 -1.5708
+				children[
+
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Extrusion {
+								crossSection[3.00	0.00	, 2.95	0.52	, 2.82	1.03	, 2.60	1.50	, 2.30	1.93	, 1.93	2.30	, 1.50	2.60	, 1.03	2.82	, 0.52	2.95	, 0.00	3.00	, -0.52	2.95	, -1.03	2.82	, -1.50	2.60	, -1.93	2.30	, -2.30	1.93	, -2.60	1.50	, -2.82	1.03	, -2.95	0.52	, -3.00	0.00	, -2.95	-0.52	, -2.82	-1.03	, -2.60	-1.50	, -2.30	-1.93	, -1.93	-2.30	, -1.50	-2.60	, -1.03	-2.82	, -0.52	-2.95	, 0.00	-3.00	, 0.52	-2.95	, 1.03	-2.82	, 1.50	-2.60	, 1.93	-2.30	, 2.30	-1.93	, 2.60	-1.50	, 2.82	-1.03	, 2.95	-0.52	, 3.00	0.00]	
+								spine[2.90	0.00	-0.78, 3.00	0.00	0.00	, 2.90	0.00	0.78	, 2.60	0.00	1.50	, 2.12	0.00	2.12	, 1.50	0.00	2.60	, 0.78	0.00	2.90	, 0.00	0.00	3.00 ]
+								beginCap FALSE
+								endCap FALSE
+								solid FALSE
+								creaseAngle	1
+						   }  
+					}
+				]	
+			}
+			#até á parede
+			Transform {
+				rotation 1 0 0 -1.57
+				scale 0.01 0.01 0.01
+				translation	0 -0.03 -0.05
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 10
+								radius 3
+								side TRUE 
+								top TRUE  }
+					}
+				]	
+			}
+		]
+	}
+}
+
+PROTO urinol_baixo []{	
+	Group {
+		children [
+			Transform {
+				rotation 0 1 0 -1.57
+				scale 1.2 1 1
+				children [
+
+					Shape{
+					   appearance Appearance {	
+						   material Material { 
+								diffuseColor 1 1 1 
+
+ 						   }
+					   }
+					   geometry Extrusion {
+    					  crossSection [0.150		0.000	, 0.145		0.039	, 0.130		0.075	, 0.106		0.106	, 0.075		0.130	, 0.039		0.145	, 0.000		0.150	, -0.039		0.145	, -0.075		0.130	, -0.106		0.106	, -0.130		0.075	, -0.145		0.039	, -0.150		0.000	, -0.145		-0.039	, -0.130		-0.075	, -0.106		-0.106	, -0.075		-0.130	, -0.039		-0.145	, 0.000		-0.150	, 0.039		-0.145	, 0.075		-0.130	, 0.106		-0.106	, 0.130		-0.075	, 0.145		-0.039	, 0.150		0.000	, 
+									0.12		0.00	, 0.12		-0.03	, 0.10		-0.06	, 0.08		-0.08	, 0.06		-0.10	, 0.03		-0.12	, 0.00		-0.12	, -0.03		-0.12	, -0.06		-0.10	, -0.08		-0.08	, -0.10		-0.06	, -0.12		-0.03	, -0.12		0.00	, -0.12		0.03	, -0.10		0.06	, -0.08		0.08	, -0.06		0.10	, -0.03		0.12	, 0.00		0.12	, 0.03		0.12	, 0.06		0.10	, 0.08		0.08	, 0.10		0.06	, 0.12		0.03	, 0.12		0.00						  ]
+    					  spine [0 0 0, 0 0.025 0, 0 0.05 0,   0 0.075 0, 0 0.10 0]
+						  scale	[0 0, 0.5 0.5, 0.75 0.75,  1 1,  1 1 ]
+						  beginCap TRUE
+						  endCap TRUE
+						  solid	FALSE
+						  creaseAngle 1
+					   }
+
+					}
+				]
+			}
+			Transform {
+				translation	0 -0.06 -0.04
+				children tubo_urinol	{}
+			}
+		]
+	}
+}
+
+PROTO urinol_cima []{	
+	Transform {
+		rotation 0 1 0 -1.57
+		scale 1.2 1 1
+		children [
+
+			Shape{
+			   appearance Appearance {	
+				   material Material { 
+						diffuseColor 1 1 1 
+
+ 				   }
+			   }
+			   geometry Extrusion {
+    			  crossSection [0.150		0.000	, 0.145		0.039	, 0.130		0.075	, 0.106		0.106	, 0.075		0.130	, 0.039		0.145	, 0.000		0.150	, -0.039		0.145	, -0.075		0.130	, -0.106		0.106	, -0.130		0.075	, -0.145		0.039	, -0.150		0.000	, -0.145		-0.039	, -0.130		-0.075	, -0.106		-0.106	, -0.075		-0.130	, -0.039		-0.145	, 0.000		-0.150	, 0.039		-0.145	, 0.075		-0.130	, 0.106		-0.106	, 0.130		-0.075	, 0.145		-0.039	, 0.150		0.000	, 
+							0.12		0.00	, 0.12		-0.03	, 0.10		-0.06	, 0.08		-0.08	, 0.06		-0.10	, 0.03		-0.12	, 0.00		-0.12	, -0.03		-0.12	, -0.06		-0.10	, -0.08		-0.08	, -0.10		-0.06	, -0.12		-0.03	, -0.12		0.00	, -0.12		0.03	, -0.10		0.06	, -0.08		0.08	, -0.06		0.10	, -0.03		0.12	, 0.00		0.12	, 0.03		0.12	, 0.06		0.10	, 0.08		0.08	, 0.10		0.06	, 0.12		0.03	, 0.12		0.00						  ]
+    			  spine [0 0 0, 0 0.10 0]
+				  beginCap TRUE
+				  endCap TRUE
+				  solid	FALSE
+				  creaseAngle 1
+			   }
+			}
+		]
+	}
+}
+
+PROTO urinol []{
+	Group{ 
+		children [
+			Transform {
+				rotation 1 0 0 1.5706
+				translation	0 0.155 -0.13
+				children urinol_cima {}
+			}
+		
+		   	Transform {
+				children urinol_baixo {}
+			}
+			
+			Transform {
+				scale 0.8 1 1
+				rotation 1 0 0 1.57
+				translation	0 0.15 -0.0875
+				children [
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 1 1 1  
+							   }
+						   }
+						  geometry Cylinder { 						
+					    		bottom TRUE 
+								height 0.025
+								radius 0.15
+								side TRUE 
+								top TRUE  }
+						  }
+				]
+			}
+			
+			Transform {
+				rotation 0 1 0 1.5706
+				translation	0 0.55 -0.09
+				children torneira_urinol {}
+			}
+		
+		]
+	}
+}
+
+urinol {}

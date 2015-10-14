@@ -1,0 +1,47 @@
+#VRML V2.0 utf8
+
+#VRML V2.0 utf8
+
+EXTERNPROTO Candeeiro [] ["Candeeiro.wrl"]
+
+PROTO Candeeiros [] {
+	Transform {
+		children [
+
+			Transform {	#Lights Esq
+				translation	-5.87 4.8 -2.1
+				rotation 0 1 0 -1.57
+				children [ Candeeiro {} ]
+			}
+			Transform {
+				translation	-5.87 4.8 1.9
+				rotation 0 1 0 -1.57
+				children [ Candeeiro {} ]
+			}
+			Transform {
+				translation	-5.87 4.8 5.9
+				rotation 0 1 0 -1.57
+				children [ Candeeiro {} ]
+			}
+
+			Transform {	#Lights Dir
+				translation	9.41 4.8 -1.7
+				rotation 0 1 0 1.57
+				children [ Candeeiro {} ]
+			}
+			Transform {	
+				translation	9.41 4.8 2.3
+				rotation 0 1 0 1.57
+				children [ Candeeiro {} ]
+			}
+			Transform {	
+				translation	9.41 4.8 6.3
+				rotation 0 1 0 1.57
+				children [ Candeeiro {} ]
+			}
+		]
+	}
+
+}
+
+Candeeiros {}

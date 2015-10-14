@@ -1,0 +1,105 @@
+#VRML V2.0 utf8
+
+PROTO LateralD [] {
+
+	Shape {
+		geometry Box {
+			size 0.001 1 0.5
+		 
+		}
+		appearance Appearance {texture ImageTexture {url "side_View.jpg"}}
+	}
+}
+PROTO LateralE [] {
+
+	Shape {
+		geometry Box {
+			size 0.001 1 0.5
+		 
+		}
+		appearance Appearance {texture ImageTexture {url "side_View2.jpg"}}
+	}
+}
+
+
+PROTO Frente []{
+	Shape {
+		geometry Box {
+			size 0.3 1 0.001
+		}
+		appearance Appearance {texture ImageTexture {url "backpc.jpg"} }
+	}
+
+}
+
+PROTO Tras []{
+	Shape {
+		geometry Box {
+			size 0.3 1 0.001
+		}
+		appearance Appearance {texture ImageTexture {url "frontpc.jpg"} }
+	}
+
+}
+
+PROTO Up []{
+	Shape {
+		geometry Box {
+			size 0.3 0.001 0.5
+		}
+		appearance Appearance {texture ImageTexture {url "partedecima.jpg"}}
+	}
+
+}
+PROTO Down []{
+	Shape {
+		geometry Box {
+			size 0.3 0.001 0.5
+		}
+		appearance Appearance {texture ImageTexture {url "partedecima.jpg"}}
+	}
+
+}
+
+
+
+
+PROTO Caixa [] {
+	Transform {
+		children [
+			Transform {
+				
+				translation	 -0.15  0 -0.5 
+				children LateralE {}
+			}
+			Transform {
+			
+				translation	0.15 0 -0.5  
+				children LateralD {}
+			}
+			Transform {
+			
+				translation	0 -0.5 -0.5 
+				children Down {}
+			}
+			Transform {
+				
+				translation	0 0.5 -0.5  
+				children Up {}
+			} 
+			Transform {
+				
+				translation	0 0 -0.75  
+				children Frente {}
+			}
+			Transform {
+				
+				translation	0 0 -0.25  
+				children Tras {}
+			}
+		]
+	}
+}
+
+Caixa {}
+	   

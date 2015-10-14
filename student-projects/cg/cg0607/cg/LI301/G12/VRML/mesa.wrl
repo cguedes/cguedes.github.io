@@ -1,0 +1,128 @@
+#VRML V2.0 utf8
+EXTERNPROTO	Axis [] "axis.wrl#Axis"
+PROTO cilindro [field SFColor cor .37 .37 .37] {
+	Transform {
+		translation	0.025 0.35 -0.025
+		children Shape {
+			geometry Cylinder { height 0.7 radius 0.025 }
+			appearance Appearance { 
+				material Material { 
+					diffuseColor IS	cor	
+					specularColor .72 .89 .89
+					ambientIntensity .1
+					shininess .13
+				}
+			}
+		}
+	}
+}
+
+PROTO mesa [field SFVec3f pos 0 0 0] {
+	Transform {
+		translation	IS pos
+		children Group {
+			children [
+				# tampo
+				Transform {
+					translation	0.3 0.72 -0.3
+					children Shape {
+						geometry Box { size	0.60 0.04 0.60 }
+						appearance Appearance { 
+							material Material { 
+								diffuseColor .37 .37 .37 
+								specularColor .72 .89 .89
+								ambientIntensity .1
+								shininess .13 
+							}
+						}
+					}
+				}
+				# imagem do tampo
+				Transform {
+					translation	0.3 0.745 -0.3
+					children Shape {
+						geometry Box { size	0.60 0.01 0.60 }
+						appearance Appearance { 
+							material Material { 
+								diffuseColor .37 .37 .37 
+								specularColor .72 .89 .89
+								ambientIntensity .1
+								shininess .13
+							}
+							texture ImageTexture { url "txMesa.jpg"}
+							textureTransform TextureTransform { scale 10 10 }
+						}
+					}
+				}
+				# perna da mesa
+				Transform {
+					translation	0 0 0
+					children cilindro {}
+				}
+				# perna da mesa
+				Transform {
+					translation	0.55 0 0
+					children cilindro {}
+				}
+				# perna da mesa
+				Transform {
+					translation	0.55 0 -0.55
+					children cilindro {}
+				}
+				# perna da mesa
+				Transform {
+					translation	0 0 -0.55
+					children cilindro {}
+				}
+			]
+		}
+	}
+}
+
+mesa{}
+
+PROTO fila2Mesas [ field SFVec3f posFila 0 0 0] {
+	Transform {
+		translation	IS posFila
+		children [
+			mesa { pos 0 0 0 }
+			mesa { pos 0.63 0 0 }
+		]
+	}
+}
+
+PROTO fila3Mesas [ field SFVec3f posFila 0 0 0] {
+	Transform {
+		translation	IS posFila
+		children [
+			mesa { pos 0 0 0 }
+			mesa { pos 0.63 0 0 }
+			mesa { pos 1.26 0 0 }
+		]
+	}
+}
+
+PROTO fila4Mesas [ field SFVec3f posFila 0 0 0] {
+	Transform {
+		translation	IS posFila
+		children [
+			mesa { pos 0 0 0 }
+			mesa { pos 0.63 0 0 }
+			mesa { pos 1.26 0 0 }
+			mesa { pos 1.89 0 0 }
+		]
+	}
+}
+
+PROTO fila5Mesas [ field SFVec3f posFila 0 0 0] {
+	Transform {
+		translation	IS posFila
+		children [
+			mesa { pos 0 0 0 }
+			mesa { pos 0.63 0 0 }
+			mesa { pos 1.26 0 0 }
+			mesa { pos 1.89 0 0 }
+			mesa { pos 2.52 0 0 }
+		]
+	}
+}

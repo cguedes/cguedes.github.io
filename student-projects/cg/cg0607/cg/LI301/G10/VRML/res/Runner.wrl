@@ -1,0 +1,278 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Human [
+	exposedField SFRotation	leftArm 
+	exposedField SFRotation	leftElbow 
+	exposedField SFRotation	leftHand 
+
+	exposedField SFRotation	rightArm 
+	exposedField SFRotation	rightElbow
+	exposedField SFRotation	rightHand 
+
+	exposedField SFRotation	leftLeg 
+	exposedField SFRotation	leftKnee
+	exposedField SFRotation	leftFeet
+
+	exposedField SFRotation	rightLeg
+	exposedField SFRotation	rightKnee
+	exposedField SFRotation	rightFeet
+
+	exposedField SFRotation	headR
+	exposedField SFVec3f headT
+	field SFBool headHat
+	exposedField SFBool	luz
+
+
+] "Human.wrl#Human"
+
+DEF RunnerOsc Transform {
+	children [
+		DEF Runner Human {leftHand 0 -1  0 1.57 rightHand 0 -1  0 1.57	}
+		DEF Iluminacao TouchSensor { enabled TRUE }
+	]
+}
+
+# Definir animacao======================================================
+DEF	ObjTimer TimeSensor	{
+	startTime 0
+	stopTime 0
+	cycleInterval 1
+	enabled	TRUE
+	loop TRUE	
+}
+
+
+#LeftArm----------------------------------------------------------
+
+DEF	LeftArmROT OrientationInterpolator {
+	key	[0 .5  1]
+	keyValue [-1 0  .25 .78,
+			  1 0 .25 .78,
+			  -1 0  .25 .78]
+}
+
+DEF	LeftElbowROT OrientationInterpolator {
+	key	[0 .5  1]
+	keyValue [-1 0 0 1,
+			  -1 0 0 .26,
+			  -1 0 0 1]
+}
+
+#DEF	LeftHandROT OrientationInterpolator {
+#	key	[0]
+#	keyValue [0 -1  0 1.57]
+#}
+
+
+#Right Arm----------------------------------------------------------
+
+DEF	RightArmROT OrientationInterpolator {
+	key	[0 .5  1]
+	keyValue [1 0  -.25 .78,
+			  -1 0 -.25 .78,
+			  1 0  -.25 .78]
+}
+
+DEF	RightElbowROT OrientationInterpolator {
+	key	[0 .5  1]
+	keyValue [-1 0 0 .26,
+			  -1 0 0 1,
+			  -1 0 0 .26]
+}
+
+#DEF	RightHandROT OrientationInterpolator {
+#	key	[0 ]
+#	keyValue [0 -1  0 1.57]
+#}
+
+#Left Leg----------------------------------------------------------
+
+DEF	LeftLegROT OrientationInterpolator {
+	key	[0 .5  1]
+	keyValue [1 0  .15 .78,
+			  -1 0 .15 .78,
+			  1 0  .15 .78]
+}
+
+DEF	LeftKneeROT OrientationInterpolator {
+	key	[0 .25 .5 .75 1]
+	keyValue [1 0 0 1.80,
+			  1 0 0 1.57,
+			  1 0 0 0,
+			  1 0 0 0,
+			  1 0 0 1.80]
+}
+
+DEF	LeftFeetROT OrientationInterpolator {
+	key	[0 .35 .5 .90 1]
+	keyValue [1 0 0 -.26,
+			  1 0 0 0,
+			  1 0 0 1.40,
+			  1 0 0 0,
+			  1 0 0 -.26]
+}
+
+
+#Right Leg----------------------------------------------------------
+
+DEF	RightLegROT OrientationInterpolator {
+	key	[0 .5  1]
+	keyValue [-1 0  -.15 .78,
+			  1 0 -.15 .78,
+			  -1 0  -.15 .78]
+}
+ 
+DEF	RightKneeROT OrientationInterpolator {
+	key	[0 .25 .5 .75 1]
+	keyValue [1 0 0 0,
+			  1 0 0 0,
+			  1 0 0 1.80,
+			  1 0 0 1.57,
+			  1 0 0 0]
+}
+
+DEF	RightFeetROT OrientationInterpolator {
+		key	[0 .35 .5 .90 1]
+	keyValue [1 0 0 1.40,
+			  1 0 0 0,
+			  1 0 0 -.26,
+			  1 0 0 0,
+			  1 0 0 1.40]
+}
+
+#Torso----------------------------------------------------------
+DEF	TorsoRot OrientationInterpolator {
+	key	[0 .5 1]
+	keyValue [0 -1 0 .15,
+		0 1 0 .15,
+		0 -1 0 .15]
+
+}
+
+DEF	TorsoTrans PositionInterpolator	{
+	key	[0 .25 .5 .75 1]
+	keyValue [0 -.14 0,
+			0 .02 0,
+			0 -.14 0,
+			0 .02 0,
+			0 -.14 0]
+}
+
+#Head----------------------------------------------------------
+DEF	HeadRot OrientationInterpolator {
+	key	[0 .5 1]
+	keyValue [1 0 0 .35,
+		0 0 0 0,
+		1 0 0 .35]
+
+}
+
+DEF	HeadTrans PositionInterpolator	{
+	key	[0 .5 1]
+	keyValue [0 -.05 .05,
+			0 0 0,
+			0 -.05 .05]
+}
+
+# Aplicar animacao======================================================
+
+#Left Arm----------------------------------------------------------
+
+ROUTE ObjTimer.fraction_changed	TO LeftArmROT.set_fraction
+ROUTE LeftArmROT.value_changed TO Runner.leftArm
+
+ROUTE ObjTimer.fraction_changed	TO LeftElbowROT.set_fraction
+ROUTE LeftElbowROT.value_changed TO Runner.leftElbow
+
+#ROUTE ObjTimer.fraction_changed	TO LeftHandROT.set_fraction
+#ROUTE LeftHandROT.value_changed TO leftElbow.handRot
+
+#Right Arm----------------------------------------------------------
+
+ROUTE ObjTimer.fraction_changed	TO RightArmROT.set_fraction
+ROUTE RightArmROT.value_changed TO Runner.rightArm
+
+ROUTE ObjTimer.fraction_changed	TO RightElbowROT.set_fraction
+ROUTE RightElbowROT.value_changed TO Runner.rightElbow
+
+#ROUTE ObjTimer.fraction_changed	TO RightHandROT.set_fraction
+#ROUTE RightHandROT.value_changed TO rightElbow.handRot
+
+#Left Leg----------------------------------------------------------
+
+ROUTE ObjTimer.fraction_changed	TO LeftLegROT.set_fraction
+ROUTE LeftLegROT.value_changed TO Runner.leftLeg
+
+ROUTE ObjTimer.fraction_changed	TO LeftKneeROT.set_fraction
+ROUTE LeftKneeROT.value_changed TO Runner.leftKnee
+
+ROUTE ObjTimer.fraction_changed	TO LeftFeetROT.set_fraction
+ROUTE LeftFeetROT.value_changed TO Runner.leftFeet
+
+
+#Right Leg----------------------------------------------------------
+
+ROUTE ObjTimer.fraction_changed	TO RightLegROT.set_fraction
+ROUTE RightLegROT.value_changed TO Runner.rightLeg
+
+ROUTE ObjTimer.fraction_changed	TO RightKneeROT.set_fraction
+ROUTE RightKneeROT.value_changed TO Runner.rightKnee
+
+ROUTE ObjTimer.fraction_changed	TO RightFeetROT.set_fraction
+ROUTE RightFeetROT.value_changed TO Runner.rightFeet
+
+#Torso----------------------------------------------------------
+
+ROUTE ObjTimer.fraction_changed	TO TorsoRot.set_fraction
+ROUTE TorsoRot.value_changed TO RunnerOsc.rotation
+
+ROUTE ObjTimer.fraction_changed	TO TorsoTrans.set_fraction
+ROUTE TorsoTrans.value_changed TO RunnerOsc.translation
+
+#Head----------------------------------------------------------
+
+ROUTE ObjTimer.fraction_changed	TO HeadRot.set_fraction
+ROUTE HeadRot.value_changed TO Runner.headR
+
+ROUTE ObjTimer.fraction_changed	TO HeadTrans.set_fraction
+ROUTE HeadTrans.value_changed TO Runner.headT
+
+#Luz-------------------------------------------------------
+DEF	lightScript Script {
+	eventIn	SFBool worldLight
+	eventOut SFBool	luz
+	url	["javascript: 
+		function worldLight(light){
+			if(light == true) luz = !luz;
+		}"]
+}
+
+ROUTE Iluminacao.isActive TO lightScript.worldLight
+ROUTE lightScript.luz TO Runner.luz
+
+
+
+#Transform {
+
+#  children [
+#		Shape {
+#			geometry Extrusion {
+
+					 
+					 
+#				 solid FALSE
+#				 crossSection [-5	-5, -5 5
+#							5 5, 5 -5
+#							-5 -5]
+#				 spine [0 0 0]
+					 
+					 
+#				}
+#				 appearance Appearance { 
+#								material Material {	emissiveColor 0 0 1 }
+#				}
+#		}
+ 
+#  ]
+
+#}

@@ -1,0 +1,483 @@
+#VRML V2.0 utf8
+
+PROTO base
+[	 
+	field MFVec3f s	[]
+
+]
+{
+	Shape {
+		geometry Extrusion { 
+    		crossSection [0 0,15 0,15 1,0 1,0 0]
+    		spine IS s
+    		scale [1 1]
+    		orientation 0 0 1 0
+    		endCap TRUE
+    		beginCap TRUE
+    		solid FALSE
+    		ccw TRUE
+    		convex TRUE
+    		creaseAngle 0
+		}
+		appearance Appearance {
+        	material Material { 
+			   diffuseColor 1 1 1
+			}  
+		}
+	}
+}
+
+
+PROTO lampada[]{
+	Shape {
+ 		geometry Sphere { radius 0.05 }
+        	appearance Appearance { material Material { emissiveColor 1 1 1 } }
+    }
+}
+
+
+PROTO tecto[]
+{
+	Group {
+		children [
+			Transform {
+				translation	15 0 0 
+				rotation 0 0 1 3.14
+				children [
+
+
+					##### LAMPADAS ######
+
+
+					Transform{
+						translation	2.5 0.1 1.5
+						children [
+							lampada { }
+						]
+					}  
+					Transform{
+						translation	7.5 0.1 1.5
+						children [
+						   lampada { }
+					   ]
+					}  
+						Transform{
+						translation	12.5 0.1 1.5
+						children [
+						   lampada { }
+					   ]
+					}  
+					Transform{
+						translation	2.5 0.2 5.5
+						children [
+						   lampada { }
+					   ]
+					}  
+					Transform{
+						translation	7.5 0.2 5.5
+						children [
+						   lampada { }
+					   ]
+					}  
+					Transform{
+						translation	12.5 0.2 5.5
+						children [
+						   lampada { }
+					   ]
+					}  
+					Transform{
+						translation	2.5 0.3 9.5
+						children [
+						   lampada { }
+					   ]
+					}  
+					Transform{
+						translation	7.5 0.3 9.5
+						children [
+						   lampada { }
+					   ]
+					}  
+					Transform{
+						translation	12.5 0.3 9.5
+						children [
+						   lampada { }
+					   ]
+					} 
+					Transform{
+						translation	2.5 0.3 13.5
+						children [
+						   lampada { }
+					   ]
+					}  
+					Transform{
+						translation	7.5 0.3 13.5
+						children [
+						   lampada { }
+					   ]
+					}  
+					Transform{
+						translation	12.5 0.3 13.5
+						children [
+						   lampada { }
+					   ]
+					} 
+					Transform{
+						translation	2.5 0.3 17.5
+						children [
+						   lampada { }
+					   ]
+					}  
+					Transform{
+						translation	7.5 0.3 17.5
+						children [
+						   lampada { }
+					   ]
+					}  
+					Transform{
+						translation	12.5 0.3 17.5
+						children [
+						   lampada { }
+					   ]
+					} 
+
+					
+					###### TECTO #######
+
+
+					Transform{
+						children base { s [0 0 0,0 0.1 0]}
+					}
+					Transform{
+						translation	0 0 1
+						children base { s [0 0 0,0 0.1 0]}
+					} 
+					Transform{
+						translation	0 0 2
+						children base { s [0 0 0,0 0.1 0]}
+					} 
+					Transform{
+						translation	0 0 3
+						children base { s [0 0 0,0 0.6 0]}
+					} 
+					Transform{
+						translation	0 0 4
+						children base { s [0 0 0,0 0.2 0]}
+					} 
+					Transform{
+						translation	0 0 5
+						children base { s [0 0 0,0 0.2 0]}
+					} 
+					Transform{
+						translation	0 0 6
+						children base { s [0 0 0,0 0.2 0]}
+					} 
+					Transform{
+						translation	0 0 7
+						children base { s [0 0 0,0 0.7 0]}
+					} 
+					Transform{
+						translation	0 0 8
+						children base { s [0 0 0,0 0.3 0]}
+					} 
+					Transform{
+						translation	0 0 9
+						children base { s [0 0 0,0 0.3 0]}
+					} 
+					Transform{
+						translation	0 0 10
+						children base { s [0 0 0,0 0.3 0]}
+					} 
+					Transform{
+						translation	0 0 11
+						children base { s [0 0 0,0 0.8 0]}
+					} 
+					Transform{
+						translation	0 0 12
+						children base { s [0 0 0,0 0.3 0]}
+					} 
+					Transform{
+						translation	0 0 13
+						children base { s [0 0 0,0 0.3 0]}
+					} 
+					Transform{
+						translation	0 0 14
+						children base { s [0 0 0,0 0.3 0]}
+					} 
+					Transform{
+						translation	0 0 15
+						children base { s [0 0 0,0 0.8 0]}
+					} 
+					Transform{
+						translation	0 0 16
+						children base { s [0 0 0,0 0.3 0]}
+					} 
+					Transform{
+						translation	0 0 17
+						children base { s [0 0 0,0 0.3 0]}
+					} 
+					Transform{
+						translation	0 0 18
+						children base { s [0 0 0,0 0.3 0]}
+					} 
+					Transform {
+						translation	7.5 0.45 19.25
+						children Shape {
+							geometry Box { size	15 0.9 0.5 }
+							appearance Appearance {
+								material Material { diffuseColor 1 1 1}
+							}
+						}
+					}
+
+				]	 	
+			}
+
+
+			##### SENSOR E SCRIPT PARA ACENDER AS LUZES ######
+			
+			Transform {
+				translation 12.7 -1 2
+				rotation 0 1 0 1.57
+				children [
+					DEF LightSwitch TouchSensor { }
+					Shape {
+						geometry Box { size 0.05 0.05 0.02 }
+						appearance Appearance { material Material { emissiveColor 1 1 0 } }
+       				}
+   				]
+			}
+
+
+			DEF ToogleButton Script {
+			  field    SFBool on FALSE
+			  eventIn  SFBool set_active
+			  eventOut SFBool on_changed
+			  url "javascript:
+			   function set_active( set, timestamp ) {
+    			 if(set == FALSE) return;
+    			 if(on == TRUE)   on = FALSE;
+    			 else             on = TRUE;
+    			 on_changed = on;
+			  }"
+			}
+
+
+			###### LUZES DO AUDITORIO ######
+
+			DEF luz1 SpotLight {	
+				location 2.5 0.1 1.5
+				on FALSE
+				intensity 1  
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz2 SpotLight {	
+				location 7.5 0.1 1.5
+				on FALSE
+				intensity 1  
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz3 SpotLight {	
+				location 12.5 0.1 1.5
+				on FALSE
+				intensity 1  
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz4 SpotLight {	
+				location 2.5 0.2 5.5
+				on FALSE
+				intensity 0.5  
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz5 SpotLight {	
+				location 7.5 0.2 5.5
+				on FALSE
+				intensity 0.5
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz6 SpotLight {	
+				location 12.5 0.2 5.5
+				on FALSE
+				intensity 0.5
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz7 SpotLight {	
+				location 2.5 0.3 9.5
+				on FALSE
+				intensity 0.5
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz8 SpotLight {	
+				location 7.5 0.3 9.5
+				on FALSE
+				intensity 0.5
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz9 SpotLight {	
+				location 12.5 0.3 9.5
+				on FALSE
+				intensity 0.5
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz10 SpotLight {	
+				location 2.5 0.3 13.5
+				on FALSE
+				intensity 0.5
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz11 SpotLight {	
+				location 7.5 0.3 13.5
+				on FALSE
+				intensity 0.5
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz12 SpotLight {	
+				location 12.5 0.3 13.5
+				on FALSE
+				intensity 0.5 
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz13 SpotLight {	
+				location 2.5 0.3 17.5
+				on FALSE
+				intensity 0.5  
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz14 SpotLight {	
+				location 7.5 0.3 17.5
+				on FALSE
+				intensity 0.5  
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+
+			DEF luz15 SpotLight {	
+				location 12.5 0.3 17.5
+				on FALSE
+				intensity 0.5  
+				ambientIntensity 1  
+				color 1 1 1  
+				attenuation 1 0 0  
+				radius 100  
+				direction 0 -1 0
+				beamWidth 1.57
+				cutOffAngle	0.78
+			}
+		]
+
+		ROUTE LightSwitch.isActive TO ToogleButton.set_active
+		ROUTE ToogleButton.on_changed TO luz1.on
+		ROUTE ToogleButton.on_changed TO luz2.on
+		ROUTE ToogleButton.on_changed TO luz3.on
+		ROUTE ToogleButton.on_changed TO luz4.on
+		ROUTE ToogleButton.on_changed TO luz5.on
+		ROUTE ToogleButton.on_changed TO luz6.on
+		ROUTE ToogleButton.on_changed TO luz7.on
+		ROUTE ToogleButton.on_changed TO luz8.on
+		ROUTE ToogleButton.on_changed TO luz9.on
+		ROUTE ToogleButton.on_changed TO luz10.on
+		ROUTE ToogleButton.on_changed TO luz11.on
+		ROUTE ToogleButton.on_changed TO luz12.on
+		ROUTE ToogleButton.on_changed TO luz13.on
+		ROUTE ToogleButton.on_changed TO luz14.on
+		ROUTE ToogleButton.on_changed TO luz15.on
+	}
+}
+
+
+tecto { }

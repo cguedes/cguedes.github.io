@@ -1,0 +1,678 @@
+#VRML V2.0 utf8
+
+#EXTERNPROTO	Axis [ ] "axis_prof.wrl#Axis"
+#Transform {
+#	scale 1 1 1
+#	children Axis {  }
+#}
+ 
+EXTERNPROTO	Pilar [ ] "pilar.wrl#Pilar"
+EXTERNPROTO	Alarme [ ] "Alarme.wrl#Alarme"
+EXTERNPROTO	SecretariaSeg []"secretariaSeg.wrl#SecretariaSeg"
+EXTERNPROTO	MesaPC []"MesaPC.wrl#Mesa_computador"
+EXTERNPROTO	Jornais [] "Jornais.wrl#Jornais"
+EXTERNPROTO	Vidro [] "Vidro.wrl#Vidro_Separador"
+EXTERNPROTO	MesaRedonda [] "MesaRedonda.wrl#MesaRedonda"
+EXTERNPROTO Cadeira [] "cadeira.wrl#Cadeira"
+EXTERNPROTO MesaECadeiras [] "MesaECadeiras.wrl#MesaECadeiras"
+EXTERNPROTO Estante [] "estante2.wrl#Estante"
+EXTERNPROTO Sofa [] "sofa.wrl#Sofa"
+EXTERNPROTO Mesa_pequena [] "Mesa_pequena.wrl#Mesa_pequena"
+EXTERNPROTO Tecto_Pequeno [] "tecto_pequeno.wrl#Tecto_Pequeno"
+EXTERNPROTO	EstanteVidros [] "EstanteVidros.wrl#EstanteVidros"
+
+EXTERNPROTO	PilarSimples [ ] "LOD1\pilar.wrl#Pilar"
+EXTERNPROTO	AlarmeSimples [ ] "LOD1\Alarme.wrl#Alarme"
+EXTERNPROTO	SecretariaSegSimples []"LOD1\secretariaSeg.wrl#SecretariaSeg"
+EXTERNPROTO	MesaPCSimples []"LOD1\MesaPC.wrl#Mesa_computador"
+EXTERNPROTO	JornaisSimples [] "LOD1\Jornais.wrl#Jornais"
+EXTERNPROTO	MesaRedondaSimples [] "LOD1\MesaRedonda.wrl#MesaRedonda"
+EXTERNPROTO CadeiraSimples [] "LOD1\cadeira.wrl#Cadeira"
+EXTERNPROTO EstanteSimples [] "LOD1\estante2.wrl#Estante"
+EXTERNPROTO SofaSimples [] "LOD1\sofa.wrl#Sofa"
+EXTERNPROTO Mesa_pequenaSimples [] "LOD1\Mesa_pequena.wrl#Mesa_pequena"
+EXTERNPROTO	EstanteVidrosSimples [] "LOD1\EstanteVidros.wrl#EstanteVidros"
+
+PROTO Chao[] {
+	Transform {
+		translation	0 1.5 0
+		children [
+			Shape {
+				geometry Extrusion {
+					crossSection [
+						0		0,
+						-6.9	0,
+						-6.9	-1.25,
+						-12.7	-1.25,
+						-12.7	-4.8,
+						-7		-4.8,
+						-7		-4.3,
+						-1.7	-4.3,
+						-1.7	-2.2,
+						0		-2.2,
+						0		0				
+					]
+					spine [
+						0 0 0, 
+						0 0.02 0
+					]
+					ccw	FALSE
+				}
+#				appearance Appearance {
+#					texture	ImageTexture { url	["imagens/sala_entrada_chao.jpg"] }
+#					textureTransform TextureTransform { rotation 1.571 scale 5 5 center -15 -5 }
+#				}
+				appearance Appearance { material Material { diffuseColor 1 1 1 } }
+			}
+		]
+	}
+}
+
+PROTO Sala_Entrada [] {
+	Group {
+		children [
+			#------------------------------[ BLAH BLAH
+			Transform {
+				scale 2.38 0 2.38
+				children[Chao { }]
+			}
+			Transform {
+				translation	0 3 0
+				children[Tecto_Pequeno { }]
+			}
+			Transform {
+				translation	-6 0 -1
+				rotation 0 1 0 3.1415
+				children 
+				LOD {
+					range[4.0],
+					level[SecretariaSeg { } , SecretariaSegSimples { }]
+				}
+			}
+			Transform {
+				translation	-6.5 0 -0.65
+				rotation 0 1 0 3.1415
+				children 
+				LOD {
+					range[4.0],
+					level[Cadeira { } , CadeiraSimples { }]
+				}
+			}
+			Transform {
+				translation	-8.5 0 -0.65
+				rotation 0 1 0 3.1415
+				children 
+				LOD {
+					range[4.0],
+					level[Cadeira { } , CadeiraSimples { }]
+				}
+			}
+			Transform {
+				translation	-1.75 0 -1.5
+				children 
+				LOD {
+					range[4.0],
+					level[Alarme { } , AlarmeSimples { }]
+				}
+			}
+
+			#------------------------------[ ESTANTES
+			Transform {
+				translation	-4.5 0 -9
+				rotation 0 1 0 -1.571
+				children 
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-4.5 0 -8.25
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-4.5 0 -7.5
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-4.5 0 -6.75
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-4.5 0 -6
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-8.25 0 -9.25
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-8.25 0 -8.5
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-8.25 0 -7.75
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-8 0 -9.25
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-8 0 -8.5
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-8 0 -7.75
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-10.25 0 -9.25
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-10.25 0 -8.5
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-10.25 0 -7.75
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-10.25 0 -7
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-10 0 -9.25
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-10 0 -8.5
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-10 0 -7.75
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-10 0 -7
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			
+			#------------------------------[ SOFÁ E MESA
+			Transform {
+				translation	-6 0 -8
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Mesa_pequena { } , Mesa_pequenaSimples { }]
+				}
+			}
+			Transform {
+				translation	-5.5 0 -9.5
+				children
+				LOD {
+					range[4.0],
+					level[Sofa { } , SofaSimples { }]
+				}
+			}
+			Transform {
+				translation	-6.5 0 -9.5
+				children
+				LOD {
+					range[4.0],
+					level[Sofa { } , SofaSimples { }]
+				}
+			}
+			Transform {
+				translation	-8.1 0 -6
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Sofa { } , SofaSimples { }]
+				}
+			}
+			Transform {
+				translation	-8.1 0 -6.7
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Sofa { } , SofaSimples { }]
+				}
+			}
+
+			#------------------------------[ MESAS E CADEIRAS
+			Transform {
+				translation	-27 0 -4.29
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform {
+				translation	-27 0 -10.29
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform {
+				translation	-22.5 0 -4.29
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform {
+				translation	-18.5 0 -4.29
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform {
+				translation	-23.5 0 -8.39
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform {
+				translation	-23.5 0 -10.29
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform {
+				translation	-20.75 0 -8.39
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform {
+				translation	-20.75 0 -10.29
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform {
+				translation	-18 0 -8.39
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform {
+				translation	-18 0 -10.29
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+
+			#------------------------------[ TÁVOLA REDONDA DO REI ARTUR
+			Transform {
+				translation	-15 0 -8.33
+				children
+				LOD {
+					range[4.0],
+					level[MesaRedonda { } , MesaRedondaSimples { }]
+				}
+			}
+			Transform {
+				translation	-15 0 -7.70
+				rotation 0 1 0 3.1415
+				children
+				LOD {
+					range[4.0],
+					level[Cadeira { } , CadeiraSimples { }]
+				}
+			}
+			Transform {
+				translation	-15 0 -8.96
+				children
+				LOD {
+					range[4.0],
+					level[Cadeira { } , CadeiraSimples { }]
+				}
+			}
+			Transform {
+				translation	-15.63 0 -8.33
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Cadeira { } , CadeiraSimples { }]
+				}
+			}
+			Transform {
+				translation	-14.37 0 -8.33
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Cadeira { } , CadeiraSimples { }]
+				}
+			}
+			
+			#------------------------------[ JORNAIS
+			Transform {
+				translation	-12 0 -0.5
+				rotation 0 1 0 3.1415
+				children
+				LOD {
+					range[4.0],
+					level[Jornais { } , JornaisSimples { }]
+				}
+			}
+			Transform {
+				translation	-13 0 -0.5
+				rotation 0 1 0 3.1415
+				children
+				LOD {
+					range[4.0],
+					level[Jornais { } , JornaisSimples { }]
+				}
+			}
+
+			#------------------------------[ PCs
+			Transform {
+				translation	-15.75 0 -1.00
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[MesaPC { } , MesaPCSimples { }]
+				}
+			}
+			Transform {
+				translation	-15 0 -1.00
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Cadeira { } , CadeiraSimples { }]
+				}
+			}
+			Transform {
+				translation	-15.75 0 -2.25
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Cadeira { } , CadeiraSimples { }]
+				}
+			}
+			Transform {
+				translation	-15 0 -2.55
+				rotation 0 1 0 -1.25
+				children
+				LOD {
+					range[4.0],
+					level[Cadeira { } , CadeiraSimples { }]
+				}
+			}
+			Transform {
+				translation	-15 0 -1.95
+				rotation 0 1 0 -1.85
+				children
+				LOD {
+					range[4.0],
+					level[Cadeira { } , CadeiraSimples { }]
+				}
+			}
+			Transform {
+				translation	-15.75 0 -3.50
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[MesaPC { } , MesaPCSimples { }]
+				}
+			}
+			Transform {
+				translation	-15.25 0 -3.25
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Cadeira { } , CadeiraSimples { }]
+				}
+			}
+			Transform {
+				translation	-15.25 0 -3.80
+				rotation 0 1 0 -1.571
+				children
+				LOD {
+					range[4.0],
+					level[Cadeira { } , CadeiraSimples { }]
+				}
+			}
+
+			#------------------------------[ PILARES
+			Transform {
+				translation	-9.52 0 -3
+				rotation 0 1 0 3.1415
+				children
+				LOD {
+					range[4.0],
+					level[Pilar { } , PilarSimples { }]
+				}
+			}
+			Transform {
+				translation	-20.23 0 -3
+				rotation 0 1 0 3.1415
+				children
+				LOD {
+					range[4.0],
+					level[Pilar { } , PilarSimples { }]
+				}
+			}
+			Transform {
+				translation	-30.23 0 -3
+				rotation 0 1 0 3.1415
+				children
+				LOD {
+					range[4.0],
+					level[Pilar { } , PilarSimples { }]
+				}
+			}
+ 			#------------------------------[ VIDROS
+			Transform {	# fake vidro
+				translation	-16.422 0 -4.29
+				rotation 0 1 0 1.571
+				children[Vidro { }]
+			}
+			# ---
+			Transform { 
+				translation	-20.23 0 -4.29
+				rotation 0 1 0 1.571
+				children[Vidro { }]
+			}
+			Transform { 
+				translation	-24.99 0 -4.29 # ou -4
+				rotation 0 1 0 1.571
+				children[Vidro { }]
+			}
+			Transform { 
+				scale 2 1 1
+				translation	-24.99 0 -9.29
+				translation	-24.99 0 -10.29
+				rotation 0 1 0 1.571
+				children[Vidro { }]
+			}
+ 			#------------------------------[ vitrine grande
+			Transform {# fake wall, para textura interior (podia-se usar indexedfaceset :\)
+				translation	-30.226  1.5 -7.2
+				children [
+					Shape {
+						geometry Box {
+							size 0.01	3	8.568
+						}
+#						appearance Appearance {
+#							texture	ImageTexture {
+#								url	["imagens/parede_esquerda_sala_entrada.jpg"]
+#							}  
+#						}
+						appearance Appearance { material Material { diffuseColor 0.13 0.17 0.1 } }
+					}
+				]
+			}
+			Transform {
+				translation	-30 0 -4.5
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[EstanteVidros { } , EstanteVidrosSimples { }]
+				}
+			}
+			Transform {
+				translation	-30 0 -5.32
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[EstanteVidros { } , EstanteVidrosSimples { }]
+				}
+			}
+			Transform {
+				translation	-30 0 -6.14
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[EstanteVidros { } , EstanteVidrosSimples { }]
+				}
+			}
+			Transform {
+				translation	-30 0 -6.96
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[EstanteVidros { } , EstanteVidrosSimples { }]
+				}
+			}
+			Transform {
+				translation	-30 0 -7.78
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[EstanteVidros { } , EstanteVidrosSimples { }]
+				}
+			}
+			Transform {
+				translation	-30 0 -8.6
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[EstanteVidros { } , EstanteVidrosSimples { }]
+				}
+			}
+			Transform {
+				translation	-30 0 -9.42
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[EstanteVidros { } , EstanteVidrosSimples { }]
+				}
+			}
+			Transform {
+				translation	-30 0 -10.24
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[EstanteVidros { } , EstanteVidrosSimples { }]
+				}
+			}
+
+
+		]
+	}
+}
+
+Transform {
+	scale 0.1 0.1 0.1
+	children [Sala_Entrada { }]
+}

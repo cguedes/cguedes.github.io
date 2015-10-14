@@ -1,0 +1,65 @@
+#VRML V2.0 utf8
+
+####################################
+#		Perna                       
+####################################
+PROTO perna []{
+	Shape {
+		  geometry Box {size 0.04 0.75 0.04}
+		  appearance Appearance { material	Material { diffuseColor 0 0 0 } }
+	}
+}
+
+####################################
+#		Tampo                       
+####################################
+PROTO tampo []{
+	Shape {
+		  geometry Box { size 0.65 0.05 0.50 }
+		  appearance Appearance { 
+			  material	Material {  } 
+			  texture ImageTexture {url "imagens/wood5.jpg" }
+		  }
+	}
+}
+
+####################################
+#		Mesa                        
+####################################
+PROTO mesa []{
+	 
+   Group {
+	  children	
+	  [
+		  Transform {
+			  translation 0 0.025 0
+			  children tampo {}
+		  }
+
+		  Transform	{
+			  translation 0.3 -0.375 0.2
+			  children perna {}
+		  }
+
+		  Transform {
+			  translation 0.3 -0.375 -0.2
+			  children perna {}
+		  }
+
+		  Transform	{
+			  translation -0.3 -0.375 -0.2
+			  children perna { }
+		  }
+
+		  Transform {
+			  translation -0.3 -0.375 0.2
+			  children perna {}
+		  }
+	  ]
+  }
+}
+
+Transform {
+	translation	0 0.75 0.25
+	children mesa {}
+}

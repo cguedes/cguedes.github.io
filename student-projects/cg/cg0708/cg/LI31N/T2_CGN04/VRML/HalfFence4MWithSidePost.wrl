@@ -1,0 +1,170 @@
+#VRML V2.0 utf8
+
+
+
+
+PROTO HalfFence4MWithSidePost [
+]
+{
+Transform  {
+	children [
+		Group {
+			children [
+
+				DEF Fence Transform {				
+				scale 1 1 1
+					children [
+						Shape {
+								appearance Appearance {
+									material Material { 					
+									transparency 0.7
+								}
+							texture ImageTexture {
+								url "images/grill.png"							
+						}						
+						textureTransform TextureTransform {
+							rotation 0.7853981750
+							scale 30.0 30.0
+							#center 0.5 0.5
+						}
+					}
+									
+						geometry IndexedFaceSet {
+							solid FALSE
+								coord Coordinate {
+									point [
+								 #Baixo
+								 0.0 0.0 0.0,
+								 0.5 0.0 0.0,
+								 0.5 1.0 0.0,
+								 0.0 1.0 0.0,	
+
+								 
+								 #Cima
+								 0.0 1.004 0.0,
+								 0.5 1.004 0.0,
+								 0.5 2.0 0.0,
+								 0.0 2.0 0.0
+
+							 ]
+						}
+
+							coordIndex [
+								 0,  1,  2,  3, -1
+								 4,  5,  6,  7, -1
+
+							]
+
+							
+							texCoord TextureCoordinate {
+								point [
+									0.0 0.0,  0.5 0.0,
+									0.5 1.0,  0.0 1.0,
+								
+
+									0.5 1.004,  1.0 1.004,
+									1.0 2.0,  0.5 2.0									
+
+									]
+							}
+							texCoordIndex [
+									0, 1, 2, 3, -1,
+									0, 1, 2, 3, -1
+									]							
+						
+					}					
+					
+
+					}
+					
+				]
+			}
+
+		Transform {
+			scale 1 1 1
+			rotation 0 0 0 0
+			translation	0 2 0
+			children [
+		DEF Post Shape {
+				appearance DEF Galvanized Appearance {
+						material Material {
+							ambientIntensity 0.3
+							diffuseColor 0.3 0.3 0.3
+							specularColor 0.2 0.2 0.2
+							shininess 0.1
+							}
+
+							texture ImageTexture {
+							url "images/BocadoPequenoMuro.JPG"							
+						}						
+
+							}
+							geometry Cylinder {
+								height 4
+								radius 0.02
+							}
+						}	
+					]
+				}
+
+			#fio inferior
+		DEF	wire Transform {
+				rotation 0 0 1 1.57
+				translation	0.25 1 0
+				children [
+					Shape {
+						appearance USE Galvanized 
+						
+						geometry Cylinder {
+							height 0.5
+							radius 0.002
+						}
+				}
+
+			]
+		}
+
+		
+
+
+		#fio meio
+		Transform {
+			translation	0 1 0
+			children USE wire 
+		}
+
+		Transform {
+			translation	0 2 0
+			children USE	Fence 
+		}
+
+
+		#fio superior
+		Transform {
+			translation	0 2 0
+			children USE wire
+		}
+
+
+
+
+		]
+
+		
+}
+]
+}
+}
+
+
+#HalfFence4MWithSidePost{}
+
+
+
+
+
+
+
+				
+
+

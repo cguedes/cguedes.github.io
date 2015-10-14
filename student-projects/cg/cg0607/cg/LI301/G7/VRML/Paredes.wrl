@@ -1,0 +1,185 @@
+#VRML V2.0 utf8
+#Paredes
+
+
+PROTO Parede_acima_porta
+[]
+{
+	Shape{
+		geometry	Box	{size 0 3 0.8}
+		appearance Appearance {
+			material Material { }
+			  	texture ImageTexture { 
+					url "textura parede.png" 
+				}  
+		}
+
+	}
+}
+
+
+PROTO fundo_parede
+[
+]
+{
+	Shape {
+		geometry Box {size 13 5 0}
+		appearance Appearance {
+			material Material { }
+			  	texture ImageTexture { 
+					url "textura parede palco.png" 
+				}  
+		}
+	}
+}
+
+
+
+PROTO Filme
+[
+]
+{
+	Shape {
+		geometry Box {size 4.5 2.5 0}
+		appearance Appearance {
+			material Material { }
+			  	texture MovieTexture { 
+					url "isel_.mpg" 
+					loop TRUE
+            		speed 1.0
+        		 	startTime 0.0
+        			stopTime 0.0
+				}  
+		}
+	}
+}
+
+
+
+
+PROTO Parede_Norte
+[
+]
+{
+	Shape {
+		geometry Extrusion { 
+    		crossSection [0 2.5, 0 0, 15 0, 15 2.4]
+    		spine [0 0 0, 0 5 0]
+    		scale [1 1]
+    		orientation 0 0 1 0
+    		endCap FALSE
+    		beginCap FALSE
+    		solid FALSE
+    		ccw TRUE
+    		convex TRUE
+    		creaseAngle 0
+		}
+		appearance Appearance {
+			material Material { }
+			  	texture ImageTexture { url "textura parede.png" }
+		}
+	}
+}
+
+
+
+PROTO P
+[ field MFVec2f R  [ 0.001 17.501, 2.4 17.501, 2.4 17.7, 0.001 17.6999, 0.001 17.499]
+]
+{
+	Shape {
+		geometry Extrusion { 
+    		crossSection   IS R
+    		spine [0 0 0, 0 5 0]
+    		scale [1 1]
+    		orientation 0 0 1 0
+    		endCap TRUE
+    		beginCap TRUE
+    		solid FALSE
+    		ccw TRUE
+    		convex TRUE
+    		creaseAngle 0
+		}
+		appearance Appearance {
+			material Material { diffuseColor 1 1 1
+			}										
+		}
+	}
+}
+
+
+PROTO Parede_Sul
+[		  field MFVec2f R  [0.01 19.501, 12.6 19.501]
+]
+{
+	Shape {
+		geometry Extrusion { 
+    		crossSection  IS R
+    		spine [0 0 0, 0 5 0]
+    		scale [1 1]
+    		orientation 0 0 1 0
+    		endCap FALSE
+    		beginCap FALSE
+    		solid FALSE
+    		ccw TRUE
+    		convex TRUE
+    		creaseAngle 0
+		}
+		appearance Appearance {
+			material Material { }
+			  	texture ImageTexture { url "textura parede.png" }
+		}
+	}
+}
+
+
+
+
+
+
+PROTO Paredes
+[
+]
+{
+	Transform {
+		children [
+			Transform {
+				children Parede_Norte {}
+			}	 	 
+
+			Transform {	
+				translation	7 3 0.01		
+				children Filme {}
+			}  	
+			Transform {	
+				translation 7.5 2.5 0.001		
+				children fundo_parede {}
+			} 
+			Transform {			
+				children Parede_Sul {}
+			}
+			Transform {			
+				children P {}
+			} 
+			Transform {			
+				children P {R  [14.99 17.501, 14.99 17.699, 12.4 17.699, 12.4 17.501, 14.99 17.501]}
+			} 
+			Transform {
+				children Parede_Sul { R	[-0.01 3.3, -0.01 17.5]}
+			}
+			Transform {
+				children Parede_Sul { R	[15.01 3.2, 15.01 17.5]}
+			}
+			Transform	{  			
+				translation	0 3.5 2.901
+				children Parede_acima_porta	{}
+			}
+			Transform	{  			
+				translation	15 3.5 2.801
+				children Parede_acima_porta	{}
+			}								
+		]
+	}
+}
+
+

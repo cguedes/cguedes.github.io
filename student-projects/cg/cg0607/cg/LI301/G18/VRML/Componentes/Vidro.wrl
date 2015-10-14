@@ -1,0 +1,89 @@
+#VRML V2.0 utf8
+
+#EXTERNPROTO Vidro [
+#  field SFVec3f dimVidro 
+#	field SFVec3f dimBHor
+#	field SFVec3f dimBVert
+#	field SFVec3f posBHor
+#	field SFVec3f posBVer
+ 
+#	field SFVec3f zeroPosition
+#  field SFColor corB
+#]
+#"..\\Componentes\\Vidro.wrl#Vidro"
+
+
+PROTO Vidro [
+	field SFVec3f dimVidro     1       1       0.005 #comprimento, altura, largura
+	field SFVec3f dimBHor      1.005   0.005   0.005 #rebordo horizontal
+	field SFVec3f dimBVert     0.005   1.005   0.005 #rebordo vertical
+	field SFVec3f posBHor      0 .5 0 # (x, y, z) = (0,             altura/2,  0)
+	field SFVec3f posBVer      .5 0 0 # (x, y, z) = (comprimento/2,   0,       0)
+ 
+	field SFVec3f zeroPosition	0.5    0.5      0 # posição onde canto inferior esquerdo = (x,y) -> (0,0) 
+  field SFColor corB    	1	1	1 #cor rebordo
+]{
+	Transform {
+    translation	IS zeroPosition
+		children [
+			DEF vidro Transform {
+    		children [
+      		Transform{
+        		children [
+          		Shape {
+            		appearance Appearance {
+              		material Material {
+                		transparency .8
+              		}
+            		}
+            		geometry Box {
+              		size IS dimVidro
+            		}
+          		}
+        		]
+      		}
+    		]
+  		}
+			DEF bordasVidro Transform{
+				children [
+					DEF margensV Transform{
+						children [
+							DEF bordaV Transform {
+            		scale IS dimBVert
+                translation	IS posBVer
+            		children [
+              		DEF bordaVidro Shape {
+                		appearance Appearance {
+                  		material Material {
+                    		diffuseColor IS corB
+                  		}
+                		}
+                		geometry Box {size 1 1 1}
+              		}
+            		]
+          		}
+          		Transform {
+                rotation 0 0 1 3.1415
+                children USE bordaV
+          		}
+						]
+					}
+					DEF margensH Transform{
+						children [
+							DEF bordaH Transform {
+            		scale IS dimBHor
+            		translation IS posBHor
+            		children USE bordaVidro
+          		}
+          		Transform {
+                rotation 0 0 1 3.1415
+            		children USE bordaH
+          		}
+						]
+					}
+				]
+			}
+		]
+	}
+}
+Vidro	{}

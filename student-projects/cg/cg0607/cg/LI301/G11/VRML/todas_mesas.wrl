@@ -1,0 +1,248 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	mesa[]"mesa.wrl#mesa"
+
+
+ PROTO fila_mesa
+[
+]
+{
+	Transform {
+		children [
+		
+		  Transform {
+			translation	1.0 0.25 1
+			children mesa {}
+		}
+			Transform {
+				translation	2.2 0.25 1
+				children mesa {}
+			}
+
+			Transform {
+				translation	3.2 0.25 1
+				children mesa {}
+			}
+
+
+			Transform {
+				translation	7.5 0.25 1
+				children mesa {}
+			}
+
+			Transform {
+				translation	6.3 0.25 1
+				children mesa {}
+			}
+
+		]
+	}
+}
+
+###################################### fim fila do fundo
+PROTO fila_porta
+[
+]
+{
+ Transform{
+    children[
+			
+			Transform {
+			translation	1.0 0.25 1
+			children mesa {}
+			}
+			Transform {
+			translation	2.2 0.25 1
+			children mesa {}
+			}
+
+			Transform {
+			translation	3.2 0.25 1
+			children mesa {}
+			}
+
+		]
+	}
+
+
+}
+###################################### fim fila da porta 
+
+
+PROTO fila_l
+[
+]
+{
+	Transform {
+    children[
+			
+			Transform {
+			translation	8.5 0.25 9
+			rotation  0 1 0 1.54
+			children mesa {}
+			}
+
+			Transform {
+			translation	8.5 0.25 10 
+			rotation  0 1 0 1.54
+			children mesa {}
+			}
+
+			Transform {
+			translation	8.2 0.25 10.9 
+			children mesa {}
+			}
+
+			Transform {
+			translation	7.2 0.25 10.9 
+			children mesa {}
+			}	
+		]
+	}
+}
+
+################################### fim fila L
+
+
+PROTO fila_direita
+[
+]
+{
+
+  Transform {
+    children[
+		
+		Transform {
+		translation	10 0.25 9
+		rotation  0 1 0 1.54
+		children mesa {}
+		}
+
+		Transform {
+		translation	10 0.25 10 
+		rotation  0 1 0 1.54
+		children mesa {}
+		}
+
+		Transform {
+		translation	10 0.25 11 
+		rotation  0 1 0 1.54
+		children mesa {}
+		}
+
+########################################2 fila
+
+	Transform {
+	translation	10 0.25 15
+	rotation  0 1 0 1.54
+	children mesa {}
+	}
+
+	Transform {
+	translation	10 0.25 14 
+	rotation  0 1 0 1.54
+	children mesa {}
+
+
+	}
+
+	Transform {
+	translation	10 0.25 13 
+	rotation  0 1 0 1.54
+	children mesa {}
+	}
+	
+			
+	]
+  }
+}
+
+
+
+
+PROTO varias_filas
+[
+]
+{
+  Transform	{
+	  children [
+	  
+		Transform {
+			children  fila_mesa {}
+		}
+			 
+		Transform {
+			translation	0 0 1.7
+			children fila_mesa {}
+		}
+
+		Transform {
+			translation	0 0 3.1
+			children fila_mesa {}
+		}
+		Transform {
+			translation	0 0 4.8
+			children fila_mesa {}
+
+		}
+
+		Transform {
+			translation	0 0 6.5
+			children fila_mesa {}
+
+		}
+
+		Transform {
+			translation 0 0 8.2 
+			children fila_porta	{}
+		}
+		Transform {
+			translation 0 0 9.9 
+			children fila_porta	{}
+		}
+		Transform {
+			translation 0 0 11.6 
+			children fila_porta	{}
+		}
+		Transform {
+			translation 0 0 13.3
+			children fila_porta	{}
+		}
+
+		Transform {
+		children fila_l{}
+		}
+		Transform {
+			children fila_direita {}
+		}
+		Transform {
+			translation	1.7 0 0
+			children fila_direita {}
+		}
+		Transform {
+			translation	3.4 0 0
+			children fila_direita {}
+		}
+
+		Transform {
+			translation	7.2 0 16 
+			rotation 0 1 0 1.54
+			children fila_porta {}
+		}
+
+		Transform {
+			translation	5.5 0 16 
+			rotation 0 1 0 1.54
+			children fila_porta {}
+		}
+
+	   	Transform {
+			translation	4.2 0 16 
+			rotation 0 1 0 1.54
+			children fila_porta {}
+		}
+
+	  ]
+  }
+}
+

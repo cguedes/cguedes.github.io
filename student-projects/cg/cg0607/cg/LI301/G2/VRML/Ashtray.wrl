@@ -1,0 +1,65 @@
+#VRML V2.0 utf8
+
+#Ficheiro para definição de um cinzeiro
+
+PROTO Ashtray[]{
+	Group {
+		children [
+			Shape {
+				appearance Appearance {
+					material Material {
+						diffuseColor 0 0 0
+					}
+				}
+				geometry Cylinder {
+					height 0.7
+					radius 0.105
+				}
+			}
+
+			Transform {
+				translation 0 0.36 0
+				children Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.7 0.7 0.7
+						}
+
+						texture	ImageTexture {
+							url	"Images\Ashtray.jpg"
+						}
+					}
+
+					geometry Cylinder {
+						height 0.02
+						radius 0.105
+					}
+				}
+			}
+
+#			Transform {
+#				translation	0 0.3705 0
+#				rotation 0 0 1 3.1416
+#				children Shape {
+#					appearance Appearance {
+#						material Material {}
+#						texture	ImageTexture {
+#							url	"Images\Ashtray.jpg"
+#						}
+#						textureTransform TextureTransform {
+#							rotation	3.1416						
+#						}
+#					}
+
+#					geometry Extrusion {
+#						crossSection [0.1050		0.0000	, 0.1034		0.0182	, 0.0987		0.0359	, 0.0909		0.0525	, 0.0804		0.0675	, 0.0675		0.0804	, 0.0525		0.0909	, 0.0359		0.0987	, 0.0182		0.1034	, 0.0000		0.1050	, -0.0182		0.1034	, -0.0359		0.0987	, -0.0525		0.0909	, -0.0675		0.0804	, -0.0804		0.0675	, -0.0909		0.0525	, -0.0987		0.0359	, -0.1034		0.0182	, -0.1050		0.0000	, -0.1034		-0.0182	, -0.0987		-0.0359	, -0.0909		-0.0525	, -0.0804		-0.0675	, -0.0675		-0.0804	, -0.0525		-0.0909	, -0.0359		-0.0987	, -0.0182		-0.1034	, 0.0000		-0.1050	, 0.0182		-0.1034	, 0.0359		-0.0987	, 0.0525		-0.0909	, 0.0675		-0.0804	, 0.0804		-0.0675	, 0.0909		-0.0525	, 0.0987		-0.0359	, 0.1034		-0.0182	, 0.1050		0.0000]
+#						spine [0 0 0, 0 0.0001 0]
+#						solid FALSE
+#					}
+#				}
+#			}
+		]
+	}
+}
+
+Ashtray	{}

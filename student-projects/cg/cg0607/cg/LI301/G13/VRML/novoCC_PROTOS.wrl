@@ -1,0 +1,1045 @@
+#VRML V2.0 utf8
+
+PROTO CCISELButton
+[
+       eventOut SFTime CCISELButtonPressed
+       eventIn SFTime CCISEL_2001
+       eventIn SFTime CCISEL_Explosion
+       eventIn SFTime CCISEL_Why
+       eventIn SFTime CCISEL_2001_End
+       eventIn SFTime CCISEL_Why_End
+]
+{
+       Group {
+               children [
+                       Transform {
+                               translation     0 0.6 0
+                               children [
+                                       Shape {
+                                               geometry Box {
+                                                       size 0.6 1.2 0.6
+                                               }
+                                               appearance Appearance {
+                                                       material Material {
+                                                               diffuseColor .5 .3 .19
+                                                               specularColor .08 .08 .05
+                                                               emissiveColor .12 .13 .08
+                                                               ambientIntensity .0833
+                                                               shininess .17
+                                                       }
+                                               }
+                                       }
+                               ]
+                       }
+                       Transform {
+                               translation 0 1.23 0
+                                       children [
+                                       TouchSensor {
+                                               touchTime IS CCISELButtonPressed
+                                       }
+                                       Shape {
+                                               geometry Cylinder {
+                                                       height 0.06
+                                                       radius 0.12
+                                               }
+                                               appearance Appearance {
+                                                       material Material {
+                                                               diffuseColor .56 .15 .01
+                                                               specularColor .11 .02 .02
+                                                               emissiveColor .22 .15 .15
+                                                               ambientIntensity .06
+                                                               shininess .07
+                                                       }
+                                               }
+                                       }
+                               ]
+                       }
+                       Transform {
+                               translation 0 1.38 -0.27
+                               children [
+                                       Shape {
+                                               geometry Box {
+                                                       size 0.6 0.36 0.06
+                                               }
+                                               appearance Appearance {
+                                                       material Material {
+                                                               ambientIntensity 0
+                                                               diffuseColor .898 .902 .914
+                                                               shininess 0
+                                                       }
+                                               }
+                                       }
+                               ]
+                       }
+                       Transform {
+                               translation -0.228 1.458 -0.23
+                               children [
+                                       Shape {
+                                               geometry Text {
+                                                       string "Don't push"
+                                                       fontStyle FontStyle     {
+                                                               size 0.12
+                                                       }
+                                               }
+                                               appearance Appearance {
+                                                       material Material {
+                                                               ambientIntensity 0
+                                                               diffuseColor 0 0 0
+                                                               shininess .08
+                                                               specularColor .29 .3 .29
+                                                       }
+                                               }
+                                       }
+                               ]
+                       }
+                       Transform {
+                               translation -0.228 1.32 -0.23
+                               children [
+                                       Shape {
+                                               geometry Text {
+                                                       string "the button!"
+                                                       fontStyle FontStyle     {
+                                                               size 0.12
+                                                       }
+                                               }
+                                               appearance Appearance {
+                                                       material Material {
+                                                               ambientIntensity 0
+                                                               diffuseColor 0 0 0
+                                                               shininess .08
+                                                               specularColor .29 .3 .29
+                                                       }
+                                               }
+                                       }
+                               ]
+                       }
+                       Sound {
+                               source AudioClip {
+                               url "novoCC/masporque.mp3"
+                                       loop            FALSE
+                                       startTime       IS CCISEL_Why
+                                       stopTime        IS CCISEL_Why_End
+                                       pitch                   1
+                               }
+                               minFront 100
+                               minBack  100
+                               maxFront 100
+                               maxBack  100
+                       }
+                       Sound {
+                               source AudioClip {
+                               url "novoCC/explosionFX.wav"
+                                       loop            FALSE
+                                       startTime       IS CCISEL_Explosion
+                                       pitch                   1
+                               }
+                               minFront 100
+                               minBack  100
+                               maxFront 100
+                               maxBack  100
+                       }
+                       Sound {
+                               source AudioClip {
+                               url "novoCC/2001.mp3"
+                                       loop            FALSE
+                                       startTime       IS CCISEL_2001
+                                       stopTime        IS CCISEL_2001_End
+                                       pitch                   1
+                               }
+                               minFront 100
+                               minBack  100
+                               maxFront 100
+                               maxBack  100
+                               intensity 1
+                       }
+               ]
+       }
+}
+
+PROTO ISELFloor
+[]
+{
+       Shape {
+               geometry IndexedFaceSet {
+                       coord Coordinate {
+                               point [
+                                       -250 -0.1 -180,  #A
+                                       -250 -0.1 180, #B
+                                       190 -0.1 180,  #C
+                                       190 -0.1 -180,   #D
+                                       ]
+                       }
+                       coordIndex [
+                               0 1 2 3 -1,        # chao
+                       ]
+               }
+               appearance Appearance {
+                       material Material {
+                               diffuseColor .51 .78 .39
+                               specularColor .11 .11 .11
+                               ambientIntensity 0
+                               shininess .1
+                               emissiveColor .13 .19 .1
+                       }
+               }
+       }
+}
+
+PROTO Boom
+[
+       eventIn SFTime startAnimation
+       eventIn SFVec3f size
+]
+{
+       Billboard {
+               children [
+                       Transform {
+                               scale IS size
+                               children [
+                                       Shape {
+                                               geometry Box {
+                                                       size 15 6 0.001
+                                               }
+                                               appearance Appearance {
+                                                       texture MovieTexture {
+                                                               startTime IS startAnimation
+                                                               url     "novoCC/boom.gif"
+                                                       }
+                                               }
+                                       }
+                               ]
+                       }
+               ]
+               axisOfRotation 0 1 0
+       }
+}
+
+PROTO Fire
+[
+       eventIn SFVec3f size
+]
+{
+       Transform {
+               children [
+                       Transform {
+                               scale IS size
+                               children [
+                                       Shape {
+                                               geometry IndexedFaceSet {
+                                                       coord Coordinate {
+                                                               point [
+                                                                       -3 1 0,  #A
+                                                                       -3 0 0, #B
+                                                                       0 0 0,  #C
+                                                                       0 1 0,   #D
+
+                                                                       0 1 -3,  #E
+                                                                       0 0 -3 #F
+                                                                       ]
+                                                       }
+                                                       coordIndex [
+                                                               0 1 2 3 -1,        # frente
+                                                               3 2 5 4 -1         # lado
+                                                       ]
+
+                                                       texCoord TextureCoordinate {
+                                                               point [
+                                                                       0 1,                    #texturas
+                                                                       0 0,
+                                                                       10 0,
+                                                                       10 1
+                                                               ]
+                                                       }
+                                                       # And this particular indexing makes a nice image:
+                                                       texCoordIndex [
+                                                                       0, 1, 2, 3, -1,
+                                                                       0, 1, 2, 3, -1
+                                                       ]
+                                               }
+                                               appearance Appearance {
+                                                       texture DEF fire MovieTexture {
+                                                               url     "novoCC/fire.gif"
+                                                               loop TRUE
+                                                       }
+                                               }
+                                       }
+                               ]
+                       }
+               ]
+       }
+}
+
+
+PROTO pilar
+[
+       eventIn SFTime  startAnimation
+       eventIn SFTime  disappear
+	   field SFVec3f pilarTranslation 0 0 0
+	   field SFVec3f pilarSize 0 0 0
+]
+{
+       Group {
+               children [
+                       DEF pilarScale Transform {
+                               children [
+                                       Transform {
+                                       translation     IS pilarTranslation
+                                               children [
+                                                       Shape {
+                                                               geometry Box {
+                                                                       size IS pilarSize
+                                                               }
+                                                               appearance Appearance {
+                                                                       material Material {
+                                                                               diffuseColor .784 .533 .349
+                                                                               specularColor 1 1 1
+                                                                               ambientIntensity .153
+																			   shininess .694
+                                                                       }
+                                                               }
+                                                       }
+                                               ]
+                                       }
+                               ]
+                       }
+                       DEF pilarScripts Script {
+                               eventOut SFVec3f scale
+                               eventOut SFTime startTimer
+                               eventIn SFTime startAnimation IS startAnimation
+                               eventIn SFTime disappear IS disappear
+                               eventIn SFFloat doAnimation
+                               eventOut SFTime stopTimer
+                               field SFVec3f currentScale 1 0 1
+                               field SFVec3f initialScale 1 0 1
+                               field SFVec3f disappearValue 0 0 0
+                               url     "javascript:
+                                       function initialize() {
+                                                 scale = disappearValue;
+                                       }
+                                       function startAnimation(value) {
+                                               scale = initialScale;
+                                               currentScale = scale;
+                                               startTimer = value;
+                                       }
+                                       function doAnimation(value) {
+                                               currentScale[1] = value;
+                                               scale = currentScale;
+                                       }
+                                       function disappear(value) {
+                                               currentScale = disappearValue;
+                                               scale = currentScale;
+                                               stopTimer = value;
+                                       }
+                               "
+                       }
+               ]
+       }
+   DEF pilarTimeSensor TimeSensor {
+               loop FALSE
+               cycleInterval 4
+       }
+   DEF pilarSI ScalarInterpolator {
+       key [ 0, 1 ]
+       keyValue [ 0, 1 ]
+   }
+       ROUTE pilarScripts.startTimer TO pilarTimeSensor.startTime
+	ROUTE pilarTimeSensor.fraction_changed TO pilarSI.set_fraction
+       ROUTE pilarSI.value_changed     TO pilarScripts.doAnimation
+       ROUTE pilarScripts.scale TO     pilarScale.scale
+       ROUTE pilarScripts.stopTimer TO pilarTimeSensor.stopTime
+}
+
+PROTO floor
+[
+       eventIn SFTime appear
+       eventIn SFTime disappear
+	   field SFVec3f sizeFloor 0 0 0
+	   field SFVec3f translationFloor 0 0 0
+]
+{
+       Group {
+               children [
+                       DEF visibility Transform {
+                               translation     IS translationFloor
+                               children [
+                                       Shape {
+                                               geometry Box {
+                                                       size IS sizeFloor
+                                               }
+                                               appearance Appearance {
+                                                       material Material {
+                                                               diffuseColor .784 .533 .349
+                                                               specularColor 1 1 1
+                                                               ambientIntensity .153
+															   shininess .694
+                                                       }
+                                               }
+                                       }
+                               ]
+                       }
+               ]
+       }
+       DEF floor Script {
+               eventOut SFVec3f scale
+               eventIn SFTime appear IS appear
+               eventIn SFTime disappear IS disappear
+               field SFVec3f initialScale 1 1 1
+               field SFVec3f disappearValue 0 0 0
+               url     "javascript:
+                       function initialize() {
+                                 scale = disappearValue;
+                       }
+                       function appear(value) {
+                               scale = initialScale;
+                       }
+                       function disappear(value) {
+                               scale = disappearValue;
+                       }
+               "
+       }
+       ROUTE floor.scale TO     visibility.scale
+}
+
+PROTO wall
+[
+       eventIn SFTime startAnimation
+       eventIn SFTime disappear
+	   field SFVec3f sizeWall 0 0 0
+	   field SFVec3f translationWall 0 0 0
+]
+{
+       Group {
+               children [
+                       DEF wallScale Transform {
+                               children [
+                                       Transform {
+                                       translation     IS translationWall
+                                               children [
+                                                       Shape {
+                                                               geometry Box {
+                                                                       size IS sizeWall
+                                                               }
+                                                               appearance Appearance {
+                                                                       material Material {
+                                                                               diffuseColor .784 .533 .349
+                                                                               specularColor 1 1 1
+                                                                               ambientIntensity .153
+																			   shininess .694
+                                                                       }
+                                                               }
+                                                       }
+                                               ]
+                                       }
+                               ]
+                       }
+               ]
+       }
+       DEF wall Script {
+               eventOut SFVec3f scale
+               eventIn SFTime startAnimation IS startAnimation
+               eventIn SFTime disappear IS disappear
+			   eventIn SFFloat doAnimation
+			   eventOut	SFTime startTimer
+			   eventOut	SFTime stopTimer
+               field SFVec3f initialScale 1 0 1
+               field SFVec3f disappearValue 0 0 0
+               field SFVec3f currentScale 1 1 1
+			   url     "javascript:
+                       function initialize() {
+                                 scale = disappearValue;
+                       }
+                       function startAnimation(value) {
+                           scale = initialScale;
+                           currentScale = scale;
+                           startTimer = value;                       
+					   }
+                       function doAnimation(value) {
+                               currentScale[1] = value;
+                               scale = currentScale;
+                       }
+				       function disappear(value) {
+	                       scale = disappearValue;
+						   stopTimer = value;
+                       }
+				"
+       }
+       DEF myTimer TimeSensor { cycleInterval 4 stopTime -1 }
+	   ROUTE wall.startTimer TO	myTimer.startTime
+	   ROUTE wall.stopTimer	TO myTimer.stopTime
+	   ROUTE myTimer.fraction_changed TO wall.doAnimation
+	   ROUTE wall.scale TO     wallScale.scale
+}
+
+PROTO light [
+	eventIn	SFBool changeStatus
+	field SFVec3f position 1 1 1 
+]
+{
+
+	DEF light PointLight {
+		location IS	position
+		color 1 1 1
+		intensity 1
+		ambientIntensity 1
+		radius 10
+		attenuation	0 0 0
+	}
+	DEF lightScript Script {
+		eventIn	SFBool changeStatus IS changeStatus
+		eventOut SFBool	doStatus
+		url	"javascript:
+			function initialize() {
+				doStatus = false;
+			}
+			function changeStatus(value) {
+				doStatus = value;
+			}
+		"
+	}
+	ROUTE lightScript.doStatus TO light.on
+}
+
+
+
+
+PROTO degrau [
+	field SFVec3f pos 1 1 1
+]
+{
+	Transform {
+		translation	IS pos
+		children [
+           Shape {
+                   geometry Box {
+                           size 0.45  0.047	0.1	
+                   }
+                   appearance Appearance {
+                           material Material {
+                                   diffuseColor .35 .41 .43
+                                   specularColor .15 .17 .18
+                                   emissiveColor .14 .16 .17
+                                   ambientIntensity .06
+                                   shininess .32
+                           }
+                   }
+           }
+		]
+	}
+}
+
+PROTO stairs 
+[
+   eventIn SFTime startAnimation
+   eventIn SFTime disappear
+   field SFVec3f sizeStairs 1 1 1
+   field SFVec3f translationStairs 1 1 1
+   field SFRotation	rotationStairs 1 1 1 1
+]
+{
+       Group {
+               children [
+                       DEF pilarScale Transform {
+                               children [
+                                       Transform {
+											scale		IS	sizeStairs
+                                    		rotation     IS rotationStairs
+                                    		translation     IS translationStairs
+                                               children [
+												   Group {
+													   children	[
+														   degrau {pos 0.775 .0235 .03}
+														   degrau {pos 0.775 .0705 .09}
+														   degrau {pos 0.775 .1175 .15}
+														   degrau {pos 0.775 .1645 .21}
+														   degrau {pos 0.775 .2215 .27}
+														   degrau {pos 0.775 .2585 .33}
+														   degrau {pos 0.775 .3055 .39}
+														   degrau {pos 0.775 .3525 .45}
+														   degrau {pos 0.775 .3995 .51}
+														   degrau {pos 0.775 .4465 .57}
+
+        												   Transform {
+															   translation 0.5 .4935 .8
+															   children [
+																   Shape {
+                													   geometry Box {
+                        													   size 1  0.047	0.4	
+                													   }
+                													   appearance Appearance {
+                        													   material Material {
+                                													   diffuseColor .35 .41 .43
+                                													   specularColor .15 .17 .18
+                                													   emissiveColor .14 .16 .17
+                                													   ambientIntensity .06
+                                													   shininess .32
+                        													   }
+                													   }
+	        													   }
+															   ]
+														   }
+														   degrau {pos 0.225 .5405 .57}
+														   degrau {pos 0.225 .5875 .51}
+														   degrau {pos 0.225 .6345 .45}
+														   degrau {pos 0.225 .6815 .39}
+														   degrau {pos 0.225 .7285 .33}
+														   degrau {pos 0.225 .7755 .27}
+														   degrau {pos 0.225 .8225 .21}
+														   degrau {pos 0.225 .8695 .15}
+														   degrau {pos 0.225 .9165 .09}
+														   degrau {pos 0.225 .9635 .03}
+
+													   ]
+												   }
+                                               ]
+                                       }
+                               ]
+                       }
+                       DEF stairsScripts Script {
+                               eventOut SFVec3f scale
+                               eventOut SFTime startTimer
+                               eventIn SFTime startAnimation IS startAnimation
+                               eventIn SFTime disappear IS disappear
+                               eventIn SFFloat doAnimation
+                               eventOut SFTime stopTimer
+                               field SFVec3f currentScale 1 0 1
+                               field SFVec3f initialScale 1 0 1
+                               field SFVec3f disappearValue 0 0 0
+                               url     "javascript:
+                                       function initialize() {
+                                                 scale = disappearValue;
+                                       }
+                                       function startAnimation(value) {
+                                               scale = initialScale;
+                                               currentScale = scale;
+                                               startTimer = value;
+                                       }
+                                       function doAnimation(value) {
+                                               currentScale[1] = value;
+                                               scale = currentScale;
+                                       }
+                                       function disappear(value) {
+                                               currentScale = disappearValue;
+                                               scale = currentScale;
+                                               stopTimer = value;
+                                       }
+                               "
+                       }
+               ]
+       }
+   DEF pilarTimeSensor TimeSensor {
+               loop FALSE
+               cycleInterval 4
+       }
+   DEF pilarSI ScalarInterpolator {
+       key [ 0, 1 ]
+       keyValue [ 0, 1 ]
+   }
+       ROUTE stairsScripts.startTimer TO pilarTimeSensor.startTime
+	ROUTE pilarTimeSensor.fraction_changed TO pilarSI.set_fraction
+       ROUTE pilarSI.value_changed     TO stairsScripts.doAnimation
+       ROUTE stairsScripts.scale TO     pilarScale.scale
+       ROUTE stairsScripts.stopTimer TO pilarTimeSensor.stopTime
+
+}
+
+
+PROTO Andar0
+[
+       eventIn SFTime startAnimation
+       eventIn SFTime disappear
+]
+{
+       Group {
+               children [
+                       DEF chao1 floor {sizeFloor 63.60 0.1 18.25, translationFloor 31.8 0.05 9.125}
+                       DEF chao2 floor {sizeFloor 3 0.1 15.83, translationFloor 65.1 0.05 7.915}
+                       DEF chao3 floor {sizeFloor 3.5 0.1 2.32, translationFloor 21.03 0.05 19.41}
+                       DEF chao4 floor {sizeFloor 4.5 0.1 11.6, translationFloor 20.53 0.05 26.37}
+
+                       # pilares da esquerda para a direita
+					   DEF pilar01 pilar {pilarSize 0.27 3.75 2.1 pilarTranslation 0.315 1.975 1.35}
+                       DEF pilar09 pilar {pilarSize 0.27 3.75 2.1 pilarTranslation 0.315 1.975 6.65}
+                       DEF pilar20 pilar {pilarSize 0.27 3.75 2.1 pilarTranslation 0.315 1.975 11.75}
+                       DEF pilar28 pilar {pilarSize 0.27 3.75 2.1 pilarTranslation 0.315 1.975 17.05}
+
+                       DEF pilar29 pilar {pilarSize 0.45 3.75 0.32 pilarTranslation 2.775 1.975 17.95}
+
+                       DEF pilar02 pilar {pilarSize 1 3.75 0.32 pilarTranslation 9.25 1.975 0.45}
+                       DEF pilar10 pilar {pilarSize 1 3.75 0.32 pilarTranslation 9.25 1.975 7.55}
+                       DEF pilar21 pilar {pilarSize 1 3.75 0.32 pilarTranslation 9.25 1.975 10.85}
+                       DEF pilar30 pilar {pilarSize 1 3.75 0.32 pilarTranslation 9.25 1.975 17.95}
+
+                       DEF pilar03 pilar {pilarSize 0.3 3.75 3.17 pilarTranslation 18.28 1.975 1.885}
+                       DEF pilar11 pilar {pilarSize 0.3 3.75 1.64 pilarTranslation 18.28 1.975 6.88}
+                       DEF pilar22 pilar {pilarSize 1 3.75 0.3 pilarTranslation 18.28 1.975 10.85}
+                       DEF pilar31 pilar {pilarSize 1 3.75 0.45 pilarTranslation 18.28 1.975 18.025}
+
+					   # salicencia do prédio
+                       DEF pilar32 pilar {pilarSize .75 3.75 .32 pilarTranslation 19.155 1.975 18.09}
+                       DEF pilar33 pilar {pilarSize 0.25 3.75 2.32 pilarTranslation 19.405 1.975 19.41}
+                       DEF pilar34 pilar {pilarSize 1.25 3.75 0.25 pilarTranslation 18.905 1.975 20.695}
+                       DEF pilar35 pilar {pilarSize 4.5 3.75 0.25 pilarTranslation 20.53 1.975 32.045}
+                       DEF pilar36 pilar {pilarSize 0.25 3.75 2.35 pilarTranslation 22.655 1.975 21.745}
+                       DEF pilar37 pilar {pilarSize 4.25 3.75 0.32 pilarTranslation 24.655 1.975 18.09}
+
+					   # elevador										  
+                       DEF pilar12 pilar {pilarSize 2.5 3.75 .25 pilarTranslation 23.88 1.975 5.355}
+                       DEF pilar13 pilar {pilarSize .25 3.75 1.85 pilarTranslation 22.775 1.975 6.305}
+                       DEF pilar14 pilar {pilarSize 2.5 3.75 .25 pilarTranslation 23.88 1.975 7.255}
+                       
+					   DEF pilar04 pilar {pilarSize 0.3 3.75 3.17 pilarTranslation 22.78 1.975 1.885}
+                       DEF pilar23 pilar {pilarSize 1 3.75 0.3 pilarTranslation 27.2 1.975 10.7}
+                       DEF pilar38 pilar {pilarSize 1 3.75 0.45 pilarTranslation 27.2 1.975 18.025}
+
+
+                       DEF pilar05 pilar {pilarSize 1 3.75 0.32 pilarTranslation 30.03 1.975 0.45}
+                       DEF pilar15 pilar {pilarSize .32 3.75 1 pilarTranslation 30.03 1.975 7.2}
+
+                       DEF pilar16 pilar {pilarSize 1 3.75 0.32 pilarTranslation 36.3 1.975 7.55}
+                       DEF pilar24 pilar {pilarSize 1 3.75 0.32 pilarTranslation 36.3 1.975 10.7}
+                       DEF pilar39 pilar {pilarSize 1 3.75 0.32 pilarTranslation 36.3 1.975 17.95}
+
+                       DEF pilar06 pilar {pilarSize 1 3.75 0.32 pilarTranslation 38.98 1.975 0.45}
+                       DEF pilar17 pilar {pilarSize 1 3.75 0.32 pilarTranslation 45.3 1.975 7.55}
+                       DEF pilar25 pilar {pilarSize 1 3.75 0.32 pilarTranslation 45.3 1.975 10.7}
+                       DEF pilar40 pilar {pilarSize 1 3.75 0.32 pilarTranslation 45.3 1.975 17.95}
+
+                       DEF pilar41 pilar {pilarSize 1 3.75 0.32 pilarTranslation 47.98 1.975 0.45}
+                       DEF pilar42 pilar {pilarSize 1 3.75 0.32 pilarTranslation 54.3 1.975 7.55}
+                       DEF pilar43 pilar {pilarSize 1 3.75 0.32 pilarTranslation 54.3 1.975 10.7}
+                       DEF pilar44 pilar {pilarSize 1 3.75 0.32 pilarTranslation 54.3 1.975 17.95}
+
+                       DEF pilar07 pilar {pilarSize 1 3.75 0.32 pilarTranslation 56.98 1.975 0.45}
+																				# 62.295
+                       DEF pilar18 pilar {pilarSize 1 3.75 0.32 pilarTranslation 63.315 1.975 7.55}
+                       DEF pilar26 pilar {pilarSize .33 3.75 7.39 pilarTranslation 63.315 1.975 14.395}
+
+                       DEF pilar08 pilar {pilarSize 0.27 3.75 2.1 pilarTranslation 66.3 1.975 1.35}
+                       DEF pilar19 pilar {pilarSize 0.27 3.75 2.1 pilarTranslation 66.3 1.975 6.65}
+                       DEF pilar27 pilar {pilarSize .4 3.75 .8 pilarTranslation 66.25 1.975 15.35}
+
+					   DEF wall01 wall {sizeWall 0.45 3.75 7.85 translationWall 66.375 1.975 3.925}
+					   DEF wall02 wall {sizeWall 3.48 3.75 .45 translationWall 64.41 1.975 7.625}
+					   DEF wall03 wall {sizeWall 0.8 3.75 .45 translationWall 63.07 1.975 10.775}
+					   DEF wall04 wall {sizeWall 0.4 3.75 5.28 translationWall 66.4 1.975 13.19}
+
+					   DEF wall05 wall {sizeWall 2.72 3.75 .40 translationWall 64.84 1.975 15.63}
+					   DEF wall06 wall {sizeWall .45 3.75 2.29 translationWall 63.375 1.975 16.975}
+
+					   DEF wall07 wall {sizeWall 0.45 3.75 7.85 translationWall 0.225 1.975 4.225}
+					   DEF wall08 wall {sizeWall 0.18 3.75 2.7 translationWall 0.09 1.975 9.2}
+					   DEF wall09 wall {sizeWall 0.45 3.75 7.7 translationWall 0.225 1.975 14.4}
+
+					   DEF wall10 wall {sizeWall 2.55 3.75 .45 translationWall 1.725 1.975 18.025}
+					   DEF wall11 wall {sizeWall 0.2 3.75 6.8 translationWall 9.25 1.975 14.4}
+					   DEF wall12 wall {sizeWall 3.29 3.75 .45 translationWall 1.825 1.975 7.625}
+					   DEF wall13 wall {sizeWall 3.29 3.75 .45 translationWall 1.825 1.975 10.775}
+
+					   DEF wall14 wall {sizeWall 1.79 3.75 .32 translationWall 17.235 1.975 7.55}
+					   DEF wall15 wall {sizeWall 6.89 3.75 .32 translationWall 11.985 1.975 7.55}
+					   DEF wall16 wall {sizeWall 4.16 3.75 .32 translationWall 5.55 1.975 7.55}
+					   DEF wall17 wall {sizeWall .2 3.75 6.8 translationWall 18.38 1.975 14.4}
+
+					   DEF wall18 wall {sizeWall 6.89 3.75 .32 translationWall 15.585 1.975 10.85}
+					   DEF wall19 wall {sizeWall 4.49 3.75 .32 translationWall 8.985 1.975 10.85 }
+					   DEF wall20 wall {sizeWall 2.39 3.75 .32 translationWall 4.65 1.975 10.85}
+
+					   DEF wall21 wall {sizeWall .20 3.75 6.78 translationWall 9.25 1.975 3.99}
+					   DEF wall22 wall {sizeWall .30 3.75 6.78 translationWall 18.28 1.975 3.99}
+					   
+
+					   DEF wall23 wall {sizeWall .20 3.75 6.78 translationWall 30.09 1.975 3.99}
+					   DEF wall24 wall {sizeWall .20 3.75 6.78 translationWall 39.04 1.975 3.99}
+					   DEF wall25 wall {sizeWall .20 3.75 6.78 translationWall 48.04 1.975 3.99}
+					   DEF wall26 wall {sizeWall .20 3.75 6.78 translationWall 57.04 1.975 3.99}
+
+					   DEF wall27 wall {sizeWall 6.6 3.75 .32 translationWall 33.33 1.975 7.55}
+					   DEF wall28 wall {sizeWall 9.49 3.75 .32 translationWall 42.285 1.975 7.55}
+					   DEF wall29 wall {sizeWall 7.98 3.75 .32 translationWall 53.04 1.975 7.55}
+					   DEF wall30 wall {sizeWall 4.73 3.75 .32 translationWall 60.305 1.975 7.55}
+
+					   DEF wall31 wall {sizeWall .20 3.75 6.95 translationWall 27.2 1.975 14.325}
+					   DEF wall32 wall {sizeWall .20 3.75 6.93 translationWall 36.2 1.975 14.325}
+					   DEF wall33 wall {sizeWall .20 3.75 6.93 translationWall 45.04 1.975 14.325}
+					   DEF wall34 wall {sizeWall .20 3.75 6.93 translationWall 54.04 1.975 14.325}
+
+					   DEF wall35 wall {sizeWall 7.49 3.75 .32 translationWall 30.195 1.975 10.7}
+					   DEF wall36 wall {sizeWall 8.38 3.75 .32 translationWall 39.04 1.975 10.7}
+					   DEF wall37 wall {sizeWall 6.88 3.75 .32 translationWall 47.58 1.975 10.7}
+					   DEF wall38 wall {sizeWall 3.01 3.75 .32 translationWall 53.435 1.975 10.7}
+					   DEF wall39 wall {sizeWall 7.63 3.75 .32 translationWall 59.665 1.975 10.7}
+
+					   DEF wall40 wall {sizeWall 3.25 3.75 .1 translationWall 26.605 1.975 0.65}
+					   DEF wall41 wall {sizeWall 3.25 3.75 .1 translationWall 26.605 1.975 1.62}
+					   DEF wall42 wall {sizeWall 3.25 3.75 .1 translationWall 26.605 1.975 2.58}
+					   DEF wall43 wall {sizeWall 3.25 3.75 .1 translationWall 26.605 1.975 3.55}
+					   DEF wall44 wall {sizeWall 0.85 3.75 3 translationWall 26.605 1.975 2.1}
+					   DEF wall45 wall {sizeWall .3 3.75 1.76 translationWall 22.78 1.975 4.35}
+					   DEF wall46 wall {sizeWall 2.5 3.75 .15 translationWall 23.88 1.975 4.675}
+					   DEF wall47 wall {sizeWall 3.35 3.75 .15 translationWall 28.315 1.975 4.675}
+					   DEF wall48 wall {sizeWall 3.35 3.75 .15 translationWall 28.315 1.975 7.075}
+					   DEF wall49 wall {sizeWall .15 3.75 2 translationWall 26.715 1.975 6.7}
+
+					   DEF wall50 wall {sizeWall .15 3.75 4.08 translationWall 24.275 1.975 15.89}
+					   DEF wall51 wall {sizeWall 1.35 3.75 .15 translationWall 24.875 1.975 13.775}
+					   DEF wall52 wall {sizeWall 1.35 3.75 .32 translationWall 24.875 1.975 10.7}
+					   DEF wall53 wall {sizeWall .49 3.75 .15 translationWall 26.855 1.975 13.775}
+					   DEF stairs1 stairs {rotationStairs 0 1 0 3.14 sizeStairs 4.2 3.75 5.23 translationStairs 22.63 0 5.23}
+					   DEF stairs2 stairs {rotationStairs 0 0 0 0 sizeStairs 2.72 3.75 4.88 translationStairs 63.43 0 10.55}
+					   DEF light1 light	{position 61.3 3.74 4 } 
+		           ]
+
+	       }
+			DEF     Andar0Scripts Script {
+               eventIn SFTime startAnimation IS startAnimation
+               eventIn SFTime disappear IS disappear
+			   eventIn SFFloat doAnimation
+			   eventOut	SFTime startWalls
+               eventOut SFTime startAnimationOut
+               eventOut SFTime disappearOut
+			   eventOut	SFTime stopTimer
+			   eventOut	SFTime startTimer
+			   eventOut	SFBool light
+			   field SFBool	status FALSE
+
+               url     "javascript:
+                       function startAnimation(value, time) {
+                               startAnimationOut = value;
+							   startTimer = time;
+							   status = false;
+                       }
+                       function disappear(value,time) {
+                               disappearOut = value;
+							   stopTimer = time;
+							   status = false;
+                       }
+					   function doAnimation(value,time) {
+						   if (value > 0.6 && status == false) {
+								startWalls = time;
+								status = true;
+							}
+							if (value == 1) {
+								light = true;
+						   }
+					   }
+               "
+       }
+	   DEF myTimerSensor TimeSensor	{ cycleInterval	10 startTime	-1 }
+	   ROUTE myTimerSensor.fraction_changed	TO Andar0Scripts.doAnimation
+	   ROUTE Andar0Scripts.startTimer TO myTimerSensor.startTime
+	   ROUTE Andar0Scripts.stopTimer TO myTimerSensor.stopTime
+
+	   ROUTE Andar0Scripts.light TO	light1.changeStatus
+
+	   ROUTE Andar0Scripts.startWalls TO wall01.startAnimation
+       ROUTE Andar0Scripts.startAnimationOut TO pilar01.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar01.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar02.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar02.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar03.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar03.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar04.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar04.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar05.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar05.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar06.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar06.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar07.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar07.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar08.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar08.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar09.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar09.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar10.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar10.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar11.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar11.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar12.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar12.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar13.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar13.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar14.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar14.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar15.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar15.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar16.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar16.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar17.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar17.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar18.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar18.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar19.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar19.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar20.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar20.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar21.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar21.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar22.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar22.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar23.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar23.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar24.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar24.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar25.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar25.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar26.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar26.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar27.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar27.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar28.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar28.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar29.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar29.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar30.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar30.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar31.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar31.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar32.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar32.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar33.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar33.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar34.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar34.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar35.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar35.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar36.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar36.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar37.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar37.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar38.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar38.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar39.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar39.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar40.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar40.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar41.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar41.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar42.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar42.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar43.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar43.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO pilar44.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO pilar44.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO chao1.appear
+       ROUTE Andar0Scripts.disappearOut TO chao1.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO chao2.appear
+       ROUTE Andar0Scripts.disappearOut TO chao2.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO chao3.appear
+       ROUTE Andar0Scripts.disappearOut TO chao3.disappear
+       ROUTE Andar0Scripts.startAnimationOut TO chao4.appear
+       ROUTE Andar0Scripts.disappearOut TO chao4.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall01.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall01.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall02.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall02.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall03.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall03.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall04.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall04.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall05.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall05.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall06.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall06.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall07.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall07.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall08.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall08.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall09.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall09.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall10.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall10.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall11.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall11.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall12.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall12.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall13.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall13.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall14.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall14.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall15.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall15.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall16.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall16.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall17.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall17.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall18.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall18.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall19.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall19.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall20.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall20.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall21.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall21.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall22.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall22.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall23.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall23.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall24.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall24.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall25.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall25.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall26.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall26.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall27.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall27.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall28.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall28.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall29.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall29.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall30.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall30.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall31.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall31.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall32.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall32.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall33.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall33.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall34.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall34.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall35.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall35.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall36.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall36.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall37.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall37.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall38.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall38.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall39.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall39.disappear
+
+	   ROUTE Andar0Scripts.startWalls TO wall40.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall40.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall41.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall41.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall42.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall42.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall43.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall43.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall44.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall44.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall45.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall45.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall46.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall46.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall47.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall47.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall48.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall48.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall49.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall49.disappear
+
+	   ROUTE Andar0Scripts.startWalls TO wall50.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall50.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall51.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall51.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall52.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall52.disappear
+	   ROUTE Andar0Scripts.startWalls TO wall53.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO wall53.disappear
+	   ROUTE Andar0Scripts.startAnimationOut TO stairs1.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO stairs1.disappear
+	   ROUTE Andar0Scripts.startAnimationOut TO stairs2.startAnimation
+       ROUTE Andar0Scripts.disappearOut TO stairs2.disappear   
+}
+
+

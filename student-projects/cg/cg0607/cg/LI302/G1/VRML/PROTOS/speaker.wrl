@@ -1,0 +1,82 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Axis [ ] "axis.wrl#Axis"
+Transform {
+	scale	0.2 0.2 0.2
+	children Axis {  }
+}
+
+
+PROTO Speaker []{
+	Group {
+		children [		
+			Shape { 
+				geometry Box {size 0.10 0.20 0.15}
+				appearance Appearance { 
+					material Material { 
+						diffuseColor 0 0 0							
+						specularColor .5 .5 .5
+						ambientIntensity 0.4
+						emissiveColor 0 0 0
+						shininess 0.3
+					}
+					texture ImageTexture	{ url "../GFX/glass.png" }
+					textureTransform TextureTransform { scale .5 .5 }
+					
+				}						
+			}		
+			Transform {
+		    	rotation	1 0 0 1.57
+				translation	0 -0.04 0.052
+				children [
+					Shape { 				
+						geometry Cylinder { height 0.05 radius 0.04}
+						appearance Appearance { 							
+							material Material { 
+								diffuseColor .45 .45 .45							
+								specularColor .5 .5 .5
+								ambientIntensity 0.4
+								emissiveColor 0 0 0
+								shininess 0.3
+							}
+						texture ImageTexture	{ url "../GFX/grid.png" }
+						textureTransform TextureTransform { scale .5 .5 }    
+						}						
+					}										
+				]
+			}
+			Transform {
+		    	rotation	1 0 0 1.57
+				translation	0 0.065 0.052
+				children [
+					Shape { 				
+						geometry Cylinder {height 0.05 radius 0.010}
+						appearance DEF metal Appearance { 
+							material Material { 
+								diffuseColor .45 .45 .45							
+								specularColor .5 .5 .5
+								ambientIntensity 0.4
+								shininess 0.3
+								emissiveColor 0 0 0
+							} 
+						}						
+					}										
+				]
+			}
+			Transform {
+		    	rotation	1 0 0 1.57
+				translation	0 0.025 0.052
+				children [
+					Shape { 				
+						geometry Cylinder {height 0.05 radius 0.015}
+						appearance USE metal	
+					}										
+				]
+			}
+			
+		]
+	}
+}
+
+
+Speaker {}

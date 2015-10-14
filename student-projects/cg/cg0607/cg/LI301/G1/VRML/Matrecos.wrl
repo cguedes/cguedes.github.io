@@ -1,0 +1,596 @@
+#VRML V2.0 utf8
+	
+EXTERNPROTO Axis [] "axis.wrl#Axis"
+
+Viewpoint {
+  position -3 4 4
+  orientation -0.8340013517964802 -0.5154411820735834 -0.19688101235068659 0.8589604574518649
+  description "mesa"
+}
+
+########################################################################
+# Eixo de coordenadas do mundo
+########################################################################
+
+
+Inline {
+  url "eixo.wrl"
+}
+
+
+
+PROTO Caixa[]{
+
+	Shape {
+		geometry Extrusion { 
+			crossSection [ 0.75 0.35, 0.75 -0.35, -0.75 -0.35, -0.75 0.35, 0.75 0.35, 0.65 0.32, 0.65 -0.32,  -0.65 -0.32, -0.65 0.32, 0.65 0.32 ]
+			spine[ 0 0 0, 0 0.2 0]
+			solid FALSE
+		
+		}
+		appearance Appearance { 
+			texture	ImageTexture { url "imagens\texturasMatrecos\wood2.jpg" }
+			material Material {}}
+	}
+
+}
+
+PROTO CaixaDasMoedas[]{
+	Transform{
+		translation	0 -0.075 0
+		children [
+	Shape {
+		geometry Box{
+			size 1.36 0.15 0.64
+		}
+	   appearance Appearance { 
+			texture	ImageTexture { url "imagens\texturasMatrecos\wood2.jpg" }
+			material Material {}}
+	}
+]
+}
+
+}
+
+PROTO Bola[]{
+	Transform {
+		translation	-2.0 0.4 0.2
+		children [
+  Shape {
+    geometry Sphere {radius 0.08}
+    appearance Appearance { 
+      material Material { diffuseColor 255 255 255 } 
+    }
+  }
+]
+}
+}
+
+
+PROTO Rebordo[]{
+
+	Transform {
+		translation	0 0.2 0
+		children [
+
+	Shape {
+		geometry Extrusion { 
+			crossSection [ 0.76 0.36, 0.76 -0.36, -0.76 -0.36, -0.76 0.36, 0.76 0.36, 0.64 0.31, 0.64 -0.31,  -0.64 -0.31, -0.64 0.31, 0.64 0.31 ]
+			spine[ 0 0 0, 0 0.01 0]
+			solid FALSE
+		
+		}
+		appearance Appearance { 
+			texture	ImageTexture { url "imagens\texturasMatrecos\wood2.jpg" }
+			material Material {}}
+	}
+]
+}
+
+}
+
+
+PROTO Campo[]{
+
+	Transform{
+		translation	0 0.074 0
+		children [
+	Shape {
+		geometry Box{
+			size 1.36 0.01 0.64
+		}
+	   appearance Appearance { 
+			texture	ImageTexture { url "imagens\texturasMatrecos\pitch.jpg" }
+			material Material {}}
+	}
+]
+}
+
+}
+
+
+PROTO Baliza[]{
+	 Transform{
+		#translation 0 -0.3 0
+		children [
+	Shape {
+		geometry Box{
+			size 0.01 0.13 0.17
+		}
+	   appearance Appearance { 
+			material Material {
+			
+			diffuseColor 0 0 0
+			
+			}}
+	}
+]
+}
+
+}
+
+PROTO Perna[]{
+	 Transform{
+		translation 0 -0.3 0
+		children [
+	Shape {
+		geometry Box{
+			size 0.1 0.4 0.1
+		}
+	   appearance Appearance { 
+			texture	ImageTexture { url "imagens\texturasMatrecos\wood.jpg" }
+			material Material {}}
+	}
+]
+}
+
+}
+
+
+PROTO Marcador[]{
+
+	 Group {
+
+		children [
+
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0 0.046 0
+				children [
+					Shape {
+						geometry Cylinder { radius 0.005 height 0.1}
+					
+						appearance Appearance { 
+							 texture	ImageTexture { url "imagens\texturasMatrecos\chrome4.jpg" }
+							
+							material Material {}}
+					}
+				   
+				]
+			}
+			Transform {
+
+				translation	0 0 -0.05
+				children [
+					Shape {
+						geometry Cylinder { radius 0.005 height 0.1 }
+					
+						appearance Appearance { 
+							texture	ImageTexture { url "imagens\texturasMatrecos\chrome4.jpg" }
+							material Material {}}
+					}
+				   
+				]
+			}
+			Transform {
+				translation	0 0 0.05
+				children [
+					Shape {
+						geometry Cylinder { radius 0.005 height 0.1 }
+					
+						appearance Appearance { 
+							texture	ImageTexture { url "imagens\texturasMatrecos\chrome4.jpg" }
+							material Material {}}
+					}
+				   
+				]
+			}
+			Transform {
+		translation	0 0.05 0.04
+		children [
+		Shape {
+		geometry Sphere	{ radius 0.007 }
+		appearance Appearance { 
+			material Material {diffuseColor 0 0 0}
+		}
+		}
+		]
+		}
+		Transform {
+		translation	0 0.05 0.03
+		children [
+		Shape {
+		geometry Sphere	{ radius 0.007 }
+		appearance Appearance { 
+			material Material {diffuseColor 0 0 0}
+		}
+		}
+		]
+		}
+		Transform {
+		translation	0 0.05 0.02
+		children [
+		Shape {
+		geometry Sphere	{ radius 0.007 }
+		appearance Appearance { 
+			material Material {diffuseColor 0 0 0}
+		}
+		}
+		]
+		}
+
+
+]
+}
+}
+
+
+
+
+PROTO SaidaDasBolas[]{
+
+	Group {
+
+		children [
+
+			Transform {
+				translation	0 -0.17 0.14
+				rotation 1 0 0 0.47
+				children [
+					Shape {
+						geometry Box{ size 0.3 0.01 0.25 }
+					
+						appearance Appearance { 
+							 texture	ImageTexture { url "imagens\texturasMatrecos\wood2.jpg" }
+							
+							material Material {}}
+					}
+				   
+				]
+			}
+			Transform {
+
+				translation	-0.15 -0.09 0.14
+				rotation 1 0 0 -1.125
+				children [
+					Shape {
+						geometry Box{ size 0.01 0.32 0.15 }
+					
+						appearance Appearance { 
+							texture	ImageTexture { url "imagens\texturasMatrecos\wood2.jpg" }
+							material Material {}}
+					}
+				   
+				]
+			}
+			Transform {
+
+				translation	0.15 -0.09 0.14
+				rotation 1 0 0 -1.125
+				children [
+					Shape {
+						geometry Box{ size 0.01 0.32 0.15 }
+					
+						appearance Appearance { 
+							 texture	ImageTexture { url "imagens\texturasMatrecos\wood2.jpg" }
+							material Material {}}
+					}
+				   
+				]
+			}
+
+]
+}
+}
+
+
+
+
+PROTO Varao[]{
+
+	Group {
+		children [
+
+
+	Transform {
+		children [
+			Shape {
+				geometry Cylinder { radius 0.01 height 1 }
+			
+				appearance Appearance{ 
+					
+					texture	ImageTexture { url "imagens\texturasMatrecos\Rusty2.jpg" }
+					material	Material { }
+				}
+			}
+		]
+	}
+
+	
+]
+}
+}
+
+PROTO Pega[]{
+Transform {
+		translation	0 -0.5 0
+		children [
+		Shape {
+		geometry Cylinder { radius 0.019 height 0.15 }
+		appearance Appearance{ 
+			texture	ImageTexture { url "imagens\texturasMatrecos\Rusty2.jpg" }
+			material	Material {}}
+
+	}
+]
+}
+
+}
+		
+PROTO BonecoBenfica[]{
+
+	Group {
+	children [	
+	
+	Transform {
+		translation	0 0.034 0
+	children [
+	Shape {
+		geometry Sphere	{ radius 0.02 }
+		appearance Appearance { 
+			texture	ImageTexture { url "imagens\texturasMatrecos\face.jpg" }
+			material Material {}
+		}
+	}
+]
+}
+
+Transform {
+	rotation 1 0 0 1.57
+	translation	0 0 0
+	children [
+	Shape {
+		geometry Cylinder	{ radius 0.019 height 0.05 }
+		appearance Appearance { 
+			#texture	ImageTexture { url "imagens\texturasMatrecos\benfica.jpg" }
+			material Material {
+			
+				diffuseColor 1 0.3 0.3
+			}
+		}
+	}
+]
+}
+
+Transform {
+	translation	0 -0.04 0
+	children [
+	Shape {
+		geometry Box	{ size 0.01 0.05 0.035}
+		appearance Appearance { 
+			texture	ImageTexture { url "imagens\texturasMatrecos\calcoes.jpg" }
+			material Material {}
+		}
+	}
+]
+}	
+
+Transform {
+		translation	-0.001 0.034 0
+	children [
+	Shape {
+		geometry Sphere	{ radius 0.02 }
+		appearance Appearance { 
+			material Material {diffuseColor 0 0 0}
+		}
+	}
+]
+}
+
+]
+}
+}
+
+
+PROTO BonecoSporting[]{
+
+	Group {
+	children [	
+	
+	Transform {
+		translation	0 0.034 0
+	children [
+	Shape {
+		geometry Sphere	{ radius 0.02 }
+		appearance Appearance { 
+			texture	ImageTexture { url "imagens\texturasMatrecos\face.jpg" }
+			material Material {}
+		}
+	}
+]
+}
+
+Transform {
+	rotation 1 0 0 1.57
+	translation	0 0 0
+	children [
+	Shape {
+		geometry Cylinder	{ radius 0.019 height 0.05 }
+		appearance Appearance { 
+			material Material {
+			diffuseColor 0.3 1 0.3
+			
+			}
+		}
+	}
+]
+}
+
+Transform {
+	translation	0 -0.04 0
+	children [
+	Shape {
+		geometry Box	{ size 0.01 0.05 0.035}
+		appearance Appearance { 
+			texture	ImageTexture { url "imagens\texturasMatrecos\calcoes.jpg" }
+			material Material {}
+		}
+	}
+]
+}	
+
+Transform {
+		translation	0.001 0.034 0
+	children [
+	Shape {
+		geometry Sphere	{ radius 0.02 }
+		appearance Appearance { 
+			material Material {diffuseColor 0 0 0}
+		}
+	}
+]
+}
+
+]
+}
+}
+
+
+
+
+PROTO Mesa[]{
+
+	Group {
+		  
+		children [
+
+
+Transform {  scale 4 4 4 
+	children [
+
+Transform{ children[ Caixa{} ] }
+Transform{ children[ CaixaDasMoedas	{} ]  }
+Transform{ children[ Rebordo {} ] }
+Transform{ children[ Campo {}] }
+Transform{ translation 0.6 0 0.23 children[ Perna {}] }
+Transform{ translation 0.6 0 -0.23 children[ Perna {}] }
+Transform{ translation -0.6 0 -0.23 children[ Perna {}] }
+Transform{ translation -0.6 0 0.23 children[ Perna {}] }
+Transform{ translation -0.525 0.15 0 rotation 1 0 0 -1.57 children[ Varao {} ] }
+Transform{ translation -0.375 0.15 0 rotation 1 0 0 -1.57 children[ Varao {}Pega {}] }
+Transform{ translation -0.225 0.15 0 rotation 1 0 0 1.57 children[ Varao {} Pega {} ] }
+Transform{ translation -0.075 0.15 0 rotation 1 0 0 -1.57 children[ Varao {}Pega{}] }
+Transform{ translation 0.075 0.15 0 rotation 1 0 0 1.57 children[ Varao {} Pega {}] }
+Transform{ translation 0.225 0.15 0 rotation 1 0 0 -1.57 children[ Varao {}Pega {}] }
+Transform{ translation 0.375 0.15 0 rotation 1 0 0 1.57 children[ Varao {} Pega {} ] }
+Transform{ translation 0.525 0.15 0 rotation 1 0 0 1.57 children[ Varao {} Pega {} ] }
+#Transform{ translation -0.525 0.15 0 children[ BonecoBenfica {}] }
+Transform{ translation -0.375 0.15 0.12 children[ BonecoBenfica {}] }
+Transform{ translation -0.375 0.15 -0.12 children[ BonecoBenfica {}] }
+Transform{ translation -0.075 0.15 0.22 children[ BonecoBenfica {}] }
+Transform{ translation -0.075 0.15 -0.22 children[ BonecoBenfica {}] }
+Transform{ translation -0.075 0.15 -0.11 children[ BonecoBenfica {}] }
+Transform{ translation -0.075 0.15 0.11 children[ BonecoBenfica {}] }
+Transform{ translation -0.075 0.15 0 children[ BonecoBenfica {}] }
+Transform{ translation 0.225 0.15 0.15 children[ BonecoBenfica {}] }
+Transform{ translation 0.225 0.15 -0.15 children[ BonecoBenfica {}] }
+Transform{ translation 0.225 0.15 0 children[ BonecoBenfica {}] }
+Transform{ translation 0.525 0.15 0 children[ BonecoSporting {}] }
+Transform{ translation 0.375 0.15 0.12 children[ BonecoSporting {}] }
+Transform{ translation 0.375 0.15 -0.12 children[ BonecoSporting {}] }
+Transform{ translation 0.075 0.15 0.22 children[ BonecoSporting {}] }
+Transform{ translation 0.075 0.15 -0.22 children[ BonecoSporting {}] }
+Transform{ translation 0.075 0.15 -0.11 children[ BonecoSporting {}] }
+Transform{ translation 0.075 0.15 0.11 children[ BonecoSporting{}] }
+Transform{ translation 0.075 0.15 0 children[ BonecoSporting{}] }
+Transform{ translation -0.225 0.15 0.15 children[BonecoSporting {}] }
+Transform{ translation -0.225 0.15 -0.15 children[ BonecoSporting {}] }
+Transform{ translation -0.225 0.15 0 children[ BonecoSporting {}] }
+Transform{ translation -0.65 0.1 0  children	[ Baliza{} ] }
+Transform{ translation 0.65 0.1 0  children	[ Baliza{} ] }
+Transform{ children	[ SaidaDasBolas	{} ] }
+Transform{ translation	-0.7 0.2 -0.047 children	[ Marcador {} ] }
+Transform{ translation	0.7 0.2 -0.047 children	[ Marcador {} ] }
+	 
+
+
+
+]
+}
+]
+	 }
+ }
+
+
+DEF Timer1 TimeSensor { cycleInterval 0.1 loop FALSE stopTime 1 }
+DEF VaraoTransform Transform {
+	translation -2.1 0.6 0 
+	rotation 1 0 0 -1.57 
+	scale 4 4 4 
+  children [
+	  Pega {}
+    DEF TouchStart TouchSensor { }
+  ]
+}
+
+DEF	BonecoTransform Transform{ 
+	translation -2.1 0.6 0.2 
+	scale 4 4 4
+	children[ BonecoBenfica {}] }
+
+
+DEF	BolaTransform Transform{
+	children[ 
+    Bola {}
+    Viewpoint {
+      position 0 0 0
+      orientation 0 -1 0 1.5707963267948966
+      description "aa"
+    }
+  
+  ] 
+}
+
+
+
+DEF PosInterpolator PositionInterpolator {
+	key      [0 0.5 0.999 1]
+  keyValue [0 0 0,  3 0 0,  4.8 0 0, 0 -0.3 0.2]
+}
+
+DEF Timer TimeSensor {
+  cycleInterval 10
+  loop FALSE
+  stopTime 1
+  enabled TRUE
+}
+
+
+DEF RotIInterpolator OrientationInterpolator {
+  key [0 1]
+  keyValue [ 0 0 1 0, 0 0 1 1]
+}
+
+ROUTE TouchStart.touchTime TO Timer1.startTime
+ROUTE Timer1.fraction_changed TO RotIInterpolator.set_fraction
+ROUTE RotIInterpolator.value_changed TO BonecoTransform.rotation
+
+#ROUTE TouchStart.isActive TO Timer.enabled
+ROUTE TouchStart.touchTime TO Timer.startTime
+ROUTE Timer.fraction_changed TO PosInterpolator.set_fraction
+ROUTE PosInterpolator.value_changed TO BolaTransform.translation
+
+ 
+
+
+Mesa {}

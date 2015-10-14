@@ -1,0 +1,130 @@
+#VRML V2.0 utf8
+
+Viewpoint {
+	description	"Perspectiva"
+	position 8 7.5 -5
+	orientation	-0.1 1 0.32 2.3
+}
+
+Viewpoint {
+	description	"Interruptor"
+	position 2 0.8 1
+	orientation	0 1 0 3.14
+}
+
+Viewpoint {
+	 description "CGD"
+	 position 5 0 0
+	 orientation 0 1 0 1.57
+}
+
+Viewpoint {
+	 description "Traseira"
+	 position 2 .8 15
+}
+
+Background {
+	groundColor	0 0 1
+	skyColor 0 0 1
+}
+
+NavigationInfo {
+  avatarSize [0.05, 1.5, 0.5]
+	type ["WALK", "ANY"]
+	headlight FALSE
+}
+
+EXTERNPROTO Exterior[] "exterior.wrl"
+
+EXTERNPROTO Interior[] "interior.wrl"
+
+EXTERNPROTO Iluminacao[] "iluminacao.wrl"
+ 										  
+EXTERNPROTO Janelas[] "janelas.wrl"
+
+EXTERNPROTO BaseCasa [
+	exposedField SFVec3f translation
+] "base.wrl"
+
+EXTERNPROTO ArCondicionado [
+	exposedField SFVec3f translation
+] "arcondicionado.wrl"
+
+EXTERNPROTO	Cadeira [
+	exposedField SFVec3f translation
+	exposedField SFRotation	rotation
+] "cadeira.wrl"
+
+EXTERNPROTO	Bancada [
+	exposedField SFVec3f translation
+	exposedField SFRotation	rotation
+] "bancada.wrl"
+
+EXTERNPROTO movelGavetas [
+	exposedField SFRotation rotation 
+	exposedField SFVec3f translation 
+] "movelgavetas.wrl"
+
+EXTERNPROTO placaCGD [
+	exposedField SFRotation rotation 
+	exposedField SFVec3f translation 
+] "placaCGD.wrl"
+
+EXTERNPROTO porta [
+	exposedField SFVec3f translation 
+] "porta.wrl"
+
+EXTERNPROTO	Electricidade [] "electricidade.wrl"
+
+BaseCasa {
+	translation 2.85 -.55 1.65
+}
+
+Electricidade {}
+
+ArCondicionado {
+	translation 1.5 1.6 2.2
+}
+
+Cadeira {
+	translation	2.2 -.236 0.2
+	rotation 0 1 0 -1.57
+}
+
+Bancada {
+	rotation 0 1 0 1.57
+	translation	2.405 .34 .4
+}
+
+movelGavetas {
+	rotation 0 1 0 -1.57
+	translation	2.405 -.43 1.18
+}
+
+placaCGD {
+	rotation 0 1 0 1.57
+	translation	2.931 .33 -.55
+}
+
+porta { translation 1.956 .66 2.56 }
+
+Transform 
+{
+	translation	2.4 .6 0
+	scale .01 .01 .01
+	children 
+	[
+		Inline 
+		{
+			url	"wallyb.wrl"
+		}
+	
+	]
+}
+
+Janelas	{}
+Exterior{}
+Interior{}
+Iluminacao{}
+
+

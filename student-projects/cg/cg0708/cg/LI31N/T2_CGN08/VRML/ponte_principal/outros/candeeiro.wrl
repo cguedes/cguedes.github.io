@@ -1,0 +1,42 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	cand [] "candeeiro_.wrl"
+
+PROTO candeeiro[ field SFRotation rot 0 0 0 0 field SFVec3f pos 0 0 0]
+{
+	Transform{
+		children [
+			Transform {
+				children cand {}
+				translation	-0.2 4.5 0
+			}
+			
+			#base do candeeiro
+			Transform {
+				children [
+					Shape{
+						geometry Box { size 0.5 0.1 0.5 }
+						appearance Appearance { material Material { diffuseColor 0 0 0 } }
+					}
+				]
+				translation	1.1 0.025 0
+			}
+
+			#poste principal
+			Transform {
+				children [
+					Shape{
+						geometry Cylinder { height 15 radius 0.10 }
+						appearance Appearance { material Material { diffuseColor 1 1 1 } }
+					}
+				]
+				rotation 0 0 1 0.15
+				translation	0 7.4 0
+			}
+		]
+		rotation IS	rot
+		translation	IS pos
+	}
+	
+}
+candeeiro {}

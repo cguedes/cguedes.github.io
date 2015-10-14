@@ -1,0 +1,95 @@
+#VRML V2.0 utf8
+
+PROTO meio[field SFColor cor .38 .35 .35]{
+	Transform {
+		translation	0.37 1.1 -0.01
+		children Shape {
+			appearance Appearance { material Material { diffuseColor IS cor 
+			specularColor .76 .74 .59
+			ambientIntensity .0933
+			shininess .07
+		} }
+			geometry Box { size 0.74 0.1 0.02}
+		}
+	}	
+}
+
+PROTO vidro[field SFColor cor .361 .361 .361]{
+	Transform {
+		translation	0.37 0.525 -0.01
+		children Shape {
+			appearance Appearance { material Material { diffuseColor IS cor 
+			specularColor .941 .941 .941
+			emissiveColor 0 .361 .271
+			ambientIntensity 0
+			shininess .23
+			transparency .68
+		} }
+			geometry Box { size 0.74 1.05 0.02}
+		}
+	}	
+}
+
+PROTO macaneta[field SFColor cor .57 .58 .58]{
+	Transform {
+		children Shape {
+			appearance Appearance { material Material { diffuseColor IS cor 
+			specularColor .67 .46 .44
+			ambientIntensity .137
+			shininess .17
+		} }
+			geometry Extrusion {
+				crossSection [0 0, 0.2 0, 0.2 -0.04, 0.195 -0.04, 0.195 -0.02, 0.005 -0.02, 0.005 -0.04, 0 -0.04, 0 0]
+				spine [0 0 0,0 0.02 0]
+			}
+		}
+	}	
+}
+
+PROTO portaDireita[]{
+	Transform {
+		rotation 0 1 0 -1.571
+		children [
+			meio {}
+			vidro {}
+			Transform {
+				translation	0 1.15 0
+				children vidro {}
+			}
+			Transform {
+				translation	0.1 1.1 0.04
+				children macaneta {}
+			}
+			Transform {
+				translation	0.1 1.12 -0.06
+				rotation 1 0 0 3.1415
+				children macaneta {}
+			}
+		]
+	}
+}
+
+PROTO portaEsquerda[]{
+	Transform {
+		rotation 0 1 0 1.571
+		children [
+			meio {}
+			vidro {}
+			Transform {
+				translation	0 1.15 0
+				children vidro {}
+			}
+			Transform {
+				translation	0.1 1.1 0.04
+				children macaneta {}
+			}
+			Transform {
+				translation	0.1 1.12 -0.06
+				rotation 1 0 0 3.1415
+				children macaneta {}
+			}
+		]
+	}
+}
+
+portaEsquerda{}

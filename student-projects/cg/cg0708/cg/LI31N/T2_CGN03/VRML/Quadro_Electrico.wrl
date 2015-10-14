@@ -1,0 +1,91 @@
+#VRML V2.0 utf8
+
+
+PROTO Quadro_Electrico[]{
+	Group {
+		children [
+			DEF	_Porta Transform {
+				center 0.15 0 0
+				children [
+					Transform {
+						children Shape {
+							geometry Box {size 0.3 0.59 0.015}
+							appearance Appearance {material Material {diffuseColor 0.863 0.863 0.863}}
+						}
+					}
+		
+					#fechadura
+					Transform {
+						translation	-0.12 0 0.009 
+						rotation 1 0  0  1.5707
+						children Shape {
+							geometry Cylinder {height 0.004 radius 0.013}
+							appearance Appearance {material Material {diffuseColor 0 0 0}}
+						}
+					}
+					DEF	SensorToque TouchSensor	{}
+				]
+			}
+			#Definição da abertura da porta########
+			DEF Clock1 TimeSensor {
+				cycleInterval	1
+				startTime	0
+				}
+			DEF	InterpoladorOrientacao OrientationInterpolator {
+				key[0.0, 0.5, 1]
+				keyValue [0 0.5 0 0
+						  0 0.5 0 0.785
+					      0 0.5 0 1.5708]
+			}
+
+
+			DEF	Clock2 TimeSensor {
+				cycleInterval 1
+				startTime 0
+			}
+
+			DEF	InterpoladorOrientacao2 OrientationInterpolator {
+				key[0.0, 0.5, 1]
+				keyValue [0 1 0 1.5708
+						  0 1 0 0.785
+					      0 1 1 0]
+			}
+			#caixa preta
+			Transform {
+				children Shape {
+					geometry Box {size 0.35 0.64 0.005}
+					appearance Appearance {material Material {diffuseColor 0 0 0}}
+				}
+			
+			}
+			
+
+				DEF gate_8 Script {
+				  eventOut	  SFTime	  one
+				  eventOut	  SFTime	  two
+				  eventIn	  SFTime	  touchTime
+				  field	  SFBool	  state	FALSE
+				  url	"vrmlscript:function touchTime(value, time)
+			{
+			   state = !state;
+			   if (state) {
+    			 one = time;
+			   }
+			   else {
+    			 two = time;
+			   }
+			}
+			"
+				}
+		]
+		ROUTE gate_8.one TO	Clock1.startTime
+		ROUTE Clock1.fraction_changed TO InterpoladorOrientacao.set_fraction
+		ROUTE gate_8.two TO	Clock2.startTime
+		ROUTE Clock2.fraction_changed TO InterpoladorOrientacao2.set_fraction
+		ROUTE SensorToque.touchTime	TO gate_8.touchTime	
+		ROUTE InterpoladorOrientacao.value_changed TO _Porta.set_rotation
+		ROUTE InterpoladorOrientacao2.value_changed TO _Porta.set_rotation
+	}
+}
+Quadro_Electrico {}
+

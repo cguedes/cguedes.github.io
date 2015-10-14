@@ -1,0 +1,97 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Janela [
+	field SFVec3f translation
+	field SFRotation rotation
+	field SFFloat transparency
+	field SFBool abre
+]
+"Janela.wrl#Janela"
+
+
+EXTERNPROTO	Axis [
+
+]
+"Axis1.wrl#Axis"
+
+Axis {
+
+}
+
+PROTO Janelas [
+	field SFVec3f translation 0 0 0
+]{
+	Transform {
+		translation	IS translation
+		children
+		Group {
+			children [
+				# Cria um grupo de 4 janelas que vai ser replicado para criar a estrutura envidraçada
+				DEF	Janelas4 Group {
+					children [
+						Janela {
+
+						}
+						# Segundo o modelo original as duas janelas interiores sao diferentes
+						Janela {
+							translation	89.5 0 0
+							abre TRUE
+						}
+						Janela {
+							translation	179 0 0
+							abre TRUE
+						}
+						Janela {
+							translation	268.5 0 0
+						}
+					]
+				}
+				Transform {
+					translation	358 0 0
+					children USE Janelas4
+				}
+				Transform {
+					translation	716 0 0
+					children USE Janelas4
+				}
+				# Definição de um grupo de 3 Janelas que é colocado após 3 conjuntos de 4 janelas
+				Transform {
+					translation	1074 0 0
+					children
+					DEF	Janelas3 Group {
+					children [
+						Janela {
+						
+						}
+						# Só a janela interior é amovivel
+						Janela {
+							translation	89.5 0 0
+							abre TRUE
+						}
+						# As janelas na quina da estrutura sao brancas, nao transparentes
+						Janela {
+							translation	179 0 0
+							transparency 0.3
+						}
+					]
+					}
+				}
+				# Rotaçao dos grupos originais para serem colocados no final da sala
+				Transform {
+					translation	1073.5 0 -3
+					rotation 0 1 0 -1.57
+					center 268.5 0 3
+					children USE Janelas3
+				}
+				Transform {
+					translation	1342 0 -268.5
+					rotation 0 1 0 1.57
+					children USE Janelas4
+				}
+
+			]
+		}
+	}
+}
+
+Janelas{}

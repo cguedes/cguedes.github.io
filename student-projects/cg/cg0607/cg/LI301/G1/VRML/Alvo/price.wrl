@@ -1,0 +1,14 @@
+#VRML V2.0 utf8
+
+PROTO price[]{
+	Shape {
+		geometry Cylinder {
+			side FALSE 
+			bottom FALSE
+			top	TRUE
+			height 0.001
+			radius 0.01
+		}
+		appearance Appearance {texture ImageTexture {url ""}}
+	}
+}

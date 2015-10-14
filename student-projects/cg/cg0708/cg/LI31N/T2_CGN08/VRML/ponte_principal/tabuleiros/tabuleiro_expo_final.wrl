@@ -1,0 +1,23 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO tab_expo [ field SFVec3f pos1	field SFRotation rot1 ] "tabuleiro_expo.wrl"
+EXTERNPROTO tab_expo_longe [field SFVec3f pos1	field SFRotation rot1 ] "tabuleiro_expo_longe.wrl"
+
+PROTO tab_curva_final[field SFVec3f pos 0 0 0 field SFRotation rot 0 0 0 0]
+{
+	Transform {
+		children [
+			LOD	{
+				range [400]
+				center 0 0 0
+				level [
+					tab_expo{  }
+					tab_expo_longe { }
+				]
+			}
+		]
+		rotation IS	rot
+		translation	IS pos	
+	}
+}
+tab_curva_final  {}

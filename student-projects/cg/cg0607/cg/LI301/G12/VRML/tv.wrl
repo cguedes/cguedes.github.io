@@ -1,0 +1,103 @@
+#VRML V2.0 utf8
+
+
+PROTO borda[]{
+	Transform {
+		children Shape {
+			geometry Box { size	0.5 0.05 0.01 }
+			appearance Appearance {
+				material Material {
+					diffuseColor .45 .45 .45
+					specularColor .5 .5 .5
+					emissiveColor .15 .15 .15
+					ambientIntensity 0
+				}
+			}
+		}
+	}
+}
+
+PROTO TV
+[
+	field SFVec3f pos 0 0 0
+]{
+	Transform {
+		translation IS pos 
+		rotation 1 0 0 0.15
+		children [
+			#CAIXA
+			Transform {
+				translation	0.3 0.25 -0.21
+				children Shape {
+					geometry Box { size	0.6 0.5 0.4 }
+					appearance Appearance {
+						material Material {
+							diffuseColor .45 .45 .45
+							specularColor .5 .5 .5
+							emissiveColor .15 .15 .15
+							ambientIntensity 0
+						}
+					}
+					
+				}
+			}
+			#VISOR
+			Group {
+				children [
+					Transform {
+						translation	0.3 0.25 -0.005
+						children Shape {
+							geometry Box { size	0.5 0.4 0.01 }
+							appearance Appearance { texture MovieTexture {
+								loop TRUE
+								url "familyguy.wmv"}
+							}
+						}
+					}
+				]
+			}
+			Transform {
+				translation 0.3 0.475 -0.005
+				children borda {}
+			}
+			Transform {
+				translation	0.3 0.025 -0.005
+				children borda {}
+			}
+			Transform {
+				translation	0.025 0.25 -0.005
+				rotation 0 0 1 1.571
+				children borda {}
+			}
+			Transform {
+				translation	0.575 0.25 -0.005
+				rotation 0 0 1 1.571
+				children borda {}
+			}
+			Transform {
+				rotation 1 0 0 -0.15
+				translation	0.3 0.045 -0.438
+				children  Shape	{
+					geometry Box { size	0.1 0.1 0.02 }
+					appearance Appearance { material Material { diffuseColor 0 0 0 } }
+				}
+			}
+			Transform {
+				translation	0.30 -0.01 -0.22
+				children Shape {
+					geometry Box { size	0.1 0.02 0.44 }
+					appearance Appearance { material Material { diffuseColor 0 0 0 } }
+				}
+			}
+			Sound {
+				maxFront 15
+				source AudioClip {
+					loop TRUE
+					url	"familyguy.wmv"
+				}
+			}
+		]
+	}
+}
+
+TV {}

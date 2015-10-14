@@ -1,0 +1,503 @@
+#VRML V2.0 utf8
+
+
+PROTO meiaesfera
+[
+  field SFColor cor 1 0 0
+  field	SFColor	cor_especular 0 0 0
+  field	SFFloat	brilho 0
+]
+{
+
+	Shape
+	{
+		appearance Appearance 
+		{
+			material Material 
+			{
+				diffuseColor IS cor 
+				specularColor IS cor_especular
+				shininess IS brilho
+			}
+		}
+		geometry Extrusion 
+		{
+			crossSection [1.0000 0.0000 , 0.9877 0.1564 , 0.9511 0.3090 , 0.8910 0.4540 , 0.8090 0.5878 , 0.7071 0.7071 , 0.5878 0.8090 , 0.4540 0.8910 , 0.3090 0.9511 , 0.1564 0.9877 , 0.0000 1.0000 , -0.1564 0.9877 , -0.3090 0.9511 , -0.4540 0.8910 , -0.5878 0.8090 , -0.7071 0.7071 , -0.8090 0.5878 , -0.8910 0.4540 , -0.9511 0.3090 , -0.9877 0.1564 , -1.0000 0.0000 , -0.9877 -0.1564 , -0.9511 -0.3090 , -0.8910 -0.4540 , -0.8090 -0.5878 , -0.7071 -0.7071 , -0.5878 -0.8090 , -0.4540 -0.8910 , -0.3090 -0.9511 , -0.1564 -0.9877 , 0.0000 -1.0000 , 0.1564 -0.9877 , 0.3090 -0.9511 , 0.4540 -0.8910 , 0.5878 -0.8090 , 0.7071 -0.7071 , 0.8090 -0.5878 , 0.8910 -0.4540 , 0.9511 -0.3090 , 0.9877 -0.1564 , 1.0000 0.0000  ]
+			#seno
+			spine[0 0.0000 0 , 0 0.0175 0 , 0 0.0349 0 , 0 0.0523 0 , 0 0.0698 0 , 0 0.0872 0 , 0 0.1045 0 , 0 0.1219 0 , 0 0.1392 0 , 0 0.1564 0 , 0 0.1736 0 , 0 0.1908 0 , 0 0.2079 0 , 0 0.2250 0 , 0 0.2419 0 , 0 0.2588 0 , 0 0.2756 0 , 0 0.2924 0 , 0 0.3090 0 , 0 0.3256 0 , 0 0.3420 0 , 0 0.3584 0 , 0 0.3746 0 , 0 0.3907 0 , 0 0.4067 0 , 0 0.4226 0 , 0 0.4384 0 , 0 0.4540 0 , 0 0.4695 0 , 0 0.4848 0 , 0 0.5000 0 , 0 0.5150 0 , 0 0.5299 0 , 0 0.5446 0 , 0 0.5592 0 , 0 0.5736 0 , 0 0.5878 0 , 0 0.6018 0 , 0 0.6157 0 , 0 0.6293 0 , 0 0.6428 0 , 0 0.6561 0 , 0 0.6691 0 , 0 0.6820 0 , 0 0.6947 0 , 0 0.7071 0 , 0 0.7193 0 , 0 0.7314 0 , 0 0.7431 0 , 0 0.7547 0 , 0 0.7660 0 , 0 0.7771 0 , 0 0.7880 0 , 0 0.7986 0 , 0 0.8090 0 , 0 0.8192 0 , 0 0.8290 0 , 0 0.8387 0 , 0 0.8480 0 , 0 0.8572 0 , 0 0.8660 0 , 0 0.8746 0 , 0 0.8829 0 , 0 0.8910 0 , 0 0.8988 0 , 0 0.9063 0 , 0 0.9135 0 , 0 0.9205 0 , 0 0.9272 0 , 0 0.9336 0 , 0 0.9397 0 , 0 0.9455 0 , 0 0.9511 0 , 0 0.9563 0 , 0 0.9613 0 , 0 0.9659 0 , 0 0.9703 0 , 0 0.9744 0 , 0 0.9781 0 , 0 0.9816 0 , 0 0.9848 0 , 0 0.9877 0 , 0 0.9903 0 , 0 0.9925 0 , 0 0.9945 0 , 0 0.9962 0 , 0 0.9976 0 , 0 0.9986 0 , 0 0.9994 0 , 0 0.9998 0 , 0 1.0000 0  ]
+			#coseno
+			scale[1.0000 1.0000 , 0.9998 0.9998 , 0.9994 0.9994 , 0.9986 0.9986 , 0.9976 0.9976 , 0.9962 0.9962 , 0.9945 0.9945 , 0.9925 0.9925 , 0.9903 0.9903 , 0.9877 0.9877 , 0.9848 0.9848 , 0.9816 0.9816 , 0.9781 0.9781 , 0.9744 0.9744 , 0.9703 0.9703 , 0.9659 0.9659 , 0.9613 0.9613 , 0.9563 0.9563 , 0.9511 0.9511 , 0.9455 0.9455 , 0.9397 0.9397 , 0.9336 0.9336 , 0.9272 0.9272 , 0.9205 0.9205 , 0.9135 0.9135 , 0.9063 0.9063 , 0.8988 0.8988 , 0.8910 0.8910 , 0.8829 0.8829 , 0.8746 0.8746 , 0.8660 0.8660 , 0.8572 0.8572 , 0.8480 0.8480 , 0.8387 0.8387 , 0.8290 0.8290 , 0.8192 0.8192 , 0.8090 0.8090 , 0.7986 0.7986 , 0.7880 0.7880 , 0.7771 0.7771 , 0.7660 0.7660 , 0.7547 0.7547 , 0.7431 0.7431 , 0.7314 0.7314 , 0.7193 0.7193 , 0.7071 0.7071 , 0.6947 0.6947 , 0.6820 0.6820 , 0.6691 0.6691 , 0.6561 0.6561 , 0.6428 0.6428 , 0.6293 0.6293 , 0.6157 0.6157 , 0.6018 0.6018 , 0.5878 0.5878 , 0.5736 0.5736 , 0.5592 0.5592 , 0.5446 0.5446 , 0.5299 0.5299 , 0.5150 0.5150 , 0.5000 0.5000 , 0.4848 0.4848 , 0.4695 0.4695 , 0.4540 0.4540 , 0.4384 0.4384 , 0.4226 0.4226 , 0.4067 0.4067 , 0.3907 0.3907 , 0.3746 0.3746 , 0.3584 0.3584 , 0.3420 0.3420 , 0.3256 0.3256 , 0.3090 0.3090 , 0.2924 0.2924 , 0.2756 0.2756 , 0.2588 0.2588 , 0.2419 0.2419 , 0.2250 0.2250 , 0.2079 0.2079 , 0.1908 0.1908 , 0.1736 0.1736 , 0.1564 0.1564 , 0.1392 0.1392 , 0.1219 0.1219 , 0.1045 0.1045 , 0.0872 0.0872 , 0.0698 0.0698 , 0.0523 0.0523 , 0.0349 0.0349 , 0.0175 0.0175 , 0.0000 0.0000  ]
+			beginCap FALSE
+			endCap  FALSE
+			#para se ver a cor por dentro
+			solid FALSE
+			#pontos definidos no sentido horário
+			ccw	FALSE
+		}
+	}
+}
+
+
+PROTO mc_quarter_circle
+[
+	field SFColor cor 1 0 0
+	field SFColor	cor_especular 0 0 0
+	field SFFloat	brilho 0
+]
+{
+
+	Shape
+	{
+		appearance Appearance 
+		{
+			material Material 
+			{
+				diffuseColor IS cor
+				specularColor IS cor_especular
+				shininess  IS brilho
+			}
+		}
+		geometry Extrusion 
+		{
+			crossSection [0.0000 0.0000 , 0.0123 0.1564 , 0.0489 0.3090 , 0.1090 0.4540 , 0.1910 0.5878 , 0.2929 0.7071 , 0.4122 0.8090 , 0.5460 0.8910 , 0.6910 0.9511 , 0.8436 0.9877 , 1.0000 1.0000 , 0 1 , 0 0]
+			spine[0 0 0, 0 0.0001 0]
+			ccw TRUE
+			convex FALSE
+		}
+	}
+}
+
+
+PROTO mc_quarter_circle_pos_rot
+[
+	field SFColor cor 1 0 0
+	field SFColor cor_especular 0 0 0
+	field SFFloat brilho 0
+
+	field SFVec3f pos 0 0 0
+	field SFRotation rot 0 0 1 0
+]
+{
+	Transform
+	{
+		translation	IS pos
+		rotation IS	rot
+		children mc_quarter_circle 
+		{ 
+			cor IS cor 
+			cor_especular IS cor_especular
+			brilho IS brilho
+		}
+
+	}
+}
+
+
+PROTO meiaesferaenv #diâmetro original de 2
+[
+	field SFColor cor_relevo 1 0 0
+	field SFColor cor_especular_relevo 0 0 0
+	field SFFloat brilho_relevo 0
+
+	field SFColor cor_fundo 1 0 0
+	field SFColor cor_especular_fundo 0 0 0
+	field SFFloat brilho_fundo 0
+
+	field SFVec3f scale 1 1 1
+]
+{
+	Transform#deixar meia esfera e envolvência com diametro desejado... 
+	{
+	scale IS scale
+	children [
+		mc_quarter_circle_pos_rot 
+		{
+			rot 1 0 0 1.57 
+			pos 0 0 0 
+			cor IS cor_fundo 
+			cor_especular IS cor_especular_fundo
+			brilho IS brilho_fundo
+		}
+		mc_quarter_circle_pos_rot 
+		{
+			rot 1 0 0 -1.57 
+			pos 0 0 0 
+			cor IS cor_fundo 
+			cor_especular IS cor_especular_fundo
+			brilho IS brilho_fundo
+		}
+		Transform
+		{
+			translation 2 0 0
+			rotation 0 1 0 3.141592654
+
+			children 
+			[
+				mc_quarter_circle_pos_rot 
+				{
+					rot 1 0 0 1.57 
+					pos 0 0 0 
+					cor	IS cor_fundo
+					cor_especular IS cor_especular_fundo
+					brilho IS brilho_fundo 
+				}
+
+				mc_quarter_circle_pos_rot 
+				{
+					rot 1 0 0 -1.57 
+					pos 0 0 0 
+					cor	IS cor_fundo
+					cor_especular IS cor_especular_fundo
+					brilho IS brilho_fundo
+				}
+			]
+
+		}
+
+
+		Transform
+		{
+			translation	1 0 0
+			rotation 1 0 0 -1.57
+			children
+			[
+				meiaesfera 
+				{
+					cor IS cor_relevo 
+					cor_especular IS cor_especular_relevo
+					brilho IS brilho_relevo
+				}
+			]
+		}
+	]
+	}
+}
+
+
+
+##ranhura do cartão
+PROTO ranhura #altura 4 largura 1 e profundidade 1
+[
+	field SFColor cor 1 0 0
+	field SFColor cor_especular 0 0 0
+	field SFFloat brilho 0
+]
+{
+	Transform
+	{
+		rotation 0 1 0 -1.57
+		translation	0.5 2 -0.5
+		children
+		Shape 
+		{
+			appearance Appearance 
+			{
+				material Material 
+				{
+					diffuseColor IS cor 
+					specularColor IS cor_especular
+					shininess IS brilho
+				}
+			}
+			geometry Extrusion 
+			{
+		
+				crossSection [0 0 , 1 0 , 1 1.75 , 0.5 1.75 , 0.5 2.25 , 1 2.25 , 1 4, 0 4 ]
+				spine[0 0 0, 0 0 1]
+				ccw FALSE
+				convex FALSE
+			}
+		}	
+	}
+}
+
+
+PROTO moedasecartoes
+[
+	field SFColor cor_relevo 1 0 0
+	field SFColor cor_especular_relevo 0 0 0
+	field SFFloat brilho_relevo 0
+	
+	field SFColor cor_fundo 0 1 0
+	field SFColor cor_especular_fundo 0 0 0
+	field SFFloat brilho_fundo 0
+]
+{
+	Transform 
+	{
+		#22->largura parte esquerda
+		translation	22 2 0
+		children
+		[
+
+#
+#parte das moedas
+#
+			meiaesferaenv 
+			{
+				scale 1.75 1.75 1.75 
+				
+				cor_relevo IS cor_relevo 
+				cor_especular_relevo IS	cor_especular_relevo
+				brilho_relevo IS brilho_relevo
+
+				cor_fundo IS cor_fundo 
+				cor_especular_fundo IS cor_especular_fundo
+				brilho_fundo IS	brilho_fundo
+			}
+			#meiaesfera de diametro 3.5
+
+
+			Transform
+			{
+				translation 1.75 1.875 0 children
+				Shape 
+				{
+					geometry Box{size 3.5 0.25 0.0001}
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS cor_fundo 
+							specularColor IS cor_especular_fundo
+							shininess IS brilho_fundo
+						}
+					}
+				}
+			}
+
+			Transform
+			{
+				translation 1.75 -1.875 0 children
+				Shape 
+				{
+					geometry Box{size 3.5 0.25 0.0001}
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS cor_fundo 
+							specularColor IS cor_especular_fundo
+							shininess IS brilho_fundo
+						}
+					}
+				}
+			}
+
+
+#
+#parte esquerda das moedas
+#
+
+			Transform
+			{
+				translation -11 0 0 children
+				Shape 
+				{
+					geometry Box{size 22 4 0.0001}
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS cor_fundo 
+							specularColor IS cor_especular_fundo
+							shininess IS brilho_fundo
+						}
+					}
+				}
+			}
+
+
+#
+#parte entre moedas e cartões
+#
+
+			Transform
+			{
+				translation 5.25 0 0 children
+				Shape 
+				{
+					geometry Box{size 3.5 4 0.0001}
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS cor_fundo 
+							specularColor IS cor_especular_fundo
+							shininess IS brilho_fundo
+						}
+					}
+				}
+			}
+
+
+
+#
+#parte do cartão
+#
+			#parte cavada
+			Transform 
+			{
+				translation 8 0 0.5#saido em relação às moedas
+				children meiaesferaenv 
+				{
+					cor_relevo IS cor_relevo 
+					cor_especular_relevo IS	cor_especular_relevo
+					brilho_relevo IS brilho_relevo
+
+					cor_fundo IS cor_relevo 
+					cor_especular_fundo	IS cor_especular_relevo
+					brilho_fundo IS	brilho_relevo
+
+					scale 1.5 1.5 1.5
+				}
+				#meia esfera de diametro 3
+			}
+
+			#topo parte cavada
+			Transform
+			{
+				translation 9.5 1.75 0.5 children
+				Shape 
+				{
+					geometry Box{size 3 0.5 0.0001}
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS cor_relevo 
+							specularColor IS cor_especular_relevo
+							shininess IS brilho_relevo
+						}
+					}
+				}
+			}
+			Transform
+			{
+				translation 9.5 2 0 children
+				Shape 
+				{
+					geometry Box{size 3 0.0001 1}
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS cor_relevo 
+							specularColor IS cor_especular_relevo
+							shininess IS brilho_relevo
+						}
+					}
+				}
+			}
+
+
+			#fundo parte cavada
+			Transform
+			{
+				translation 9.5 -1.75 0.5 children
+				Shape 
+				{
+					geometry Box{size 3 0.5 0.0001}
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS cor_relevo 
+							specularColor IS cor_especular_relevo
+							shininess IS brilho_relevo
+						}
+					}
+				}
+			}
+			Transform
+			{
+				translation 9.5 -2 0 children
+				Shape 
+				{
+					geometry Box{size 3 0.0001 1}
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS cor_relevo 
+							specularColor IS cor_especular_relevo
+							shininess IS brilho_relevo
+						}
+					}
+				}
+			}
+
+
+			#ranhura do cartão - parte pequena
+			Transform
+			{
+				translation	7.5 0 0
+				children ranhura 
+				{
+					cor IS cor_relevo 
+					cor_especular IS cor_especular_relevo
+					brilho IS brilho_relevo
+				}			
+			}
+
+			#ranhura do cartão - parte grande
+			Transform
+			{
+				translation	14 0 0
+				scale 6 1 1
+				children ranhura 
+				{
+					cor IS cor_relevo 
+					cor_especular IS cor_especular_relevo
+					brilho IS brilho_relevo
+				}			
+			}
+
+			#parte direita geral
+			Transform
+			{
+				translation 20 0 0 children
+				Shape 
+				{
+					geometry Box{size 6 4 0.0001}
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS cor_fundo
+							specularColor IS cor_especular_fundo
+							shininess IS brilho_fundo
+						}
+					}
+				}
+			}
+		]
+	}
+}
+
+
+#moedasecartoes {}
+
+
+##noção de origem TEST ONLY
+
+#	Transform
+#	{
+#		translation	22.5 0 0
+#		children
+#		Shape 
+#		{
+#			geometry Box{size 45 1 1}
+#			appearance Appearance {material Material {diffuseColor 1 0 0 }}
+#		}
+#	}
+#	Shape 
+#	{
+#		geometry Box{size 1 10 1}
+#		appearance Appearance {material Material {diffuseColor 0 1 0 }}
+#	}
+#	Shape 
+#	{
+#		geometry Box{size 1 1 10}
+#		appearance Appearance {material Material {diffuseColor 0 0 1 }}
+#	}

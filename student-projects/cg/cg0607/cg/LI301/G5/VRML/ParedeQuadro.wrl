@@ -1,0 +1,383 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Eixo [
+]
+"eixo.wrl#Eixos"
+
+EXTERNPROTO Quadro [
+
+]
+"quadro.wrl#Quadro"
+
+
+
+EXTERNPROTO Luz_Quadro [eventIn SFBool luz_on]
+"iluminacao.wrl#luz_quadro"
+
+
+EXTERNPROTO Porta [
+
+]
+"Porta.wrl#Porta"
+
+ EXTERNPROTO	interruptor[eventOut SFBool isOn]
+"iluminacao.wrl#interruptor"
+
+PROTO Parede 
+[
+]
+{
+
+	Transform {
+		translation	0 0 18
+		rotation 1 0 0 -1.57
+		children
+		Shape {
+			geometry Extrusion{	
+				crossSection [
+					0 0,664 0, 664 210, 764 210, 764 0,
+				    934 0, 934 390, 0 270, 0 0, 48 228, 522 228,522 100,48 100, 48 228, 0 0  ]            	
+				spine [0 0 0, 0 18 0]
+				solid FALSE
+				}		  
+			appearance Appearance {
+					material Material { diffuseColor  0.6 0.706 0.63 }
+			  		texture	ImageTexture {
+				    repeatS TRUE
+					repeatT	TRUE
+					url "Texturas\Sala\parede.JPG" 
+
+				}
+				 textureTransform  TextureTransform {  
+					scale 100 100
+					rotation 0 
+					center 0 0 
+					translation 0 0  
+				}
+	    	}
+		}
+	}
+}
+
+PROTO SuporteMolduraVidroQuadro
+[]
+{
+	Transform  {
+		translation	237 2 7
+		children	
+			Shape {
+    			geometry Box {
+					size 474 4 12
+				}
+				appearance Appearance {
+				  material Material {
+					diffuseColor  0.5 0.2 0.1 
+				  }
+				 	texture	ImageTexture {
+				    repeatS TRUE
+					repeatT	TRUE
+					url "Texturas\Mesas\madeira.JPG" 
+
+				}
+				 textureTransform  TextureTransform {  
+					scale 1 50
+					rotation 0 
+					center 0 0 
+					translation 0 0  
+				}
+				  
+				}
+			}
+		}
+}
+
+
+PROTO MolduraVidroQuadro
+[
+]
+{
+	Group{
+		children 
+		[
+		Transform {
+			
+			rotation 1 0 0 -1.57
+			translation	 0 4 9 
+			children 
+			 		Shape {
+				geometry Extrusion{	
+					crossSection [
+						0 0, 474 0,474 120, 0 120, 0 0,   
+						4 4,94 4,94 116, 4 116,4 4,0 0,   
+						98 4,188 4,188 116,98 116,98 4,0 0,    
+						192 4,282 4,282 116,192 116,192 4,0 0,   
+						286 4,376 4,376 116,286 116,286 4,0 0,
+				    	380 4,470 4,470 116,380 116,380 4,0 0,  
+				
+					]            	
+					spine [0 0 0, 0 4 0]
+					solid FALSE
+					}		  
+				appearance Appearance {
+				  material Material {
+					diffuseColor  0.5 0.2 0.1
+				  }
+				texture	ImageTexture {
+				    repeatS TRUE
+					repeatT	TRUE
+					url "Texturas\Mesas\madeira.JPG" 
+
+				}
+				 textureTransform  TextureTransform {  
+					scale 1 50
+					rotation 0 
+					center 0 0 
+					translation 0 0  
+				}
+				  
+	    		}
+			}
+		}
+		SuporteMolduraVidroQuadro {}
+		
+		Transform {
+			translation	0 124 0
+			children SuporteMolduraVidroQuadro {}
+		}
+
+
+	 ]
+
+	 
+	}
+}
+
+
+
+PROTO  VidroQuadro
+[]
+{
+	Transform {
+		translation 45 56 1
+		children
+		Shape {
+    		geometry Box {
+				size 90 112 2
+			}
+			appearance Appearance {
+			  material Material {
+				diffuseColor  1 1 1
+			     transparency 0.8
+			  } 
+		  }
+	  }
+  }	
+}	
+	
+	
+PROTO VidroQuadroConjunto
+[
+]
+{
+	Group {
+	children
+	[
+		MolduraVidroQuadro {}
+		
+		Transform {
+		translation	4 8 8
+		children  VidroQuadro {}
+		}
+		Transform {
+		translation	98 8 8
+		children  VidroQuadro {}
+		}
+		Transform {
+		translation	192 8 8
+		children  VidroQuadro {}
+		}
+		Transform {
+		translation	286 8 8
+		children  VidroQuadro {}
+		}
+		Transform {
+		translation	380 8 8
+		children  VidroQuadro {}
+		}
+
+
+	]
+	}
+
+}
+
+
+
+
+
+PROTO CruzVermelha
+[
+]
+{
+	Group {
+		children [
+			Transform {
+				translation	16 11 5
+	    		children  Shape	{
+					geometry Box {
+					 size 32 22 10
+					}
+					appearance Appearance {
+						  material Material {
+							diffuseColor  1 0 0 
+						  } 
+					}
+				}	 
+			}
+			Transform {
+			   translation 16 11 10.1 
+			   children Shape	{
+	  				geometry Box {
+					 size 32 22 0.1
+					}
+					appearance Appearance   {
+						material Material { diffuseColor  1 0 0 }
+						texture	ImageTexture {
+							repeatS TRUE
+							repeatT	TRUE
+							url "Texturas\Acessorios\primeiros_socorros.jpg" 
+
+						}   
+					}
+				}
+			}
+		]
+	}
+	
+}
+
+PROTO Disjuntor
+[
+]
+{
+	Group {
+		children [
+			Transform {
+				translation	45 70 15
+	    		children  Shape	{
+					geometry Box {
+					 size 90 140 30
+					}
+					appearance Appearance {
+						  material Material { diffuseColor  0.57 0.57 0.54 } 
+					}
+				}	 
+			}
+			Transform {
+			   translation 45 70 30 
+			   children Shape	{
+	  				geometry Box {
+					 size 90 140 0.1
+					}
+					appearance Appearance   {
+						material Material { diffuseColor  0.57 0.57 0.54 } 
+						texture	ImageTexture {
+							url "Texturas\Acessorios\disjuntor.jpg" 
+
+						}   
+					}
+				}
+			}
+		]
+	}
+	
+}
+
+PROTO Autocolante_Primeiros
+[]
+{
+ Transform {
+	   translation 7.5 11 10.1 
+	   children Shape	{
+	  		geometry Box {
+			 size 15 22 0.1
+			}
+			appearance Appearance   {
+				material Material { diffuseColor  1 0 0 }
+				texture	ImageTexture {
+					repeatS TRUE
+					repeatT	TRUE
+					url "Texturas\Avisos\primeiros_socorros.jpg" 
+
+				}   
+			}
+		}
+	}
+
+
+}
+
+
+
+
+
+PROTO ParedeDoQuadro
+[
+]
+{
+	Group {
+	children
+	[
+		Parede {}
+
+		Transform {
+			translation	48 100 2
+			children VidroQuadroConjunto {}
+		}
+		Transform {
+			translation 256 100 16
+			children Quadro {}
+		}
+		Transform {
+			translation 810 140 18
+			children CruzVermelha {}
+		}
+			Transform {
+			translation 552 50 18
+			children Disjuntor {}
+		}
+		Transform	{
+		  translation 664 0 2
+		  children  Porta {}				
+		}
+		Transform	{
+		  translation 820 190 18
+		  children  Autocolante_Primeiros {}				
+		} 
+
+
+		Transform	{
+		  translation 256 220 18
+		  children DEF c1 Luz_Quadro {}				
+		}
+		Transform {
+		translation	530 150  18
+			children DEF i1 interruptor	{} 
+		}		
+	]
+	ROUTE i1.isOn TO c1.luz_on
+
+
+
+		 
+	}
+}
+
+
+
+Transform {
+	scale 0.01 0.01 0.01
+
+	children ParedeDoQuadro {}
+}
+Eixo { }

@@ -1,0 +1,206 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	janelaOrigem [] "janela.wrl#janelaOrigem"
+EXTERNPROTO	portaOrigem [] "porta.wrl#portaOrigem"
+EXTERNPROTO	gradeGrandeOrigem [] "gradeGrande.wrl#gradeGrandeOrigem"
+
+
+PROTO BOX []{
+	Shape { 
+		geometry Box {size 300 32 0.1}
+		appearance Appearance {
+			material	Material{diffuseColor 1 0.1 0.1}
+#			texture	ImageTexture {url "Texturas\Simbolo.jpg "}
+		}
+	}
+}
+#PROTO BOX2 []{
+#	Shape { 
+#		geometry Box {size 260 32 0.1}
+#		appearance Appearance {
+#			material	Material{diffuseColor 1 0.1 0.1}
+#		}
+#	}
+#}
+
+PROTO ISEL-LOJA[]{
+	Shape {
+		geometry Text {
+        	string [ "AEISEL - LOJA"]
+        	fontStyle FontStyle {
+            	style "BOLD"
+				size 32
+        	}
+    	}
+		appearance Appearance {material Material {diffuseColor 1 1 1}}
+	}
+}
+
+PROTO entradaOrigem []{
+	Group {
+		children [
+			#parede
+			Transform {
+				translation	 10 330 0
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {}
+							texture	ImageTexture {url "Texturas\paredeDeCima.jpg"}
+							textureTransform TextureTransform {scale 50 50}
+						}
+						geometry Extrusion{
+							crossSection [-15 -16, 591 -16, 591 330, 520 330,520 85, 420 85, 420 330, 265 330, 265 85,
+							  5 85, 5 220, 265 220, 265 330, 5 330, 5 85, 5 56, 535.5 56, 535.5 24, 5 24, -15 -16, 5 24, 5 56,
+							 5 220, 5 330, -15 330,-15 -16, 5 56]
+				    		spine [0 0 0, 0 20 0]
+							beginCap TRUE
+							endCap TRUE
+							solid FALSE
+						}
+					}
+					Transform {
+						translation	 0 21 0
+						children Shape {
+						appearance Appearance {
+							material Material {}
+							texture	ImageTexture {url "Texturas\fora.jpg"}
+							textureTransform TextureTransform {scale 15 15}}
+						geometry Extrusion {
+							 crossSection [420 330, 420 85, 265 85, 265 220, 5 220, 5 56, 5 24, 535.5 24, 535.5 56, 535.5 85, 520 85, 520 330, 591 330, 591 -16, -15 -16, -15 330, 420 330] 
+   							 spine [0 0 0, 0 1 0]
+						 }
+					}
+				}		
+			]
+		}
+        	#janela
+			Transform {
+				translation	272 245 15
+				scale -1 1 -1
+				children janelaOrigem {}
+			}
+			#borda
+			Transform {
+				translation 145 106 16
+				children Shape {
+					geometry Box {size 260 2 4}
+					appearance Appearance {
+						material Material {diffuseColor 1 1 1}
+					}
+				}
+			}
+			#porta				  
+			Transform {
+				translation	526 10 6
+				children portaOrigem {}
+			}
+			#borda da porta
+			Transform {
+				translation	437 10 3
+				rotation 1 0 0 1.57
+				children Shape {
+					geometry Extrusion {
+						crossSection [-7 0, -7 -218, 93 -218, 93 0, 88 -1, 88 -215, 2 -215, 2 -1, -2 0]
+						beginCap TRUE
+						endCap TRUE
+						spine  [0 0 0, 0 5 0]
+						solid FALSE
+					}
+					appearance Appearance {material	Material {diffuseColor 1 1 1}}
+				}
+			}
+			#borda de cima da porta	
+			Transform {
+				translation	480 237 6
+				children [
+					Shape {
+					geometry Box {size 100 18 12}
+					appearance Appearance {	
+						material Material {}
+						texture ImageTexture {url "Texturas\barra.jpg"}
+						}
+					}
+					Transform {
+						translation	0 9 8
+						children Shape {
+							geometry Box {size 100 3 15}
+							appearance Appearance {	
+								material Material {}
+								texture ImageTexture {url "Texturas\barra.jpg"}
+							}
+						}
+					}
+				]
+			}
+			#meter cor por cima da janela
+			Transform {
+				translation	281 260 21
+				children Shape {
+					geometry Box {size 531 29 0.4}
+					appearance Appearance {	
+						material Material {}
+						texture ImageTexture {url "Texturas\barra.jpg"} 
+					}
+				}
+			}
+			#grade de cima da janela
+			Transform {
+				translation	15 276 15
+				children gradeGrandeOrigem {}
+			}
+			#escadita
+			Transform {
+				translation	481 5 10
+				children Shape {
+					geometry Box {size 100 10 40}
+					appearance Appearance {
+						material Material {diffuseColor 0.5 0.5 0.5}}
+				}
+			}
+			Transform {
+				translation	404 290 9.9
+				children [
+					Transform{
+						children BOX{}
+					}
+					Transform{
+						rotation 0 0 1 3.14
+						translation	0 0 -0.2
+						children BOX{}
+					}
+				]				 
+			}
+			Transform {
+				translation	145 290 10
+				children [
+					Transform{
+						children BOX{}
+					}
+					Transform{
+						rotation 0 0 1 3.14
+						translation	0 0 -0.2
+						children BOX{}
+					}
+				]
+			}
+			DEF SCALE Transform {
+				translation	25 280 11
+				children [
+					Transform {
+						children ISEL-LOJA{}
+					}
+				]
+			}
+			Transform {
+				scale 1 1 -1
+				translation	0 0 20
+				children USE SCALE
+			}
+			
+		]
+	}
+}
+
+entradaOrigem{}	   

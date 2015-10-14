@@ -1,0 +1,75 @@
+#VRML V2.0 utf8
+
+PROTO xAxis [ field SFColor COR 0 0 1] {
+	Group
+	{
+		children
+		Transform {
+			rotation 0 0 1 -1.57
+			translation	0.4 0 0
+			children
+			Group {
+				children[
+					Shape{	 
+						geometry Cylinder {height 0.8 radius 0.025}
+						appearance Appearance {
+							material Material {
+								diffuseColor IS COR
+							}
+						}
+					}
+					Transform {
+					translation	0 0.5 0
+					children 
+						Shape {
+							geometry Cone { height 0.2 bottomRadius 0.05}
+							appearance Appearance {
+								material Material {
+									diffuseColor IS COR
+									}
+	
+								}
+							}
+					}
+				]
+			}
+		}
+
+	}
+
+}
+PROTO Axis []
+{
+	Group
+	{
+		children 
+		[
+			Shape
+			{	# Esfera
+				geometry Sphere { radius 0.03}
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+					}
+				}
+			}
+			
+			xAxis {}
+			
+			Transform
+			{  # fazer o eixo do YY
+				rotation 0 0 1 1.57
+				children xAxis {COR 1 0 0}
+			}
+
+			Transform
+			{  # fazer o eixo do ZZ
+				rotation 0 1 0 -1.57
+				children xAxis {COR 0 1 0}
+			}
+			
+
+		]
+	}
+}
+	

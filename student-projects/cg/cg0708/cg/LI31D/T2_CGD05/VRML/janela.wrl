@@ -1,0 +1,295 @@
+#VRML V2.0 utf8
+
+PROTO porta [field	SFColor	color1 1 1 1, field MFVec2f cross 0 0, field SFVec3f sizes 0 0 0, field SFVec3f trans 0 0 0]{
+	Group {
+		children [
+			Transform {
+				translation	IS trans
+				children Shape {
+					geometry Box {size IS sizes}
+			    	appearance Appearance {
+						material	Material {
+							diffuseColor IS color1
+							shininess 0.7
+							transparency 0.9
+						}
+					}
+				}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				children Shape {
+					geometry Extrusion {
+						crossSection IS	cross
+						spine [0 0 0, 0 2 0]
+						beginCap TRUE
+						solid FALSE
+						endCap TRUE
+					}
+				}
+			}
+		]
+	}
+}
+
+
+PROTO portaPekena [field	SFColor	color1 1 1 1, field MFVec2f cross [ 0 0, 33 0, 33 134, 0 134, 0 0 ,2 2, 31 2, 31 132, 2 132, 2 2, 0 0], field SFVec3f sizes 29 130 2, field SFVec3f trans 16 -67 1]{
+	porta {color1 IS color1, cross IS cross, sizes	IS sizes, trans	 IS trans }
+}
+
+PROTO puxador [field SFColor color1 1 1 1, field SFColor color2 0.6 0.3 0.3]{
+	Group {
+		children [
+			Transform {
+				rotation 0 0 1  1.57
+				children Shape {
+					geometry Extrusion {
+						crossSection [0 -4, 0 0, 14.5 0, 14.5 -4, 12.5 -4, 12.5 -2, 2 -2, 2 -4, 0 -4]
+						spine [0 0 0, 0 1.2 0]
+						beginCap TRUE
+						endCap TRUE
+						solid FALSE
+					}
+					appearance Appearance {	material Material {diffuseColor	IS color1 }}
+				}
+			}
+				Transform {
+					translation	-0.6 10 -0.25
+					scale 0.5 0.5 1
+					children Transform {
+						rotation  1 0 0 1.57
+						children Shape {
+							geometry Cylinder {height 1 radius 0.5}
+							appearance Appearance {material	Material {diffuseColor IS color2}}
+						}
+					}
+				}
+		]
+	}
+}
+
+ PROTO portaGrande [field SFColor color1 1 1 1, field MFVec2f cross [ 0 0, 95 0, 95 134, 0 134, 0 0 ,2 2, 93 2, 93 132, 2 132, 2 2, 0 0], field SFVec3f sizes 91 130 2, field SFVec3f trans 47 -67 1, field SFVec3f sca 1 1 1]{
+	Group {
+		children [
+			porta {color1 IS color1, cross IS cross, sizes	IS sizes, trans	 IS trans}
+			Transform {
+				translation 1.5 -80 6
+				scale IS sca
+				children puxador {color1 0.5 0.5 0.5}
+			}
+		]
+	}
+}
+
+PROTO encaixe [field SFColor color1 1 1 1]{
+	Group{
+		children [
+			Group {
+				children DEF conj Group {
+					children [
+						Transform {
+							translation	0 0.2 0
+							children Shape {
+								geometry Sphere	{radius	0.1}
+								appearance Appearance {material	Material {diffuseColor IS color1}}
+							}
+						}
+						Shape {
+							geometry Cylinder {height 0.4 radius 0.1}
+							appearance Appearance {material	Material {diffuseColor IS color1}}
+						}
+					]
+				}
+			}
+			Transform {
+				translation	0 -0.45 0
+				scale -1 -1 1	 #PORQUE E PRECISO A escala de x a -1???
+				children USE conj
+			}
+			Transform {
+				translation -0.45 -0.2 0
+			    children DEF chapa Shape {
+					geometry Box {size 0.5 1 0.1}
+					appearance Appearance {material	Material{diffuseColor IS color1}}
+				}
+			}
+			Transform {
+				translation	0.45 -0.2 0
+				children USE chapa
+			}
+			Transform {
+				translation	0 -0.2 0
+				children Shape {
+					geometry Box {size 1 0.2 0.1}
+					appearance Appearance {material Material {diffuseColor IS color1}}
+				}
+			}
+		]
+	}
+}
+
+PROTO grades [field	SFColor	color1 1 1 1]{
+	Group{
+		children [
+			Transform	{
+				children DEF grade Shape {
+					geometry Cylinder {height 134 radius 0.5}
+					appearance Appearance {material	Material {diffuseColor IS color1}}
+				}
+			}
+			Transform {
+				translation	11  0 0
+				children USE grade
+			}
+			Transform {
+				translation	22 0 0
+				children USE grade
+			}
+			Transform {
+				translation	33 0 0
+				children USE grade
+			}
+			Transform {
+				translation	44 0 0
+				children USE grade
+			}
+			Transform {
+				translation	55 0 0
+				children USE grade
+			}
+			Transform {
+				translation	66 0 0
+				children USE grade
+			}
+			Transform {
+				translation	77 0 0
+				children USE grade
+			}
+			Transform {
+				translation	88 0 0
+				children USE grade
+			}
+			Transform {
+				translation	99 0 0
+				children USE grade
+			}
+			Transform {
+				translation	110 0 0
+				children USE grade
+			}
+			Transform {
+				translation	121 0 0
+				children USE grade
+			}
+			Transform {
+				translation	132 0 0
+				children USE grade
+			}
+			Transform {
+				translation	143 0 0
+				children USE grade
+			}
+			Transform {
+				translation	154 0 0
+				children USE grade
+			}
+			Transform {
+				translation	165 0 0
+				children USE grade
+			}
+			Transform {
+				translation	176 0 0
+				children USE grade
+			}
+			Transform {
+				translation	187 0 0
+				children USE grade
+			}
+			Transform {
+				translation	198 0 0
+				children USE grade
+			}
+			Transform {
+				translation	209 0 0
+				children USE grade
+			}
+			Transform {
+				translation	220 0 0
+				children USE grade
+			}
+			Transform {
+				translation	231 0 0
+				children USE grade
+			}
+			Transform {
+				translation	242 0 0
+				children USE grade
+			}
+			Transform {
+				translation 253 0 0
+				children USE grade
+			}
+			Transform {
+			   translation 0 67 -1
+			   rotation	1 0 0 1.57
+			   children	Shape {
+				   geometry	Extrusion {
+					   crossSection [0 0, 256 0, 256 134, 0 134, 0 0, 2 2, 254 2, 254 132, 2 132, 2 2, 0 0]
+					   spine [0 0 0, 0 0.5 0]
+					   beginCap	TRUE
+					   endCap TRUE
+					   solid FALSE
+				   }
+				   appearance Appearance {material Material	{diffuseColor IS color1}}
+			   }
+		   }
+	   ]
+   }
+}
+
+		
+PROTO janelaOrigem [field	SFColor	color1 1 1 1, field	SFColor	color2 0.6 0.3 0.3]{
+	Group {
+		children [
+			portaPekena	{}
+			Transform {
+				translation	35 0 3
+				children portaGrande {}
+			}
+			Transform {
+				translation	130 0 3 
+				children portaGrande{sca  0 0 0}
+			}
+			Transform {
+				translation	226 0 0
+				children portaPekena {}
+			}
+			Transform {
+				translation	131 -9 5
+				scale 2 8 4
+				children encaixe {}
+			}
+			Transform {
+				translation	131 -120 5
+				scale 2 8 4
+				children encaixe {}
+			}
+			Transform {
+				translation	0 -67 0
+				children grades {}
+			}
+			#rectas horizontais da vedação
+			Transform {
+				translation	128 -47 0.25
+				children DEF lateral Shape {
+					geometry Box { size 256 2 0.5}
+					appearance Appearance {material	Material {diffuseColor IS color1}}
+				}
+			}
+			Transform {
+				translation	128 -94 0.25
+				children USE lateral
+			}
+		]
+	}
+}			  

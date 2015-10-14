@@ -1,0 +1,68 @@
+#VRML V2.0 utf8
+
+
+PROTO pau [field SFColor lineColour 1 1 1]
+{
+	Shape
+    {
+		geometry Cylinder 
+		{
+			height 1
+			radius 0.05
+		}
+		appearance Appearance 
+		{
+			material Material
+			{
+				diffuseColor IS	lineColour
+				ambientIntensity 0.40
+				shininess 0.40
+				specularColor 0.61 0.13 0.18
+			}
+		}
+	}
+}
+
+PROTO bandeira [ field SFColor bandeiraColour 1 1 0]
+{
+	Shape
+	{
+		geometry Cone
+		{
+			height 0.1
+			bottomRadius 0.005
+		}
+
+		appearance Appearance
+		{
+			material Material
+			{
+				diffuseColor IS	bandeiraColour
+				ambientIntensity 0.40
+				shininess 0.16
+				specularColor 0.61 0.13 0.18
+			}
+		}
+		
+	}
+}
+
+PROTO bandeirinha []
+{
+	Transform 
+	{	
+		children
+		[
+			Transform {
+				children pau { }
+			}
+
+			Transform {
+				rotation 0 0 1 -1.57
+				translation	0.2 0.4 0
+				scale 20 3 1
+				children bandeira { }
+			}
+		]
+	}
+}

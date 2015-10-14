@@ -1,0 +1,296 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	ChaoSala []
+"..\\Componentes\\Chao.wrl#ChaoSala"
+EXTERNPROTO	TectoSala []
+"tectoSala.wrl#TectoSala"
+EXTERNPROTO	Mesa []
+"..\\Componentes\\Mesa.wrl#Mesa"
+EXTERNPROTO	Cadeira [ field SFColor cor ]
+"..\\Componentes\\Cadeira.wrl#Cadeira"
+EXTERNPROTO	Pc []
+"..\\Componentes\\Pc.wrl#Pc"
+
+EXTERNPROTO	Paredes []
+"..\\Componentes\\ParedesSala.wrl#ParedesSala"
+
+EXTERNPROTO	ArmarioSala []
+"..\\Componentes\\ArmarioSala.wrl#ArmarioSala"
+
+EXTERNPROTO	QuadroBranco []
+"..\\Componentes\\QuadroBranco.wrl#QuadroBranco"
+
+EXTERNPROTO	CaixoteLixo []
+"..\\Componentes\\Acessorios.wrl#CaixoteLixo"
+
+EXTERNPROTO	calhas 
+[	field	SFVec3f	size ]
+"..\\Componentes\\Acessorios.wrl#CalhaTomadas"
+
+PROTO	MesaCadeiras[ 
+  field SFColor cor1 .2 .2 .7
+  field SFColor cor2 .2 .2 .7
+]
+{ 
+	Group {
+		children [
+			Transform	{
+				children [
+					Mesa {}
+				]
+			}
+			DEF	cafeiras Group {
+				children [
+					Transform	{
+						translation	0.12 0 0.4
+						children [
+							Cadeira	{ cor IS cor1 }
+							Transform	{
+								translation	.53 0 0
+								children [
+									Cadeira	{ cor IS cor2 }
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}
+
+PROTO	MesaCadeirasComPCDireita[
+  field SFColor cor1 .2 .2 .7
+  field SFColor cor2 .2 .2 .7
+]{ 
+	Group {
+		children [
+			MesaCadeiras {cor1 IS cor1 cor2 IS cor2 }
+			Transform	{
+				translation .8 .77 .4
+				scale	.7 .7 .7
+				children Pc	{}
+			}
+		]
+	}
+}
+PROTO	GrupoDuasMesasComPcDireita[
+  field SFColor cor1 .2 .2 .7
+  field SFColor cor2 .2 .2 .7
+  field SFColor cor3 .2 .2 .7
+  field SFColor cor4 .2 .2 .7
+]
+{
+	Group	{
+		children [
+			MesaCadeiras	{cor1 IS cor3 cor2 IS cor4 }
+			Transform	{
+				translation 1.202 0 0 
+				children	MesaCadeirasComPCDireita {cor1 IS cor1 cor2 IS cor2 }
+			}
+		]
+	}
+}
+
+PROTO	MesaCadeirasComPCEsquerda[
+  field SFColor cor1 .2 .2 .7
+  field SFColor cor2 .2 .2 .7
+]
+{ 
+	Group {
+		children [
+			MesaCadeiras {cor1 IS cor1 cor2 IS cor2 }
+			Transform	{
+				translation .3 .77 .4
+				scale	.7 .7 .7
+				children Pc	{}
+			}
+		]
+	}
+}
+
+PROTO	GrupoDuasMesasComPcEsquerda[
+  field SFColor cor1 .2 .2 .7
+  field SFColor cor2 .2 .2 .7
+  field SFColor cor3 .2 .2 .7
+  field SFColor cor4 .2 .2 .7
+]
+{
+	Group	{
+		children [
+			MesaCadeirasComPCEsquerda	{ cor1 IS cor1 cor2 IS cor2 }
+			Transform	{
+				translation 1.202 0 0 
+				children	MesaCadeiras{ cor1 IS cor3 cor2 IS cor4 }
+			}
+		]
+	}
+}
+PROTO	FilaMesasComPC[
+  field SFColor cor1 .2 .2 .7
+  field SFColor cor2 .2 .2 .7
+  field SFColor cor3 .2 .2 .7
+  field SFColor cor4 .2 .2 .7
+	field	SFVec3f	distancia 4.6 0 0
+]
+{
+	Group	{
+		children [
+			GrupoDuasMesasComPcEsquerda {cor1 IS cor1 cor2 IS cor2 cor3 IS cor3 cor4 IS cor4 }
+			Transform	{
+				translation	IS distancia
+				children [
+					GrupoDuasMesasComPcDireita {cor1 IS cor3 cor2 IS cor4 cor3 IS cor2 cor4 IS cor1 }
+				]
+			}
+		]
+	}
+}
+
+
+
+
+PROTO	FilaMesasSemPC[
+  field SFColor cor1 .2 .2 .7
+  field SFColor cor2 .2 .2 .7
+  field SFColor cor3 .2 .2 .7
+  field SFColor cor4 .2 .2 .7
+]
+{
+	Group	{
+		children [
+			MesaCadeiras { cor1 IS cor3 cor2 IS cor1 }
+			Transform	{
+				translation	1.201 0 0 
+				children [
+					MesaCadeiras {cor1 IS cor1 cor2 IS cor2 }
+					Transform	{
+						translation	1.201 0 0 
+						children [
+							MesaCadeiras {cor1 IS cor3 cor2 IS cor4 }
+							Transform	{
+								translation	2.2 0 0
+								children [
+									MesaCadeiras {cor1 IS cor2 cor2 IS cor3 }
+									Transform	{
+										translation	1.201 0 0
+										children [
+											MesaCadeiras {cor1 IS cor1 cor2 IS cor4 }
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}
+
+
+
+PROTO	ConjuntoMesasCadeirasPCs [
+  field SFColor cor1 .2 .2 .7
+  field SFColor cor2 0 0 0
+  field SFColor cor3 1 1 1
+  field SFColor cor4 .5 .5 0
+  field	SFVec3f	distanciaEntreFilas 0 0 1.6
+]{
+	Transform	{
+		translation	0 0 2# 0 0 0
+		children [
+			FilaMesasComPC	{cor1 IS cor1 cor2 IS cor2 cor3 IS cor3 cor4 IS cor4 distancia 4.4 0 0}
+			Transform	{
+				translation IS distanciaEntreFilas
+				children [
+					FilaMesasComPC	{cor1 IS cor3 cor2 IS cor2 cor3 IS cor4 cor4 IS cor1 distancia 4.4 0 0}
+					Transform	{
+						translation	IS distanciaEntreFilas
+						children [
+							FilaMesasComPC	{ cor1 IS cor2 cor2 IS cor4 cor3 IS cor1 cor4 IS cor3 }
+							Transform	{
+								translation	IS distanciaEntreFilas
+								children [
+									FilaMesasComPC	{ cor1 IS cor1 cor2 IS cor3 cor3 IS cor1 cor4 IS cor2 }
+									Transform	{
+										translation	IS distanciaEntreFilas
+										children [
+											FilaMesasSemPC {cor1 IS cor4 cor2 IS cor1 cor3 IS cor1 cor4 IS cor2 }
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}
+
+PROTO	calhasNoLocal[]
+{
+	Group	{
+		children [
+			Transform	{
+				translation	4.75 0.65 .08
+				children calhas {size 4.5 .15 .08}
+			}
+			Transform	{
+				rotation 0 1 0 1.57
+				translation	0 1.20 5
+				children calhas {size 9.5 .15 .08}
+			}
+			Transform	{
+				rotation 0 1 0 1.57
+				translation	7 1.20 5
+				children calhas {size 10 .15 .08}
+			}
+		]
+	}
+}
+
+PROTO	Sala
+[]
+{
+	Group	{
+		children 	[
+
+			Transform	{
+				translation	0 0 1
+				children ArmarioSala {}
+			}
+			Transform	{
+				rotation 0 1 0 -1.57
+				translation	6.91 0 .12
+				children ArmarioSala {}
+			}
+			Transform	{
+				#rotation 0 1 0 -1.57
+				translation	2.50 0.9 0
+				children QuadroBranco {}
+			}
+			Transform	{
+				#rotation 0 1 0 -1.57
+				translation	2.50 0 0.02
+				children CaixoteLixo {}
+			}
+			calhasNoLocal{}
+			ChaoSala {}
+			TectoSala	{}
+			Paredes{}
+			ConjuntoMesasCadeirasPCs{}
+		]
+	}
+}
+
+Sala{}
+
+Inline {
+	url	["..\\Componentes\\eixos.wrl"]
+}
+
+Viewpoint {
+  position 3.75 3 15
+}

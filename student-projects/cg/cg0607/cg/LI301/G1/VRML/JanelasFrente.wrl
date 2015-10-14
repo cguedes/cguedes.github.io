@@ -1,0 +1,211 @@
+#VRML V2.0 utf8
+EXTERNPROTO	porta[]"Porta.wrl#porta"
+PROTO vidroCima1[]{
+	Shape {
+		geometry Box {size 1.42 1.27 0.01}
+		appearance Appearance {
+			material Material {transparency 0.4 diffuseColor 1 1 1 }}
+	}
+}
+PROTO vidroCima2[]{
+	Shape {
+		geometry Box {size 0.34 1.27 0.01}
+		appearance Appearance {	material Material {transparency 0.4 diffuseColor 1 1 1 }}
+	}
+}
+PROTO vidroCima3[]{
+	Shape {
+		geometry Box {size 1 1.27 .01}
+		appearance Appearance {	material Material {transparency 0.4 diffuseColor 1 1 1 }}
+	}
+}
+PROTO vidroBaixo1[]{
+	Shape {
+		geometry Box {size 1.42  .9 .01}
+		appearance Appearance {	material Material {transparency 0.4 diffuseColor 1 1 1 }}
+	}
+}
+PROTO vidroBaixo2[]{
+	
+	Shape {
+		geometry Box {size 0.34 .9 0.01}
+		appearance Appearance {	material Material {transparency 0.4 diffuseColor 1 1 1 }}
+	}
+}
+PROTO vidroBaixo3[]{
+	Shape {
+		geometry Box {size 1 .9 .01}
+		appearance Appearance {	material Material {transparency 0.4 diffuseColor 1 1 1 }}
+	}
+}
+PROTO separadorMetalVertIN[]{
+	Shape {
+		geometry Box {size 0.05 2.32 0.018}
+		appearance Appearance {texture	ImageTexture {url "Janelas\imagems\ferroBranco.jpg"}}
+	}
+}
+PROTO separadorMetalHorizIN1[]{
+	Shape {
+		geometry Box {size 2.96 0.05 0.02}
+		appearance Appearance {texture	ImageTexture {url "Janelas\imagems\ferroBrancoLado.jpg"}}
+	}
+}
+PROTO separadorMetalHorizIN2[]{
+	Shape {
+		geometry Box {size 1.91 0.05 0.02}
+		appearance Appearance {texture	ImageTexture {url "Janelas\imagems\ferroBrancoLado.jpg"}}
+	}
+}
+PROTO separadorMetalVertOUT[]{
+	Shape {
+		geometry Box {size 0.05 2.32 0.03}
+		appearance Appearance {texture	ImageTexture {url "Janelas\imagems\ferroBranco.jpg"}}
+	}
+}
+PROTO separadorMetalHorizOUT[]{
+	Shape {
+		geometry Box {size 5.87 0.05 0.025}
+		appearance Appearance {texture	ImageTexture {url "Janelas\imagems\ferroBrancoLado.jpg"}}
+	}
+}
+PROTO separadorMetalHorizOUTBottom[]{
+	Shape {
+		geometry Box {size 2.96 0.05 0.025}
+		appearance Appearance {texture	ImageTexture {url "Janelas\imagems\ferroBrancoLado.jpg"}}
+	}
+}
+PROTO separadorMetalHorizOUTBottom2[]{
+	Shape {
+		geometry Box {size 1.91 0.05 0.025}	 #X = 0.05 + 0.34 + 0.05 + 1.42+0.05 = 1.91
+		appearance Appearance {texture	ImageTexture {url "Janelas\imagems\ferroBrancoLado.jpg"}}
+	}
+}
+
+
+PROTO estrutura[]{			
+	Transform {children [
+		#ESTRUTURA FORA
+		Transform {
+			translation	0.025 1.16 0 # 1/2 de Y de SeparadoMetalVertOut para colocar a base sobre o eixo dos x
+			children separadorMetalVertOUT{}
+		}
+		Transform {
+			translation	1.48 0.025 0 # 1/2 de Y de SeparadoMetalhHorizOut o colocar sobre o eixo dos x
+								  # 1/2 de X de SeparadoMetalhHorizOut o colocar sobre o eixo dos Y	5.72/2 = 2.86
+			children separadorMetalHorizOUTBottom{}
+		}
+		Transform {
+			translation	2.935 2.295 0 # valor de Y de SeparadoMetalVertOut para colocar a base sobre o eixo dos x + 2.27 para colocar o elemento no topo da estrutura
+			children separadorMetalHorizOUT	{}
+		}
+
+
+		#ESTRUTURA DENTRO LADO ESQ
+		
+		Transform {#HORIZONTAL CENTRO
+			translation	1.48 0.975 0		 #Y = 0.5(alinhamento com eixo x + 0.9(subida) + 0.5 tamanha do separador
+			children separadorMetalHorizIN1	{}
+		}
+
+		Transform {#Vertical CENTRO
+			translation	1.50 1.16 0		  #X = 0.025(alinha com o eixo Y) + 1.42(medida do vidro) + 0.05
+			children separadorMetalVertIN	{}
+		}
+		Transform {#Vertical CENTRO2
+			translation	1.885 1.16 0		  #X = 0.025(alinha com o eixo Y) + 1.42(medida do vidro1)+ 0.05 + 0.34(medida vidro2)+0.05
+			children separadorMetalVertIN	{}
+		}
+		Transform {#Vertical CENTRO2
+			translation	2.935 1.16 0		  #X = 0.025(alinha com o eixo Y) + 1.42(medida x do vidro1)+0.05 + 0.34(medida x vidro2)+0.05 + 1(medida x vidro3)+0.05
+			children separadorMetalVertIN	{}
+		}
+
+
+		#VIDROS
+
+		Transform {#Vidro Baixo1
+			translation	0.765 0.50 0			  #X = 1.42/2 + 0.05 = 0.71 + 0.05 = 0.76(medida do separador)
+											  #Y = 0.90/2 + 0.05 = 0.45 + 0.05 = 0.50	
+			children vidroBaixo1{}
+		}
+		Transform {#Vidro Cima1
+			translation	0.765 1.635 0		  #X = 1.42/2 + 0.05 = 0.71 + 0.05 = 0.76(medida do separador)
+											  #Y = 1.27/2 + 0.05 = 0.635 + 0.05 = 0.685 + Y Vidro Baixo1(0.9)+(Yseparador)0.05 =1.635 	
+			children vidroCima1{}
+		}
+		Transform {
+			translation 1.69 0.50 0			  #X = 0.34/2 + 1.42 + 0.05 = 0.17+1.42.0.05 = 0.22 + 1.42 = 1.64
+			children  vidroBaixo2 {}
+		}
+		Transform {
+			translation 1.69 1.635 0		  
+			children  vidroCima2 {}
+		}
+		Transform {
+
+			translation 2.41 0.50 0			 # X = 1/2 + 1.42 + 0.05 + 0.34 + 0.05 = 2.36
+			children vidroBaixo3 {}
+		}
+		Transform {
+
+			translation 2.41 1.635 0			 # X = 1/2 + 1.42 + 0.05 + 0.34 + 0.05 = 0.5 + 0.01 + 1.42 + 0.34 = 0.5 + 1.42 + 0.35 = 0.5 + 1.77 = 2.27
+			children vidroCima3 {}
+		}
+
+
+		Transform { #porta
+			translation	2.96 0 0 # Como porta esta na coordenadas (0,0,0) X= 0.05 + 1.42 + 0.05 + 0.34 + 0.05 +1 + 0.05  = 2.96 
+			children porta {}
+		}
+
+
+		#ESTRUTURA DENTRO lado DTO
+
+		Transform {
+			translation	4.915 0.025 0		 # x = 1.91/2 + 0.05 +1.42 + 0.05 +0.34 +0.05 + 1 + 0.05 +0.05 + 0.90 + 0.05 = 4,915
+			children separadorMetalHorizOUTBottom2{}
+		}
+		Transform {
+			translation	4.915 0.975 0		 # x = 1.91/2 + 0.05 +1.42 + 0.05 +0.34 +0.05 + 1 + 0.05 +0.05 + 0.90 + 0.05 = 4,915
+			children separadorMetalHorizIN2{}
+		}
+
+		Transform {
+			translation	 3.985 1.16 0	#x= 0.025 + 0.05 + 1.42 +0.05+0.34+0.05+1+0.05+0.05+0.9+0.05 = 3.985
+			children separadorMetalVertIN {}
+		}
+		Transform {
+			translation	 4.375 1.16 0	#x= 0.025 + 0.05 + 1.42 +0.05+0.34+0.05+1+0.05+0.05+0.9+0.05 + 0.34+0.05 = 4.375
+			children separadorMetalVertIN {}
+		}
+		Transform {
+			translation	 5.845 1.16 0	#x= 0.025 + 0.05 + 1.42 +0.05+0.34+0.05+1+0.05+0.05+0.9+0.05 + 0.34+0.05 + 1.42 +0.05 = 5.845
+			children separadorMetalVertOUT {}
+		}
+
+		#VIDROS DTA
+
+		Transform {
+			translation	4.18  0.5 0	 #X = 0.34/2 +0.05 + 1.42 + 0.05 + 0.34 + 0.05 + 1 + 0.05 + 0.05 + 0.9+0.05 +0.05 = 4.18 
+			children vidroBaixo2 {}
+		}
+		Transform {
+			translation 4.18 1.635 0		  
+			children  vidroCima2 {}
+		}
+		Transform {#Vidro Baixo1
+			translation	5.11 0.50 0		  #X = 1.42/2 +0.05 + 1.42 + 0.05 + 0.34 + 0.05 + 1 + 0.05 + 0.05 + 0.9+0.05 +0.05 + 0.34 + 0.05= 5.11
+											  #Y = 0.90/2 + 0.05 = 0.45 + 0.05 = 0.50	
+			children vidroBaixo1{}
+		}
+		Transform {#Vidro Cima1
+			translation	5.11 1.635 0		  
+											  #Y = 1.27/2 + 0.05 = 0.635 + 0.05 = 0.685 + Y Vidro Baixo1(0.9)+(Yseparador)0.05 =1.635 	
+			children vidroCima1{}
+		}
+		
+
+	]}			 
+
+}
+estrutura {}

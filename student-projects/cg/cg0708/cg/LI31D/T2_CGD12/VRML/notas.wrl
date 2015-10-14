@@ -1,0 +1,276 @@
+#VRML V2.0 utf8
+
+#nvolvência de quarto de círculo
+PROTO mc_quarter_circle
+[
+	field SFColor cor 1 0 0
+	field SFColor cor_especular 0 0 0
+	field SFFloat brilho 0.2
+]
+{
+
+	Shape
+	{
+		appearance Appearance 
+		{
+			material Material 
+			{
+				diffuseColor IS cor 
+				specularColor IS cor_especular
+				shininess IS brilho
+			}
+		}
+		geometry Extrusion 
+		{
+			crossSection [0.0000 0.0000 , 0.0123 0.1564 , 0.0489 0.3090 , 0.1090 0.4540 , 0.1910 0.5878 , 0.2929 0.7071 , 0.4122 0.8090 , 0.5460 0.8910 , 0.6910 0.9511 , 0.8436 0.9877 , 1.0000 1.0000 , 0 1 , 0 0]
+			spine[0 0 0, 0 0.0001 0]
+			ccw TRUE
+			convex FALSE
+		}
+	}
+}
+
+
+
+#envolvência notas
+PROTO envolvnotas
+[
+	field SFColor cor_relevo 1 0 0
+	field SFColor cor_especular_relevo 0 0 0
+	field SFFloat brilho_relevo 0.2
+
+	field SFColor cor_fundo 1 0 0
+	field SFColor cor_especular_fundo 0 0 0
+	field SFFloat brilho_fundo 0.2
+	
+	field SFColor cor_fora 0 1 0
+	field SFColor cor_especular_fora 0 0 0
+	field SFFloat brilho_fora 0.2
+]
+{
+	Transform
+	{
+		rotation 1 0 0 1.57
+		translation	5.5 2 0
+		children [
+
+			#esquina inferior esquerda
+			Transform
+			{
+				translation	0 0 1
+				children
+				mc_quarter_circle 
+				{
+					cor IS cor_fora
+					cor_especular IS cor_especular_fora
+					brilho IS brilho_fora
+				}
+			}
+
+			#esquina sup direita
+			Transform
+			{
+				translation	12.5 0 -1 
+				children 
+				Transform
+				{
+					rotation 0 1 0 3.142
+					children 
+					mc_quarter_circle 
+					{	
+						cor IS cor_fora
+						cor_especular IS cor_especular_fora
+						brilho IS brilho_fora
+					}
+				}
+			}
+
+			#esquina inferior direita
+			Transform
+			{
+				translation	11.5 0 2 
+				children 
+				Transform
+				{
+					rotation 0 1 0 1.57
+					children
+				    mc_quarter_circle 
+					{
+						cor IS cor_fora
+						cor_especular IS cor_especular_fora
+						brilho IS brilho_fora
+					}
+				}
+			}
+
+
+			#esquina superior direita
+			Transform
+			{
+				translation	1 0 -2 
+				children 
+				Transform
+				{
+					rotation 0 1 0 -1.57
+					children 
+					mc_quarter_circle 
+					{
+						cor IS cor_fora
+						cor_especular IS cor_especular_fora
+						brilho IS brilho_fora
+					}	
+				}
+			}
+
+			#fundo geral
+			Transform
+			{
+				translation 6.25 -0.02 0
+				children
+				Shape 
+				{
+					# -0.05 de largura e altura para não se notar na envolvência
+					geometry Box{size 12.45 -0.0001 3.95}
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS cor_fundo 
+							specularColor IS cor_especular_fundo
+							shininess IS brilho_fundo
+						}
+					}
+				}
+			}
+
+			#fundo ranhura notas
+			Transform
+			{
+				translation	6.25 -0.01 0
+				children
+				Shape 
+				{
+					geometry Box{size 10.5 -0.0001 2}
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS cor_relevo
+							specularColor IS cor_especular_relevo
+							shininess IS brilho_relevo
+						}
+					}
+				}
+			}
+
+			#base geral - assenta por trás de tudo
+			Transform
+			{
+				#-0.03 para ficar atrás de tudo
+				translation	 17 -0.03 0
+				children
+				Shape 
+				{
+					geometry Box{size 45 -0.0001 4 }
+					appearance Appearance 
+					{
+						material Material 
+						{
+							diffuseColor IS	cor_fora
+							specularColor IS cor_especular_fora
+							shininess IS brilho_fora
+						}
+					}
+				}
+			}
+		]
+	}
+
+}
+
+
+#ranhura das notas
+PROTO ranhuranotas
+[					  
+	field SFColor cor_relevo 1 1 1
+	field SFColor cor_especular_relevo 0 0 0
+	field SFFloat brilho_relevo 0.2
+]
+{	Transform
+	{
+		translation 6.5 3 0
+		children
+		Shape 
+		{
+			appearance Appearance 
+			{
+			material Material 
+			{
+				diffuseColor IS cor_relevo 
+				specularColor IS cor_especular_relevo
+				shininess IS brilho_relevo
+			}
+			}
+			geometry Extrusion 
+			{
+
+				crossSection [0 0 , 0.5 0 , 0.5 1 , 10 1 , 10 0 , 10.5 0 , 10.5 1 , 10.5 2 , 0 2 , 0 0]
+				spine[0 0 0, 0 0 2]
+				ccw FALSE
+				convex FALSE
+			}
+		}
+	}
+}
+
+PROTO notas[]
+{
+	Transform {
+		children [
+			envolvnotas{
+				#RGB 50 50 100
+				cor_fora 0.196 0.196 0.392
+				cor_especular_fora 0.2 0.2 0.6
+				brilho_fora 0.1
+	
+				cor_fundo 0.5 0.5 0.5 
+				cor_especular_fundo	0.9 0.9 0.9
+				brilho_fundo 0.05
+	
+				cor_relevo  0 0 0
+				cor_especular_relevo 0.05 0.05 0.05
+				brilho_relevo 0.1
+			}
+
+			ranhuranotas{
+				cor_relevo  0 0 0
+				cor_especular_relevo 0.05 0.05 0.05
+				brilho_relevo 0.1
+			}
+		]
+	}
+}
+
+#notas{}
+##noção de origem TEST ONLY
+
+#	Transform
+#	{
+#		translation	22.5 0 0
+#		children
+#		Shape 
+#		{
+#			geometry Box{size 45 1 1}
+#			appearance Appearance {material Material {diffuseColor 1 0 0 }}
+#		}
+#	}
+#	Shape 
+#	{
+#		geometry Box{size 1 10 1}
+#		appearance Appearance {material Material {diffuseColor 0 1 0 }}
+#	}
+#	Shape 
+#	{
+#		geometry Box{size 1 1 10}
+#		appearance Appearance {material Material {diffuseColor 0 0 1 }}
+#	}

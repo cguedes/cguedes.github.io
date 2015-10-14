@@ -1,0 +1,58 @@
+#VRML V2.0 utf8
+
+#Ficheiro para defnição de placares e quadro de testes
+
+PROTO Board [
+	field MFString image ""
+]{
+	Shape {
+		appearance Appearance {
+			texture	ImageTexture {
+				url IS image
+			}
+			material Material { ambientIntensity 0 }
+		}
+
+		geometry Box {
+			size 1.395 0.796 0.057
+		}
+	}
+}
+
+PROTO TestBoard [
+	field MFString image ""
+]{
+	Shape {
+		appearance Appearance {
+			texture	ImageTexture {
+				url IS image
+			}
+			material Material { ambientIntensity 0 }
+		}
+
+		geometry Box {
+			size 0.905 0.605 0.02
+		}
+	}
+}
+
+PROTO CurveBoard[
+	field MFString image ""
+]{
+	Shape {
+		appearance Appearance {
+			texture	ImageTexture {
+				url IS image
+			}
+			material Material { 
+				diffuseColor 0 1 0
+				ambientIntensity 0 
+			}
+		}
+
+		geometry Extrusion {
+			crossSection [14.1300		0.0000	, 14.1278		0.2466	, 14.1214		0.4931	, 14.1106		0.7395	, 14.0956		0.9857	, 14.0762		1.2315	, 14.0526		1.4770	, 14.0247		1.7220	, 13.9925		1.9665	, 13.9560		2.2104, 13.9363		 2.21   	, 13.9727		 1.96   	, 14.0048		 1.72   	, 14.0327		 1.47   	, 14.0563		 1.23   	, 14.0756		 0.98   	, 14.0907		 0.74   	, 14.1014		 0.49   	, 14.1079		 0.25   	, 14.1100		 0.00, 14.1300		0.0000]
+			spine [0 0 0, 0 1.2 0]
+		}
+	}
+}

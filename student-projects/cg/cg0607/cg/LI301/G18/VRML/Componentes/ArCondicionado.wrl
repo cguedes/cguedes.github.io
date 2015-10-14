@@ -1,0 +1,85 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Interruptor[
+  eventOut SFTime set_startTime
+  eventOut SFTime set_stopTime
+  eventOut SFBool switch_on
+]"Interruptor.wrl#Interruptor"
+
+PROTO ArCondicionado [
+  eventIn SFTime set_startTime
+  eventIn SFTime set_stopTime
+  eventIn SFBool set_loop
+]{
+  Transform {
+		translation	0 -0.0025 0
+    children [
+      Shape {
+				appearance Appearance	{
+					material Material	{
+						diffuseColor 0.3 0.3 0.3
+					}
+					texture	ImageTexture {
+						url "..\\fotos\\ac.jpg"
+					}
+				}
+				geometry Box {size 0.55 0.01 0.86}
+			}
+			Sound {
+				source DEF Som AudioClip{
+  				url "..\\fotos\\ac.mp3"
+					loop IS set_loop
+          startTime IS set_startTime
+          stopTime IS set_stopTime
+				}
+			}
+    ]
+  }
+}
+#ArCondicionado{}
+
+PROTO SistemaArCondicionado[
+	field	SFVec3f position_ac 0 0 2
+	field	SFVec3f position_ac2 0 0 4
+	field	SFVec3f position_ac3 0 0 6
+	field	SFVec3f position_bt 0 0 0
+]{
+	Group {
+		children[
+			Transform	{
+				translation	IS position_ac
+		  	children DEF AC1 ArCondicionado {}
+			}
+			Transform	{
+				translation IS position_ac2
+				children DEF AC2 ArCondicionado {}
+			}
+			Transform	{
+				translation IS position_ac3
+				children DEF AC3 ArCondicionado {}
+			}
+			Transform	{
+				translation	IS position_bt
+				children DEF int Interruptor	{}
+        ROUTE int.set_startTime TO AC1.set_startTime
+        ROUTE int.set_stopTime TO AC1.set_stopTime
+        ROUTE int.switch_on TO AC1.set_loop
+
+        ROUTE int.set_startTime TO AC2.set_startTime
+        ROUTE int.set_stopTime TO AC2.set_stopTime
+        ROUTE int.switch_on TO AC2.set_loop
+
+				ROUTE int.set_startTime TO AC3.set_startTime
+        ROUTE int.set_stopTime TO AC3.set_stopTime
+        ROUTE int.switch_on TO AC3.set_loop
+			}
+		]
+	}
+}
+
+SistemaArCondicionado {}
+
+Inline {
+	url	["..\\Componentes\\eixos.wrl"]
+}
+

@@ -1,0 +1,55 @@
+#VRML V2.0 utf8
+EXTERNPROTO	caixilho[]"caixilho.wrl#Caixilho"
+EXTERNPROTO	suporte[]"suporte.wrl#cilindro"
+
+
+PROTO box[
+	exposedField MFString url "Alvo\texturas\madeira.jpg"
+]
+{
+	Shape {
+		geometry Box {size 0.16 0.12 0.01}
+		appearance Appearance {texture ImageTexture {url IS url}}
+	}
+
+
+}
+PROTO box2[]{
+	Transform {
+		children [
+			Transform {
+				translation	0 -0.07 -0.17
+				rotation 0 1 0 -1.57
+				scale 0.2 0.2 0.2
+				children suporte{}
+			}
+
+			Transform {
+				children box {}
+			}
+			Transform {
+				scale 0.95 0.95 1.2
+				children box {}
+			}
+			Transform {
+				scale 0.85 0.85 1.4
+				children box {}
+			}
+			Transform {
+				translation	0 0 0.005
+				scale 0.70 0.70 1.7
+				children box {}
+			}
+			Transform {
+				translation	-0.03 -0.06 -0.0385
+				children caixilho {}
+			}
+			Transform {
+				translation	0.03 -0.06 -0.0385
+				children caixilho {}
+			}
+		]
+	}
+
+}
+box2 {}

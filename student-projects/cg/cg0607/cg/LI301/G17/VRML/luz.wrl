@@ -1,0 +1,249 @@
+#VRML V2.0 utf8
+# dimensões:
+# x: 1.64
+# y: 0.10
+# z: 0.82
+
+EXTERNPROTO	Axis [ ] "axis_prof.wrl#Axis"
+Transform {
+	scale 0.1 0.1 0.1
+	children Axis {  }
+} 
+
+PROTO Lampada [] {
+	Shape {
+		geometry Cylinder {
+			height 1.64
+			radius 0.015
+		}
+		appearance Appearance {
+			material Material {
+				emissiveColor 1 1 1
+				ambientIntensity 1
+				shininess 1
+			}
+		}
+	}
+}
+
+PROTO Separador_Vertical [] {
+	Shape {
+		geometry Box {
+		   size	0.002	1.64	0.100
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 0.99 0.99 0.99
+				shininess 1
+			}
+		}
+	}
+}
+
+PROTO Separador_Horizontal [] {
+	Shape {
+		geometry Box {
+		   size	0.28	0.002	0.03
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 0.99 0.99 0.99
+				shininess 1
+			}
+		}
+	}
+}
+
+# lol @ name
+PROTO Um_Terco_de_Luz [] {
+	Group {
+		children [
+			# lampada
+			Transform {
+				translation	0 0 -0.025
+				children [Lampada	{ }]
+			}
+			# separadores horizontais (19)
+			Transform {
+				translation 	0.00	-0.7380	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	-0.6560	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	-0.5740	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	-0.4920	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	-0.4100	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	-0.3280	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	-0.2460	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	-0.1640	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	-0.0820	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	0.0000	0.025
+				children [Separador_Horizontal { }]
+			}
+
+			Transform {
+				translation 	0.00	0.0820	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	0.1640	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	0.2460	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	0.3280	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	0.4100	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	0.4920	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	0.5740	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	0.6560	0.025
+				children [Separador_Horizontal { }]
+			}
+			Transform {
+				translation 	0.00	0.7380	0.025
+				children [Separador_Horizontal { }]
+			}
+
+			# separadores verticais (2)
+			Transform {
+				translation	0.115 0 0
+				rotation 0 1 0 0.524	# rotação de 30º
+				children [Separador_Vertical { }]
+			}
+			Transform {
+				translation	-0.115 0 0
+				rotation 0 1 0 -0.524	# rotação de 30º
+				children [Separador_Vertical { }]
+			}
+		]
+	}
+}
+
+PROTO Encaixe_Lateral [] {
+	Group {
+		children [
+			#up
+			Transform {
+				translation	0 0.82 0
+				children [
+					Shape {
+						geometry Box { size 0.84 0.002 0.100 }
+                    	appearance Appearance { 
+							material Material { diffuseColor 0.99 0.99 0.99 shininess 1 } 
+						}
+					}
+				]
+			}
+			#down
+			Transform {
+				translation	0 -0.82 0
+				children [
+					Shape {
+						geometry Box { size 0.84 0.002 0.100 }
+						appearance Appearance {
+							material Material { diffuseColor 0.99 0.99 0.99 shininess 1 }
+						}
+					}
+				]
+			}
+
+			#left
+			Transform {
+				translation	-0.42 0 0
+				children [Separador_Vertical { }]
+			}
+			#right
+			Transform {
+				translation	0.42 0 0
+				children [Separador_Vertical { }]
+			}
+		]
+	}
+}
+
+PROTO Encaixe_Traseiro [] {
+	Shape {
+		geometry Box {
+			size 0.84	1.64	0.002
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 0.8 0.8 0.8
+			}
+		}
+	}
+}
+
+PROTO Light [] {
+	Group {
+		children [
+			Encaixe_Lateral	{ }
+			Um_Terco_de_Luz { }
+			Transform {
+				translation	0 0 -0.050
+				children [Encaixe_Traseiro { }]
+			}
+			Transform {
+				translation	0.28 0 0
+				children [Um_Terco_de_Luz { }]
+			}
+			Transform {
+				translation	-0.28 0 0
+				children [Um_Terco_de_Luz { }]
+			}
+
+#			PointLight {
+#    			location 0 0 0
+#    			intensity 1.0
+#    			color 1 1 1
+#			}
+		]
+	}
+}
+
+PROTO Luz [] {
+	Transform {
+		rotation 1 0 0 1.57
+		children [Light { }]
+	}
+}
+
+Luz { }

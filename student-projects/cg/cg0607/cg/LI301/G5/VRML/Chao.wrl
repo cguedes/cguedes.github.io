@@ -1,0 +1,200 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Eixo [
+
+
+]
+"eixo.wrl#Eixos"
+
+
+PROTO Azulejos
+[
+]
+{
+	Transform {
+		translation	 626 1 467
+		children
+		Shape {
+			geometry Box {
+				size 1252 2 934
+				}
+			appearance Appearance {
+			  material Material {
+				diffuseColor  1 1 1
+			  } 
+	    	}
+		}
+	}	
+}
+
+
+
+PROTO Azulejos2
+[
+]
+{
+	Transform {
+		translation	 0 0 0
+		children
+		Shape {
+			geometry ElevationGrid{  
+				xDimension 41 
+				xSpacing 31.0 
+				zDimension 31 
+				zSpacing 30.0 
+				height [
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+				 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0				
+				] 
+				color NULL   
+				colorPerVertex TRUE 
+				normal NULL  
+				normalPerVertex TRUE  
+				texCoord NULL  
+				ccw TRUE  
+				#convex TRUE  
+				solid TRUE  
+				creaseAngle 0.0 
+			} 
+			
+			appearance Appearance   {
+				texture	ImageTexture {
+				    repeatS TRUE
+					repeatT	TRUE
+					url "Texturas\Sala\mosaico.jpg" 
+
+				}
+					material Material {
+					diffuseColor 1 1 1
+				}
+				 textureTransform  TextureTransform {  
+					scale 41 31 
+					rotation 0 
+					center 0 0 
+					translation 0 0  
+				}   
+			}
+
+		}
+
+
+	}
+}
+  
+
+
+
+PROTO Canalizacao
+[
+]
+{
+ 	Transform {
+#	rotation 1 0 0 -1.57
+#	translation	 0 0 2
+	children
+		Shape {
+			geometry Extrusion{	
+				crossSection [
+					0 0, 301 0,456 0,456 165, 698 165, 698 185, 456 185, 456 427, 698 427, 698 447, 456 447, 456 689, 698 689, 698 709, 456 709. 456 951, 698 951, 698 971, 456 971, 
+					456 1150, 80 1150, 80 689, 100 689, 100 1130,436 1130, 436 971,194 971, 194 951, 436 951,436 709, 194 709, 194 689, 436 689, 436 447, 194 447, 194 427, 436 427, 436 185, 194 185, 194 165, 436 165 ,436 20, 301 20, 301 0,0 0              
+				]            	
+				spine [0 0 0, 0 0.5 0]
+				solid FALSE
+				}		  
+			appearance Appearance   {
+				texture	ImageTexture {
+				    repeatS TRUE
+					repeatT	TRUE
+					url "Texturas\Sala\steel1.jpg" 
+
+				}
+					material Material {
+					diffuseColor 1 1 1
+				}
+				 textureTransform  TextureTransform {  
+					scale 50.5 40.5 
+					rotation 0 
+					center 0 0 
+					translation 0 0  
+				}   
+			
+			}
+		}
+
+	
+	}
+}
+
+
+PROTO Chao
+[	
+]
+{
+	Transform {
+		children [
+
+			Transform {
+				#translation	0 120 0
+			#	rotation  0 1 0 -1.57
+				children Azulejos {}
+			}
+
+			Transform {
+				translation	0 2.1 0
+				children Azulejos2 {}
+			}
+
+			Transform {
+				rotation 1 0 0 3.14
+				translation	 18 2.2 0
+				children
+					Transform {
+						rotation  0 1 0 1.57
+						children  Canalizacao  {}
+					}
+			}
+
+
+		]
+	}
+}
+
+
+
+
+
+Transform {
+				
+	scale 0.01 0.01 0.01
+	children Chao {}
+}
+Eixo {}

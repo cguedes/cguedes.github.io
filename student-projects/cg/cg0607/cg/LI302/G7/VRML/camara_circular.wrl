@@ -1,0 +1,319 @@
+#VRML V2.0 utf8
+
+########################################################################
+# Protos externos para parafuso, porca e braçadeira
+########################################################################
+
+EXTERNPROTO ScrewTop []
+"camara_normal.wrl#ScrewTop"
+
+EXTERNPROTO ScrewEnd []
+"camara_normal.wrl#ScrewEnd"
+
+EXTERNPROTO Porca []
+"camara_normal.wrl#Porca"
+
+EXTERNPROTO Bracelet []
+"camara_normal.wrl#Bracelet"
+
+PROTO Screw []{
+	Transform {
+		children [
+			Transform {
+				children ScrewTop {}
+			}
+
+			Transform {
+				rotation 1 0 0 1.57
+				translation	.2 .2 2.6
+				children ScrewEnd {}
+			}
+
+			Transform {
+				scale .31 .31 .31
+				rotation 0 0 0 1.57
+				translation	.22 .2 3.75
+				children Porca {}
+			}
+		]
+	}
+}
+
+########################################################################
+# Proto do suporte da câmara circular
+########################################################################
+
+PROTO CircArm []{
+
+	Transform {
+
+		children
+		[
+			Transform {
+				scale .1 .1 .1
+				translation	0 .24 0
+				children [
+					Shape { # Shape 1
+						appearance Appearance {
+							material Material {
+							}
+						}
+						geometry Extrusion {
+							spine [
+								0 -.1 0, 0 .2 0, .1 .5 0, .2 .7 0, .4 .9 0, .8 1.1 0, 1.1 1.1 0,
+								2.5 1.1 0
+							]
+							crossSection [
+								.4 0, .369552 -.153073, .282843 -.282843, .153073 -.369552,
+								0 -.4, -.153073 -.369552, -.282843 -.282843, -.369552 -.153073,
+								-.4 0, -.369552 .153073, -.282843 .282843, -.153073 .369552,
+								0 .4, .153073 .369552, .282843 .282843, .369552 .153073,
+								.4 0
+							]
+							scale [
+								.6 .6, .6 .6, .6 .6, .6 .6, .6 .6, .5 .5, .5 .5, .5 .5
+							]
+						}
+					}
+				]
+			}
+
+
+			Transform {
+				rotation 0 1 0 1.57
+				translation	.25 .34 .0
+				children [
+					Shape	{
+						geometry Box { size .12 .15 .01 }
+							appearance Appearance {
+								material Material {
+									diffuseColor .6 .6 .6
+									emissiveColor .15 .15 .15
+									ambientIntensity 0
+									specularColor .5 .5 .5
+								}
+						}
+					}
+					#Parafuso 1
+					Transform {
+						scale 0.02 0.02 0.02
+						translation	.035 .04 -0.008
+						children [Screw {}]
+					}
+					#Parafuso 2
+					Transform {				
+						children[ 
+							Transform {
+								scale 0.02 0.02 0.02
+								translation	-.04 .04 -0.008
+								children Screw {}
+							}
+						]
+					}
+					#Parafuso 3
+					Transform {				
+						children[ 
+							Transform {
+								scale 0.02 0.02 0.02
+								translation	.035 -.04 -0.008
+								children Screw {}
+							}
+						]
+					}
+					#Parafuso 4
+					Transform {				
+						children[ 
+							Transform {
+								scale 0.02 0.02 0.02
+								translation	-.04 -.04 -0.008
+								children Screw {}
+							}
+						]
+					}
+
+					Transform {
+						scale .03 .03 .03
+						translation	0 .035 .056
+						children[
+							Transform {
+								children Bracelet {}
+							}
+						]
+					}
+
+					Transform {
+						scale .03 .03 .03
+						translation	0 -.044 .056
+						children[
+							Transform {
+								children Bracelet {}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}
+
+########################################################################
+# Proto da Câmara Cricular
+########################################################################
+
+PROTO CircCam []{
+
+	Transform {
+		children [
+			Transform {
+				translation	0 0.1 0
+				scale 0.22 0.22 0.22
+				children [
+					Shape { # Shape 1
+						appearance Appearance {
+							material Material {
+								diffuseColor .75 .75 .75
+								specularColor .5 .5 .5
+								emissiveColor .15 .15 .15
+								ambientIntensity 0
+							}
+						}
+						geometry Extrusion {
+							spine [
+								0 0 0, 0 .1 0, 0 .4 0, 0 .5 0, 0 .7 0, 0 .8 0, 0 .9 0
+							]
+							scale [
+								1 1, 1 1, .9 .9, .8555 .8555, .7 .7, .6 .6, .3 .3
+							]
+							crossSection [
+								.4 .4, .4625 .30625, .5 .2, .5 0, .5 -.2, .4 -.4, .30625 -.4625,
+								.2 -.5, 0 -.5, -.2 -.5, -.4 -.4, -.4625 -.30625, -.5 -.2,
+								-.5 0, -.5 .2, -.4 .4, -.30625 .4625, -.2 .5, 0 .5, .2 .5,
+								.4 .4
+							]
+						}
+					}
+				]
+			}
+			
+			Transform {
+				translation	0 0.1 0
+				children [
+					Shape {
+						geometry Sphere	{radius 0.11}
+						appearance Appearance {
+							material Material {
+								diffuseColor .78 .788 .78
+								specularColor .553 .561 .576
+								emissiveColor .4 .4 .4
+								ambientIntensity .455
+								shininess .627
+								transparency .745
+							}
+						}
+					}
+					DEF circular Transform{ 
+						children [
+							Shape {
+								geometry Sphere	{radius 0.09}
+								appearance Appearance {
+									material Material {
+										diffuseColor 0 0 0
+										specularColor .231 .239 .239
+										ambientIntensity 0
+										shininess .325
+									}
+								}
+							}	
+							Transform {
+								children[
+									Transform {
+										rotation 0 0 1 0.69
+										children
+											Viewpoint {
+            									position -0.05 -0.06 0
+            									orientation 0.0 1.0 0.0 1.57
+            									description "In Camara Circular"
+        									}
+									}
+									Transform {
+										translation	-0.046 -0.055 0
+										rotation 0 0 1 2.45
+										scale 0.1 0.1 0.1
+										children 
+										Shape {
+											geometry Extrusion {
+												spine [
+													0 0 0, 0 .2 0, 0 .1 0
+												]
+												crossSection [
+													.2 0, .184776 -.0765367, .141421 -.141421, .0765367 -.184776,
+													0 -.2, -.0765367 -.184776, -.141421 -.141421, -.184776 -.0765367,
+													-.2 0, -.184776 .0765367, -.141421 .141421, -.0765367 .184776,
+													0 .2, .0765367 .184776, .141421 .141421, .184776 .0765367,
+													.2 0
+												]
+												scale [
+													1.2 1.2, 1.2 1.2, .8 .8
+												]
+											}
+												appearance Appearance {
+													material Material {					
+														diffuseColor .61 .61 .61
+														ambientIntensity .25
+														shininess .11
+														specularColor .39 .39 .39
+													}
+												}
+										}
+									}
+									Transform {
+										translation	-0.05 -0.06 0
+										scale 0.1 0.1 0.1
+										children 
+									
+										Shape	{
+											geometry Sphere	{ radius 0.2}
+											appearance Appearance {
+												material Material {
+													diffuseColor 0 .21 .34
+													emissiveColor 0 .22 .35
+													ambientIntensity 0
+													shininess .1
+													transparency .55
+													specularColor .3 .92 .98
+												}
+											}
+										}
+									}
+								]
+								
+							}
+
+						###############################
+						# Animação da câmara circular #
+						###############################
+						
+							DEF Touch TouchSensor { }
+        					DEF OrInterpolator OrientationInterpolator {
+            					key [0 0.25 0.5 0.75 1]
+						    	keyValue [0 0 0 0, 0 1 0 1.57, 0 1 0 3.14, 0 1 0 4.71, 0 1 0 6.28]
+        					}
+        					DEF Timer1 TimeSensor {
+								cycleInterval 30
+								loop TRUE
+            					#stopTime 1							
+							}
+						]
+						ROUTE Touch.touchTime TO Timer1.startTime
+						ROUTE Timer1.fraction_changed TO OrInterpolator.set_fraction
+						ROUTE OrInterpolator.value_changed TO circular.rotation
+					}
+				]
+			}
+		]
+	}
+}
+
+CircArm	{}
+CircCam {}
+

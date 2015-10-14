@@ -1,0 +1,207 @@
+#VRML V2.0 utf8
+
+#Ficheiro para definição da mesa
+
+PROTO SmallLeg[]{
+	Group {
+		children [
+			#Intersecção
+			Transform {
+				translation	-0.01 0.149 0
+				rotation 1 0 0 -1.57
+				children Shape {
+					appearance Appearance { material Material { diffuseColor 0 0 0 }}
+					geometry Extrusion {
+						crossSection [0.0100		0.0000	, 0.0098		0.0017	, 0.0094		0.0034	, 0.0087		0.0050	, 0.0077		0.0064	, 0.0064		0.0077	, 0.0050		0.0087	, 0.0034		0.0094	, 0.0017		0.0098	, 0.0000		0.0100	, -0.0017		0.0098	, -0.0034		0.0094	, -0.0050		0.0087	, -0.0064		0.0077	, -0.0077		0.0064	, -0.0087		0.0050	, -0.0094		0.0034	, -0.0098		0.0017	, -0.0100		0.0000	, -0.0098		-0.0017	, -0.0094		-0.0034	, -0.0087		-0.0050	, -0.0077		-0.0064	, -0.0064		-0.0077	, -0.0050		-0.0087	, -0.0034		-0.0094	, -0.0017		-0.0098	, 0.0000		-0.0100	, 0.0017		-0.0098	, 0.0034		-0.0094	, 0.0050		-0.0087	, 0.0064		-0.0077	, 0.0077		-0.0064	, 0.0087		-0.0050	, 0.0094		-0.0034	, 0.0098		-0.0017	, 0.0100		0.0000]
+						spine [0.0098 0 -0.017, 0.0100	0	0.0000	, 0.0098	0	0.0017	, 0.0094	0	0.0034	, 0.0087	0	0.0050	, 0.0077	0	0.0064	, 0.0064	0	0.0077	, 0.0050	0	0.0087	, 0.0034	0	0.0094	, 0.0017	0	0.0098	, 0.0000	0	0.0100, -0.0017 0 0.0098]
+						creaseAngle	1
+						solid FALSE
+					}
+				}
+			}
+
+			Transform {
+				translation -0.38 0.149 0
+				rotation 0 1 0 3.1416
+				children Transform {
+					rotation 1 0 0 -1.57
+					children Shape {
+						appearance Appearance { material Material { diffuseColor 0 0 0 }}
+						geometry Extrusion {
+							crossSection [0.0100		0.0000	, 0.0098		0.0017	, 0.0094		0.0034	, 0.0087		0.0050	, 0.0077		0.0064	, 0.0064		0.0077	, 0.0050		0.0087	, 0.0034		0.0094	, 0.0017		0.0098	, 0.0000		0.0100	, -0.0017		0.0098	, -0.0034		0.0094	, -0.0050		0.0087	, -0.0064		0.0077	, -0.0077		0.0064	, -0.0087		0.0050	, -0.0094		0.0034	, -0.0098		0.0017	, -0.0100		0.0000	, -0.0098		-0.0017	, -0.0094		-0.0034	, -0.0087		-0.0050	, -0.0077		-0.0064	, -0.0064		-0.0077	, -0.0050		-0.0087	, -0.0034		-0.0094	, -0.0017		-0.0098	, 0.0000		-0.0100	, 0.0017		-0.0098	, 0.0034		-0.0094	, 0.0050		-0.0087	, 0.0064		-0.0077	, 0.0077		-0.0064	, 0.0087		-0.0050	, 0.0094		-0.0034	, 0.0098		-0.0017	, 0.0100		0.0000]
+							spine [0.0098 0 -0.017, 0.0100	0	0.0000	, 0.0098	0	0.0017	, 0.0094	0	0.0034	, 0.0087	0	0.0050	, 0.0077	0	0.0064	, 0.0064	0	0.0077	, 0.0050	0	0.0087	, 0.0034	0	0.0094	, 0.0017	0	0.0098	, 0.0000	0	0.0100, -0.0017 0 0.0098]
+							creaseAngle	1
+							solid FALSE
+						}
+					}
+				}
+			}
+			
+			#Cilindro vertical 1
+			Shape {
+				appearance Appearance { material Material {diffuseColor	0 0 0 }}
+				geometry Cylinder {
+					height 0.298
+					radius 0.01
+					bottom TRUE
+					top	TRUE
+					side TRUE
+				}
+			}
+
+			#Cilindro vertical 2
+			Transform {
+				translation	-0.39 0 0
+				children Shape {
+					appearance Appearance { material Material {diffuseColor	0 0 0 }}
+					geometry Cylinder {
+						height 0.298
+						radius 0.01
+						bottom TRUE
+						top	TRUE
+						side TRUE
+					}
+				}
+			}
+
+			#Cilindro horizontal
+			Transform {
+				translation	-0.195 0.159 0
+				rotation 0 0 1 1.57
+				children Shape {
+					appearance Appearance {material	Material {diffuseColor 0 0 0}}
+					geometry Cylinder {
+						height 0.37
+						radius 0.01
+						bottom TRUE
+						top	TRUE
+						side TRUE
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO LongLeg[]{
+	Group {
+		children [
+			#Intersecção
+			Transform {
+				translation	-0.01 0.149 0
+				rotation 1 0 0 -1.57
+				children Shape {
+					appearance Appearance { material Material { diffuseColor 0 0 0 }}
+					geometry Extrusion {
+						crossSection [0.0100		0.0000	, 0.0098		0.0017	, 0.0094		0.0034	, 0.0087		0.0050	, 0.0077		0.0064	, 0.0064		0.0077	, 0.0050		0.0087	, 0.0034		0.0094	, 0.0017		0.0098	, 0.0000		0.0100	, -0.0017		0.0098	, -0.0034		0.0094	, -0.0050		0.0087	, -0.0064		0.0077	, -0.0077		0.0064	, -0.0087		0.0050	, -0.0094		0.0034	, -0.0098		0.0017	, -0.0100		0.0000	, -0.0098		-0.0017	, -0.0094		-0.0034	, -0.0087		-0.0050	, -0.0077		-0.0064	, -0.0064		-0.0077	, -0.0050		-0.0087	, -0.0034		-0.0094	, -0.0017		-0.0098	, 0.0000		-0.0100	, 0.0017		-0.0098	, 0.0034		-0.0094	, 0.0050		-0.0087	, 0.0064		-0.0077	, 0.0077		-0.0064	, 0.0087		-0.0050	, 0.0094		-0.0034	, 0.0098		-0.0017	, 0.0100		0.0000]
+						spine [0.0098 0 -0.017, 0.0100	0	0.0000	, 0.0098	0	0.0017	, 0.0094	0	0.0034	, 0.0087	0	0.0050	, 0.0077	0	0.0064	, 0.0064	0	0.0077	, 0.0050	0	0.0087	, 0.0034	0	0.0094	, 0.0017	0	0.0098	, 0.0000	0	0.0100, -0.0017 0 0.0098]
+						creaseAngle	1
+						solid FALSE
+					}
+				}
+			}
+
+			Transform {
+				translation -1 0.149 0
+				rotation 0 1 0 3.1416
+				children Transform {
+					rotation 1 0 0 -1.57
+					children Shape {
+						appearance Appearance { material Material { diffuseColor 0 0 0 }}
+						geometry Extrusion {
+							crossSection [0.0100		0.0000	, 0.0098		0.0017	, 0.0094		0.0034	, 0.0087		0.0050	, 0.0077		0.0064	, 0.0064		0.0077	, 0.0050		0.0087	, 0.0034		0.0094	, 0.0017		0.0098	, 0.0000		0.0100	, -0.0017		0.0098	, -0.0034		0.0094	, -0.0050		0.0087	, -0.0064		0.0077	, -0.0077		0.0064	, -0.0087		0.0050	, -0.0094		0.0034	, -0.0098		0.0017	, -0.0100		0.0000	, -0.0098		-0.0017	, -0.0094		-0.0034	, -0.0087		-0.0050	, -0.0077		-0.0064	, -0.0064		-0.0077	, -0.0050		-0.0087	, -0.0034		-0.0094	, -0.0017		-0.0098	, 0.0000		-0.0100	, 0.0017		-0.0098	, 0.0034		-0.0094	, 0.0050		-0.0087	, 0.0064		-0.0077	, 0.0077		-0.0064	, 0.0087		-0.0050	, 0.0094		-0.0034	, 0.0098		-0.0017	, 0.0100		0.0000]
+							spine [0.0098 0 -0.017, 0.0100	0	0.0000	, 0.0098	0	0.0017	, 0.0094	0	0.0034	, 0.0087	0	0.0050	, 0.0077	0	0.0064	, 0.0064	0	0.0077	, 0.0050	0	0.0087	, 0.0034	0	0.0094	, 0.0017	0	0.0098	, 0.0000	0	0.0100, -0.0017 0 0.0098]
+							creaseAngle	1
+							solid FALSE
+						}
+					}
+				}
+			}
+			
+			#Cilindro vertical 1
+			Shape {
+				appearance Appearance { material Material {diffuseColor	0 0 0 }}
+				geometry Cylinder {
+					height 0.298
+					radius 0.01
+					bottom TRUE
+					top	TRUE
+					side TRUE
+				}
+			}
+
+			#Cilindro vertical 2
+			Transform {
+				translation	-1.01 0 0
+				children Shape {
+					appearance Appearance { material Material {diffuseColor	0 0 0}}
+					geometry Cylinder {
+						height 0.298
+						radius 0.01
+						bottom TRUE
+						top	TRUE
+						side TRUE
+					}
+				}
+			}
+
+			#Cilindro horizontal
+			Transform {
+				translation	-0.505 0.159 0
+				rotation 0 0 1 1.5708
+				children Shape {
+					appearance Appearance {material	Material {diffuseColor 0 0 0}}
+					geometry Cylinder {
+						height 0.99
+						radius 0.01
+						bottom TRUE
+						top	TRUE
+						side TRUE
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO Table[]{
+	#Perna mais pequena
+	Group {
+		children [
+			SmallLeg {}
+
+			Transform {
+				translation	0 0 -1.03
+				children SmallLeg {}
+			}
+
+			Transform {
+				translation	0.01 0 -0.01
+				rotation 0 1 0 -1.57
+				children LongLeg {}
+			}
+
+			Transform {
+				translation	-0.4 0 -0.01
+				rotation 0 1 0 -1.57
+				children LongLeg {}
+			}
+
+			#Tampo
+			Transform {
+				translation	-0.195 0.15 -0.518
+				children Shape {
+					appearance Appearance {
+						material	Material {
+							diffuseColor 0 0 0
+							transparency 0.7
+						}
+					}
+					geometry Box { size	0.39 0.002 1.02 }
+				}
+			}
+		]
+	}
+}
+
+Table {}

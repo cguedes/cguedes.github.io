@@ -1,0 +1,69 @@
+#VRML V2.0 utf8
+
+PROTO Arm [] {
+	Transform {
+		children [
+			Transform {
+				rotation 0 1 0 1.57
+				translation	.1 -.1 .05
+				children [
+					Shape { # suporte braço
+						geometry Extrusion {
+							spine [
+								.1 0 0, -.05 0 0
+							]
+							crossSection [
+								-.07 -.15, -.0700002 .2, -.0695132 .216829, -.0629362 .227951,
+								-.0546412 .236697, -.0400002 .24, .26 .24, .26 .25, -.0400002 .25,
+								-.0542282 .246342, -.0657722 .240084, -.0747372 .230488,
+								-.0807322 .218358, -.0800002 .2, -.08 -.15, -.07 -.15
+							]
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor .37 .37 .37
+								specularColor .72 .89 .89
+								ambientIntensity .1
+								shininess .13
+							}
+						}
+					}
+				]
+			}
+
+			Transform {
+				scale .9 1 1.4
+				translation	.36 .21 .05
+				children [
+					Shape { # almofada braço
+						geometry Extrusion {
+							spine [
+								.05 0 0, -.05 0 0
+							]
+							crossSection [
+								.0954718 .116827, .1 .1, .1 .05, .1 -.05, .1 -.1, .094489 -.119532,
+								.0814852 -.132707, .0649586 -.141453, .0445806 -.147677,
+								.0246067 -.15019, 0 -.15, -.06 -.15, -.0735484 -.15, -.0851613 -.149226,
+								-.0938065 -.143806, -.1 -.132387, -.100095 -.105286,
+								-.1 .0854516, -.0998532 .130793, -.0969032 .138581,
+								-.092029 .143496, -.0851613 .146903, -.0720675 .149968,
+								-.06 .15, 0 .15, .0279531 .150357, .0525905 .147529,
+								.071264 .143426, .0882113 .133399, .0954718 .116827
+							]
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor .349 .098 .098
+								specularColor .369 .0588 .0588
+								emissiveColor .1 .03 .03
+								ambientIntensity .0233
+								shininess .06
+							}
+						}
+					}
+				]
+			}
+
+		]
+	}
+}

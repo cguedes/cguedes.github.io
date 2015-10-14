@@ -1,0 +1,62 @@
+#VRML V2.0 utf8
+
+
+
+PROTO caixa_arcon
+
+[
+]
+{
+
+	Shape {
+ 	   
+		appearance Appearance {
+#			material Material {diffuseColor 1 1 1}
+			texture	ImageTexture {
+				url	["fotos\\ar_cond.jpg"]
+			}
+		}
+		geometry Extrusion {
+
+		crossSection [1.75 0 , 1 0 , 1 0.25 , 1.2 0.25 ,0 0.25, -1.2 0.25 , -1.3 0.25 , -1.3 0 ,-1.7 0 -1.7 1.5 , 1.2 1.5, 0 1.5 ,1.75 1.5   ]
+	   
+		spine [0 0 0, 0 0 0.3]
+
+		scale [1 1]
+
+		orientation 0 0 1 0
+
+		endCap TRUE
+		beginCap TRUE
+		solid TRUE
+		ccw	TRUE
+		convex TRUE
+		creaseAngle	0
+		}
+		
+	}
+}
+
+
+PROTO ar_condicionado
+[
+]
+{  
+	Group {
+	children [
+
+	Transform {
+		rotation 1 0 0 3.14
+		children caixa_arcon{}
+	   }
+	
+	]
+	}
+
+}
+ 
+
+
+
+
+

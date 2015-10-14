@@ -1,0 +1,99 @@
+#VRML V2.0 utf8
+
+PROTO XAxis  [ field SFColor color 0 0 0
+field SFFloat height 2
+]
+{
+	Group {
+		children [
+			Transform {
+				rotation 0 0 1 -1.5707963267948966192313216916398
+				children [
+					Transform {
+						translation	0 54 0
+						children Shape {
+							geometry Cone {
+								bottomRadius 3
+								height 8
+							}
+							appearance Appearance {
+								material Material {
+									diffuseColor IS	color
+								}
+							}
+						}
+					}
+					Transform {
+						translation	0 25 0
+						children Shape {
+							geometry Cylinder {
+									radius 1
+									height 50
+							}
+
+							appearance Appearance {
+								material Material {
+									diffuseColor IS	color
+								}
+							}
+						}
+					}
+					Transform {
+						children Shape {
+							geometry Cylinder {
+									radius .2
+									height 300
+							}
+
+							appearance Appearance {
+								material Material {
+									diffuseColor IS	color
+								}
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+
+PROTO Axis[]{
+	Group {
+		children[
+			
+			XAxis {
+				color 1 0 0
+			}
+			Transform {
+				rotation 0 0 1 1.5707963267948966192313216916398
+				children XAxis{
+					color 0 1 0
+				}
+			}
+
+			Transform {
+				rotation 0 1 0 -1.5707963267948966192313216916398
+				children XAxis{
+					color 0 0 1
+				}
+			}
+
+			Shape {
+				geometry Sphere	{
+					radius 1.5
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 0
+					}
+				}
+			}
+
+		]
+	}
+}
+
+
+Axis {}

@@ -1,0 +1,70 @@
+#VRML V2.0 utf8
+
+PROTO Botao [field SFColor Cor 1 0 0] {
+
+	Shape {
+		
+		geometry Box { size 1.5 3 0.4 }
+
+		appearance Appearance {material Material {diffuseColor IS Cor} }
+	
+	
+	}
+
+	
+
+
+}
+
+PROTO Leds_Botao [] {
+	  
+	Group {
+	
+		children [
+		
+			#Led Vermelho
+
+			Transform{
+			
+				translation	-4.75 0 0
+
+				children Botao{} 
+			
+			
+			
+			}
+		
+			#Led Laranja
+
+			Transform{
+			
+				translation	-2.75 0 0 
+
+				children Botao{Cor 0.8 0.51 0} 
+						
+			}
+		
+			Transform{
+			
+				translation	-0.75 0 0
+
+				children Botao{Cor 0.8 0.8 0.3} 
+						
+			}
+		
+		
+		
+		
+		
+		]
+			
+	}
+
+
+
+}
+
+ Leds_Botao{}
+
+
+

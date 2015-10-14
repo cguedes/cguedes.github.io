@@ -1,0 +1,70 @@
+#VRML V2.0 utf8
+
+Viewpoint {
+    position 0.0 1.6 9.0
+    description "Entry View"
+}
+NavigationInfo {
+	headlight FALSE
+}
+
+
+
+DEF HolofoteLight PointLight {
+	
+	on FALSE
+    intensity 1
+    ambientIntensity 1
+    color 1 1 1
+    location 0.0 3.0 0.5
+	radius 10.0
+}
+
+
+Transform {
+    translation -3.0 0.0 0.0
+    children [
+		Shape {
+			geometry Text {
+        		string [ "Joao Soares"]
+        		fontStyle FontStyle {
+            		style "BOLD"
+        		}
+    		}
+			appearance Appearance {material Material {diffuseColor 1 0.1 0.1}}
+		}
+		
+    ]
+}
+
+Transform {
+    translation 0.0 2.0 0.0
+    children [
+		Shape{
+			geometry Box {size 2 1 2}
+			appearance Appearance {
+				material Material {diffuseColor 0.5 0.5 0.5 }
+			}
+		}
+		DEF HolofoteTouch TouchSensor {
+		}
+	]
+}
+
+
+DEF switch Script {
+	field SFBool VarBool FALSE
+	eventIn	SFBool Set_true_false
+	eventOut SFBool	Var
+	url	"javascript:
+	function Set_true_false(v, timestamp){
+		if(v==true)	 return;
+		if (VarBool==false)	 VarBool=true
+			else VarBool=false
+			Var=VarBool
+	}"
+}
+
+
+ROUTE HolofoteTouch.isActive     TO    switch.Set_true_false
+ROUTE switch.Var TO	HolofoteLight.on

@@ -1,0 +1,245 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Axis [ ] "axis_prof.wrl#Axis"
+Transform {
+	scale 0.1 0.1 0.1
+	children Axis {  }
+} 
+EXTERNPROTO	Luz [ ] "luz.wrl#Luz"
+EXTERNPROTO	LuzSimples [ ] "LOD1\luz.wrl#Luz"
+
+PROTO Tecto[] {
+	Transform {
+		translation	0 1.5 0
+		children [
+			Shape {
+				geometry Extrusion {
+					crossSection [
+						0		0,
+						-6.9	0,
+						-6.9	-1.25,
+						-12.7	-1.25,
+						-12.7	-4.8,
+						-7		-4.8,
+						-7		-4.3,
+						-1.7	-4.3,
+						-1.7	-2.2,
+						0		-2.2,
+						0		0				
+					]
+					spine [
+						0 0 0, 
+						0 0.02 0
+					]
+					ccw	FALSE
+				}
+				appearance Appearance {	material Material {	diffuseColor 1 1 1	 } 	}
+			}
+		]
+	}
+}
+
+PROTO Fila_de_luzes [] {
+	Group {
+		children [
+			Transform {
+				translation	-7.64 -0.05 -4.165
+				rotation 0 1 0 1.571
+				children 
+				LOD{
+					range [10.0]
+					level [
+						Luz { },
+						LuzSimples {}
+					]
+				}
+			}
+			Transform {
+				translation	-10.64 -0.05 -4.165
+				rotation 0 1 0 1.571
+				children 
+				LOD{
+					range [10.0]
+					level [
+						Luz { },
+						LuzSimples {}
+					]
+				}
+			}
+			Transform {
+				translation	-13.64 -0.05 -4.165
+				rotation 0 1 0 1.571
+				children 
+				LOD{
+					range [10.0]
+					level [
+						Luz { },
+						LuzSimples {}
+					]
+				}
+			}
+			Transform {
+				translation	-16.64 -0.05 -4.165
+				rotation 0 1 0 1.571
+				children 
+				LOD{
+					range [10.0]
+					level [
+						Luz { },
+						LuzSimples {}
+					]
+				}
+			}
+			Transform {
+				translation	-19.64 -0.05 -4.165
+				rotation 0 1 0 1.571
+				children 
+				LOD{
+					range [10.0]
+					level [
+						Luz { },
+						LuzSimples {}
+					]
+				}
+			}
+			Transform {
+				translation	-22.64 -0.05 -4.165
+				rotation 0 1 0 1.571
+				children 
+				LOD{
+					range [10.0]
+					level [
+						Luz { },
+						LuzSimples {}
+					]
+				}
+			}
+			Transform {
+				translation	-25.64 -0.05 -4.165
+				rotation 0 1 0 1.571
+				children 
+				LOD{
+					range [10.0]
+					level [
+						Luz { },
+						LuzSimples {}
+					]
+				}
+			}
+			Transform {
+				translation	-28.64 -0.05 -4.165
+				rotation 0 1 0 1.571
+				children 
+				LOD{
+					range [10.0]
+					level [
+						Luz { },
+						LuzSimples {}
+					]
+				}
+			}
+		]
+	}
+}
+
+PROTO Luz_redonda [] {
+	Group {
+		children [
+			SpotLight { 
+				location 0 0 0
+				direction 0 -1 0	
+			}
+			Shape {
+				geometry Cylinder {
+					radius 0.10
+					bottom FALSE
+					height 0.05
+				}
+				appearance Appearance {
+					material Material {
+						specularColor 0.7 0.2 1
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO Fila_Luzes_Redondas [] {
+	Group {
+		children [
+			Transform {
+				translation	-27 0 -5.25
+				children [Luz_redonda { }]
+			}
+			Transform {
+				translation	-24 0 -5.25
+				children [Luz_redonda { }]
+			}
+			Transform {
+				translation	-21 0 -5.25
+				children [Luz_redonda { }]
+			}
+			Transform {
+				translation	-18 0 -5.25
+				children [Luz_redonda { }]
+			}
+		]
+	}
+}
+
+PROTO Tecto_Pequeno [] {
+	Group {
+		children [
+			Transform {
+				scale 2.38 0 2.38
+				children [Tecto { }]
+			}
+			Transform {
+				translation	-1.64 0 -4.165
+				rotation 0 1 0 1.571
+				children 
+				LOD{
+					range [10.0]
+					level [
+						Luz { },
+						LuzSimples {}
+					]
+				}
+			}
+			Transform {
+				translation	-4.64 0 -4.165
+				rotation 0 1 0 1.571
+				children 
+				LOD{
+					range [10.0]
+					level [
+						Luz { },
+						LuzSimples {}
+					]
+				}
+			}
+			Transform {
+				translation	0 0 0
+				children [Fila_de_luzes { }]
+			}
+			Transform {
+				translation	0 0 -4.5
+				children [Fila_de_luzes { }]
+			}
+			Transform {
+				translation	0 0 0
+				children [Fila_Luzes_Redondas { }]
+			}
+			Transform {
+				translation	0 0 -5.5
+				children [Fila_Luzes_Redondas { }]
+			}
+		]
+	}
+}
+
+Transform {
+	scale 0.5 0.5 0.5
+	children [Tecto_Pequeno { }]
+}

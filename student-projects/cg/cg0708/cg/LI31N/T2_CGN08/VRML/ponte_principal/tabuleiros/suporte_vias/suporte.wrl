@@ -1,0 +1,72 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	sinal_aberto [ field SFVec3f pos field SFRotation rot] "sinal_transito_via_aberta.wrl"
+EXTERNPROTO	sinal_fechado [ field SFVec3f pos field SFRotation rot] "sinal_transito_via_fechada.wrl"
+EXTERNPROTO	Escada [ field SFVec3f pos field SFRotation rot  ] "Escada.wrl"
+EXTERNPROTO	gradeamento_vias [ field SFVec3f pos] "gradeamento_suporte_vias.wrl"
+
+PROTO suporte_sinal[ field SFRotation rot 0 0 0 0 field SFVec3f pos 0 0 0 ] {
+	Transform {
+		children [
+			#suporte de cima
+			Transform {
+				children [
+					Shape {
+						geometry Box{ size 31 0.8 0.6 }
+						appearance Appearance { 
+							material Material { diffuseColor .61 .61 .61 } 
+						}
+					}	
+				]
+				translation	0 5.4 0
+			}
+			Transform {
+				children [
+					Shape {
+						geometry Box{ size 31 0.1 1 }
+						appearance Appearance { 
+							material Material {	diffuseColor .61 .61 .61 } 
+						}
+					}	
+				]
+				translation 0 5.8 0
+			}
+			#barras laterais
+			Transform {
+				children [
+					DEF barra Shape {
+						geometry Box{ size 0.6 5.8 1 }
+						appearance Appearance { 
+							material Material {	diffuseColor .61 .61 .61 } 
+						}
+					}
+				]
+				translation	15.2 2.9 0
+			}
+			Transform {
+				children USE barra
+				translation	-15.2 2.9 0
+			}
+			
+			#sinal - seta para baixo
+			sinal_aberto { pos 3 6.4 0.67 }
+			sinal_aberto { pos 7 6.4 0.67 }
+			sinal_aberto { pos 11 6.4 0.67 }
+			sinal_fechado{ pos -3 6.4 -0.58 rot 0 1 0 3.14 }
+			sinal_aberto { pos -7 6.4 -0.58 rot 0 1 0 3.14 }
+			sinal_aberto { pos -11 6.4 -0.58 rot 0 1 0 3.14 }
+			
+			#Escadas dos 2 lados
+			Escada{ pos 15.7 2.87 0.45   rot 0 1 0 1.57}
+			Escada{ pos -15.7 2.87 -0.45 rot 0 1 0 -1.57}
+				
+			#Gradeamento
+			gradeamento_vias { pos 0 6.8 0.5 }
+			gradeamento_vias { pos 0 6.8 -0.4 }
+		]
+		rotation IS rot
+		translation IS pos		
+	}
+}
+
+suporte_sinal {}

@@ -1,0 +1,53 @@
+#VRML V2.0 utf8  
+
+######################################################################################
+# Instituto Superior de Engenharia de Lisboa                                         #
+# Departamento de Engenharia de Electrónica e Telecomunicações e de Computadores     #
+# Licenciatura em Engenharia Informática e de Computadores                           #
+# Computação Gráfica (IC307)                                                         #
+#------------------------------------------------------------------------------------#
+#                                                                                    #
+# Descrição: Modelo de uma árvore                                                    #
+#                                                                                    #
+#   - É utilizado um billboard (faz com que a árvore esteja sempre virada            #
+#      para o utilizador) cujo eixo de rotação coincide com o eixo dos YY            #
+#                                                                                    #
+#------------------------------------------------------------------------------------#
+# Docentes: Carlos Guedes, Jorge Silva e Nuno Datia                                  #
+#                                                                        © 2006 ISEL #
+######################################################################################
+
+Transform {
+  translation  3.5 0.0 0.0
+  children [
+	  Billboard {
+	    axisOfRotation 0.0 1.0 0.0
+	    children [
+		    Shape {
+		      appearance Appearance {
+			      # No material, use emissive texturing
+			      texture ImageTexture { url "images/tree1.png" }
+		      }
+		      geometry DEF TreeFace IndexedFaceSet {
+			      coord Coordinate {
+			        point [
+				        -1.51 0.05 0.0,   1.51 0.05 0.0,
+				        1.51 3.05 0.0,  -1.51 3.05 0.0,
+			        ]
+			      }
+			      coordIndex [ 0, 1, 2, 3 ]
+			      texCoord TextureCoordinate {
+			        point [
+				        0.0 0.0, 1.0 0.0,
+				        1.0 1.0, 0.0 1.0,
+			        ]
+			      }
+			      texCoordIndex [ 0, 1, 2, 3 ]
+			      solid FALSE
+		      }
+		    }
+	    ]
+	  }
+  ]
+}
+

@@ -1,0 +1,82 @@
+#VRML V2.0 utf8
+
+PROTO Perna[]{
+	Shape {
+		geometry Box { size	.02 2 .03 }
+		appearance Appearance {
+			material Material { diffuseColor .51 .17 .06 }
+		}
+	}
+}
+
+PROTO Perna4[]{
+	Transform {
+		children [
+			Transform {children	Perna {} translation -.37 0 -.16 }
+			Transform {children	Perna {} translation -.37 0  .16 }
+			Transform {children	Perna {} translation  .37 0 -.16 } 
+			Transform {children	Perna {} translation  .37 0  .16 }
+		]
+	}		  
+}
+
+PROTO Base[]{
+	Shape {
+		geometry Box { size	.75 .015 .32 }
+		appearance Appearance {
+			material Material { diffuseColor .51 .17 .06 }
+		}
+	}
+}
+
+PROTO Lateral[]{
+	Shape{
+		geometry Box { size	 .02 .05 .3 }
+		appearance Appearance {
+			material Material { diffuseColor .51 .17 .06 }
+		}
+	}
+}
+
+PROTO Tras[]{
+	Shape{
+		geometry Box { size	 .75 .05 .03 }
+		appearance Appearance {
+			material Material { diffuseColor .51 .17 .06 }
+		}
+	}
+}
+
+PROTO Prateleira[]{
+	Transform {
+		children [
+			Transform {children	Base    {} }
+			Transform {children Lateral {} translation -.37 0      0  }
+			Transform {children Lateral {} translation  .37 0      0  }
+			Transform {children	Tras    {} translation	 0 .0175 -.16 }
+		]
+	}
+}
+
+PROTO Prateleiras[]{
+	Transform {
+		children [
+			Transform {children	Prateleira {} translation  0  .91 0 }
+			Transform {children	Prateleira {} translation  0  .42 0 }
+			Transform {children	Prateleira {} translation  0  .03 0}
+			Transform {children	Prateleira {} translation  0 -.36 0 }	#39
+			Transform {children	Prateleira {} translation  0 -.75 0 }	#25
+		]
+	}
+}
+
+PROTO Estante[]{
+	Transform {
+		children [
+			Transform {children	Perna4	{} }
+			Transform {children	Prateleiras {} }
+		]
+	}
+}
+
+Estante {}

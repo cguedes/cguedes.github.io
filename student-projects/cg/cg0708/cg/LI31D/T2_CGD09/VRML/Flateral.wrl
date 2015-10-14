@@ -1,0 +1,108 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO eixo []
+"Eixo.wrl#Referencial"
+
+
+eixo {}
+
+PROTO Lateral_maior[] {
+	
+
+	Group {
+
+
+		children	[
+	
+			Shape {
+			geometry Extrusion {  
+					beginCap TRUE 
+					endCap TRUE 
+					crossSection [17.5 9, -17.5 9,-17.5 -9,17.5 -9, 17.5 9, 17.3 8.8, -17.3 8.8,-17.3 -8.8, 17.3 -8.8,17.3 8.8,] 
+					orientation 0 0 1 0 
+					scale 1 1 
+					solid FALSE  
+					spine [0 0 0, 0 2 0]	 
+			
+			  
+			}  
+
+			appearance Appearance {material Material  {diffuseColor 1 1 1  } } }
+					   
+	 
+	]	  
+
+ }
+
+}
+
+PROTO Lateral_menor[] {
+	
+
+	Group {
+
+
+		children	[
+	
+			Shape {
+			geometry Extrusion {  
+					beginCap TRUE 
+					endCap TRUE 
+					crossSection [16.5 9, -16.5 9, -16.5 -9, 16.5 -9, 16.5 9, 
+								  16.3 8.8, -16.3 8.8,-16.3 -8.8, 16.3 -8.8,16.3 8.8,] 
+					orientation 0 0 1 0 
+					scale 1 1 
+					solid FALSE
+					spine [0 0 0, 0 2 0]	 
+			
+			  
+			}  
+
+			appearance Appearance {material Material  {diffuseColor 1 1 1  } } }
+					   
+	 
+	]	  
+
+ }
+
+}
+
+
+
+
+
+
+
+
+PROTO Lateral_Direito[]{
+
+Transform {				   
+		
+		rotation 1 0 0 1.570796
+		children Lateral_menor{}
+				   
+}
+}
+
+
+
+
+
+
+
+PROTO Lateral_Esquerdo[]{
+
+Transform {				   
+		
+		rotation 1 0 0 1.570796
+		children Lateral_maior{}
+				   
+}
+
+}
+
+
+
+
+Lateral_Direito{}
+Lateral_Esquerdo{}

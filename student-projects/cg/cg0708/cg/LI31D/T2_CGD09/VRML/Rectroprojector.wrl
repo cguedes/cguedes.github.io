@@ -1,0 +1,199 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO eixo []
+"Eixo.wrl#Referencial"
+
+EXTERNPROTO Base []
+"BasesRectro.wrl#Base"
+
+EXTERNPROTO Botoes []
+"Botoes.wrl#Leds_Botao"
+
+EXTERNPROTO	Vidro []
+"vidro.wrl#Vidro_Total"
+
+EXTERNPROTO	Braco []
+"Braco.wrl#Braco_Total"
+
+EXTERNPROTO	Pe []
+"Pe.wrl#Pe"
+
+
+  
+EXTERNPROTO	Suporte_Fio[]
+"SuporteFio.wrl#Suporte_fio"
+
+
+PROTO Rectroprojector[]{
+Group {
+
+	children [
+
+		eixo{}
+		
+		#Base Principal
+		Transform { 
+	
+			translation	-17.5 -3 17.5
+			rotation 0 1 0 1.57
+			children Base {} 
+
+		}
+
+		#Leds e Boatao ON/OFF
+		Transform { 
+	
+			translation	-5 -19.5 35.7
+			children Botoes {} 
+
+		}
+
+		#Vidro da Base
+		Transform {
+		
+			
+			 translation -17.5 -0.2 17.5
+			 children Vidro	{}
+		
+		
+		
+		}
+
+		#Laterais da Base
+
+		Transform {
+		
+			
+					  
+		
+		}
+
+		#Braco
+		Transform {
+		
+			translation	-1 2.5 1
+			rotation 0 1 0 1.57
+			children Braco {}
+		
+		
+		}
+
+			  
+		 #Pes
+
+		DEF	Pe1 Transform {
+	
+			translation	-4 -23.75 3.5
+			children Pe	{}
+	
+	
+		}
+		   	   	
+		DEF	Pe2 Transform {
+	
+			translation	-31 -23.75 3.5
+			children Pe	{}
+		
+	
+		}
+
+		 		
+		DEF	Pe3 Transform {
+	
+		    	translation	-4 -23.75 31.5
+				children Pe	{}
+	
+	
+		}
+
+		 	
+	
+	
+		DEF	Pe4 Transform {
+	
+			translation	-31 -23.75 31.5
+			children Pe	{}
+		}
+
+
+		#rede lateral
+		DEF	rede1 Transform	{
+			children [
+				Shape {
+				appearance Appearance {
+					texture	ImageTexture {
+						url	"rede1.gif"	
+					}
+
+				
+				}
+
+				geometry Cylinder {radius 5 height 0.1}
+			}
+				
+		]
+
+	
+
+		rotation 0 0 1 1.57
+		translation	 -1 -15 18.5
+	
+
+		}
+
+		DEF	rede2 Transform	{
+			children [
+				Shape {
+				appearance Appearance {
+					texture	ImageTexture {
+						url	"rede2.gif"	
+					}
+
+				
+				}
+
+				geometry Box {size 15 4.5 0.1}
+			}
+				
+		]
+
+	
+
+		rotation 1 0 0 -1.57
+		translation	 -17.5 -24.05 5.5
+	
+
+		}
+
+		DEF	Suporte Transform {
+		
+			children Suporte_Fio{}
+			
+			rotation 0 1 0 -1.57
+			translation	 -33.1 -15 17.0
+		
+		
+		}
+
+	   
+
+	]
+
+}
+
+	
+}
+ 
+
+
+
+Viewpoint {  
+
+	position -20 -12 70 
+	description "Frente" 
+	jump TRUE 
+
+
+} 
+
+Rectroprojector	{}

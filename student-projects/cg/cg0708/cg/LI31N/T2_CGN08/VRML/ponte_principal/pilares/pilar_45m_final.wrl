@@ -1,0 +1,40 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO pilar_longe [
+	field SFVec3f pos
+	field SFRotation rot
+	field SFVec3f escala
+	field SFVec3f posBase
+]
+"pilar_45m_longe.wrl"
+
+EXTERNPROTO pilar [
+	field SFVec3f pos
+	field SFRotation rot
+	field SFVec3f escala
+	field SFVec3f posBase
+]
+"pilar_45m.wrl"
+
+PROTO pilar_final[
+	field SFVec3f pos1 0 0 0 	field SFRotation rot1 0 0 0 0
+	field SFVec3f escala1 1 1 1 field SFVec3f reset1 1 1 1
+	field SFVec3f posBase1 0 0 0 
+]
+{
+	Transform {
+		children [
+			LOD	{
+				range [600]
+				center 0 0 0
+				level [
+					pilar	{ }
+					pilar_longe { }
+				]
+			}
+		]
+		rotation IS	rot1
+		translation	IS pos1
+	}
+}
+pilar_final  {}

@@ -1,0 +1,33 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO borda [] "borda.wrl#BORDA"
+
+PROTO BOX 
+[]
+{
+	Shape {
+		geometry Box { size 1.20 0.03 0.5}
+		appearance Appearance { 
+			material Material {}
+			texture ImageTexture {url "Texturas\Mesas\madeira4.JPG"}	
+	    }
+	}
+}
+
+PROTO mesa
+[]
+{
+	Group {
+		children [
+			Transform {
+				children BOX{}
+			}
+			Transform{
+				scale 1 120 1
+				rotation 0 0 1 1.570796
+				translation	0.60 0.005 0.25
+				children borda {}
+			}
+		]
+	}
+}

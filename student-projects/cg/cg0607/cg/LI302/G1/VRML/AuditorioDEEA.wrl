@@ -1,0 +1,330 @@
+#VRML V2.0 utf8
+
+# **** AUTORES ****
+# Luís Brás	  , 27401, 27401@alunos.isel.ipl.pt
+# Nuno Miguel , 26093, 26093@alunos.isel.ipl.pt
+# Vitor Chão  , 27704, 27704@alunos.isel.ipl.pt
+# *****************
+# Turma I302, Semestre de Inverno 2006/2007
+# Concluído em Fevereiro de 2007
+# *****************
+
+
+WorldInfo { title "Auditório DEEA" }
+
+DEF Entry Viewpoint {
+	position 7 1.75 -0.5	
+	orientation	0 1 0 0.2
+	description	"Vista da porta"
+}
+
+Viewpoint {
+    position 4 1.75 -2.6
+    description "Plateia"
+}
+
+Viewpoint {
+	position 2.5 1.75 -5.0	
+	orientation	0 1 0 1.57
+	description	"Cartaz do DEEA"
+}
+
+Viewpoint {
+	position 3 1.75 -4.8	
+	orientation	0 1 0 3.14
+	description	"Ecra de projeccao"
+}
+
+Viewpoint {
+	position 5.5 1.5 -12	
+	orientation	0 1 0 3
+	description	"Vista da plateia"
+}
+
+Viewpoint {
+	position 4 1.75 -11.5		
+	description	"Janela"
+}
+
+Viewpoint {
+	position 0.4 1.85 -14.2	
+	orientation	0 1 0 -2.9
+	description	"Vista geral"
+}
+
+Viewpoint {
+	position 5 1.9 -20	
+	orientation	0 1 0 3.07
+	description	"Vista do exterior"
+}
+
+NavigationInfo {
+    #type [ "EXAMINE", "ANY" ]
+    headlight FALSE
+}
+
+Background {
+    skyColor [0 0.25 0.46, 0 0.31 0.57, .84 0.84 1, 1 1 1] 
+	skyAngle [1.07, 1.5, 1.57]							   	
+	groundColor [0.11 0.37 0.13, 0.17 .59 .20, 0.22 .76 .27] 	
+	groundAngle [1.5, 1.57]
+	
+}
+
+#Sol / luz ambiente
+DirectionalLight {
+	direction 0 0 1		
+    color 0.95 0.95 0.85
+    intensity 0.2     	
+    ambientIntensity 0.2	
+	on TRUE		
+}
+
+
+#EXTERNPROTO	Axis [ ] "./PROTOS/axis.wrl#Axis"
+#Transform {
+#	#scale	10 10 10
+#	children Axis {  }
+#}
+
+EXTERNPROTO	LeftWall [ ] "./PROTOS/walls.wrl#LeftWall"
+Transform {
+	translation 0 1.55 -7.5	
+	children LeftWall {  }
+}
+
+EXTERNPROTO	BackWall [ ] "./PROTOS/walls.wrl#BackWall"
+Transform {
+	translation 4 1.55 -15	
+	children BackWall {  }
+}
+
+Group {
+	children [
+		DEF col Transform {
+			translation	0.2 1.55 -0.2
+			children
+				Shape {
+					appearance Appearance {		
+					texture ImageTexture { url ["./GFX/wall.png"] repeatS TRUE repeatT TRUE }
+					textureTransform TextureTransform { scale 3.2 24.4 }
+					material Material {
+						diffuseColor 1 1 1
+					}
+				}
+					geometry Box {
+						size 0.4 3.1 0.4
+					}
+				}
+		},
+		Transform  {
+			translation	7.6 0 0
+			children USE col
+		},
+		Transform  {
+			translation	7.6 0 -14.6
+			children USE col
+		},
+		Transform  {
+			translation	0 0 -14.6
+			children USE col
+		},
+		Transform  {
+			scale 1.25 1 1.25
+			translation	0.00 0 -7.6
+			children USE col
+		}
+		Transform  {
+			scale 1.25 1 1.25
+			translation	7.50 0 -7.6
+			children USE col
+		}
+
+
+	]
+}
+
+#Right wall
+Transform {
+	translation	8.1 1.55 -7.5
+	children
+	Shape {
+    	appearance Appearance {
+			material Material {
+				diffuseColor 1 1 1
+			}
+			texture ImageTexture { url ["./GFX/wall.png"] repeatS TRUE repeatT TRUE }
+	    	textureTransform TextureTransform { scale 60 12.2 }  
+		}
+		geometry Box {
+			size 0.2 3.1 15			
+		}
+	}
+}
+
+#Front wall
+Transform {
+	translation 4 1.55 0.2
+	children
+	Shape {  
+		appearance Appearance {
+	    	texture ImageTexture { url ["./GFX/wall.png"] repeatS TRUE repeatT TRUE }
+			textureTransform TextureTransform { scale 60 60 } 
+			material Material { 
+				diffuseColor 1 1 1
+			}
+		}
+		geometry Extrusion{
+			crossSection [ -4 -1.55, 1.55 -1.55, 1.55 0.45, 3.30 0.45, 3.30 -1.55,  4 -1.55, 4 1.55, -4 1.55]
+			# spine no PLANO XZ
+			spine [0 0 0, 0 0 -0.2]
+	    	solid FALSE	    
+		}
+	}
+}
+
+
+#Floor
+Transform {
+	translation	4 -0.1 -7.5
+	children
+	Shape {
+    	appearance Appearance {			
+			material Material { emissiveColor 0 0 0 }
+			texture ImageTexture { url ["./GFX/floor.jpg"] repeatS TRUE repeatT TRUE }
+	    	textureTransform TextureTransform { scale 15 15 }  
+		}
+		geometry Box {
+			size 8 0.2 15			
+		}
+	}
+}
+
+#Tecto
+Transform {
+	translation	4 3.2 -7.5
+	children
+	Shape {
+    	appearance Appearance {
+			material Material {
+				diffuseColor 1 1 1
+				emissiveColor 0.1 0.1 0.1
+				shininess 0.1
+				ambientIntensity 0.5
+				specularColor 1 1 1
+			}
+			texture ImageTexture { url ["./GFX/wall.png"] repeatS TRUE repeatT TRUE }
+	    	textureTransform TextureTransform { scale 15 15 }  
+		}
+		geometry Box {
+			size 8 0.2 15			
+		}
+	}
+}
+
+
+
+EXTERNPROTO	Steps [ ] "./PROTOS/steps.wrl#Steps"
+Transform {
+	translation	4 0 -10.5
+	children Steps {  }
+}
+
+EXTERNPROTO	Table [ ] "./PROTOS/table.wrl#Table"
+Transform {
+	translation	3 0 -1.8
+	children Table {  }
+}
+
+EXTERNPROTO	Chair1 [ ] "./PROTOS/chair1.wrl#Chair1"
+Transform {
+	translation	2.5 0 -1.4
+	rotation 0 1 0 3.14
+	children Chair1 {  }
+}
+Transform {
+	translation	3.5 0 -1.4
+	rotation 0 1 0 3.14
+	children Chair1 {  }
+} 
+
+Transform {
+	rotation  0 1 0 1.57
+	translation	6.8 0 -4.75
+	children Table {  }
+}
+
+EXTERNPROTO	WhiteBoard [ ] "./PROTOS/whiteboard.wrl#WhiteBoard"
+Transform {
+	translation	3 1.6 0
+	children WhiteBoard {  }
+}
+
+EXTERNPROTO	Projector [ ] "./PROTOS/projector.wrl#Projector"
+Transform {
+	translation	3 2.85 -6.5
+	rotation 1 0 0 0.1
+	children Projector {  }
+}
+
+EXTERNPROTO	Projection [ ] "./PROTOS/projector.wrl#Projection"
+Transform {
+	translation	3 2 -0.16	
+	children Projection {  }
+}  
+  
+
+EXTERNPROTO	Flag [ ] "./PROTOS/flag.wrl#Flag"
+Transform {
+	translation	7.65 0 -6	
+	children Flag {  }
+}  
+
+EXTERNPROTO	Lights [ ] "./PROTOS/light.wrl#Lights"
+Transform {
+	translation	4 3.075 -7.5	
+	children Lights {  }
+}
+
+EXTERNPROTO	porta [ ] "./PROTOS/door.wrl#porta"
+Transform {
+	translation	6.3 1 0
+	rotation	0 1 0 1.57
+	children	porta {  }
+}
+
+EXTERNPROTO	Speaker [ ] "./PROTOS/speaker.wrl#Speaker"
+Transform {
+	scale 2 2 2
+	rotation 0 1 0 2.8
+	translation	0.2 2.5 -8.3	
+	children Speaker {  }
+}
+Transform {
+	scale 2 2 2
+	rotation 0 1 0 3.48
+	translation	7.8 2.5 -8.3	
+	children Speaker {  }
+}
+
+EXTERNPROTO	Screen [ ] "./PROTOS/screen.wrl#Screen"
+Transform {	
+	translation	3 3 -0.04	
+	children Screen {  }
+}
+
+Transform {
+	translation	0.001 2 -5	
+	children
+	Shape {
+		geometry Box { size	0.001 1.28 -1 }
+		appearance Appearance {
+			texture	ImageTexture { url "./GFX/cartaz.png" }
+			material Material {
+				#emissiveColor 0.5 0.5 0.5
+				shininess 0.2
+				ambientIntensity 0.7
+			}
+		}
+	}
+}

@@ -1,0 +1,190 @@
+#VRML V2.0 utf8
+
+PROTO torneira_lavatorio[]{
+
+	Group {
+		children [
+			#tubo alto
+  			Transform {
+				scale 0.01 0.01 0.01
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 22
+								radius 1
+								side TRUE 
+								top TRUE  }
+					}
+				]	
+			}
+
+			# ligaçao
+			Transform {
+				rotation 0 1 0 1.5708
+				translation	0 0.11 0.04
+				children[
+					Transform {
+						scale 0.01 0.01 0.01
+						rotation 1 0 0 -1.5708
+						children[
+							Shape{
+								  appearance Appearance {	
+									   material Material { 
+											diffuseColor 0.8 0.8 0.8 
+									   }
+								   }
+								   geometry Extrusion {
+										crossSection [1.00	0.00	,0.87	0.50	,0.50	0.87	,0.00	1.00	,-0.50	0.87	,-0.87	0.50	,-1.00	0.00	,-0.87	-0.50	,-0.50	-0.87	,0.00	-1.00	,0.50	-0.87	,0.87	-0.50	,1.00	0.00]
+    									spine [3.94	0.00	-0.69, 4.00	0.00	0.00	, 3.86	0.00	1.04	, 3.46	0.00	2.00	, 2.83	0.00	2.83	, 2.00	0.00	3.46	, 1.04	0.00	3.86	, 0.00	0.00	4.00	, -1.04	0.00	3.86	, -2.00	0.00	3.46	, -2.83	0.00	2.83	, -3.46	0.00	2.00	, -3.86	0.00	1.04	, -4.00	0.00	0.00]
+										solid FALSE
+										creaseAngle	1
+								   }  
+							}
+						]	
+					}
+				]
+			}
+			
+			#cilindro - baixo torneira
+			Transform {
+				scale 0.01 0.01 0.01
+				translation	0 -0.090 0
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 1.5
+								radius 1.5
+								side TRUE 
+								top TRUE  }
+					}
+				]	
+			}
+			
+			#cilindro - cima torneira
+			Transform {
+				scale 0.01 0.01 0.01
+				translation	0 -0.06 0
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 1.5
+								radius 1.5
+								side TRUE 
+								top TRUE  }
+					}
+				]	
+			}
+			
+			#cilindro - boca torneira
+			Transform {
+				scale 0.01 0.01 0.01
+				translation	0 0.11 0.08
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 1
+								radius 1.5
+								side TRUE 
+								top TRUE  }
+					}
+				]	
+			}
+			
+			#esfera torneira
+			Transform {
+				scale 0.01 0.01 0.01
+				translation	0 -0.075 0
+				children[
+					Shape {
+    				  geometry Sphere { radius 2.1}
+    				  appearance Appearance {
+        				  material Material { 
+								diffuseColor 0.8 0.8 0.8
+							}
+    				  }
+					}
+				]	
+			}
+
+			#cilindro - boca torneira
+			Transform {
+				scale 0.01 0.01 0.01
+				rotation 0 0 1 -1.57
+				translation	0.020 -0.075 0
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 1
+								radius 1
+								side TRUE 
+								top TRUE  }
+					}
+				]	
+			}
+
+			#torneira abrir agua
+			Transform {
+				scale 0.01 0.01 0.01
+				translation	0.0375 -0.073  0
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Box { size 2.5 3 3 }
+					}
+				]	
+			}
+			#torneira abrir agua 2
+			Transform {
+				scale 0.01 0.01 0.01
+				rotation 1 0 0 -0.7854
+				translation	0.0375 -0.073  0
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Box { size 2.5 3 3 }
+					}
+				]	
+			}
+		]
+	}
+}
+
+torneira_lavatorio {}

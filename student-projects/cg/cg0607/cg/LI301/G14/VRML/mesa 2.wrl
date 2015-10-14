@@ -1,0 +1,526 @@
+#VRML V2.0 utf8  
+
+# Mesa com prateleiras em VRML
+# Coordenadas dos objectos em CM
+
+
+Transform { children Inline { url "alinea3.wrl" } }
+
+#cilindros de apoio
+PROTO Cilindro_apoios [ field SFColor objColor 0 0 0 ] {
+	Shape {
+		geometry Cylinder {
+			bottom TRUE
+			top	TRUE
+			side TRUE
+			height 40
+			radius 1			
+		}
+		appearance Appearance {
+			material Material { diffuseColor IS objColor }
+		}
+	}
+}
+
+#cilindros para movimentacao de tabuleiros
+PROTO Cilindros [ field SFColor objColor 0.4 0.4 0.4 ] {
+	Shape {
+		geometry Cylinder {
+			bottom TRUE
+			top	TRUE
+			side TRUE
+			height 200
+			radius 1			
+		}
+		appearance Appearance {
+			material Material { diffuseColor IS objColor }
+		}
+	}
+}
+
+# Tampo da mesa em centímetros
+PROTO Tampo_cm
+[
+]
+{
+  Shape { 
+    geometry Box { size 80 5 150 }
+    appearance Appearance { material Material { } }
+  }
+}
+#Tampo frontral da mesa em centimetros
+PROTO Tampo_frontal
+[field SFColor objColor 0.8 0.1 0.1]
+{
+	Shape {
+		geometry Box { size 150 100 4 }
+		appearance Appearance { material Material {diffuseColor IS objColor } }
+
+	}
+}
+#Tampo lateral da mesa em centimetros
+PROTO Tampo_lateral
+[ field SFColor objColor 0.4 0.2 0.1  ]
+{
+	Shape {
+		geometry Box { size 80 100 4 }
+		appearance Appearance { material Material { diffuseColor IS objColor } }
+
+	}
+}
+# Pernas da mesa em centímetros
+PROTO Perna_cm 
+[
+]
+{
+  Shape {
+    geometry Box { size 4 120 4 }
+    appearance Appearance { material Material { } }
+  }
+}
+
+# Apoios das prateleiras
+PROTO Apoios_prateleiras 
+[
+]
+{
+  Shape {
+    geometry Box { size 4 100 4 }
+    appearance Appearance { material Material { } }
+  }
+}
+
+# Cimo das prateleiras
+PROTO Cimo_prateleiras 
+[
+]
+{
+  Shape {
+    geometry Box { size 80 30 150 }
+    appearance Appearance { material Material { } }
+  }
+}
+
+PROTO Prateleiras 
+[
+]
+{
+  Shape {
+    geometry Box { size 72 2 142 }
+    appearance Appearance { material Material { } }
+  }
+}
+
+ 
+PROTO apoio_manete [ field SFColor objColor 0.4 0.4 0.4 ] {
+	Shape {
+		geometry Cylinder {
+			bottom TRUE
+			top	TRUE
+			side TRUE
+			height 1
+			radius 1			
+		}
+		appearance Appearance {
+			material Material { diffuseColor IS objColor }
+		}
+	}
+}
+
+PROTO Esfera [ field SFColor objColor 1 0 0 ] {
+	Shape {
+		geometry Sphere {
+			radius 2
+		}
+		appearance Appearance {
+			material Material { diffuseColor IS objColor }
+		}
+	}
+}
+
+
+#Caixa transparente onde se coloca a comida
+PROTO vidro_box
+[
+]
+{
+   Shape {
+      geometry Box {
+	      size 65 90 1
+      }
+      appearance Appearance {
+		  material Material {
+	  		ambientIntensity  0.2
+			diffuseColor      0.9 0.9 0.9 
+			emissiveColor     0 0 0
+			shininess         0.3
+			specularColor     0 0 0       
+			transparency      .2
+	      }
+      }
+     }
+
+
+}
+
+PROTO vidrofrente_box
+[
+]
+{
+   Shape {
+      geometry Box {
+	      size 30 1 70
+      }
+      appearance Appearance {
+		  material Material {
+	  		ambientIntensity  0.2
+			diffuseColor      0.9 0.9 0.9 
+			emissiveColor     0 0 0
+			shininess         0.3
+			specularColor     0 0 0       
+			transparency      .2
+	      }
+      }
+     }
+
+
+}
+
+
+
+
+PROTO Armario
+[
+	
+  field MFRotation rotacaoAbrir  [0 0 0 0, 0 0 1 -1.22]
+  field MFRotation rotacaoFechar [0 0 1 -1.22, 0 0 0 0]
+
+]
+{
+	Group {
+		children
+		[
+	  Transform {
+        translation 35 50 70   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children Apoios_prateleiras { }
+      }
+	  Transform {
+        translation 0 45 71   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children vidro_box { }
+      }
+	  Transform {
+        translation 0 45 -71   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children vidro_box { }
+      }
+
+	   DEF vidrofrente1 Transform {
+		   center -35 30 -35
+
+		  children [
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35 5 -35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children apoio_manete { }
+      }
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35.5 5 -35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children [
+			DEF SensorMacanetaPortaAbrir TouchSensor {}
+			DEF SensorMacanetaPortaFechar TouchSensor {}
+			Esfera {}
+		]
+      }
+
+	 
+		 
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35 15 -35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children vidrofrente_box { }
+      }
+
+  ]
+}
+
+	   Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35 35 -35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children apoio_manete { }
+      }
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35.5 35 -35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children [
+		#	DEF SensorMacanetaVidroAbrir TouchSensor {}
+			Esfera {}
+		]
+	
+	}
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35 45 -35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children vidrofrente_box { }
+      }
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35 65 -35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children apoio_manete { }
+      }
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35.5 65 -35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children [
+			#DEF SensorMacanetaPortaAbrir TouchSensor {}
+			Esfera {}
+		]
+	  }
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35 75 -35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children vidrofrente_box { }
+      }
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35 5 35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children apoio_manete { }
+      }
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35.5 5 35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children [
+			#DEF SensorMacanetaPortaAbrir TouchSensor {}
+			Esfera {}
+		]
+	  }
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35 15 35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children vidrofrente_box { }
+      }
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35 35 35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children apoio_manete { }
+      }
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35.5 35 35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children [
+			#DEF SensorMacanetaPortaAbrir TouchSensor {}
+			Esfera {}
+		]
+	  }
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35 45 35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children vidrofrente_box { }
+      }
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35 65 35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children apoio_manete { }
+      }
+
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35.5 65 35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children [
+			#DEF SensorMacanetaPortaAbrir TouchSensor {}
+			Esfera {}
+		]
+	  }
+	  Transform {
+		rotation 1 0 0 1.57
+		rotation 0 0 1 1.57
+        translation -35 75 35   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children vidrofrente_box { }
+      }
+
+
+	  Transform {
+        translation -35 50 0   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children Apoios_prateleiras { }
+      }
+      Transform {
+        translation -35 50 70  # horiontal, colocar no canto.
+        children Apoios_prateleiras { }
+      }
+      Transform {
+        translation -35 50 -70 # horiontal, colocar no canto.
+        children Apoios_prateleiras { }
+      }
+      Transform {
+        translation 35 50 -70  # horiontal, colocar no canto.
+        children Apoios_prateleiras { }
+	  }
+	  Transform	{
+		  translation 0 100 0
+		  children Cimo_prateleiras	{ }
+	  }
+	  Transform	{
+		  translation 0 30 0
+		  children Prateleiras	{ }
+	  }
+	  Transform	{
+		  translation 0 60 0
+		  children Prateleiras	{ }
+	  }
+
+	  DEF TimeSensorPortaAbrir TimeSensor { stopTime 1 cycleInterval 2 }
+      DEF OrInterpolationPortaAbrir OrientationInterpolator {
+      key [0 1]
+      keyValue IS rotacaoAbrir
+      ROUTE SensorMacanetaPortaAbrir.touchTime TO TimeSensorPortaAbrir.startTime
+      ROUTE TimeSensorPortaAbrir.fraction_changed TO OrInterpolationPortaAbrir.set_fraction
+      ROUTE OrInterpolationPortaAbrir.value_changed TO vidrofrente1.rotation
+      }
+	   
+	  DEF TimeSensorPortaFechar TimeSensor { stopTime 1 cycleInterval 2 }
+      DEF OrInterpolationPortaFechar OrientationInterpolator {
+      key [1 0]
+      keyValue IS rotacaoFechar 
+      ROUTE SensorMacanetaPortaFechar.touchTime TO TimeSensorPortaFechar.startTime
+      ROUTE TimeSensorPortaFechar.fraction_changed TO OrInterpolationPortaFechar.set_fraction
+      ROUTE OrInterpolationPortaFechar.value_changed TO vidrofrente1.rotation
+      }
+
+	]
+  }
+}
+
+PROTO Mesa_cm
+[
+]
+{
+  Group {
+    children 
+    [
+      Transform {
+        translation 0 2.5 0       # horizontal (para a origem ficar na parte de baixo da mesa)
+        children Tampo_cm { }
+      }
+	  	  Transform {
+		  rotation	0 1 0 1.57	   # rotacao em relacao ao eixo dos x
+        translation -38.1 -45 0       # horizontal (para a origem ficar na parte de baixo da mesa)
+        children Tampo_frontal { }
+      }
+	  Transform {
+        translation 0 -45 73.01       # horizontal (para a origem ficar na parte de baixo da mesa)
+        children Tampo_lateral { }
+      }
+	  Transform {
+        translation 0 -45 -73.01       # horizontal (para a origem ficar na parte de baixo da mesa)
+        children Tampo_lateral { }
+      }
+      Transform {
+        translation 30 -55 55   # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children Perna_cm { }
+      }
+      Transform {
+        translation -30 -55 55  # horiontal, colocar no canto.
+        children Perna_cm { }
+      }
+      Transform {
+        translation -30 -55 -55 # horiontal, colocar no canto.
+        children Perna_cm { }
+      }
+      Transform {
+        translation 30 -55 -55  # horiontal, colocar no canto.
+        children Perna_cm { }
+      }
+	  Transform {
+		  rotation 1 0 0 1.57
+		  rotation 0 0 1 1.57
+		translation -57.5 -5 0  # horiontal, colocar no canto.
+        children Cilindro_apoios { }
+      }
+	  Transform {
+		  rotation 1 0 0 1.57
+		  rotation 0 0 1 1.57
+		translation -57.5 -5 -65  # horiontal, colocar no canto.
+        children Cilindro_apoios { }
+      }
+	  Transform {
+		  rotation 1 0 0 1.57
+		  rotation 0 0 1 1.57
+		translation -57.5 -5 65  # horiontal, colocar no canto.
+        children Cilindro_apoios { }
+      }
+
+	  Transform {
+		rotation 1 0 0 1.57
+		translation -50 -3 -25  # horiontal, colocar no canto.
+        children Cilindros { }
+      }
+	  Transform {
+		rotation 1 0 0 1.57
+		translation -63 -3 -25  # horiontal, colocar no canto.
+        children Cilindros { }
+      }
+	  Transform {
+		rotation 1 0 0 1.57
+		translation -76 -3 -25  # horiontal, colocar no canto.
+        children Cilindros { }
+      }
+
+	  Transform {
+        translation  0 5 0  # horiontal, colocar no canto. (37.5 = 75/2 ==> mover a perna para baixo)
+        children Armario { }
+      
+	  }
+    ]
+  }
+}
+
+# Definição da mesa em metros (para usar as unidades do VRML)
+#   - centro da mesa passa a ser junto à parte de baixo das pernas
+#   
+#    1 m  = 100  cm
+#    1 cm = 0.01 m
+#    
+PROTO Mesa_m [
+
+]{
+  Transform
+  {
+    translation 0 0.6 0   # Atenção: A escala é feita primeiro, logo a translacção é em metros.
+    scale 0.01 0.01 0.01
+    children Mesa_cm { }
+  }
+  
+}
+
+
+Mesa_m { }
+
+

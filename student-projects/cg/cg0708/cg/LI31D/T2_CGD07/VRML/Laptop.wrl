@@ -1,0 +1,1292 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Tampa[] "TampaV3.wrl#Tampa"
+EXTERNPROTO TexturasTampa[] "TampaV3.wrl#TexturasTampa"
+EXTERNPROTO	keyBoard[] "BaseUpper.wrl#keyBoard"
+EXTERNPROTO	upperCreator[
+	field MFVec2f crossSectionUB
+	field MFVec2f scaleUB
+	field MFVec3f spineUB] "BaseUpper.wrl#upperCreator"
+EXTERNPROTO	rotator[] "BaseUpper.wrl#rotator"
+EXTERNPROTO	rotatorBase[] "BaseUpper.wrl#rotatorBase"
+EXTERNPROTO	baseMaker[] "BaseUpper.wrl#baseMaker"
+EXTERNPROTO	texturesUB[] "BaseUpper.wrl#texturesUB"
+EXTERNPROTO	fingerReader[] "FingerReader.wrl#fingerReader"
+EXTERNPROTO	stickerMaker[
+	field SFVec3f sizeStick
+	field MFString urlStick
+	field SFVec3f translationStick] "stickerMaker.wrl#stickerMaker"
+EXTERNPROTO	PowerButton[] "Power Button.wrl#PowerButton"
+EXTERNPROTO	Rubber[
+	field SFVec3f translationRubber
+	field SFVec3f scaleRubber] "Rubbers.wrl#Rubber"
+EXTERNPROTO	Lamp[] "Lamp.wrl#Lamp"
+EXTERNPROTO	LampButton[] "Lamp.wrl#LampButton"
+
+PROTO NormalKey[
+	field MFString string [""]
+	field MFString string2 [""]
+	field MFVec2f crossSectionK [0.95 0.95, 0.95 -0.95, -0.95 -0.95, -0.95 0.95, 0.95 0.95]
+	field MFVec2f scaleK [1 1, 0.789 0.789]
+	field SFVec3f translationString1  -0.65 0.31 -0.1
+	field SFVec3f translationString2 -0.39 0.31 -0.13
+	field SFFloat sizeString1 0.85
+	field SFFloat sizeString2 0.50
+	field SFVec3f translationGIF 0 0 0
+	field MFString urlGIF [""]
+	field SFVec3f sizeGIF 0 0 0
+	field SFVec3f translationGIF2 0 0 0
+	field MFString urlGIF2 [""]
+	field SFVec3f sizeGIF2 0 0 0
+]{
+	Group {
+		children [
+			DEF	normalKey Transform {
+				children [
+					Shape {
+						appearance Appearance {
+    						material Material {
+								ambientIntensity 0
+								shininess .08
+								diffuseColor 0 0 0
+								specularColor .29 .3 .29
+    						}
+						}	   
+						geometry Extrusion {
+    						crossSection IS crossSectionK
+    						spine [0 0 0, 0 0.3 0]
+    						scale IS scaleK
+						}
+					}
+
+					Transform {
+						translation IS translationString1
+						rotation 1 0 0 -1.57
+						children [
+							Shape {
+								geometry Text {
+									string IS string 
+									fontStyle FontStyle{
+										family "CENTURY GOTHIC"
+										style "ITALIC"
+										size IS sizeString1
+									}
+								}
+							}
+						]
+					}
+					Transform {
+						translation IS translationString2
+						rotation 1 0 0 -1.57
+						children [
+							Shape {
+								geometry Text {
+									string IS string2 
+									fontStyle FontStyle {
+										style "ITALIC"
+										family "CENTURY GOTHIC"
+										size	IS sizeString2
+									} 
+								}
+							}
+						]
+					}
+				   
+					Transform {
+						translation IS translationGIF
+						children[
+							Shape {
+								geometry Box {size IS sizeGIF}
+								appearance Appearance {
+									texture	ImageTexture {
+										url	IS urlGIF
+									}
+								}
+							}
+						]
+					}
+					Transform {
+						translation IS translationGIF2
+						children[
+							Shape {
+								geometry Box {size IS sizeGIF2}
+								appearance Appearance {
+									texture	ImageTexture {
+										url	IS urlGIF2
+									}
+								}
+							}
+						]
+					}
+				]
+		
+			}
+			DEF	TS TouchSensor { }
+
+			DEF PosInterpolator PositionInterpolator {
+				key      [0.0    0.1    0.2]
+				keyValue [0 0 0, 0 -0.2 0, 0 0 0]
+			}
+			DEF	Timer TimeSensor {
+				loop FALSE
+				startTime 0.0
+				stopTime 0.1
+			}
+		]
+	}
+
+	ROUTE TS.touchTime TO Timer.startTime
+	ROUTE Timer.fraction_changed TO PosInterpolator.set_fraction
+	ROUTE PosInterpolator.value_changed	TO normalKey.translation
+
+}
+
+Transform {
+	translation	16.6 0 7.3
+	children [
+		########################### INICIO PRIMEIRA FILA ##################################
+		Transform {
+			translation	-13.7 0 -0.1
+			scale 1 1 1.2
+			children
+			NormalKey { crossSectionK [-1 0, 1 0, 1 -1, 0 -1,0.00	-1.00,
+					-0.09	-1.00,
+					-0.17	-0.98,
+					-0.26	-0.97,
+					-0.34	-0.94,
+					-0.42	-0.91,
+					-0.50	-0.87,
+					-0.57	-0.82,
+					-0.64	-0.77,
+					-0.71	-0.71,
+					-0.77	-0.64,
+					-0.82	-0.57,
+					-0.87	-0.50,
+					-0.91	-0.42,
+					-0.94	-0.34,
+					-0.97	-0.26,
+					-0.98	-0.17,
+					-1.00	-0.09, -1 0] 
+				string["esc"] sizeString1 0.45 scaleK [1 1, 0.706 0.833] translationString1 -0.48 0.31 -0.13}
+		}
+
+
+		Transform {
+			translation	-11.47 0 -0.65					  
+			children NormalKey {crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["f"] string2["1"] urlGIF ["f1.gif"] sizeString1 0.5 
+				sizeString2 0.35 sizeGIF 0.3 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0.3 0.31 0.2 translationString1 -0.48 0.31 -0.13 translationString2 -0.39 0.31 -0.13}
+		}
+		Transform {
+			translation	-9.67 0 -0.65
+			children NormalKey {crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["f"] string2["2"] urlGIF ["f2.gif"] sizeString1 0.5 
+				sizeString2 0.35 sizeGIF 0.3 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0.3 0.31 0.2 translationString1 -0.48 0.31 -0.13 translationString2 -0.39 0.31 -0.13}
+		}
+		Transform {
+			translation	-7.87 0 -0.65
+			children NormalKey { crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["f"] string2["3"] urlGIF ["f3.gif"] sizeString1 0.5 
+				sizeString2 0.35 sizeGIF 0.8 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0 0.31 0.15 translationString1 -0.48 0.31 -0.13 translationString2 -0.39 0.31 -0.13}
+		}
+		Transform {
+			translation	-6.07 0 -0.65
+			children NormalKey { crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["f"] string2["4"] urlGIF ["f4.gif"] sizeString1 0.5 
+				sizeString2 0.35 sizeGIF 0.5 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0.3 0.31 0.2 translationString1 -0.48 0.31 -0.13 translationString2 -0.39 0.31 -0.13}
+		}
+		Transform {
+			translation	-4.07 0 -0.65
+			children NormalKey {crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["f"] string2["5"] urlGIF ["f5.gif"] sizeString1 0.5 
+				sizeString2 0.35 sizeGIF 0.3 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0.3 0.31 0.2 translationString1 -0.48 0.31 -0.13 translationString2 -0.39 0.31 -0.13}
+		}
+		Transform {
+			translation	-2.27 0 -0.65
+			children NormalKey { crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["f"] string2["6"] urlGIF ["f6.gif"] sizeString1 0.5 
+				sizeString2 0.35 sizeGIF 0.3 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0.3 0.31 0.2 translationString1 -0.48 0.31 -0.13 translationString2 -0.39 0.31 -0.13}
+		}
+		Transform {
+			translation	-0.47 0 -0.65
+			children NormalKey { crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["f"] string2["7"] urlGIF ["f7.gif"] sizeString1 0.5 
+				sizeString2 0.35 sizeGIF 0.3 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0.3 0.31 0.2 translationString1 -0.48 0.31 -0.13 translationString2 -0.39 0.31 -0.13}
+		}
+		Transform {
+			translation	1.33 0 -0.65
+			children NormalKey {crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["f"] string2["8"] urlGIF ["f8.gif"] sizeString1 0.5 
+				sizeString2 0.35 sizeGIF 0.3 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0.3 0.31 0.2 translationString1 -0.48 0.31 -0.13 translationString2 -0.39 0.31 -0.13}
+		}
+		Transform {
+			translation	3.33 0 -0.65
+			children NormalKey { crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["f"] string2["9"] urlGIF ["f9.gif"] sizeString1 0.5 
+				sizeString2 0.35 sizeGIF 0.9 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0 0.31 0.15 translationString1 -0.48 0.31 -0.13 translationString2 -0.39 0.31 -0.13}
+		}
+		Transform {
+			translation	5.13 0 -0.65
+			children NormalKey { crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["f"] string2["10"] urlGIF ["f10.gif"] sizeString1 0.5 
+				sizeString2 0.35 sizeGIF 0.9 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0 0.31 0.15 translationString1 -0.48 0.31 -0.13 translationString2 -0.39 0.31 -0.13}
+		}
+		Transform {
+			translation	6.93 0 -0.65
+			children NormalKey {crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["f"] string2["11"] urlGIF ["f11.gif"] sizeString1 0.5 
+				sizeString2 0.35 sizeGIF 0.9 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0 0.31 0.15 translationString1 -0.48 0.31 -0.13 translationString2 -0.39 0.31 -0.13}
+		}
+		Transform {
+			translation	8.73 0 -0.65
+			children NormalKey { crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["f"] string2["12"] urlGIF ["f12.gif"] sizeString1 0.5 
+				sizeString2 0.35 sizeGIF 0.9 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0 0.31 0.15 translationString1 -0.48 0.31 -0.13 translationString2 -0.39 0.31 -0.13}
+		}
+		Transform {
+			translation	10.73 0 -0.65
+			children NormalKey { crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["scroll"] urlGIF ["scroll.gif"] 
+				sizeString1 0.35 sizeGIF 0.9 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0 0.31 0.15 translationString1 -0.48 0.31 -0.13}
+		}
+		Transform {
+			translation	12.53 0 -0.65
+			children NormalKey {  crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["pause"] urlGIF ["pause.gif"] 
+				sizeString1 0.35 sizeGIF 0.9 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0 0.31 0.15 translationString1 -0.48 0.31 -0.13}
+		}
+		Transform {
+			translation	14.33 0 -0.65
+			children NormalKey { crossSectionK [0.85 0.6, 0.85 -0.6, -0.85 -0.6, -0.85 0.6, 0.85 0.6]  string["insert"] urlGIF ["insert.gif"] 
+				sizeString1 0.35 sizeGIF 0.9 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0 0.31 0.15 translationString1 -0.48 0.31 -0.13}
+		}
+	  
+		DEF ShutDown Transform {
+			translation	16.15 0 -0.13
+			scale 1 1 1.2
+			children NormalKey { crossSectionK [-1 0, 1 0,
+					1.00 -0.09,
+					0.98	-0.17,
+					0.97	-0.26,
+					0.94	-0.34,
+					0.91	-0.42,
+					0.87	-0.50,
+					0.82	-0.57,
+					0.77	-0.64,
+					0.71	-0.71,
+					0.64	-0.77,
+					0.57	-0.82,
+					0.50	-0.87,
+					0.42	-0.91,
+					0.34	-0.94,
+					0.26	-0.97,
+					0.17	-0.98,
+					0.09	-1.00,
+					0.00	-1.00, -1 -1, -1 0] 
+				string["delete"] urlGIF ["delete.gif"] sizeString1 0.3 sizeGIF 0.9 0 0.3 scaleK [1 1, 0.706 0.833] translationGIF 0 0.31 -0.3 translationString1 -0.48 0.31 -0.5}}  
+		############################ FIM PRIMEIRA FILA - SEGUNDA FILA ################################
+
+		Transform {
+			translation	-13.77 0 1
+			children NormalKey{string ["|"] sizeString1 0.5 sizeString2 0.50  string2 ["\\"] translationString2 -0.65 0.31 0.60}
+		}
+		Transform {
+			translation	-11.78 0 1
+			children NormalKey{string ["!"] sizeString1 0.5 sizeString2 0.65  string2 ["1"] translationString2 -0.65 0.31 0.60}
+		}
+		Transform {
+			translation	-9.78 0 1
+			children NormalKey{string [""""] sizeString1 0.5 sizeString2 0.65  string2 ["2    @"] translationString2 -0.65 0.31 0.60}
+		}
+		Transform {
+			translation	-7.78 0 1
+			children NormalKey{string ["#"] sizeString1 0.5 sizeString2 0.65  string2 ["3"] translationString2 -0.65 0.31 0.60}
+		}
+		Transform {
+			translation	-5.78 0 1
+			children NormalKey{string ["$"] sizeString1 0.5 sizeString2 0.65  string2 ["4"] translationString2 -0.65 0.31 0.60}
+		}
+		Transform {
+			translation	-3.78 0 1
+			children NormalKey{string ["%"] sizeString1 0.5 sizeString2 0.65  string2 ["5"] translationString2 -0.65 0.31 0.60}
+		}
+		Transform {
+			translation	-1.78 0 1
+			children NormalKey{string ["&"] sizeString1 0.5 sizeString2 0.65  string2 ["6"] translationString2 -0.65 0.31 0.60}
+		}
+		Transform {
+			translation	0.22 0 1
+			children NormalKey{urlGIF "7.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4 string ["/"] sizeString1 0.7 sizeString2 0.6  string2 ["7    {"] translationString2 -0.65 0.31 0.5}
+		}
+		Transform {
+			translation	2.22 0 1
+			children NormalKey{urlGIF "8.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4 string ["("] sizeString1 0.7 sizeString2 0.65  string2 ["8    ["] translationString2 -0.65 0.31 0.5}
+		}
+		Transform {
+			translation	4.22 0 1
+			children NormalKey{urlGIF "9.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4 string [")"] sizeString1 0.7 sizeString2 0.65  string2 ["9    ]"] translationString2 -0.65 0.31 0.5}
+		}
+		Transform {
+			translation	6.22 0 1
+			children NormalKey{urlGIF "0.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4 string ["="] sizeString1 0.7 sizeString2 0.65  string2 ["0    }"] translationString2 -0.65 0.31 0.5}
+		}
+		Transform {
+			translation	8.22 0 1
+			children NormalKey{string ["?"] sizeString1 0.7 translationString1 -0.65 0.31 -0.2  sizeString2 0.7  string2 ["'"] translationString2 -0.65 0.31 0.6}
+		}
+		Transform {
+			translation	10.22 0 1
+			children NormalKey{urlGIF "aspas.gif" sizeGIF 0.6 0 1.2 translationGIF -0.3 0.31 0}
+		}
+		Transform {
+			translation	13.17 0 1
+			children NormalKey { crossSectionK [1.9 0.95, 1.9 -0.95, -1.9 -0.95, -1.9 0.95, 1.9 0.95] scaleK [1 1, 0.868 0.789]	urlGIF ["backspace.gif"] sizeGIF 0.8 0 0.5 translationGIF -1.0 0.31 0.3}
+		}
+		Transform {
+			translation	16.27 0 1
+			children NormalKey { crossSectionK [0.9 0.95, 0.9 -0.95, -0.9 -0.95, -0.9 0.95, 0.9 0.95] scaleK [1 1, 0.778 0.789] string ["home"] sizeString1	0.4 translationString1 -0.5 0.31 -0.4}
+		}
+
+
+		#############################  FINAL SEGUNDA FILA	####################################
+		Transform {
+			translation	-13.4 0 3
+			children NormalKey{crossSectionK [1.34 0.95, 1.34 -0.95, -1.32 -0.95 -1.32 0.95, 1.34 0.95] scaleK [1 1, 0.857 0.789] urlGIF "tab.gif" sizeGIF 0.8 0 1 translationGIF -0.6 0.31 0}
+		}
+		Transform {
+			translation	-11 0 3
+			children NormalKey{string ["Q"]	}
+		}
+		Transform {
+			translation	-9 0 3
+			children NormalKey{string ["W"]	}
+		}
+		Transform {
+			translation	-7 0 3
+			children NormalKey{string ["E"]	}
+		}
+		Transform {
+			translation	-5 0 3
+			children NormalKey{string ["R"]	}
+		}
+		Transform {
+			translation	-3 0 3
+			children NormalKey{string ["T"]	}
+		}
+		Transform {
+			translation	-1 0 3
+			children NormalKey{string ["Y"]	}
+		}
+		Transform {
+			translation	1 0 3
+			children NormalKey{string ["U"] urlGIF	"u.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4}
+		}
+		Transform {
+			translation	3 0 3
+			children NormalKey{string ["I"]	urlGIF "i.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4}
+		}
+		Transform {
+			translation	5 0 3
+			children NormalKey{string ["O"]	urlGIF "o.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4}
+		}
+		Transform {
+			translation	7 0 3
+			children NormalKey{string ["P"]	urlGIF "p.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4}
+		}
+		Transform {
+			translation	9 0 3
+			children NormalKey{string ["*"] sizeString2 0.85  string2 ["+  .."] translationString2 -0.65 0.31 0.60}
+		}																					  
+		#não reconhece o ´
+		Transform {
+			translation	11 0 3
+			children NormalKey{urlGIF "acento.gif" translationGIF -0.5 0.31 0.4 sizeGIF 0.4 0 0.4 string ["`"] sizeString1 1.20 translationString1 -0.65 0.31 0.2  string2 ["´"] translationString2 -0.40 0.31 0.60 sizeString2 1.2}
+		}
+		Transform {
+			translation	16.27 0 3 
+			children NormalKey { crossSectionK [0.9 0.95, 0.9 -0.95, -0.9 -0.95, -0.9 0.95, 0.9 0.95] scaleK [1 1, 0.778 0.789] string ["pg up"] sizeString1 0.4 translationString1 -0.5 0.31 -0.4}
+		}
+
+
+		#########################  #FIM SEGUNDA FILA - INÍCIO TERCEIRA	##########################
+
+		Transform {
+			translation	-13.06 0 5
+			children NormalKey {string ["caps lock"] crossSectionK [1.65 0.95, 1.65 -0.95, -1.65 -0.95, -1.65 0.95, 1.65 0.95] scaleK [1 1, 0.878 0.789] sizeString1 0.5 translationString1 -1.10 0.31 -0.2} 
+
+		}
+		Transform {
+			translation	-10.36 0 5
+			children NormalKey{string ["A"]	}
+		}
+		Transform {
+			translation	-8.36 0 5
+			children NormalKey{string ["S"]	}
+		}
+		Transform {
+			translation	-6.36 0 5
+			children NormalKey{string ["D"]	}
+		}
+		Transform {
+			translation	-4.36 0 5
+			children NormalKey{string ["F"]	}
+		}
+		Transform {
+			translation	-2.36 0 5
+			children NormalKey{string ["G"]	}
+		}
+		Transform {
+			translation	-0.36 0 5
+			children NormalKey{string ["H"]	}
+		}
+		Transform {
+			translation	1.64 0 5
+			children NormalKey{string ["J"]	urlGIF "j.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4}
+		}
+		Transform {
+			translation	3.64 0 5
+			children NormalKey{string ["K"]	urlGIF "k.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4}
+		}
+		Transform {
+			translation	5.64 0 5
+			children NormalKey{string ["L"]	urlGIF "l.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4}
+		}
+		Transform {
+			translation	7.64 0 5
+			children NormalKey{urlGIF "c.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4
+				urlGIF2 "c de cedilha.gif" translationGIF2 -0.3 0.31 -0.3 sizeGIF2 0.75 0 0.75} 
+		}
+		Transform {
+			translation	9.64 0 5
+			children NormalKey{urlGIF "a.gif" translationGIF -0.5 0.31 0 sizeGIF 0.4 0 1.3}
+		}
+		Transform {
+			translation	11.64 0 5
+			children NormalKey{string ["^"] sizeString1	0.70 string2 ["~"] sizeString2 0.70 translationString2 -0.65 0.31 0.60}
+		}
+		Transform {
+			translation	16.27 0 5 
+			children NormalKey { crossSectionK [0.9 0.95, 0.9 -0.95, -0.9 -0.95, -0.9 0.95, 0.9 0.95] scaleK [1 1, 0.778 0.789] string ["pg dn"] sizeString1 0.4 translationString1 -0.5 0.31 -0.4}
+		}
+
+		####################### #FIM TERCEIRA FILA - INÍCIO QUARTA	 #############################
+
+		Transform {
+			translation	-13.5 0 7
+			children NormalKey {crossSectionK [1.2 0.95, 1.2 -0.95, -1.2 -0.95, -1.2 0.95, 1.2 0.95] scaleK [1 1, 0.833 0.789] urlGIF ["shift.gif"] sizeGIF 0.3 0 0.4 translationGIF -0.7 0.31 -0.43}
+		}
+		Transform {
+			translation	-11.25 0 7
+			children NormalKey {string [">"] string2 ["<"] sizeString1 0.85 sizeString2 0.85 translationString2 -0.65 0.31 0.6}
+		}
+		Transform {
+			translation	-9.25 0 7
+			children NormalKey {string ["Z"]}
+		}
+		Transform {
+			translation	-7.25 0 7
+			children NormalKey {string ["X"]}
+		}
+		Transform {
+			translation	-5.25 0 7
+			children NormalKey {string ["C"]}
+		}
+		Transform {
+			translation	-3.25 0 7
+			children NormalKey {string ["V"]}
+		}
+		Transform {
+			translation	-1.25 0 7
+			children NormalKey {string ["B"]}
+		}
+		Transform {
+			translation	0.75 0 7
+			children NormalKey {string ["N"]}
+		}
+		Transform {
+			translation	2.75 0 7
+			children NormalKey {string ["M"]}
+		}
+		Transform {
+			translation	4.75 0 7
+			children NormalKey {string [";"] string2 [","] sizeString1 0.85 sizeString2 0.85 translationString2 -0.65 0.31 0.6}
+		}
+		Transform {
+			translation	6.75 0 7
+			children NormalKey {urlGIF "..gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4 string [":"] string2 ["."] sizeString1 0.85 sizeString2 0.85 translationString2 -0.65 0.31 0.55}
+		}
+		Transform {
+			translation	8.75 0 7
+			children NormalKey {urlGIF "-.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4 string ["_"] string2 ["-"] sizeString1 0.85 sizeString2 0.85 translationString1 -0.65 0.31 -0.35 translationString2 -0.65 0.31 0.6}
+		}
+		Transform {
+			translation	11.45 0 7
+			children NormalKey {string [""] crossSectionK [1.65 0.95 1.65 -0.95 -1.65 -0.95 -1.65 0.95 1.65 0.95] scaleK [1 1, 0.879 0.789] urlGIF ["shift.gif"] sizeGIF 0.3 0 0.4 translationGIF -1.15 0.31 -0.43}
+		}
+		Transform {
+			translation	14.15 0 7
+			children NormalKey { urlGIF ["setacima.gif"] translationGIF 0 0.31 -0.42 sizeGIF 0.5 0 0.5}
+		}
+		Transform {
+			translation	16.27 0 7 
+			children NormalKey { crossSectionK [0.9 0.95, 0.9 -0.95, -0.9 -0.95, -0.9 0.95, 0.9 0.95] scaleK [1 1, 0.778 0.789] string ["end"] sizeString1 0.4 translationString1 -0.5 0.31 -0.4}
+		}
+		#########################    FIM QUARTA FILA - INICIO QUINTA #########################
+		Transform {
+			translation	-13.5 0 9
+			scale 1.2 1 0.95
+			children NormalKey {crossSectionK [
+					0 1, 1 1, 1 -1, -1 -1, -1 0,
+		    		-1.00	0.09,
+					-0.98	0.17,
+					-0.97	0.26,
+					-0.94	0.34,
+					-0.91	0.42,
+					-0.87	0.50,
+					-0.82	0.57,
+					-0.77	0.64,
+					-0.71	0.71,
+					-0.64	0.77,
+					-0.57	0.82,
+					-0.50	0.87,
+					-0.42	0.91,
+					-0.34	0.94,
+					-0.26	0.97,
+					-0.17	0.98,
+					-0.09	1.00,
+					0.00	1.00
+				] scaleK [1 1, 0.833 0.789] string ["ctrl"] sizeString1 0.4 translationString1 -0.5 0.31 -0.4}
+		}
+		Transform {
+			translation	-11.25 0 9
+			children NormalKey {urlGIF "fn.gif" translationGIF 0.4 0.31 -0.4 sizeGIF 0.4 0 0.4}
+		}
+		Transform {
+			translation	-9.25 0 9
+			children NormalKey {urlGIF "vista.gif" translationGIF 0 0.31 0 sizeGIF 1 0 1}
+		}
+		Transform {
+			translation	-7.25 0 9
+			children NormalKey {string ["alt"], translationString1 -0.5 0.31 -0.25 sizeString1 0.65}
+		}
+		Transform {
+			translation	-1.25 0 9
+			children NormalKey {crossSectionK [4.95 0.95, 4.95 -0.95, -4.95 -0.95, -4.95 0.95, 4.95 0.95] scaleK [1 1, 0.957 0.789] }
+		}
+		Transform {
+			translation	4.75 0 9
+			children NormalKey {string ["alt gr"], translationString1 -0.6 0.31 -0.25 sizeString1 0.49}
+		}
+		Transform {
+			translation	6.75 0 9
+			children NormalKey {urlGIF "window.gif" translationGIF -0.35 0.31 -0.3 sizeGIF 0.7 0 0.6}
+		}
+		Transform {
+			translation	9 0 9
+			children NormalKey {crossSectionK [1.2 0.95, 1.2 -0.95, -1.2 -0.95, -1.2 0.95, 1.2 0.95] scaleK [1 1, 0.833 0.789] string ["ctrl"] sizeString1 0.53 translationString1 -0.7 0.31 -0.3}
+		}
+		Transform {
+			translation	12.15 0 9
+			children NormalKey { urlGIF ["setaesquerda.gif"] translationGIF 0 0.31 -0.42 sizeGIF 0.5 0 0.5}
+		}
+		Transform {
+			translation	14.15 0 9
+			children NormalKey { urlGIF ["setabaixo.gif"] translationGIF 0 0.31 -0.42 sizeGIF 0.5 0 0.5}
+		}
+		Transform {
+			translation	16.15 0 9
+			children NormalKey {crossSectionK [1 0, 1 -1, -1 -1, -1 1, 0 1, 
+					0.00	1.00,
+					0.09	1.00,
+					0.17	0.98,
+					0.26	0.97,
+					0.34	0.94,
+					0.42	0.91,
+					0.50	0.87,
+					0.57	0.82,
+					0.64	0.77,
+					0.71	0.71,
+					0.77	0.64,
+					0.82	0.57,
+					0.87	0.50,
+					0.91	0.42,
+					0.94	0.34,
+					0.97	0.26,
+					0.98	0.17,
+					1.00	0.09,
+					1 0]
+				urlGIF ["setadireita.gif"] scaleK [1 1, 0.833 0.789] translationGIF 0 0.31 -0.42 sizeGIF 0.5 0 0.5}
+		}
+
+		##ESPECIAL: Enter Key!
+
+		Transform {
+			translation	10.13 0 4
+			children NormalKey { crossSectionK [4.95 -1.95, 1.95 -1.95, 1.95 -0.05, 2.6 -0.05, 2.6 1.94, 4.95 1.94, 4.95 -1.95] scaleK [1 1. 0.95 1]
+				translationGIF 4.25 0.31 -1.5 urlGIF "enter2.gif" sizeGIF 0.75 0 0.55 translationGIF2 2.33 0.31 -1.5 urlGIF2 "enter1.gif" sizeGIF2 0.75 0 0.55}
+		}
+	]
+}
+
+##########################   Ecrãs   ###########################
+################################################################
+Group {
+	children [
+		################# ECRÃ DESLIGADO #######################
+		Transform {
+			translation	17.8 12.15 -0.899 
+			rotation 1 0 0 1.47
+			children [
+				Shape {
+					geometry Box {size 33.3 0 20.5}
+					appearance Appearance {
+						material DEF TransparencyOff Material{
+							diffuseColor 0 0 0
+							specularColor .5 .5 .5
+							emissiveColor .15 .15 .15
+							ambientIntensity 0
+						}
+					}
+				}
+			]
+		}
+		#################### ECRÃ "GLOW!" ######################
+		Transform {
+			translation	17.8 12.15 -0.9
+		    rotation 1 0 0 1.47 
+			children [
+				Shape {
+					geometry Box {size 33.3 0 20.5}
+					appearance Appearance {
+						texture	ImageTexture {
+							url	"glow.jpg"
+						}
+						material DEF TransparencyGlow Material {
+						}
+					}
+				}
+			]
+		}
+
+		################## ECRÃ INTERMÉDIO Glow To Log In ##############
+		Transform {
+			translation	17.8 12.15 -0.901 
+			rotation 1 0 0 1.47
+			children [
+				Shape {
+					geometry Box {size 33.3 0 20.5}
+					appearance Appearance {
+						material DEF TransparencyBetweenGlorLogIn Material {
+							diffuseColor 0 0 0
+						}
+					}
+				}
+			]
+		}
+		################### ECRÃ "LOG IN" #########################
+		Transform {
+			translation	17.8 12.15 -0.902 
+			rotation 1 0 0 1.47
+			children [
+				Shape {
+					geometry Box {size 33.3 0 20.5}
+					appearance Appearance {
+						texture	ImageTexture {
+							url	"log in.jpg"
+						}
+						material DEF TransparencyLogIn Material {
+						}
+					}
+				}
+			]
+		}
+		################## ECRÃ INTERMÉDIO Glow To Log In ##############
+		Transform {
+			translation	17.8 12.15 -0.903 
+			rotation 1 0 0 1.47
+			children [
+				Shape {
+					geometry Box {size 33.3 0 20.5}
+					appearance Appearance {
+						material DEF TransparencyBetweenLogInAndDesktop Material {
+							diffuseColor 0 0 0
+						}
+					}
+				}
+			]
+		}
+		
+
+		#################### ECRÃ "DESKTOP!" ######################
+		Transform {
+			translation	17.8 12.15 -0.904
+		    rotation 1 0 0 1.47 
+			children [
+				Shape {
+					geometry Box {size 33.3 0 20.5}
+					appearance Appearance {
+						texture	ImageTexture {
+							url	"wallpaper.jpg"
+						}
+						material DEF TransparencyDesktop Material {
+						}
+					}
+				}
+			]
+		}
+
+		################## MENU OPTIONS ###############################
+		Transform {
+			translation	17.8 12.15 -0.905
+		    rotation 1 0 0 1.47 
+			children [
+				Shape {
+					geometry Box {size 33.3 0 20.5}
+					appearance Appearance {
+						texture	ImageTexture {
+							url	"iniciar.jpg"
+						}
+						material DEF TransparencyMenu Material {
+						}
+					}
+				}
+			]
+		}
+		################## MENU SHUTDOWN ###############################
+		Transform {
+			translation	17.8 12.15 -0.906
+		    rotation 1 0 0 1.47 
+			children [
+				Shape {
+					geometry Box {size 33.3 0 20.5}
+					appearance Appearance {
+						texture	ImageTexture {
+							url	"encerrar.jpg"
+						}
+						material DEF TransparencyGoDown Material {
+						}
+					}
+				}
+			]
+		}
+		################### ECRÃ "A DESLIGAR" ##################
+		Transform {
+			translation	17.8 12.15 -0.907 
+			rotation 1 0 0 1.47
+			children [
+				Shape {
+					geometry Box {size 33.3 0 20.5}
+					appearance Appearance {
+						texture	ImageTexture {
+							url "shutdown.jpg"	
+						}
+						material DEF TransparencyShutting Material {
+				
+						}
+					}
+				}
+			]
+		}
+		################### ECRÃ DESLIGADO ##################
+		Transform {
+			translation	17.8 12.15 -0.908 
+			rotation 1 0 0 1.47
+			children [
+				Shape {
+					geometry Box {size 33.3 0 20.5}
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 0 0
+							specularColor .5 .5 .5
+							emissiveColor .15 .15 .15
+							ambientIntensity 0
+						}
+					}
+			    }
+			]
+		}
+
+	]
+}
+
+############## KeyBoard e Laterais ##########################
+#############################################################
+Transform {
+	translation	0 0 1.4
+	children [
+		Transform {
+			translation	0 0 -1.4
+			children[
+				keyBoard {}
+
+				DEF	LadoTeclado upperCreator {crossSectionUB [0 4.4, 0 18.9, 1 18.9, 2.55 18.9, 2.55 18.15, 1.55 17.15, 1.55 6.15, 2.55 5.15, 2.55 4.4, 0 4.4] scaleUB [1 1, 0.1 1]}
+
+				Transform {
+					translation	35.6 0 23.3
+					scale -1 1 -1
+					children USE LadoTeclado
+				}
+
+				DEF NSTeclado upperCreator {crossSectionUB [2.55 4.4, 2.55 5.15, 33.05 5.15, 33.05 4.4, 2.55 4.4] spineUB [0 0 0]}
+
+				Transform {
+					translation	0 0 13.8
+					children USE NSTeclado
+				}
+			]
+		}
+
+		## Parte com touch pad
+		upperCreator{crossSectionUB	[0 17.5, 0 23, 1 24, 34.6 24, 35.6 23, 35.6 17.5, 0 17.5]}
+		##Parte que segura a tampa
+		upperCreator{crossSectionUB [0 0, 0 3, 35.6 3, 35.6 0, 0 0]}
+	]
+}
+
+####################### PEÇAS DE RODAR ##########################################
+rotator	{}
+Transform {
+	translation	27 0 0
+	children rotator {}
+}
+rotatorBase	{}
+
+##################### FINAL PARTE DE CIMA - INICIO PARTE DE BAIXO  ########################
+Transform {
+	translation	0 -2.201 0
+	children baseMaker{}
+}
+
+######################  FINAL PARTE DE BAIXO - TEXTURAS  ######################################
+Transform {
+	translation	17.8 0.51 2.65
+	children texturesUB {}
+}
+
+####################### MONITOR #############################
+#############################################################	
+Transform {
+	translation	0 0.5 0.2 
+	rotation 1 0 0 1.47
+	children [
+		Tampa {}
+		TexturasTampa {}
+	]
+}
+Rubber {scaleRubber 0.2 1 0.2 translationRubber 35 18.4 -0.75}
+Rubber {scaleRubber 0.2 1 0.2 translationRubber 0.6 18.4 -0.75}
+Rubber {scaleRubber	0.3 0.3 0.3 translationRubber 22.3 24.5 -1.2}
+Rubber {scaleRubber	0.3 0.3 0.3 translationRubber 13.3 24.5 -1.2}
+Rubber {scaleRubber	0.3 0.3 0.3 translationRubber 34.8 24.5 -1.2}
+Rubber {scaleRubber	0.3 0.3 0.3 translationRubber 0.8 24.5 -1.2}
+
+Transform {
+	translation 17.8 24.5 -1.35
+	rotation 1 0 0 1.47	
+	children Shape {
+		geometry Extrusion {
+			crossSection [-1.7 0.75, 1.7 0.75, 1.7 -0.75, -1.7 -0.75, -1.7 0.75]
+		    spine [0 0 0, 0 0.3 0] 
+			scale [1 1, 0.9 0.9]
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 0 0 0
+				specularColor .29 .3 .29
+				ambientIntensity 0
+				shininess .608
+			}
+		}
+	}
+}
+
+###################### STICKERS ##############################
+##############################################################
+stickerMaker {urlStick "intel.jpg" sizeStick 1.4 0 1.8 translationStick 29.5 0.51 22.0}
+stickerMaker {urlStick "vista.jpg" sizeStick 1.3 0 1.9 translationStick 31.6 0.51 22.0}
+stickerMaker {urlStick "nvidia.jpg" translationStick 29.5 0.51 24.00}
+stickerMaker {urlStick "light.gif" sizeStick 1.3 0 1.3 translationStick 31.6 0.51 24.00}
+stickerMaker {urlStick "big sticker.jpg" sizeStick 9.4 0 5.5 translationStick 7 0.51 22}
+stickerMaker {urlStick "touchpad.gif" sizeStick	10 0 6.5 translationStick 17.7 0.51 22}
+stickerMaker {urlStick "touchpanel.gif" sizeStick 22.3 0 0.5 translationStick 17.3 0.52 4.15}
+stickerMaker {urlStick "widescreen.gif" sizeStick 3.6 0.6 0 translationStick 4.8 24.5 -1.25}
+stickerMaker {urlStick "pavilion.gif" sizeStick 2.5 0.6 0 translationStick 31.8 24.5 -1.25}
+stickerMaker {urlStick "mic1.gif" sizeStick 1 0.6 0 translationStick 11.3 24.5 -1.25}
+stickerMaker {urlStick "mic2.gif" sizeStick 1 0.6 0 translationStick 24.3 24.5 -1.25}
+stickerMaker {urlStick "hp logo.gif" sizeStick	1.6 0.8 0 translationStick 17.8 1.75 1.07}
+Transform {
+	scale -1 -1 -1
+	children stickerMaker {urlStick "bottom.jpg" sizeStick 35.6 0 21 translationStick -17.8 2.21 -12.2}
+}
+Transform{
+	translation	17.8 -0.5 24.15
+	rotation 1 0 0	0.65
+	children stickerMaker {urlStick "phones in.jpg" sizeStick 5 0.7 0}
+}
+Transform{
+	translation	-0.01 -0.7 2
+	rotation 0 1 0 1.57
+	children stickerMaker{urlStick "firstin.gif" sizeStick 1.5 1.2 0}
+}
+Transform{
+	translation	-0.01 -0.7 3.7
+	rotation 0 1 0 1.57
+	children stickerMaker{urlStick "tvin.gif" sizeStick 1.7 1.2 0}
+}
+Transform{
+	translation	-0.01 -0.7 6.7
+	rotation 0 1 0 1.57
+	children stickerMaker{urlStick "expansion port 3.gif" sizeStick 3.9 1.2 0}
+}
+Transform{
+	translation	-0.01 -0.7 10.5
+	rotation 0 1 0 1.57
+	children stickerMaker{urlStick "portas de rede.gif" sizeStick 3 1.2 0}
+}
+Transform{
+	translation	-0.01 -0.7 13.1
+	rotation 0 1 0 1.57
+	children stickerMaker{urlStick "hdmi.jpg" sizeStick 2 1.2 0}
+}
+Transform{
+	translation	-0.01 -0.7 15.3
+	rotation 0 1 0 1.57
+	children stickerMaker{urlStick "usb port.gif" sizeStick 2.1 1.2 0}
+}
+Transform{
+	translation	-0.01 -0.7 17.45
+	rotation 0 1 0 1.57
+	children stickerMaker{urlStick "usb port.gif" sizeStick 2.1 1.2 0}
+}
+Transform{
+	translation	-0.01 -0.7 19.4
+	rotation 0 1 0 1.57
+	children stickerMaker{urlStick "firewire.gif" sizeStick 1.8 1.2 0}
+}
+Transform{
+	translation	-0.01 -0.9 21.8
+	rotation 0 1 0 1.57
+	children stickerMaker{urlStick "cartoes1.gif" sizeStick 2.6 1.5 0}
+}
+Transform{
+	translation	35.61 -0.7 2.2
+	rotation 0 1 0 -1.57
+	children stickerMaker{urlStick "power in.gif" sizeStick 1.6 1.2 0}
+}
+Transform{
+	translation	35.61 -0.7 4.5
+	rotation 0 1 0 -1.57
+	children stickerMaker{urlStick "usb port.gif" sizeStick 2.1 1.2 0}
+}
+Transform{
+	translation	35.61 -0.9 12
+	rotation 0 1 0 -1.57
+	children stickerMaker{urlStick "dvd drive.gif" sizeStick 12 1.7 0}
+}
+Transform{
+	translation	35.61 -0.6 21
+	rotation 0 1 0 -1.57
+	children stickerMaker{urlStick "cartoes2.gif" sizeStick 5 0.6 0}
+}
+Transform {
+	translation 17.8 24.53 -1.025
+	scale -1 -1 -1
+	rotation 1 0 0 3
+	children stickerMaker {urlStick "webcam.gif" sizeStick 3.06 1.36 0}
+}
+###################### FINGER READER #########################
+##############################################################
+
+Transform{
+	translation	30.5 0.51 20
+	children [
+		fingerReader{}
+
+		DEF LogInToDesktopKey TouchSensor{}
+
+		DEF	TimeBetweenLItoDesk TimeSensor {
+			cycleInterval 18	
+		}
+
+		DEF	LogInToDesktopTimer TimeSensor {
+			cycleInterval 3.0
+		}
+	]
+}
+
+
+###################### POWER BUTTON ##########################
+##############################################################
+Group{
+	children [
+		Transform {
+			translation 3.5 0.52 4.15
+			children 
+			DEF PB Transform {
+				children PowerButton{}
+			}
+		}
+		DEF Off TouchSensor{}
+
+		DEF	OffToGlowKey TimeSensor {
+			cycleInterval 0.3
+			startTime 0.0
+			stopTime 0.0
+		}
+
+		DEF	OffToGlowTimer TimeSensor {
+			cycleInterval 2
+		}
+		
+		DEF	TimeBetweenLIandGlow TimeSensor {
+			cycleInterval 18
+			
+		}
+		DEF	GlowToLogInTimer TimeSensor {
+			cycleInterval 5
+		}
+		
+		DEF PosInterpolator PositionInterpolator {
+			key      [0.0    0.5    1]
+			keyValue [0 0 0, 0 -0.04 0, 0 0 0]
+		}	
+	]
+}
+
+###################### CANDEEIRO ##############################
+###############################################################
+Transform {
+	translation	-4 0 13
+	rotation 0 1 0 1.57
+	children [
+		Lamp {}
+		DEF	LightSwitch Transform {
+			children[ 
+				LampButton {}
+
+				DEF ToogleButton Script {
+					field    SFBool on FALSE
+					eventIn  SFBool set_active
+					eventOut SFBool on_changed
+					url "javascript:
+					function set_active( set, timestamp ) {
+    					if(set == FALSE) return;
+    					if(on == TRUE)   on = FALSE;
+    					else             on = TRUE;
+    					on_changed = on;
+					}"
+				}
+				DEF	TouchSwitch TouchSensor	{}
+
+				DEF	SwitchGo TimeSensor	{
+					cycleInterval 0.5
+				}
+				DEF	SwitchClick PositionInterpolator {
+					key      [0.0    0.5    1]
+					keyValue [0 0 0, 0 -0.04 0, 0 0 0]
+				}
+
+				DEF LampLight SpotLight {
+					cutOffAngle 0.785398
+					beamWidth 1
+					direction 0 -1 0
+					intensity 0.7
+					on FALSE
+					color 1 1 1
+					location 7.75 15 13
+				}	   
+			]
+		}
+	
+	]
+}
+
+ROUTE TouchSwitch.touchTime	TO SwitchGo.startTime
+ROUTE SwitchGo.fraction_changed	TO SwitchClick.set_fraction
+ROUTE SwitchClick.value_changed	TO LightSwitch.translation
+
+ROUTE TouchSwitch.isActive TO ToogleButton.set_active
+ROUTE ToogleButton.on_changed TO LampLight.on
+
+
+######################## LUZES MONITOR #########################
+################################################################
+DEF CIE SpotLight {
+	cutOffAngle 0.785398
+	beamWidth 1
+	direction 0 0 -1
+	intensity 1
+	on TRUE
+	color 1 1 1
+	location 2.5 1 2
+}
+DEF CID SpotLight {
+	cutOffAngle 0.785398
+	beamWidth 1
+	direction 0 0 -1
+	intensity 1
+	on TRUE
+	color 1 1 1
+	location 33 1 2
+}
+DEF CSE SpotLight {
+	cutOffAngle 0.785398
+	beamWidth 1
+	direction 0 0 -1
+	intensity 1
+	on TRUE
+	color 1 1 1
+	location 3 21 1
+}
+DEF CSD SpotLight {
+	cutOffAngle 0.785398
+	beamWidth 1
+	direction 0 0 -1
+	intensity 1
+	on TRUE
+	color 1 1 1
+	location 32.5 21 1
+}
+
+
+
+
+######################## TURN OFF PC ###########################
+################################################################
+
+Transform {
+	children [
+		Transform {
+			translation	2 2.5 0.5
+			children 
+			Shape{
+				geometry Box {size 1 1 0}
+				appearance Appearance {
+					material Material {
+						transparency 1
+					}
+				}
+			}
+		}
+		DEF Start TouchSensor{}
+
+		DEF	StartToIniciarTime TimeSensor {
+			cycleInterval 0.1
+	
+		}
+		
+	]
+}
+Transform {
+	children [
+		Transform {
+			translation	11.2 3.3 0.5
+			children 
+			Shape{
+				geometry Box {size 0.5 0.5 0}
+				appearance Appearance {
+					material Material {
+						transparency 1
+					}
+				}
+			}
+		}
+		DEF Iniciar TouchSensor{}
+
+		DEF	 IniciarToOptionsTime TimeSensor {
+			cycleInterval 0.1
+		}
+	   
+	]
+}
+Transform {
+	children [
+		Transform {
+			translation	13.75 3.3 0.5
+			children 
+			Shape{
+				geometry Box {size 3 0.5 0}
+				appearance Appearance {
+					material Material {
+						transparency 1
+					}
+				}
+			}
+		}
+		DEF ShutDownButton TouchSensor{}
+
+		DEF	TimeBetweenShutToOff TimeSensor {
+			cycleInterval 18
+	
+		}
+		DEF	ShutToOffTimer TimeSensor {
+			cycleInterval 3.0
+		}
+	]
+}
+
+############################ VIEWPOINTS ##########################
+##################################################################
+
+Viewpoint {
+	position 17.8 20 50
+	orientation	1 0 0 -0.3
+	description	"Front"
+}
+
+Viewpoint {
+	position 17.8 15 -50
+	orientation	0 1 0 3.14
+	description	"Back"
+}
+
+Viewpoint {
+	position 65 10 30
+	orientation	0 1 0 1.00
+	description	"Right Side"
+}
+
+Viewpoint {
+	position -25 10 30
+	orientation	0 1 0 -1.00
+	description	"Left Side"
+}
+
+Viewpoint {
+	position 17.8 -30 12
+	orientation	1 0 0 1.57
+	description	"Under"
+}
+Viewpoint {
+	position 17.8 23 12
+	orientation	1 0 0 -1.57
+	description	"Keyboard"
+}
+
+##################### ROUTERS #####################
+###################################################
+
+
+#### EFEITO DO Power Button  A SER CARREGADO #####
+ROUTE Off.touchTime TO OffToGlowKey.startTime
+ROUTE OffToGlowKey.fraction_changed TO PosInterpolator.set_fraction
+ROUTE PosInterpolator.value_changed	TO PB.translation
+
+############## A LIGAR O PC #################
+ROUTE Off.touchTime	TO OffToGlowTimer.startTime
+ROUTE OffToGlowTimer.fraction_changed TO TransparencyOff.transparency
+
+
+############### Tempo Do Glow até aparecer o Log In ############### 
+ROUTE Off.touchTime	TO GlowToLogInTimer.startTime
+ROUTE Off.touchTime TO TimeBetweenLIandGlow.startTime
+ROUTE TimeBetweenLIandGlow.fraction_changed TO TransparencyBetweenGlorLogIn.transparency
+ROUTE GlowToLogInTimer.fraction_changed TO TransparencyGlow.transparency
+ROUTE GlowToLogInTimer.fraction_changed TO TransparencyBetweenGlorLogIn.transparency
+
+################# FINGER READER #########################
+ROUTE LogInToDesktopKey.touchTime TO LogInToDesktopTimer.startTime
+ROUTE LogInToDesktopKey.touchTime TO TimeBetweenLItoDesk.startTime
+ROUTE LogInToDesktopTimer.fraction_changed TO TransparencyLogIn.transparency
+ROUTE TimeBetweenLItoDesk.fraction_changed TO TransparencyBetweenLogInAndDesktop.transparency
+
+################# START MENU ############################
+ROUTE Start.touchTime TO StartToIniciarTime.startTime
+ROUTE StartToIniciarTime.fraction_changed TO TransparencyDesktop.transparency
+
+################# INICIAR ################################
+ROUTE Iniciar.touchTime	TO IniciarToOptionsTime.startTime
+ROUTE IniciarToOptionsTime.fraction_changed	TO TransparencyMenu.transparency
+
+################# SHUTDOWN #############################
+ROUTE ShutDownButton.touchTime TO ShutToOffTimer.startTime
+ROUTE ShutDownButton.touchTime TO TimeBetweenShutToOff.startTime
+ROUTE ShutToOffTimer.fraction_changed TO TransparencyGoDown.transparency
+ROUTE TimeBetweenShutToOff.fraction_changed TO	TransparencyShutting.transparency
+

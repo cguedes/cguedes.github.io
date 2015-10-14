@@ -1,0 +1,168 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO railes [field SFRotation rot field SFVec3f pos ] "rail100_novo.wrl"
+
+PROTO gradeamento100 [
+	field SFRotation rot 0 0 0 0
+	field SFVec3f pos 0 0 0
+]
+{
+	Transform
+	{
+		children
+		[
+			#tubo cima
+			Transform {
+				children [
+					Shape
+					{
+						geometry Cylinder { height 100 radius 0.06 }
+						appearance Appearance { material Material { diffuseColor 0 0 1 } }
+					}
+				]
+				rotation 0 0 1 1.57079
+			}
+			#tubo c1
+			Transform {
+				children [
+					Shape
+					{
+						geometry Cylinder { height 100 radius 0.04 }
+						appearance Appearance { material Material { diffuseColor 1 1 1 } }
+					}
+				]
+				rotation 0 0 1 1.57079
+				translation	0 -0.3 0
+			}
+			#tubo c2
+			Transform {
+				children [
+					Shape
+					{
+						geometry Cylinder { height 100 radius 0.04 }
+						appearance Appearance { material Material { diffuseColor 1 1 1 } }
+					}
+				]
+				rotation 0 0 1 1.57079
+				translation	0 -0.6 0
+			}
+			#barra vertical
+			Transform {
+				children [
+					DEF barra Shape
+					{
+						geometry Box {size 0.1 1 0.1}
+						appearance Appearance { material Material { diffuseColor 1 1 1 } }
+					}
+				]
+				translation	0 -0.5 0 
+			}
+			Transform {	children USE barra translation	1 -0.5 0  }
+			Transform {	children USE barra translation	2 -0.5 0  }
+			Transform {	children USE barra translation	3 -0.5 0  }
+			Transform {	children USE barra translation	4 -0.5 0  }
+			Transform {	children USE barra translation	5 -0.5 0  }
+			Transform {	children USE barra translation	6 -0.5 0  }
+			Transform {	children USE barra translation	7 -0.5 0  }
+			Transform {	children USE barra translation	8 -0.5 0  }
+			Transform {	children USE barra translation	9 -0.5 0  }
+			Transform {	children USE barra translation	10 -0.5 0  }
+			Transform {	children USE barra translation	11 -0.5 0  }
+			Transform {	children USE barra translation	12 -0.5 0  }
+			Transform {	children USE barra translation	13 -0.5 0  }
+			Transform {	children USE barra translation	14 -0.5 0  }
+			Transform {	children USE barra translation	15 -0.5 0  }
+			Transform {	children USE barra translation	16 -0.5 0  }
+			Transform {	children USE barra translation	17 -0.5 0  }
+			Transform {	children USE barra translation	18 -0.5 0  }
+			Transform {	children USE barra translation	19 -0.5 0  }
+			Transform {	children USE barra translation	20 -0.5 0  }
+			Transform {	children USE barra translation	21 -0.5 0  }
+			Transform {	children USE barra translation	22 -0.5 0  }
+			Transform {	children USE barra translation	23 -0.5 0  }
+			Transform {	children USE barra translation	24 -0.5 0  }
+			Transform {	children USE barra translation	25 -0.5 0  }
+			Transform {	children USE barra translation	26 -0.5 0  }
+			Transform {	children USE barra translation	27 -0.5 0  }
+			Transform {	children USE barra translation	28 -0.5 0  }
+			Transform {	children USE barra translation	29 -0.5 0  }
+			Transform {	children USE barra translation	30 -0.5 0  }
+			Transform {	children USE barra translation	31 -0.5 0  }
+			Transform {	children USE barra translation	32 -0.5 0  }
+			Transform {	children USE barra translation	33 -0.5 0  }
+			Transform {	children USE barra translation	34 -0.5 0  }
+			Transform {	children USE barra translation	35 -0.5 0  }
+			Transform {	children USE barra translation	36 -0.5 0  }
+			Transform {	children USE barra translation	37 -0.5 0  }
+			Transform {	children USE barra translation	38 -0.5 0  }
+			Transform {	children USE barra translation	39 -0.5 0  }
+			Transform {	children USE barra translation	40 -0.5 0  }
+			Transform {	children USE barra translation	41 -0.5 0  }
+			Transform {	children USE barra translation	42 -0.5 0  }
+			Transform {	children USE barra translation	43 -0.5 0  }
+			Transform {	children USE barra translation	44 -0.5 0  }
+			Transform {	children USE barra translation	45 -0.5 0  }
+			Transform {	children USE barra translation	46 -0.5 0  }
+			Transform {	children USE barra translation	47 -0.5 0  }
+			Transform {	children USE barra translation	48 -0.5 0  }
+			Transform {	children USE barra translation	49 -0.5 0  }
+			Transform {	children USE barra translation	50 -0.5 0  }
+			Transform {	children USE barra translation	-1 -0.5 0  }
+			Transform {	children USE barra translation	-2 -0.5 0  }
+			Transform {	children USE barra translation	-3 -0.5 0  }
+			Transform {	children USE barra translation	-4 -0.5 0  }
+			Transform {	children USE barra translation	-5 -0.5 0  }
+			Transform {	children USE barra translation	-6 -0.5 0  }
+			Transform {	children USE barra translation	-7 -0.5 0  }
+			Transform {	children USE barra translation	-8 -0.5 0  }
+			Transform {	children USE barra translation	-9 -0.5 0  }
+			Transform {	children USE barra translation	-10 -0.5 0  }
+			Transform {	children USE barra translation	-11 -0.5 0  }
+			Transform {	children USE barra translation	-12 -0.5 0  }
+			Transform {	children USE barra translation	-13 -0.5 0  }
+			Transform {	children USE barra translation	-14 -0.5 0  }
+			Transform {	children USE barra translation	-15 -0.5 0  }
+			Transform {	children USE barra translation	-16 -0.5 0  }
+			Transform {	children USE barra translation	-17 -0.5 0  }
+			Transform {	children USE barra translation	-18 -0.5 0  }
+			Transform {	children USE barra translation	-19 -0.5 0  }
+			Transform {	children USE barra translation	-20 -0.5 0  }
+			Transform {	children USE barra translation	-21 -0.5 0  }
+			Transform {	children USE barra translation	-22 -0.5 0  }
+			Transform {	children USE barra translation	-23 -0.5 0  }
+			Transform {	children USE barra translation	-24 -0.5 0  }
+			Transform {	children USE barra translation	-25 -0.5 0  }
+			Transform {	children USE barra translation	-26 -0.5 0  }
+			Transform {	children USE barra translation	-27 -0.5 0  }
+			Transform {	children USE barra translation	-28 -0.5 0  }
+			Transform {	children USE barra translation	-29 -0.5 0  }
+			Transform {	children USE barra translation	-30 -0.5 0  }
+			Transform {	children USE barra translation	-31 -0.5 0  }
+			Transform {	children USE barra translation	-32 -0.5 0  }
+			Transform {	children USE barra translation	-33 -0.5 0  }
+			Transform {	children USE barra translation	-34 -0.5 0  }
+			Transform {	children USE barra translation	-35 -0.5 0  }
+			Transform {	children USE barra translation	-36 -0.5 0  }
+			Transform {	children USE barra translation	-37 -0.5 0  }
+			Transform {	children USE barra translation	-38 -0.5 0  }
+			Transform {	children USE barra translation	-39 -0.5 0  }
+			Transform {	children USE barra translation	-40 -0.5 0  }
+			Transform {	children USE barra translation	-41 -0.5 0  }
+			Transform {	children USE barra translation	-42 -0.5 0  }
+			Transform {	children USE barra translation	-43 -0.5 0  }
+			Transform {	children USE barra translation	-44 -0.5 0  }
+			Transform {	children USE barra translation	-45 -0.5 0  }
+			Transform {	children USE barra translation	-46 -0.5 0  }
+			Transform {	children USE barra translation	-47 -0.5 0  }
+			Transform {	children USE barra translation	-48 -0.5 0  }
+			Transform {	children USE barra translation	-49 -0.5 0  }
+			Transform {	children USE barra translation	-50 -0.5 0  }
+			
+			railes { pos 0 -0.76 0.95 rot 0 1 0 0  }	
+		]
+		rotation IS	rot
+		translation	IS pos
+	}
+}
+
+gradeamento100 {}

@@ -1,0 +1,75 @@
+#VRML V2.0 utf8
+EXTERNPROTO	carro []["carro.wrl#CAR"]
+
+
+
+
+
+PROTO animacao[]{
+	Group {
+		children [
+			DEF	carro Transform	{
+				children [
+#				Shape {
+#					geometry Box {
+#					}
+#					appearance Appearance {
+#						material Material {
+#							diffuseColor 0 0 1
+#						}
+#					}
+#					}
+				carro{}
+
+				Viewpoint {
+					description	"carro"
+					position -7 3 0
+					orientation	 0 1 0 -1.57
+				}
+				Viewpoint {
+					description	"dentro carro"
+					position 0 2.5 0
+					orientation	 0 1 0 -1.57
+				}
+				Viewpoint {
+					description	"fora do carro"
+					position 0 45 260
+				}
+				DEF	ts TouchSensor {
+			
+				}	  
+				]
+			}
+			
+		]
+	}
+
+DEF	posinterpolator PositionInterpolator {
+	key      [0 0.096	0.192	0.722	0.734	0.75	0.762	0.774	0.784	0.798	0.814	1]
+keyValue [0 0 0,
+960	0	0	,
+1920	-30	0	,
+7220	-30	0	,
+7340	-25	0	,
+7500	-20	0	,
+7620	-15	0	,
+7740	-15	0	,
+7840	-20	0	,
+7980	-25	0	,
+8140	-30	0	,
+10000	-30	0	
+
+]
+}
+
+DEF	time TimeSensor	{
+	cycleInterval 600
+	loop FALSE
+}
+
+ROUTE ts.touchTime TO time.startTime
+ROUTE time.fraction_changed	TO posinterpolator.set_fraction
+ROUTE posinterpolator.value_changed	TO carro.translation
+}
+
+animacao {}

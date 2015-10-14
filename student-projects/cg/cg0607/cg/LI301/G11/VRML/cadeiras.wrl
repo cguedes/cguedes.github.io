@@ -1,0 +1,196 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	 cadeira[]"cadeira.wrl#cadeira"
+
+PROTO f_cadeiras
+[
+]
+{
+Group {
+	children [
+
+Transform {
+	translation	0.7 0.25 0.75
+	rotation 0 1 0 1.54
+	children cadeira {}
+	}
+
+Transform {
+	translation	1.3 0.25 0.75
+	rotation 0 1 0 1.54
+	children cadeira {}
+
+}
+
+Transform {
+	translation	1.8 0.25 0.75
+	rotation 0 1 0 1.54
+	children cadeira {}
+
+
+}
+
+Transform {
+	translation	2.3 0.25 0.75
+	rotation 0 1 0 1.54
+	children cadeira {}
+
+}
+
+
+Transform {
+	translation	2.8 0.25 0.75
+	rotation 0 1 0 1.54
+	children cadeira {}
+
+
+}
+
+Transform {
+	translation	3.3 0.25 0.75
+	rotation 0 1 0 1.54
+	children cadeira {}
+
+}
+
+
+#####################  rodar
+
+
+
+Transform {
+	translation	0.7 0.25 1.20
+	rotation 0 1 0  4.71
+	children cadeira {}
+
+
+}
+
+Transform {
+	translation	1.3 0.25 1.20
+	rotation 0 1 0 4.71
+	children cadeira {}
+
+}
+
+Transform {
+	translation	1.8 0.25 1.20
+	rotation 0 1 0 4.71
+	children cadeira {}
+
+
+}
+
+Transform {
+	translation	2.3 0.25 1.20
+	rotation 0 1 0 4.71
+	children cadeira {}
+
+}
+
+
+Transform {
+	translation	2.8 0.25 1.20
+	rotation 0 1 0 4.71
+	children cadeira {}
+
+
+}
+
+Transform {
+	translation	3.3 0.25 1.20
+	rotation 0 1 0 4.71
+	children cadeira {}
+
+	}
+
+############################ fila completa
+
+############################### mesma fila canto 
+
+
+
+
+Transform {
+	translation	5.8 0.25 0.75
+	rotation 0 1 0 1.54
+	children cadeira {}
+
+
+}
+
+Transform {
+	translation	6.3 0.25 0.75
+	rotation 0 1 0 1.54
+	children cadeira {}
+
+}
+
+
+Transform {
+	translation	7  0.25 0.75
+	rotation 0 1 0 1.54
+	children cadeira {}
+
+
+}
+
+Transform {
+	translation	7.5 0.25 0.75
+	rotation 0 1 0 1.54
+	children cadeira {}
+
+}
+
+#######################################################3
+
+Transform {
+	translation	5.8 0.25 1.20
+	rotation 0 1 0 4.71
+	children cadeira {}
+
+
+}
+
+Transform {
+	translation	6.3 0.25 1.20
+	rotation 0 1 0 4.71
+	children cadeira {}
+
+}
+
+
+Transform {
+	translation	7  0.25 1.20
+	rotation 0 1 0 4.71
+	children cadeira {}
+
+
+}
+
+Transform {
+	translation	7.5 0.25 1.20
+	rotation 0 1 0 4.71
+	children cadeira {}
+
+}
+
+]
+
+}
+}
+
+
+PROTO  fila_cadeiras
+[
+]{
+	Transform {
+		children f_cadeiras {}
+	}
+	Transform {
+		translation	5 5 5 
+		children f_cadeiras	{}
+
+	}
+
+}

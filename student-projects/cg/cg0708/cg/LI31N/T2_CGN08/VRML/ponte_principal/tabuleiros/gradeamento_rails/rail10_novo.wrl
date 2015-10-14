@@ -1,0 +1,61 @@
+#VRML V2.0 utf8
+
+PROTO railes [
+	field SFRotation rot 0 1 0 -1.57
+	field SFVec3f pos 0 0 0
+]
+{
+	Transform
+	{
+		children
+		[
+			#barra b1
+			Transform {
+				children [
+					Shape
+					{
+						geometry Box { size 10 0.15 0.08 }
+						appearance Appearance { material Material { diffuseColor 0.8 0.8 0.8 } }
+					}
+				]
+				translation	0 0.18 0.09
+			}
+			#barra b1
+			Transform {
+				children [
+					Shape
+					{
+						geometry Box { size 10 0.15 0.08 }
+						appearance Appearance { material Material { diffuseColor 0.8 0.8 0.8 } }
+					}
+				]
+				translation	0 -0.10 0.09
+			}
+			#barra suporte
+			DEF barra Transform {
+				children [
+					Shape
+					{
+						geometry Box { size 0.1 0.5 0.15 }
+						appearance Appearance { material Material { diffuseColor 0.8 0.8 0.8 } }
+					}
+				]
+			}
+			Transform { children USE barra translation 1 0 0}
+			Transform { children USE barra translation 2 0 0}
+			Transform { children USE barra translation 3 0 0}
+			Transform { children USE barra translation 4 0 0}
+			Transform { children USE barra translation 5 0 0}
+			
+			Transform { children USE barra translation -1 0 0}
+			Transform { children USE barra translation -2 0 0}
+			Transform { children USE barra translation -3 0 0}
+			Transform { children USE barra translation -4 0 0}
+			Transform { children USE barra translation -5 0 0}
+			
+		]
+		rotation IS	rot
+		translation	IS pos
+	}
+}
+railes {}

@@ -1,0 +1,79 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Axis [ ] "axis_prof.wrl#Axis"
+Transform {
+	scale 0.1 0.1 0.1
+	children Axis {  }
+} 
+EXTERNPROTO	Barras_Janela [ ] "biblioteca.wrl#Barras_Janela"
+
+PROTO Porta_Entrada [] {
+	Group {
+		children [
+			Transform {
+				translation	0 1.25 0
+				children [
+					Shape {
+						geometry Box {
+							size 2.38 2.5 0.10
+						}
+						appearance Appearance {
+							material Material {
+								transparency 0.75
+							}
+						}
+					}
+				]
+			}
+			Transform {
+				translation	-1.1275 1.5 0
+				scale 0.5 20 0.1
+				children [Barras_Janela { }]
+			}
+			Transform {
+				translation	1.1275 1.5 0
+				scale 0.5 20 0.1
+				children [Barras_Janela { }]
+			}
+			Transform {
+				translation	0.0625 1 0
+				scale 0.5 13.3 0.1
+				children [Barras_Janela { }]
+			}
+
+			Transform {
+				translation	-0.0625 1 0
+				scale 0.5 13.3 0.1
+				children [Barras_Janela { }]
+			}
+			Transform {
+				translation	0 1 0
+				scale 9.5 0.5 0.1
+				children [Barras_Janela { }]
+			}
+			Transform {
+				translation	0 2 0
+				scale 9.5 0.5 0.1
+				children [Barras_Janela { }]
+			}
+		]
+	}
+}
+
+PROTO Estores [] {
+	Transform {
+		translation	0 1.55 0
+		children [
+			Shape {
+				geometry Box {
+					size 2 2.9 0.01
+				}
+				appearance Appearance {
+					texture	ImageTexture {
+						url	["imagens/estores.jpg"]
+					}
+				}
+			}
+		]
+	}
+}

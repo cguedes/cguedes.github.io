@@ -1,0 +1,200 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Cilindro[
+	field SFColor Color	
+	field SFFloat raio 
+	field SFFloat altura
+	field SFRotation pos
+] "Extintor.wrl#Cilindro"
+EXTERNPROTO	axis[]	"Sem3.wrl#axis"	
+
+PROTO Tampa[]
+{
+	Transform {
+		rotation 1 0 0 -1.570796
+		children [
+		
+			Shape {
+				appearance Appearance {
+					material Material { diffuseColor 1 1 1} 
+				}
+    			geometry Extrusion { 
+    				crossSection 
+					[
+					0.001677176	0.309952785	,
+					0.010818844	0.309811156	,
+					0.016224146	0.309575156	,
+					0.021624507	0.309244856	,
+					0.02701828	0.308820356	,
+					0.032403824	0.308301787	,
+					0.037779496	0.307689307	,
+					0.043143661	0.306983101	,
+					0.048494684	0.306183386	,
+					0.053830935	0.305290403	,
+					0.059150788	0.304304427	,
+					0.064452624	0.303225756	,
+					0.069734827	0.30205472	,
+					0.074995788	0.300791675	,
+					0.080233904	0.299437006	,
+					0.08544758	0.297991126	,
+					0.090635229	0.296454474	,
+					0.095795268	0.29482752	,
+					0.100926128	0.293110759	,
+					0.106026244	0.291304713	,
+					0.111094065	0.289409932	,
+					0.116128044	0.287426995	,
+					0.12112665	0.285356504	,
+					0.126088359	0.283199092	,
+					0.131011661	0.280955414	,
+					0.135895056	0.278626154	,
+					0.140737055	0.276212022	,
+					0.145536185	0.273713754	,
+					0.150290982	0.271132109	,
+					0.155	0.268467875	,
+					0.159661803	0.265721863	,
+					0.164274972	0.26289491	,
+					0.168838101	0.259987876	,
+					0.1733498	0.257001648	,
+					0.177808695	0.253937134	,
+					0.182213428	0.250795268	,
+					0.186562657	0.247577008	,
+					0.190855057	0.244283334	,
+					0.195089321	0.240915248	,
+					0.199264159	0.237473777	,
+					0.203378299	0.23395997	,
+					0.207430488	0.230374896	,
+					0.211419492	0.226719648	,
+					0.215344095	0.222995338	,
+					0.219203102	0.219203102	,
+					0.219203102	0.254203102	,
+					0.215344095	0.257995338	,
+					0.211419492	0.261719648	,
+					0.207430488	0.265374896	,
+					0.203378299	0.26895997	,
+					0.199264159	0.272473777	,
+					0.195089321	0.275915248	,
+					0.190855057	0.279283334	,
+					0.186562657	0.282577008	,
+					0.182213428	0.285795268	,
+					0.177808695	0.288937134	,
+					0.1733498	0.292001648	,
+					0.168838101	0.294987876	,
+					0.164274972	0.29789491	,
+					0.159661803	0.300721863	,
+					0.155	0.303467875	,
+					0.150290982	0.306132109	,
+					0.145536185	0.308713754	,
+					0.140737055	0.311212022	,
+					0.135895056	0.313626154	,
+					0.131011661	0.315955414	,
+					0.126088359	0.318199092	,
+					0.12112665	0.320356504	,
+					0.116128044	0.322426995	,
+					0.111094065	0.324409932	,
+					0.106026244	0.326304713	,
+					0.100926128	0.328110759	,
+					0.095795268	0.32982752	,
+					0.090635229	0.331454474	,
+					0.08544758	0.332991126	,
+					0.080233904	0.334437006	,
+					0.074995788	0.335791675	,
+					0.069734827	0.33705472	,
+					0.064452624	0.338225756	,
+					0.059150788	0.339304427	,
+					0.053830935	0.340290403	,
+					0.048494684	0.341183386	,
+					0.043143661	0.341983101	,
+					0.037779496	0.342689307	,
+					0.032403824	0.343301787	,
+					0.02701828	0.343820356	,
+					0.021624507	0.344244856	,
+					0.016224146	0.344575156	,
+					0.010818844	0.344811156	,
+					0.005410246	0.344952785	, 
+					0.001677176	0.309952785	,
+					]
+    				spine [0 0 0, 0 0.703 0]
+					solid FALSE
+				}
+			}
+		]
+	}
+}
+
+
+PROTO BOX 
+[]
+{
+	Transform {
+		rotation 0 1 0 -1.570796
+		children Shape {
+ 			geometry Box { size 0.65 0.1 0.002}
+			appearance Appearance { 
+				material Material { diffuseColor 1 1 1} 
+				texture	ImageTexture {url "Texturas\Avisos\Reciclagem.JPG"}			
+			}
+		}
+	}
+}
+
+
+
+
+
+PROTO Tampa_Reciclagem
+[]
+{
+	Group{
+		children [
+			DEF PedalAnimation Transform{
+				children
+				Transform{
+					translation 0.055 -0.326 0.353
+					children [
+						Transform{
+							translation	-0.055 0.326 -0.353
+								children [
+									Cilindro{Color 1 1 1 raio 0.0215 altura 0.712 pos 1 0 0 1.570}
+							]
+						}
+						Transform {				 
+							translation	0.15 0.37 -0.35
+							rotation 0 0 1 1.570796
+							children BOX{}
+						}
+						Transform {	
+							scale 1.6 1 1
+							translation	0.029 0.007 -0.001
+							rotation 0 0 1 0.2926
+							children [Tampa{} ]
+						}
+					]
+				}
+			}
+			DEF PuxadorSwitch TouchSensor {}
+		]
+	}
+	DEF	AbrirTampa Script{
+		field SFBool aberta FALSE
+		eventIn  SFFloat set_fraction
+		eventOut SFRotation fractionChanged
+		url "javascript:
+		function set_fraction( frac, timestamp ) {
+			var angulo = 1.57;
+			fractionChanged[0] = 0;    									
+			fractionChanged[1] = 0;
+			fractionChanged[2] = 1;				 
+			fractionChanged[3] = aberta ? angulo*(1-frac) : angulo*(frac);
+			if (frac == 1)
+				aberta = !aberta;
+		}"
+	}
+	DEF	TimerAnim TimeSensor {
+		loop FALSE
+		cycleInterval 1
+	}
+	ROUTE PuxadorSwitch.touchTime TO TimerAnim.startTime
+	ROUTE TimerAnim.fraction_changed TO	AbrirTampa.set_fraction
+	ROUTE AbrirTampa.fractionChanged TO PedalAnimation.rotation
+}
+Tampa_Reciclagem{}

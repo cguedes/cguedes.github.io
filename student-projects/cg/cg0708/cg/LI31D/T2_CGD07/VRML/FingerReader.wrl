@@ -1,0 +1,107 @@
+#VRML V2.0 utf8
+
+PROTO fingerReader[]{
+	Group {
+		children[
+			Shape {
+				appearance Appearance {
+					material Material {
+						ambientIntensity 0
+					}
+				}
+				geometry Box{size 1.89 0 1.44}
+			}
+			Shape {
+				appearance Appearance{
+					material Material {
+						diffuseColor 0 0 0
+						specularColor .29 .3 .29
+						ambientIntensity 0
+						shininess .08
+					}
+				}
+				geometry Box {size 1.6 0 0.4}
+			}
+			Transform {
+				translation	0 0.01 0
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {
+								ambientIntensity 0
+								shininess 0
+							}
+						}
+						geometry Box {size 1.3 0 0.3}
+					}
+
+					Transform {
+						translation	0 0.01 0
+						children [
+							Shape {
+								appearance Appearance {
+									material Material {
+										diffuseColor .31 .22 0
+										specularColor .65 .73 .11
+										ambientIntensity .00333
+										shininess .11
+									}
+								}
+								geometry Box {size 1.1 0 0.15}
+							}
+						]
+					}
+
+					DEF LADO Transform {
+						translation	0.85 0.01 0
+						children [
+							Shape {
+								appearance Appearance {
+									material Material {
+										diffuseColor .61 .61 .61
+										specularColor .77 .76 .76
+										ambientIntensity .14
+										shininess .9
+									}
+								}
+								geometry Extrusion {
+									crossSection [0.1 0.72, 0.1 -0.72, -0.2 -0.72, -0.2 -0.2, -0.06 -0.2, -0.06 0.2, -0.2 0.2, -0.2 0.72, 0.1 0.72]
+									spine [0 0 0, 0 0.03 0]
+									
+								}
+							}
+						]
+					}
+
+					Transform {
+						scale -1 1 -1
+						children USE LADO
+					}
+
+					DEF Relevo Transform {
+						translation	0.72 0.01 0
+						children [
+							Shape {
+								appearance Appearance {
+									material Material {
+										diffuseColor 0 0 0
+										specularColor .29 .3 .29
+										ambientIntensity 0
+										shininess .08
+									}
+								}
+								geometry Box {size 0.14 0.03 0.4}
+							}
+						]
+					}
+
+					Transform {
+						scale -1 1 -1
+						children USE Relevo
+					}
+
+				]
+			}
+		]
+	}
+}

@@ -1,0 +1,195 @@
+#VRML V2.0 utf8
+
+
+PROTO LateralD [] {
+
+	Shape {
+		geometry Box {
+			size 0.001 1 0.5
+		 
+		}
+		appearance Appearance {material Material {diffuseColor 1 1 1 }}
+	}
+}
+PROTO LateralE [] {
+
+	Shape {
+		geometry Box {
+			size 0.001 1 0.5
+		 
+		}
+		appearance Appearance {material Material {diffuseColor 1 1 1 }}
+	}
+}
+
+
+PROTO Frente []{
+	Shape {
+		geometry Box {
+			size 0.3 1 0.001
+		}
+		appearance Appearance {material Material {diffuseColor 1 1 1 }}
+	}
+
+}
+
+
+PROTO Up []{
+	Shape {
+		geometry Box {
+			size 0.3 0.001 0.5
+		}
+		appearance Appearance {material Material {diffuseColor 1 1 1 }}
+	}
+
+}
+PROTO Down []{
+	Shape {
+		geometry Box {
+			size 0.3 0.001 0.5
+		}
+		appearance Appearance {material Material {diffuseColor 1 1 1 }}
+	}
+
+}
+PROTO Lateral[]{
+	Shape {
+		geometry Box {
+			size 0.01 1 0.5
+		}
+		
+		appearance Appearance {material Material {diffuseColor 1 1 1 }}
+	}
+}
+PROTO Interior[]{
+	Shape {
+		geometry Box {
+			size  0.3 0.001 0.5
+		}
+   		appearance Appearance {material Material {diffuseColor 0.5 0.5 0.5 }}
+	}
+}
+
+PROTO Caixa [] {
+	Transform {
+		children [
+			Transform {
+				
+				translation	 -0.15  0 -0.5 
+				children LateralE {}
+			}
+			Transform {
+			
+				translation	0.15 0 -0.5  
+				children LateralD {}
+			}
+			Transform {
+			
+				translation	0 -0.5 -0.5 
+				children Down {}
+			}
+			Transform {
+				
+				translation	0 0.5 -0.5  
+				children Up {}
+			} 
+			Transform {
+				
+				translation	0 0 -0.75  
+				children Frente {}
+			}
+		]
+	}
+}
+
+PROTO Zonacentral []{
+	Shape {
+		geometry Box {
+			size 0.1  0.001 0.1
+		}
+		appearance Appearance {material	Material {diffuseColor 0.95 0.95 0.95}}
+	}
+}
+
+
+PROTO Zonalateral []{
+	Shape {
+		geometry Cylinder {
+			radius 0.001
+			height  0.5
+			bottom TRUE
+			side TRUE
+			top	TRUE
+		}
+	appearance Appearance {material	Material {diffuseColor 0.95 0.95 0.95}}
+	}
+}
+
+PROTO Ar_condionado_caixa [] {
+	Transform {
+		children [
+			Transform {	
+				scale 1 0.5 0.2 
+				translation	0 0 0.1
+				children Caixa{}
+				
+			}
+			Transform {
+				scale 1 1 10
+				translation	0.13 0 0.05 
+				children Zonalateral {}
+			}
+			Transform {
+				scale 1 1 10
+				translation	0.1 0 0.05
+		   		children Zonalateral {}
+			}
+			Transform {
+				scale 1 1 10
+				translation	-0.13 0 0.05
+		   		children Zonalateral {}
+			}
+			Transform {
+				scale 1 1 10
+				translation	-0.1 0 0.05
+		   		children Zonalateral {}
+			}
+			Transform {
+				rotation 1  0 0 1.57
+				scale 1.5 1 5
+				translation	 0 0 0.05
+		   		children Zonacentral {}
+			}
+			Transform {
+				scale 1 0.5 0.2 
+				translation -0.155 0 0
+		   		children Lateral {}
+			}
+			Transform {
+				scale 1 0.5 0.2 
+				translation 0.155 0 0
+		   		children Lateral {}
+			}
+			Transform {
+				rotation 0 0 1 1.57 
+				scale 1 0.32 0.2 
+				translation 0 0.255 0
+		   		children Lateral {}
+			}
+			Transform {
+				rotation 0 0 1 1.57 
+				scale 1 0.32 0.2 
+				translation 0 -0.255 0
+		   		children Lateral {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0 0 0.045
+				children Interior {}
+			}
+
+		]
+	}
+}
+
+Ar_condionado_caixa	{}

@@ -1,0 +1,59 @@
+#VRML V2.0 utf8
+
+#Botão Maravilha
+
+PROTO Botao [] {
+	Transform {
+		children [
+			DEF	BotaoTotal Group {
+				children [
+					DEF	Base Transform {
+						children [
+							Shape {
+								appearance Appearance {
+									material Material {
+										diffuseColor 0 0 1
+									}
+								}
+								geometry Cylinder {
+									radius 0.015
+									height 0.01
+								}
+							}
+						]
+					}
+					DEF	Topo Transform {
+						translation	0 0.0075 0
+						children [
+							Shape {
+								appearance Appearance {
+									material Material {
+										diffuseColor 1 0 0
+									}
+								}
+								geometry Cylinder {
+									radius 0.01
+									height 0.01
+								}
+							}
+#							DEF	carrega TouchSensor	{}
+						]
+					}
+				]
+			}
+#			DEF	tempu TimeSensor {
+#				startTime 0
+#				stopTime 1
+#				cycleInterval 0.1
+#				loop FALSE
+#			}
+#			DEF	Evento PositionInterpolator	{
+#				key	[ 1, 1 ]
+#				keyValue [ 0 0 0, 0 0.0075 0, 0 0 0 ]
+#			}
+		]
+	}
+#	ROUTE carrega.touchTime	TO tempu.startTime
+#	ROUTE tempu.fraction_changed TO	Evento.set_fraction
+#	ROUTE Evento.value_changed TO Topo.translation
+}

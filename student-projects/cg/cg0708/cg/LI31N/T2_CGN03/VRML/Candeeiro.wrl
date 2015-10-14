@@ -1,0 +1,40 @@
+#VRML V2.0 utf8
+
+
+PROTO Candeeiro[]{
+	Group {
+		children [
+			Transform {
+					rotation 1 0 0 3.1416
+				children [
+		
+					#Base
+					Transform {
+						children Shape {
+							geometry Cylinder {radius 0.15 height 0.01}
+							appearance Appearance {material Material {diffuseColor 0.863 0.863 0.863}}
+						}
+					}
+					#Lampada
+					Transform {
+						translation	0 -0.003 0 
+						children Shape {
+							geometry Sphere {radius 0.05}
+							appearance Appearance {material Material {transparency 0.5 emissiveColor 1 1 0}}
+						}
+					}
+					#
+					Transform {
+						translation	0 -0.03 0
+						rotation 0 0 1 3.14
+						children Shape {
+							geometry Cone {bottomRadius 0.13 height 0.05}
+							appearance Appearance {material Material {diffuseColor 0.863 0.863 0.863}}
+						}
+					}
+				]
+			}
+		]
+	}
+}
+Candeeiro {}

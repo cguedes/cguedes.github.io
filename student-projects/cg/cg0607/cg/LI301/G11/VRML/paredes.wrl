@@ -1,0 +1,91 @@
+#VRML V2.0 utf8
+
+
+
+
+PROTO paredes[]{
+
+
+	Group {
+	
+		children [
+ 
+		    	Transform {
+	
+		scale 8.3 4.5	0.25
+  		translation	-4.8 -2.25 0 
+		children Parede	{}
+	}
+
+
+
+	#parede do lado esquerdo			2
+	Transform {
+
+		scale 0.25 4.5 16.05
+		translation -8.875 -2.25 8.05
+		children Parede	{}
+	}
+
+
+
+
+
+	#parede do fundo do lado direito			3
+	Transform {
+
+		scale 0.25 4.5 8.30
+		translation -0.65 -2.25 4.025
+		children Parede	{}
+	}
+
+
+	#parede  de frente do lado direito 4
+	Transform {
+
+		scale 7.05 4.5 0.25
+		translation 2.775 -2.25 8.05
+		children Parede	{}
+	}
+
+	#parede do lado direito
+	Transform {
+
+		scale 0.25 4.5 8.05
+		translation 6.25 -2.25 12
+		children Parede	{}
+	}
+
+
+	#parede da porta
+	Transform {
+	
+		scale 10.65 4.5 0.25
+		translation 1.05 -2.25 16
+		children Parede	{}
+	}
+
+
+	Transform {
+
+		scale 2.85 4.5 0.25		
+		translation -7.575 -2.25 16
+		children Parede	{}
+	}
+
+
+	# parede do meio a meia altura
+	Transform {
+	
+		scale 9 1.5	0.25
+		translation	-4.5 -0.75 8.05
+		children Parede	{}
+	}
+
+]
+}
+}
+
+
+ 
+

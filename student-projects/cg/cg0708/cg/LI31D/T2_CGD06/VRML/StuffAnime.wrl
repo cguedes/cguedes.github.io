@@ -1,0 +1,153 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Taco[field SFVec3f translation]"Taco.wrl#Taco"
+
+PROTO anim[
+	field MFString file "" 
+	field SFVec3f translation1 -1.85 -.05 0
+	field SFVec3f translation2 -2.6 -.05 .05
+]{
+	Group{
+		children[
+			#bolaBranca
+			Transform{
+				children[
+					DEF BolaBranca Transform{
+						translation	IS translation1
+						children
+						Shape{
+							geometry Sphere{
+								radius 0.03
+							}
+							appearance Appearance {
+								texture	ImageTexture {
+									url IS file
+								}
+							}
+						}
+					}
+					DEF Pos_bb_Interpolator PositionInterpolator {
+						key      [.1 .2 .3 .4 .5 .6 .7 .8]
+						keyValue [-1.85 -.05 0, -1.95 -.05 0, -2.05 -.05 0, -2.15 -.05 .01, -2.25 -.05 .02, -2.35 -.05 .03, -2.45 -.05 .04, -2.55 -.05 .05]
+					}
+				]
+			}
+			#bolaPreta
+			Transform{
+				children[
+					DEF BolaPreta Transform{
+						translation	IS translation2
+						children
+						Shape{
+							geometry Sphere{
+								radius 0.03
+							}
+							appearance Appearance {
+								texture	ImageTexture {
+									url "bola8.jpg"
+								}
+							}
+						}
+					}
+					DEF Pos_bp_Interpolator PositionInterpolator {
+						key      [.1 .2 .07 .08 .09]
+						keyValue [-2.6 -.05 .05, -2.63 -.05 .05, -2.635 -.07 .1, -2.64 -.15 .05, -2.645 -.2 .07]
+					}
+				]
+			}
+			#taco
+			Transform{
+				children[
+					DEF	taco Transform{
+						rotation 0 0 1 1.605702912
+						children[
+							Taco{}
+						]
+					}
+					DEF TS TouchSensor{}
+					DEF Pos_t_Interpolator PositionInterpolator {
+						key      [0 .3 .4 .5 .6 .63 .65 ] 
+						keyValue [0 0 0, -.1 0 0, -.2 0 0, -.3 0 0, -.35 0 0, -.36 0 0 -.5 0 0]
+					}	
+					DEF Taco_Enable_Interpolator ScalarInterpolator {
+						key      [0] 
+						keyValue [0]
+					}	
+					DEF Taco Script {
+						eventIn SFFloat set_active
+						eventOut SFBool on_changed
+						url "javascript:
+							function set_active( set, timestamp ) {
+								if(set == 1) 
+									on_changed = TRUE;
+								else
+									on_changed = FALSE;
+							}"
+					}
+					Sound{        
+						source DEF Som AudioClip {
+							url "batida.wav"
+							pitch 100
+						}
+					}
+				]
+			}
+		]
+	}
+
+	DEF Tbb TimeSensor {
+		cycleInterval 8 
+		loop FALSE
+		startTime 0.0
+		stopTime 0.0
+	}
+	ROUTE TS.touchTime TO Tbb.startTime
+	ROUTE Tbb.fraction_changed TO Pos_bb_Interpolator.set_fraction 
+	ROUTE Pos_bb_Interpolator.value_changed TO BolaBranca.translation
+
+	DEF Tbp TimeSensor {
+		cycleInterval 60 
+		loop FALSE
+		startTime 0.0
+		stopTime 0.0
+	}
+	ROUTE TS.touchTime TO Tbp.startTime
+	ROUTE Tbp.fraction_changed TO Pos_bp_Interpolator.set_fraction 
+	ROUTE Pos_bp_Interpolator.value_changed TO BolaPreta.translation
+   
+	DEF Tt TimeSensor {
+		loop FALSE
+		startTime 0.0
+		stopTime 0.0
+	}
+	ROUTE TS.touchTime TO Som.startTime
+	ROUTE TS.touchTime TO Tt.startTime
+	ROUTE Tt.fraction_changed TO Pos_t_Interpolator.set_fraction 
+	ROUTE Pos_t_Interpolator.value_changed TO taco.translation 
+	ROUTE Tt.fraction_changed TO Taco_Enable_Interpolator.set_fraction
+	ROUTE Taco_Enable_Interpolator.value_changed TO	Taco.set_active
+	ROUTE Taco.on_changed TO TS.enabled
+}
+
+PROTO cenaAnim[
+	field SFVec3f translation 0 0 0
+	field SFRotation rotation 0 0 1 0
+]{
+	Transform{
+		rotation IS	rotation
+		translation	IS translation
+		children
+			Group{
+			children[
+				Transform{
+					children[
+						anim{}
+					]
+				}
+			]
+		}
+	}
+}
+
+cenaAnim{}
+

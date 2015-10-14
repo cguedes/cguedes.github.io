@@ -1,0 +1,49 @@
+#VRML V2.0 utf8
+
+
+EXTERNPROTO	mesa[] "mesa.wrl#mesa"
+
+PROTO Cancela[
+]
+{
+
+	Group {
+		children [
+
+			DEF PortaAnimation Transform {
+				children 
+				Transform {
+					scale 0.50 1 1
+					translation	0.30 0 0
+					children
+					mesa {}
+				}
+			}
+		
+			DEF PuxadorSwitch TouchSensor {}
+		]
+	}
+	DEF	AbrirCancela Script{
+		field SFBool aberta FALSE
+		eventIn  SFFloat set_fraction
+		eventOut SFRotation fractionChanged
+		url "javascript:
+		function set_fraction( frac, timestamp ) {
+			var angulo = 1.57;
+			fractionChanged[0] = 0;    									
+			fractionChanged[1] = 0;
+			fractionChanged[2] = 1;				 
+			fractionChanged[3] = aberta ? angulo*(1-frac) : angulo*(frac);
+			if (frac == 1)
+				aberta = !aberta;
+		}"
+	}
+	DEF	TimerAnim TimeSensor {
+		loop FALSE
+		cycleInterval 1
+	}
+	ROUTE PuxadorSwitch.touchTime TO TimerAnim.startTime
+	ROUTE TimerAnim.fraction_changed TO	AbrirCancela.set_fraction
+	ROUTE AbrirCancela.fractionChanged TO PortaAnimation.rotation
+
+}

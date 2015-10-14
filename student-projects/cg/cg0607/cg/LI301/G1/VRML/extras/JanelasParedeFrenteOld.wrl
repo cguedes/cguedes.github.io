@@ -1,0 +1,84 @@
+#VRML V2.0 utf8
+
+# 5.27 - 3,162 = 2,108
+
+PROTO BarraLado[]{
+	Shape {
+		geometry Box {size 0.05 2.32 0.03}
+		appearance Appearance {texture ImageTexture {url "Janelas\imagems\ferroBranco.jpg"}}
+	}
+}
+PROTO BarrasHorz[]{
+	Shape {
+		geometry Box {size 2.108 0.05 0.025}
+		appearance Appearance {texture ImageTexture {url "Janelas\imagems\ferroBrancoLado.jpg"}}
+	}
+}
+PROTO BarrasHorzIN[]{
+	Shape {
+		geometry Box {size 2.108 0.05 0.022}
+		appearance Appearance {texture ImageTexture {url "Janelas\imagems\ferroBrancoLado.jpg"}}
+	}
+}
+PROTO VidroBaixo[]{
+	Shape {
+		geometry Box {size 2.108 1 0.01}
+		appearance Appearance {material Material {diffuseColor .953 .847 .631
+		specularColor .27 .13 .13
+		ambientIntensity .0933
+		shininess .31
+	}}
+	}
+}
+
+
+PROTO vidro[]{
+	Shape {
+		geometry Box {size 2.108 2.32 0.02}
+		appearance Appearance {material Material {transparency .28 diffuseColor .29 .29 .29 
+		specularColor 1 .94 .54
+		emissiveColor .4 .4 .4
+		ambientIntensity 0
+		shininess .83
+	}}
+	}
+}
+
+PROTO janela[]{
+	Transform {
+		children [
+			Transform {
+				translation	1.054 0.025 0 # X = 2.108/2  Y = 0.5/2
+				children BarrasHorz	{}
+			}
+			Transform {
+				translation	1.054 2.295 0 # X = 2.108/2  Y = 0.5/2 + 2.32-0.05
+				children BarrasHorz	{}
+			}
+			Transform {
+				translation	0.025 1.16 0 # X = 0.5/2  Y = 2.32/2
+				children BarraLado{}
+			}
+			Transform {
+				translation	2.083 1.16 0 # X = 0.5/2 + 2.108-0.05  Y = 2.32/2
+				children BarraLado{}
+			}
+			Transform {
+				translation	1.054 1.16 0
+				children vidro{}
+			}
+			Transform {
+				translation	1.054 1.025 0
+				children BarrasHorzIN {}
+			}
+			Transform {
+				translation	1.054 0.5 0
+				children VidroBaixo	{}
+			}
+
+		]
+	}
+
+}
+
+janela {}

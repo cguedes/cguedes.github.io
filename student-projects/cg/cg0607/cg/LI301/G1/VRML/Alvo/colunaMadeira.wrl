@@ -1,0 +1,101 @@
+#VRML V2.0 utf8
+
+PROTO esfera[field MFString urlTextura ""]{
+	Shape {
+		geometry Sphere{
+			radius 	0.015		
+		}
+		appearance Appearance {texture ImageTexture {url IS urlTextura}}
+	}
+
+}
+PROTO cilindroAnel[field MFString urlTextura2 ""]{
+	Shape {
+		geometry	Cylinder {
+			bottom TRUE
+			top	TRUE
+			side TRUE
+			height 0.01
+			radius 0.012
+		}
+		appearance Appearance {texture ImageTexture {url IS urlTextura2}}
+	}
+}
+PROTO esferaAnel[field MFString urlTextura3 ""]{ #altura = 0.035
+	Transform {
+		children [
+			Transform {
+				translation	0 0.005 0 
+				children esfera{urlTextura IS urlTextura3 }
+			}
+			Transform {
+				translation	0 -0.005 0 
+				children cilindroAnel {urlTextura2 IS urlTextura3 }
+			}
+		]
+	}
+}
+PROTO coluna[field MFString urlTextura4 ""]{
+	 Shape {
+		geometry	Cylinder {
+			bottom TRUE
+			top	TRUE
+			side TRUE
+			height 0.20
+			radius 0.010
+		}
+		appearance Appearance {texture ImageTexture {url IS urlTextura4}}
+	}
+
+}
+
+PROTO colunaCima[field MFString urlTextura5 ""]{ # ALTURA = 0.035+0.2 = 0.235
+	Transform {children [
+		Transform {
+			translation	0 0.100 0
+			children esferaAnel {urlTextura3 IS urlTextura5 
+			}}
+		Transform {
+			translation	0 -0.005 0 
+			children coluna {urlTextura4 IS urlTextura5 
+			}}
+	
+	]}
+}
+PROTO centro[field MFString urlTextura6 ""]{   #Altura Centro = 0.034
+	 
+	Transform {
+		children [
+			Transform {
+				translation	0 0.008 0 
+				children cilindroAnel {urlTextura2 IS urlTextura6 }
+			}
+			Transform { 
+				children esfera{urlTextura IS urlTextura6 }
+			}
+			Transform {
+				translation	0 -0.008 0 
+				children cilindroAnel {urlTextura2 IS urlTextura6 }
+			}
+		]
+	}
+}
+PROTO teste[]{
+	Transform {
+		children [
+			Transform {
+				translation	0 -0.10 0
+				rotation 1 0 0 3.14
+				children colunaCima{urlTextura5 "Alvo\texturas\madeira.jpg"}
+			}
+			Transform {
+				children centro{urlTextura6 "Alvo\texturas\madeira.jpg"}
+			}
+			Transform {
+				translation	0 0.10 0
+				children colunaCima{urlTextura5 "Alvo\texturas\madeira.jpg"}
+			}
+		]
+	}
+
+}

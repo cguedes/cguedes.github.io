@@ -1,0 +1,91 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Axis [ ] "axis.wrl#Axis"
+Transform {
+	scale	0.1 0.1 0.1
+	children Axis {  }
+}
+
+PROTO Chair1 [] {
+	Group {
+		children [		
+			Shape { 
+				geometry Extrusion {
+					crossSection [
+						 0.01    0.00,    0.0092 -0.0038,
+						 0.0071 -0.0071,  0.0038 -0.0092,
+						 0.00   -0.01,   -0.0038 -0.0092,
+						-0.0071 -0.0071, -0.0092 -0.0038,
+						-0.01    0.00,   -0.0092  0.0038,
+						-0.0071  0.0071, -0.0038  0.0092,
+						 0.00    0.01,    0.0038  0.0092,
+						 0.0071  0.0071,  0.0092  0.0038,
+						 0.01    0.00
+					]
+					spine [
+						 0    0   -0.25,
+					     0.25 0   -0.25,
+						 0.25 0    0.25,
+					     0.22 0.5  0.22,
+						 0.22 0.5 -0.20,
+					    -0.22 0.5 -0.20,
+						-0.22 0.5  0.22,
+						-0.25 0    0.25,
+						-0.25 0   -0.25,
+						 0    0   -0.25					    
+					]
+				}				
+				appearance DEF metal Appearance { 
+					material Material { 
+						diffuseColor 0 0 0							
+						specularColor .5 .5 .5
+						ambientIntensity 0.1
+						shininess 0.5
+						emissiveColor 0 0 0
+					} 
+				}						
+			}
+			Transform {		    	
+				translation	0 0.82 -0.215
+				children [
+					Shape { 				
+						geometry Box { size 0.4 0.45 0.02 }
+						appearance DEF frabric Appearance {
+							texture ImageTexture { url ["../GFX/fabric.png"] repeatS TRUE repeatT TRUE }
+							textureTransform TextureTransform { scale 15 8 }
+							material Material {
+								diffuseColor .32 .54 .26
+								specularColor .46 .46 .46
+								emissiveColor 0 0 0
+								ambientIntensity .1
+								shininess .2
+							}
+
+						}	
+					}										
+				]
+			}
+			Transform {
+				translation	0 0.52 0
+				children			
+					Shape	{
+						geometry Box { size 0.5 0.02 0.48}
+						appearance USE frabric
+					}	
+		    }
+			Transform {		    	
+				translation	0 0.56 -0.215
+				children [
+					Shape { 				
+						geometry Box { size 0.07 0.08 0.05 }
+						appearance USE metal	
+					}										
+				]
+			}				
+			
+		]
+	}
+}
+
+
+Chair1 {}

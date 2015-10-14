@@ -1,0 +1,178 @@
+#VRML V2.0 utf8
+
+PROTO Coluna [] {
+	Shape {
+		geometry Box {
+			size 0.57 3 0.57
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 1 1 1
+			}
+		}
+	}
+}
+
+PROTO Madeira_Vertical [] {
+	Shape {
+		geometry Box {
+			size 0.10 3 0.02
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 0.84 0.65 0.06
+			}
+		}
+	}
+}
+
+PROTO Madeira_Horizontal [] {
+	Shape {
+		geometry Box {
+			size 0.41 0.10 0.02
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 0.84 0.65 0.06
+			}
+		}
+	}
+}
+
+PROTO ProteccaoETomadas[] {
+
+	PROTO ProteccaoDasTomadas [] {
+		# protecção (aproximado)
+		Shape {
+			geometry Extrusion {
+				crossSection [
+					-0.045	-0.015,
+					-0.045	0.015,
+					0.045	0.015,
+					0.045	-0.015,
+				]
+				spine [
+					0	-1.4	0,
+					0	1.5		0
+				]
+				convex FALSE
+				orientation	0 1 0 0
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor 1 1 1
+				}
+			}
+		}
+	}
+
+	PROTO Tomadas [] {
+		Shape {
+			geometry Box {
+				size 0.075 0.180 0.045
+			}
+			appearance Appearance {
+				material Material {
+					emissiveColor 1 1 1
+				}
+			}
+		}
+	}
+
+	Group {
+		children [
+			ProteccaoDasTomadas	{ }
+			Transform {
+				translation	0 -1.2 0
+				children [Tomadas { }]
+			}
+		]
+	}
+}
+
+PROTO Pilar [] { 
+	Transform {
+		translation	0 1.5 0
+		children [
+			Group {
+				children [
+					# coluna
+					Coluna { }
+
+					# proteccao & tomadas
+					Transform {
+						translation	0 0 0.30
+						children [ProteccaoETomadas { }]
+					}
+
+					# face 1
+					Transform {
+						translation	-0.255 0 0.295
+						children [Madeira_Vertical { }]
+					}
+					Transform {
+						translation	0.255 0 0.295
+						children [Madeira_Vertical { }]
+					}
+					# face 2
+					Transform {
+						translation	0.295 0 0.255
+						rotation 0 1 0 1.571
+						children [Madeira_Vertical { }]
+					}
+					Transform {
+						translation	0.295 0 -0.255
+						rotation 0 1 0 1.571
+						children [Madeira_Vertical { }]
+					}
+					# face 3
+					Transform {
+						translation	0.255 0 -0.295
+						children [Madeira_Vertical { }]
+					}
+					Transform {
+						translation	-0.255 0 -0.295
+						children [Madeira_Vertical { }]
+					}
+					# face 4
+					Transform {
+						translation	-0.295 0 -0.255
+						rotation 0 1 0 1.571
+						children [Madeira_Vertical { }]
+					}
+					Transform {
+						translation	-0.295 0 0.255
+						rotation 0 1 0 1.571
+						children [Madeira_Vertical { }]
+					}
+
+					# face 1
+					Transform {
+						translation	0 -1.45 0.295
+						children [Madeira_Horizontal { }]
+					}
+					# face 2
+					Transform {
+						translation	0.295 -1.45 0
+						rotation 0 1 0 1.571
+						children [Madeira_Horizontal { }]
+					}
+					# face 3
+					Transform {
+						translation	0 -1.45 -0.295
+						children [Madeira_Horizontal { }]
+					}
+					# face 4
+					Transform {
+						translation	-0.295 -1.45 0
+						rotation 0 1 0 1.571
+						children [Madeira_Horizontal { }]
+					}
+				]
+			}
+		]
+	}
+
+}
+
+Pilar { }

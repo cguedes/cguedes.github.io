@@ -1,0 +1,339 @@
+#VRML V2.0 utf8
+
+
+EXTERNPROTO Vidro [
+  field SFVec3f dimVidro 
+	field SFVec3f dimBHor
+	field SFVec3f dimBVert
+	field SFVec3f posBHor
+	field SFVec3f posBVer
+ 
+	field SFVec3f zeroPosition
+  field SFColor corB
+]
+"Vidro.wrl#Vidro"
+
+
+EXTERNPROTO ControladorJanela[
+  field MFVec3f keyValue
+  eventIn SFTime set_startTime
+  eventOut SFVec3f set_translation
+  eventOut SFBool done
+]"Scripts.wrl#ControladorJanela"
+
+
+
+PROTO CaixilhoPequeno[]{
+	DEF caixilhop Transform {
+		rotation 1 0 0 -1.57
+		children [
+			Shape {
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 0 0
+					}
+				}
+				geometry Extrusion{
+	    		crossSection [
+						0 0
+						1 0
+						1 0.032
+						0.0174 0.032
+						0.0174 1.696
+						0.0174 1.76
+						0.0174 1.936
+						0.983 1.936
+						0.983 1.76
+						0.0174 1.76
+						0.0174 1.696
+						0.983 1.696
+						0.983 0.032
+						1 0.032
+						1 2
+						0 2
+						0 0
+					]
+					spine	[0 0 0, 0 .12 0]
+    			ccw TRUE
+    			solid FALSE
+				}
+			}	
+		  DEF	vidrocima Transform	{
+		    rotation 1 0 0 -1.57
+		    translation	0.0174  0.01  1.936
+ 				children [
+				  Group	{
+				  	children [
+          		Vidro	{
+			      		corB .8 .8 .8
+			      		dimVidro 0.9656 0.176 .002
+			      		dimBHor 0.9656 0.005 0.004
+			      		dimBVert	0.005 0.176 0.004
+			      		posBVer .4828 0 0
+			      		posBHor 0 0.088 0
+			      		zeroPosition .4828 0.088 0
+		      		}
+						]
+
+			  	}
+				]
+			}
+		]
+	}
+}
+
+PROTO CaixilhoGrande[]{
+	DEF caixilhom Transform {
+		rotation 1 0 0 -1.57
+		children [
+			Shape {
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 0 0
+					}
+				}
+				geometry Extrusion{
+	    		crossSection [
+						0 0
+						2 0
+						2 0.032
+						0.0174 0.032
+						0.0174 1.696
+						0.0174 1.76
+						0.0174 1.936
+						1.976 1.936
+						1.976 1.76
+						0.0174 1.76
+						0.0174 1.696
+						1.976 1.696
+						1.976 0.032
+						2 0.032
+						2 2
+						0 2
+						0 0
+					]
+					spine	[0 0 0, 0 .12 0]
+    			ccw TRUE
+    			solid FALSE
+				}
+			}	
+		  DEF	vidrocima Transform	{
+		    rotation 1 0 0 -1.57
+		    translation	0.0174  0.01  1.936
+ 				children [
+				  Group	{
+				  	children [
+          		Vidro	{
+			      		corB .8 .8 .8
+			      		dimVidro 1.9586 0.176 .002
+			      		dimBHor 1.9586 0.005 0.004
+			      		dimBVert	0.005 0.176 0.004
+			      		posBVer 0.9793 0 0
+			      		posBHor 0 0.088 0
+			      		zeroPosition 0.9793 0.088 0
+		      		}
+						]
+			  	}
+				]
+			}
+		]
+	}
+}
+
+
+PROTO	JanelaGrande[]{
+	DEF janela Transform {
+		children [
+			DEF caixilhoj Transform	{
+				translation	0.0174 0.032 0
+				rotation 1 0 0 -1.57
+				children [
+					Shape	{
+						appearance Appearance	{
+							material Material	{
+								diffuseColor 1 0 0
+							}
+						}
+						geometry Extrusion {
+							crossSection [
+								0 0 
+								0.048 0
+								0.048 0.112
+								0.952 0.112 
+								0.952 1.552
+								0.048 1.552
+								0.048 0.112
+								0.048 0
+								1 0
+								1 1.664
+								0 1.664
+								0 0
+							]
+							ccw	FALSE
+							solid	FALSE
+							spine	[0 0 0, 0 .02 0]
+						}
+					}
+					DEF	vidrob Transform	{
+		        rotation  1 0 0 -1.57
+		        translation	0.0352 0.01 1.552   
+ 				    children [
+				      Group	{
+				  	    children [
+          		    Vidro	{
+			      		    corB .8 .8 .8
+			      		    dimVidro 0.952 1.44 .002
+			      		    dimBHor 0.952 0.005 0.004
+			      		    dimBVert	0.005 1.44 0.004
+			      		    posBVer.476 0 0
+			      		    posBHor 0 0.72 0
+                    zeroPosition.476 0.72 0
+		      		    }
+						    ]
+			  	    }
+				    ]
+			    }
+					DEF touch1 TouchSensor	{}	
+				]
+			}
+			DEF controlador1 ControladorJanela {
+        keyValue [0 0 0 0.95 0 0]
+        ROUTE touch1.touchTime TO controlador1.set_startTime
+        ROUTE controlador1.done TO touch1.enabled
+        ROUTE controlador1.set_translation TO janela.set_translation
+      }
+		]	
+	}
+}
+
+PROTO	JanelaPequena[]{
+	DEF janela Transform {
+		children [
+			DEF caixilhoj Transform	{
+				translation	0.0174 0.032 0
+				rotation 1 0 0 -1.57
+				children [
+					Shape	{
+						appearance Appearance	{
+							material Material	{
+								diffuseColor 1 0 0
+							}
+						}
+						geometry Extrusion {
+							crossSection [
+								0 0 
+								0.0352 0
+								0.0352 0.112
+								0.4647 0.112 
+								0.4647 1.552
+								0.0352 1.552
+								0.0352 0.112
+								0.0352 0
+								0.5 0
+								0.5 1.664
+								0 1.664
+								0 0
+							]
+							ccw	FALSE
+							solid	FALSE
+							spine	[0 0 0, 0 .02 0]
+						}
+					}
+					DEF	vidrob Transform	{
+		        rotation  1 0 0 -1.57
+		        translation	0.0352 0.01 1.552   
+ 				    children [
+				      Group	{
+				  	    children [
+          		    Vidro	{
+			      		    corB .8 .8 .8
+			      		    dimVidro 0.4295 1.44 .002
+			      		    dimBHor 0.4295 0.005 0.004
+			      		    dimBVert	0.005 1.44 0.004
+			      		    posBVer.21475 0 0
+			      		    posBHor 0 0.72 0
+                    zeroPosition.21475 0.72 0
+		      		    }
+						    ]
+			  	    }
+				    
+						]
+			    }
+				  DEF touch TouchSensor	{}	
+				]
+			}
+			DEF controlador ControladorJanela {
+        keyValue [0 0 0 0.4447 0 0]
+        ROUTE touch.touchTime TO controlador.set_startTime
+        ROUTE controlador.done TO touch.enabled
+        ROUTE controlador.set_translation TO janela.set_translation
+      }
+		]	
+	}
+}
+PROTO	ConjuntoJanelasPequenas[]{
+	Transform	{ 
+		children [
+			CaixilhoPequeno	{}
+			Transform	{
+				translation	0 0 -0.035 
+				children [
+					JanelaPequena	{}
+					Transform	{
+						rotation 0 1 0 3.1415
+						translation	1 0 -0.065 
+						children [
+							JanelaPequena{}
+						]	
+					}		
+				]
+			}
+		]	
+	}
+}
+
+PROTO	ConjuntoJanelasGrandes[]{
+	Transform	{ 
+		children [
+			CaixilhoGrande	{}
+			Transform	{
+				translation	0 0 -0.035 
+				children [
+					JanelaGrande	{}
+					Transform	{
+						rotation 0 1 0 3.1415
+						translation	2 0 -0.065  
+						children [
+							JanelaGrande{}
+						]
+					
+					}		
+				]
+			
+			}
+		]	
+	}
+}
+PROTO	JanelasSala[]{
+	Transform	{
+		children[
+			ConjuntoJanelasPequenas	{}
+			Transform	{
+				translation	1.5 0 0
+				children 
+				[
+					ConjuntoJanelasGrandes {}
+					Transform{  
+						translation	2.5 0 0
+						children [
+							ConjuntoJanelasPequenas	{}
+						]
+					}
+				]
+			}
+		]
+	}
+}
+#Inline {
+#	url	["eixos.wrl"]
+#}

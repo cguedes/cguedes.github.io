@@ -1,0 +1,20 @@
+#VRML V2.0 utf8
+
+PROTO paredeL4 [ field SFColor cor 1 1 1]{
+	Shape {
+		#parede (lado da porta)
+		geometry Extrusion	{
+			crossSection [0 0, 3.09 0, 3.09 -3.30, 0 -3.30, 0 0]
+			spine [0 0 0, 0 0 .19]
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+		}
+		appearance Appearance {
+			material Material {	diffuseColor IS	cor }
+		}
+	}
+}
+
+
+paredeL4 { }

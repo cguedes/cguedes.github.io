@@ -1,0 +1,121 @@
+#VRML V2.0 utf8
+
+PROTO BancoBase
+[exposedField MFString textura ""
+]
+{
+
+  Shape {
+  geometry Extrusion { 
+    crossSection [0.2 0.2, 0.2 -0.2,-0.2 -0.2,-0.2 0.2, -0.15 0.2, -0.15 0.15, 0.15 0.15, 0.15 0.2, 0.2 0.2 ]
+    spine [0  0  -0.71 , 0  0 0.71]
+    scale [1 1]
+    orientation 0 0 1 0
+    endCap TRUE
+    beginCap TRUE
+    solid FALSE
+    ccw TRUE
+    convex TRUE
+    creaseAngle 0
+  }
+  appearance Appearance { 
+	  material Material { diffuseColor  0.2 0.1 0.1	 } 
+		texture	ImageTexture { url IS textura}
+  }
+ }
+
+}
+
+
+PROTO BancoEncostoL
+[exposedField MFString textura ""
+]
+{
+	
+  Shape {
+  geometry Extrusion { 
+    crossSection [-0.2 -0.5, -0.2 -0.2, 0.2 -0.2,0.2 -0.35, -0.1 -0.35, -0.1 -0.5, -0.2 -0.5  ]
+    spine [0  0  -0.005 , 0  0 0.005]
+    scale [1 1]
+    orientation 0 0 1 0
+    endCap TRUE
+    beginCap TRUE
+    solid FALSE
+    ccw TRUE
+    convex TRUE
+    creaseAngle 0
+  }
+  appearance Appearance { 
+	  material Material { diffuseColor  0.2 0.1 0.1	 } 
+		texture	ImageTexture { url IS textura}
+  }
+ }
+
+}
+
+
+PROTO BancoEncosto
+[exposedField MFString textura ""
+]
+{
+	
+  Shape {
+  geometry Extrusion { 
+    crossSection [0.71 -0.2, 0.71 -0.5, 0 -0.575, -0.71 -0.5, -0.71 -0.2,0.71 -0.2  ]
+    spine [0  0  0 , 0  0 0.01]
+    scale [1 1]
+    orientation 0 0 1 0
+    endCap TRUE
+    beginCap TRUE
+    solid FALSE
+    ccw TRUE
+    convex TRUE
+    creaseAngle 0
+  }
+  appearance Appearance {
+	  material Material { diffuseColor  0.2 0.1 0.1	 } 
+	  texture	ImageTexture { url IS textura}
+  }
+		
+  }
+  
+}
+
+PROTO Banco
+[exposedField MFString textura ""
+]
+{
+
+ Transform {
+    
+    children 
+    [
+	  Transform	{ 
+		  translation -0.20 0 0
+		  rotation 0 1 0 1.57
+        children BancoEncosto {textura "met2_1.png"} 
+	  }
+    	
+	  Transform	{ 
+        children BancoBase {textura "met2_1.png" } 
+	  }
+	  
+	  Transform	{ 
+		  translation 0 0 0.705
+        children BancoEncostoL {textura "met2_1.png" } 
+	  }
+
+	  Transform	{ 
+		  translation 0 0 -0.705
+        children BancoEncostoL {textura "met2_1.png" } 
+	  }
+    ]
+  }
+}
+
+
+
+
+
+
+Banco {}

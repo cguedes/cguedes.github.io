@@ -1,0 +1,550 @@
+#VRML V2.0 utf8
+
+
+
+PROTO Bars[ field SFRotation rotation 0 0 0 0]{
+	Transform {
+		rotation IS rotation
+		children[
+			Shape {
+				geometry Box {
+					size 0.76 1.32 0.01
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO Base[ field SFVec3f translation 0 0 0]{
+	Transform {
+		translation IS translation
+		children 
+			Shape {
+				geometry Cylinder {
+					height 0.01
+					radius 0.38
+					top	TRUE
+					bottom TRUE
+					side TRUE
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor 0.7 0.7 0.7
+					}
+				}
+			}
+	}
+}
+
+PROTO Food[field SFVec3f tr 0 0 0
+		   field SFRotation rt 0 0 0 0
+		   field SFColor cl 1 1 0]{
+	Transform{
+		translation	IS tr
+		rotation IS	rt
+		children
+		Shape {
+			geometry Box {
+				size 0.1 0.01 0.05
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor IS	cl
+				}
+			}
+		}
+	}
+}
+	
+
+
+PROTO MaquinaInterior [] {
+	
+	Group{
+		children[
+			Transform {
+				translation	0 0.20 0
+				children [
+					Bars {}
+					Bars {rotation 0 1 0 1.57}
+					Bars {rotation 0 1 0 0.785}
+					Bars {rotation 0 1 0 -0.785}
+					Base{}
+					Base{translation 0 0.11 0}
+					Base{translation 0 0.22 0}
+					Base{translation 0 0.33 0}
+					Base{translation 0 0.44 0}
+					Base{translation 0 0.55 0}
+					Base{translation 0 0.66 0}
+					Base{translation 0 -0.11 0}
+					Base{translation 0 -0.22 0}
+					Base{translation 0 -0.33 0}
+					Base{translation 0 -0.44 0}
+					Base{translation 0 -0.55 0}
+					Base{translation 0 -0.66 0}
+				]
+			}
+		]
+	}
+}
+
+ PROTO BoxingSide[field SFVec3f tr 0 0 0
+			  field SFRotation rt 0 0 0 0]{
+	Transform {
+		 translation IS tr
+		 rotation IS rt
+		 children 
+		 Shape {
+			 geometry Box {
+				 size 0.77 1.845 0.02
+			 }
+			 appearance	Appearance {
+				 material Material {
+					 diffuseColor 0.7 0.7 0.7
+				 }
+			 }
+		 }
+ 
+	 }
+ }
+
+ PROTO BoxingBase[field SFVec3f trans 0 0 0]{
+	Transform {
+		 translation IS trans
+		 children 
+		 Shape {
+			 geometry Box {
+				 size 0.89 0.02 0.77
+			 }
+			 appearance	Appearance {
+				 material Material {
+					 diffuseColor 0.7 0.7 0.7
+				 }
+			 }
+		 }
+ 
+	 }
+ }
+
+ PROTO BoxingBack[]{
+	 Transform {
+		translation 0 0 -0.385
+		children 
+			Shape {
+				geometry Box {
+					size 0.89 1.845 0.02
+				}
+				appearance	Appearance {
+					material Material {
+						diffuseColor 0.8 0.8 0.8
+					}
+				}
+			 }
+
+	}
+}
+
+PROTO Door[field SFVec3f tr 0 0 0]{
+	 DEF D Transform {
+		 children [
+			 Transform{
+				 translation IS tr
+				 children [
+					Shape {
+						geometry Box {
+							 size 0.20 0.11 0.01
+						}
+						appearance	Appearance {
+							 material Material {
+								diffuseColor 0.7 0.7 0.7
+								transparency 0.6
+							 }
+						}
+					}
+					Transform {
+						translation	0.06 -0.02 0
+						rotation 0 0 1 1.57
+						children [
+
+							Transform {
+								translation 0.01 0 0.02
+								rotation 0 0 1 3.1415
+								children [
+									Shape {
+										appearance Appearance { 
+											material Material { 
+												diffuseColor 0.8 0.8 0.8
+											}
+										}
+										geometry Extrusion {
+											crossSection [0.0100		0.0000	, 0.0098		0.0017	, 0.0094		0.0034	, 0.0087		0.0050	, 0.0077		0.0064	, 0.0064		0.0077	, 0.0050		0.0087	, 0.0034		0.0094	, 0.0017		0.0098	, 0.0000		0.0100	, -0.0017		0.0098	, -0.0034		0.0094	, -0.0050		0.0087	, -0.0064		0.0077	, -0.0077		0.0064	, -0.0087		0.0050	, -0.0094		0.0034	, -0.0098		0.0017	, -0.0100		0.0000	, -0.0098		-0.0017	, -0.0094		-0.0034	, -0.0087		-0.0050	, -0.0077		-0.0064	, -0.0064		-0.0077	, -0.0050		-0.0087	, -0.0034		-0.0094	, -0.0017		-0.0098	, 0.0000		-0.0100	, 0.0017		-0.0098	, 0.0034		-0.0094	, 0.0050		-0.0087	, 0.0064		-0.0077	, 0.0077		-0.0064	, 0.0087		-0.0050	, 0.0094		-0.0034	, 0.0098		-0.0017	, 0.0100		0.0000]
+											spine [0.0098 0 -0.017, 0.0100	0	0.0000	, 0.0098	0	0.0017	, 0.0094	0	0.0034	, 0.0087	0	0.0050	, 0.0077	0	0.0064	, 0.0064	0	0.0077	, 0.0050	0	0.0087	, 0.0034	0	0.0094	, 0.0017	0	0.0098	, 0.0000	0	0.0100, -0.0017 0 0.0098]
+											creaseAngle	1
+											solid FALSE
+										}
+									}
+								]
+							}
+
+							Transform {
+								translation 0.03 0 0.02
+								children [
+									Shape {
+										appearance Appearance { 
+											material Material { 
+												diffuseColor 0.8 0.8 0.8
+											}
+										}
+										geometry Extrusion {
+											crossSection [0.0100		0.0000	, 0.0098		0.0017	, 0.0094		0.0034	, 0.0087		0.0050	, 0.0077		0.0064	, 0.0064		0.0077	, 0.0050		0.0087	, 0.0034		0.0094	, 0.0017		0.0098	, 0.0000		0.0100	, -0.0017		0.0098	, -0.0034		0.0094	, -0.0050		0.0087	, -0.0064		0.0077	, -0.0077		0.0064	, -0.0087		0.0050	, -0.0094		0.0034	, -0.0098		0.0017	, -0.0100		0.0000	, -0.0098		-0.0017	, -0.0094		-0.0034	, -0.0087		-0.0050	, -0.0077		-0.0064	, -0.0064		-0.0077	, -0.0050		-0.0087	, -0.0034		-0.0094	, -0.0017		-0.0098	, 0.0000		-0.0100	, 0.0017		-0.0098	, 0.0034		-0.0094	, 0.0050		-0.0087	, 0.0064		-0.0077	, 0.0077		-0.0064	, 0.0087		-0.0050	, 0.0094		-0.0034	, 0.0098		-0.0017	, 0.0100		0.0000]
+											spine [0.0098 0 -0.017, 0.0100	0	0.0000	, 0.0098	0	0.0017	, 0.0094	0	0.0034	, 0.0087	0	0.0050	, 0.0077	0	0.0064	, 0.0064	0	0.0077	, 0.0050	0	0.0087	, 0.0034	0	0.0094	, 0.0017	0	0.0098	, 0.0000	0	0.0100, -0.0017 0 0.0098]
+											creaseAngle	1
+											solid FALSE
+										}
+									}
+								]
+							}
+
+							Transform {
+								translation	0.02 0 0.03
+								rotation 0 0 1 1.57
+								children [
+									Shape{
+										geometry Cylinder {
+											radius 0.01
+											height 0.02
+											bottom TRUE
+											side TRUE
+											top	TRUE
+										}
+										appearance Appearance {
+											material Material {
+												diffuseColor  0.8 0.8 0.8
+
+											}
+										}
+									}
+								]
+							}
+
+						]
+					}
+				]
+			}
+
+			DEF	Ts1 TouchSensor	{
+				enabled	TRUE
+			}
+
+			DEF	Timer1 TimeSensor {
+				cycleInterval 2.0
+				enabled	TRUE
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	DoorMove Script	{
+				field SFVec3f trans -0.15 0 0 
+				field SFBool open FALSE
+				eventIn	SFFloat	set_fraction
+				eventOut SFVec3f value_changed
+				url	"javascript:
+				function set_fraction( frac, timestamp){
+					if(open == false){
+						x = frac*trans[0];
+						value_changed[0] = x;
+						value_changed[1] = 0;
+						value_changed[2] = 0;
+						if(x == trans[0]) open = true;
+					}else{
+						x = (1-frac)*trans[0];
+						value_changed[0] = x;
+						value_changed[1] = 0;
+						value_changed[2] = 0;
+						if(x == 0) open = false;
+					}
+				}
+				"
+			}
+		]
+	}
+
+	ROUTE Ts1.touchTime	TO Timer1.startTime
+	ROUTE Timer1.fraction_changed TO DoorMove.set_fraction
+	ROUTE DoorMove.value_changed TO	D.translation
+}
+
+PROTO Button[]{
+	Group {
+		children [
+			Shape {
+				geometry Cylinder {
+					radius 0.0175
+					height 0.01
+				}
+				appearance	Appearance {
+					material Material {
+						diffuseColor 0 0 0
+						
+					}
+				}
+			}
+
+			Shape {
+				geometry Cylinder {
+					radius 0.0125
+					height 0.02
+				}
+				appearance	Appearance {
+					material Material {
+						diffuseColor 1 1 0
+						
+					}
+				}
+			}
+		]
+	}
+}
+
+
+
+ PROTO BoxingFront[]{
+	 Group{
+		 children [
+
+			Transform {
+				translation	-0.3275 0 0.385
+				children
+				Shape {
+					geometry Box {
+						size 0.235 1.845 0.02
+					}
+					appearance	Appearance {
+						material Material {
+							diffuseColor 0.8 0.8 0.8
+						}
+					}
+				}
+			}
+
+			Transform {
+				translation	0.445 -0.351125 0.396 
+				rotation 1 0 0 1.57
+				children Transform {
+					rotation 0 1 0 3.1416
+						children Shape {
+						appearance Appearance {
+							texture	ImageTexture {
+								url	"Images\MaquinaComidaDireita.jpg"
+							}
+						material Material { 
+							ambientIntensity 0
+						}
+
+						}
+						geometry ElevationGrid {
+							xDimension 2
+							zDimension 2
+							xSpacing 0.235
+							zSpacing 1.225
+							height [0, 0,
+									0, 0]
+						}
+					}
+				}
+			}
+
+			Transform {
+				translation	-0.265 0.51 0.396 
+				rotation 1 0 0 1.57
+				children Transform {
+					rotation 0 1 0 3.1416
+						children Shape {
+						appearance Appearance {
+							texture	ImageTexture {
+								url	"Images\MaquinaComidaEsquerda.jpg"
+							}
+							material Material { 
+								ambientIntensity 0
+							}
+
+						}
+
+						geometry ElevationGrid {
+							xDimension 2
+							zDimension 2
+							xSpacing 0.146
+							zSpacing 0.355
+							height [0, 0,
+									0, 0]
+						}
+
+					}
+				}
+			}
+
+			Transform {
+				translation	0.3275 0 0.385
+				children
+				Shape {
+					geometry Box {
+						size 0.235 1.845 0.02
+					}
+					appearance	Appearance {
+						material Material {
+							diffuseColor 0.8 0.8 0.8
+						}
+					}
+				}
+			}
+
+			Transform {
+				translation	0 0.884 0.385
+				children
+				Shape {
+					geometry Box {
+						size 0.89 0.071 0.02
+					}
+					appearance	Appearance {
+						material Material {
+							diffuseColor 0.8 0.8 0.8
+						}
+					}
+				}
+			}
+
+			Transform {
+				translation	0 -0.6885 0.385
+				children
+				Shape {
+					geometry Box {
+						size 0.89 0.463 0.02
+					}
+					appearance	Appearance {
+						material Material {
+							diffuseColor 0.8 0.8 0.8
+						}
+					}
+				}
+			}
+			Transform {
+				translation	0 0.189 0.385
+				children
+					Shape {
+						geometry Box {
+							size 0.035 1.32 0.02
+						}
+						appearance	Appearance {
+							material Material {
+								diffuseColor 0.8 0.8 0.8
+							}
+						}
+					}
+		
+			}
+	
+			Transform {
+				translation	0.11 0.189 0.385
+				children
+					Shape {
+						geometry Box {
+							size 0.20 1.32 0.02
+						}
+						appearance	Appearance {
+							material Material {
+								diffuseColor 0.8 0.8 0.8
+								transparency 0.6
+							}
+						}
+					}
+			}
+
+			Door {tr -0.11 0.794 0.389}
+			Door {tr -0.11 0.684 0.389}
+			Door {tr -0.11 0.574 0.389}
+			Door {tr -0.11 0.464 0.389}
+			Door {tr -0.11 0.354 0.389}
+			Door {tr -0.11 0.244 0.389}
+			Door {tr -0.11 0.134 0.389}
+			Door {tr -0.11 0.024 0.389}
+			Door {tr -0.11 -0.086 0.389}
+			Door {tr -0.11 -0.196 0.389}
+			Door {tr -0.11 -0.306 0.389}
+			Door {tr -0.11 -0.416 0.389}
+		]
+	}
+
+}
+
+
+ PROTO MaquinaExterior []{
+	 
+	 Group{
+		 children [
+			BoxingSide {tr 0.445 0 0, rt 0 1 0 1.57}
+			BoxingSide {tr -0.445 0 0, rt 0 1 0 1.57}
+			BoxingBase	{trans 0 0.92 0}
+			BoxingBase	{trans 0 -0.92 0}
+			BoxingBack	{}
+			BoxingFront {}		 						  
+		 ]
+	 }
+ }
+
+
+
+
+ PROTO MaquinaComida[]{
+	 Group	{
+		 children	[
+			Transform {
+				translation	0.3175 0.36 0.395
+				rotation 1 0 0 1.57
+				children [
+					Button {}
+					DEF	TS TouchSensor {
+						enabled	TRUE
+					}
+				]
+			}
+
+			DEF	Timer TimeSensor {
+				cycleInterval 2.0
+				enabled	TRUE
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	OI OrientationInterpolator {
+				key	[0, 1]
+				keyValue [0 0 0 0, 0 1 0 0.7854]
+			}
+
+			DEF Racks Transform {
+				children [
+					MaquinaInterior{}
+					Food {tr -0.11 -0.01 0.3}
+					Food {tr 0.11 -0.01 0.3, rt 0 1 0 0.785, cl 0 1 0}
+					Food {tr -0.11 0.21 0.3, rt 0 1 0 -0.785, cl 0 0 1}
+					Food {tr 0.11 0.43 0.3, rt 0 1 0 0.393, cl 0.6 0.4 0}
+					Food {tr -0.11 0.65 0.25, rt 0 1 0 -1.57, cl 0 1 1}
+				]
+			}
+
+			MaquinaExterior	{}
+		]
+	}
+
+	ROUTE TS.touchTime TO Timer.startTime
+	ROUTE Timer.fraction_changed TO	OI.set_fraction
+	ROUTE OI.value_changed TO Racks.rotation
+}
+
+MaquinaComida {}

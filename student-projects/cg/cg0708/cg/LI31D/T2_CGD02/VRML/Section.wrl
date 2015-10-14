@@ -1,0 +1,73 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Struct [ field SFVec3f posi ] "Protos.wrl#StructTotal"																
+EXTERNPROTO	Base [ field SFColor cor ] "Protos.wrl#Base"
+EXTERNPROTO	cabine [ field SFColor cor ] "Protos.wrl#cabine"
+EXTERNPROTO	cabineLigacaoGrua [ field SFColor cor ] "Protos.wrl#cabineLigacaoGrua"
+EXTERNPROTO	Elevador [ field SFColor cor ] "Protos.wrl#Elevador"
+EXTERNPROTO	completa [ field SFColor cor ] "myDeed.wrl#completa"
+EXTERNPROTO	tudoJunto [field SFVec3f posi] "montaGrua.wrl#tudoJunto"
+
+#############################################################################################
+#                                                                                           #
+#                                                                                           #
+#                                    Main Struct Final 1.0                                  #
+#                                                                                           #
+#                                                                                           #
+#############################################################################################
+PROTO center[] {
+	DEF	Center Transform {
+		children [
+			Transform {
+				rotation 0 1 0 1.57
+				translation	0 81.4 0
+				children completa {cor 1 0 0 }
+			}
+			Struct { posi 0 0 0 }
+			Struct { posi 0 12 0 }
+			Struct { posi 0 24 0 }
+			Struct { posi 0 36 0 }
+			Struct { posi 0 48 0 }
+			Struct { posi 0 60 0 }
+			Struct { posi 0 72 0 }	  
+			Struct { posi 0 84 0 }
+			Struct { posi 0 96 0 }
+#			Struct { posi 0 108 0 }
+			tudoJunto { posi 0 79 1}
+			
+
+
+
+			Transform { rotation 0 1 0 0.7853 	translation	0 -2.875 0 	children Base { cor	1 0 0 } }
+
+			Transform {
+#				translation	0 80.40 -4.75
+				translation	0 75.45 -4.75
+				children [
+					Transform { translation	0 0 0 children cabine { cor	1 1 0 } }
+					Transform { translation 1 2.90 -2 children cabineLigacaoGrua { cor 1 0 0 } }
+				]
+			}
+			Transform {
+#				translation -1 80.80 -5.21
+				translation	-1.85 75.65 -5.21
+				children Elevador { cor 1 0 0 }
+			}
+			DEF	Time TimeSensor	{
+				enabled	TRUE
+				cycleInterval 20.0
+				loop FALSE
+			}
+			DEF	RotationPath OrientationInterpolator {
+				key [0.0 0.5 1.0]
+				keyValue [
+					0.0 1.0 0.0 0.0,
+					0.0 1.0 0.0 -1.75,
+					0.0 1.0 0.0 0
+				]
+			}
+		]
+	}
+	ROUTE Time.fraction_changed	TO RotationPath.set_fraction 
+	ROUTE RotationPath.value_changed TO Center.set_rotation
+}

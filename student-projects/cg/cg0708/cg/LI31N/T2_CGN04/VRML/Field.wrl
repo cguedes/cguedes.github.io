@@ -1,0 +1,1558 @@
+#VRML V2.0 utf8
+
+
+NavigationInfo {
+	headlight TRUE
+	#type ["ANY", "EXAMINE"]
+}
+
+
+DEF DayLight DirectionalLight {
+	direction -0.6 -0.6 -0.5
+	color 1 1 1
+	on FALSE
+}
+
+DEF NightLight DirectionalLight {
+	direction -0.6 -0.6 -0.5
+	color 0.25 0.25 0.21
+}
+
+
+DEF Night Background {
+	skyColor [
+		0.0 0.0 0.0,
+				
+	]
+
+	skyAngle [ 1.2, 1.571 ]
+
+	skyColor	[0 0 0,
+			 0.1 0.1 0.1,
+			 0.2 0.2 0.2,
+			 0.3 0.3 0.3,
+			 0.4 0.4 0.4
+		 ]
+
+	groundAngle [ 1.2, 1.571 ]
+	groundColor	[0.1, 0.05, 0.0, 
+				 0.2, 0.15, 0.2,
+				 0.3, 0.3, 0.3]	
+		 	
+}
+
+DEF Day Background {
+	skyAngle	[1.2, 1.57]
+	skyColor	[0.76238 0.8 0.1427,
+			 0.277798 0.219779 0.7,
+			 0.222549 0.390234 0.7,
+			 0.410488 0.499399 0.69]
+	groundAngle	[1.2, 1.57]
+	groundColor	[0.1, 0.10, 0.0, 
+				 0.4, 0.25, 0.2,
+				 0.6, 0.6, 0.6]
+
+
+}
+
+
+
+DEF V1 Viewpoint {
+  jump FALSE
+  position 0 1.6 0
+  orientation 0 1 0  3.1416
+  description "View: centro"
+}
+
+DEF V2 Viewpoint {
+  jump FALSE
+  position -16.4 5.8 6
+  orientation 0 1 0  -1.447
+  description "View: bancada"
+}
+
+DEF V3 Viewpoint {
+  jump FALSE
+  position -30.4 30 40
+  orientation 1 1 0  -0.9
+  description "View: cima"
+}
+
+DEF V4 Viewpoint {
+  jump FALSE
+  position 27.4 1.6 13
+  orientation 0 1 0  0.7
+  description "View: Tenis"
+}
+
+DEF V5 Viewpoint {
+  jump FALSE
+  position 0.4 1.6 21
+  orientation 0 1 0  0
+  description "View: Baliza"
+}
+
+
+EXTERNPROTO	vLittleWall [
+	exposedField SFVec3f translation 
+	field SFVec3f scale 
+	exposedField SFRotation rotation 
+]
+"vLittleWall.wrl"
+
+EXTERNPROTO	VeryBigFence []
+"VeryBigFence.wrl"
+
+EXTERNPROTO	BigFence []
+"BigFence.wrl"
+
+EXTERNPROTO	SingleFence4M []
+"SingleFence4M.wrl"
+
+EXTERNPROTO	GrandePorta []
+"Porta.wrl#GrandePorta"
+
+EXTERNPROTO	PequenaPorta []
+"Porta.wrl#PequenaPorta"
+
+EXTERNPROTO	Fence2MBy4MCover []
+"Fence2MBy4MCover.wrl"
+
+EXTERNPROTO	Fence2MBy2M []
+"Fence2MBy2M.wrl"
+
+EXTERNPROTO	Fence2MBy4MNoCover []
+"Fence2MBy4MNoCover.wrl"
+
+EXTERNPROTO	NotSoBigFence []
+"NotSoBigFence.wrl"
+
+EXTERNPROTO	Fence1MBy4MNoCover []
+"Fence1MBy4MNoCover.wrl"
+
+EXTERNPROTO	Fence2MBy4MSimpleCover []
+"Fence2MBy4MSimpleCover.wrl"
+
+EXTERNPROTO	Fence2MBy2MNoExtras []
+"Fence2MBy2MNoExtras.wrl"
+
+EXTERNPROTO	HalfFence4M []
+"HalfFence4M.wrl"
+
+EXTERNPROTO	Fence1_5MBy4MCover []
+"Fence1_5MBy4MCover.wrl"
+
+EXTERNPROTO	SmallFence2MBy1M []
+"SmallFence2MBy1M.wrl"
+
+EXTERNPROTO	CompleteSmallFence4MBy1M []
+"CompleteSmallFence4MBy1M.wrl"
+
+EXTERNPROTO	SmallFence1MBy1M []
+"SmallFence1MBy1M.wrl"
+
+EXTERNPROTO	SmallFence0_5MBy1MCoverOnly []
+"SmallFence0_5MBy1MCoverOnly.wrl"
+
+EXTERNPROTO	Simbolo []
+"Simbolo.wrl"
+
+EXTERNPROTO	ChaoExteriorImplementation[]
+"ChaoExteriorImplementation.wrl#ChaoExteriorImplementation"
+
+EXTERNPROTO	PosteIluminacao [
+	exposedField SFBool	on 
+]
+"PosteIluminacao.wrl"
+
+EXTERNPROTO	SingleLight [
+			exposedField SFBool	on
+]
+"SingleLight.wrl"
+
+EXTERNPROTO	Tennis []
+"TennisField.wrl#Tennis"
+
+EXTERNPROTO	LightSwitch [
+	exposedField SFVec3f translation 
+	eventOut SFBool	OnOrOff
+	exposedField MFString urlNotPressed
+	exposedField MFString urlPressed
+]
+"LightSwitch.wrl"
+
+PROTO vField [
+   field SFColor Colour 0 1 0      
+
+   
+]
+{
+	Transform {	
+		scale	24 1 44
+		children 
+			Shape {
+	  	  
+    	appearance Appearance {
+			texture	ImageTexture {
+					url "images/ChaoCampo.png"
+				}
+        	material Material { 
+				#diffuseColor 0.3 1 0.3
+				specularColor 0 0.1 0
+				
+			}           												        		
+				
+    		}	 	  
+      geometry Box {		  
+		  size 1 0.01 1
+	  }
+  }
+}
+
+}
+
+
+PROTO vHalfMark [	
+	exposedField MFString url [""]	
+	exposedField SFFloat transparency 0
+	exposedField SFVec2f scale 1 1
+	exposedField SFVec2f translation 0 0
+
+]
+{
+Shape {
+    appearance Appearance {
+        material Material {	
+			transparency IS	transparency						
+		}
+
+		texture	ImageTexture {
+					url IS url 
+				}
+
+				textureTransform TextureTransform {
+					scale IS scale
+
+				}
+
+    }
+
+	
+geometry Extrusion {
+	solid    FALSE
+	creaseAngle  .785	#0.157
+	crossSection [
+		1 0, .97 -.19, .92 -.38, .83 -.54,
+		.71 -.71, .56 -.82, .38 -.92, 0 -.95,
+		-.38 -.92, -.55 -.82, -.71 -.71,
+		-.84 -.53, -.92 -.38, -.97 -.19,
+		-1 0, -.98 0, -.95 -.18, -.9016 -.3724,
+		-.82 -.52, -.6958 -.6958, -.54 -.8,
+		-.3724 -.9016, 0 -.92, .3724 -.9016,
+		.54 -.8, .6958 -.6958, .81 -.52,
+		.9016 -.3724, .95 -.19, .98 0
+	]		 		 		 
+	 }	
+
+}
+
+
+}
+
+PROTO vFieldMarks [	
+]
+{
+	Transform {
+		translation	0 0.01 0
+		children
+			Shape {
+			appearance Appearance {
+				material Material {
+					emissiveColor 0 0 0
+				}
+			texture	ImageTexture {
+					url "images/LinhaMarcacao.png"
+				}
+				
+    		}	 	  
+			geometry Box {
+				size 1 0.01 1
+			}
+		}
+
+	}
+}
+
+PROTO vMarkings
+[
+]
+{
+Transform {	
+	children [
+		# meia lua de perto
+		Transform {	
+		translation	0 0 20	
+			scale 8 0.01 6
+			children [					
+				vHalfMark {
+					transparency 0
+					url	"images/LinhaMarcacao.png"
+				}
+				]
+		}
+
+		# meia lua tracejada de perto
+		Transform {						
+			translation	0 0 15	
+			scale 10.02 0.02 6
+			children [				
+
+				vHalfMark {							
+					scale 30 30
+					url	"images/LinhaMarcacao2.png"
+				}
+				]
+		}
+
+		# meia lua de longe
+		Transform {	
+		rotation 0 1 0 -3.1415
+		translation	0 0 -20	
+			scale 8 0.01 6
+			children [
+				
+				vHalfMark {}
+				]
+		}
+
+		# meia lua tracejada de longe
+		Transform {			
+			rotation	0 1 0 -3.1415		
+			translation	0 0 -15	
+			scale 10.02 0.02 6
+			children [				
+
+				vHalfMark {							
+					scale 30 30
+					url	"images/LinhaMarcacao2.png"
+				}
+				]
+		}
+
+	]
+}
+
+}
+
+PROTO vPoste [
+	exposedField SFVec2f scale 1 8
+	field SFFloat height 2
+	exposedField MFString url ["images/BocadoBaliza.png"]
+	field SFFloat radius 0.05
+	exposedField SFColor diffuseColor 0 0 0
+]
+{
+	Transform {
+		children [
+			Shape {
+				geometry Cylinder {
+					height IS height
+					radius IS radius
+				}
+
+				appearance Appearance {
+					material Material {
+						#shininess 1
+						emissiveColor 0 0 0
+						#diffuseColor 0 0 0
+						#diffuseColor IS	diffuseColor
+					}
+
+					texture	ImageTexture {
+						url	IS url
+						repeatS	TRUE
+					}
+
+					textureTransform TextureTransform {
+						scale IS scale
+					}
+					
+				}
+			}
+		]
+		
+}
+
+}
+
+
+
+PROTO vBaliza [
+]
+{
+	Transform {
+		
+		children [
+			Transform {
+				translation	0 1.5 0
+				children
+					vPoste {	
+						url	"images/BocadoBaliza.png"
+						scale 1 8
+						height 2		
+			}
+		}
+
+			Transform {
+				rotation 0 0 1 1.57
+				translation	1.5 2.46 0
+				children
+					vPoste {	
+						url "images/BocadoBaliza.png"
+						scale 1 8	
+						height 3		
+			}
+		}	
+
+
+		Transform {
+				translation	3 1.5 0
+				children
+					vPoste {
+						url "images/BocadoBaliza.png"	
+						scale 1 8	
+						height 2		
+			}
+		}	
+
+
+		Transform {
+				scale 1.1 1.01 1
+				translation	3 1.5 -1
+				rotation 1 0 0 0.20
+				children
+					vPoste {
+						url	"images/LightContainer.png"					
+						scale 1 8	
+						height 2
+						radius	0.02	
+			}
+		}	
+
+		Transform {
+				scale 1.1 1.01 1
+				translation	0 1.5 -1
+				rotation 1 0 0 0.20
+				children
+					vPoste {
+						url	"images/LightContainer.png"					
+						scale 1 8	
+						height 2
+						radius	0.02	
+			}
+		}	
+
+
+		Transform {
+				scale 1.1 1.01 1
+				translation	0 2.5 -0.45
+				rotation 1 0 0 1.57
+				children
+					vPoste {
+						url	"images/LightContainer.png"					
+						scale 1 8	
+						height 0.8
+						radius	0.02	
+			}
+		}		
+
+		Transform {
+				scale 1.1 1.01 1
+				translation	3 2.5 -0.45
+				rotation 1 0 0 1.57
+				children
+					vPoste {
+						url	"images/LightContainer.png"					
+						scale 1 8	
+						height 0.8
+						radius	0.02	
+			}
+		}		
+
+		Transform {
+				scale 1.1 1.01 1
+				translation	3 0.5 -0.57
+				rotation 1 0 0 1.57
+				children
+					vPoste {
+						url	"images/LightContainer.png"					
+						scale 1 8	
+						height 1.2
+						radius	0.02	
+			}
+		}		
+
+
+		Transform {
+				scale 1.1 1.01 1
+				translation	0 0.5 -0.57
+				rotation 1 0 0 1.57
+				children
+					vPoste {
+						url	"images/LightContainer.png"					
+						scale 1 8	
+						height 1.2
+						radius	0.02	
+			}
+		}		
+
+		Transform {
+				rotation 0 0 1 1.57
+				translation	1.5 2.48 -0.85
+				children
+					vPoste {	
+						url "images/LightContainer.png"
+						scale 1 8	
+						height 3
+						radius	0.02	
+			}
+		}	
+
+					
+			]
+		
+}
+
+}
+
+PROTO	BancadaEntrada
+[
+	field MFVec2f Escala 1 1
+]
+{
+Transform {
+	rotation 0 0 0 0 #1 1 0 -0.766
+	scale 1 1 1
+	children
+		Shape {
+			appearance Appearance {
+				material Material {
+				}
+
+				texture	ImageTexture {
+					url	"images/BocadoBanco.PNG"
+				}
+			}
+
+		geometry Extrusion {
+
+			crossSection [
+				.163 -.079, .163 -.121, .163 -.133, .167 -.142, .176 -.145, .188 -.143,
+				.19 -.134, .189 -.121, .232 -.121, .232 -.154, .124 -.154, -.149 -.154,
+				-.15 .17, -.126 .17, -.126 .151, -.105 .151, -.105 .129, -.081 .129,
+				-.081 .107, -.053 .107, -.053 .084, -.025 .084, -.025 .06, .001 .06,
+				.001 .036, .03 .036, .03 .013, .055 .013, .055 -.013, .082 -.013,
+				.082 -.035, .109 -.035, .109 -.057, .137 -.057, .137 -.079, .163 -.079
+			]
+
+			spine [
+				0 0 0, 5 1 0
+			]
+
+		scale IS Escala
+		}
+	}	
+}
+}
+
+
+PROTO	BancadaPrincipal
+[
+	field MFVec2f Escala 1 1
+]
+{
+Transform {
+	rotation 0 0 0 0 #1 1 0 -0.766
+	scale 1 1 1
+	children
+		Shape {
+			appearance Appearance {
+				material Material {
+					emissiveColor 0 0 0
+				}
+
+				texture	ImageTexture {
+					url	"images/BocadoBanco.PNG"
+				}
+			}
+	geometry Extrusion {
+		crossSection [
+			.124 -.154, -.149 -.154, -.15 .17, -.13 .17, -.1 .17, -.093 .165,
+			-.09 .16, -.093 .154, -.1 .15, -.1 .15, -.11 .15, -.109 .131,
+			-.08 .13, -.06 .13, -.054 .126, -.05 .12, -.053 .115, -.06 .11,
+			-.07 .11, -.07 .092, -.03 .09, -.02 .09, -.014 .086, -.01 .08,
+			-.013 .074, -.02 .07, -.03 .07, -.029 .052, .02 .05, .027 .046,
+			.03 .04, .027 .033, .02 .03, .01 .03, .012 .012, .06 .01, .066 .006,
+			.07 0, .068 -.006, .06 -.01, .05 -.01, .051 -.029, .1 -.03,
+			.107 -.034, .11 -.04, .107 -.046, .1 -.05, .09 -.05, .091 -.069,
+			.14 -.07, .146 -.073, .15 -.08, .152 -.121, .163 -.121, .163 -.133,
+			.167 -.142, .176 -.145, .188 -.143, .19 -.134, .189 -.121,
+			.232 -.121, .232 -.154, .124 -.154
+		]
+		spine [
+			0 0 0, 5 1 0
+		]
+
+		scale IS Escala
+	}
+}
+}
+
+}
+
+
+PROTO Bancada	[
+]
+{
+	Transform {		
+		translation	-9.6 0 0		
+		#scale  0.9 0.9 1 
+		children [
+		Transform	{	
+			scale	2.45 2.45 1.3
+			translation	3 -0.25 0.1
+				children [
+					Transform {
+						translation	0 0 0	
+							children [
+								BancadaPrincipal {
+								Escala 5 5
+							}
+			]
+	}
+		Transform {
+			translation	5.0 1 0
+			children [		
+			BancadaEntrada {
+				Escala 5 5
+			}
+		]		
+	}
+
+		Transform {
+			translation	10 2 0	
+			children [
+			BancadaPrincipal {
+				Escala 5 5
+	}
+	
+		]
+	
+}
+]
+}
+]
+}
+}
+
+
+PROTO vFootballField [
+   field SFColor Colour 0 1 0      
+   field SFVec3f Escala 20 1 0.08
+   
+]
+{
+	Transform {
+		children 
+		[
+			Transform {
+				children [					
+				vField  {}
+				]
+			}
+		
+			#centro do campo
+			Transform {
+				scale IS Escala
+				children [					
+				vFieldMarks  {}
+				]
+			}
+
+			#lado mais perto (z)
+			Transform {
+				scale IS Escala
+				translation	0 0 20
+				children [					
+				vFieldMarks  {}
+				]
+			}
+
+			#lado mais longe (z)
+			Transform {
+				scale IS Escala
+				translation	0 0 -20
+				children [					
+				vFieldMarks  {}
+				]
+			}
+
+			#canto esquerdo
+			Transform {
+				rotation 0 1 0 1.57
+				scale 40 1 0.08
+				translation	-10 0 0
+				children [					
+				vFieldMarks  {}
+				]
+			}
+
+
+			#canto direito
+			Transform {
+				rotation 0 1 0 1.57
+				scale 40 1 0.08
+				translation	10 0 0
+				children [					
+				vFieldMarks  {}
+				]
+			}
+
+			#Marcações
+			Transform {
+				children [					
+				vMarkings  {}
+				]
+			}
+
+
+			#Baliza longe
+			Transform {
+				translation	-1.5 -0.5 -20
+				children [		
+					vBaliza	{}		
+				]
+			}
+
+			#Baliza perto
+			Transform {
+				rotation 0 1 0 3.1415
+				translation	1.5 -0.5 20
+				children [		
+					vBaliza	{}		
+				]
+			}
+
+
+
+			#Bancada
+			Transform {
+				#rotation  0 0 0 1.57
+				#translation	0 1 0
+				translation	-14.1 0.8 11.5
+				children [
+			Transform {
+				rotation  0 1 0 1.37
+				children [
+					Transform {
+					rotation -1 0 0 1.57
+					children [						
+						Bancada	{}		
+				]				
+			}
+
+
+		]
+	}
+			#Simbolo
+		Transform {
+			translation 14 -0.747 -11.5
+			children [
+				Simbolo	{}
+			]
+		}
+]
+}
+
+			
+		]
+			
+	}
+}
+
+
+
+Transform {
+	children [
+		#direito
+		vLittleWall	{
+			translation	11 0.05 0
+			scale 0.1 0.1 43
+		}
+		#esquerdo 
+		vLittleWall	{
+			translation	-11 0.05 0
+			scale 0.1 0.1 43
+		}
+		#perto
+		vLittleWall	{
+			translation	0 0.05 21.5
+			scale 0.1 0.1 22
+			rotation 0 1 0 -1.57
+		}
+		#longe
+		vLittleWall	{
+			translation	0 0.05 -21.5
+			scale 0.1 0.1 22
+			rotation 0 1 0 -1.57
+		}
+
+	]
+}
+
+
+
+
+
+
+Group {
+	children [
+
+			#Rede de canto esquerdo
+			Transform {		
+				rotation	0 1 0 -1.57
+				translation	-11 0 20
+				children [		
+					Fence1_5MBy4MCover	{}		
+				]
+			}
+
+							#Rede de canto esquerdo
+			Transform {		
+				rotation	0 1 0 -1.57
+				translation	-11 0 18
+				children [		
+					Fence2MBy4MCover	{}		
+				]
+			}
+
+					#Rede de canto esquerdo
+			Transform {		
+				rotation	0 0 0 0
+				translation	-13 0 18
+				children [		
+					Fence2MBy4MCover	{}		
+				]
+			}
+
+			#Rede de canto esquerdo
+			Transform {		
+				rotation	0 0 0 0
+				translation	-15 0 18
+				children [		
+					Fence2MBy4MCover	{}		
+				]
+			}
+			
+			#Rede de canto esquerdo
+			Transform {		
+				rotation	0 0 0 0
+				translation	-17 0 18
+				children [		
+					Fence2MBy4MCover	{}		
+				]
+			}
+
+			#Rede depois da porta
+			Transform {		
+				rotation	0 1 0 -1.57
+				translation	-17 0 3
+				children [		
+					NotSoBigFence	{}		
+				]
+			}
+			
+			#Junção após porta
+			Transform {		
+				rotation	0 1 0 -1.57
+				translation	-17 0  1
+				children [		
+					Fence2MBy4MCover	{}		
+				]
+			}
+
+
+			#Rede debaixo da porta
+			Transform {				
+				translation	-17 0 0.95
+				rotation 0 1 0 1.57
+				children [		
+					Fence2MBy2MNoExtras {}
+				]
+			}
+								
+
+			#Porta
+			Transform {		
+				scale 1.78 2 2#3 2.3 2.9
+				rotation	0 1 0 -1.57
+				translation	-17 3 -2.7
+				children [		
+					GrandePorta	{}		
+				]
+			}
+
+			Transform {		
+				rotation	0 1 0 -1.57
+				translation	-17 0 -1.5
+				children [		
+					HalfFence4M	{}		
+				]
+			}
+				Transform {		
+				rotation	0 1 0 -1.57
+				translation	-17 0 -3.5
+				children [		
+					Fence2MBy4MCover	{}		
+				]
+			}
+
+			#Rede esquerda (junção da porta)
+			Transform {		
+				rotation	0 1 0 -1.57
+				translation	-17 0 -4.5
+				children [		
+					SingleFence4M	{}		
+				]
+			}
+
+			#Rede esquerda até junção da porta
+			Transform {		
+				rotation	0 1 0 -1.57
+				translation	-17 0 -19.5
+				children [		
+					NotSoBigFence	{}		
+				]
+			}
+
+
+			#Rede esquerda (junção)
+			Transform {		
+				rotation	0 1 0 0
+				translation	-17 0 -19.5
+				children [		
+					Fence2MBy4MSimpleCover	{}		
+				]
+			}
+
+			#Rede do fundo (junção 2)
+			Transform {		
+				rotation	0 1 0 3.1415
+				translation	-11 0 -19.5
+				children [		
+					Fence2MBy4MSimpleCover	{}		
+				]
+			}
+
+			#Rede do fundo (junção 2)
+			Transform {		
+				rotation	0 1 0 3.1415
+				translation	-13 0 -19.5
+				children [		
+					Fence2MBy4MSimpleCover	{}		
+				]
+			}
+
+			#Rede do fundo (junção 2)
+			Transform {		
+				rotation	0 1 0 -1.57
+				translation	-11 0 -21.5
+				children [		
+					Fence2MBy4MCover	{}		
+				]
+			}
+
+
+			#Rede do fundo (junção)
+			Transform {		
+				rotation	0 1 0 3.1415	
+				translation	-9 0 -21.5
+				children [		
+					Fence2MBy4MCover	{}		
+				]
+			}
+
+			#Rede do fundo
+			Transform {		
+				rotation	0 1 0 3.1415	
+				translation	-7 0 -21.5
+				children [		
+					Fence2MBy4MNoCover	{}		
+				]
+			}
+
+			#Rede do fundo
+			Transform {		
+				rotation	0 1 0 3.1415	
+				translation	11 0 -21.5
+				children [		
+					VeryBigFence	{}		
+				]
+			}
+
+			#Direito-fundo do campo 
+			Transform {
+				rotation 0 1 0 1.57
+				translation	11 0 -3.5
+				children [		
+					NotSoBigFence	{}		
+				]
+			}
+
+			#Junção para o fundo
+			Transform {
+				rotation 0 1 0 1.57
+				translation	11 0 -18.5
+				children [		
+					Fence1MBy4MNoCover	{}		
+				]
+			}
+			#Canto direito-fundo do campo 
+			Transform {
+				rotation 0 1 0 1.57
+				translation	11 0 -19.5
+				children [		
+					Fence2MBy4MCover	{}		
+				]
+			}
+			
+			#fundo do campo
+			Transform {
+				rotation 0 1 0 1.57
+				translation	11 0 14.5
+				children [		
+					VeryBigFence	{}		
+				]
+			}
+
+			Transform {				
+				translation	-11 0 21.5
+				children [		
+					VeryBigFence	{}		
+				]
+			}
+
+			Transform {				
+				translation	7 0 21.5
+				children [		
+					Fence2MBy4MNoCover	{}		
+				]
+			}
+
+
+			Transform {				
+				translation	9 0 21.5
+				children [		
+					Fence2MBy4MCover {}
+				]
+			}
+
+			#Rede em cima da porta grande
+			Transform {				
+				translation	11 2 19.5
+				rotation 0 1 0 1.57
+				children [		
+					Fence2MBy2M {}
+				]
+			}
+
+			
+
+			#Rede depois da porta grande
+			Transform {				
+				translation	11 0 17.5
+				rotation 0 1 0 1.57
+				children [		
+					BigFence	{}		
+				]
+			}
+
+			#Rede antes da porta grande
+			Transform {				
+				translation	11 0 21.5
+				rotation 0 1 0 1.57
+				children [		
+					Fence2MBy4MCover	{}		
+				]
+			}
+
+
+			#Porta Grande
+			Transform {				
+				translation	11 1.0 21.2
+				scale 1.78 1.9 2
+				rotation 0 1 0 1.57
+				children [	
+					GrandePorta	{}					
+				]
+			}
+
+
+			#Rede pequena próxima
+			Transform {
+				rotation	0 1 0 1.57
+				translation	-11 0 18
+				children [
+					CompleteSmallFence4MBy1M {}
+				]
+			}
+
+			#Rede pequena 2
+			Transform {
+				rotation	0 1 0 1.57
+				translation	-11 0 14
+				children [
+					CompleteSmallFence4MBy1M {}
+				]
+			}
+
+			#Rede pequena 3
+			Transform {
+				rotation	0 1 0 1.57
+				translation	-11 0 10
+				children [
+					CompleteSmallFence4MBy1M {}
+				]
+			}
+
+			#Rede pequena 4
+			Transform {
+				rotation	0 1 0 1.57
+				translation	-11 0 6
+				children [
+					CompleteSmallFence4MBy1M {}
+				]
+			}
+
+			#Rede pequena junção à porta
+#			Transform {
+#				rotation	0 1 0 1.57
+#				translation	-11 0 2
+#				children [
+#					SmallFence2MBy1M {}
+#				]
+#			}
+
+			#Rede pequena junto à porta
+			Transform {
+				rotation	0 1 0 1.57
+				translation	-11 0 2
+				children [
+					SmallFence1MBy1M {}
+				]
+			}
+
+			#Pequena porta
+			Transform {
+				rotation	0 1 0 1.57
+				scale 2 2 1
+				translation	-11 1 3
+				children [
+					PequenaPorta {}
+				]
+			}
+
+
+			#Rede pequena junto à porta
+			Transform {
+				rotation	0 1 0 1.57
+				translation	-11 0 -1
+				children [
+					SmallFence0_5MBy1MCoverOnly {}
+				]
+			}
+
+			#Rede pequena do fundo
+			Transform {
+				rotation	0 1 0 1.57
+				translation	-11 0 -15.5
+				children [
+					CompleteSmallFence4MBy1M {}
+				]
+			}
+
+			#Rede pequena do fundo 2
+			Transform {
+				rotation	0 1 0 1.57
+				translation	-11 0 -11.5
+				children [
+					CompleteSmallFence4MBy1M {}
+				]
+			}
+
+			#Rede pequena do fundo 3
+			Transform {
+				rotation	0 1 0 1.57
+				translation	-11 0 -7.5
+				children [
+					CompleteSmallFence4MBy1M {}
+				]
+			}
+
+			#Rede pequena do fundo 4
+			Transform {
+				rotation	0 1 0 1.57
+				translation	-11 0 -3.5
+				children [
+					CompleteSmallFence4MBy1M {}
+				]
+			}
+
+			#Rede pequena do fundo 4
+#			Transform {
+#				rotation	0 1 0 1.57
+#				translation	-11 0 -0.5
+#				children [
+#					SmallFence1MBy1M {}
+#				]
+#			}
+
+			Transform {
+				rotation	0 1 0 -1.57
+				translation	-11 0 -3.5
+				children [
+					SmallFence2MBy1M {}
+				]
+			}
+
+			#Chão global
+			Transform {
+				translation	-17 -0.1 25
+				children [
+					ChaoExteriorImplementation {}
+				]
+				}
+				# lado esquerdo perto do campo de futsal
+				Transform {
+				translation	-14 2 20
+				children [
+					DEF	PosteIluminacao1 PosteIluminacao {}
+				]
+				}
+
+
+				
+				#lado direito perto do campo de futsal
+				Transform {
+				translation	7 2 23
+				children [
+					DEF	PosteIluminacao2 PosteIluminacao {}
+				]
+				}
+
+				# lado direito perto do campo de futsal
+				Transform {
+				translation	-14 2 -22
+				children [
+					DEF	PosteIluminacao3 PosteIluminacao {}
+				]
+				}
+
+				#lado direito longe do campo de futsal
+				Transform {
+				translation	7 2 -23
+				children [
+					DEF	PosteIluminacao4 PosteIluminacao {}
+				]
+				}
+			
+
+				#Luz da rede longe do campo de futsal 
+				Transform {
+				rotation 0 1 0 -1.57
+				translation	11.2 5 -12.5
+				children [
+					DEF	SingleLight1 SingleLight {}
+				]
+				}
+
+				#Luz da rede meio do campo de futsal 
+				Transform {
+				rotation 0 1 0 -1.57
+				translation	11.2 5 -0.5
+				children [
+					DEF	SingleLight3 SingleLight {}
+				]
+				}
+
+				#Luz da rede perto do campo de futsal 
+				Transform {
+				rotation 0 1 0 -1.57
+				translation	11.2 5 14.5
+				children [
+					DEF	SingleLight5 SingleLight {}
+				]
+				}
+
+
+				#Ténis
+				Transform {
+				scale 1.4 1 1.4
+				translation	20.5 0 -4
+				children [
+					Tennis {}
+				]
+				}	
+	
+				#lado direito fundo do campo de ténis
+				Transform {
+				translation	27 2 -23
+				children [
+					DEF	PosteIluminacao5 PosteIluminacao {}
+				]
+				}		
+
+				#lado direito perto do campo de ténis
+				Transform {
+				translation	15 2 18
+				children [
+					DEF	PosteIluminacao6 PosteIluminacao {}
+				]
+				}
+
+				#Luz da rede do campo de ténis (longe)
+				Transform {
+				rotation 0 1 0 -1.57
+				translation	29 5 -14.5
+				children [
+					DEF	SingleLight2 SingleLight {
+					}
+				]
+				}
+
+			#Luz da rede do campo de ténis (meio)
+				Transform {
+				rotation 0 1 0 -1.57
+				translation	29 5 -4
+				children [
+					DEF	SingleLight4 SingleLight {}
+				]
+				}
+				#Luz da rede do campo de ténis (perto)
+				Transform {
+				rotation 0 1 0 -1.57
+				translation	29 5 7.8
+				children [
+					DEF	SingleLight6 SingleLight {}
+				]
+				}
+		]
+}		
+
+
+Group {  
+
+	 children [  
+		DEF ps ProximitySensor {  
+			center 0 0 0  
+			size 1000 1000 1000
+		}  
+
+
+DEF cp Transform {  
+	children  [
+		Transform {
+			translation	0.7 0.35 -1
+			children [	
+				Transform {
+					translation	-0.045 0 0
+				children Shape	{			
+					geometry Box {
+						#size 0.1 0.2 0.01
+						size 0.2 0.1 0.001
+				}
+				appearance Appearance {
+					texture	ImageTexture {
+						url	"images/ControlPanel.png"
+					}
+				}
+			}
+
+			}	
+
+				#Postes de iluminação (perto esquerdo)
+				Transform {			#- 0.08
+					translation	-0.125 0 0
+					scale 0.2 0.2 0.01
+					children DEF Light1 LightSwitch {
+						urlNotPressed "ButtonNotPressed.wrl"
+						urlPressed "ButtonPressed.wrl"
+					ROUTE Light1.OnOrOff TO	PosteIluminacao1.on
+					}
+				}
+
+
+
+				#Postes de iluminação (perto meio)
+				Transform {
+					translation	-0.1 0 0
+					scale 0.2 0.2 0.01
+					children DEF Light2 LightSwitch {
+						urlNotPressed "ButtonNotPressed.wrl"
+						urlPressed "ButtonPressed.wrl"
+					ROUTE Light2.OnOrOff TO	PosteIluminacao2.on
+				}
+			}
+
+				#Postes de iluminação (perto direito)
+				Transform {
+					translation	-0.075 0.0 0
+					scale 0.2 0.2 0.01
+					children DEF Light6 LightSwitch {
+						urlNotPressed "ButtonNotPressed.wrl"
+						urlPressed "ButtonPressed.wrl"
+					ROUTE Light6.OnOrOff TO	PosteIluminacao6.on
+				}
+			}
+
+				#Postes de iluminação (longe esquerdo)
+				Transform {
+					translation	-0.125 0.035 0
+					scale 0.2 0.2 0.01
+					children DEF Light3 LightSwitch { 
+						urlNotPressed "ButtonNotPressed.wrl"
+						urlPressed "ButtonPressed.wrl"
+					ROUTE Light3.OnOrOff TO	PosteIluminacao3.on
+				}
+			}
+
+				#Postes de iluminação (longe meio)
+				Transform {
+					translation	-0.1 0.035 0
+					scale 0.2 0.2 0.01
+					children DEF Light4 LightSwitch {
+						urlNotPressed "ButtonNotPressed.wrl"
+						urlPressed "ButtonPressed.wrl"
+					ROUTE Light4.OnOrOff TO	PosteIluminacao4.on
+				}
+			}
+
+
+
+
+				#Postes de iluminação (longe direito)
+				Transform {
+					translation	-0.075 0.035 0
+					scale 0.2 0.2 0.01
+					children DEF Light5 LightSwitch {
+						urlNotPressed "ButtonNotPressed.wrl"
+						urlPressed "ButtonPressed.wrl"
+					ROUTE Light5.OnOrOff TO	PosteIluminacao5.on
+				}
+			}
+
+
+				#Postes pequenos de iluminação 1
+				Transform {
+					translation	-0.03 0.035 0
+					scale 0.15 0.15 0.01
+					children DEF Light7 LightSwitch {
+						urlNotPressed "ButtonNotPressed.wrl"
+						urlPressed "ButtonPressed.wrl"
+					ROUTE Light7.OnOrOff TO	SingleLight1.on
+				}
+			}
+				#Postes pequenos de iluminação 2
+				Transform {
+					translation	-0.01 0.035 0
+					scale 0.15 0.15 0.01
+					children DEF Light8 LightSwitch {
+						urlNotPressed "ButtonNotPressed.wrl"
+						urlPressed "ButtonPressed.wrl"
+					ROUTE Light8.OnOrOff TO	SingleLight2.on
+				}
+			}
+
+				#Postes pequenos de iluminação 3
+				Transform {
+					translation	-0.03 0.0 0
+					scale 0.15 0.15 0.01
+					children DEF Light9 LightSwitch {  
+						urlNotPressed "ButtonNotPressed.wrl"
+						urlPressed "ButtonPressed.wrl"
+					ROUTE Light9.OnOrOff TO	SingleLight3.on
+				}
+			}
+				#Postes pequenos de iluminação 4
+				Transform {
+					translation	-0.01 0.0 0
+					scale 0.15 0.15 0.01
+					children DEF Light10 LightSwitch {
+						urlNotPressed "ButtonNotPressed.wrl"
+						urlPressed "ButtonPressed.wrl"
+					ROUTE Light10.OnOrOff TO	SingleLight4.on
+				}
+			}
+
+				#Postes pequenos de iluminação 5
+				Transform {
+					translation	-0.03 -0.035 0
+					scale 0.15 0.15 0.01
+					children DEF Light11 LightSwitch {
+						urlNotPressed "ButtonNotPressed.wrl"
+						urlPressed "ButtonPressed.wrl"
+					ROUTE Light11.OnOrOff TO	SingleLight5.on
+				}
+			}
+				#Postes pequenos de iluminação 6
+				Transform {
+					translation	-0.01 -0.035 0
+					scale 0.15 0.15 0.01
+					children DEF Light12 LightSwitch {
+						urlNotPressed "ButtonNotPressed.wrl"
+						urlPressed "ButtonPressed.wrl"
+					ROUTE Light12.OnOrOff TO	SingleLight6.on
+				}
+			}
+
+			#Noite e dia 6
+				Transform {
+					translation	-0.1 -0.031 0
+					scale 0.40 0.30 0.01
+					children DEF Light13 LightSwitch {
+						urlNotPressed "DayButton.wrl"
+						urlPressed "NightButton.wrl"
+					ROUTE Light13.OnOrOff TO DayLight.on
+					ROUTE Light13.OnOrOff TO Day.set_bind
+
+				}
+			}
+
+
+		]
+
+		}		
+		
+
+	]
+			
+			
+				
+}
+
+
+ ]
+}  
+	  
+  
+ROUTE ps.position_changed TO cp.set_translation  
+ROUTE ps.orientation_changed TO cp.set_rotation 
+			
+
+vFootballField 
+{
+
+}
+
+
+

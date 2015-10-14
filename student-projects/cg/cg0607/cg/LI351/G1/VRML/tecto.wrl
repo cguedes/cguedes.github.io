@@ -1,0 +1,118 @@
+#VRML V2.0 utf8
+
+
+##############################################################################
+# Iluminação
+##############################################################################
+
+# Armadura com luzes flurescentes
+PROTO ARMADURA_LUZES [
+
+  field SFVec3f translation 5 2.9 -18
+  field SFBool lampON TRUE
+
+]{
+
+  Transform  {
+    translation IS translation
+    rotation 1 0 0 1.57
+    children [
+      Shape {
+        geometry Box {
+          size 0.2 1 0.05
+        }
+        appearance Appearance { material Material { diffuseColor 0.9 0.9 0.9  transparency 0.7 } }
+      }
+      Shape {
+        geometry Extrusion {
+          crossSection [-0.1 0.025, -0.1 -0.025, 0.1 -0.025, 0.1 0.025, 0.090 0.025, 0.080 -0.015, -0.080 -0.015, -0.090 0.025]
+          spine [0 -0.5 0, 0 0.5 0]
+          convex FALSE
+          ccw FALSE
+        }
+        appearance Appearance { material Material { diffuseColor 0.6 0.6 0.6 } }
+      }
+      Transform {
+        translation 0.045 0 0.005
+        children DEF Lampada_Armadura Shape {
+          geometry Cylinder {
+            radius 0.015
+            height 1
+          }
+          #appearance Appearance { material Material { diffuseColor 0.95 0.95 0.85 emissiveColor 0.95 0.95 0.85 shininess 0.5 } }
+          appearance Appearance { material Material { diffuseColor 0.95 0.95 0.85 } }
+        }
+      }
+      Transform {
+        translation -0.045 0 0.005
+        children USE Lampada_Armadura
+      }
+
+      # Luz associada a esta lampada
+      Transform {
+        translation 0 -0.5 0
+        children
+          DEF LampLight PointLight {
+            location 0 0 0
+            color 0.95 0.95 0.85
+            intensity 0.15
+            radius 10
+            ambientIntensity 0.2
+            on IS lampON
+          }
+      }
+
+      DEF LightSwitch TouchSensor {}
+      DEF Toggle Script {
+	      field    SFBool on TRUE
+	      eventIn  SFBool set_active
+	      eventOut SFBool on_changed
+
+	      # use 'javascript' on newer browsers
+	      url "vrmlscript:
+		      function set_active( b, tm ) {
+			      // ignore button releases
+			      if ( b == FALSE ) return;
+
+			      // toggle on button presses
+			      if ( on == TRUE ) on = FALSE;
+			      else              on = TRUE;
+			      on_changed = on;
+		      }"
+      }
+    ]
+    ROUTE LightSwitch.isActive TO Toggle.set_active
+    ROUTE Toggle.on_changed    TO LampLight.set_on
+  }
+
+}
+
+
+PROTO tecto []
+{
+	Group {
+		children [
+			Transform  {
+				#ajustar o chao a localizacao das paredes (desloc em 'xx e em 'zz)
+				translation 5.605 3.295 1.355		
+				children
+				Shape {
+    				geometry Box {
+    				  size 11.59 0.01 3.09		#(11.59 = 11.40+0.19) (3.09 = 2.71+0.19+0.19)
+    				}
+    				appearance Appearance {
+    					material Material {diffuseColor 1 .9 .61}
+    				}
+				}
+			},
+			# colocar 4 luzes no tecto e distribui-las em espacos iguais
+			# cada espaco entre as lampadas fica com 1.43
+			ARMADURA_LUZES { translation 9.2 3.270 1.355 lampON TRUE },
+			ARMADURA_LUZES { translation 6.9 3.270 1.355 lampON TRUE },
+			ARMADURA_LUZES { translation 4.6 3.270 1.355 lampON TRUE },
+			ARMADURA_LUZES { translation 2.3 3.270 1.355 lampON TRUE }
+
+
+		]
+	}
+}

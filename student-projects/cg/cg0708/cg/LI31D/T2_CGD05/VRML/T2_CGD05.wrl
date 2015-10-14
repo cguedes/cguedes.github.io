@@ -1,0 +1,508 @@
+#VRML V2.0 utf8
+
+######################################################################################
+# Instituto Superior de Engenharia de Lisboa                                         #
+# Departamento de Engenharia de Electrónica e Telecomunicações e de Computadores     #
+# Licenciatura em Engenharia Informática e de Computadores                           #
+# Computação Gráfica (IC307)                                                         #
+#------------------------------------------------------------------------------------#
+#                                                                                    #
+#								Loja AISEL.                                          #
+#                                                                                    #
+#------------------------------------------------------------------------------------#
+# Docentes: Carlos Guedes															 # 
+#																					 #
+# Modeladores:																		 #
+#    Miguel Borges nº30860															 #
+#    Luis Borges nº30859															 #
+#    João Soares nº30136                               						 		 #
+#                                                                        © 2007 ISEL #
+######################################################################################
+
+######################################################################################
+# Descrição da cena																	 #
+######################################################################################
+
+WorldInfo {
+  title "Representação da Loja AISEL"
+  info "Neste parte do ISEL é o edificio onde se encontra a maior parte das sebentas 
+		indicadas pelos engenheiros e equipamento ou material associado à AEISEL"
+}
+
+NavigationInfo {
+	headlight TRUE
+}
+
+######################################################################################
+# Definição dos pontos de vista														 #
+######################################################################################
+
+Viewpoint {
+	description	"Porta da Loja da AEISEL"
+	position  16 2 4 
+	orientation 0 1 0 1.57
+}
+
+Viewpoint {
+	description	"Canto da Papelaria AEISEL"
+	position 1.5 1.5 2	 
+	orientation 0 1 0 3.626990
+}
+
+Viewpoint {
+	description	"Caixote de Reciclagem"
+	position 4.5 1.3 5.6
+	orientation 0.4 1 0.4 -1.57
+}
+
+Viewpoint {
+	description	"Cancela"
+	position 4.5 1.3 6.0
+	orientation	0 1 0 1.57
+}
+
+Viewpoint {
+	description	"Entrada da Loja da AEISEL"
+	position 5.8 1.5	4
+	orientation 0 1 0 2.0858691438136785
+} 
+
+Viewpoint {
+	description	"Televisao"
+	position 4 1 8.5
+	orientation 0 -1 0 1.5707963267948965
+}
+
+#####################################################################################
+# Eixo de coordenadas do mundo														#
+#####################################################################################
+
+EXTERNPROTO	axis [] "axis.wrl#axis"
+axis { }
+
+
+#####################################################################################
+# Ambiente (fundo e céu)															#
+#####################################################################################
+
+Background {
+  groundColor [0.3 0.3 0.3]
+  skyColor  [0.3 0.7 1]
+}
+
+
+#####################################################################################
+#  Funções criadas																	#
+#####################################################################################
+
+EXTERNPROTO	ESTRUTURA [] "Estrutura.wrl#Estrutura"
+EXTERNPROTO	Vitrine[] "Vitrine.wrl#Vitrine"
+EXTERNPROTO	Interruptor[] "Candeeiro.wrl#Interruptor"
+EXTERNPROTO	Estante[] "estante.wrl#ESTANTE"
+EXTERNPROTO	Aviso[] "estante.wrl#Aviso"
+EXTERNPROTO	movel[] "movel.wrl#movelOrigem"
+EXTERNPROTO	mesa[] "mesa2.wrl#mesaOrigem"
+EXTERNPROTO	Reciclagem[] "Reciclagem.wrl#Reciclagem"
+EXTERNPROTO	Bancada[] "Bancada.wrl#Bancada"
+EXTERNPROTO	BancadaVitrine[] "Bancada_Vitrine.wrl#Bancada_Vitrine"
+EXTERNPROTO	Sebentas[] "estante.wrl#Sebentas"
+EXTERNPROTO	Parteleiras[] "Bancada_Vitrine.wrl#Parteleiras"
+EXTERNPROTO	Cancela[] " Cancela.wrl#Cancela"
+EXTERNPROTO	Placar[] "Bancada_Vitrine.wrl#Placar"
+EXTERNPROTO	Placar2[] "Bancada_Vitrine.wrl#Placar2"
+EXTERNPROTO	PlacarTras[] "Bancada_Vitrine.wrl#PlacarTras"
+EXTERNPROTO	Extintor[] "Extintor.wrl#Extintor"
+EXTERNPROTO Armario[] "armario.wrl#Armario"
+EXTERNPROTO	TV[] "televisao.wrl#televisao"
+EXTERNPROTO	Arquivo[] "blocos.wrl#bloco"
+EXTERNPROTO	Computador[] "computador.wrl#computador"
+EXTERNPROTO	Caixa_Registadora[] "caixa.wrl#Caixa_Registadora"
+
+#####################################################################################
+#  Papelaria AEISEL																    #
+#####################################################################################
+
+
+ESTRUTURA {}
+Transform{
+	translation	4.6 1.55 9.21
+	children Vitrine{}
+}
+
+
+Group{
+	children [
+		DEF _2EstantesComAviso Transform {
+			rotation 0 1 0 1.57				 # 0.36
+			translation	0.721 0 8.82
+			children [
+				Transform{
+					children [ Aviso{} Estante{}]
+				}
+				Transform{
+					translation	1.05 0 0
+					children [ Aviso{} Estante{}]
+				}
+			]
+		}
+		Transform{
+			translation	0 0 -2.1
+			children USE _2EstantesComAviso
+		}
+		Transform{
+			rotation 0 1 0 1.57		  
+			translation	-5.7 0 9.8
+			children USE _2EstantesComAviso
+		}
+
+		DEF _2Estantes Transform {
+			translation	1 0 0.6
+			children [
+				Transform{
+					children [Estante{}]
+				}
+				Transform{
+					translation	1.05 0 0
+					children [Estante{}]
+				}
+			]
+		}
+		Transform{
+			rotation 0 1 0 1.57
+			translation	0 0 4
+			children USE _2Estantes
+		}						 
+		Transform{
+			rotation 0 1 0 1.57
+			translation	0.72 0 4.62
+			children [ Aviso{} Estante{}]
+		}
+	]
+}
+Transform {						 
+	translation	3.395 0 3.57
+	children movel	{}
+}
+Transform {						 
+	translation	4.395 0 3.57
+	children movel	{}
+}					  
+
+Transform{						
+	rotation 0 1 0 1.57
+	translation	3.45 0 2.48
+	children mesa{}
+}
+Transform{						
+	rotation 0 1 0 1.57
+	translation	5.35 0 9
+	children mesa{}
+}
+
+Transform{						
+	rotation 0 1 0 -1.57
+	translation	5.7 0.83 8.45
+	children Arquivo {}
+}
+Transform{						
+	rotation 0 1 0 -1.57
+	translation	5.7 0.83 8.25
+	children Arquivo {}
+}
+Transform{						
+	rotation 0 1 0 -1.57
+	translation	5.7 0.93 7.6
+	children Computador{}
+}
+
+
+Transform{
+	rotation 0 1 0 3.14
+	translation	5.9 0 5.2
+	children Reciclagem{}
+}							 
+Transform{
+	rotation 0 1 0 1.57
+	translation	5.9 1.5 5.5515
+	children Extintor {}
+}
+Transform{
+	rotation 0 1 0 3.14					
+	translation	3.5 0.07 3.57
+	children Armario{}
+}
+
+
+Group{
+	children[
+		Transform{
+			rotation 0 1 0 3.14
+			translation	6 0 6.3
+			children Bancada{}
+		}
+		Transform{
+			rotation 0 1 0 3.14
+			translation	5.415 0 6.305
+			children [Parteleiras{} BancadaVitrine{}]
+		}
+		Transform{
+			rotation 0 1 0 3.14
+			translation	4.215 0 6.305
+			children [Parteleiras{} BancadaVitrine{}]
+		}
+		Transform{
+			rotation 0 1 0 3.14					
+			translation	3.015 0 6.3
+			children Bancada{}
+		}
+		Transform{
+			rotation 0 1 0 1.57					
+			translation	2.43 0 6.8
+			scale 0.9 1 0.9
+			children Bancada{}
+		}
+		Transform{
+			rotation 0 1 0 1.57					
+			translation	2.23 1.02 6.29
+			children Cancela{}
+		}
+		Transform{
+			rotation 0 1 0 1.57
+			translation	2.47 0 5.69
+			children [Placar{} BancadaVitrine{}]
+		}
+		Transform{
+			rotation 0 1 0 1.57					
+			translation	2.47 0 4.49
+			children Bancada{}
+		}
+		Transform{
+			rotation 0 1 0 1.57					
+			translation	2.47 0 3.91
+			children Bancada{}
+		}
+	]
+}
+
+Transform{
+						
+	translation	1.57 0.75 4.1
+	children Placar2 {}
+}
+Transform{
+						
+	translation	1.57 0.75 4.099
+	children PlacarTras {}
+}
+Transform{
+	rotation 0 1 0 -1.57
+	translation	5.7 1.25 6.3
+	children 	Caixa_Registadora {}
+}
+Transform{
+	rotation 0 1 0 1.57
+	scale 2 1 1
+	translation	5 1.03 6.48
+	children Sebentas {}
+}
+Transform{
+	rotation 0 1 0 1.57
+	scale 2 1 1
+	translation	4.6 1.03 6.48
+	children Sebentas {}
+}
+
+Transform{						
+	rotation 0 1 0 1.57
+	translation	5.7 1.13 8.35
+	children [
+		TV{}
+		Group {
+			children[
+
+#####################################################################################
+#  Animação de Ligar a Televisão. Foi colocado um som ao carregar no botao          #
+#####################################################################################
+				Transform {
+				   scale 0.02 0.02 0.02
+					rotation 1 0 0 1.57
+					translation	0.18 -0.184 -0.16 
+					children[
+			
+   						Shape {
+							geometry Cylinder { 
+								height 0.1
+								side TRUE
+								top	TRUE
+								bottom TRUE
+								radius	0.3
+							}
+							appearance Appearance {
+								material  Material {
+									diffuseColor 0 0  0
+								}												
+							}
+						}
+						DEF TS TouchSensor { }
+					]
+				}				
+				Sound {        
+					source DEF Som AudioClip {url "Sons\TV.wav"}
+				}
+			]
+			ROUTE TS.touchTime TO Som.startTime
+#####################################################################################
+		} 
+	]
+}
+
+									
+
+#####################################################################################
+#  Animação de ligar a Luz														    #
+#####################################################################################
+
+Transform {
+	rotation 0 1 0 1.57
+	translation	5.98 1.5 5.3
+	children[
+		Shape {
+			geometry Box{size 0.06 0.06 0.002}
+			appearance Appearance {
+				material	Material {diffuseColor 1 1 1}
+				texture ImageTexture{url "Texturas\Acessorios\interruptor.JPG"}
+			}
+		}
+		DEF InterruptorTouch TouchSensor {
+		}
+	]
+}
+Transform {
+	rotation 0 1 0 1.57
+	translation	5.98 1.5 5.365
+	children[
+		Shape {
+			geometry Box{size 0.06 0.06 0.002}
+			appearance Appearance {
+				material	Material {diffuseColor 1 1 1}
+				texture ImageTexture{url "Texturas\Acessorios\interruptor.JPG"}
+			}
+		}
+		DEF InterruptorTouch2 TouchSensor {
+		}
+	]
+}
+DEF InterruptorLight PointLight {
+
+	on FALSE
+    intensity 1
+    ambientIntensity 1
+    color 1 1 1
+    location 1 3.27 2.00
+	radius 5
+}
+DEF InterruptorLight2 PointLight {
+
+	on FALSE
+    intensity 1
+    ambientIntensity 1
+    color 1 1 1
+    location 2.90 3.27 2.00 
+	radius 5
+}
+DEF InterruptorLight3 PointLight {
+
+	on FALSE
+    intensity 1
+    ambientIntensity 1
+    color 1 1 1
+    location 1 3.27 5.50
+	radius 5
+}
+DEF InterruptorLight4 PointLight {
+
+	on FALSE
+    intensity 1
+    ambientIntensity 1
+    color 1 1 1
+    location 2.90 3.27 5.50
+	radius 5
+}
+DEF InterruptorLight5 PointLight {
+
+	on FALSE
+    intensity 1
+    ambientIntensity 1
+    color 1 1 1
+    location 4.60 3.27 5.50 
+	radius 5
+}
+DEF InterruptorLight6 PointLight {
+
+	on FALSE
+    intensity 1
+    ambientIntensity 1
+    color 1 1 1
+    location 1 3.27 8.00
+	radius 5
+}
+DEF InterruptorLight7 PointLight {
+
+	on FALSE
+    intensity 1
+    ambientIntensity 1
+    color 1 1 1
+    location 4.80 3.27 8.00
+	radius 5
+}
+DEF InterruptorLight8 PointLight {
+
+	on FALSE
+    intensity 1
+    ambientIntensity 1
+    color 1 1 1
+    location 2.90 3.27 8.00
+	radius 5
+}
+
+DEF switch Script {
+	field SFBool VarBool FALSE
+	eventIn	SFBool Set_true_false
+	eventOut SFBool	Var
+	url	"javascript:
+	function Set_true_false(v, timestamp){
+		if(v==true)	 return;
+		if (VarBool==false)	 VarBool=true
+			else VarBool=false
+			Var=VarBool
+	}"
+}
+DEF switch2 Script {
+	field SFBool VarBool FALSE
+	eventIn	SFBool Set_true_false
+	eventOut SFBool	Var
+	url	"javascript:
+	function Set_true_false(v, timestamp){
+		if(v==true)	 return;
+		if (VarBool==false)	 VarBool=true
+			else VarBool=false
+			Var=VarBool
+	}"
+}
+
+
+ROUTE InterruptorTouch.isActive     TO    switch.Set_true_false
+ROUTE switch.Var TO	InterruptorLight.on
+ROUTE switch.Var TO	InterruptorLight2.on
+
+
+
+ROUTE InterruptorTouch2.isActive     TO    switch2.Set_true_false
+ROUTE switch2.Var TO	InterruptorLight3.on
+ROUTE switch2.Var TO	InterruptorLight4.on
+ROUTE switch2.Var TO	InterruptorLight5.on
+ROUTE switch2.Var TO	InterruptorLight6.on
+ROUTE switch2.Var TO	InterruptorLight7.on
+ROUTE switch2.Var TO	InterruptorLight8.on
+
+#####################################################################################

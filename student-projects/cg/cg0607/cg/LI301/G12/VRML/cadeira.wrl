@@ -1,0 +1,191 @@
+#VRML V2.0 utf8
+EXTERNPROTO	Axis [] "axis.wrl#Axis"
+PROTO cilindro [field SFColor cor .37 .37 .37] {
+	Transform {
+		translation	0.025 0.2 -0.025
+		children Shape {
+			geometry Cylinder { height 0.4 radius 0.025 }
+			appearance Appearance { 
+				material Material { 
+					diffuseColor IS	cor	
+					specularColor .72 .89 .89
+					ambientIntensity .1
+					shininess .13
+				}
+			}
+		}
+	}
+}
+
+PROTO p1 [field SFColor cor .37 .37 .37] {
+	Transform {
+		translation	0.2 0.0125 -0.2 
+		children Shape {
+			geometry Box { size	0.4 0.025 0.4 }
+			appearance Appearance { material Material { 
+				diffuseColor IS cor
+				specularColor .72 .89 .89
+				ambientIntensity .1
+				shininess .13 }
+				texture ImageTexture { url "txAssentoCadeira.jpg" }
+			}
+		}
+	}
+}
+
+PROTO p2 [field SFColor cor .37 .37 .37] {
+	Transform {
+		translation	0.2 0.0125 -0.2
+		children Shape {
+			geometry Box { size	0.4 0.025 0.4 }
+			appearance Appearance { material Material { 
+				diffuseColor IS cor
+				specularColor .72 .89 .89
+				ambientIntensity .1
+				shininess .13 }
+				texture ImageTexture { url "txAssentoCadeiraRev.jpg" }
+			}
+		}
+	}
+}
+
+PROTO p3 [field SFColor cor .37 .37 .37] {
+	Transform {
+		translation	0.2 0.2 -0.0125
+		children Shape {
+			geometry Box { size	0.4 0.4 0.025 }
+			appearance Appearance { material Material {
+				diffuseColor IS cor
+				specularColor .72 .89 .89
+				ambientIntensity .1
+				shininess .13 }
+				texture ImageTexture { url "txEnconstoCadeira.jpg" }
+			}
+		}
+	}
+}
+
+PROTO cadeira [] {
+	Group {
+		children [
+			# assento
+			Transform {
+				translation	0 0.425 0
+				children p1 {}
+			}
+			Transform {
+				translation	0 0.4 0
+				children p2 {}
+			}
+			# enconsto
+			Transform {
+				translation	0 0.4 -0.425
+				children p3 {}
+			}
+			Transform {
+				translation	0 0.4 -0.4
+				children p3 {}
+			}
+			# perna da cadeira
+			Transform {
+				translation 0 0.01 -0.43
+				rotation 1 0 0 0.175
+				children cilindro {}
+			}
+			# perna da cadeira
+			Transform {
+				translation	0 0.01 0.03
+				rotation 1 0 0 -0.175
+				children cilindro {}
+			}
+			# perna da cadeira
+			Transform {
+				translation	0.35 0.01 0.03
+				rotation 1 0 0 -0.175
+				children cilindro {}
+			}
+			# perna da cadeira
+			Transform {
+				translation	0.35 0.01 -0.43
+				rotation 1 0 0 0.175
+				children cilindro {}
+			}
+		]
+	}
+}
+
+PROTO cadeiraFrente [ field SFVec3f pos 0 0 0] {
+	Transform {
+		rotation 0 1 0 3.14
+		translation	IS pos
+		children cadeira {}
+	}
+}
+
+PROTO cadeiraTras [ field SFVec3f pos 0 0 0] {
+	Transform {
+		translation	IS pos
+		children cadeira {}
+	}
+}
+
+PROTO fila2Cadeiras [ field SFVec3f posFila 0 0 0] {
+	Transform {
+		translation	IS posFila
+		children [
+			cadeiraFrente { pos 0.4 0 -0.4 }
+			cadeiraFrente { pos 1.03 0 -0.4}
+			cadeiraTras { pos 0 0 -0.6 }
+			cadeiraTras { pos 0.63 0 -0.6 }
+		]
+	}
+}
+
+PROTO fila3Cadeiras [ field SFVec3f posFila 0 0 0] {
+	Transform {
+		translation	IS posFila
+		children [
+			cadeiraFrente { pos 0.4 0 -0.4 }
+			cadeiraFrente { pos 1.03 0 -0.4}
+			cadeiraFrente { pos 1.66 0 -0.4 }
+			cadeiraTras { pos 0 0 -0.6 }
+			cadeiraTras { pos 0.63 0 -0.6 }
+			cadeiraTras { pos 1.26 0 -0.6 }
+		]
+	}
+}
+
+PROTO fila4Cadeiras [ field SFVec3f posFila 0 0 0] {
+	Transform {
+		translation	IS posFila
+		children [
+			cadeiraFrente { pos 0.4 0 -0.4 }
+			cadeiraFrente { pos 1.03 0 -0.4}
+			cadeiraFrente { pos 1.66 0 -0.4 }
+			cadeiraFrente { pos 2.29 0 -0.4 }
+			cadeiraTras { pos 0 0 -0.6 }
+			cadeiraTras { pos 0.63 0 -0.6 }
+			cadeiraTras { pos 1.26 0 -0.6 }
+			cadeiraTras { pos 1.89 0 -0.6 }
+		]
+	}
+}
+
+PROTO fila5Cadeiras [ field SFVec3f posFila 0 0 0] {
+	Transform {
+		translation	IS posFila
+		children [
+			cadeiraFrente { pos 0.4 0 -0.4 }
+			cadeiraFrente { pos 1.03 0 -0.4}
+			cadeiraFrente { pos 1.66 0 -0.4 }
+			cadeiraFrente { pos 2.29 0 -0.4 }
+			cadeiraFrente { pos 2.92 0 -0.4 }
+			cadeiraTras { pos 0 0 -0.6 }
+			cadeiraTras { pos 0.63 0 -0.6 }
+			cadeiraTras { pos 1.26 0 -0.6 }
+			cadeiraTras { pos 1.89 0 -0.6 }
+			cadeiraTras { pos 2.52 0 -0.6 }
+		]
+	}
+}
+cadeiraFrente{}

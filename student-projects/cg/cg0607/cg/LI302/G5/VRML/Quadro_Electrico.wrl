@@ -1,0 +1,373 @@
+#VRML V2.0 utf8
+
+
+PROTO frame_quadro_elec[]
+{
+
+	Transform {
+		children 
+		[
+			
+
+		Transform {
+		
+			translation	0 0 -0.15 children
+
+			Shape 
+			{
+				geometry Box {size 0.36 0.42 0.005}
+				appearance Appearance {material Material {diffuseColor 0.85 0.85 0.85}}
+			}
+		}
+
+		Transform{
+		
+			translation	0 -0.205 -0.073 children
+
+			Shape 
+			{
+				geometry Box {size 0.36 0.015 0.15}
+				appearance Appearance {material Material {diffuseColor 0.85 0.85 0.85}}
+			}
+		}
+
+		Transform{
+		
+			translation	0 0.205 -0.073 children
+
+			Shape 
+			{
+				geometry Box {size 0.36 0.015 0.15}
+				appearance Appearance {material Material {diffuseColor 0.85 0.85 0.85}}
+			}
+		}
+
+		Transform {
+								  
+			translation	-0.178 0 -0.073 children
+
+			Shape
+			{
+				geometry Box {size 0.005 0.4 0.15}
+				appearance Appearance {material Material {diffuseColor 0.85 0.85 0.85}}
+			}
+		}
+		
+		Transform {
+								  
+			translation	0.178 0 -0.073 children
+
+			Shape
+			{
+				geometry Box {size 0.005 0.4 0.15}
+				appearance Appearance {material Material {diffuseColor 0.85 0.85 0.85}}
+			}
+		}
+
+		
+
+		]
+	}
+	
+}
+
+
+PROTO dijuntor_light[]
+{
+	Transform 
+	{
+		children 
+		[
+			Shape 
+			{										 
+				geometry Box {size 0.03 0.05 0.04}
+				appearance Appearance {material Material {diffuseColor 0.85 0.85 0.85}}
+				
+			}
+
+			Transform 
+			{
+				rotation 0 0 1 1.57
+				translation	0 0.01 0.015 children
+				Shape 
+				{
+					geometry Cylinder { height 0.02 radius 0.01}
+					appearance Appearance {material Material {diffuseColor 0 0 0}}
+				}
+			}
+
+			Transform 
+			{
+				rotation 0 0 0 0
+				translation	0 0.01 0.025 children
+				Shape
+				{
+					geometry Box {size 0.02 0.007 0.01}
+					appearance Appearance {material Material {diffuseColor 0 0 0}}
+				}
+			}
+
+			Transform 
+			{
+				translation	0 -0.015 0.02 children
+				Shape 
+				{
+					geometry Box{size 0.02 0.007 0.005}
+					appearance Appearance {material Material {emissiveColor 1 0.7 0}}
+				}
+			}
+		]
+	}
+}
+
+
+PROTO dijuntor[]
+{
+	Transform 
+	{
+		children 
+		[
+			Shape 
+			{										 
+				geometry Box {size 0.03 0.05 0.04}
+				appearance Appearance {material Material {diffuseColor 0.85 0.85 0.85}}
+				
+			}
+
+			Transform 
+			{
+				rotation 0 0 1 1.57
+				translation	0 0.01 0.015 children
+				Shape 
+				{
+					geometry Cylinder { height 0.02 radius 0.01}
+					appearance Appearance {material Material {diffuseColor 0 0 0}}
+				}
+			}
+
+			Transform 
+			{
+				rotation 0 0 0 0
+				translation	0 0.01 0.025 children
+				Shape
+				{
+					geometry Box {size 0.02 0.007 0.01}
+					appearance Appearance {material Material {diffuseColor 0 0 0}}
+				}
+			}
+
+			
+		]
+	}
+}
+
+
+
+PROTO base_quadro[]
+{
+	Transform 
+	{
+		children 
+		[
+			Shape 
+			{
+				geometry Box {size 0.3 0.33 0.10}
+				appearance Appearance {material Material {diffuseColor 0.65 0.65 0.65}}
+			}
+
+			Transform 
+			{
+				translation	0 0.13 0.052 children
+				Shape 
+				{
+					geometry Box {size 0.25 0.04 0.007}
+					appearance Appearance {material Material {diffuseColor 0 0 0}}
+				}
+			}
+
+			Transform 
+			{
+				translation	0 0.13 0.055 children
+				Shape 
+				{
+					geometry Box {size 0.25 0.02 0.004}
+					appearance Appearance {material Material {diffuseColor 1 1 1}}
+				}	
+			}
+
+			Transform 
+			{
+				translation	0 -0.02 0.052 children
+				Shape 
+				{
+					geometry Box {size 0.25 0.04 0.007}
+					appearance Appearance {material Material {diffuseColor 0 0 0}}
+				}
+			}
+
+			Transform 
+			{
+				translation	0 -0.02 0.055 children
+				Shape 
+				{
+					geometry Box {size 0.25 0.02 0.004}
+					appearance Appearance {material Material {diffuseColor 1 1 1}}
+				}	
+			}
+
+			Transform 
+			{
+				translation	-0.11 0.075 0.04
+				children dijuntor_light{}
+			}
+
+			Transform 
+			{
+				translation	-0.08 0.075 0.04
+				children dijuntor_light{}
+			}
+
+			Transform 
+			{
+				translation	-0.05 0.075 0.04
+				children dijuntor_light{}
+			}
+
+			Transform 
+			{
+				translation	-0.05 0.075 0.04
+				children dijuntor_light{}
+			}
+
+			Transform 
+			{
+				translation	-0.02 0.075 0.04
+				children dijuntor{}
+			}
+
+			Transform 
+			{
+				translation	0.01 0.075 0.04
+				children dijuntor{}
+			}
+
+			Transform 
+			{
+				translation	0.04 0.075 0.04
+				children dijuntor{}
+			}
+
+			Transform 
+			{
+				translation	0.07 0.075 0.04
+				children dijuntor{}
+			}
+
+			Transform 
+			{
+				translation	0.1 0.075 0.04
+				children dijuntor{}
+			}
+		
+			Transform 
+			{
+				translation	-0.11 -0.08 0.04
+				children dijuntor{}
+			}
+
+			Transform 
+			{
+				translation	-0.08 -0.08 0.04
+				children dijuntor{}
+			}
+
+			Transform 
+			{
+				translation	-0.05 -0.08 0.04
+				children dijuntor{}
+			}
+
+			Transform 
+			{
+				translation	-0.02 -0.08 0.04
+				children dijuntor{}
+			}
+
+			Transform 
+			{
+				translation	0.1 -0.08 0.04
+				children dijuntor{}
+			}
+			
+			
+		
+		]
+	}
+}
+
+
+
+
+PROTO porta_quadro[]
+{
+	DEF	porta_q Transform 
+	{
+		center -0.18 0 0
+
+		children 
+		[
+			Shape 
+			{
+				geometry Box {size 0.35 0.4 0.005}
+				appearance Appearance {material Material {diffuseColor 0.85 0.85 0.85}}
+			}
+
+			Transform 
+		{
+			translation	0.1 0 0.004 children
+			Shape 
+			{
+				geometry Box {size 0.03 0.02 0.003}
+				appearance Appearance {material Material {diffuseColor 0.85 0.85 0.85}}
+
+			}
+		}
+
+		########################################################################
+			DEF Touch TouchSensor { }
+              DEF OrInterpolator OrientationInterpolator {
+                key [0 1] keyValue [0 1 0 0, 0 1 0 -1.57]
+              }
+              DEF Timer1 TimeSensor {
+                stopTime 1
+                cycleInterval 2 # Vai demorar este numero de segundos a abrir a porta
+                ROUTE Touch.touchTime TO Timer1.startTime
+                ROUTE Timer1.fraction_changed TO OrInterpolator.set_fraction
+                ROUTE OrInterpolator.value_changed TO porta_q.rotation
+              }
+			 #########################################################################
+
+		]
+	}
+}
+
+
+
+PROTO quadro_electrico[]
+{
+	Transform 
+	{
+		children 
+		[
+			frame_quadro_elec {}
+			
+			Transform {translation 0 0.005 -0.08 children
+				base_quadro	{}
+			}
+
+			porta_quadro {}
+		]
+	}
+}
+
+quadro_electrico {}

@@ -1,0 +1,23 @@
+#VRML V2.0 utf8
+
+PROTO roda[ field SFVec3f pos 0 0 0 ]{
+	Transform {
+		rotation  1 0 0 1.5708
+		children[  
+			Shape	{
+				geometry Cylinder {height 0.15 radius 0.25}
+				appearance Appearance  {
+					material Material {
+						diffuseColor  .15 .15 .15
+						specularColor .5 .5 .5
+						emissiveColor .14 .14 .14
+						ambientIntensity 0
+					}
+				}
+			}
+		]
+		
+		translation	IS pos
+	}
+}
+roda {}

@@ -1,0 +1,93 @@
+#VRML V2.0 utf8
+#PULPITO
+
+
+#dimensões do pulpito altura: 0.70 m, largura; 05m x 05m (na parte mais larga)
+
+
+EXTERNPROTO Axis [] "Axis.wrl#Axis"
+Transform {
+  scale 0.25 0.25 0.25
+  children Axis {}
+}
+
+PROTO fundo_1
+[
+]
+{  
+	Shape {
+		geometry Box {size .45 0 .45}
+		appearance Appearance {
+    		material	Material {
+				diffuseColor 0 0 0
+			}
+		}
+   	}
+}
+
+PROTO fundo
+[
+]
+{  
+	Shape {
+		geometry Box {size .5 0.05 .5}
+    	appearance Appearance {
+		   material Material { }
+           texture ImageTexture { url "textura parede.png" }
+		}
+    }
+}
+		 
+
+PROTO coluna
+[
+]
+{  
+	Shape {
+		geometry Box {size 0.3 .60 0.3}
+		appearance Appearance {
+			material Material { }
+       		texture ImageTexture { url "textura parede.png" }
+    	}
+    }
+}
+
+PROTO tampo
+[
+]
+{  
+	Shape {
+		geometry Box {size .6 0.05 .6}
+	   	appearance Appearance {
+			material Material { }
+        	texture ImageTexture { url "textura parede.png" }
+    	}
+	}
+}
+
+PROTO pulpito_baixo
+[
+]
+{
+	Transform {
+		children [
+			Transform {
+				translation	0 1.025 0
+				children fundo	{}
+			}
+			Transform {
+				translation	0 1.055 0
+				children fundo_1{}
+			}
+			Transform {
+				translation	0 1.35 0
+				children coluna	{}
+			}
+			Transform {
+				translation	0 1.65 0
+				children tampo {} 			
+			}
+		]
+		
+	}
+}

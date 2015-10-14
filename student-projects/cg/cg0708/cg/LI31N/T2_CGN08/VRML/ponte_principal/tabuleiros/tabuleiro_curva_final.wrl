@@ -1,0 +1,23 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	tab[]  "tabuleiro_curva.wrl"
+EXTERNPROTO	tab_longe[] "tabuleiro_curva_longe.wrl"
+
+PROTO tab_curva_final[field SFVec3f pos 0 0 0 field SFRotation rot 0 0 0 0]
+{
+	Transform {
+		children [
+			LOD	{
+				range [900]
+				center 80 0 100
+				level [
+					tab{}
+					tab_longe {}
+				]
+			}
+		]
+		rotation IS	rot
+		translation	IS pos	
+	}
+}
+tab_curva_final  {}

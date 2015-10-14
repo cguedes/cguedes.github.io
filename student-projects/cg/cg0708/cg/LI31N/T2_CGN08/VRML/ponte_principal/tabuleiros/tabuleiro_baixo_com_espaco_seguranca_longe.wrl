@@ -1,0 +1,92 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	grad100[ field	SFVec3f	pos field SFRotation rot] "gradeamento_rails/gradeamento100_longe.wrl"
+EXTERNPROTO	grad10[ field	SFVec3f	pos field SFRotation rot] "gradeamento_rails/gradeamento10_novo.wrl"
+EXTERNPROTO	rail100[ field	SFVec3f	pos field SFRotation rot] "gradeamento_rails/rail100_longe.wrl"
+EXTERNPROTO	rail10[ field	SFVec3f	pos field SFRotation rot] "gradeamento_rails/rail10_novo.wrl"
+
+EXTERNPROTO	suporte[ field SFRotation rot field	SFVec3f	pos] "suporte_vias/suporte_longe.wrl"
+EXTERNPROTO	telefone[ field	SFVec3f	pos ] "suporte_vias/telefone_SOS.wrl"
+EXTERNPROTO	sinal_proibido[ field SFRotation rot field	SFVec3f	pos ] "suporte_vias/proibido_estacionar.wrl"
+EXTERNPROTO candeeiros [	field SFRotation rot	field SFVec3f pos ] "../outros/candeeiros_2.wrl"
+
+EXTERNPROTO	pilar_longe[ field SFVec3f pos field SFRotation rot field SFVec3f escala field SFVec3f reset] 
+"../pilares/pilar_14m_longe.wrl"
+
+PROTO tabuleiro_largo[
+	field SFVec3f pos 0 0 0 field SFRotation rot 0 0 0 0 field SFVec3f escala1 1 1 1 field SFVec3f reset1 1 1 1
+]
+{
+	Transform {
+		children [	
+				Transform {
+					children [
+						Shape {
+							geometry Extrusion {
+								crossSection [
+								0 0, .2 .5, 1.4 .5, 1.4 0, 15.4 0, 15.45 .4, 15.45 1, 15.65 1,
+								15.65 .4, 15.7 0, 29.7 0, 29.7 .5, 30.9 .5, 31.1 0, 30.7 0,
+								30.7 -1, 29 -1, 26.9 -5, 4 -5, 2 -1, .4 -1, .4 0, 0 0
+							]
+							spine [	31 0 -200,  31 0 -198, 36 0 -193, 36 0 -123, 31 0 -118, 31 0 0	] 
+
+							scale [	1 1, 1 1, 1.32 1, 1.32 1, 1 1, 1 1 	]
+
+							orientation [
+								0 0 1 0, 0 0 -1 .6202, 0 0 -1 .06657, 0 0 1 .06657, 0 0 1 .04063,
+								0 0 1 0
+							]
+							}
+							appearance Appearance { 
+								material Material { diffuseColor 0.4 0.4 0.4 }
+							}
+						}
+					]
+				}
+				## ESTRADA ##
+				Transform {
+					children [
+						 Shape {
+							geometry Box { size	28.3 0.01 200	}
+							appearance Appearance { material Material { diffuseColor 0.4 0.4 0.4}}	
+						}
+					]
+					translation	15.55 0.015 -100
+				}
+
+				Transform {
+					children [
+						### PILARES ### 
+						pilar_longe { pos 0 -14 -50 escala IS escala1 reset IS reset1 }
+						pilar_longe { pos 0 -14 -150 escala IS escala1  reset IS reset1 }
+
+						#railes de ligação entre placas
+
+						## SUPORTE VIAS ##
+						suporte	{ rot 0 0 0 0 pos 15.5 0 -5 }
+		
+						### Candeeiros ###
+						candeeiros	{ pos 29.2 0.5 0 }
+						candeeiros	{ pos 29.2 0.5 -100 }
+						candeeiros { pos 29.2 0.5 -180 }
+
+					
+						## Gradeamento 100 metros ##
+						Transform { children grad100 { rot 0 1 0 1.57079 pos -4.4 1.3 -59.9 }  scale 1 1 0.7 }
+						Transform { children grad100 { rot 0 1 0 -1.57079 pos 35.7 1.3 -59.9 }  scale 1 1 0.7 } 
+				
+						Transform { children grad100 { rot 0 1 0 1.57079 pos 0.31 1.3 -119.45 }  scale 1 1 1.18 }
+						Transform { children grad100 { rot 0 1 0 -1.57079 pos 30.6 1.3 -119.45 }  scale 1 1 1.18 }	 
+
+					]
+					rotation 0 1 0 3.14158
+					translation	31 0 -200
+				}
+		]
+		rotation IS	rot
+		translation	IS pos
+	}
+
+	
+}
+tabuleiro_largo {}

@@ -1,0 +1,133 @@
+#VRML V2.0 utf8
+# dimensões:
+# x: 
+# y: 
+# z: 
+
+EXTERNPROTO	Axis [ ] "axis_prof.wrl#Axis"
+Transform {
+	scale 1 1 1
+	children Axis {  }
+} 
+
+PROTO Tampo_mesa [
+]{
+	Group	{
+		children [
+			Transform	{
+				children
+					Shape	{
+						geometry Box {
+							size 0.92 0.025 0.42
+						}
+						appearance Appearance	{	material Material	{ }	}
+					}
+			}
+			Transform	{
+				children
+				Shape	{
+					geometry Extrusion {
+						crossSection [
+						-0.5 -0.25, 0.5 -0.25, 0.5 0.25, -0.5 0.25,	-0.5 -0.25,
+						-0.46 -0.21, 0.46 -0.21, 0.46 0.21, -0.46 0.21,	-0.46 -0.21, -0.5 -0.25
+						]
+						spine	[0 -0.0125 0, 0 0.0125 0]
+						ccw	FALSE
+					}
+					appearance Appearance	{ texture ImageTexture { url "imagens/madeira.jpg" } }
+				}
+			}
+		]
+	}
+}
+
+PROTO	Perna_Mesa []{
+	Shape	{
+		geometry Extrusion {
+			crossSection [0.0125 0.015 , -0.0125 0.015 , -0.0125 -0.015 ,0.0125 -0.015 , 0.0125 0.015]
+			spine [
+				0					0					0	,
+				0					0.28			0	,
+				0.003875	0.283375	0	,
+				0.00775		0.28675		0	,
+				0.011625	0.290125	0	,
+				0.0155		0.2935		0	,
+				0.019375	0.296875	0	,
+				0.02325		0.30025		0	,
+				0.027125	0.303625	0	,
+				0.031			0.307			0	,
+				0.034875	0.310375	0	,
+				0.03875		0.31375		0	,
+				0.042625	0.317125	0	,
+				0.0465		0.3205		0	,
+				0.050375	0.323875	0	,
+				0.05425		0.32725		0	,
+				0.058125	0.330625	0	,
+				0.062			0.334			0	,
+				0.065875	0.337375	0	,
+				0.06975		0.34075		0	,
+				0.073625	0.344125	0	,
+				0.0775		0.3475		0	,
+				0.2175		0.3475		0					
+				]			
+			orientation 0 0 1 0
+			solid	TRUE
+			ccw	FALSE
+	 }
+	 appearance Appearance	{ texture ImageTexture { url "imagens/madeira.jpg" } }
+	}
+	
+}
+
+#O poonto q fica na ORIGEM é qd se cruzam do lado q está virado p fora							 	
+PROTO	Perna_mesa_dupla [
+]{
+	Group	{
+		children [
+			Transform	{
+				translation	0.0125 0 0
+				children	Perna_Mesa {}
+			}
+			Transform	{
+				translation	 0 0 -0.0125 
+				rotation 0 1 0 1.57
+				children Perna_Mesa	{}
+			}
+		]
+	}
+}
+
+
+PROTO Mesa_pequena	 []{
+	Group	{
+		children [
+			Transform {
+				translation	0 0.3725 0  #sobe 0.36m + 0.0125 (metade da espessura)
+				children Tampo_mesa	{}
+			}
+			Transform	{		#perna esquerda frente
+				translation	 -0.483 0 0.233
+				children Perna_mesa_dupla	{}
+			}
+			Transform	{		#perna direita frente
+				translation	 0.483 0 0.233
+				rotation 0 1 0 1.57
+				children Perna_mesa_dupla	{}
+			}
+			Transform	{	 	#perna direita atrás
+			translation	 0.483 0 -0.233
+				rotation 0 1 0 3.14
+				children Perna_mesa_dupla	{}
+			}
+			Transform	{	 #perna esquerda atrás
+				translation -0.483 0 -0.233
+				rotation 0 1 0 4.71
+				children Perna_mesa_dupla	{}
+			}
+		]
+	}
+}
+
+
+Mesa_pequena {}
+

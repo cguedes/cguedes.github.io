@@ -1,0 +1,298 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Eixo [
+
+
+]
+"eixo.wrl#Eixos"
+
+
+
+
+PROTO Estor
+[
+]
+{
+	Transform {
+		translation	132 4 4
+		children
+			Shape {
+				geometry Box {
+					size 264 8 8
+				}
+				appearance Appearance {
+				  material Material {
+					diffuseColor  0.5 0.5 0.5
+				 } 
+	    		}
+			}
+	}
+}
+
+
+PROTO BancadaTampo
+[
+]
+{
+	Transform {
+		translation	132 2 25
+		children
+		Shape {
+			geometry Box {
+				size  264 4 50
+			}
+				appearance Appearance {
+					material Material { specularColor 0 0 0 }
+			  		texture	ImageTexture {
+				    repeatS TRUE
+					repeatT	TRUE
+					url "Texturas\Mesas\marmore.jpg" 
+					} 
+					textureTransform  TextureTransform {  
+						scale 5 1
+						rotation 0 
+						center 0 0 
+						translation 0 0  
+					}
+	    		}
+		}
+	}
+
+}
+
+PROTO BancadaMadeira
+[
+]
+{
+	Group {
+		children [
+	Transform {
+		translation	132 40 23 
+		children
+			Shape {
+				geometry Box {
+					size  264 80 46
+				}
+				appearance Appearance {
+			  		material	Material {
+						diffuseColor  0.6 0.706 0.63
+	    		    }
+			    }
+			}
+		}
+
+	 Transform {
+			   translation 132 40 46.1 
+			   children Shape	{
+	  				geometry Box {
+					 size 264 80 0.1
+					}
+					appearance Appearance   {
+						material Material { diffuseColor 0.76 0.42 0.08 }
+						texture	ImageTexture {
+							repeatS TRUE
+							repeatT	TRUE
+							url "Texturas\Mesas\gaveta_bancada.jpg" 
+						}
+					 	textureTransform  TextureTransform {  
+						scale 2 1
+						rotation 0 
+						center 0 0 
+						translation 0 0  
+					}   
+					}
+				}
+			}
+		
+		]
+
+	}
+}
+
+PROTO MolduraJanela 
+[]
+{
+ 	Transform {
+	rotation 1 0 0 -1.57
+	translation	 0 0 6
+	children
+		Shape {
+			geometry Extrusion{	
+				crossSection [
+					0 0,264 0,264 186, 0 186, 0 0 , 
+					6 6, 86 6,86 166, 6 166, 6 6, 0 0,
+				    92 6, 172 6, 172 166, 92 166, 92 6, 0 0,
+					178 6, 258 6, 258 166,178 166, 178 6, 0 0
+			    ]            	
+				spine [0 0 0, 0 6 0]
+				solid FALSE
+				}		  
+			appearance Appearance {
+			  material Material {
+				diffuseColor  0.7 0.7 0.7
+			  } 
+	    	}
+		}
+	
+	}
+}
+
+
+
+PROTO  Vidro
+[]
+{
+	Transform {
+		translation 40 80 1
+		children
+		Shape {
+    		geometry Box {
+				size 80 160  2
+			}
+			appearance Appearance {
+			  material Material {
+				diffuseColor  1 1 1
+			     transparency 0.8
+			  } 
+		  }
+	  }
+  }	
+}
+
+PROTO  Janela
+[]
+{
+		Group {
+	children
+	[
+		MolduraJanela {}
+		
+		Transform {
+		translation	6 6 2
+		children  Vidro {}
+		}
+		Transform {
+		translation	92 6 2
+		children  Vidro {}
+		}
+		Transform {
+		translation	178 6 2
+		children  Vidro {}
+		}
+	]
+	}
+}
+
+
+
+PROTO BancadaMovel
+[]
+{
+	Group {
+	children
+	[
+		BancadaMadeira {}
+		Transform {
+			translation 0 80 0
+			children BancadaTampo {}
+		}
+		Transform {
+			translation 0 84 0
+			children Janela {}
+		}
+		Transform {
+			translation 0 248 6
+			children Estor {}
+		}
+	]
+	}
+}
+
+
+
+
+PROTO Pilar
+[
+]
+{
+	Transform {
+		translation	 24 135 23
+		children
+		Shape {
+			geometry Box { size 48 270 46 }
+			appearance Appearance {
+				material Material { diffuseColor  0.6 0.706 0.63 }
+				texture	ImageTexture {
+					repeatS TRUE
+					repeatT	TRUE
+					url "Texturas\Sala\pilar.JPG" 
+
+				}
+				textureTransform  TextureTransform {  
+					scale 100 100
+					rotation 0 
+					center 0 0 
+					translation 0 0  
+				}
+	    	}
+		}
+	}
+}
+
+PROTO ParedeDeFora
+[
+]
+{
+	Group {
+	children
+	[
+		Transform  {
+			scale		 0.1666 1 1
+			children Pilar {}
+		}
+		Transform {
+			translation	8 0 0
+			children BancadaMovel {}
+		}
+		Transform {
+		    translation 272 0 0
+			children Pilar {}
+		}
+		Transform {
+			translation	320 0 0
+			children BancadaMovel {}
+		}
+		Transform {
+		    translation 584 0 0
+			children Pilar {}
+		}
+		Transform {
+			translation	632 0 0
+			children BancadaMovel {}
+		}
+		Transform {
+		    translation 896 0 0
+			children Pilar {}
+		}
+		Transform {
+			translation	944 0 0
+			children BancadaMovel {}
+		}
+		Transform {
+			scale		 0.1666 1 1
+		    translation 1208 0 0
+			children Pilar {}
+		}
+
+
+	]	 
+	}
+}
+
+
+Transform {
+	scale 0.01 0.01 0.01
+
+	children ParedeDeFora {}
+}
+Eixo { }

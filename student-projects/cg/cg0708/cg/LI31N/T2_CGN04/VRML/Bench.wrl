@@ -1,0 +1,118 @@
+#VRML V2.0 utf8
+
+PROTO	BancadaPrincipal
+[
+	field MFVec2f Escala 1 1
+]
+{
+Transform {
+	rotation 0 0 0 0 #1 1 0 -0.766
+	scale 1 1 1
+	children
+		Shape {
+			appearance Appearance {
+				material Material {
+				}
+
+				texture	ImageTexture {
+					url	"images/BocadoBanco.JPG"
+				}
+			}
+	geometry Extrusion {
+		crossSection [
+			.124 -.154, -.149 -.154, -.15 .17, -.13 .17, -.1 .17, -.093 .165,
+			-.09 .16, -.093 .154, -.1 .15, -.1 .15, -.11 .15, -.109 .131,
+			-.08 .13, -.06 .13, -.054 .126, -.05 .12, -.053 .115, -.06 .11,
+			-.07 .11, -.07 .092, -.03 .09, -.02 .09, -.014 .086, -.01 .08,
+			-.013 .074, -.02 .07, -.03 .07, -.029 .052, .02 .05, .027 .046,
+			.03 .04, .027 .033, .02 .03, .01 .03, .012 .012, .06 .01, .066 .006,
+			.07 0, .068 -.006, .06 -.01, .05 -.01, .051 -.029, .1 -.03,
+			.107 -.034, .11 -.04, .107 -.046, .1 -.05, .09 -.05, .091 -.069,
+			.14 -.07, .146 -.073, .15 -.08, .152 -.121, .163 -.121, .163 -.133,
+			.167 -.142, .176 -.145, .188 -.143, .19 -.134, .189 -.121,
+			.232 -.121, .232 -.154, .124 -.154
+		]
+		spine [
+			0 0 0, 5 1 0
+		]
+
+		scale IS Escala
+	}
+}
+}
+
+}
+
+
+PROTO	BancadaEntrada
+[
+	field MFVec2f Escala 1 1
+]
+{
+Transform {
+	rotation 0 0 0 0 #1 1 0 -0.766
+	scale 1 1 1
+	children
+		Shape {
+			appearance Appearance {
+				material Material {
+				}
+
+				texture	ImageTexture {
+					url	"images/BocadoBanco.JPG"
+				}
+			}
+
+		geometry Extrusion {
+
+			crossSection [
+				.163 -.079, .163 -.121, .163 -.133, .167 -.142, .176 -.145, .188 -.143,
+				.19 -.134, .189 -.121, .232 -.121, .232 -.154, .124 -.154, -.149 -.154,
+				-.15 .17, -.126 .17, -.126 .151, -.105 .151, -.105 .129, -.081 .129,
+				-.081 .107, -.053 .107, -.053 .084, -.025 .084, -.025 .06, .001 .06,
+				.001 .036, .03 .036, .03 .013, .055 .013, .055 -.013, .082 -.013,
+				.082 -.035, .109 -.035, .109 -.057, .137 -.057, .137 -.079, .163 -.079
+			]
+
+			spine [
+				0 0 0, 5 1 0
+			]
+
+		scale IS Escala
+		}
+	}	
+}
+}
+
+
+DEF	BancadaTransform Transform	{			
+	children [
+		Transform {
+			translation	0 0 0	
+			children [
+			BancadaPrincipal {
+				Escala 5 5		
+			}
+		]
+	}
+		Transform {
+			translation	5.0 1 0
+			children [		
+			BancadaEntrada {
+				Escala 5 5
+			}
+		]		
+	}
+
+		Transform {
+			translation	10 2 0	
+			children [
+			BancadaPrincipal {
+				Escala 5 5
+	}
+	
+		]
+	
+}
+]
+}

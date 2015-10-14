@@ -1,0 +1,152 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	ArmacaoLampada [
+	field SFVec3f trArmacaoLampada 
+	field SFRotation rotArmacaoLampada
+	eventIn	SFBool luzOnOff
+]"Objectos.wrl#ArmacaoLampada"
+
+EXTERNPROTO LuzDia [
+	field SFVec3f dirLuzDia
+	eventIn	SFBool changeOnOff
+]"Luzes&Som.wrl#LuzDia"
+
+
+
+# Interruptor
+
+PROTO Interruptor [
+	field SFVec3f trInterruptor 0 0 0
+	field MFString textoInterruptor ["Interruptor"]
+	eventOut SFBool	OnOff_Changed
+]{
+
+	Transform {
+		translation	IS trInterruptor
+		children [
+			# Painel de Fundo (box + texto)
+			Shape {
+				geometry Box { size 0.4 0.5 0.01 }
+				appearance Appearance { material Material { emissiveColor 0 0.1 1 diffuseColor 0 0.1 1} }
+			}
+			Transform {
+				translation	-0.17 0.15 0.01
+				children [
+					Shape {
+						geometry Text {
+							fontStyle FontStyle	{
+								size 0.08
+								style "BOLD"
+								family "Comic Sans MS"
+								justify	"CENTER"
+							}
+							string IS textoInterruptor
+							length 0.34
+						}
+						appearance Appearance { material Material { emissiveColor 0.7 0.9 0 diffuseColor 0.7 0.9 0 } }
+					}
+				]
+			}
+			# botão	com sensor de toque e script para estado e para mudar a cor
+			Group {
+				children [
+					Transform {
+						translation	0 -0.05 0.025
+						children [
+							Shape {
+								geometry Box { size 0.2 0.25 0.04 }
+								appearance Appearance { 
+									material DEF CorBotao Material { emissiveColor 1 0 0 diffuseColor 1 0 0 } 
+								}
+							}
+						]
+					}
+					DEF SensorBotao TouchSensor{}
+					DEF	ScriptBotao Script {
+						eventIn	SFTime Change_State
+						eventOut SFColor Color_Changed
+						eventOut SFBool	StateChanged IS	OnOff_Changed # do proto
+						field SFBool OnOff FALSE
+						field MFColor Cores [ 1 0 0, 0 1 0]
+						url	"javascript:
+						function Change_State( time, timestamp){
+							if(OnOff){
+								OnOff=false;
+								Color_Changed = Cores[0];
+							}else{
+								OnOff=true;
+								Color_Changed = Cores[1];
+							}
+							StateChanged = OnOff;
+						}
+						"
+					}
+				]
+			}
+		]
+	}
+	ROUTE SensorBotao.touchTime	TO ScriptBotao.Change_State
+	ROUTE ScriptBotao.Color_Changed	TO CorBotao.diffuseColor 
+	ROUTE ScriptBotao.Color_Changed	TO CorBotao.emissiveColor
+}
+
+# HUD
+
+PROTO HUD [
+	field MFNode interruptores []
+	field SFVec3f trInicialHUD 0 0 0
+	field SFVec3f scHUD 1 1 1
+]{
+	Group {
+		children [
+			DEF SensorHUD ProximitySensor	{
+				size 70 70 70
+			}
+			DEF PosHUD Transform {
+				children [
+					Transform {
+						scale IS scHUD
+						translation	IS trInicialHUD
+						children IS	interruptores
+					}
+				]
+			}
+		]
+		ROUTE SensorHUD.position_changed TO	PosHUD.translation
+		ROUTE SensorHUD.orientation_changed	TO PosHUD.rotation
+	}	
+}
+
+
+#######################
+# iniciar hud e lampadas a controlar
+
+
+DEF A1 ArmacaoLampada {trArmacaoLampada 15.3 3.219 0.8}
+DEF A2 ArmacaoLampada {trArmacaoLampada 15.4 3.219 3.04}
+DEF A3 ArmacaoLampada {trArmacaoLampada 8.95 3.219 0}	
+DEF A4 ArmacaoLampada {trArmacaoLampada 8.95 3.219 2.64}
+DEF A5 ArmacaoLampada {trArmacaoLampada 8.95 3.219 5.28}	
+DEF A6 ArmacaoLampada {rotArmacaoLampada 0 1 0 1.5708 trArmacaoLampada 3 3.219 7.04}
+DEF A7 ArmacaoLampada {rotArmacaoLampada 0 1 0 1.5708 trArmacaoLampada 3 6.719 3.5}
+DEF	Sol LuzDia {}
+
+HUD	{
+	scHUD 0.5 0.5 0.5
+	trInicialHUD 1 -0.65 -2
+	interruptores [ DEF InterruptorLuzes Interruptor{textoInterruptor ["Luzes"]} 
+					DEF InterruptorDiaNoite Interruptor{textoInterruptor ["Dia/Noite"] trInterruptor 0.5 0 0} 
+				  ] 
+}
+
+ROUTE InterruptorLuzes.OnOff_Changed	TO A1.luzOnOff
+ROUTE InterruptorLuzes.OnOff_Changed	TO A2.luzOnOff
+ROUTE InterruptorLuzes.OnOff_Changed	TO A3.luzOnOff
+ROUTE InterruptorLuzes.OnOff_Changed	TO A4.luzOnOff
+ROUTE InterruptorLuzes.OnOff_Changed	TO A5.luzOnOff
+ROUTE InterruptorLuzes.OnOff_Changed	TO A6.luzOnOff
+ROUTE InterruptorLuzes.OnOff_Changed	TO A7.luzOnOff
+
+ROUTE InterruptorDiaNoite.OnOff_Changed TO Sol.changeOnOff
+
+

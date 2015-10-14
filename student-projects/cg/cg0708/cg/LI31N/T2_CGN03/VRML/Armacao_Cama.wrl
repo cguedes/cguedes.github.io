@@ -1,0 +1,126 @@
+#VRML V2.0 utf8
+
+PROTO tabuas[]{
+	Shape {
+		geometry Box { size .05 .02 .85 }
+		appearance Appearance {
+			material Material { diffuseColor .25 .17 .07  }
+		}
+	}
+}
+
+PROTO encaixe[]{
+	Shape {
+		geometry Box { size .055 .025 .05 }
+		appearance Appearance {
+			material Material { diffuseColor .7 .7 .7 }
+		}
+	}
+}
+
+PROTO lateral[]{
+	Shape {
+		geometry Box { size	2.1 .05 .05 }
+		appearance Appearance {
+			material Material { diffuseColor 0.9412 1 0.9412}
+		}
+	}
+}
+
+PROTO cima[]{
+	Shape {
+		geometry Box { size	.05	.05 .85 }
+		appearance Appearance {
+			material Material { diffuseColor 0.9412 1 0.9412}
+		}
+	}
+}
+
+PROTO perna[]{
+	Shape {
+		geometry Box { size	.05 .5 .05 }
+		appearance Appearance {
+			material Material { diffuseColor 0.9412 1 0.9412 }
+		}
+	}
+}
+
+PROTO parafusos[]{
+	Shape {
+		geometry Cylinder { radius .01 height .005 }
+		appearance Appearance {
+			material Material { diffuseColor .8 .8 .8 }
+		}
+	}
+}
+		
+
+
+
+PROTO cama[]{
+	Transform {
+		children [
+			Transform {children	lateral{} translation  .95  0 -.43 }
+			Transform {children	lateral{} translation  .95  0  .43 }
+			Transform {children	cima   {} translation -.075 0   0  }
+		   	Transform {children	cima   {} translation 1.975 0   0  } 
+			Transform {children	tabuas {} translation  .05  0   0  }
+			Transform {children	encaixe{} translation  .05  0 -.38 }
+			Transform {children	encaixe{} translation  .05  0  .38 }
+			Transform {children	tabuas {} translation  .2   0   0  }
+			Transform {children	encaixe{} translation  .2   0 -.38 }
+			Transform {children	encaixe{} translation  .2   0  .38 }
+			Transform {children	tabuas {} translation  .35  0   0  }
+			Transform {children	encaixe{} translation  .35  0 -.38 }
+			Transform {children	encaixe{} translation  .35  0  .38 }
+			Transform {children	tabuas {} translation  .5   0   0  }
+			Transform {children	encaixe{} translation  .5   0 -.38 }
+			Transform {children	encaixe{} translation  .5   0  .38 }
+			Transform {children	tabuas {} translation  .65  0   0  }
+			Transform {children	encaixe{} translation  .65  0 -.38 }
+			Transform {children	encaixe{} translation  .65  0  .38 }
+			Transform {children	tabuas {} translation  .8   0   0  }
+			Transform {children	encaixe{} translation  .8   0 -.38 }
+			Transform {children	encaixe{} translation  .8   0  .38 }	  
+			Transform {children	tabuas {} translation  .95  0   0  }
+			Transform {children	encaixe{} translation  .95  0 -.38 }
+			Transform {children	encaixe{} translation  .95  0  .38 }
+			Transform {children	tabuas {} translation  1.1  0   0  }
+			Transform {children	encaixe{} translation  1.1  0 -.38 }
+			Transform {children	encaixe{} translation  1.1  0  .38 }
+			Transform {children	tabuas {} translation  1.25 0   0  }
+			Transform {children	encaixe{} translation  1.25 0 -.38 }
+			Transform {children	encaixe{} translation  1.25 0  .38 }
+			Transform {children	tabuas {} translation  1.4  0   0  }
+			Transform {children	encaixe{} translation  1.4  0 -.38 }
+			Transform {children	encaixe{} translation  1.4  0  .38 }
+			Transform {children	tabuas {} translation  1.55 0   0  }
+			Transform {children	encaixe{} translation  1.55 0 -.38 }
+			Transform {children	encaixe{} translation  1.55 0  .38 }
+			Transform {children	tabuas {} translation  1.7  0   0  }
+			Transform {children	encaixe{} translation  1.7  0 -.38 }
+			Transform {children	encaixe{} translation  1.7  0  .38 }
+			Transform {children	tabuas {} translation  1.85 0   0  }
+			Transform {children	encaixe{} translation  1.85 0 -.38 }
+			Transform {children	encaixe{} translation  1.85 0  .38 }
+			Transform {children	perna  {} translation   .2  -.25  .43 }
+			Transform {children	perna  {} translation   .2  -.25 -.43 }
+			Transform {children	perna  {} translation   1.7 -.25 -.43 }
+			Transform {children	perna  {} translation   1.7 -.25  .43 }
+			Transform {children	parafusos{} translation .23   .023  .43 }
+			Transform {children	parafusos{} translation .17   .023  .43 }
+			Transform {children	parafusos{} translation 1.73  .023  .43 }
+			Transform {children	parafusos{} translation 1.67  .023  .43 }
+
+			Transform {children	parafusos{} translation  .23  .023  -.43 }
+			Transform {children	parafusos{} translation  .17  .023  -.43 }
+			Transform {children	parafusos{} translation 1.73  .023  -.43 }
+			Transform {children	parafusos{} translation 1.67  .023  -.43 }
+
+
+		]
+	}
+}
+
+
+cama{}

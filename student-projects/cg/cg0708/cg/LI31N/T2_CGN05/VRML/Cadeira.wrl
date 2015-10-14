@@ -1,0 +1,445 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Axis [] "Axis1.wrl#Axis"
+
+Transform {
+	scale 0.01 0.01 0.01
+	children [
+		Axis{}
+	]
+}
+
+NavigationInfo {
+  avatarSize	[ .25, 1.75, .75 ]
+  headlight	TRUE
+  speed	2
+  type	["EXAMINE"]
+  visibilityLimit	0
+}
+
+Background {
+skyAngle [ 0.24435 1.55334 3.14159 ]
+skyColor [ 1.0 1.0 0.50196 0.0 0.0 1.0 1.0 1.0 1.0 0.0 0.0 1.0 ]
+groundAngle [ 0.57596  1.57 ]
+groundColor [ 0.36863 0.36863 0.36863 0.0 0.0 1.0 1.0 1.0 1.0]
+}
+
+#Materiais
+PROTO PlasticoBasoCadeira []{ 
+	Material {
+		diffuseColor .0745 .0745 .161
+		specularColor .569 .569 .647
+		emissiveColor .0275 .0275 .0275
+		ambientIntensity .5
+		shininess .361
+	}
+}
+PROTO MetalCadeira []{ 
+	Material {
+		diffuseColor .0745 .0745 .161
+		specularColor 1 1 1
+		emissiveColor .0353 .0353 .0353
+		ambientIntensity 0
+		shininess .106
+	}
+}
+PROTO EsponjaCadeira []{ 
+	Material {
+		diffuseColor .882 .149 .00784
+		specularColor .188 .0275 .0275
+		ambientIntensity .0833
+		shininess .08
+	}
+}
+PROTO PlasticoCadeira []{ 
+	Material {
+		diffuseColor .0745 .0745 .161
+		specularColor 1 1 1
+		emissiveColor .0353 .0353 .0353
+		ambientIntensity .5
+		shininess .106
+	}
+}			
+#Fim Materiais
+
+
+PROTO BracoApoioCadeira	[]{
+	Shape{
+		appearance Appearance {
+			material PlasticoBasoCadeira{}
+		}
+		geometry Extrusion {
+			creaseAngle 2.37
+			crossSection [
+				-.35 .45, -.35 .13, -.33 .13, -.34 .11,
+				-.35 .1, -.37 .1, -.38 .11, -.39 .13,
+				-.4 .22, -.4 .29, -.4 .36, -.39 .44,
+				-.386427 .451315, -.386426 .468853,
+				-.376854 .482056, -.355493 .485951,
+				-.337134 .479372, -.33 .465247, -.33 .45,
+				-.35 .45
+			]
+			spine [
+				-.06 0 0, .02 0 0
+			]
+		}
+	}
+}
+PROTO BracoCadeira	[]{
+	Shape {
+		appearance Appearance {
+			material PlasticoBasoCadeira{}
+		}
+		geometry Extrusion {
+			ccw FALSE
+			creaseAngle 2.37
+			crossSection [
+				-.35 .45, -.35 .13, -.33 .13,
+				-.33 -.01, .06 -.01, .06 .33,
+				.03 .36, -.01 .36, -.04 .33,
+				-.08 .09, -.27 .09, -.27 .37,
+				-.33 .37, -.33 .45, -.35 .45
+			]
+			spine [
+				-.04 0 0, 0 0 0
+			]
+		}
+	}
+}
+
+
+PROTO BracoCadeiraNotMovable []{
+	Transform {
+		translation	0 0 -0.10
+		children [
+			DEF BracoCadeira BracoCadeira{}
+			DEF BracoEstatico BracoApoioCadeira{}
+		]
+	}
+}
+
+#BracoCadeiraNotMovable{}
+
+PROTO Cadeira [field SFBool AsTwoArms FALSE] {
+
+	Transform {
+		scale 100 100 100
+		rotation 0 1 0 -1.57
+		children [
+		
+
+			Transform {
+				translation	0 0.11 0  #above BaseCadeira and above base
+				children [
+					DEF	PeCadeira Shape	{
+						appearance Appearance {
+							material MetalCadeira{}
+						}
+						geometry Box {
+							size 0.075 0.20 0.075
+						}
+					}
+				]
+			}
+			Transform {
+				translation	0 0.01 0  #above ground
+				children [
+					DEF	BaseCadeira Shape	{
+						appearance Appearance {
+							material MetalCadeira{}
+						}
+						geometry Box {
+							size 0.115 0.02 0.16
+						}
+					}
+				]
+			}
+			Transform {
+				translation	-0.24 0.195 0.06 # above  and center pé
+				children
+				[
+					DEF TrasCadeira Group {
+						children [
+							DEF TrasCadeiraPlastico Shape {
+								appearance Appearance {
+									material PlasticoCadeira{}
+								}
+								geometry Extrusion {
+									creaseAngle 2.37
+									spine [
+										0 .005 -.096, 0 .173 -.094, 0 .404 -.107, 0 .595 -.156,
+										0 .733 -.177, 0 .805 -.177
+									]
+									crossSection [
+										.03 0, .03 -.23, .03 -.46, -.01 -.45, -.022 -.42, -.025 -.23,
+										-.022 -.04, -.01 -.01, .03 0
+									]
+								}
+							}
+							DEF TrasCadeiraEsponja Shape {
+								appearance Appearance {
+									material EsponjaCadeira{}
+									texture	ImageTexture {
+										url	"CadeiraTExtura.JPG"
+									}
+									textureTransform TextureTransform {
+										translation -.206 -.0477
+									}
+								}
+								geometry Extrusion {
+									creaseAngle 2.37
+									spine [
+										0 .005 -.096, 0 .173 -.094, 0 .404 -.107, 0 .595 -.156,
+										0 .733 -.177, 0 .805 -.177
+									]
+									crossSection [
+										.03 0, .03 -.23, .03 -.46, .1 -.48, .12 -.44, .09 -.23, .12 -.02,
+										.1 .02, .03 0
+									]
+									ccw FALSE
+								}
+							}
+						]
+					}
+					
+					DEF BancoCadeira Transform {
+						translation	0 -0.04 0
+						rotation 1 0 0 -1.57
+						center 0 0.06 0
+						children [
+							DEF BancoCadeiraEsponja Shape {
+								appearance Appearance {
+									material EsponjaCadeira{}
+									texture ImageTexture {
+										url "BancoTextura.JPG"
+									}
+									textureTransform TextureTransform {
+										scale 4.92 5.94
+									}
+								}
+								geometry Extrusion {
+									creaseAngle 2.37
+									spine [
+										0 0 0, 0 0 .5
+									]
+									crossSection [
+										.44 -.02, .23 -.02, .02 -.02, 0 -.07, .04 -.09, .23 -.07,
+										.42 -.09, .46 -.07, .44 -.02
+									]
+									ccw FALSE
+								}
+							}
+							DEF BancoCadeiraPlastico Shape {
+								appearance Appearance {
+									material PlasticoCadeira{}
+									texture ImageTexture {
+										url "BancoTexturaPorBaixo.JPG"
+									}
+									textureTransform TextureTransform {
+										scale 96 53
+									}
+								}
+								geometry Extrusion {
+									creaseAngle 2.37
+									spine [
+										.02 0 0, .44 0 0
+									]
+									crossSection [
+										.048 0, .048 .2,
+										.03 .25, .03 .47,
+										.02 .49, 0 .5,
+										-.02 .5, -.02 0,
+										.048 0
+									]
+									ccw FALSE
+								}
+							}
+							# Animação #
+							DEF Timer2 TimeSensor{
+								cycleInterval 4 loop FALSE
+							}
+							DEF UpStateJS Script {
+								eventIn SFFloat	set_fractionBanco
+								eventOut SFRotation	value_changedBanco
+								field SFBool IsToUpMesa FALSE
+
+								url "javascript:
+									function set_fractionBanco(frac, timestamp){
+										value_changedBanco[0] = 1;
+										value_changedBanco[1] = 0;
+										value_changedBanco[2] = 0;
+										if(IsToUpMesa){
+											value_changedBanco[3] =  frac * -1.57;
+										}
+										else {
+											value_changedBanco[3] =  (1-frac) * -1.57; 
+										}
+										if(frac == 1){
+										  IsToUpMesa = !IsToUpMesa;
+										}
+									}
+								"
+							}
+							DEF TouchStartBancoCadeira TouchSensor{
+								ROUTE TouchStartBancoCadeira.touchTime TO Timer2.startTime
+								ROUTE Timer2.fraction_changed TO UpStateJS.set_fractionBanco
+								ROUTE UpStateJS.value_changedBanco TO BancoCadeira.rotation
+							}
+						]
+					}
+
+					
+
+					Transform {
+						translation	0 0 -0.10
+						children [
+							DEF	BracoImovelCadeira Transform {
+								translation	0.50 0 0.10
+								children []
+							}
+							BracoCadeira{}
+							DEF BracoCadeiraAClicar Transform {
+								center 0 0.36 0.46 # X nao importa pois é para rodar em x # Y é pxIni(43) + 1 # Z é pyIni(48) + 1
+								children [
+									DEF BracoQueAbre BracoApoioCadeira{}
+									DEF BracoMesaCadeira Transform{
+										center -0.05 0.35 0 # X é o meio da spine, Y é a altura da aresta a rodar sobre 
+										children [
+											Shape {
+												appearance Appearance {
+													material PlasticoBasoCadeira {}
+												}
+												geometry Extrusion {
+													creaseAngle 2.37
+													crossSection [
+														-.35 .45, -.35 .13, -.31 .13, -.29 .135, -.27 .14, -.16 .2,
+														-.08 .26, -.06 .290625, -.05 .33, -.05 .43, -.07 .45, -.35 .45
+													]
+													spine [
+														-.06 0 0, -.04 0 0
+													]
+													ccw FALSE
+												}
+											}
+										]
+
+									}
+									
+									# Animação #
+									DEF Timer1 TimeSensor{
+										cycleInterval 4 loop FALSE
+									}
+									DEF OpenStateJS Script {
+										eventIn SFFloat	set_fractionBraco
+										eventIn	SFFloat	set_fractionMesa
+										eventOut SFRotation	value_changedBraco
+										eventOut SFRotation	value_changedMesa
+										field SFBool IsToOpenMesa TRUE
+										field SFBool IsToOpenBraco TRUE
+
+										
+
+
+
+										field SFNode bracoImovelCadeira USE	BracoImovelCadeira
+										field MFNode temp[]
+										field SFBool temTwoArms IS AsTwoArms	
+										field SFString str ""
+
+										url "javascript:
+
+										function initialize () {
+											if(temTwoArms == TRUE){
+												str += 'EXTERNPROTO BracoCadeiraNotMovable []\"Cadeira.wrl#BracoCadeiraNotMovable\" ';
+												str += ' BracoCadeiraNotMovable{} ';
+												temp = Browser.createVrmlFromString(str);
+												bracoImovelCadeira.addChildren= temp;
+											}
+										}
+
+										function set_fractionBraco(frac, timestamp){
+											value_changedBraco[0] = 1;
+											value_changedBraco[1] = 0;
+											value_changedBraco[2] = 0;
+											if(IsToOpenBraco){
+   											  if( frac < 0.75){
+												value_changedBraco[3] = (frac * 1.3333) * 3.14;
+												//value_changedBraco[3] =  frac * 3.14;
+											  }
+											  else {
+												value_changedBraco[3] = 3.14; 												  
+											  }
+											}
+											else{
+											  if( frac > 0.25){
+												  value_changedBraco[3] = ((1-frac) * 1.3333) * 3.14;
+											  }
+											  else {
+												  value_changedBraco[3] = 3.14;									  
+											  }
+											}
+											if(frac == 1){
+											  IsToOpenBraco = !IsToOpenBraco;
+											}
+										}
+
+
+										function set_fractionMesa(frac, timestamp){
+											value_changedMesa[0] = 0;
+											value_changedMesa[1] = 0;
+											value_changedMesa[2] = 1;
+											if(IsToOpenMesa){
+											  if( frac > 0.5){
+												value_changedMesa[3] = ((frac - 0.5)*2) * 1.57;
+											  }
+											  else {
+												value_changedMesa[3] = 0; 												  
+											  }
+											}
+											else{
+											  if( frac < 0.5){
+												  // 1a metade
+												  value_changedMesa[3] = ((-frac + 0.5)*2) * 1.57;
+											  }
+											  else {
+												  //2a metade
+												value_changedMesa[3] = 0;									  
+											  }
+											}
+											if(frac == 1){
+												IsToOpenMesa = !IsToOpenMesa;
+											}
+										}
+
+
+										"
+									}
+
+
+									DEF TouchStartBracoCadeira TouchSensor{
+										ROUTE TouchStartBracoCadeira.touchTime TO Timer1.startTime
+										ROUTE Timer1.fraction_changed TO OpenStateJS.set_fractionBraco
+										ROUTE OpenStateJS.value_changedBraco TO BracoCadeiraAClicar.rotation
+										ROUTE TouchStartBracoCadeira.touchTime TO Timer1.startTime
+										ROUTE Timer1.fraction_changed TO OpenStateJS.set_fractionMesa
+										ROUTE OpenStateJS.value_changedMesa TO BracoMesaCadeira.rotation
+									}
+									
+								]
+							}
+						]
+					}
+
+					
+				]
+			}
+		]
+	}
+}
+
+
+
+
+Cadeira	{
+	AsTwoArms TRUE
+}

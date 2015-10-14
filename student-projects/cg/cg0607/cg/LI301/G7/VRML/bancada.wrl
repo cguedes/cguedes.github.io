@@ -1,0 +1,315 @@
+#VRML V2.0 utf8
+
+#Chão
+
+
+EXTERNPROTO cadeira [] "cadeira_final.wrl#Cadeira_final"
+
+
+
+PROTO Chao
+[	 
+	field MFVec3f s	[]
+
+]
+{
+	Shape {
+		geometry Extrusion { 
+    		crossSection [0  0, 15  0, 15  1, 0  1, 0 0]
+    		spine IS s
+    		scale [1 1]
+    		orientation 0 0 1 0
+    		endCap TRUE
+    		beginCap TRUE
+    		solid FALSE
+    		ccw TRUE
+    		convex TRUE
+    		creaseAngle 0
+		}
+		appearance Appearance {
+        	material Material { }
+			texture ImageTexture { url "chao.png" }
+	  }
+	}
+}
+
+
+
+PROTO Cinco_cadeiras
+[
+]
+{
+	Transform {
+		children [
+			Transform {
+				children cadeira	{}
+
+			}
+			Transform {
+				translation	0.6 0 0
+				children cadeira	{}
+
+			}
+			Transform {
+				translation	1.2 0 0
+				children cadeira	{}
+
+			}
+			Transform {
+				translation	1.8 0 0
+				children cadeira	{}	 
+			}
+			Transform {
+				translation	2.4 0 0
+				children cadeira	{}	 
+			}
+		] 	
+	}
+}
+
+PROTO Onze_cadeiras
+[
+]
+{
+	Transform {
+		children [
+			Transform {
+				children cadeira	{}
+
+			}
+			Transform {
+				translation	0.6 0 0
+				children cadeira	{}
+
+			}
+			Transform {
+				translation	1.2 0 0
+				children cadeira	{}
+
+			}
+			Transform {
+				translation	1.8 0 0
+				children cadeira	{}	 
+			}
+			Transform {
+				translation	2.4 0 0
+				children cadeira	{}	 
+			}
+			Transform {
+				translation	3 0 0
+				children cadeira	{}	 
+			}
+			Transform {
+				translation	3.6 0 0
+				children cadeira	{}	 
+			}
+			Transform {
+				translation	4.2 0 0
+				children cadeira	{}	 
+			}
+			Transform {
+				translation	4.8 0 0
+				children cadeira	{}	 
+			}
+			Transform {
+				translation	5.4 0 0
+				children cadeira	{}	 
+			}
+			Transform {
+				translation	6 0 0
+				children cadeira	{}	 
+			}
+		] 	
+	}
+}
+
+PROTO Linha_cadeiras
+[
+]
+{
+	Transform {
+		children [
+			Transform {
+				children Cinco_cadeiras {}
+			}
+			Transform {
+				translation 4 0 0
+				children Onze_cadeiras {}
+			}
+			Transform {
+				translation	11.5 0 0
+				children Cinco_cadeiras {}
+			}
+		]
+	}
+}
+
+
+
+
+
+PROTO Bancada_cadeiras
+[
+]
+{	 Transform {
+		children [		
+			Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 0.2 5.35
+				children Linha_cadeiras	{}				
+			}
+		   	Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 0.4 6.35
+				children Linha_cadeiras	{}				
+			} 
+			Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 0.6 7.35
+				children Linha_cadeiras	{}
+			}
+			   Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 0.8 8.35
+				children Linha_cadeiras	{}
+			}
+			   Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 1 9.35
+				children Linha_cadeiras	{}
+			}  Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 1.20 10.35
+				children Linha_cadeiras	{}
+			}  Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 1.40 11.35
+				children Linha_cadeiras	{}
+			}  Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 1.60 12.35
+				children Linha_cadeiras	{}
+			}Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 1.80 13.35
+				children Linha_cadeiras	{}
+			 
+			}  Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 2 14.35
+				children Linha_cadeiras	{}
+			}
+			   Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 2.20 15.35
+				children Linha_cadeiras	{}
+			}
+			   Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 2.40 16.35
+				children Linha_cadeiras	{}
+			}
+			   Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 2.60 17.35
+				children Linha_cadeiras	{}
+			}
+			   Transform{
+				rotation 0 1 0 -3.14
+				translation	14.75 0 4.35
+				children Linha_cadeiras	{}
+
+			}
+		]
+	}
+}
+
+
+
+PROTO Bancada
+[
+]
+{
+	Transform {
+		children [
+			Transform {
+				children Bancada_cadeiras {}
+			}
+			Transform{
+				translation	0 0 1.5
+				children Chao	{ s [0 0 0,0 0 0]}				
+			} 
+				    
+			Transform{
+				translation	0 0 2.5
+				children Chao	{ s [0 0 0,0 0 0]}				
+			}
+		  		Transform{
+				translation	0 0 3.5
+				children Chao	{ s [0 0 0,0 0 0]}				
+			} 
+			Transform{
+				translation	0 0 4.5
+				children Chao	{ s [0 0 0,0 0.2 0]}				
+			} 
+			Transform{
+				translation	0 0 5.5
+				children Chao	{ s [0 0 0,0 0.4 0]}				
+			}
+			Transform{
+				translation	0 0 6.5
+				children Chao	{ s [0 0 0,0 0.6 0]}				
+			}
+			Transform{
+				translation	0 0 7.5
+				children Chao	{ s [0 0 0,0 0.8 0]}				
+			}
+			Transform{
+				translation	0 0 8.5
+				children Chao	{ s [0 0 0,0 1 0]}				
+			}
+			Transform{
+				translation	0 0 9.5
+				children Chao	{ s [0 0 0,0 1.2 0]}				
+			}
+			Transform{
+				translation	0 0 10.5
+				children Chao	{ s [0 0 0,0 1.4 0]}				
+			}
+			Transform{
+				translation	0 0 11.5
+				children Chao	{ s [0 0 0,0 1.6 0]}				
+			}
+			Transform{
+				translation	0 0 12.5
+				children Chao	{ s [0 0 0,0 1.8 0]}				
+			}
+			Transform{
+				translation	0 0 13.5
+				children Chao	{ s [0 0 0,0 2 0]}				
+			}
+			Transform{
+				translation	0 0 14.5
+				children Chao	{ s [0 0 0,0 2.2 0]}				
+			}
+			Transform{
+				translation	0 0 15.5
+				children Chao	{ s [0 0 0,0 2.4 0]}				
+			}
+			Transform{
+				translation	0 0 16.5
+				children Chao	{ s [0 0 0,0 2.6 0]}				
+			}
+			Transform{
+				translation	0 0 17.5
+				children Chao	{ s [0 0 0,0 2.8 0]}				
+			}
+			Transform{
+				translation	0 0 18.5
+				children Chao	{ 
+					s [0 0 0,0 2.8 0]
+				}
+			}				
+		]	 	
+	}
+}				   Bancada {}

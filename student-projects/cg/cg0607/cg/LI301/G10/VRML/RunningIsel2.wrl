@@ -1,0 +1,41 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	FollowPath 
+[
+	field MFVec2f path
+	field SFFloat curveDist
+	eventIn	SFFloat set_fraction
+	eventOut SFVec3f translation
+	eventOut SFRotation	rotation   
+
+] "FollowPath.wrl#FollowPath"
+
+DEF	Runner Transform {
+	children [
+		Inline {
+			url [ "res/Runner.wrl" ]
+		}
+		Viewpoint
+		{
+			description	"Grupo 10 - Em 1a Pessoa(a correr em 2o lugar)"
+			position 0 1.6 .25
+			orientation	0 1 0 3.1415
+			fieldOfView	1.5707
+		}
+	]
+}
+
+DEF	Travel FollowPath {
+	path [ 15 65 , 25 65 , 25 80 , 5 80, 5 65, 15 65]
+	curveDist 5
+}
+
+DEF	TS TimeSensor
+{
+	cycleInterval 18
+	loop TRUE
+}
+
+ROUTE TS.fraction_changed TO Travel.set_fraction
+ROUTE Travel.translation TO Runner.translation
+ROUTE Travel.rotation TO Runner.rotation

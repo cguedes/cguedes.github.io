@@ -1,0 +1,170 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	axisXYZ[] "../Axis/axisXYZ.wrl"
+
+EXTERNPROTO	grad[ field	SFVec3f	pos field SFRotation rot] "gradeamento_rails/gradeamento200_novo.wrl"
+EXTERNPROTO	grad_longe[ field	SFVec3f	pos field SFRotation rot] "gradeamento_rails/gradeamento200_longe.wrl"
+
+PROTO tabuleiro_extr[field SFVec3f pos 0 0 0]
+{
+	Transform {
+		children [
+			#axisXYZ	{}
+			#### LOD PARA O TABULEIRO ####
+			LOD{
+				range [700]
+				center 0.0 0.0 0.0
+				level [
+					Transform {
+						children [
+							Shape {
+								geometry Extrusion { 
+									crossSection [
+										0 0, .2 .5, 1.4 .5, 1.4 0, 15.4 0, 15.45 .4, 15.45 1, 15.65 1,
+										15.65 .4, 15.7 0, 29.7 0, 29.7 .5, 30.9 .5, 31.1 0, 30.7 0,
+										30.9 -3, 29.7 -3, 29.7 -.8, 20.7 -.8, 20.7 -2.3, 10.4 -2.3,
+										10.4 -.8, 1.4 -.8, 1.4 -3, .2 -3, .4 0, 0 0
+									]
+									spine [
+										0 0 203, 0 0 0, 0 0 -203
+									]
+								}
+								appearance Appearance {
+								    textureTransform TextureTransform { scale 5 10 }
+									texture ImageTexture { url "../imagens/betao.jpg" }
+#									material Material { emissiveColor 0.2 0.2 0.2}
+								}
+							}
+						]
+					}
+
+					Transform {
+						children [
+							Shape {
+								geometry Extrusion {
+									crossSection [
+										0 0, .2 .5, 1.4 .5, 1.4 0, 15.4 0, 15.45 .4, 15.45 1, 15.65 1,
+										15.65 .4, 15.7 0, 29.7 0, 29.7 .5, 30.9 .5, 31.1 0, 30.7 0,
+										30.9 -3, 29.7 -3, 29.7 -.8, 20.7 -.8, 20.7 -2.3, 10.4 -2.3,
+										10.4 -.8, 1.4 -.8, 1.4 -3, .2 -3, .4 0, 0 0
+									]
+									spine [
+										0 0 203, 0 0 0, 0 0 -203
+									]
+								}
+								appearance Appearance {
+								    material Material { diffuseColor 0.8 0.8 0.8 }
+								}
+							}
+						]
+					}
+				]
+			}
+
+
+			### LOD PARA A ESTRADA ###
+			LOD{
+				#estrada
+				range [ 700 ]
+				center 0.0 0.0 0
+				level [
+					Transform {
+						children[
+							DEF estrada Shape {
+								geometry Extrusion {
+									crossSection [
+											1.4 -.1, 1.4 0.02, 29.7 0.02, 29.7 -.1, 1.4 -.1
+									]
+									spine [	0 0 203, 0 0 180, 0 0 160, 0 0 160, 0 0 140, 0 0 120, 0 0 100, 0 0 80, 0 0 60, 0 0 40
+										0 0 20, 0 0 0, 0 0 -20,0 0 -40,0 0 -60,0 0 -80, 0 0 -100, 0 0 -120, 0 0 -140, 0 0 -160, 0 0 -180
+										, 0 0 0, 0 0 -203 ]
+								}
+								appearance Appearance { 
+									textureTransform TextureTransform {	scale 4 30 }
+									texture ImageTexture { url "../imagens/estrada.jpg" }
+									material Material {emissiveColor .6 .6 .6 }
+								}
+							}
+						]
+					}
+					
+					Transform {
+						children [
+							DEF estrada_preta Shape {
+								geometry Extrusion {
+									crossSection [
+										1.4 -.1, 1.4 0.02, 29.7 0.02, 29.7 -.1, 1.4 -.1
+									]
+									spine [	0 0 203, 0 0 180, 0 0 160, 0 0 160, 0 0 140, 0 0 120, 0 0 100, 0 0 80, 0 0 60, 0 0 40
+										0 0 20, 0 0 0, 0 0 -20,0 0 -40,0 0 -60,0 0 -80, 0 0 -100, 0 0 -120, 0 0 -140, 0 0 -160, 0 0 -180, 
+										0 0 0, 0 0 -203 ]
+								}
+								appearance DEF cor1 Appearance {
+									material Material { diffuseColor .4 .4 .4 } 
+								}
+							}	
+						] 
+					}	   
+				]
+			}
+
+			##################################################################
+
+			#### LOD PARA O GRADEAMENTO ####
+			LOD{
+				range [ 400 ]
+				center 0.0 0.0 0
+				level [
+					grad { rot 0 1 0 1.57079 pos 0.3 1.5 103  }
+					grad_longe { rot 0 1 0 1.57079 pos 0.3 1.5 103  }
+				]
+			}
+			LOD{
+				range [ 400 ]
+				center 0.0 0.0 0
+				level [
+					grad { rot 0 1 0 -1.57079 pos 30.85 1.5 103  }
+					grad_longe { rot 0 1 0 -1.57079 pos 30.85 1.5 103 }
+				]
+			}
+								
+			LOD{
+				range [ 400 ]
+				center 0.0 0.0 0
+				level [
+					grad { rot 0 1 0 1.57079 pos 0.3 1.5 -103 } 
+					grad_longe { rot 0 1 0 1.57079 pos 0.3 1.5 -103 }
+				]
+			}
+			LOD{
+				range [ 400 ]
+				center 0.0 0.0 0
+				level [
+					grad { rot 0 1 0 -1.57079 pos 30.85 1.5 -103  }
+					grad_longe { rot 0 1 0 -1.57079 pos 30.85 1.5 -103  }
+				]
+			}
+			
+			################################
+			### Separador de tabuleiros ### 
+			Transform { 
+				children[ 
+					DEF sep Shape { 
+						geometry Box { size 28.5 0.05 0.40}
+						appearance Appearance { 
+							material Material { diffuseColor 0.7 0.7 0.7 }
+						} 
+					} 
+				]
+				translation	15.5 0 -203
+			}
+			Transform {  children USE sep  translation	15.5 0 203	}
+
+			
+		]
+		translation	IS pos
+	}
+
+	
+}
+tabuleiro_extr {}

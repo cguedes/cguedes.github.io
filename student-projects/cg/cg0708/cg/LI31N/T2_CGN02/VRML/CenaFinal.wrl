@@ -1,0 +1,112 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Pilar[] "Pilar Principal.wrl#PilarCentral"
+EXTERNPROTO	Elevador[field	SFVec3f	position] "Elevador.wrl#Elevador"
+EXTERNPROTO	VistaPanoramica[field SFVec3f posicao] "VistaPanoramica.wrl#VistaPanoramica"
+EXTERNPROTO	EstruturaTubular[] "Tubos.wrl#Tubos"
+EXTERNPROTO	Terreno[] "terreno.wrl#Terreno"
+EXTERNPROTO	Escadas[field SFVec3f position] "Escadas.wrl#Stairs"
+
+WorldInfo {
+    title "Torre Vasco da Gama"
+    info [ "copyright (c) 2007, Vitor Cartaxo & Candido Costa" ]
+}
+
+
+
+DEF El Transform {
+	rotation 0 1 0 3.14
+	children Elevador {position 0 0 2.8}
+}
+DEF El1 Transform {
+	rotation 0 1 0 3.14
+	children Elevador {position -3.5 0 2.8}
+}
+
+DEF El2 Transform {
+	rotation 0 1 0 3.14
+	children Elevador {position 3.5 0 2.8}
+}
+
+
+Pilar {}
+VistaPanoramica{posicao 0 92.5 0}
+EstruturaTubular {}
+Terreno	{}
+Escadas	{position 0 1.8 3}
+
+
+DEF	Timer TimeSensor {
+	cycleInterval 40
+	loop TRUE
+}		 
+DEF	pos1 PositionInterpolator {
+	key	[0 .4 .5 .6 .93 .98 .99 1]
+	keyValue [0 0 0, 0 90.6 0, 0 90.7 0, 0 90.7 0, 0 .5 0 ,0 0 0, 0 0 0, 0 0 0]
+}
+
+DEF	pos2 PositionInterpolator {
+	key	[0 .4 .45 .49 .5  1]
+	keyValue [0 100 0, 0 .5 0, 0 0 0, 0 0 0, 0 0 0, 0 100 0]
+}
+
+ROUTE Timer.fraction_changed TO	pos1.set_fraction
+ROUTE pos1.value_changed	TO El1.translation
+ROUTE Timer.fraction_changed TO	pos2.set_fraction
+ROUTE pos2.value_changed	TO El2.translation
+
+
+
+
+NavigationInfo {
+	type  "Teste"
+	headlight TRUE
+    type ["WALK","ANY"],
+	avatarSize [0.3 , 1.7 , 0.5],
+	speed 1
+}
+
+
+
+Viewpoint {
+	description "Walk"
+	position -5 , 1.7 , 20
+	orientation 0 1 0 -.4
+	jump FALSE
+}
+
+Viewpoint {
+	description	"Overview"
+	position -100 , 70 , 230
+	orientation	 0 1 0 -.5
+	jump FALSE
+}
+
+Viewpoint {
+	description	"Front"
+	position 100 , 70 , -200
+	orientation	 0 1 0 2.7
+	jump FALSE
+}
+
+Viewpoint {
+	description	"Flag"
+	position 30 , 120 , -50
+	orientation	 0 1 0 2.7
+	jump FALSE
+}
+
+Viewpoint {
+	description	"Restaurant"
+	position 0 92.5 -2
+	orientation	 0 1 0 0
+	jump FALSE
+}
+
+Viewpoint {
+	description	"Elevator"
+	position .5 1.7 -3.3
+	orientation	 0 1 0 1.77
+	jump FALSE
+}
+

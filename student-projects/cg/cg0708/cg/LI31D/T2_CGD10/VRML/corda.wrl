@@ -1,0 +1,140 @@
+#VRML V2.0 utf8
+
+
+PROTO CORDA[]{
+		Group {
+			children [
+				Transform{
+					translation 0 0.5 0
+					children
+					Shape{
+						geometry Cylinder{ height 1 radius 0.15}
+						appearance Appearance {
+							material Material {
+								diffuseColor 1 1 1
+							}
+						}
+		
+					}
+
+				}
+				Transform {
+					translation	0 0.025 0 
+					children
+					Shape{
+						geometry Cylinder { height 0.05 radius 0.17}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0 0.5 1
+							}
+						}
+					}
+			
+				}
+			]
+		}
+
+
+}
+
+PROTO CORDAS[ 
+	field SFVec3f TRANSLACAO 200 0 0 
+	field SFRotation ROTACAO 0 0 1 1.107 
+	field SFVec3f ESCALA 1 223.6 1]
+	{
+		Group {
+			children [
+				Transform {	
+					translation	IS TRANSLACAO
+					children [
+						Transform{					
+							scale IS ESCALA
+							rotation IS	ROTACAO
+							translation	0 45 15.35 
+							children CORDA {}  
+						}
+						Transform{
+							scale IS ESCALA
+							rotation IS	ROTACAO
+							translation	0 45 -15.35 
+							children CORDA {}  
+				
+						}
+					]
+				}
+			]
+		}
+}
+
+
+EXTERNPROTO	candeeiro[]["candeiro_ponte.wrl#ABAJOUR"]
+
+
+PROTO CANDEEIROS[]{
+	Group {
+		children [
+			Transform {
+				translation	0 52.5 15.35
+				children candeeiro{}
+			}
+			Transform {
+				rotation 0 1 0 3.1417 
+				translation	0 52.5 -15.35
+				children candeeiro{}
+			}
+		]
+	}
+			
+}
+
+PROTO TODAS_AS_CORDAS [] {
+	Group {
+		children [
+			Transform {
+				translation	175 0 0
+				children CANDEEIROS{}
+			}
+			Transform {
+				translation	128 0 0 
+				children CANDEEIROS{} 
+			}
+			Transform {
+				translation	90 0 0
+				children CANDEEIROS{}
+			}
+			Transform {
+				translation	40 0 0
+				children CANDEEIROS {}
+			}
+			CORDAS {}
+			CORDAS { TRANSLACAO 190 0 0 ROTACAO 0 0 1 1.101 ESCALA 1 213.1 1}
+			CORDAS { TRANSLACAO 180 0 0 ROTACAO 0 0 1 1.094 ESCALA 1 202.6 1}
+			CORDAS { TRANSLACAO 170 0 0 ROTACAO 0 0 1 1.086 ESCALA 1 192.1 1}
+			CORDAS { TRANSLACAO 160 0 0 ROTACAO 0 0 1 1.078 ESCALA 1 181.6 1}
+			CORDAS { TRANSLACAO 150 0 0 ROTACAO 0 0 1 1.068 ESCALA 1 171.2 1}
+			CORDAS { TRANSLACAO 140 0 0 ROTACAO 0 0 1 1.057 ESCALA 1 160.8 1}
+			CORDAS { TRANSLACAO 130 0 0 ROTACAO 0 0 1 1.045 ESCALA 1 150.3 1}
+			CORDAS { TRANSLACAO 120 0 0 ROTACAO 0 0 1 1.030 ESCALA 1 139.9 1}
+			CORDAS { TRANSLACAO 110 0 0 ROTACAO 0 0 1 1.014 ESCALA 1 129.6 1}
+			CORDAS { TRANSLACAO 100 0 0 ROTACAO 0 0 1 0.994 ESCALA 1 119.3 1}
+			CORDAS { TRANSLACAO 90 0 0 ROTACAO 0 0 1 0.971 ESCALA 1 109.0 1}
+			CORDAS { TRANSLACAO 80 0 0 ROTACAO 0 0 1 0.943 ESCALA 1 98.8 1}
+			CORDAS { TRANSLACAO 70 0 0 ROTACAO 0 0 1 0.909 ESCALA 1 88.7 1}
+			CORDAS { TRANSLACAO 60 0 0 ROTACAO 0 0 1 0.866 ESCALA 1 78.7 1}
+			CORDAS { TRANSLACAO 50 0 0 ROTACAO 0 0 1 0.811 ESCALA 1 69.0 1}
+			CORDAS { TRANSLACAO 40 0 0 ROTACAO 0 0 1 0.738 ESCALA 1 59.5 1}
+			CORDAS { TRANSLACAO 30 0 0 ROTACAO 0 0 1 0.638 ESCALA 1 50.4 1}
+			CORDAS { TRANSLACAO 20 0 0 ROTACAO 0 0 1 0.496 ESCALA 1 42.1 1}
+		 	CORDAS { TRANSLACAO 10 0 0 ROTACAO 0 0 1 0.290 ESCALA 1 35.0 1}
+	
+		]
+	}
+
+
+}
+TODAS_AS_CORDAS {}
+Transform {
+	translation	-6 0 0 
+	rotation 0 1 0 3.14
+	children TODAS_AS_CORDAS {}
+}

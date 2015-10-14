@@ -1,0 +1,898 @@
+#VRML V2.0 utf8  
+
+######################################################################################
+# Instituto Superior de Engenharia de Lisboa                                         #
+# Departamento de Engenharia de Electrónica e Telecomunicações e de Computadores     #
+# Licenciatura em Engenharia Informática e de Computadores                           #
+# Computação Gráfica (IC307)                                                         #
+#------------------------------------------------------------------------------------#
+#                                                                                    #
+# Descrição: Modelo de um dos edifícios do ISEL: O CCISEL.                           #
+#                                                                                    #
+#                                                                                    #
+#------------------------------------------------------------------------------------#
+# Docentes: Carlos Guedes, Jorge Silva e Nuno Datia                                  #
+#                                                                        © 2006 ISEL #
+######################################################################################
+
+
+NavigationInfo {
+  type ["STUDY"]
+  headlight TRUE
+  #avatarSize [0.25, 1.6, 0.75]
+  #avatarSize [0.15, 1.5, 0.5]
+  #speed 1
+}
+
+
+
+########################################################################
+# Eixo de coordenadas do mundo
+########################################################################
+EXTERNPROTO	Axis [ ] "axis.wrl#Axis"
+Axis { }
+
+
+########################################################################
+# Definição do ponto de vista inicial
+########################################################################
+Viewpoint {
+  description "Frente ao CCISEL"
+	position 5 1.55 4
+}
+
+Viewpoint {
+	position -10 2 10
+  orientation 0 1 0 -0.85
+  fieldOfView 0.585398
+  description "Outra vista..."
+}
+
+########################################################################
+# Ambiente (fundo e céu)
+########################################################################
+Background {
+    skyColor [
+        0.0 0.2 0.7,
+        0.0 0.5 1.0,
+        1.0 1.0 1.0
+    ]
+    skyAngle [ 1.309, 1.571 ]
+    groundColor [
+        0.1 0.10 0.0,
+        0.4 0.25 0.2,
+        0.6 0.60 0.6,
+    ]
+    groundAngle [ 1.309, 1.571 ]
+}
+
+#Shape {
+#  geometry Box { size 100 0.00001 100 }
+#  appearance Appearance { material Material { } }
+#}
+
+
+#######################################
+# XY Plane (frente)
+#
+#  - Usar a coordenada Z na espinha 
+#
+#######################################
+PROTO FrenteDoCCISEL
+[
+]
+{
+  Transform {
+    translation 0 0 0.005
+    children [
+      Shape { # madeira à volta da porta da entrada
+        geometry Extrusion {
+          crossSection [0 0, 4 0, 4 2, 6 2, 6 0, 11 0, 11 3, 5.5 5, 0 3, 0 0]
+          spine [0 0 0, 0 0 -0.01]
+          solid TRUE
+          convex FALSE
+          ccw FALSE # cuidado, pois a crossSection é definida no plano XZ (ver o sentido ccw)
+        }
+        appearance Appearance { 
+          texture ImageTexture { url ["images/CCISEL/CCISEL_Wall_1.jpg"] } 
+          textureTransform TextureTransform { scale 10 1 }
+          material Material { ambientIntensity 0.2 }
+        }
+      }
+      Transform { # Porta da entrada
+        translation 4 0 0
+        children 
+        [
+          Shape {
+            geometry Extrusion {
+              crossSection [0 0, 0 2, 1 2, 1 0, 0 0]
+              spine [0 0 0, 0 0 -0.01]
+            }
+            appearance Appearance { 
+              texture ImageTexture { url ["images/CCISEL/CCISEL_Door_Esquerda.jpg"] }  
+              textureTransform TextureTransform { scale 2 1 }
+              material Material { }
+            }
+          }
+          DEF PortaDaDireita Transform {
+            translation 1 0 0
+            center 1 0 0
+            children [
+              Shape {
+                geometry Extrusion {
+                  crossSection [0 0, 0 2, 1 2, 1 0, 0 0]
+                  spine [0 0 0, 0 0 -0.01]
+                }
+                appearance Appearance { 
+                  texture ImageTexture { url ["images/CCISEL/CCISEL_Door_Direita.jpg"] }
+                  textureTransform TextureTransform { scale 2 1 }
+                  material Material { }
+                }
+              }
+              DEF Touch TouchSensor { }
+              DEF Proximity ProximitySensor { center 1 1 0 size 2 2 4 }
+              DEF OrInterpolator OrientationInterpolator {
+                key [0 1] keyValue [0 1 0 0, 0 1 0 3.10796327]
+              }
+              DEF Timer1 TimeSensor {
+                stopTime 1
+                cycleInterval 3 # Vai demorar este numero de segundos a abrir a porta
+                #ROUTE Touch.touchTime TO Timer1.startTime
+                ROUTE Proximity.enterTime TO Timer1.startTime
+                ROUTE Timer1.fraction_changed TO OrInterpolator.set_fraction
+                ROUTE OrInterpolator.value_changed TO PortaDaDireita.rotation
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+
+FrenteDoCCISEL { }
+
+Transform { # Porta da RUA (cuidado pois isto não é uma cópia do objecto)
+  translation 0 0 -36
+  children FrenteDoCCISEL { }
+}
+
+#######################################
+# YZ Plane (lado)
+#
+#  - Usar a coordenada X na espinha 
+#
+#######################################
+DEF LateralCCISEL Shape { # parede lateral CCISEL
+  geometry Extrusion {
+    crossSection [0 0, 0.01 0, 0.01 -36, 0 -36, 0 0]
+    #spine [0 0 0, 0.01 0 0]
+    spine [0 0 0, 0 3 0]
+    ccw FALSE
+    solid TRUE
+  }
+  appearance Appearance { 
+    texture ImageTexture { url ["images/CCISEL/CCISEL_Windows.jpg"] } 
+    textureTransform TextureTransform { scale 18 1 }
+    material Material { }
+  }
+}
+
+Transform {
+  translation 11 0 0
+  children USE LateralCCISEL
+}
+
+
+#######################################
+# Parte de cima da porta do lado
+#  de dentro. 
+#######################################
+Transform { 
+  translation 5 2.5 -0.005
+  children Shape {
+    geometry Box {
+      size 2 1 0.01
+    }
+    appearance Appearance { 
+      texture ImageTexture { url "images/CCISEL/CCISEL_Interior_Gabinetes_TopoDaPorta.jpg" } 
+      textureTransform TextureTransform { scale 1 1 }
+      material Material { }
+    }
+  }
+}
+Transform { 
+  translation 5 2.5 -35.995
+  children Shape {
+    geometry Box {
+      size 2 1 0.01
+    }
+    appearance Appearance { 
+      texture ImageTexture { url "images/CCISEL/CCISEL_Interior_Gabinetes_TopoDaPorta.jpg" } 
+      textureTransform TextureTransform { scale 1 1 }
+      material Material { }
+    }
+  }
+}
+
+
+#######################################
+# Arranjos na porta da entrada
+#######################################
+Transform { 
+  translation 5.5 2.8 0.005
+  children Shape {
+    geometry Box {
+      size 11 0.2 0.01
+    }
+    appearance Appearance { 
+      material Material { diffuseColor 0.7 0.5 0.0 }
+    }
+  }
+}
+# telheiro
+Transform { 
+  translation 5 2.3 0.505
+  children Shape {
+    geometry Box {
+      size 3 0.1 1
+    }
+    appearance Appearance { 
+      material Material { diffuseColor 0.2 0.2 0.2 }
+    }
+  }
+}
+
+
+#######################################
+# Telhado do CCISEL
+#
+#  - Usar uma cross section em forma 
+#    de triangulo e uma espinha.
+#
+#######################################
+Transform {
+  translation 0 3 0.5
+  children Shape {
+		geometry Extrusion { 
+      # crossSection --> plano XZ
+      crossSection [
+        #-0.1 -0.02, 5.5 1, 11.2 -0.02
+        #0 0, 5.5 2, 11 0
+        0 0, 5.5 2, 11 0, 11.8 -0.3, 11.8 -0.2, 11 0.1, 5.5 2.1, 0 0.1, -0.8, -0.2, -0.8, -0.3, 0 0
+      ]
+      spine [0 0 0, 0 0 -37]
+      #beginCap FALSE
+      #endCap FALSE
+      #solid FALSE
+      ccw FALSE
+    }
+    appearance Appearance { material Material { diffuseColor 0.4 0.4 0.4 } }
+	}
+}
+
+
+##############################################################################
+# INTERIOR - Telhado
+##############################################################################
+Transform  {
+  translation 5.5 3 -18
+  children
+  Shape {
+    geometry Box {
+      size 11 0.01 36
+    }
+    appearance Appearance {
+      texture ImageTexture { url "images/CCISEL/CCISEL_Interior_tecto.jpg" }
+      textureTransform TextureTransform { scale 6 18 }
+      material Material { }
+    }
+  }
+}
+Transform  {
+  translation 5.5 0 -18
+  children
+  Shape {
+    geometry Box {
+      size 11 0.01 36
+    }
+    appearance Appearance {
+      texture ImageTexture { url "images/CCISEL/CCISEL_Interior_Chao.jpg" }
+      textureTransform TextureTransform { scale 11 33 }
+      material Material { }
+    }
+  }
+}
+
+##############################################################################
+# INTERIOR - Gabinetes
+##############################################################################
+
+PROTO Gabinete_Porta 
+[
+  field SFVec3f translation 0 0 0  # ponto de contacto (no lado das dobradiças) 
+  field SFRotation rotation 0 1 0 0.0
+  field MFString doorNumber [" "]
+  field MFString personTop    [" "]
+  field MFString personMiddle [" "]
+  field MFString personBottom [" "]
+
+  field MFRotation rotacaoAbrir  [0 1 0 0, 0 1 0 1.57]
+  field MFRotation rotacaoFechar [0 1 0 1.57, 0 1 0 0]
+
+] {
+  # Porta do gabinete
+  Transform {
+    translation IS translation
+    children [
+      DEF PortaParaRodar Transform { 
+        rotation IS rotation
+        children 
+        [
+          Shape { # Porta
+            geometry Extrusion {
+              #size 0.1 2 1
+              crossSection [0 0, 0.1 0, 0.1 -1, 0 -1, 0 0]
+              spine [0 0 0, 0 2 0]
+            }
+            appearance Appearance { material Material { diffuseColor 0.8 0.4 0.0 } }
+          }
+          Transform { # Macaneta
+            translation 0.1 1 -0.85
+            children [
+              DEF MACANETA_PORTA_CCISEL Shape {
+                geometry Sphere { radius 0.05 }
+                appearance Appearance { material Material { diffuseColor 0.7 0.7 0.7 } }
+              }
+              DEF SensorMacanetaPortaAbrir TouchSensor { }
+            ]
+          }
+          Transform { # Macaneta
+            translation 0 1 -0.85
+            children [ 
+              USE MACANETA_PORTA_CCISEL 
+              DEF SensorMacanetaPortaFechar TouchSensor { }
+            ]
+          }
+          DEF PapelDaPorta Group {
+            children Transform {
+              translation 0.1005 1.2 -0.75
+              children [
+                Transform { # Número da porta (Papel)
+                  #translation 0.1005 1.2 -0.75
+                  children Shape {
+                    geometry Extrusion {
+                      crossSection [0 0, 0.001 0, 0.001 -0.21, 0 -0.21, 0 0]
+                      spine [0 0 0, 0 0.17 0]
+                    }
+                    appearance Appearance {
+                      texture ImageTexture { url "images/CCISEL/CCISEL_Sala_Designacao.jpg" }
+                      textureTransform TextureTransform { scale 2 1 }
+                      material Material { diffuseColor 0.95 0.95 0.95 }
+                    }
+                  }
+                }
+
+                DEF Texto_DoPapelDaPorta Group { # Texto a colocar na porta
+                  children Transform {
+                    children [
+                      Transform { # Número da porta (Número)
+                        translation 0.005 0.035 -0.025
+                        rotation 0 1 0 1.570796327
+                        children Shape {
+                          geometry Text {
+                            string IS doorNumber
+                            fontStyle FontStyle { size 0.08 }
+                          }
+                          appearance Appearance { material Material { diffuseColor 0.2 0.2 0.2 } }
+                        }
+                      }
+                      Transform { # Número da porta (Nome da pessoa TOP)
+                        translation 0.005 0.12 -0.1
+                        rotation 0 1 0 1.570796327
+                        children Shape {
+                          geometry Text {
+                            string IS personTop
+                            fontStyle FontStyle { size 0.013 }
+                          }
+                          appearance Appearance { material Material { diffuseColor 0.2 0.2 0.2 } }
+                        }
+                      }
+                      Transform { # Número da porta (Nome da pessoa MIDDLE)
+                        translation 0.005 0.08 -0.1
+                        #translation 0.11 1.280 -0.85
+                        rotation 0 1 0 1.570796327
+                        children Shape {
+                          geometry Text {
+                            string IS personMiddle
+                            fontStyle FontStyle { size 0.013 }
+                          }
+                          appearance Appearance { material Material { diffuseColor 0.2 0.2 0.2 } }
+                        }
+                      }
+                      Transform { # Número da porta (Nome da pessoa Bottom)
+                        translation 0.005 0.04 -0.1
+                        #translation 0.11 1.235 -0.85
+                        rotation 0 1 0 1.570796327
+                        children Shape {
+                          geometry Text {
+                            string IS personBottom
+                            fontStyle FontStyle { size 0.013 }
+                          }
+                          appearance Appearance { material Material { diffuseColor 0.2 0.2 0.2 } }
+                        }
+                      }
+                    ]
+                  }
+                }
+                Transform {
+                  rotation 0 1 0 3.14159
+                  children Transform {
+                    translation 0 0 0.21
+                    children USE Texto_DoPapelDaPorta
+                  }
+                }
+              ]
+            }
+          }
+          Transform {  # Colocar outro papel na parte de trás da porta
+            translation -0.11 0 0
+            children USE PapelDaPorta
+          }
+                    
+          DEF TimeSensorPortaAbrir TimeSensor { stopTime 1 cycleInterval 5 }
+          DEF OrInterpolationPortaAbrir OrientationInterpolator {
+            key [0 1]
+            keyValue IS rotacaoAbrir
+            ROUTE SensorMacanetaPortaAbrir.touchTime TO TimeSensorPortaAbrir.startTime
+            ROUTE TimeSensorPortaAbrir.fraction_changed TO OrInterpolationPortaAbrir.set_fraction
+            ROUTE OrInterpolationPortaAbrir.value_changed TO PortaParaRodar.rotation
+          }
+          DEF TimeSensorPortaFechar TimeSensor { stopTime 1 cycleInterval 5 }
+          DEF OrInterpolationPortaFechar OrientationInterpolator {
+            key [0 1]
+            keyValue IS rotacaoFechar 
+            ROUTE SensorMacanetaPortaFechar.touchTime TO TimeSensorPortaFechar.startTime
+            ROUTE TimeSensorPortaFechar.fraction_changed TO OrInterpolationPortaFechar.set_fraction
+            ROUTE OrInterpolationPortaFechar.value_changed TO PortaParaRodar.rotation
+          }
+          
+        ]
+      } 
+
+    ]
+  }
+}
+
+PROTO Parte_De_Cima_Da_Porta_Do_Gabinete 
+[
+  field SFVec3f translation 0 0 0  # ponto de contacto (no lado das dobradiças) 
+]
+{
+  Transform { 
+    translation IS translation
+    children Shape {
+      geometry Extrusion { 
+        crossSection [0 0, 0.1 0, 0.1 -1, 0 -1, 0 0] 
+        spine [0 0 0, 0 1 0]
+      }
+      appearance Appearance { 
+        texture ImageTexture { url "images/CCISEL/CCISEL_Interior_Gabinetes_TopoDaPorta.jpg" } 
+        textureTransform TextureTransform { scale 1 1 }
+        material Material { }
+      }
+    }
+  }
+}
+
+PROTO Gabinete_4m_PortaEsquerda_Paredes 
+[
+  field SFVec3f translation 0 0 0
+  field MFString doorNumber [" "]
+  field MFString personTop    [" "]
+  field MFString personMiddle [" "]
+  field MFString personBottom [" "]
+]
+{
+  Transform {
+    translation IS translation
+    children
+    Group {
+      children [
+        # Sólido
+        Shape {
+          geometry Extrusion {
+            crossSection [ 0.1 0, 4 0, 4 -0.2, 3.9 -0.2, 3.9 -0.1, 0.1 -0.1, 0.1 0]
+            spine [0 0 0, 0 3 0]
+          }
+          appearance DEF Gabinetes_Paredes_Textura Appearance { 
+            #material Material { diffuseColor 0.8 0.8 0.8 }
+            texture ImageTexture { url "images/CCISEL/CCISEL_Interior_Gabinetes.jpg" } 
+            textureTransform TextureTransform { scale 10 1 }
+            material Material { }
+          }
+        }
+        Shape {
+          geometry Extrusion {
+            crossSection [3.9 -1.2, 4 -1.2, 4 -3, 0.1 -3, 0.1 -2.9, 3.9 -2.9, 3.9 -1.2]
+            spine [0 0 0, 0 3 0]
+          }
+          appearance USE Gabinetes_Paredes_Textura
+        }
+        Shape {
+          geometry Extrusion {
+            crossSection [0.05 0, 0.05 -3, 0.1 -3, 0.1 0, 0.05 0]
+            spine [0 0 0, 0 3 0]
+            ccw FALSE
+          }
+          appearance USE Gabinetes_Paredes_Textura
+        }
+        Parte_De_Cima_Da_Porta_Do_Gabinete { 
+          translation 3.9 2 -0.2  
+        }
+        Gabinete_Porta {
+          translation 3.90 0 -0.2
+          #rotation 0 1 0 1.31 # 75º
+          doorNumber IS doorNumber
+          personTop  IS personTop
+          personMiddle IS personMiddle
+          personBottom IS personBottom
+
+          rotacaoAbrir [0 1 0 0, 0 1 0 1.57]
+          rotacaoFechar [0 1 0 1.57, 0 1 0 0]
+        }
+
+      ]
+    }
+  }
+}
+
+PROTO Gabinete_4m_PortaDireita_Paredes 
+[
+  field SFVec3f translation 0 0 0
+  field MFString doorNumber [" "]
+  field MFString personTop    [" "]
+  field MFString personMiddle [" "]
+  field MFString personBottom [" "]
+]
+{
+  
+  Transform {
+    translation IS translation
+    children
+    Group {
+      children [
+        # Sólido
+        Shape {
+          geometry Extrusion {
+            crossSection [ 0.1 0, 4 0, 4 -1.8, 3.9 -1.8, 3.9 -0.1, 0.1 -0.1, 0.1 0]
+            spine [0 0 0, 0 3 0]
+            convex FALSE
+          }
+          appearance DEF Gabinetes_Paredes_Textura Appearance { 
+            #material Material { diffuseColor 0.8 0.8 0.8 }
+            texture ImageTexture { url "images/CCISEL/CCISEL_Interior_Gabinetes.jpg" } 
+            textureTransform TextureTransform { scale 10 1 }
+            material Material { }
+          }
+        }
+        Shape {
+          geometry Extrusion {
+            crossSection [3.9 -2.8, 4 -2.8, 4 -3, 0.1 -3, 0.1 -2.9, 3.9 -2.9, 3.9 -2.8]
+            spine [0 0 0, 0 3 0]
+            convex FALSE
+          }
+          appearance USE Gabinetes_Paredes_Textura
+        }
+        Shape {
+          geometry Extrusion {
+            crossSection [0.05 0, 0.05 -3, 0.1 -3, 0.1 0, 0.05 0]
+            spine [0 0 0, 0 3 0]
+            ccw FALSE
+          }
+          appearance USE Gabinetes_Paredes_Textura
+        }
+        # Parte de cima da porta
+        Parte_De_Cima_Da_Porta_Do_Gabinete { 
+          translation 3.9 2 -1.8  
+        }
+
+
+          # Porta do gabinete
+        Gabinete_Porta {
+          translation 4 0 -2.8
+          rotation 0 1 0 3.14159
+          doorNumber IS doorNumber
+          personTop IS personTop
+          personMiddle IS personMiddle
+          personBottom IS personBottom
+
+          rotacaoAbrir  [0 1 0 1.67, 0 1 0 3.14]
+          rotacaoFechar [0 1 0 3.14, 0 1 0 1.67]
+
+        }
+      ]
+    }
+  }
+}
+
+
+PROTO Gabinete_5m_PortaEsquerda_Paredes 
+[
+  field SFVec3f translation 0 0 0
+  field MFString doorNumber [" "]
+  field MFString personTop    [" "]
+  field MFString personMiddle [" "]
+  field MFString personBottom [" "]
+]
+{
+  Transform {
+    translation IS translation
+    children
+    Group {
+      children [
+        # Sólido
+        Shape {
+          geometry Extrusion {
+            crossSection [ -5 -1.8, -5 0, -0.05 0, -0.05 -0.1, -4.9 -0.1, -4.9, -1.8, -5 -1.8]
+            spine [0 0 0, 0 3 0]
+          }
+          appearance DEF Gabinetes_Paredes_Textura Appearance { 
+            #material Material { diffuseColor 0.8 0.8 0.8 }
+            texture ImageTexture { url "images/CCISEL/CCISEL_Interior_Gabinetes.jpg" } 
+            textureTransform TextureTransform { scale 10 1 }
+            material Material { }
+          }
+        }
+        Shape {
+          geometry Extrusion {
+            crossSection [-5 -2.8, -4.9 -2.8, -4.9 -2.9, -0.05 -2.9, -0.05 -3, -5 -3,  -5 -2.8]
+            spine [0 0 0, 0 3 0]
+          }
+          appearance USE Gabinetes_Paredes_Textura
+        }
+        Shape {
+          geometry Extrusion {
+            crossSection [-0.08 0, -0.08 -3, -0.1 -3, -0.1 0, -0.08 0]
+            spine [0 0 0, 0 3 0]
+            ccw TRUE
+          }
+          appearance USE Gabinetes_Paredes_Textura
+        }
+
+        Parte_De_Cima_Da_Porta_Do_Gabinete {
+          translation -5 2 -1.8
+        }
+        Gabinete_Porta {
+          translation -4.9 0 -2.8
+          rotation 0 1 0 -3.14159
+          doorNumber IS doorNumber
+          personTop IS personTop
+          personMiddle IS personMiddle
+          personBottom IS personBottom
+
+          rotacaoAbrir  [0 1 0 3.14, 0 1 0 4.71]
+          rotacaoFechar [0 1 0 4.71, 0 1 0 3.14]
+        }
+      ]
+    }
+  }
+}
+
+PROTO Gabinete_5m_PortaDireita_Paredes 
+[
+  field SFVec3f translation 0 0 0
+  field MFString doorNumber [" "]
+  field MFString personTop    [" "]
+  field MFString personMiddle [" "]
+  field MFString personBottom [" "]
+]
+{
+  Transform {
+    translation IS translation
+    children
+    Group {
+      children [
+        # Sólido
+        Shape {
+          geometry Extrusion {
+            crossSection [ -5 -0.2, -5 0, -0.05 0, -0.05 -0.1, -4.9 -0.1, -4.9, -0.2, -5 -0.2]
+            spine [0 0 0, 0 3 0]
+          }
+          appearance DEF Gabinetes_Paredes_Textura Appearance { 
+            texture ImageTexture { url "images/CCISEL/CCISEL_Interior_Gabinetes.jpg" } 
+            textureTransform TextureTransform { scale 10 1 }
+            material Material { }
+          }
+        }
+        Shape {
+          geometry Extrusion {
+            crossSection [-5 -1.2, -4.9 -1.2, -4.9 -2.9, -0.05 -2.9, -0.05 -3, -5 -3,  -5 -1.2]
+            spine [0 0 0, 0 3 0]
+          }
+          appearance USE Gabinetes_Paredes_Textura
+        }
+        Shape {
+          geometry Extrusion {
+            crossSection [-0.08 0, -0.08 -3, -0.1 -3, -0.1 0, -0.08 0]
+            spine [0 0 0, 0 3 0]
+            ccw TRUE
+          }
+          appearance USE Gabinetes_Paredes_Textura
+        }
+        Parte_De_Cima_Da_Porta_Do_Gabinete {
+          translation -5 2 -0.2
+        }
+        Gabinete_Porta {
+          translation -5 0 -0.2
+          #rotation 0 1 0 -1.31
+          doorNumber IS doorNumber
+          personTop IS personTop 
+          personMiddle IS personMiddle
+          personBottom IS personBottom
+
+          rotacaoAbrir  [0 1 0 4.81, 0 1 0 0.00]
+          rotacaoFechar [0 1 0 0.00, 0 1 0 4.81]
+        }
+
+      ]
+    }
+  }
+}
+
+
+Gabinete_4m_PortaDireita_Paredes  { translation 0 0 0   doorNumber " 1" personMiddle ["SECRETARIA"] }
+Gabinete_4m_PortaEsquerda_Paredes { translation 0 0 -3  doorNumber " 3" personTop ["Hernani Mergulhao"] personMiddle ["Rui Joaquim"] }
+Gabinete_4m_PortaEsquerda_Paredes { translation 0 0 -6  personMiddle ["WC - S"] }
+Gabinete_4m_PortaEsquerda_Paredes { translation 0 0 -9  doorNumber " 5" personMiddle ["SERVIDORES &"] personBottom ["IMPRESSORAS"] }
+Gabinete_4m_PortaEsquerda_Paredes { translation 0 0 -12 doorNumber " 7" personTop ["Pedro Miguens"] personMiddle ["Carlos Duarte"] personBottom ["Jose Branco"] }
+Gabinete_4m_PortaEsquerda_Paredes { translation 0 0 -15 doorNumber " 9" personMiddle ["OFICINA"]}
+Gabinete_4m_PortaEsquerda_Paredes { translation 0 0 -18 doorNumber "11" personTop ["Luis Falcao"] personMiddle ["Miguel Carvalho"] }
+Gabinete_4m_PortaEsquerda_Paredes { translation 0 0 -21 doorNumber "13" personTop ["Pedro Sampaio"] personMiddle ["Joao Viegas"] }
+Gabinete_4m_PortaEsquerda_Paredes { translation 0 0 -24 doorNumber "15" personTop ["Jorge Martins"] personMiddle ["Nelson Branco"] }
+Gabinete_4m_PortaEsquerda_Paredes { translation 0 0 -27 doorNumber "17" personTop ["Joao Patriarca"] personMiddle ["Maria Joao Barros"] personBottom ["Filipe Freitas"] }
+Gabinete_4m_PortaEsquerda_Paredes { translation 0 0 -30 doorNumber "19" personTop ["Paulo Pereira"] personMiddle ["Jose Simao"] personBottom ["Marlene Marques"] }
+Gabinete_4m_PortaEsquerda_Paredes { translation 0 0 -33 doorNumber "21" personTop ["Artur Ferreira"] personMiddle ["Andre Lourenco"]  }
+
+
+Gabinete_5m_PortaDireita_Paredes  { translation 11 0 0    personTop ["Sala de"] personMiddle ["FORMACAO"] }
+Gabinete_5m_PortaEsquerda_Paredes { translation 11 0 -3   doorNumber " 1"  personTop ["Sala de"] personMiddle ["FORMACAO"] } 
+Gabinete_5m_PortaEsquerda_Paredes { translation 11 0 -6   personMiddle ["WC - H"] }
+Gabinete_5m_PortaEsquerda_Paredes { translation 11 0 -9   doorNumber " 4"  personTop ["Pimenta Rodrigues"] personMiddle ["Manuela Sousa"] }
+Gabinete_5m_PortaEsquerda_Paredes { translation 11 0 -12  doorNumber " 6"  personTop ["Nuno Leite"] personMiddle ["Nuno Datia"] }
+Gabinete_5m_PortaEsquerda_Paredes { translation 11 0 -15  doorNumber " 8"  personTop ["Pedro Pereira"] personMiddle ["Carlos Guedes"] personBottom ["Nelson Correia"] }
+Gabinete_5m_PortaEsquerda_Paredes { translation 11 0 -18  doorNumber "10" personTop ["Fernando Sousa"] }
+Gabinete_5m_PortaEsquerda_Paredes { translation 11 0 -21  doorNumber "12" personTop ["Jose Paraiso"] personMiddle ["Mario Vestias"] }
+Gabinete_5m_PortaEsquerda_Paredes { translation 11 0 -24  doorNumber "14" personTop ["Ezequiel Conde"] personMiddle ["Joao Trindade"] personBottom ["Luis Costa"] }
+Gabinete_5m_PortaDireita_Paredes  { translation 11 0 -27  doorNumber "16" personTop ["Mario Carrasqueira"] personMiddle ["Tiago Dias"] }
+Gabinete_5m_PortaEsquerda_Paredes { translation 11 0 -30  doorNumber "18" personTop ["Sala de"] personMiddle ["REUNIOES"] }
+Gabinete_5m_PortaDireita_Paredes  { translation 11 0 -33  doorNumber "20" personTop ["Pedro Felix"] personMiddle ["Catia Vaz"] }
+
+
+
+##############################################################################
+# Iluminação
+##############################################################################
+#PointLight {
+#  location 5.5 2.9 -18
+#  color 1 1 1
+#  intensity 1
+#  radius 50
+#  ambientIntensity 1
+#  on TRUE
+#}
+
+
+# OFF
+SpotLight {
+  location 5.5 2.9 -9
+  color 1 1 1
+  cutOffAngle 0.785398
+  ambientIntensity 0.2
+  attenuation 1 0 0
+  beamWidth 1.570796
+  direction 0 -1 0
+  intensity 1
+  radius 500
+  on FALSE
+}
+
+# Armadura com luzes flurescentes
+PROTO ARMADURA_LUZES [
+
+  field SFVec3f translation 5 2.9 -18
+  field SFBool lampON TRUE
+
+]{
+
+  Transform  {
+    translation IS translation
+    rotation 1 0 0 1.57
+    children [
+      Shape {
+        geometry Box {
+          size 0.2 1 0.05
+        }
+        appearance Appearance { material Material { diffuseColor 0.9 0.9 0.9  transparency 0.7 } }
+      }
+      Shape {
+        geometry Extrusion {
+          crossSection [-0.1 0.025, -0.1 -0.025, 0.1 -0.025, 0.1 0.025, 0.090 0.025, 0.080 -0.015, -0.080 -0.015, -0.090 0.025]
+          spine [0 -0.5 0, 0 0.5 0]
+          convex FALSE
+          ccw FALSE
+        }
+        appearance Appearance { material Material { diffuseColor 0.6 0.6 0.6 } }
+      }
+      Transform {
+        translation 0.045 0 0.005
+        children DEF Lampada_Armadura Shape {
+          geometry Cylinder {
+            radius 0.015
+            height 1
+          }
+          #appearance Appearance { material Material { diffuseColor 0.95 0.95 0.85 emissiveColor 0.95 0.95 0.85 shininess 0.5 } }
+          appearance Appearance { material Material { diffuseColor 0.95 0.95 0.85 } }
+        }
+      }
+      Transform {
+        translation -0.045 0 0.005
+        children USE Lampada_Armadura
+      }
+
+      # Luz associada a esta lampada
+      Transform {
+        translation 0 -0.5 0
+        children
+          DEF LampLight PointLight {
+            location 0 0 0
+            color 0.95 0.95 0.85
+            intensity 0.5
+            radius 10
+            ambientIntensity 0.2
+            on IS lampON
+          }
+      }
+
+      DEF LightSwitch TouchSensor {}
+      DEF Toggle Script {
+	      field    SFBool on TRUE
+	      eventIn  SFBool set_active
+	      eventOut SFBool on_changed
+
+	      # use 'javascript' on newer browsers
+	      url "vrmlscript:
+		      function set_active( b, tm ) {
+			      // ignore button releases
+			      if ( b == FALSE ) return;
+
+			      // toggle on button presses
+			      if ( on == TRUE ) on = FALSE;
+			      else              on = TRUE;
+			      on_changed = on;
+		      }"
+      }
+    ]
+    ROUTE LightSwitch.isActive TO Toggle.set_active
+    ROUTE Toggle.on_changed    TO LampLight.set_on
+  }
+
+}
+
+
+ARMADURA_LUZES { translation 5 2.9 -2 lampON TRUE }
+ARMADURA_LUZES { translation 5 2.9 -5 lampON TRUE }
+ARMADURA_LUZES { translation 5 2.9 -8 lampON TRUE }
+ARMADURA_LUZES { translation 5 2.9 -11 lampON TRUE }
+ARMADURA_LUZES { translation 5 2.9 -14 lampON TRUE }
+ARMADURA_LUZES { translation 5 2.9 -17 lampON TRUE }
+ARMADURA_LUZES { translation 5 2.9 -20 lampON TRUE }
+ARMADURA_LUZES { translation 5 2.9 -23 lampON TRUE }
+ARMADURA_LUZES { translation 5 2.9 -26 lampON TRUE }
+ARMADURA_LUZES { translation 5 2.9 -29 lampON TRUE }
+ARMADURA_LUZES { translation 5 2.9 -32 lampON TRUE }
+ARMADURA_LUZES { translation 5 2.9 -35 lampON TRUE }
+
+
+
+#ARMADURA_LUZES { translation 2.5 2.9 -14 lampON TRUE }

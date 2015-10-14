@@ -1,0 +1,124 @@
+#VRML V2.0 utf8
+	
+#Recurso Exterior			
+#EXTERNPROTO	XAxis [field SFColor cor] "XAxis_V2.wrl#XAxis"
+
+#Forma cilindrica
+PROTO CILINDRO
+[
+	field SFFloat raio	1.0
+	field SFFloat comprimento 2.0
+	field SFColor color 1 1 1
+	field SFVec3f deslocacao 0 0 0
+]{
+	Transform{
+		translation	IS deslocacao
+		children Shape {
+			geometry Cylinder { radius IS raio height IS comprimento }
+			appearance Appearance { material Material {diffuseColor IS color} }
+		}
+	}
+}
+
+#Forma do cone
+PROTO CONE
+[
+	field SFFloat raio	1.0
+	field SFFloat altura 2.0
+	field SFColor color 1 1 1
+	field SFVec3f deslocacao 0 0 0
+]{
+	Transform {
+		translation	IS deslocacao
+		children Shape {
+			geometry Cone {bottomRadius IS raio height IS altura}
+			appearance Appearance { material Material{diffuseColor IS color} }
+		}
+	}
+}
+
+#Forma composta referente ao eixo do xx
+PROTO XAxis 
+[
+	field SFColor cor 1 1 1
+]{
+	Transform {
+		rotation 0 0 1 -1.57  #Rotação a todos os elementos
+		children Group {
+			children [
+				CONE { raio 1 altura 2 color IS cor deslocacao 0 26 0}
+				CILINDRO { raio 0.5 comprimento 25 color IS cor deslocacao 0 12.5 0}
+				CILINDRO { raio 0.05 comprimento 60 color IS cor }
+			]
+		}
+	}
+}
+
+
+
+PROTO Esfera
+[
+	field SFFloat raio 1.0
+]{
+	Shape {
+		geometry Sphere	{radius IS raio }
+		appearance Appearance { material Material {diffuseColor 1 1 1} }
+	}
+}
+
+PROTO TEXTO
+[
+	 field MFString	str	""
+	 field SFColor cor 1 1 1
+	 field SFVec3f localizacao 0 0 0
+]{
+	Transform {
+		translation	IS localizacao
+		children 
+		Billboard {
+			children Shape{
+				geometry Text {string IS str fontStyle FontStyle {size 3} }
+				appearance Appearance { material Material { diffuseColor IS cor }}
+			}
+		}
+	}	
+}
+
+PROTO AXIS
+[
+	field SFVec3f escala 1 1 1
+]{
+	Transform {
+		scale IS escala
+	children Group {
+		children [
+			#Eixo do XX	[RED]
+			XAxis {cor 1 0 0}
+	
+			#Eixo do YY	[GREEN]
+			Transform {
+				rotation 0 0 1 1.57
+				children XAxis {cor 0 1 0}
+			}
+	
+			#Eixo do ZZ	[BLUE]
+			Transform {
+				rotation 0 1 0 -1.57
+				children XAxis {cor 0 0 1}
+			}
+	
+			#Esfera central
+			Esfera {}
+
+			#Legenda dos eixos
+
+			TEXTO {str "x" localizacao 25 2 0 cor 1 0 0}
+			TEXTO {str "y" localizacao -3 25 0 cor 0 1 0}
+			TEXTO {str "z" localizacao -0.5 2 25 cor 0 0 1}
+		]
+	}
+	}
+}
+
+
+AXIS {escala 0.04 0.04 0.04}

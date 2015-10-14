@@ -1,0 +1,382 @@
+#VRML V2.0 utf8
+
+
+
+EXTERNPROTO Axis []
+"axis.wrl#Axis"
+
+
+PROTO Parte_transparente [] {
+	Transform {
+	rotation  0 0 1 1.57
+	rotation  1 0 0 1.57
+	children
+	 Shape {
+      geometry Box {
+	    # 0.60m x 0,04m x 0,8m
+        size 60 4 80
+      }
+      appearance Appearance {
+		  material Material {
+	  		ambientIntensity  0.2
+			diffuseColor      1 1 1 
+			emissiveColor     0 0 0
+			shininess         0.3
+			specularColor     0 0 0       
+			transparency      .8
+	      }
+      }
+     }
+    }
+}
+# Base da porta
+PROTO Porta_base
+[
+]
+{
+  Shape { 
+    geometry Box { size 80 10 120 }
+    appearance Appearance {
+		texture ImageTexture { url "texturas\porta01.jpg" }
+		textureTransform TextureTransform { scale 5 5 }
+	}
+  }
+}
+
+# Partes laterais da porta
+PROTO Porta_lateral
+[
+]
+{
+  Shape { 
+    geometry Box { size 10 10 80 }
+    appearance Appearance {
+		texture ImageTexture { url "texturas\porta01.jpg" }
+		textureTransform TextureTransform { scale 5 5 }
+	}
+  }
+}
+
+# Parte superior
+PROTO Porta_superior
+[
+]
+{
+  Shape { 
+    geometry Box { size 80 10 20 }
+    appearance Appearance {
+		texture ImageTexture { url "texturas\porta01.jpg" }
+		textureTransform TextureTransform { scale 5 5 }
+	}
+  }
+}
+
+
+#cilindros de apoio para a "manete" para abrir as portas
+PROTO Cilindro_apoios [ field SFColor objColor 0 0 0 ] {
+	Shape {
+		geometry Cylinder {
+			bottom TRUE
+			top	TRUE
+			side TRUE
+			height 20
+			radius 1			
+		}
+		appearance Appearance {
+			material Material { diffuseColor IS objColor }
+		}
+	}
+}
+
+# Manipulo da Porta
+PROTO Porta_manipulo
+[
+]
+{
+  Shape { 
+    geometry Box { size 15 1 20 }
+    appearance Appearance { material Material { } }
+  }
+}
+
+PROTO Porta_esquerda
+[
+  field MFRotation rotacaoAbrir  [0 0 0 0, 0 1 0 1.57]
+  field MFRotation rotacaoFechar [0 1 0 1.57, 0 0 0 0]
+]
+{
+
+	DEF	PortaEsquerda Transform {
+
+		center -40 -10 0
+
+    children 
+    [
+      Transform {
+		rotation 0 0 1 1.57
+		rotation 1 0 0 1.57
+		translation 0 0 0       # horizontal (para a origem ficar na parte de baixo da mesa)
+        children Porta_base { }
+      }
+
+	  Transform {
+		rotation 0 0 1 1.57
+		rotation 1 0 0 1.57
+		translation 35 100 0       # horizontal (para a origem ficar na parte de baixo da mesa)
+        children Porta_lateral { }
+      }
+
+	  Transform {
+		rotation 0 0 1 1.57
+		rotation 1 0 0 1.57
+		translation -35 100 0       # horizontal (para a origem ficar na parte de baixo da mesa)
+        children Porta_lateral { }
+      }
+
+	  Transform {
+		rotation 0 0 1 1.57
+		rotation 1 0 0 1.57
+
+		translation 0 140 0       # horizontal (para a origem ficar na parte de baixo da mesa)
+        children Porta_superior { }
+      }
+
+	  Transform {
+		
+		rotation 1 0 0 1.57
+		
+		translation 25 45 0  # horiontal, colocar no canto.
+        children Cilindro_apoios { }
+      }
+
+	  Transform {
+		
+		rotation 1 0 0 1.57
+		
+		translation 25 40 0  # horiontal, colocar no canto.
+        children Cilindro_apoios { }
+      }
+
+	  Transform  {
+
+		  rotation 1 0 0 1.57
+
+		  translation 25 40 -10
+		  children [
+			  DEF SensorMacanetaPortaFechar TouchSensor { }
+			  Porta_manipulo {}
+		  ]
+	  }
+	  Transform  { 
+		  
+		  rotation 1 0 0 1.57
+
+		  translation 25 40 10
+		  children [
+			  DEF SensorMacanetaPortaAbrir TouchSensor { }
+			  Porta_manipulo {}
+		  ]
+
+	  }
+
+	  Transform  {
+
+		  translation 0 100 0
+		  children Parte_transparente {}
+
+	  }
+
+  
+
+	  DEF TimeSensorPortaAbrir TimeSensor { stopTime 1 cycleInterval 2 }
+      DEF OrInterpolationPortaAbrir OrientationInterpolator {
+      key [0 1]
+      keyValue IS rotacaoAbrir
+      ROUTE SensorMacanetaPortaAbrir.touchTime TO TimeSensorPortaAbrir.startTime
+      ROUTE TimeSensorPortaAbrir.fraction_changed TO OrInterpolationPortaAbrir.set_fraction
+      ROUTE OrInterpolationPortaAbrir.value_changed TO PortaEsquerda.rotation
+      }
+      DEF TimeSensorPortaFechar TimeSensor { stopTime 1 cycleInterval 2 }
+      DEF OrInterpolationPortaFechar OrientationInterpolator {
+      key [0 1]
+      keyValue IS rotacaoFechar 
+      ROUTE SensorMacanetaPortaFechar.touchTime TO TimeSensorPortaFechar.startTime
+      ROUTE TimeSensorPortaFechar.fraction_changed TO OrInterpolationPortaFechar.set_fraction
+      ROUTE OrInterpolationPortaFechar.value_changed TO PortaEsquerda.rotation
+      }
+
+	  
+  
+    ]
+  }
+}
+
+PROTO Porta_direita
+[
+  field MFRotation rotacaoAbrir  [0 0 0 0, 0 1 0 -1.57]
+  field MFRotation rotacaoFechar [0 1 0 -1.57, 0 0 0 0]
+]
+{
+
+	DEF	PortaDireita Transform {
+
+		center 40 -10 0
+
+    children 
+     
+    [
+      Transform {
+		rotation 0 0 1 1.57
+		rotation 1 0 0 1.57
+		translation 0 0 0       # horizontal (para a origem ficar na parte de baixo da mesa)
+        children Porta_base { }
+      }
+
+	  Transform {
+		rotation 0 0 1 1.57
+		rotation 1 0 0 1.57
+		translation 35 100 0       # horizontal (para a origem ficar na parte de baixo da mesa)
+        children Porta_lateral { }
+      }
+
+	  Transform {
+		rotation 0 0 1 1.57
+		rotation 1 0 0 1.57
+		translation -35 100 0       # horizontal (para a origem ficar na parte de baixo da mesa)
+        children Porta_lateral { }
+      }
+
+	  Transform {
+		rotation 0 0 1 1.57
+		rotation 1 0 0 1.57
+
+		translation 0 140 0       # horizontal (para a origem ficar na parte de baixo da mesa)
+        children Porta_superior { }
+      }
+
+	  Transform {
+		
+		rotation 1 0 0 1.57
+		
+		translation -25 45 0  # horiontal, colocar no canto.
+        children Cilindro_apoios { }
+      }
+
+	  Transform {
+		
+		rotation 1 0 0 1.57
+		
+		translation -25 40 0  # horiontal, colocar no canto.
+        children Cilindro_apoios { }
+      }
+
+	  Transform  {
+
+		  rotation 1 0 0 1.57
+
+		  translation -25 40 -10
+		  children [
+			  DEF SensorMacanetaPortaFechar TouchSensor { }
+			  Porta_manipulo {}
+		  ]
+	  }
+	  Transform  { 
+		  
+		  rotation 1 0 0 1.57
+
+		  translation -25 40 10
+		  children [
+			  DEF SensorMacanetaPortaAbrir TouchSensor { }
+			  Porta_manipulo {}
+		  ]
+
+	  }
+
+	  Transform  {
+
+		  translation 0 100 0
+		  children Parte_transparente {}
+
+	  }
+
+	  DEF TimeSensorPortaAbrir TimeSensor { stopTime 1 cycleInterval 2 }
+          DEF OrInterpolationPortaAbrir OrientationInterpolator {
+            key [0 1]
+            keyValue IS rotacaoAbrir
+            ROUTE SensorMacanetaPortaAbrir.touchTime TO TimeSensorPortaAbrir.startTime
+            ROUTE TimeSensorPortaAbrir.fraction_changed TO OrInterpolationPortaAbrir.set_fraction
+            ROUTE OrInterpolationPortaAbrir.value_changed TO PortaDireita.rotation
+          }
+          DEF TimeSensorPortaFechar TimeSensor { stopTime 1 cycleInterval 2 }
+          DEF OrInterpolationPortaFechar OrientationInterpolator {
+            key [0 1]
+            keyValue IS rotacaoFechar 
+            ROUTE SensorMacanetaPortaFechar.touchTime TO TimeSensorPortaFechar.startTime
+            ROUTE TimeSensorPortaFechar.fraction_changed TO OrInterpolationPortaFechar.set_fraction
+            ROUTE OrInterpolationPortaFechar.value_changed TO PortaDireita.rotation
+          }
+
+  
+    ]
+  }
+}
+
+# Definição da mesa em metros (para usar as unidades do VRML)
+#   - centro da mesa passa a ser junto à parte de baixo das pernas
+#   
+#    1 m  = 100  cm
+#    1 cm = 0.01 m
+#    
+
+
+
+
+PROTO Porta_m
+[
+]
+{	
+	Group{
+	children
+	[
+
+	
+	Porta_esquerda {
+	
+	}
+
+
+
+
+
+	Transform
+	{
+	   translation 80 0 0
+	   children Porta_direita { }
+	}
+
+]
+}
+}
+
+PROTO	Porta
+[
+]
+{
+	Group{
+	   children [
+
+	Transform {
+		scale 100 100 100
+	#	children Axis {}
+	}
+
+	Transform {
+		translation	-40 -45 0
+		children Porta_m {}
+	}
+]
+}
+}
+
+
+Porta { }

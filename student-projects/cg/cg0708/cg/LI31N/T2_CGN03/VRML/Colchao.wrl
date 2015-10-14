@@ -1,0 +1,28 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Estrado[]
+"Estrado.wrl#Estrado"
+
+PROTO Colchao[]{
+	Shape {
+		geometry Box { size 2 .2 .85 }
+		appearance Appearance {
+			material Material {  }texture ImageTexture {url ["camaText.JPG"]}
+		}	
+	}	
+}
+
+PROTO Cama[]{
+	Group {
+		children [
+			Transform	{
+				translation	0.95 0.1 0
+				children Colchao {}
+			}
+			Transform	{
+				children Estrado {}
+			}
+		]
+	}
+}
+Cama{}

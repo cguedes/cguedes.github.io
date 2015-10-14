@@ -1,0 +1,53 @@
+#VRML V2.0 utf8
+PROTO bloco [field SFVec3f largura  10 10 20  field SFVec3f largura1  9 9 21]
+{
+	Group{
+		children	[
+			Transform {
+				scale 0.02 0.02 0.02
+				children[
+					Shape {
+						geometry Box{ size IS largura}
+						appearance Appearance {
+							material  Material {
+								diffuseColor   0.7 0.7 0.7
+							}
+							texture	ImageTexture {url "Texturas\Caixas.jpg"}
+						}
+					}
+					Shape {
+						geometry Box{ size IS largura1}
+						appearance Appearance {
+							material  Material {
+								diffuseColor  0.7 0.7 0.7
+							}
+							texture	ImageTexture {url "Texturas\Caixas.jpg"}
+						}
+					} 
+	  				Transform {
+						translation	-2 0 12
+						children Shape {
+							geometry Extrusion {
+								crossSection [
+									0 -1.0,
+						    		0 0, 
+									4 0,
+						    		4 -1.0,
+						    		2.5 -1.0,
+								   2.5 -0.5,
+						    		1 -0.5,
+						    		1 -1.0,
+						    		0 -1.0]
+								spine [0 0 0, 0 1.2 0]
+								beginCap TRUE
+								endCap TRUE
+								solid FALSE
+							}
+							appearance Appearance {	material Material {diffuseColor	0 0 0 }}
+						}
+					}
+				]
+			}  
+		]
+	}			  
+}

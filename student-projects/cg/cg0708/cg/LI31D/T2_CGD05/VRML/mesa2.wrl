@@ -1,0 +1,79 @@
+#VRML V2.0 utf8
+EXTERNPROTO	axis [] "axis.wrl#axis"
+
+#parte de uma perna
+PROTO semiPerna [field SFColor col 0.4 0.3 0.3]{
+	Shape { 
+		geometry Box {size 8 66.5 2}
+		appearance Appearance {material	Material{diffuseColor IS col}}
+	}
+}
+
+#parte de duas pernas
+PROTO perna[field	SFColor	col 0.2 0.3 0.2]{
+	Group {
+		children [
+			Transform {
+				translation	4 0 0 
+				children semiPerna {}
+			}
+			Transform {
+				rotation 0 1 0 -1.57
+				translation	0 0 4
+				children semiPerna	{}
+			}
+		]
+	}
+}
+
+
+PROTO mesaOrigem [field SFColor col 0.4 0.3 0.1, field SFColor col2 0.7 0.55 0]{
+    Transform{
+		translation	0.95 0.66 0.33
+		scale 0.01 0.01 0.01
+		children [
+			#tampo 1
+			Transform {
+				translation 0 4 0
+				children Shape {
+				geometry Box { size	188 3 66}
+				appearance Appearance {material Material {diffuseColor IS col2}}
+				}
+			}
+			#tampo 2
+			Shape {
+				geometry Box { size	180 8.5 63}
+				appearance Appearance {material Material {diffuseColor IS col}}
+			}
+			#pernas
+			Transform {
+				children [
+					Transform {
+						rotation 0 1 0 1.57
+						translation	-85 -33 27
+						children perna{}
+					}
+					Transform {
+						rotation 0 1 0	3.14
+						translation	85 -33 27
+						children perna{}
+					}
+
+					Transform {
+						translation	-85 -33 -27
+						children perna{}
+					}
+					Transform {
+						rotation 0 1 0 -1.57
+						translation	85 -33 -27
+						children perna{}
+					}
+				]
+			}
+		]
+	}
+}
+
+mesaOrigem{}
+
+

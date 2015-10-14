@@ -1,0 +1,1847 @@
+#VRML V2.0 utf8
+
+WorldInfo {
+  title "Representação de uma sala de cinema"
+}
+
+NavigationInfo {
+  type ["STUDY"]
+}
+
+
+########################################################################
+# Definição do ponto de vista inicial
+########################################################################
+
+Viewpoint {
+	description "Ecra"	
+	orientation 0 1 0 -3.2
+	fieldOfView 2
+	position 1 7 1
+}
+
+Viewpoint {
+	description "Mostrar Sala"
+	orientation 0 1 0 -0.5
+	fieldOfView 2
+	position 1 7 9
+}
+
+Viewpoint {
+	description "Porta de Entrada"	
+	orientation 0 1 0 -3.2
+	fieldOfView 2
+	position 17.5 1 -10
+}
+
+
+PROTO ESCADA [field	SFColor	escadaColor 0.5 0.5 0.5]{
+	Transform {
+		children [
+			Transform {
+				translation	0 0 0
+				children [
+					Shape {
+						geometry Box {size 30 0.25 20}
+						appearance Appearance {
+							material Material {
+								diffuseColor IS	escadaColor	
+							}
+							texture	ImageTexture { url "fotos/chao.png" repeatS TRUE repeatT TRUE }
+						}
+					} 
+				]
+
+			}
+		]
+	}
+}
+
+PROTO LUZ [field SFColor LuzColor 1 1 1]{
+	Transform {
+		children[
+
+			Transform {
+				translation	0 0 0
+				children [
+					Shape {
+						geometry Sphere	{radius 0.2}
+						appearance Appearance {
+							material Material {
+								diffuseColor 1 1 1	
+							}
+						} 	
+
+					}
+				]
+			}
+			
+			SpotLight{
+				location 0.0 0.0 0.0 # posição da luz
+				direction 0.0 -1.0 0.0 # direcção da luz
+				cutOffAngle 0.785 # abertura máxima do cone de luz
+				beamWidth 0.52# cone com brilho constante
+				intensity 1.0
+				color 1.0 1.0 0.75 
+				on FALSE #linha de código para a sala com luz apagada
+			}
+				
+		]
+	}
+}
+
+
+PROTO ColunaE [] {
+	Transform {
+		children [
+			Shape {
+				geometry Box {size 0.1 1 0.5}
+				appearance Appearance {
+					material Material {
+						diffuseColor 0 0 0
+					}
+				}
+			}
+			Sound {
+				direction -1 0 0
+				maxFront 40
+				minFront 20
+				source AudioClip {
+					url	"dark drunk.wmv"
+					loop TRUE
+				}
+			}
+		]
+	}
+}
+
+PROTO ColunaD [] {
+	Transform {
+		children [
+			Shape {
+				geometry Box {size 0.1 1 0.5}
+				appearance Appearance {
+					material Material {
+						diffuseColor 0 0 0
+					}
+				}
+			}
+			Sound {
+				direction 1 0 0
+				maxFront 40
+				minFront 20
+				source AudioClip {
+					url	"dark drunk.wmv"
+					loop TRUE
+				}
+			}
+		]
+	}
+}
+
+PROTO FilaColunasE []{
+	Transform {
+		children [
+			Transform{
+				translation	19.7 9 -7
+				children ColunaE	{}
+			} 
+			Transform{
+				translation	19.7 9 0
+				children ColunaE	{}
+			}
+			Transform{
+				translation	19.7 9 7
+				children ColunaE	{}
+			}
+
+		]
+	}
+}
+
+PROTO FilaColunasD []{
+	Transform {
+		children [
+			Transform{
+				translation	-19.7 9 -7
+				children ColunaE	{}
+			} 
+			Transform{
+				translation	-19.7 9 0
+				children ColunaE	{}
+			}
+			Transform{
+				translation	-19.7 9 7
+				children ColunaE	{}
+			}
+
+		]
+	}
+}
+
+PROTO Colunas[]{
+	Transform {
+		children [
+			Transform{				  
+				children FilaColunasD {}
+			}
+			Transform{				
+				children FilaColunasE {}
+			}
+		]
+	}
+}
+
+
+#-------------------- Chão -----------------------------
+PROTO Chao[]{
+	Transform {
+		translation	0 0 -0.13
+		children [
+			Shape {
+				geometry Box {size 40.5 0.5 20.25}
+				appearance Appearance {
+					material Material {
+						diffuseColor 0.5 0.5 0.5
+					}
+					texture	ImageTexture { url "fotos/chao.png" repeatS TRUE repeatT TRUE }
+				}
+			}
+		]
+	}
+}
+
+#-------------------------------Cadeira-----------------------------------------------
+
+PROTO Cadeira [field SFRotation rotation 1 0 0 1.57
+	           field MFRotation rotacaoAbrir  [0 0 0 0, 1 0 0 1.57]] {
+	Transform {
+		children [
+		Transform {
+			translation 0  3  0
+			children [
+			DEF	Costas
+			Shape{
+				appearance Appearance {
+            	  				material Material { diffuseColor  1.0 0.6 0.8 }
+								texture	ImageTexture { url "fotos/costas.png" }
+            				}
+				geometry Box {
+				#comprimento,altura e largura
+				size 2.0 2.0 0.5
+				}
+			}
+			]
+		}
+		Transform {
+			translation 0 1.75 0.75
+			children [
+			DEF	BancoParaRodar		
+				Transform{
+					children[
+					DEF	Banco			
+						Shape{
+							appearance Appearance {
+            	  							material Material { diffuseColor 0.8 0.5 1.0 }
+											texture	ImageTexture { url "fotos/costas.png" }
+            							}
+							geometry Box {
+								size 2.0 2.0 0.5
+							}
+						
+						}
+					DEF SensorCadeira TouchSensor { }
+
+					DEF TimeSensorCadeira TimeSensor { stopTime 1 cycleInterval 3 }
+		        	DEF OrInterpolationCadeiraAbrir OrientationInterpolator {
+		            	key [0 1]
+						keyValue IS	rotacaoAbrir						  
+		                ROUTE SensorCadeira.touchTime TO TimeSensorCadeira.startTime
+		                ROUTE TimeSensorCadeira.fraction_changed TO OrInterpolationCadeiraAbrir.set_fraction
+		                ROUTE OrInterpolationCadeiraAbrir.value_changed TO BancoParaRodar.rotation
+		        	}
+				
+					]
+				}				 
+			]
+		}	
+
+		Transform {
+			translation -1.25 1 0
+			children [
+			DEF	Perna1
+			Shape{
+				appearance Appearance {
+            	  				material Material { diffuseColor  0.5 0.5 0.5 }
+								texture	ImageTexture { url "fotos/porta.png" }
+            				}
+				geometry Cylinder {
+					bottom TRUE
+					height 2
+					radius 0.25
+					side TRUE
+					top	TRUE
+				}
+			}
+		]
+		}
+		Transform {
+			translation 1.25 1 0
+			children [
+			DEF	Perna2
+			Shape{
+				appearance Appearance {
+            	  				material Material { diffuseColor 0.5 0.5 0.5 }
+								texture	ImageTexture { url "fotos/porta.png" }
+            				}
+				geometry Cylinder {
+					bottom TRUE
+					height 2
+					radius 0.25
+					side TRUE
+					top	TRUE
+				}
+			}
+		]
+		}
+		Transform {
+			translation -1.25 2.25 0.75
+			children [
+			DEF	BracoEsq
+			Shape{
+				appearance Appearance {
+            	  				material Material { diffuseColor 0.5 0.5 0.5 }
+								texture	ImageTexture { url "fotos/porta.png" }
+            				}
+			geometry Box {
+					size 0.5 0.5 2.0
+				}
+			}
+		]
+		}
+		Transform {
+			translation 1.25 2.25 0.75
+			children [
+			DEF	BracoDt
+			Shape{
+				appearance Appearance {
+            	  				material Material { diffuseColor 0.5 0.5 0.5 }
+								texture	ImageTexture { url "fotos/porta.png" }
+            				}
+				geometry Box {
+					size 0.5 0.5 2.0
+				}
+			}
+		]
+		}
+	
+	]
+	}
+}
+
+PROTO ScaleCadeira [] {
+	
+	Transform{
+		
+		children[
+			Transform {
+				scale 0.3 0.3 0.3
+				
+				children Cadeira {}
+			}
+		]
+	}
+}
+
+#-----------------------------Fila Cadeiras ---------------------------------------------
+
+PROTO FilaCadeiras [] {
+	
+	Transform{
+		
+		children[
+			Transform {
+				translation	0 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				
+				translation -1 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				
+				translation -2 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+
+			Transform {
+	
+				translation -3 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+	
+				translation 1 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 2 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 3 0.3 5.2
+			
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 4 0.3 5.2
+			
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -4 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 5 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -5 0.3 5.2
+			
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 6 0.3 5.2
+			
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -6 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 7 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -7 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 8 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -8 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 9 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -9 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 10 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -10 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 11 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -11 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 12 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -12 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+
+		]
+	}
+
+}
+
+#-----------------------------Filas Cadeiras ---------------------------------------------
+PROTO FilasCadeiras [] {
+	
+	Transform{
+		
+		children[
+			Transform{
+				translation	0 0 0
+
+				children FilaCadeiras {}
+			}
+			
+			Transform{
+				translation	0 0.25 -1
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 0.5 -2
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 0.75 -3
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 1 -4
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 1.25 -5
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 1.5 -6
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 1.75 -7
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 2 -8
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 2.25 -9
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 2.5 -10
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 2.75 -11
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 3 -12
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 3.25 -13
+
+				children FilaCadeiras {}
+			}
+			Transform{
+				translation	0 3.5 -14
+
+				children FilaCadeiras {}
+			}
+	
+		]
+	}
+
+}
+#------------------------------------- Ultima Fila ------------------------------------------
+PROTO UltimaFilaCadeiras [] {
+	
+	Transform{
+		
+		children[
+			Transform {
+				translation	0 3.75 -14.75
+				
+				children FilaCadeiras {}
+			}
+
+			Transform {
+				translation -13 4.05 -9.55
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 13 4.05 -9.55
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -14 4.05 -9.55
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 14 4.05 -9.55
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -15 4.05 -9.55
+				
+				children ScaleCadeira {}
+			}	
+			Transform {
+				translation 15 4.05 -9.55
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -16 4.05 -9.55
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 16 4.05 -9.55
+				
+				children ScaleCadeira {}
+			} 
+			Transform {
+				translation -17 4.05 -9.55
+				
+				children ScaleCadeira {}
+			}	
+			Transform {
+				translation 17 4.05 -9.55
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -18 4.05 -9.55
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 18 4.05 -9.55
+				
+				children ScaleCadeira {}
+			} 
+			Transform {
+				translation -19 4.05 -9.55
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 19 4.05 -9.55
+				
+				children ScaleCadeira {}
+			}
+		
+		]
+	}
+
+}
+
+# ---------------------------------- FilaCadeirasLados -----------------------------------------
+
+ PROTO FilaCadeirasLados [] {
+	
+	Transform{
+		
+		children[
+							
+			Transform {
+				translation -15 0.3 5.2
+				
+				children ScaleCadeira {}
+			}	
+			Transform {
+				translation 15 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -16 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 16 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -17 0.3 5.2
+				
+				children ScaleCadeira {}
+			}	
+			Transform {
+				translation 17 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation -18 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 18 0.3 5.2
+				
+				children ScaleCadeira {}
+			} 
+			Transform {
+				translation -19 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+			Transform {
+				translation 19 0.3 5.2
+				
+				children ScaleCadeira {}
+			}
+
+		]
+	}
+
+}
+
+PROTO FilasCadeirasLados [] {
+	
+	Transform{
+		
+		children[
+			
+			Transform{
+				translation	0 2.25 -9
+
+				children FilaCadeirasLados {}
+			}
+			Transform{
+				translation	0 2.5 -10
+
+				children FilaCadeirasLados {}
+			}
+			Transform{
+				translation	0 2.75 -11
+
+				children FilaCadeirasLados {}
+			}
+			Transform{
+				translation	0 3 -12
+
+				children FilaCadeirasLados {}
+			}
+			Transform{
+				translation	0 3.25 -13
+
+				children FilaCadeirasLados {}
+			}
+			Transform{
+				translation	0 3.5 -14
+
+				children FilaCadeirasLados {}
+			}
+	
+		]
+	}
+
+}
+
+#------------------------ Escadas Principais -------------------------------------
+PROTO EscadariaP[]{
+	Transform {
+		children [
+			Transform{
+				translation	0 0.25 -2
+				scale 1 1 0.80
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 0.5 -2.5
+				scale 1 1 0.75
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 0.75 -3
+				scale 1 1 0.70
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 1 -3.5
+				scale 1 1 0.65
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 1.25 -4
+				scale 1 1 0.60
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 1.5 -4.5
+				scale 1 1 0.55
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 1.75 -5
+				scale 1 1 0.50
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 2 -5.5
+				scale 1 1 0.45
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 2.25 -6
+				scale 1 1 0.40
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 2.5 -6.5
+				scale 1 1 0.35
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 2.75 -7
+				scale 1 1 0.30
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 3 -7.5
+				scale 1 1 0.25
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 3.25 -8
+				scale 1 1 0.20
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 3.5 -8.5
+				scale 1 1 0.15
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 3.75 -9
+				scale 1 1 0.10
+				children ESCADA{}
+			}
+			Transform{
+				translation	0 4 -9.5
+				scale 1 1 0.05
+				children ESCADA{}
+			}
+		]
+	}
+}
+
+#------------------------ Escadas Direita -------------------------------------
+PROTO EscadariaD[]{
+	Transform {
+		children [
+			Transform{
+				translation	17.5 2.5 -6.5
+				scale 0.167 1 0.35
+				children ESCADA{}
+			}
+			Transform{
+				translation	17.5 2.75 -7
+				scale 0.167 1 0.30
+				children ESCADA{}
+			}
+			Transform{
+				translation	17.5 3 -7.5
+				scale 0.167 1 0.25
+				children ESCADA{}
+			}
+			Transform{
+				translation	17.5 3.25 -8
+				scale 0.167 1 0.20
+				children ESCADA{}
+			}
+			Transform{
+				translation	17.5 3.5 -8.5
+				scale 0.167 1 0.15
+				children ESCADA{}
+			}
+			Transform{
+				translation	17.5 3.75 -9
+				scale 0.167 1 0.10
+				children ESCADA{}
+			}
+			Transform{
+				translation	17.5 4 -9.5
+				scale 0.167 1 0.05
+				children ESCADA{}
+			}
+		]
+	}
+}
+
+#------------------------ Escadas Esquerda -------------------------------------
+
+PROTO EscadariaE[]{
+	Transform {
+		children [
+
+			Transform{
+				translation	-17.5 2.5 -6.5
+				scale 0.167 1 0.35
+				children ESCADA{}
+			}
+			Transform{
+				translation	-17.5 2.75 -7
+				scale 0.167 1 0.30
+				children ESCADA{}
+			}
+			Transform{
+				translation	-17.5 3 -7.5
+				scale 0.167 1 0.25
+				children ESCADA{}
+			}
+			Transform{
+				translation	-17.5 3.25 -8
+				scale 0.167 1 0.20
+				children ESCADA{}
+			}
+			Transform{
+				translation	-17.5 3.5 -8.5
+				scale 0.167 1 0.15
+				children ESCADA{}
+			}
+			Transform{
+				translation	-17.5 3.75 -9
+				scale 0.167 1 0.10
+				children ESCADA{}
+			}
+			Transform{
+				translation	-17.5 4 -9.5
+				scale 0.167 1 0.05
+				children ESCADA{}
+			}
+		]
+	}
+}
+
+#--------------------------- Parede Tras ---------------------------------------
+PROTO ParedeT[]{
+	Transform {
+		children [
+
+			#meio
+			Transform {
+				translation	0 3.75 -10
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 30 0.5 7}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}
+							texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation	10 8.25 -10
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 10 0.5 3}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}
+							texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation	-10 8.25 -10
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 10 0.5 3}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}
+							texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation	0 9.25 -10
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 10 0.5 1}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}
+							texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+			#casinha
+			Transform {
+				translation	0 8 -10
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 10 0.5 1.5}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.7 0.7 0.7
+								transparency 0.7
+							}
+						}
+					}
+				]
+			}
+
+			#projector
+			Transform {
+				translation	0 8 -10.1
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 1 0.3 0.5}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.1 0.1 0.1
+							}
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation	0 7.25 -10.2
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 0.5 0.1 1}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.1 0.1 0.1
+							}
+						}
+					}
+				]
+			}
+
+			Transform {
+					translation	0 8 -10.05
+					children [
+						Shape {
+							geometry Sphere	{radius 0.15}
+							appearance Appearance {
+								material Material {
+									diffuseColor 1 1 1	
+								}
+							}
+						}
+						SpotLight{
+							location 0.0 0.0 0.0 # posição da luz
+							direction 0.0 0.0 1.0 # direcção da luz
+							cutOffAngle 0.785 # abertura máxima do cone de luz
+							beamWidth 0.52# cone com brilho constante
+							intensity 1.0
+							color 1.0 1.0 0.75 
+							on TRUE
+						}
+					]
+			}
+
+
+			#--------dir-------
+			#cima
+			Transform {
+				translation	17.62 6 -10
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 5.25 0.5 7.5}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+			#esq
+			Transform {
+				translation	19.25 1 -10
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 2 0.5 2.5}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							} texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+
+			#dir
+			Transform {
+				translation	15.5 1 -10
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 1.5 0.5 2.5}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+
+			#--------esq------
+			#cima
+			Transform {
+				translation	-17.62 6 -10
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 5.25 0.5 7.5}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+			#esq
+			Transform {
+				translation	-19.25 1 -10
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 2 0.5 2.5}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+
+			#dir
+			Transform {
+				translation	-15.5 1 -10
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Box {size 1.5 0.5 2.5}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+#--------------------------- Parede Direita ---------------------------------------
+
+PROTO ParedeD[]{
+	Transform {
+		children [
+			#inicio
+			Transform {
+				translation	20 4.75 -1.25
+				rotation 0 0 1 1.57
+
+				children [
+					Shape {
+						geometry Box {size 10 0.5 18}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					} 
+				]
+			}
+
+			#meio
+			Transform {
+				translation	20 5.75 1
+				rotation 0 0 1 1.57
+				children [
+					Shape {
+						geometry Box {size 8 0.5 15}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+
+			#placa_exit
+			Transform {
+				translation	20 2 8.15
+				rotation 0 0 1 1.57
+				children [
+					Shape {
+						geometry Box {size 0.25 0.6 0.4}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0 0.8 0.2
+							}
+							texture	ImageTexture { url "fotos/exit.png" }
+						}
+					}
+				]
+			}
+
+			#ponta
+			Transform {
+				translation	20 4.75 9.25
+				rotation 0 0 1 1.57
+				children [
+					Shape {
+						geometry Box {size 10 0.5 1.5}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+#--------------------------- Parede Esquerda ---------------------------------------
+
+PROTO ParedeE[]{
+	Transform {
+		children [
+			#inicio
+			Transform {
+				translation	-20 4.75 -1.25
+				rotation 0 0 1 1.57
+
+				children [
+					Shape {
+						geometry Box {size 10 0.5 18}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+
+			#meio
+			Transform {
+				translation	-20 5.75 1
+				rotation 0 0 1 1.57
+				children [
+					Shape {
+						geometry Box {size 8 0.5 15}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					} 
+				]
+			}
+
+			#placa_exit
+			Transform {
+				translation	-20 2 8.15
+				rotation 0 0 1 1.57
+				children [
+					Shape {
+						geometry Box {size 0.25 0.6 0.4}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0 0.8 0.2
+							}
+							texture	ImageTexture { url "fotos/exit.png" }
+						}
+					}
+				]
+			}
+
+			#ponta
+			Transform {
+				translation	-20 4.75 9.25
+				rotation 0 0 1 1.57
+				children [
+					Shape {
+						geometry Box {size 10 0.5 1.5}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.5 0.5 0.5
+							}texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+#------------------------------ Parede Frente -------------------------------------------
+PROTO ParedeF[]{
+	Transform {
+		translation	0 4.75 10
+		rotation 1 0 0 1.57
+		children [
+			Shape {
+				geometry Box {size 40.5 0.5 10}
+				appearance Appearance {
+					material Material {
+						diffuseColor 0.5 0.5 0.5
+					}texture	ImageTexture { url "fotos/parede.png" repeatS TRUE repeatT TRUE }
+				}
+			}
+		]
+	}
+}
+
+#------------------------------ Ecrã -------------------------------------------
+PROTO Ecra[]{
+	Transform {
+		translation	0 5 9.75 
+		children [
+			Shape {
+				geometry Box {size 25 6 0.5}
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+					}
+					texture	MovieTexture {
+						loop TRUE
+						speed 1
+						url	"dark drunk.wmv"
+					}
+				}
+			}
+			Sound {
+				source AudioClip {	
+					url	"dark drunk.wmv"
+					loop TRUE
+				}
+			}
+		]
+	
+	}
+}
+
+#------------------------------ Tecto -------------------------------------------
+PROTO Tecto[]{
+	Transform {
+		translation	0 10 0
+		children [
+			Shape {
+				geometry Box {size 40.5 0.5 20.5}
+				appearance Appearance {
+					material Material {
+						diffuseColor 0.5 0.5 0.5
+					}
+					texture	ImageTexture { url "fotos/chao.png" repeatS TRUE repeatT TRUE }
+				}
+			}
+		]
+	}
+}
+
+#------------------------------ Luzes ---------------------------------------------
+
+PROTO FilaLuzes [] {
+	
+	Transform{
+		children[
+
+		Transform{
+			translation	-4 9.8 0
+			children LUZ {}
+		}
+
+		Transform{
+			translation	-8 9.8 0
+			children LUZ {}
+		}
+
+		Transform{
+			translation	-12 9.8 0
+			children LUZ {}
+		}
+
+		Transform{
+			translation	-16 9.8 0
+			children LUZ {}
+		}
+
+		Transform{
+			translation	0 9.8 0
+			children LUZ {}
+		}
+
+		Transform{
+			translation	4 9.8 0
+			children LUZ {}
+		}
+
+		Transform{
+			translation	8 9.8 0
+			children LUZ {}
+		}
+
+		Transform{
+			translation	12 9.8 0
+			children LUZ {}
+		}
+
+		Transform{
+			translation	16 9.8 0
+			children LUZ {}
+		}
+	
+		]
+	}
+}
+
+
+ PROTO FilasLuzes [] {
+	
+	Transform{
+		children[
+			Transform {
+				translation 0 0 0
+				children FilaLuzes {}
+			}
+
+			Transform {
+				translation 0 0 -3
+				children FilaLuzes {}
+			}
+			Transform {
+				translation 0 0 3
+				children FilaLuzes {}
+			}
+			Transform {
+				translation 0 0 -6
+				children FilaLuzes {}
+			}
+			Transform {
+				translation 0 0 6
+				children FilaLuzes {}
+			}
+
+		]
+	}
+
+}
+
+#---------------------------------- Portas Exit ------------------------------------------------------
+
+PROTO Porta_Esq [	field SFVec3f translation 0 0 0
+				field SFRotation rotation 0 1 0 1.57
+	        	field MFRotation rotacaoAbrir  [0 1 0 0, 0 1 0 1.57]
+				field MFRotation rotacaoFechar [0 1 0 1.57, 0 1 0 0]] {
+
+				   	Transform {
+						children [
+							DEF	PortaParaRodar
+							Transform {
+								translation	-19.9 0.25 8.5			
+								children [
+
+									Shape { # Porta
+            							geometry Extrusion {
+											crossSection [0 0, 0.1 0, 0.1 -0.74, 0 -0.74, 0 0] 
+    										spine [0 0 0, 0 1.5 0]
+
+            							}
+            							appearance Appearance { material Material { diffuseColor 1 1 1 }
+									   texture	ImageTexture { url "fotos/porta.png" repeatT TRUE }  }
+									}
+
+									Transform { # Barra
+            							translation 0.1 0.75 -0.4
+            							children [
+            								DEF BARRA_PORTA Shape {
+                								geometry Box {size 0.1 0.1 0.5}
+                								appearance Appearance { material Material { diffuseColor 0.5 0 0 } }
+            								}
+            							DEF SensorBarraPortaAbrir TouchSensor { }
+            							]
+        							}
+        							  Transform { # Barra
+            							translation 0 0.75 -0.4
+            							children [ 
+            							  USE BARRA_PORTA 
+            							  DEF SensorBarraPortaFechar TouchSensor { }
+            							]
+        							  }
+
+									  DEF TimeSensorPortaAbrir TimeSensor { stopTime 1 cycleInterval 5 }
+        							  DEF OrInterpolationPortaAbrir OrientationInterpolator {
+            							key [0 1]
+            							keyValue IS rotacaoAbrir
+            							ROUTE SensorBarraPortaAbrir.touchTime TO TimeSensorPortaAbrir.startTime
+            							ROUTE TimeSensorPortaAbrir.fraction_changed TO OrInterpolationPortaAbrir.set_fraction
+            							ROUTE OrInterpolationPortaAbrir.value_changed TO PortaParaRodar.rotation
+        							  }
+        							  DEF TimeSensorPortaFechar TimeSensor { stopTime 1 cycleInterval 5 }
+        							  DEF OrInterpolationPortaFechar OrientationInterpolator {
+            							key [0 1]
+            							keyValue IS rotacaoFechar 
+            							ROUTE SensorBarraPortaFechar.touchTime TO TimeSensorPortaFechar.startTime
+            							ROUTE TimeSensorPortaFechar.fraction_changed TO OrInterpolationPortaFechar.set_fraction
+            							ROUTE OrInterpolationPortaFechar.value_changed TO PortaParaRodar.rotation								        
+							        }  
+							    ]
+							}
+						]
+					}
+				}
+  
+
+PROTO Porta_Dir [	field SFVec3f translation 0 0 0
+				field SFRotation rotation 0 1 0 1.57
+	        	field MFRotation rotacaoFechar  [0 1 0 0, 0 1 0 -1.57]
+				field MFRotation rotacaoAbrir [0 1 0 -1.57, 0 1 0 0]] {
+
+				   	Transform {
+						children [
+							DEF	PortaParaRodar
+							Transform {
+								translation	19.9 0.25 8.5 
+							
+								children [
+
+									Shape { # Porta
+            							geometry Extrusion {
+
+											crossSection [0 0, 0.1 0, 0.1 -0.74, 0 -0.74, 0 0] 
+    										spine [0 0 0, 0 1.5 0]
+            							}
+            							appearance Appearance { material Material { diffuseColor 1 1 1 }
+									   texture	ImageTexture { url "fotos/porta.png" repeatT TRUE }  }
+									}
+									
+									Transform { # Barra
+            							translation 0.1 0.75 -0.4
+            							children [
+            								DEF BARRA_PORTA Shape {
+                								geometry Box {size 0.1 0.1 0.5}
+                								appearance Appearance { material Material { diffuseColor 0.5 0 0 } }
+            								}
+            							DEF SensorBarraPortaAbrir TouchSensor { }
+            							]
+        							}
+        							  Transform { # Barra
+            							translation 0 0.75 -0.4
+            							children [ 
+            							  USE BARRA_PORTA 
+            							  DEF SensorBarraPortaFechar TouchSensor { }
+            							]
+        							  }
+
+									  DEF TimeSensorPortaAbrir TimeSensor { stopTime 1 cycleInterval 5 }
+        							  DEF OrInterpolationPortaAbrir OrientationInterpolator {
+            							key [0 1]
+            							keyValue IS rotacaoAbrir
+            							ROUTE SensorBarraPortaAbrir.touchTime TO TimeSensorPortaAbrir.startTime
+            							ROUTE TimeSensorPortaAbrir.fraction_changed TO OrInterpolationPortaAbrir.set_fraction
+            							ROUTE OrInterpolationPortaAbrir.value_changed TO PortaParaRodar.rotation
+        							  }
+        							  DEF TimeSensorPortaFechar TimeSensor { stopTime 1 cycleInterval 5 }
+        							  DEF OrInterpolationPortaFechar OrientationInterpolator {
+            							key [0 1]
+            							keyValue IS rotacaoFechar 
+            							ROUTE SensorBarraPortaFechar.touchTime TO TimeSensorPortaFechar.startTime
+            							ROUTE TimeSensorPortaFechar.fraction_changed TO OrInterpolationPortaFechar.set_fraction
+            							ROUTE OrInterpolationPortaFechar.value_changed TO PortaParaRodar.rotation								        
+							        }  
+							    ]
+							}
+						]
+					}
+				}
+
+#---------------------------------- Portas Entrada ------------------------------------------------------
+
+PROTO Porta_Tras_Dir [	field SFVec3f translation 0 0 0
+				field SFRotation rotation 0 1 0 1.57
+	        	field MFRotation rotacaoFechar  [0 1 0 0, 0 1 0 1.57]
+				field MFRotation rotacaoAbrir [0 1 0 1.57, 0 1 0 0]] {
+
+				   	Transform {
+						children [
+							DEF	PortaParaRodar
+							Transform {
+								translation	-18.25 0.25 -10	  
+								children [
+									
+									Shape { # Porta
+            							geometry Extrusion {   
+											crossSection [0 0, 1 0, 1 -0.1, 0 -0.1, 0 0] 
+    										spine [0 0 0, 0 2 0]
+            							}
+            							appearance Appearance { material Material { diffuseColor 1 1 1 } 
+										texture	ImageTexture { url "fotos/porta.png" repeatT TRUE } }
+									}
+									
+									Transform { # Macaneta
+            							translation 0.5 1 -0.1
+            							children [
+            								DEF BARRA_PORTA Shape {
+                								geometry Box {size 0.5 0.1 0.1}
+                								appearance Appearance { material Material { diffuseColor 0.5 0 0 } }
+            								}
+            							DEF SensorBarraPortaAbrir TouchSensor { }
+            							]
+        							}
+        							  Transform { # Macaneta
+            							translation 0.5 1 0
+            							children [ 
+            							  USE BARRA_PORTA 
+            							  DEF SensorBarraPortaFechar TouchSensor { }
+            							]
+        							  }
+
+									  DEF TimeSensorPortaAbrir TimeSensor { stopTime 1 cycleInterval 5 }
+        							  DEF OrInterpolationPortaAbrir OrientationInterpolator {
+            							key [0 1]
+            							keyValue IS rotacaoAbrir
+            							ROUTE SensorBarraPortaAbrir.touchTime TO TimeSensorPortaAbrir.startTime
+            							ROUTE TimeSensorPortaAbrir.fraction_changed TO OrInterpolationPortaAbrir.set_fraction
+            							ROUTE OrInterpolationPortaAbrir.value_changed TO PortaParaRodar.rotation
+        							  }
+        							  DEF TimeSensorPortaFechar TimeSensor { stopTime 1 cycleInterval 5 }
+        							  DEF OrInterpolationPortaFechar OrientationInterpolator {
+            							key [0 1]
+            							keyValue IS rotacaoFechar 
+            							ROUTE SensorBarraPortaFechar.touchTime TO TimeSensorPortaFechar.startTime
+            							ROUTE TimeSensorPortaFechar.fraction_changed TO OrInterpolationPortaFechar.set_fraction
+            							ROUTE OrInterpolationPortaFechar.value_changed TO PortaParaRodar.rotation								        
+							        }  
+							    ]
+							}
+						]
+					}
+				}
+
+PROTO Porta_Tras_Esq [	field SFVec3f translation 0 0 0
+				field SFRotation rotation 0 1 0 1.57
+	        	field MFRotation rotacaoFechar  [0 1 0 0, 0 1 0 -1.57]
+				field MFRotation rotacaoAbrir [0 1 0 -1.57, 0 1 0 0]] {
+
+				   	Transform {
+						children [
+							DEF	PortaParaRodar
+							Transform {
+								translation	-18.25 2.25 -10
+								children [
+
+									Shape { # Porta
+            							geometry Extrusion {
+
+									      crossSection [0 0, 1 0, 1 -0.1, 0 -0.1, 0 0]		
+            							  spine [0 0 0, 0 -2 0]
+            							}
+            							appearance Appearance { material Material { diffuseColor 1 1 1 }
+									   texture	ImageTexture { url "fotos/porta.png" repeatT TRUE } }
+									}
+									Transform { # Macaneta
+            							translation -0.5 -1 -0.1
+            							children [
+            								DEF BARRA_PORTA Shape {
+                								geometry Box {size 0.5 0.1 0.1}
+                								appearance Appearance { material Material { diffuseColor 0.5 0 0 } }
+            								}
+            							DEF SensorBarraPortaAbrir TouchSensor { }
+            							]
+        							}
+        							  Transform { # Macaneta
+            							translation -0.5 -1 0
+            							children [ 
+            							  USE BARRA_PORTA 
+            							  DEF SensorBarraPortaFechar TouchSensor { }
+            							]
+        							  }
+
+									  DEF TimeSensorPortaAbrir TimeSensor { stopTime 1 cycleInterval 5 }
+        							  DEF OrInterpolationPortaAbrir OrientationInterpolator {
+            							key [0 1]
+            							keyValue IS rotacaoAbrir
+            							ROUTE SensorBarraPortaAbrir.touchTime TO TimeSensorPortaAbrir.startTime
+            							ROUTE TimeSensorPortaAbrir.fraction_changed TO OrInterpolationPortaAbrir.set_fraction
+            							ROUTE OrInterpolationPortaAbrir.value_changed TO PortaParaRodar.rotation
+        							  }
+        							  DEF TimeSensorPortaFechar TimeSensor { stopTime 1 cycleInterval 5 }
+        							  DEF OrInterpolationPortaFechar OrientationInterpolator {
+            							key [0 1]
+            							keyValue IS rotacaoFechar 
+            							ROUTE SensorBarraPortaFechar.touchTime TO TimeSensorPortaFechar.startTime
+            							ROUTE TimeSensorPortaFechar.fraction_changed TO OrInterpolationPortaFechar.set_fraction
+            							ROUTE OrInterpolationPortaFechar.value_changed TO PortaParaRodar.rotation								        
+							        }  
+							    ]
+							}
+						]
+					}
+				}
+
+#------------------------------------------------------------------------------------------------------------------
+#desenhar o cinema
+
+PROTO DesenharCinema[]{
+	Transform {
+		children [
+
+			Transform {
+				children Chao {}
+			}
+
+			Transform {
+				children EscadariaP	{}
+			}
+
+			Transform {
+				children EscadariaD	{}
+			}
+
+			Transform {
+				children EscadariaE	{}
+			}
+
+			Transform {
+				children ParedeT {}
+			}
+
+			Transform {	
+				children Porta_Esq {}
+			}
+
+			Transform {
+				children Porta_Dir {}
+			}
+
+			Transform {
+				children ParedeD {}
+			}
+
+			Transform {
+				children ParedeE {}
+			}
+
+			Transform {
+				children Colunas {}
+			}
+
+			Transform {
+				children ParedeF {}
+			}
+
+			Transform {
+				children Ecra {}
+			}
+
+			Transform {
+				children Tecto {}
+			}
+
+			Transform {	
+				children FilasLuzes {}
+			}
+
+			Transform {	 
+				children FilasCadeirasLados {}	
+			}
+			Transform {			  
+				children UltimaFilaCadeiras {} 
+			}
+			Transform {	  
+				children FilasCadeiras {} 
+			}
+
+
+			Transform {	
+				children Porta_Tras_Dir {}
+			}
+
+			Transform {
+				translation	2 0 0
+				children Porta_Tras_Esq {}
+			}
+
+			Transform {
+				translation	36.5 0 0
+				children Porta_Tras_Esq {}
+			}
+
+			Transform {
+				translation	34.5 0 0
+				children Porta_Tras_Dir {}
+			}
+		]
+	}
+}
+
+Transform {
+	children DesenharCinema	{}
+}

@@ -1,0 +1,486 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Text3D [
+	exposedField MFString string
+	exposedField SFNode fontStyle
+	exposedField MFFloat length
+	exposedField SFFloat maxExtent
+	exposedField SFFloat depth
+	exposedField SFFloat creaseAngle
+	exposedField SFBool solid
+]
+[ "urn:ParaGraph:Text3D" "http://www.parallelgraphics.com/vrml/proto/Cortona/extensions.wrl#Text3D" ]
+
+####################################
+#		Cabeça                      
+####################################
+PROTO Cabeca [ ]{
+	Group {
+		children 
+		[
+			Shape {
+				geometry Sphere	{ radius 0.15 }
+				appearance Appearance {	material Material {	diffuseColor 1 .68 .35 } }
+			}
+
+			# Pescoço
+			Transform {
+				translation	0 -0.15 0
+				children  Shape {
+						geometry Cylinder {
+							radius 0.05
+							height 0.05
+						}
+						appearance Appearance {	material Material {	diffuseColor 1 .68 .35 } }					
+					}
+			}
+
+			# Olho Esq
+			Transform {
+				translation	-0.05 0.05 0.09
+				children [
+					Shape {
+						geometry Sphere {
+							radius 0.04
+						}	
+						appearance Appearance { material Material { diffuseColor 1 1 1 } }
+					}
+					Transform {
+						translation	-0.01 0.01 0.03
+						rotation 1 0 0 -1.57
+						children Shape {
+							geometry Cone {
+								height 0.02
+								bottomRadius 0.01
+							}
+							appearance Appearance { material Material { diffuseColor 0 0 0 } }
+						}
+					}
+				] 
+			}
+
+			# Olho Dir
+			Transform {
+				translation	0.05 0.05 0.09
+				children [
+					Shape {
+						geometry Sphere { radius 0.04 }	
+						appearance Appearance { material Material { diffuseColor 1 1 1 } } 
+					}
+					Transform {
+						translation	0.01 0.01 0.03
+						rotation 1 0 0 -1.57
+						children Shape {
+							geometry Cone {
+								height 0.02
+								bottomRadius 0.01
+							}
+							appearance Appearance { material Material { diffuseColor 0 0 0 } }
+						}
+					}
+				]
+			}
+
+			# Nariz
+			Transform {
+				translation 0 0.02 0.145
+				children Shape {
+					geometry Cone {
+						height 0.05
+						bottomRadius 0.02
+					}
+ 					appearance Appearance { material Material { diffuseColor 1 .68 .35 } }
+				}
+			}
+
+			# Palpebra Dir
+			Transform {
+				translation	0.057 0.085 0.1
+				children Shape {
+					geometry Cone {
+						bottomRadius 0.03
+						height 0.025
+					}
+					appearance Appearance { material Material { diffuseColor 1 .68 .35 } }
+				}
+			}
+
+			# Palpebra Esq
+			Transform {
+				translation	-0.057 0.085 0.1
+				children Shape {
+					geometry Cone {
+						bottomRadius 0.03
+						height 0.025
+					}
+					appearance Appearance { material Material { diffuseColor 1 .68 .35 } }
+				}
+			}
+
+			# Cabelo
+			Transform {
+				translation	0 0 -0.02
+				scale 1 0.7 0.9
+				children Shape { 
+					geometry Sphere { radius 0.17 }
+					appearance Appearance { material Material { diffuseColor .5 .3 .19 } }
+				}
+			}
+
+			# Bigode
+			Transform {
+				translation	0 -0.007 0.13
+				children Shape {
+					geometry Cone {
+						bottomRadius 0.04
+						height 0.04
+					}
+					appearance Appearance { material Material { diffuseColor .5 .3 .19 } }
+				}
+			}
+
+			# Boca
+			Transform {
+				translation	0 -0.025 0.13
+				children Shape {
+					geometry Cone {
+						bottomRadius 0.02
+						height 0.02
+					}
+					appearance Appearance { material Material { diffuseColor .61 .39 .07 } }
+				}
+			}
+			Transform {
+				translation 0 -0.048 0.125
+				rotation 1 0 0 3.14
+				children Shape {
+					geometry Cone {
+						bottomRadius 0.02
+						height 0.02
+					}
+					appearance Appearance { material Material { diffuseColor .61 .39 .07 } }
+				}
+			}
+		]
+	}
+}
+
+####################################
+#		Braço                       
+####################################
+PROTO Braco []{
+	Group {
+		children 
+		[
+			Transform {
+				scale 0.75 1 1
+				children 
+				[
+					Shape {
+						geometry Cylinder {
+							radius 0.1
+							height 0.5
+						}
+						appearance Appearance { material Material { diffuseColor 0.3 0.3 0.3 } }
+					}
+
+					# Ombro
+					Transform {
+						translation	0 0.25 0
+						children Shape {
+							geometry Sphere	{ radius 0.1 }
+							appearance Appearance { material Material { diffuseColor 0.3 0.3 0.3 } }
+						}
+					}				
+				]
+			}
+
+			# Mão
+			Transform {
+				translation	0 -0.25 0
+				children Shape {
+					geometry Sphere	{ radius 0.05 }
+					appearance Appearance { material Material { diffuseColor 1 .68 .35 } }
+				}
+			}			
+		]
+	}
+}
+
+####################################
+#		Perna                       
+####################################
+PROTO Perna []{
+	Group {
+		children 
+		[
+			Transform {
+				scale 1 1 0.85
+				children Shape {
+					geometry Cylinder {
+						radius 0.1
+						height 1
+					}
+					appearance Appearance {	material Material { diffuseColor 0.3 0.3 0.3 } }
+				}
+			}
+
+			# Sapato
+			Transform	{
+				translation	0 -0.52 0.05
+				scale 0.5 1 1
+				children 
+				[
+					Shape {
+						geometry Cylinder {
+							height 0.05
+							radius 0.15
+						}
+						appearance Appearance { material Material { diffuseColor .25 .17 .07 } }
+					}
+					Transform {
+						translation	0 0.075 0
+						children Shape {
+							geometry Cone {
+								height 0.1
+								bottomRadius 0.15
+							}
+							appearance Appearance { material Material { diffuseColor .25 .17 .07 } }
+						}
+					}					
+				]
+			}
+		]
+	}
+}
+
+####################################
+#		Tronco                      
+####################################
+PROTO Tronco []{
+	Group {
+		children 
+		[
+			Transform {
+				scale 1 1 0.5
+				children Shape {
+					geometry Cylinder {
+						radius 0.2
+						height 0.5
+					}
+					appearance Appearance { material Material { diffuseColor 0.3 0.3 0.3 } }
+				}
+			}
+
+			# Camisa
+			Transform {
+				translation	0 0.001 0.001
+				scale 0.5 1 0.5
+				children Shape	{
+					geometry Cylinder {
+						radius 0.2
+						height 0.5
+					}
+				}
+			}
+
+			# Cartão - Securitas
+			Transform {
+				translation	0.08 0.15 0.1
+				children Shape {
+					geometry Box { size 0.1 0.05 0 }
+					appearance Appearance {
+						material Material {}
+						texture	ImageTexture { url	"imagens/Securitas.jpg" }
+					}
+				}
+			}
+
+			# Gravata
+			Transform {
+				translation	0 0.22 0.08
+				rotation 1 0 0 3.14
+				children Shape {
+					geometry Cone {
+						bottomRadius 0.05
+						height 0.05
+					}
+					appearance Appearance { material Material { diffuseColor .88 .15 .01 } }
+				}
+			}
+			Transform {
+				translation	0 0.1 0.1
+				scale 1 1 0.5
+				children Shape {
+					geometry Cone {
+						bottomRadius 0.05
+						height 0.3
+					}
+					appearance Appearance { material Material { diffuseColor .88 .15 .01 } }
+				}
+			}
+			Transform {
+				translation	0 -0.07 0.1
+				rotation 1 0 0 3.14
+				scale 1 1 0.5
+				children Shape {
+					geometry Cone {
+						bottomRadius 0.05
+						height 0.05
+					}
+					appearance Appearance { material Material { diffuseColor .88 .15 .01 } }
+				}
+			}
+		]
+	}
+}
+
+####################################
+#		Segurança                   
+####################################
+PROTO Seguranca []{
+	Group {
+		children 
+		[
+			Transform {
+				translation	0 0.78 0
+				children Cabeca { }
+			}
+
+			Transform {
+				translation	0 0.35 0
+				children Tronco	{ }
+			}
+
+			Transform {
+				translation	0 0.03 0
+				rotation 1 0 0 3.14
+				scale 1 1 0.5
+				children Shape {
+					geometry Cone {
+						bottomRadius 0.2
+						height 0.15
+					}
+					appearance Appearance { material Material { diffuseColor 0.3 0.3 0.3 } }
+				}
+			}
+
+			Transform {
+				translation	0.2 0.26 0
+				children Braco { }
+			}
+
+			Transform {
+				translation	-0.2 0.26 0
+				children Braco { }
+			}
+
+			Transform {
+				translation	0.1 -0.4 0
+				children Perna { }
+			}
+
+			Transform {
+				translation	-0.1 -0.4 0
+				children Perna { }
+			}
+	   
+		]
+	}
+}	
+
+
+Transform {
+	translation	0.2 1 0
+	children [
+		Transform {
+			translation	0.015 0.2 0.15
+			children Shape {
+				geometry Text3D	{
+					string "Ola !"
+					fontStyle FontStyle	{ size 0.25 }
+				}
+				appearance Appearance {
+					material DEF mat1 Material {
+				    	diffuseColor	0 0 0
+						transparency 1
+					}
+				}
+			}
+		}
+
+		Transform {
+			translation	0.25 0.3 0
+			scale 1 0.8 0.5
+			children Shape {
+			   geometry	Sphere { radius 0.3 }
+			   appearance Appearance {
+				   material DEF mat2 Material {
+					   diffuseColor .27 .3 .3
+					   specularColor .49 .49 .49
+					   emissiveColor .27 .3 .3
+					   ambientIntensity 0
+					   shininess .1
+					   transparency 1
+				   }
+
+			   }
+			}
+		}
+
+		Transform {
+			scale 1 1 0.5
+			children Shape {
+			   geometry	Sphere { radius 0.05 }
+			   appearance Appearance {
+				   material DEF mat3 Material {
+					   diffuseColor .27 .3 .3
+					   specularColor .49 .49 .49
+					   emissiveColor .27 .3 .3
+					   ambientIntensity 0
+					   shininess .1
+					   transparency 1
+				   }
+			   }
+			}
+		}
+
+		Transform {
+			translation	0.1 0.05 0
+			scale 1 1 0.5
+			children Shape {
+			   geometry	Sphere { radius 0.1 }
+			   appearance Appearance {
+				   material DEF mat4 Material {
+					   diffuseColor .27 .3 .3
+					   specularColor .49 .49 .49
+					   emissiveColor .27 .3 .3
+					   ambientIntensity 0
+					   shininess .1
+					   transparency 1
+				   }
+
+			   }
+			}
+		}
+					 
+	]
+}
+
+
+DEF	proximidade ProximitySensor	{ center 1 1 0 size 5 5 5  }
+
+DEF	timer1 TimeSensor { cycleInterval 8 }
+
+
+ROUTE proximidade.enterTime TO timer1.startTime
+ROUTE timer1.fraction_changed TO mat1.transparency
+ROUTE timer1.fraction_changed TO mat2.transparency
+ROUTE timer1.fraction_changed TO mat3.transparency
+ROUTE timer1.fraction_changed TO mat4.transparency
+
+
+ Transform {
+	 translation 0 0.25 0
+	 children Seguranca	{ }
+ }

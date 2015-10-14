@@ -1,0 +1,2601 @@
+#VRML V2.0 utf8
+
+
+NavigationInfo {
+    type [ "WALK", "ANY" ]
+    headlight FALSE
+    speed 4.0
+	
+}
+
+
+# PONTOS DE VISTA
+ Viewpoint {
+    position 0.0 1.6 0
+    description "Entry View"
+	orientation	0 1 0 1.57
+}
+
+Viewpoint {
+	position    0.0 150.0 0.0
+    orientation 1.0 0.0 0.0 -1.57
+    fieldOfView 0.785
+    description "Vista Ar"
+}
+
+Viewpoint {
+	position    0.0 10.0 -15.0
+   	orientation 1.0 0.0 0.0 -0.4
+   	fieldOfView 0.785
+   	description "Grande Area"		  
+}
+
+Viewpoint {
+	position    -41.0 1.5 0.0
+   	orientation 0.0 1.0 0.0 2.8
+   	fieldOfView 0.9
+   	description "Bancada"		  
+}
+
+
+Viewpoint {
+	position    10.0 0.5 -45.0
+   	orientation 0.0 1.0 0.0 1.1
+   	fieldOfView 0.785
+   	description "Penalty"		  
+}
+
+Viewpoint {
+	position    0.0 1.4 -65.0
+   	orientation 0.0 1.0 0.0 3.14
+   	fieldOfView 0.9
+   	description "Dentro de casa"		  
+}
+
+Viewpoint {
+	position    0.0 80.0 85.0
+   	orientation 1.0 0.0 0.0 -0.85
+   	fieldOfView 0.8
+   	description "Vista Geral"		  
+}		
+
+Viewpoint {
+	position    60.0 10.0 0.0
+   	orientation 0.0 1.0 0.0 1.57
+   	fieldOfView 1
+   	description "Vista Central"		  
+}
+
+
+
+
+
+
+DEF ceu Background {
+    skyColor [
+        0.0 0.2 0.7,
+        0.0 0.5 1.0,
+        1.0 1.0 1.0
+    ]
+    skyAngle [ 1.309, 1.571 ]
+    groundColor [
+        0.5 0.5 0.5,
+        0.8 0.8 0.8,
+        1 1 1,
+    ]
+    groundAngle [ 1.309, 1.571 ]
+	frontUrl "Clouds.jpg"
+	backUrl	"Clouds.jpg"
+	leftUrl	"Clouds.jpg"
+	rightUrl "Clouds.jpg"
+
+	
+}
+#holofotes 1
+DEF HoloLight1 SpotLight {
+	on FALSE
+	ambientIntensity 0.5
+	intensity 0.5
+	location 39.5 14.5 -18.1 
+	direction -0.4 -0.4 -0.6
+}
+
+DEF HoloLight2 SpotLight {
+	on FALSE
+	ambientIntensity 0.5
+	intensity 0.5
+	location 39.5 14.5 -18.1 
+	direction -0.4 -0.4 0.6
+}
+
+#holofotes 2
+DEF HoloLight3 SpotLight {
+	on FALSE
+	ambientIntensity 0.5
+	intensity 0.5
+	location 39.5 14.5 18.1 
+	direction -0.4 -0.4 -0.6
+}
+
+DEF HoloLight4 SpotLight {
+	on FALSE
+	ambientIntensity 0.5
+	intensity 0.5
+	location 39.5 14.5 18.1 
+	direction -0.4 -0.4 0.6
+}
+
+#holofotes 3
+DEF HoloLight5 SpotLight {
+	on FALSE
+	ambientIntensity 0.5
+	intensity 0.5
+	location 45 14.5 -18.1 
+	direction -0.4 -0.4 -0.6
+}
+
+DEF HoloLight6 SpotLight {
+	on FALSE
+	ambientIntensity 0.5
+	intensity 0.5
+	location 45 14.5 -18.1 
+	direction -0.4 -0.4 0.6
+}
+
+#holofotes 4
+DEF HoloLight7 SpotLight {
+	on FALSE
+	ambientIntensity 0.5
+	intensity 0.5
+	location -45 14.5 -18.1 
+	direction -0.4 -0.4 -0.6
+}
+
+DEF HoloLight8 SpotLight {
+	on FALSE
+	ambientIntensity 0.5
+	intensity 0.5
+	location -45 14.5 -18.1 
+	direction -0.4 -0.4 0.6
+}
+
+
+#world ligth
+#top
+DEF Light1 DirectionalLight {
+	ambientIntensity 1
+	color 1 1 1
+	direction 0 -1 0
+	intensity 1
+}
+
+#left
+DEF Light2 DirectionalLight {
+	ambientIntensity 0
+	color 1 1 1
+	direction -1 0 -1
+	intensity 0.5
+}
+DEF Light3 DirectionalLight {
+	ambientIntensity 0
+	color 1 1 1
+	direction 1 0 1
+	intensity 0.5
+}
+
+
+#*********************************************
+#campo 110m - 75m
+PROTO ChaoMundo[]{
+	Shape{
+		geometry Box {
+			size 180 0.05 180
+		}
+		appearance Appearance {
+			material Material {diffuseColor	 0.7 0.7 0.7}
+		}
+	}
+}
+
+PROTO relvado[] {
+	Shape{
+		geometry Box {
+			size 80 0.1 120
+		}
+		appearance Appearance {
+			material Material {diffuseColor 1 1 1}
+			texture	ImageTexture {url "grass.png"}
+			textureTransform TextureTransform {scale 20 20}
+		}
+	}
+}
+
+PROTO linhasCentrais[]{
+	Group{	 
+		children [
+			Shape {
+				geometry Box {size 75 0.15 0.1}
+			}
+			Shape {
+				geometry Cylinder {radius 0.1 height 0.15}
+			}
+			Shape {
+				geometry Cylinder {radius 9.15 height 0.11}
+			}
+			Shape {
+				geometry Cylinder {radius 9 height 0.12}
+				appearance Appearance {
+					material Material {diffuseColor 1 1 1}
+					texture	ImageTexture {url "grass.png"}
+					textureTransform TextureTransform {scale 5 5}
+				}
+			}
+
+		]
+	}
+}
+
+PROTO linasLateraisB[]{
+	Group { 
+		children [
+			Transform {
+				translation 20.15 0 46.75
+				children [
+					Shape {
+						geometry Box {size 0.1 0.15 16.5}
+					}
+				]
+			}
+			Transform {	 
+				translation 9.15 0 52.25
+				children [
+					Shape	{
+						geometry Box {size 0.1 0.15 5.5}
+					}
+				]
+			}
+		]	
+	}
+}
+
+
+PROTO linhasBaliza[]{
+	Group {
+		children	[
+			linasLateraisB {}
+			Transform {
+				rotation 0 0 1 3.1416
+				children [
+					linasLateraisB {}
+				]
+			}
+			Transform {
+				translation	0 0 38.5
+				children [
+					Shape {
+						geometry Box {size 40.3 0.15 0.1}
+					}
+				]
+			}
+			Transform {
+				translation	0 0 49.5
+				children [
+					Shape {
+						geometry Box {size 18.3 0.15 0.1}
+					}
+				]
+			}
+			Transform {
+				translation	0 0 44
+				children [
+					Shape {
+						geometry Cylinder {radius 0.1 height 0.15}
+					}
+					Shape {
+						geometry Cylinder {radius 9.15 height 0.11}
+					}
+					Shape {
+						geometry Cylinder {radius 9 height 0.12}
+						appearance Appearance {
+							material Material {diffuseColor 1 1 1}
+							texture	ImageTexture {url "grass.png"}
+							textureTransform TextureTransform {scale 5 5}
+						}
+					}
+					Transform {
+						translation	0 0 3.65
+						children [
+							Shape {
+								geometry Box {size 18.3 0.12 18.3}
+								appearance Appearance {
+									material Material {diffuseColor 1 1 1}
+									texture	ImageTexture {url "grass.png"}
+									textureTransform TextureTransform {scale 5 5}
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}
+
+PROTO linasLateraisC[]{
+	Transform {
+		translation 37.5 0 27.5
+		children [
+			Shape {
+				geometry Box {size 0.1 0.15 55}
+			}
+		]
+	}
+}
+
+PROTO linhasCampo[]{
+	Group {
+		children [
+			Transform {
+				translation	0 0 55
+				children [
+					Shape{
+						geometry Box {size 75 0.15 0.1}
+					}
+				]
+			}
+			linasLateraisC {}
+			Transform {
+				rotation 0 0 1 3.1416
+				children [				
+					linasLateraisC {}
+				]
+			}
+			linhasBaliza {}
+		]
+	}
+}
+#**********************************************************
+#poste de iluminacao
+PROTO posteIlu[]{
+	
+	PROTO lampada[]{
+		Group	{
+			children [
+				Transform {
+					rotation 1 0 0 0.4
+					children [
+						Group {
+							children [
+								Shape {
+									geometry Extrusion {
+										crossSection[	  0.25 0.15, 
+											0.25 -0.15,
+			    							-0.25 -0.15,
+			    							-0.25 0.15,
+											0.25	0.15,
+											0.24  0.14, 
+											0.24 -0.14,
+			    							-0.24 -0.14,
+			    							-0.24  0.14,
+											0.24  0.14,
+											0.25 0.15	
+										]
+
+										spine [	0  0 0, 
+											0  0 -0.20,
+										]
+	
+										scale [1 1, 1 0.6]
+
+										solid FALSE
+									}
+
+
+									appearance Appearance {
+										material Material {diffuseColor	0.7 0.7 0.7}
+									}
+								}
+								Transform {
+									translation	0 0 -0.15
+									rotation 0 0 1 1.57
+									children [
+										Shape {
+											geometry Cylinder {height 0.48 radius 0.03}
+											appearance Appearance {
+												material Material {diffuseColor	0.8 0.8 0}
+											}
+										}
+									]
+								}
+								Transform {
+									translation	0 0 -0.20
+									children [
+										Shape {
+											geometry Box {size 0.5 0.18 0.01}
+											appearance Appearance {
+												material Material{diffuseColor 0.7 0.7 0.7}
+											}
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+				Transform {
+					translation	0 0 -0.075
+					children [
+						Shape {
+							geometry Extrusion {
+								crossSection [	 
+									0.26   0,
+									0.26  -0.3
+									-0.26 -0.3
+									-0.26  0
+									-0.25  0
+									-0.25 -0.29
+									0.25  -0.29
+									0.25   0
+									0.26   0			
+								]
+								spine [0 0 0, 0 0 -0.02]
+							}
+							appearance Appearance {
+								material Material {diffuseColor	0.7 0.7 0.7}
+							}
+						}
+						Transform {
+							translation -0.255 0 -0.01
+							rotation  0 0 1 1.57
+							children [
+								Shape {
+									geometry Cylinder {height 0.01 radius 0.025}
+									appearance Appearance {
+										material Material {diffuseColor 0.7 0.7 0.7}
+									}
+								}
+							]
+						}
+						Transform {
+							translation 0.255 0 -0.01
+							rotation  0 0 1 1.57
+							children [
+								Shape {
+									geometry Cylinder {height 0.01 radius 0.025}
+									appearance Appearance {
+										material Material {diffuseColor 0.7 0.7 0.7}
+									}
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+
+	PROTO lampadas[]{
+		Group{
+			children [
+				Transform {
+					translation	0 -0.34 0
+					children [
+						Shape {
+							geometry Box {size 1.5 0.1 0.05}
+							appearance Appearance {
+								material Material {diffuseColor	0.7 0.7 0.7 }
+							}
+						}
+					]
+				}
+		
+				Transform {
+					rotation 0 1 0 0.4
+					translation 0.5 0.01 0.1
+					children [lampada {}]
+				}
+				Transform {
+					rotation 0 1 0 -0.4
+					translation -0.5 0.01 0.1
+					children [lampada {}]
+				}
+		
+				Transform {
+					translation	0 0.46 0
+					children [
+						Shape {
+							geometry Box {size 1.5 0.1 0.05}
+							appearance Appearance {
+								material Material {diffuseColor	0.7 0.7 0.7 }
+							}
+						}
+					]
+				}
+				Transform {
+					rotation 0 1 0 0.4
+					translation 0.5 0.81 0.1
+					children [lampada {}]
+				}
+				Transform {
+					rotation 0 1 0 -0.4
+					translation -0.5 0.81 0.1
+					children [lampada {}]
+				}
+
+			]
+		}
+	}
+
+
+	PROTO TRIANG[]{
+		Shape {
+			geometry Extrusion {
+				crossSection [
+					0 0,
+					0 -0.1,
+					0.05 0
+					0 0
+				]
+				spine [0 0 0, 0 0 0.003]
+	
+				ccw	FALSE
+
+
+			}
+			appearance Appearance {
+				material Material {diffuseColor 0.7 0.7 0.7}
+			}
+		}
+	}
+
+	PROTO  postbox[]{
+		Group {
+			children [
+				Shape {
+					geometry Box {size	0.16 0.3 0.05}
+					appearance Appearance {
+						material Material {diffuseColor 0.8 0.8 0.8}
+					}
+				}
+				Transform {
+					rotation 1 0 0 1.56
+					translation	0 0.15 0
+					children [
+						Shape{
+							geometry Cylinder {height 0.05 radius 0.08}
+							appearance Appearance {
+								material Material {diffuseColor	0.8 0.8 0.8}
+							}
+						}
+					]
+				}
+				Transform {
+					rotation 1 0 0 1.56
+					translation	0 -0.15 0
+					children [
+						Shape{
+							geometry Cylinder {height 0.05 radius 0.08}
+							appearance Appearance {
+								material Material {diffuseColor	0.8 0.8 0.8}
+							}
+						}
+					]
+				}
+			]
+		}
+	}
+
+	PROTO TRIANGGrup[]{
+		Group {
+			children [
+				Transform {
+					translation	0 0 0.049
+					children [
+						TRIANG {}
+					]
+				}
+				Transform {
+					translation	0 0 -0.049
+					children [
+						TRIANG {}
+					]
+				}	
+			]
+		}			 
+	}
+	Group {
+		children [
+			Shape {
+				geometry Extrusion {
+					crossSection [
+						0.245 0.049,	0.208 0.139,	0.139 0.208,	0.049 +0.245,
+						-0.049 0.245,	-0.139 0.208,	-0.208 0.139,	-0.245 0.049,
+						-0.245 -0.049,	-0.208 -0.139,	-0.139 -0.208,	-0.049 -0.245,
+						0.049 -0.245,	0.139 -0.208,	0.208 -0.139,	0.245 -0.049,
+						0.245 0.049
+					]	
+					spine [0 0 0, 0 15 0]
+					scale [1 1 , 0.5 0.5 ]
+					ccw	FALSE
+		
+		
+		
+				}
+				appearance Appearance {
+					material Material {diffuseColor 0.7 0.7 0.7}
+				}
+			}
+
+
+			Transform {
+				translation	0.245 0 0
+				children [
+					TRIANGGrup {}
+				]
+			}
+			Transform {
+				rotation 0 1 0 3.1416
+				translation	-0.245 0 0
+				children [
+					TRIANGGrup {}
+				]
+			}
+			Transform {
+				rotation 0 1 0 -1.57
+				translation	0 0 0.245
+				children [
+					TRIANGGrup {}
+				]
+			}
+			Transform {
+				rotation 0 1 0 1.57
+				translation	0 0 -0.245
+				children [
+					TRIANGGrup {}
+				]
+			}
+			Transform {											
+				rotation 0 1 0 0.7854 
+				translation	0.174 0 -0.174
+				children [
+					TRIANGGrup {}
+				]
+			}
+			Transform {
+				rotation 0 1 0 -0.7854 
+				translation	0.174 0 0.174
+				children [
+					TRIANGGrup {}
+				]
+			}
+			Transform {
+				rotation 0 1 0 2.355
+				translation	-0.174 0 -0.174
+				children [
+					TRIANGGrup {}
+				]
+			}
+			Transform {
+				rotation 0 1 0 -2.355 
+				translation	-0.174 0 0.174 
+				children [
+					TRIANGGrup {}
+				]
+			}
+
+			Transform {
+				rotation 0 1 0 1.57
+				translation	0.25 0.5 0
+				children [
+					postbox	{}
+				]
+			}
+
+			Transform {
+				translation	0 14 0.1
+				rotation 0 1 0 1.57
+				children [lampadas{}]
+			}
+
+		]
+	}
+}
+#**********************************************************
+#bancada
+PROTO bancada[]{
+
+	PROTO banco[]{
+		LOD	{
+			range [40, 80]
+			level [
+				Transform {
+					translation	0 .1 0
+					children[
+			
+						Shape {
+							geometry Box {size 0.5 0.45 0.1}
+							appearance Appearance {
+								material Material {diffuseColor 1 0 0}
+							}
+						}
+						Transform {
+							translation 0 -0.15 0.2 
+							children [
+								Shape {
+									geometry Box {size 0.5 0.1 0.40}
+									appearance Appearance {
+										material Material {diffuseColor 1 0 0}
+									}
+								}
+							]
+						}
+			
+					]	   
+				}
+				Shape {
+					geometry Box {size 0.5 0.45 0.1}
+					appearance Appearance {
+						material Material {diffuseColor 1 0 0}
+					}
+				}
+
+			]
+		}
+
+
+	}
+	PROTO bancoGrupo3[]{
+		Group {
+			children [
+				Transform {
+					translation	0 0.35 0
+					children [
+						banco {}
+					]
+				}
+
+				Transform {
+					translation	-0.75 0.35 0
+					children [
+						banco {}
+					]
+				}
+
+				Transform {
+					translation	0.75 0.35 0
+					children [
+						banco {}
+					]
+				}
+			]
+		}
+	}
+	PROTO bancoGrupo9[]{
+		Group {
+			children [
+				bancoGrupo3	{}
+				Transform {
+					translation	-2.25 0 0
+					children [
+						bancoGrupo3 {}
+					]
+				}
+				Transform {
+					translation	-4.5 0 0
+					children [
+						bancoGrupo3 {}
+					]
+				}
+			]
+		}
+	}
+
+	PROTO bancoGrupo22 []{
+		Group {
+			children [
+				bancoGrupo9	{}
+				Transform {
+					translation	-6.75 0 0
+					children [
+						bancoGrupo9 {}
+					]
+				}
+				Transform {
+					translation	-13.5 0 0
+					children [
+						bancoGrupo3 {}
+					]
+				}
+				Transform {
+					translation	-15 0.35 0
+					children [
+						banco {}
+					]
+				}
+			]
+		}
+	}
+	PROTO entradaBancada[]{
+		Group {
+			children [
+				Transform {
+					translation 0 -0.25 -3.5
+
+					children [
+						Shape {
+							appearance Appearance {
+								material Material {diffuseColor 0.6 0.6 0.6}
+							}
+							geometry Extrusion {
+								crossSection [0 0, -3 0, -1 4, 0 4,0 0]
+						
+								spine [0 0 0 0.1 0 0]
+							}
+						
+						}
+					
+					]
+
+				}
+			]
+		}
+	
+
+	}
+
+
+	PROTO degrau[]{
+		Group{
+			children [
+				Transform	{
+					translation	18.6 0 0
+					children [
+						Shape {
+							geometry Box {size 71 0.5 1}
+							appearance Appearance {
+								material Material {diffuseColor 0.6 0.6 0.6}
+							}
+						}
+					]
+				}									 
+		 		Transform	{
+					translation	-34.1 0 0
+					children [
+						Shape {
+							geometry Box {size 32 0.5 1}
+							appearance Appearance {
+								material Material {diffuseColor 0.6 0.6 0.6}
+							}
+						}
+					]
+				}
+			]
+		}	
+	}
+
+
+	PROTO escada[]{
+		Group{
+			children [
+				degrau {}
+				
+				Transform {
+					translation	37.25 0 0
+					children [
+						bancoGrupo9	{}
+					]
+				}
+
+				Transform {
+					translation	44 0 0
+					children [
+						bancoGrupo9	{}
+					]
+				}
+			
+
+				#bancos centrais
+				bancoGrupo22{}
+
+				#bancos da direita
+				Transform {
+					translation	19.5 0  0
+					children [
+						bancoGrupo22 {}
+					]
+				}
+				Transform {
+					translation	21.75 0  0
+					children [
+						bancoGrupo3 {}
+					]
+				}
+				Transform {
+					translation	28.5 0  0
+					children [
+						bancoGrupo9 {}
+					]
+				}
+
+				#bancos equerda
+				Transform {
+					translation	-21 0 0
+					children [
+						bancoGrupo9	{}
+					]
+				}
+
+				Transform {
+					translation	-27.75 0 0
+					children [
+						bancoGrupo9	{}
+					]
+				}
+				Transform {
+					translation	-33.75 0.35 0
+					children [
+						banco	{}
+					]
+				}
+				
+
+			]
+		}
+	}
+
+	Group {
+		children [
+			degrau {}
+			Transform{
+				translation	 0 0.5 -1
+				children [
+					escada {}
+				]
+			}
+
+			Transform{
+				translation	 0 1 -2
+				children [
+					escada {}
+				]
+			}
+			Transform{
+				translation	 0 1.5 -3
+				children [
+					escada {}
+				]
+			}
+			Transform {
+				translation	-16.9 0 0
+				children [
+					entradaBancada {}
+				]
+			}
+			Transform {
+				translation	-18.1 0 0
+				children [
+					entradaBancada {}
+				]
+			}
+		]}
+}
+
+#**********************************************************
+#rede Bancada
+PROTO redeBancada[]{
+	
+	PROTO elementograde []{
+		Shape							  
+		{
+			geometry Cylinder
+			{
+				radius 0.004
+				height 1.5
+			}
+			appearance Appearance 
+			{
+				material Material 
+				{
+					diffuseColor 0.5 0.5 0.5
+				}
+			}
+		}
+	}
+
+
+	PROTO elementoGradeHorizontal[]	{
+		Shape							  
+		{
+			geometry Box
+			{
+				size 2.5 0.007 0.04
+			}
+			appearance Appearance 
+			{
+				material Material 
+				{
+					diffuseColor 0.5 0.5 0.5
+				}
+			}
+		}
+	}
+
+	#Utilizaçao do nó LOD para melhorar o desempanho
+
+	PROTO grade10V []{
+		LOD	{
+			range [7, 18]
+			level [
+				Transform {
+					translation	0 0 0.07
+					children [
+						elementograde {}
+						Transform{
+							translation	0.05 0 0
+							children
+							elementograde {}
+						}
+						Transform{
+							translation	0.1 0 0
+							children
+							elementograde {}
+						}
+						Transform{
+							translation	0.15 0 0
+							children
+							elementograde {}
+						}
+						Transform{
+							translation	0.2 0 0
+							children
+							elementograde {}
+						}
+						Transform{
+							translation	0.25 0 0
+							children
+							elementograde {}
+						}
+						Transform{
+							translation	0.3 0 0
+							children
+							elementograde {}
+						}
+						Transform{
+							translation	0.35 0 0
+							children
+							elementograde {}
+						}
+						Transform{
+							translation	0.4 0 0
+							children
+							elementograde {}
+						}
+						Transform{
+							translation	0.45 0 0
+							children
+							elementograde {}
+						}
+					]
+				}
+				Transform{
+					translation	0.25 0 0.07
+					children
+					elementograde {}
+				}
+			]
+		}
+	}
+
+	PROTO gradeTotal[]{
+		Transform {
+			children [
+				grade10V {}
+				Transform {
+					translation	0.5 0 0
+					children
+					grade10V{}
+				}
+				Transform {
+					translation	1 0 0
+					children
+					grade10V{}
+				}
+				Transform {
+					translation	1.5 0 0
+					children
+					grade10V{}
+				}
+				Transform {
+					translation	2 0 0
+					children
+					grade10V{}
+				}
+				Transform {
+					translation	1.25 0.75 0.07
+					children [
+						elementoGradeHorizontal	{}
+						Transform {
+							translation	0 -0.3 0
+							children
+							elementoGradeHorizontal {}
+						}
+						Transform {
+							translation	0 -0.6 0
+							children
+							elementoGradeHorizontal {}
+						}
+						Transform {
+							translation	0 -0.9 0
+							children
+							elementoGradeHorizontal {}
+						}
+						Transform {
+							translation	0 -1.2 0
+							children
+							elementoGradeHorizontal {}
+						}
+						Transform {
+							translation	0 -1.5 0
+							children
+							elementoGradeHorizontal {}
+						}
+					]
+				}
+			]
+		}
+
+
+	
+	}
+
+
+
+	PROTO suporte[] {
+		Transform {
+			children	[
+				Shape {
+					geometry Box{
+						size 0.1 1.5 0.1
+					}
+					appearance	Appearance{
+						material Material {
+							diffuseColor 0.5 0.5 0.5
+						}
+					}
+				}
+				Transform {
+					translation	0 -0.75 0
+					children [
+						Shape {
+							geometry Box{
+								size 0.2 0.002 0.2
+							}
+							appearance	Appearance{
+								material Material {
+									diffuseColor 0.5 0.5 0.5
+								}
+							}
+						}	
+					]
+				}
+			]
+		}
+	}
+
+	PROTO gradefinal1[]{
+		Group {
+			children [
+				Transform {
+					translation 0 0.83 0
+					children
+					suporte {}
+				}
+				Transform {
+					translation 0 0.83 0
+					children
+					gradeTotal {}
+				}		
+			]
+		}
+	}
+
+	PROTO gradefinal5[]{
+		Group {
+			children [
+				gradefinal1	{}
+
+				Transform {
+					translation	2.5 0 0
+					children[
+						gradefinal1 {}											
+					]
+				}
+				Transform {
+					translation	-2.5 0 0
+					children[
+						gradefinal1 {}											
+					]
+				}
+				Transform {
+					translation	-5 0 0
+					children[
+						gradefinal1 {}											
+					]
+				}
+			]
+		}
+	
+	}
+	PROTO gradeFinalD []{
+		Group {
+			children [
+				gradefinal5	{}
+				Transform {
+					translation	-10 0 0
+					children [
+						gradefinal5	{}
+					]
+				}
+				Transform {
+					translation	10 0 0
+					children [
+						gradefinal5	{}
+					]
+				}
+				Transform {
+					translation	20 0 0
+					children [
+						gradefinal5	{}
+					]
+				}
+				Transform {
+					translation	30 0 0
+					children [
+						gradefinal5	{}
+					]
+				}
+				Transform {
+					translation	40 0 0
+					children [
+						gradefinal5	{}
+					]
+				} 
+				Transform {
+					translation	50 0 0
+					children [
+						gradefinal5	{}
+					]
+				}
+				Transform {
+					translation	55 0.83 0
+					children [
+						suporte	{}
+					]
+				}
+			]
+		}
+	}
+
+	PROTO  gradeFinalE [] {
+		Group {
+			children [
+				Transform {
+					translation	-16.4 0.83 0
+					children [
+						suporte	{}
+					]
+				}
+				Transform {
+					translation	-21.4 0 0
+					children [
+						gradefinal5	{}
+					]
+				}
+				Transform {
+					translation	-31.4 0 0
+					children [
+						gradefinal5	{}
+					]
+				}
+				Transform {
+					translation	-41.4 0 0
+					children [
+						gradefinal5	{}
+					]
+				}
+			]
+		}
+	}
+
+	Group {
+		children [
+			gradeFinalD{}
+			gradeFinalE	{}
+		]
+	}
+
+
+}
+
+#**********************************************************
+#rede a volta do campo
+
+
+PROTO RedeBarra1[]{
+		Shape {
+			geometry Cylinder {radius 0.02 height 2.9}
+			appearance Appearance {
+				material Material {diffuseColor	0.8 0.8 0.8}
+			}
+		}
+	}
+
+	#Utilizaçao do nó LOD para melhorar o desempanho 
+	
+	PROTO RedeBarra5[]{
+		LOD	{
+			range [20, 40]
+			level [
+				Group	{
+					children [
+						RedeBarra1 {}
+						Transform {
+							translation	-0.125 0 0
+							children [
+								RedeBarra1 {}
+							]
+						}
+						Transform {
+							translation	0.125 0 0
+							children [
+								RedeBarra1 {}
+							]
+						}
+						Transform {
+							translation	-0.25 0 0
+							children [
+								RedeBarra1 {}
+							]
+						}
+						Transform {
+							translation	0.25 0 0
+							children [
+								RedeBarra1 {}
+							]
+						}
+
+					]
+				}
+				RedeBarra1 {}
+			]
+		}
+	}
+
+	PROTO RedeBarra15[]{
+		Group {
+			children [
+				RedeBarra5 {}
+				Transform {
+					translation	-0.625 0 0
+					children [
+						RedeBarra5{}
+					]
+				}
+				Transform {
+					translation	0.625 0 0
+					children [
+						RedeBarra5{}
+					]
+				}
+
+		
+			]
+
+		}
+
+	}
+
+	PROTO RedePilar[] {
+		Group {
+			children [
+				Shape {
+					geometry Box {size 0.08 3 0.08}
+					appearance Appearance {
+						material Material {diffuseColor	0.8 0.8 0.8}
+					}
+				}
+				Transform {
+					translation	0 1.51 0
+					children [
+						Shape {
+							geometry Box {size 0.085 0.01 0.085}
+							appearance Appearance {
+								material Material {diffuseColor	0.8 0.8 0.8}
+							}
+						}
+					]
+				}
+			]
+		}
+	}
+
+	PROTO RedeTopo[]{
+		Shape {
+			geometry Box {size 2 0.02 0.065}
+			appearance Appearance {
+				material Material {diffuseColor	0.8 0.8 0.8}
+			}
+		}
+	}
+
+	PROTO Rede1[]{
+		Group {
+			children [
+				RedeBarra15	{}
+				Transform {
+					translation	1 0 0
+					children [
+						RedePilar {}
+					]
+				}
+				Transform {
+					translation	-1 0 0
+					children [
+						RedePilar {}
+					]
+				}
+				Transform {
+					translation	0 1.2 0
+					children [
+						RedeTopo {}
+					]
+				}
+				Transform {
+					translation	0 -1.2 0
+					children [
+						RedeTopo {}
+					]
+				}
+			]
+		}
+	}
+
+	PROTO Rede5[]{
+		Group {
+			children [
+				Rede1 {}
+				Transform {
+					translation	-2 0 0
+					children [
+						Rede1 {}
+					]
+				}
+				Transform {
+					translation	2 0 0
+					children [
+						Rede1 {}
+					]
+				}
+				Transform {
+					translation	-4 0 0
+					children [
+						Rede1 {}
+					]
+				}
+				Transform {
+					translation	4 0 0
+					children [
+						Rede1 {}
+					]
+				}
+			]
+		}
+	}
+
+
+PROTO  Vedacao[]{
+
+	PROTO Rede25[]{
+		Group {
+			children [
+				Rede5{}
+				Transform {
+					translation	10 0 0
+					children [
+						Rede5 {}
+					]
+				}
+				Transform {
+					translation	-10 0 0
+					children [
+						Rede5 {}
+					]
+				}
+				Transform {
+					translation	20 0 0
+					children [
+						Rede5 {}
+					]
+				}
+				Transform {
+					translation -20 0 0
+					children [
+						Rede5 {}
+					]
+				}
+			]
+		}
+	}
+
+	PROTO Rede55 [] {
+		Group {
+			children [
+				Rede5{}
+				Transform	{
+					translation	-30 0 0
+					children [
+						Rede25 {}
+					]
+				}
+				Transform {
+					translation	30 0 0
+					children [
+						Rede25 {}
+					]
+				}
+				Transform {
+					translation	-60 0 0
+					children [
+						Rede5 {}
+					]
+				}
+				Transform {
+					translation	60 0 0
+					children [
+						Rede5 {}
+					]
+				}
+			]
+		}
+	}
+
+	Rede55 {}
+
+
+}
+
+PROTO  Vedacaocomplementar[]{
+	
+	Transform {
+		translation	-9 0 0
+		children [ 	
+			Transform {
+				translation 46 0 0
+				children [
+					Rede1 {}
+				]
+			}
+			Transform {
+				translation	48 0 0
+				children [
+					Rede1 {}
+				]
+			}
+		]
+	}  
+}	   
+
+PROTO  VedacaoLateral[]{
+	
+	Transform {
+		translation	-9 0 0
+		children [
+			Rede5{}
+			Transform {
+				translation	10 0 0
+				children [
+					Rede5 {}
+				]
+			}
+			Transform {
+				translation	-10 0 0
+				children [
+					Rede5 {}
+				]
+			}
+			Transform {
+				translation	20 0 0
+				children [
+					Rede5 {}
+				]
+			}
+			Transform {
+				translation -20 0 0
+				children [
+					Rede5 {}
+				]
+			}
+			Transform {
+				translation	30 0 0
+				children [
+					Rede5 {}
+				]
+			}
+			Transform {
+				translation -30 0 0
+				children [
+					Rede5 {}
+				]
+			}
+			Transform {
+				translation	40 0 0
+				children [
+					Rede5 {}
+				]
+			}
+			Transform {
+				translation 46 0 0
+				children [
+					Rede1 {}
+				]
+			}
+			Transform {
+				translation	48 0 0
+				children [
+					Rede1 {}
+				]
+			}
+		]
+	}  
+}
+
+
+
+#**********************************************************
+#balizas
+PROTO barra [field SFFloat altura 2.4 , field SFFloat raio 0.06]{
+	Shape							  
+	{
+		geometry Cylinder
+		{
+			radius IS raio
+			height IS altura
+		}
+		appearance Appearance 
+		{
+			material Material 
+			{
+				diffuseColor 1 1 1
+			}
+		}
+	}
+}
+
+PROTO canto [field SFFloat raio 0.06]
+{
+	Shape
+	{
+		geometry Sphere
+		{
+			radius IS raio
+		}
+		appearance Appearance 
+		{
+			material Material 
+			{
+				diffuseColor 1 1 1
+			}
+		}
+	}
+}
+
+
+PROTO fioredehorizontal[field SFRotation coordRot 0 0 1 1.571 ,field SFVec3f coordTran 0 2.461 -0.1, field SFFloat altura 7.44 ,field SFFloat raio 0.002 ]{
+	Transform
+	{	  
+		rotation IS coordRot
+		translation IS coordTran 
+		children 
+		barra {altura IS altura , raio IS raio }
+	}
+}
+
+PROTO fioredehorizontalfundonaorigem[field SFRotation coordRot 0 0 1 1.571 ,field SFVec3f coordTran 0 0 0, field SFFloat altura 7.44 ,field SFFloat raio 0.002 ]{
+	Transform
+	{	  
+		rotation IS coordRot
+		translation IS coordTran 
+		children 
+		barra {altura IS altura , raio IS raio}
+	}
+}
+
+PROTO redeverticalfundonaorigem[]
+{
+
+	Transform 
+	{
+		translation	0 2.4 -1
+		rotation  1 0 0 -2.746
+		children
+		[
+			fioredehorizontalfundonaorigem{}
+			fioredehorizontalfundonaorigem{coordTran 0 0.26 0}
+			fioredehorizontalfundonaorigem{coordTran 0 0.52 0}
+			fioredehorizontalfundonaorigem{coordTran 0 0.78 0}
+			fioredehorizontalfundonaorigem{coordTran 0 1.04 0}
+			fioredehorizontalfundonaorigem{coordTran 0 1.3 0}
+			fioredehorizontalfundonaorigem{coordTran 0 1.56 0}
+			fioredehorizontalfundonaorigem{coordTran 0 1.82 0}
+			fioredehorizontalfundonaorigem{coordTran 0 2.08 0}
+			fioredehorizontalfundonaorigem{coordTran 0 2.34 0}
+			fioredehorizontalfundonaorigem{coordTran 0 2.6 0} 
+		]
+	}
+}
+
+
+
+
+PROTO fioredevertical[field SFRotation coordRot 1 0 0 1.57 ,field SFVec3f coordTran 3.55  2.459 -0.5, field SFFloat altura 1 ,field SFFloat raio 0.002 ]{
+
+	Transform
+	{	  
+		rotation IS coordRot
+		translation IS coordTran 
+		children 
+		barra {altura IS altura , raio IS raio }
+	}
+}
+
+PROTO fiofundoverticalnaorigem[field SFRotation coordRot 1 0 0 -2.746,field SFVec3f coordTran 0 0 0, field SFFloat altura 2.7 ,field SFFloat raio 0.002] 
+{
+	Transform 
+	{	  
+		rotation IS coordRot
+		translation IS coordTran 
+		children 
+		barra {altura IS altura , raio IS raio }
+	}
+}
+
+PROTO fiofundovertical[field SFVec3f coordTran 3.55 1.2 -1.5] {
+	Transform 
+	{	  
+		#		rotation IS coordRot
+		translation IS coordTran 
+		children 
+		fiofundoverticalnaorigem {}
+	}
+}
+
+PROTO redehorizontalsuperior[] 
+{
+	LOD	{
+		range [7, 15]
+		level [
+			Group
+			{					     
+	    		children 
+				[
+					fioredehorizontal {}
+					fioredehorizontal {coordTran 0 2.459 -0.2}
+					fioredehorizontal {coordTran 0 2.459 -0.3}
+					fioredehorizontal {coordTran 0 2.459 -0.4}
+					fioredehorizontal {coordTran 0 2.459 -0.5}
+					fioredehorizontal {coordTran 0 2.459 -0.6}
+					fioredehorizontal {coordTran 0 2.459 -0.7}
+					fioredehorizontal {coordTran 0 2.459 -0.8}
+					fioredehorizontal {coordTran 0 2.459 -0.9}
+					fioredehorizontal {coordTran 0 2.459 -1}
+				]
+			}
+			Group
+			{					     
+	    		children[
+					fioredehorizontal {coordTran 0 2.459 -0.5}
+					fioredehorizontal {coordTran 0 2.459 -0.9}
+				]
+			}
+		]
+	}
+}
+
+PROTO redeverticalsuperior10[] 
+{
+	LOD	{
+		range [7, 15]
+		level [
+			Group
+			{
+				children 
+				[
+					fioredevertical {}
+					fioredevertical {coordTran 3.45 2.459 -0.5}
+					fioredevertical {coordTran 3.35 2.459 -0.5}
+					fioredevertical {coordTran 3.25 2.459 -0.5}
+					fioredevertical {coordTran 3.15 2.459 -0.5}
+					fioredevertical {coordTran 3.05 2.459 -0.5}
+					fioredevertical {coordTran 2.95 2.459 -0.5}
+					fioredevertical {coordTran 2.85 2.459 -0.5}
+					fioredevertical {coordTran 2.75 2.459 -0.5}
+					fioredevertical {coordTran 2.65 2.459 -0.5}			  
+				]
+			}
+			Group {
+				children [
+					fioredevertical {coordTran 3.35 2.459 -0.5}
+					fioredevertical {coordTran 2.85 2.459 -0.5}
+				]
+			}
+		]
+	}
+}
+
+PROTO redeverticalfundo10[] {
+	LOD	{
+		range [7, 15]
+		level [
+			Group {
+				children [
+					fiofundovertical {}
+					fiofundovertical {coordTran 3.45 1.2 -1.5}
+					fiofundovertical {coordTran 3.35 1.2 -1.5}
+					fiofundovertical {coordTran 3.25 1.2 -1.5}
+					fiofundovertical {coordTran 3.15 1.2 -1.5}
+					fiofundovertical {coordTran 3.05 1.2 -1.5}
+					fiofundovertical {coordTran 2.95 1.2 -1.5}
+					fiofundovertical {coordTran 2.85 1.2 -1.5}
+					fiofundovertical {coordTran 2.75 1.2 -1.5}
+					fiofundovertical {coordTran 2.65 1.2 -1.5}			  
+				]
+			}
+			Group {
+				children [
+					fiofundovertical {coordTran 3.35 1.2 -1.5}
+					fiofundovertical {coordTran 2.85 1.2 -1.5}
+				]
+			}
+
+		]
+	}
+}
+
+PROTO redeverticalfundoTotal[] {
+	Transform {
+		children [
+			redeverticalfundo10 {}
+			Transform{
+				translation -1 0 0
+				children 
+				redeverticalfundo10 {}
+				
+			}
+			Transform{
+				translation -2 0 0
+				children 
+				redeverticalfundo10 {}
+				
+			}
+			Transform{
+				translation -3 0 0
+				children 
+				redeverticalfundo10 {}
+				
+			}
+			Transform{
+				translation -4 0 0
+				children 
+				redeverticalfundo10 {}
+				
+			}
+			Transform{
+				translation -5 0 0
+				children 
+				redeverticalfundo10 {}
+				
+			}
+			Transform{
+				translation -6 0 0
+				children 
+				redeverticalfundo10 {}	
+			}
+			Transform {
+				translation	-7 0 0
+				children [
+					fiofundovertical {}
+					fiofundovertical {coordTran 3.45 1.2 -1.5} 
+			    ]
+			}
+			#			fiofundoverticalnaorigem {}
+			#			fiofundovertical{}
+		]
+	}
+
+}
+
+PROTO redeverticalsuperiorTotal[] {
+	Transform {
+		children [
+			redeverticalsuperior10 {}
+			Transform{
+				translation -1 0 0
+				children 
+				redeverticalsuperior10 {}
+				
+			}
+			Transform{
+				translation -2 0 0
+				children 
+				redeverticalsuperior10 {}
+				
+			}
+			Transform{
+				translation -3 0 0
+				children 
+				redeverticalsuperior10 {}
+				
+			}
+			Transform{
+				translation -4 0 0
+				children 
+				redeverticalsuperior10 {}
+				
+			}
+			Transform{
+				translation -5 0 0
+				children 
+				redeverticalsuperior10 {}
+				
+			}
+			Transform{
+				translation -6 0 0
+				children 
+				redeverticalsuperior10 {}	
+			}
+			Transform {
+				translation	-7 0 0
+				children [
+					fioredevertical {}
+					fioredevertical {coordTran 3.45 2.459 -0.5} 
+			    ]
+			}
+			#			fiofundoverticalnaorigem {}
+			#			fiofundovertical{}
+		]
+	}
+
+}
+
+PROTO redeverticallateral[field SFRotation coordRot 0 0 0 0 ,field SFVec3f coordTran 3.66 1.265  0, field SFFloat altura 2.4]{
+	LOD	{
+		range [7,15]
+		level [	
+			Group	{
+				children[
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.26  -0.1, altura IS altura }
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.26  -0.2, altura IS altura }
+		    		fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.26  -0.3, altura IS altura }
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.26  -0.4, altura IS altura }
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.26  -0.5, altura IS altura}
+		    		fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.26  -0.6, altura IS altura }
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.26  -0.7, altura IS altura }
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.26  -0.8, altura IS altura }
+		    		fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.26  -0.9, altura IS altura }
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.26  -1  , altura IS altura }
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.08  -1.1, altura 2.16 }
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 0.96  -1.2, altura 1.92 }
+		    		fioredehorizontal {coordRot IS coordRot, coordTran 3.72 0.84  -1.3, altura 1.68 }
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 0.72  -1.4, altura 1.44 }
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 0.6   -1.5, altura 1.2}
+		    		fioredehorizontal {coordRot IS coordRot, coordTran 3.72 0.48  -1.6, altura 0.96 }
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 0.36  -1.7, altura 0.72}
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 0.24  -1.8, altura 0.48 }
+		    		fioredehorizontal {coordRot IS coordRot, coordTran 3.72 0.12  -1.9, altura 0.24 }
+				]
+			}
+			Group {
+				children [
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.26  -0.5, altura IS altura}
+		    		fioredehorizontal {coordRot IS coordRot, coordTran 3.72 1.26  -1  , altura IS altura }
+					fioredehorizontal {coordRot IS coordRot, coordTran 3.72 0.6   -1.5, altura 1.2}
+		    		
+				]
+			}
+		]
+	}
+}
+PROTO redehorizontallateral[]{
+	Transform 
+	{
+		translation	0 0 0
+		children 
+		[
+			fioredevertical {coordTran 3.72 0.24 -0.95, altura 1.9}
+			fioredevertical {coordTran 3.72 0.48 -0.9, altura 1.8}
+			fioredevertical {coordTran 3.72 0.72 -0.85, altura 1.7}
+			fioredevertical {coordTran 3.72 0.96 -0.8, altura 1.6}
+			fioredevertical {coordTran 3.72 1.2 -0.75, altura 1.5}
+			fioredevertical {coordTran 3.72 1.44 -0.7, altura 1.4}
+			fioredevertical {coordTran 3.72 1.68 -0.65, altura 1.3}
+			fioredevertical {coordTran 3.72 1.92 -0.6, altura 1.2}
+			fioredevertical {coordTran 3.72 2.16 -0.55, altura 1.1}
+
+
+
+		]
+	}
+
+}
+
+
+PROTO baliza [] {
+	Transform{
+		children[
+			#barra vertical direita
+			Transform  
+			{
+				translation 3.66 1.2  0
+				children
+				barra {}
+			}	
+			#Barra horizontal
+			Transform 
+			{
+				rotation 0 0 1 1.571
+				translation   0 2.4 0 
+				children 
+				barra {altura 7.32}
+			}
+			#barra vertical esquerda
+			Transform
+			{
+				translation -3.66 1.2  0
+				children
+				barra{}
+			}
+			#barritas
+			Transform	
+			{							
+				rotation 1 0 0 1.57
+				translation	 3.66  2.4 -0.5
+				children
+				barra {altura 1 raio 0.03}
+			}
+			Transform	
+			{							
+				rotation 1 0 0 1.57
+				translation	 -3.66  2.4 -0.5
+				children
+				barra {altura 1 raio 0.03}
+			}
+			#barritas tortas
+			Transform	
+			{							
+				rotation 1 0 0 -0.698131701
+				translation	 3.66  1.85 -0.5
+				children
+				barra {altura 1.4,raio 0.03}
+			}
+			Transform	
+			{							
+				rotation 1 0 0 -0.698131701
+
+				translation	 -3.66  1.85 -0.5
+				children
+				barra {altura 1.4, raio 0.03}
+			}
+			#bolinhas
+			Transform
+			{
+				translation	 -3.66  2.4 0
+				children
+				canto {}
+			}
+			Transform
+			{
+				translation	 3.66  2.4 0
+				children
+				canto {}
+			}
+			#barritas de baixo
+			Transform	
+			{							
+				rotation 1 0 0 1.57
+				translation	 3.66  0.04 -1
+				children
+				barra {altura 2 raio 0.04}
+			}
+			Transform	
+			{							
+				rotation 1 0 0 1.57
+				translation	 -3.66  0.04 -1
+				children
+				barra {altura 2 raio 0.04}
+			}
+			#barrita horizontal de baixo
+			Transform 
+			{
+				rotation 0 0 1 1.571
+				translation   0 0.04 -2 
+				children 
+				barra {altura 7.32, raio 0.04}
+			}
+			#cantos das barras menos grossas
+			Transform 
+			{
+				translation   -3.66 0.04 -2 
+				children 
+				canto {raio 0.04}
+			}
+			Transform 
+			{
+				translation   3.66 0.04 -2 
+				children 
+				canto {raio 0.04}
+			}
+			redehorizontalsuperior {}
+			redeverticallateral	{}
+			Transform{
+				translation -7.44 0 0
+				children [
+					redeverticallateral	{}
+					redehorizontallateral{}
+				]
+			}
+			redehorizontallateral{}
+
+			redeverticalsuperiorTotal {}
+			redeverticalfundoTotal{}
+			redeverticalfundonaorigem{}
+			
+		]
+	}
+}
+
+
+
+#**********************************************************
+#Casa
+PROTO casa1[]{
+	PROTO parede[]{	 
+		Group {
+			children [
+				Transform {
+					translation	-3.75 0 0
+					children [
+						Shape {
+
+							geometry Box {size 29 3 0.3}
+							appearance Appearance {
+								material Material {diffuseColor 0.3 0.3 0.3	}
+							}
+						}
+					]}
+				Transform {
+					translation	13.5 -1.5 -0.15
+					children [
+						Shape {
+							geometry Extrusion {
+								crossSection	[0 0, 5 0, 5 -3, 4.75 -3, 4.75 -0.4, 2 -0.4, 2 -3, 0 -3, 0 0]
+								spine	[0 0 0 , 0 0 .3]
+							}
+							appearance Appearance {
+								material Material {diffuseColor 0.3 0.3 0.3}
+							}
+						}
+					]
+				}
+			]
+		}
+	}
+
+	PROTO paredeLateral[]{
+		Shape {
+			geometry Box {size 0.3 3 19}
+			appearance Appearance {
+				material Material {diffuseColor	0.3 0.3 0.3}
+			}
+		}
+	}
+	PROTO paredeFundo[]{
+		Shape {
+			geometry Box {size 73.5 3 0.3}
+			appearance Appearance {
+				material Material {diffuseColor	0.3 0.3 0.3}
+			}
+		}
+	}
+
+	PROTO tecto[] {
+		Shape {
+			geometry Box {size 74.5 0.3 20} 
+			appearance Appearance {
+				material Material {diffuseColor 0.3 0.3 0.3}
+			}
+		}
+	}
+
+	Group {
+		children [
+			Transform {
+				translation -18.5 0 9.5
+				children	[
+					parede{}
+				]
+			}
+			Transform {
+				translation	 18.5 0 9.5
+				rotation 0 1 0 3.1415
+				children [
+					parede {}
+				]
+			}
+			Transform {
+				translation	0 1.515 0
+				children [
+					tecto {}
+				]
+			}
+
+			Transform {
+				translation	0 0 -9.5
+				children [
+					paredeFundo	{}
+				]
+			}
+
+
+			Transform {
+				translation	-36.6 0 0
+				children [
+					paredeLateral {}
+				]
+			}
+
+			Transform {
+				translation	36.6 0 0
+				children [
+					paredeLateral {}
+				]
+			}
+		]
+	}
+}
+
+#************************************************************
+#animação bola
+DEF	Bola Transform {
+	translation 0 0.15 -44
+	children  [
+	Shape { 
+		
+		geometry  Sphere  { radius 0.13 }
+		appearance Appearance { 	   
+			texture ImageTexture { url "bola.gif" repeatS TRUE repeatT TRUE }
+			textureTransform TextureTransform { scale 2 2 }
+		}
+
+	}  
+	]
+}
+
+DEF Timer TimeSensor {
+	cycleInterval 2.0
+	loop FALSE
+}
+
+#golo à direita
+
+DEF	Direita Transform {
+	translation 2.5 2 -56
+	children  [
+	Shape { 
+		
+		geometry  Sphere  { radius 0.13 }
+		appearance Appearance { 	   
+			material Material {
+					diffuseColor 0.9 0.9 0.9
+					transparency 0.5
+			}
+		} 
+	}  
+	DEF TouchGoloDireita TouchSensor{}
+	]
+}
+
+
+DEF GoloDireita PositionInterpolator {
+	   key [0.0 0.2 0.4 0.6 0.8 1.0]
+	   keyValue [ 0.5 0.15 -44, 1 0.5 -47, 1.5 1 -50,2 1.5 -53,2.5 2 -56, 2.5 0.15 -56.5]
+}
+
+
+
+
+ROUTE TouchGoloDireita.touchTime TO Timer.startTime
+ROUTE Timer.fraction_changed TO GoloDireita.set_fraction
+ROUTE GoloDireita.value_changed TO Bola.translation			 
+
+#golo à esquerda
+
+DEF	Esquerda Transform {
+	translation -2.5 2 -56
+	children  [
+	Shape { 
+		
+		geometry  Sphere  { radius 0.13 }
+		appearance Appearance { 	   
+			material Material {
+					diffuseColor 0.9 0.9 0.9
+					transparency 0.5
+			}
+		} 
+	}  
+	DEF TouchGoloEsquerda TouchSensor{}
+	]
+}
+
+
+DEF GoloEsquerda PositionInterpolator {
+	   key [0.0 0.2 0.4 0.6 0.8 1.0]
+	   keyValue [ -0.5 0.15 -44, -1 0.5 -47, -1.5 1 -50,-2 1.5 -53,-2.5 2 -56, -2.5 0.15 -56.5]
+}
+
+DEF Timer1 TimeSensor {
+	cycleInterval 2.0
+	loop FALSE
+}
+ROUTE TouchGoloEsquerda.touchTime TO Timer1.startTime
+ROUTE Timer1.fraction_changed TO GoloEsquerda.set_fraction
+ROUTE GoloEsquerda.value_changed TO Bola.translation
+
+#som fundo 
+
+DEF somfdTmp TimeSensor{ 
+	cycleInterval 0.1 
+	loop TRUE
+}
+ 
+Sound { 
+	source DEF  somFundo AudioClip  {
+			url "fund1.wav"
+	}
+	location -40.5 0.3 0
+	intensity 50
+	minFront 1.0
+    minBack  1.0
+    maxFront 150.0
+    maxBack  150.0
+}  
+
+ROUTE somfdTmp.cycleTime TO  somFundo.startTime
+
+#som golo
+
+DEF somglTmp TimeSensor{ 
+	cycleInterval 3 
+	loop FALSE
+}
+ 
+Sound { 
+	source DEF  som AudioClip  {
+			url "transfGolo.wav" 
+	}
+	location 10.0 0.5 -45.0
+	intensity 120
+	minFront 1.0
+    minBack  1.0
+    maxFront 50.0
+    maxBack  50.0
+}
+
+ROUTE TouchGoloDireita.touchTime TO somglTmp.startTime
+ROUTE TouchGoloEsquerda.touchTime TO somglTmp.startTime
+ROUTE somglTmp.cycleTime TO  som.startTime
+
+
+#**********************************************************
+#chamadas
+
+#chao mundo
+ChaoMundo {}
+
+#campo
+relvado	{}
+linhasCentrais {}
+linhasCampo	{}
+Transform {
+	rotation 1 0 0 3.1416
+	children[
+		linhasCampo	{}
+	]
+}
+#postes de iluminaçao
+Transform {
+	translation -45 0 -18
+	children [
+		posteIlu {}
+	]
+}
+Transform {
+	translation -45 0 18
+	children [
+		posteIlu {}
+	]
+}
+Transform {
+	translation 39 0 -18
+	rotation 0 1 0 3.1415
+	children [
+		posteIlu {}
+	]
+}
+Transform {
+	translation 39 0 18
+	rotation 0 1 0 3.1415
+	children [
+		posteIlu {}
+	]
+}
+#grades bancada
+Transform {
+	translation	-40.1 0.47 1.75
+	rotation 0 1 0 1.57
+	children [
+		redeBancada	{}
+	]
+}
+#grades	campo
+Transform {
+	translation 40 1.5 0 
+	rotation  0 1 0 1.57
+	children[
+		Vedacao{}
+	]
+}
+
+Transform {
+	translation -44.3 1.1 0
+	children [
+		Shape {
+			geometry Box {size 0.5 2.2 130}
+			appearance Appearance {
+				material Material {diffuseColor 0.6 0.6 0.6}
+			}
+		}
+	]
+}
+
+
+Transform {
+	translation -44.3 3.7 -0.1 
+	rotation  0 1 0 1.57
+	children[
+		Vedacao{}
+	]
+}
+
+
+#bancada
+Transform {
+	translation -40.5 0.3 0 
+	rotation  0 1 0 1.57
+	children[
+		bancada	{}
+	]
+}
+
+
+#balizas
+Transform { 
+	rotation 0 1 0 3.1415
+	translation	0 0 55
+	children baliza{}
+}
+Transform { 
+	translation	0 0 -55
+	children baliza{}
+}
+
+#casa
+Transform {
+	translation	 -0.5 1.5 -70
+	children [
+		casa1 {}
+	]
+}
+
+
+#vedação lateral
+Transform {
+	translation	 0 1.5 65
+	children [
+		VedacaoLateral {}
+	]
+}
+
+Transform {
+	translation	 0 1.5 -65
+	children [
+		Vedacaocomplementar {}
+	]
+}
+
+#luzes
+Transform {
+	translation	30 1.2 -60.35
+	children [
+		Group {
+			children [
+				Shape {
+					geometry Box {size 0.4 0.5 0.05}
+					appearance Appearance {
+						material Material {diffuseColor 1 0 0}
+					}
+				}
+				DEF LightTouch TouchSensor {}
+				Transform {
+					translation	-0.3 0.3 0.05
+					children [
+					Shape {
+						geometry Text {
+							string ["Lights"]
+							fontStyle FontStyle	{size 0.2}
+						}					
+					}
+				]
+				}
+			]
+		}
+	]
+
+}
+
+#**************************************************
+#Routes	& script
+
+DEF switch Script {
+	field SFBool VarBool TRUE
+	field MFString imgArray ["nigthSky.jpg", "Clouds.jpg"]
+	eventIn	SFBool Set_true_false
+	eventOut SFBool	VarOn
+	eventOut SFBool	VarOff
+	eventOut MFString img
+	url	"javascript:
+	function Set_true_false(v, timestamp){
+		if(v==true)	 return;
+		if (VarBool==false)	 {
+			VarBool=true;
+			img = new MFString(imgArray[1]);
+		}
+		else{
+		    VarBool=false;
+			img=new MFString(imgArray[0])
+		}
+		VarOn=VarBool
+		VarOff=!VarBool
+
+	}"
+}
+
+
+
+ROUTE LightTouch.isActive    TO    switch.Set_true_false
+ROUTE switch.VarOn TO	Light1.on
+ROUTE switch.VarOn	TO Light2.on
+ROUTE switch.VarOn TO Light3.on
+ROUTE switch.VarOff	TO HoloLight1.on
+ROUTE switch.VarOff	TO HoloLight2.on
+ROUTE switch.VarOff	TO HoloLight3.on
+ROUTE switch.VarOff	TO HoloLight4.on
+ROUTE switch.VarOff	TO HoloLight5.on
+ROUTE switch.VarOff	TO HoloLight6.on
+ROUTE switch.VarOff	TO HoloLight7.on
+ROUTE switch.VarOff	TO HoloLight8.on
+ROUTE switch.img TO	ceu.backUrl
+ROUTE switch.img TO	ceu.frontUrl
+ROUTE switch.img TO	ceu.leftUrl
+ROUTE switch.img TO	ceu.rightUrl
+
+

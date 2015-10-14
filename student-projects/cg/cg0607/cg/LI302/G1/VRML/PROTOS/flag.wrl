@@ -1,0 +1,72 @@
+#VRML V2.0 utf8  
+
+EXTERNPROTO	Axis [ ] "axis.wrl#Axis"
+Transform {
+	#scale	10 10 10
+	children Axis {  }
+}
+
+
+PROTO Flag [] {
+	Group {
+		children [
+			Transform {
+			  translation  0 1.25 0.0
+			  children [
+				  Billboard {
+	    			axisOfRotation 0.0 1.0 0.0
+	    			children [
+		    			Shape {
+		    			  appearance Appearance {
+			    			  material Material {
+						  
+								  ambientIntensity .11
+								  shininess .9
+							  }
+			    			  texture ImageTexture { url "../GFX/flag.png" }
+		    			  }
+		    			  geometry IndexedFaceSet {
+			    			  coord Coordinate {
+			        			point [
+				        			-0.3125 -1.25 0,   0.3125 -1.25 0,
+				        			0.3125 1.25 0,  -0.325 1.25 0,
+			        			]
+			    			  }
+			    			  coordIndex [ 0, 1, 2, 3 ]
+			    			  texCoord TextureCoordinate {
+			        			point [
+				        			0.0 0.0, 1.0 0.0,
+				        			1.0 1.0, 0.0 1.0,
+			        			]
+			    			  }
+			    			  texCoordIndex [ 0, 1, 2, 3 ]
+			    			  solid FALSE
+		    			  }
+		    			}
+	    			]
+				  }
+			  ]
+			}
+			Transform {
+			  translation  0 0.02 0.0
+			  children [
+				  Shape	{
+					  appearance Appearance {
+			    			  material Material {
+						  
+								  ambientIntensity .0433
+								  shininess .06
+								  diffuseColor 0 .25 .24
+								  specularColor .18 .25 .23
+							  }			    	  
+							  texture ImageTexture { url "../GFX/marble.png" }
+		    			  }
+					  geometry Cylinder	{ height 0.04 radius 0.25 }
+				  }
+			  ]
+			}
+		]
+	}
+}
+
+Flag { }

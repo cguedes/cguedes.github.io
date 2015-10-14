@@ -1,0 +1,47 @@
+#VRML V2.0 utf8
+EXTERNPROTO	suporte_tacos[]"Suporte.wrl#suporte_tacos"
+EXTERNPROTO	taco[]"Taco.wrl#taco"
+PROTO suporte_c_taco[]{
+	Group {
+		children	[
+			Transform {
+				scale 2 1.1 2
+				translation	0.048 -0.47 0.02
+				children taco {}
+			
+			}
+			Transform {
+				scale 2 1 2
+				translation	-0.049 -0.47 0.02
+				children taco {}
+			
+			}
+			Transform {
+				scale 2 1.15 2
+				translation	0.093 -0.46 0.02
+				children taco {}
+			
+			}
+			Transform {
+				scale 2 1.15 2
+				translation	-0.069 -0.47 0.02
+				children taco {}
+			
+			}
+			Transform {
+				scale 2 1 2
+				translation	-0.168 -0.47 0.02
+				children taco {}
+			
+			}
+			Transform {
+				scale 2 1.15 2
+				translation	0.127 -0.46 0.02
+				children taco {}
+			
+			}
+			Group {children suporte_tacos{} }
+		]
+	
+	}
+}suporte_c_taco {}

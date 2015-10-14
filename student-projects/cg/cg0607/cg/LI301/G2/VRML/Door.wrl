@@ -1,0 +1,825 @@
+#VRML V2.0 utf8
+
+#Proto de uma janela generica
+
+PROTO Door [
+	field SFVec3f trans 0.7715 -1.0185 -0.025
+]{
+	DEF D Transform {
+		
+		children [
+			Transform{
+				translation	0 0 -0.025
+				rotation 1 0 0 1.5708
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor  .35 .1 .1
+								specularColor .37 .06 .06
+								emissiveColor .1 .03 .03
+								ambientIntensity .0233
+								shininess .06
+							}
+						}
+
+						geometry Extrusion {
+							beginCap          TRUE
+							crossSection      [0 0, 0 2.037, 0.706 2.037, 0.706 1.981, 0.056 1.981, 0.056	 0, 0 0]
+							endCap            TRUE
+							scale             1 1
+							solid             TRUE
+							spine             [0 0 0, 0 0.05 0]
+
+						}
+					}
+				]
+
+			}
+
+			Transform{
+				translation	0.055 0 -0.025
+				rotation  1 0 0 1.5708
+				children [ 
+					Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor  .35 .1 .1
+								specularColor .37 .06 .06
+								emissiveColor .1 .03 .03
+								ambientIntensity .0233
+								shininess .06
+
+							}
+						}
+
+						geometry Extrusion {
+							beginCap          TRUE
+							crossSection      [0 0, 0 0.056, 0.65 0.056, 0.65 2.037, 0.706 2.037 0.706 0 0 0]
+							endCap            TRUE
+							scale             1 1
+							solid             TRUE
+							spine             [0 0 0, 0 0.05 0]
+
+						}
+					}
+				]
+
+			}
+
+
+			Transform {
+				translation	0.381 -1.186 0
+				children [
+					Shape{
+						geometry Box {
+							size 0.65 0.12 0.05
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor  .35 .1 .1
+								specularColor .37 .06 .06
+								emissiveColor .1 .03 .03
+								ambientIntensity .0233
+								shininess .06
+
+							}
+						}
+					}
+				]
+			}
+
+#			Transform {
+#				translation	-0.0205 -1.0185 0
+#				children [
+#					Shape{
+#						geometry Box {
+#							size 0.041 2.037 0.05
+#						}
+#						appearance Appearance {
+#							material Material {
+#								diffuseColor  .35 .1 .1
+#								specularColor .37 .06 .06
+#								emissiveColor .1 .03 .03
+#								ambientIntensity .0233
+#								shininess .06
+
+#							}
+#						}
+#					}
+#				]
+#			}
+
+			Transform {
+				translation	IS trans #0.7715 -1.0185 -0.025
+				children [
+					Shape{
+						geometry Box {
+							size 0.019 2.037 0.005
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor  .35 .1 .1
+								specularColor .37 .06 .06
+								emissiveColor .1 .03 .03
+								ambientIntensity .0233
+								shininess .06
+
+							}
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation	0.381 -0.591 0.0175
+				children [
+					Shape {
+						geometry Box {
+							size 0.65 1.07 0.015
+						}
+						appearance Appearance { 
+							material Material {
+								diffuseColor 1 1 1
+								transparency 0.9
+							}
+						}
+					}
+				]
+			}
+
+				Transform {
+				translation	0.381 -1.6135 0.0175
+				children [
+					Shape {
+						geometry Box {
+							size 0.65 0.735 0.015
+						}
+						appearance Appearance { 
+							material Material {
+								diffuseColor 1 1 1
+								transparency 0.9
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+PROTO Puxador[]{
+	Group {
+		children [
+			Transform {
+				translation 0.13 0 0.027
+				children [
+					Shape {
+						appearance Appearance { material Material { diffuseColor 0 0 0 }}
+						geometry Extrusion {
+							crossSection [0.0100		0.0000	, 0.0098		0.0017	, 0.0094		0.0034	, 0.0087		0.0050	, 0.0077		0.0064	, 0.0064		0.0077	, 0.0050		0.0087	, 0.0034		0.0094	, 0.0017		0.0098	, 0.0000		0.0100	, -0.0017		0.0098	, -0.0034		0.0094	, -0.0050		0.0087	, -0.0064		0.0077	, -0.0077		0.0064	, -0.0087		0.0050	, -0.0094		0.0034	, -0.0098		0.0017	, -0.0100		0.0000	, -0.0098		-0.0017	, -0.0094		-0.0034	, -0.0087		-0.0050	, -0.0077		-0.0064	, -0.0064		-0.0077	, -0.0050		-0.0087	, -0.0034		-0.0094	, -0.0017		-0.0098	, 0.0000		-0.0100	, 0.0017		-0.0098	, 0.0034		-0.0094	, 0.0050		-0.0087	, 0.0064		-0.0077	, 0.0077		-0.0064	, 0.0087		-0.0050	, 0.0094		-0.0034	, 0.0098		-0.0017	, 0.0100		0.0000]
+							spine [0.0098 0 -0.017, 0.0100	0	0.0000	, 0.0098	0	0.0017	, 0.0094	0	0.0034	, 0.0087	0	0.0050	, 0.0077	0	0.0064	, 0.0064	0	0.0077	, 0.0050	0	0.0087	, 0.0034	0	0.0094	, 0.0017	0	0.0098	, 0.0000	0	0.0100, -0.0017 0 0.0098]
+							creaseAngle	1
+							solid FALSE
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation	0.14 0 0
+				rotation 1 0 0 1.57
+				children [
+					Shape{
+						geometry Cylinder {
+							radius 0.01
+							height 0.02
+							side TRUE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor  .35 .1 .1
+								specularColor .37 .06 .06
+								emissiveColor .1 .03 .03
+								ambientIntensity .0233
+								shininess .06
+
+							}
+						}
+					}
+				]
+			}
+			Transform {
+				translation	0.07 0 0.037
+				rotation 0 0 1 1.57
+				children [
+					Shape{
+						geometry Cylinder {
+							radius 0.01
+							height 0.12
+							side TRUE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor  .35 .1 .1
+								specularColor .37 .06 .06
+								emissiveColor .1 .03 .03
+								ambientIntensity .0233
+								shininess .06
+
+							}
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation 0.01 0 0.027
+				rotation 0 0 1 3.1415
+				children [
+					Shape {
+						appearance Appearance { material Material { diffuseColor 0 0 0 }}
+						geometry Extrusion {
+							crossSection [0.0100		0.0000	, 0.0098		0.0017	, 0.0094		0.0034	, 0.0087		0.0050	, 0.0077		0.0064	, 0.0064		0.0077	, 0.0050		0.0087	, 0.0034		0.0094	, 0.0017		0.0098	, 0.0000		0.0100	, -0.0017		0.0098	, -0.0034		0.0094	, -0.0050		0.0087	, -0.0064		0.0077	, -0.0077		0.0064	, -0.0087		0.0050	, -0.0094		0.0034	, -0.0098		0.0017	, -0.0100		0.0000	, -0.0098		-0.0017	, -0.0094		-0.0034	, -0.0087		-0.0050	, -0.0077		-0.0064	, -0.0064		-0.0077	, -0.0050		-0.0087	, -0.0034		-0.0094	, -0.0017		-0.0098	, 0.0000		-0.0100	, 0.0017		-0.0098	, 0.0034		-0.0094	, 0.0050		-0.0087	, 0.0064		-0.0077	, 0.0077		-0.0064	, 0.0087		-0.0050	, 0.0094		-0.0034	, 0.0098		-0.0017	, 0.0100		0.0000]
+							spine [0.0098 0 -0.017, 0.0100	0	0.0000	, 0.0098	0	0.0017	, 0.0094	0	0.0034	, 0.0087	0	0.0050	, 0.0077	0	0.0064	, 0.0064	0	0.0077	, 0.0050	0	0.0087	, 0.0034	0	0.0094	, 0.0017	0	0.0098	, 0.0000	0	0.0100, -0.0017 0 0.0098]
+							creaseAngle	1
+							solid FALSE
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation	0 0 0
+				rotation 1 0 0 1.57
+				children [
+					Shape{
+						geometry Cylinder {
+							radius 0.01
+							height 0.02
+							side TRUE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor  .35 .1 .1
+								specularColor .37 .06 .06
+								emissiveColor .1 .03 .03
+								ambientIntensity .0233
+								shininess .06
+
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+PROTO DoorRight[]{
+	Group {
+		children [	
+			Transform {
+				translation	1.524 0 0.005
+				rotation 0 1 0 3.1415
+				children Door {}
+			}
+
+			Transform {
+				translation	0.924 -1.186 0.045
+				children Puxador{}
+			}
+
+			Transform {
+				translation	0.924 -1.186 -0.045
+				rotation 1 0 0 3.1415
+				children Puxador{}
+			}
+	
+
+		]
+	}
+}
+
+PROTO DoorRight2[]{
+	Group {
+		children [	
+			Transform {
+				translation	1.524 0 0.005
+				rotation 0 1 0 3.1415
+				children Door {}
+			}
+
+			Transform {
+				translation	0.924 -1.186 0.045
+				children Puxador{}
+			}
+
+#			Transform {
+#				translation	0.924 -1.186 -0.045
+#				rotation 1 0 0 3.1415
+#				children Puxador{}
+#			}
+	
+
+		]
+	}
+}
+
+
+PROTO Ombreira[]{
+	Group {
+		children [
+			Transform {
+				children Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor  .35 .1 .1
+							specularColor .37 .06 .06
+							emissiveColor .1 .03 .03
+							ambientIntensity .0233
+							shininess .06
+
+						}
+					}
+					geometry Extrusion {
+						crossSection [0 0, 0 2.55, 0.03 2.55, 0.03 0.03, 1.554 0.03, 1.554 2.55, 1.584 2.55, 1.584 0, 0 0]
+						spine [0 0 0, 0 0.05 0]
+					}
+				}
+			}
+
+			Transform {
+				translation	0.792 0.0175 0.2565
+				rotation 0 1 0 1.5708
+				children Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 1 1 1
+							transparency 0.9
+						}
+					}
+					geometry Box{ size 0.453 0.015 1.554}
+				}
+			}
+
+			Transform {
+				translation	0.792 0.025 0.513
+				children Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor  .35 .1 .1
+							specularColor .37 .06 .06
+							emissiveColor .1 .03 .03
+							ambientIntensity .0233
+							shininess .06
+
+						}
+					}
+					geometry Box { size	1.524 0.05 0.05 }
+				}
+			}
+		]
+	}
+}
+
+PROTO Doors[]{
+	Group {
+		children [
+			DEF	DL Transform {
+				children [
+					Door {}
+
+					DEF	TS1 TouchSensor {
+						enabled	TRUE
+					}
+				]
+			}
+
+			DEF	Timer1 TimeSensor {
+				cycleInterval 3.0
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	DoorLeftMove Script {
+				field SFBool open FALSE
+				field SFFloat angle -1.5708
+				eventIn	SFFloat	set_fraction
+				eventOut SFRotation	value_changed
+
+				url	"javascript:
+				function set_fraction( frac, timestamp ){
+					if(open == false){
+						x = angle * frac;
+						value_changed[0] = 0;
+						value_changed[1] = 1;
+						value_changed[2] = 0;
+						value_changed[3] = x;
+						if(x == angle){
+							open = true;
+						}
+					}
+					else{
+						x = angle *(1 - frac);
+						value_changed[0] = 0;
+						value_changed[1] = 1;
+						value_changed[2] = 0;
+						value_changed[3] = x;
+						if(x == 0){
+							open = false;
+						}
+					}
+				}
+				"
+			}
+
+			#############################################
+
+			DEF DR Transform {
+				center 1.524 0 0.005
+				children [
+					DoorRight {}
+
+					DEF	TS2 TouchSensor {
+						enabled	TRUE
+					}									 
+				]
+			}
+
+			DEF	Timer2 TimeSensor {
+				cycleInterval 3.0
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	DoorRightMove Script {
+				field SFBool open FALSE
+				field SFFloat angle 1.5708
+				eventIn	SFFloat	set_fraction
+				eventOut SFRotation	value_changed
+
+				url	"javascript:
+				function set_fraction( frac, timestamp ){
+					if(open == false){
+						x = angle * frac;
+						value_changed[0] = 0;
+						value_changed[1] = 1;
+						value_changed[2] = 0;
+						value_changed[3] = x;
+						if(x == angle){
+							open = true;
+						}
+					}
+					else{
+						x = angle *(1 - frac);
+						value_changed[0] = 0;
+						value_changed[1] = 1;
+						value_changed[2] = 0;
+						value_changed[3] = x;
+						if(x == 0){
+							open = false;
+						}
+					}
+				}
+				"
+			}
+
+			Transform {
+				translation	-0.03 0.513 -0.025
+				rotation 1 0 0 1.5708
+				children Ombreira {}
+			}
+		]
+	}
+
+	ROUTE TS1.touchTime TO Timer1.startTime
+	ROUTE Timer1.fraction_changed TO DoorLeftMove.set_fraction
+	ROUTE DoorLeftMove.value_changed TO DL.rotation
+
+	ROUTE TS2.touchTime TO Timer2.startTime
+	ROUTE Timer2.fraction_changed TO	DoorRightMove.set_fraction
+	ROUTE DoorRightMove.value_changed TO DR.rotation
+}
+
+#####################################
+
+PROTO DoorLeft2[]{
+	Group {
+		children [	
+			Transform {
+				#translation	1.524 0 0.005
+				#rotation 0 1 0 3.1415
+				children Door { trans 0.7715 -1.0185 0.025 }
+			}
+
+			Transform {
+				translation	0.52 -1.186 0.045
+				children Puxador{}
+			}
+
+		]
+	}
+}
+
+PROTO Doors2[]{
+	Group {
+		children [
+			DEF	DL Transform {
+				children [
+					DoorLeft2 {}
+
+					DEF	TS1 TouchSensor {
+						enabled	TRUE
+					}
+				]
+			}
+
+			DEF	Timer1 TimeSensor {
+				cycleInterval 3.0
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	DoorLeftMove Script {
+				field SFBool open FALSE
+				field SFFloat angle -1.5708
+				eventIn	SFFloat	set_fraction
+				eventOut SFRotation	value_changed
+
+				url	"javascript:
+				function set_fraction( frac, timestamp ){
+					if(open == false){
+						x = angle * frac;
+						value_changed[0] = 0;
+						value_changed[1] = 1;
+						value_changed[2] = 0;
+						value_changed[3] = x;
+						if(x == angle){
+							open = true;
+						}
+					}
+					else{
+						x = angle *(1 - frac);
+						value_changed[0] = 0;
+						value_changed[1] = 1;
+						value_changed[2] = 0;
+						value_changed[3] = x;
+						if(x == 0){
+							open = false;
+						}
+					}
+				}
+				"
+			}
+
+			#############################################
+
+			DEF DR Transform {
+				center 0.762 0 0.005
+				translation	0.762 0 0
+				children [
+					Door {}
+
+					DEF	TS2 TouchSensor {
+						enabled	TRUE
+					}									 
+				]
+			}
+
+			DEF	Timer2 TimeSensor {
+				cycleInterval 3.0
+				loop FALSE
+				startTime 0.0
+				stopTime 0.0
+			}
+
+			DEF	DoorRightMove Script {
+				field SFBool open FALSE
+				field SFFloat angle 1.5708
+				eventIn	SFFloat	set_fraction
+				eventOut SFRotation	value_changed
+
+				url	"javascript:
+				function set_fraction( frac, timestamp ){
+					if(open == false){
+						x = angle * frac;
+						value_changed[0] = 0;
+						value_changed[1] = 1;
+						value_changed[2] = 0;
+						value_changed[3] = x;
+						if(x == angle){
+							open = true;
+						}
+					}
+					else{
+						x = angle *(1 - frac);
+						value_changed[0] = 0;
+						value_changed[1] = 1;
+						value_changed[2] = 0;
+						value_changed[3] = x;
+						if(x == 0){
+							open = false;
+						}
+					}
+				}
+				"
+			}
+
+			Transform {
+				translation	-0.03 0.513 -0.025
+				rotation 1 0 0 1.5708
+				children Ombreira {}
+			}
+		]
+	}
+
+	ROUTE TS1.touchTime TO Timer1.startTime
+	ROUTE Timer1.fraction_changed TO DoorLeftMove.set_fraction
+	ROUTE DoorLeftMove.value_changed TO DL.rotation
+
+	ROUTE TS2.touchTime TO Timer2.startTime
+	ROUTE Timer2.fraction_changed TO	DoorRightMove.set_fraction
+	ROUTE DoorRightMove.value_changed TO DR.rotation
+}
+
+#####################################
+
+PROTO EntryDoors[]{
+	Group {
+		children [
+			Transform {
+				translation	1.727 0.513 -0.025
+				rotation 1 0 0 1.5708
+				children [
+					Shape {
+					   appearance Appearance {
+							material Material {
+								diffuseColor  .35 .1 .1
+								specularColor .37 .06 .06
+								emissiveColor .1 .03 .03
+								ambientIntensity .0233
+								shininess .06
+							}
+						}
+						geometry Extrusion {
+							crossSection [0 0, 0 2.55, 0.03 2.55, 0.03 0.03, 0.609 0.03, 0.609 2.55, 0.639 2.55, 0.639 0, 0 0]
+							spine [0 0 0, 0 0.05 0]
+							solid FALSE
+						}
+					}
+
+
+					Transform {
+						translation	0.3195 0.025 0.513
+						children Shape {
+							appearance Appearance {
+								material Material {
+									diffuseColor  .35 .1 .1
+									specularColor .37 .06 .06
+									emissiveColor .1 .03 .03
+									ambientIntensity .0233
+									shininess .06
+								}
+							}
+							geometry Box { size	0.579 0.05 0.03 }
+						}
+					}
+
+
+					Transform {
+						translation	0.3195 0.025 2.535
+						children Shape {
+							appearance Appearance {
+								material Material {
+									diffuseColor  .35 .1 .1
+									specularColor .37 .06 .06
+									emissiveColor .1 .03 .03
+									ambientIntensity .0233
+									shininess .06
+								}
+							}
+							geometry Box { size	0.579 0.05 0.03 }
+						}
+					}
+
+					Transform {
+						translation	0.3195 0 0.2715
+						children Shape {
+							appearance Appearance {
+								material Material {
+									diffuseColor 1 1 1
+									transparency 0.9
+								}
+							}
+							geometry Box {size 0.579 0.015 0.483}
+						}
+					}
+					Transform {
+						translation	0.3195 0 1.5305
+						children Shape {
+							appearance Appearance {
+								material Material {
+									diffuseColor 1 1 1
+									transparency 0.9
+								}
+							}
+							geometry Box {size 0.579 0.015 2.005}
+						}
+					}
+				]
+			}
+
+			Transform {
+				scale 1.1111 1 1
+				children [
+					
+					Door {}
+
+					#############################################
+
+					DEF DR Transform {
+						center 1.524 0 0.005
+						children [
+							DoorRight2 {}
+
+							DEF	TS2 TouchSensor {
+								enabled	TRUE
+							}									 
+						]
+					}
+
+					DEF	Timer2 TimeSensor {
+						cycleInterval 3.0
+						loop FALSE
+						startTime 0.0
+						stopTime 0.0
+					}
+
+					DEF	DoorRightMove Script {
+						field SFBool open FALSE
+						field SFFloat angle 1.5708
+						eventIn	SFFloat	set_fraction
+						eventOut SFRotation	value_changed
+
+						url	"javascript:
+						function set_fraction( frac, timestamp ){
+							if(open == false){
+								x = angle * frac;
+								value_changed[0] = 0;
+								value_changed[1] = 1;
+								value_changed[2] = 0;
+								value_changed[3] = x;
+								if(x == angle){
+									open = true;
+								}
+							}
+							else{
+								x = angle *(1 - frac);
+								value_changed[0] = 0;
+								value_changed[1] = 1;
+								value_changed[2] = 0;
+								value_changed[3] = x;
+								if(x == 0){
+									open = false;
+								}
+							}
+						}
+						"
+					}
+
+					Transform {
+						translation	-0.03 0.513 -0.025
+						rotation 1 0 0 1.5708
+						children Ombreira {}
+					}
+				]
+			}
+		]
+	}
+
+	ROUTE TS2.touchTime TO Timer2.startTime
+	ROUTE Timer2.fraction_changed TO	DoorRightMove.set_fraction
+	ROUTE DoorRightMove.value_changed TO DR.rotation
+}
+
+EntryDoors {}
+
+PROTO DoorsWidthoutAnimation[]{
+	Transform {
+		scale 1.1111 1 1
+		children [
+			Door {}
+			DoorRight {}
+			
+			Transform {
+				translation	-0.03 0.513 -0.025
+				rotation 1 0 0 1.5708
+				children Ombreira {}
+			}
+		]
+	}
+}

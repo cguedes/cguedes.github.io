@@ -1,0 +1,166 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Axis [
+
+]
+"Axis1.wrl#Axis"
+
+Axis {
+
+}
+
+PROTO Puxador  [
+	field SFVec3f translation 0 0 0
+	field SFRotation rotation 0 0 1 0
+	field SFVec3f scale 1 1 1
+	field SFBool ccw FALSE
+	field SFBool doorOpened FALSE
+	eventIn SFBool portaAberta
+	eventIn	SFFloat	puxin
+]{
+	Group {
+		children [
+			# Material associado ao metal vermelho do puxador
+			DEF	MetalPuxador Appearance {
+				material Material {
+					ambientIntensity 0.15
+					diffuseColor .27 0 0
+					specularColor .61 .13 .18
+					shininess .2
+				}
+			}
+			# Material associado ao metal da fechadura
+			DEF Fechadura Appearance {
+				material Material {
+					ambientIntensity .3
+					diffuseColor .3 .3 .5
+					specularColor .7 .7 .8
+					shininess .10
+				}
+			}
+			# Estrutura da fechadura
+			Transform {
+				translation	IS translation
+				rotation IS	rotation
+				scale IS scale
+				children [
+					Transform {
+						translation	0 -10 .5
+						scale 2 2 1
+						children
+						Shape {
+							geometry Extrusion {
+								crossSection [
+									0 .8, -.13 .78, -.25 .735, -.35 .65, -.435 .55, -.48 .43, -.5 .3, -.48 .17,
+									-.435 .05, -.35 -.05, -.25 -.135, -.25 -.7, -.18 -.8, .18 -.8, .25 -.7,
+									.25 -.135, .35 -.05, .435 .05, .48 .17, .5 .3, .48 .43, .435 .55, .35 .65,
+									.25 .735, .13 .78, 0 .8
+								]
+								ccw IS ccw
+								spine [
+									0 0 .3, 0 0 -.3
+								]
+							}
+							appearance USE Fechadura
+						}
+					}
+					Transform {
+						translation	0 -10 .15
+						scaleOrientation 0 0 1 0
+						children [
+							Shape {
+								geometry Extrusion {
+									spine [
+										0 0 .15, 0 0 -.15
+									]
+									crossSection [
+										2 0, 1.83473 .727228, 1.4 1.4,  .727228 1.83473, 0 2, -.727228 1.83473,
+										-1.4 1.4,-1.83473 .727228,-2 0, -1.83473 -.727228, -1.4 -1.4,-.727228 -1.83473,
+										0 -2, .727228 -1.83473, 1.4 -1.4,1.83473 -.727228,2 0
+									]
+									ccw	IS ccw
+								}
+								appearance USE MetalPuxador
+							}
+						]
+					}
+				]
+			}
+			# Eixo onde vai ser feita a rotação do puxador
+			DEF RotPuxador Transform {	 
+				translation	IS translation
+				rotation IS	rotation
+				scale IS scale
+				children [
+					Transform {
+						translation	-3 0 7.5
+						children[
+						Shape {
+							geometry Extrusion {
+								ccw IS ccw
+								creaseAngle 3.14
+								spine [
+									3 0 -7.5, 3 0 -7, 3 0 -7, 3 0 -5, 3 0 -3,
+					    			2.96621 0 -2.74923, 2.84248 0 -2.29724, 2.61362 0 -1.75666, 2.32369 0 -1.27145,
+									2.01874 0 -.893081, 1.70806 0 -.601721, 1.38154 0 -.372761,
+									1.04947 0 -.204993, .701609 0 -.0877492, .320324 0 -.0176962,
+									0 0 0, -10 0 0, 
+									-10.320324 0 -.0176962, -10.701609 0 -.0877492, -11.04947 0 -.204993, -11.38154 0 -.372761,
+									-11.70806 0 -.601721, -12.01874 0 -.893081, -12.32369 0 -1.27145, -12.61362 0 -1.75666,
+									-12.84248 0 -2.29724, -12.96621 0 -2.74923, -13 0 -3, -13 0 -5
+								]
+								scale [
+									3 3, 3 3, 1 1, 1 1, 1 1, 1 1, 1 1, 1 1, 1 1, 1 1, 1 1, 1 1, 1 1,
+									1 1, 1 1, 1 1, 1 1,
+									1 1, 1 1, 1 1, 1 1, 1 1, 1 1, 1 1, 1 1, 1 1, 1 1, 1 1, 1 1
+								]
+								crossSection [
+									1 0, .91605 .41605, .7071 .7071, .372199 .934699, 0 1, -.41605 .91605,
+									-.7071 .7071, -.934699 .372199, -1 0, -.91605 -.41605,
+									-.7071 -.7071, -.372199 -.934699, 0 -1, .41605 -.91605,
+									.7071 -.7071, .934699 -.372199, 1 0
+								]
+							}
+							appearance USE MetalPuxador
+						}
+						# Script responsável por rodar o puxador
+						DEF	RodarPux Script	{
+								field SFBool isOpen FALSE
+								eventIn	SFBool set_Open IS portaAberta
+								eventIn	SFFloat	set_fraction IS	puxin
+								eventOut SFRotation	value_changed	 
+								url	"javascript:	
+								function set_fraction(frac, timestamp){
+									if( isOpen == FALSE ){
+										value_changed[0] = 0;
+										value_changed[1] = 0;
+										value_changed[2] = 1;
+										if( frac < 0.10 ){
+											value_changed[3] = (10 * frac) * 1.57;
+										}
+										else{
+											value_changed[3] = (1.10 * (1 - frac)) * 1.57;
+										}
+										return;
+									}
+								}
+								function set_Open( set, timestamp){
+									if( isOpen == TRUE) isOpen = FALSE;
+									else isOpen = TRUE;				  
+								}
+								"
+						}											  
+						]
+						# Ligação entre o script e o nó transform onde é feita a rotação do puxador											  
+						ROUTE RodarPux.value_changed TO	RotPuxador.rotation
+					}
+				]
+			}
+		]
+	}
+}
+
+
+Puxador	{
+
+}																

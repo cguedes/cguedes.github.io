@@ -1,0 +1,160 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Axis [
+
+]
+"Axis1.wrl#Axis"
+
+PROTO Vidro [
+	field SFVec3f translation 0 0 0
+	field SFRotation rotation 0 0 1 0
+	field SFFloat transparency 0.9
+	field SFVec3f scale 1 1 1
+
+]{
+	Transform {
+		translation	IS	translation
+		rotation IS	rotation
+		scale IS scale
+		children
+		Shape {
+			geometry Box {
+				size 83.5 97 1
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor 1 1 1
+					transparency IS	transparency
+				}
+			}
+		}
+	}
+}
+
+# Janela do meio
+PROTO JanelaQAbre [
+	field SFVec3f translation 0 0 0
+	field SFRotation rotation 0 0 1 0
+	field SFNode appearance NULL
+
+]{
+	Transform {
+		translation	IS translation
+		rotation IS	rotation
+		children [
+			Shape {
+				geometry Extrusion {
+					spine [
+						0 0 3, 0 0 0
+					]
+					crossSection [
+						83.1 96.4, 83.1 0, 81.1 2, 81.1 95, 2 95, 2 2, 81.1 2, 83.1 0, 0 0, 0 96.4,
+						83.1 96.4
+					]
+				}
+				appearance IS appearance
+			}
+			Vidro {
+				scale 0.97604790419161676646706586826347 0.97938144329896907216494845360825 1
+				translation	43.75 50.5 1.5
+			}
+		]
+	}
+}
+
+PROTO Janela [
+	field SFVec3f translation 0 0 0
+	field SFRotation rotation 0 0 1 0
+	field SFFloat transparency 0.9
+	field SFBool abre FALSE
+	field SFNode metalPuxador NULL
+]{
+	Transform {
+		translation	IS translation
+		rotation IS	rotation
+		children [
+			# Nó onde vai é adicionado o elemento criado dinamicamente
+			DEF janelas Group {
+				children [
+					# Definição da cor da janela é igual à cor do puxador da porta
+					DEF	MetalPuxador Appearance {
+						material Material {
+							ambientIntensity 0.15
+							diffuseColor .27 0 0
+							specularColor .61 .13 .18
+							shininess .2
+						}
+					}
+					# Moldura da janela 
+					Transform {
+						children
+						Shape {
+							geometry Extrusion {
+								crossSection [
+									89.5 0, 89.5 310, 0 310, 0 0, 89.5 0, 86.5 3, 86.5 100, 3 100,
+									3 106.5, 86.5 106.5, 86.5 203.5, 3 203.5, 3 209.5, 86.5 209.5,
+									86.5 307, 3 307, 3 3, 86.5 3
+								]
+								spine [
+									0 0 3, 0 0 0
+								]
+								ccw FALSE
+								solid FALSE
+							}
+							appearance USE MetalPuxador
+						}
+					}
+					# Vidro inferior
+					Vidro {
+						translation	44.75 51.5 1.5
+						transparency IS	transparency
+					}
+					# Script para criar um vidro ou JanelaQAbre no meio
+					DEF	CriarJanela Script	{
+						field SFNode addedObject USE janelas 
+						field MFNode tempNode []
+						field SFString str ""
+						field SFBool temJanela IS abre
+						field SFFloat transparency IS transparency
+						field SFNode metalPuxador USE MetalPuxador
+						directOutput FALSE
+						url	"vrmlscript:
+							function initialize () {	 
+								if( temJanela == TRUE ){
+									//Cria JanelaQAbre 
+									str+= 'EXTERNPROTO JanelaQAbre [ field SFVec3f translation field SFRotation rotation ';
+									str+= ' field SFNode appearance] \"Janela.wrl#JanelaQAbre\" ';
+									str+= ' JanelaQAbre	{ translation	3.2 106.7 0 appearance '+metalPuxador+' }';
+								}
+								else{
+									//Cria vidro
+									str+= ' EXTERNPROTO Vidro [ field SFVec3f translation field SFRotation rotation ';
+									str+= ' field SFFloat transparency field SFVec3f scale ] \"Janela.wrl#Vidro\"';
+									str+= 'Vidro { translation	44.75 155 1.5 transparency '+transparency+ ' }';	  
+								}
+								tempNode = Browser.createVrmlFromString(str);
+								if( temJanela == TRUE ){
+									tempNode[0].appearance = metalPuxador;
+								}
+								addedObject.addChildren = tempNode;										
+							}
+
+						"
+					}
+					# Vidro superior
+					Vidro {
+						translation	44.75 258.5 1.5
+						transparency IS	transparency
+					}
+				]
+			}
+		]
+	}
+
+}
+									
+Janela {
+	abre TRUE
+}
+
+Axis {}

@@ -1,0 +1,129 @@
+#VRML V2.0 utf8
+EXTERNPROTO	lampada[]"lampada.wrl#lamp"
+#DirectionalLight {
+#  color 1 0 0
+#  direction 0 -1 0
+#  intensity 2
+#  ambientIntensity 0.1
+#  on TRUE
+#}
+SpotLight { 
+  location 0 0.01 0
+  direction 0 -1 0
+  color 1 0 0
+  cutOffAngle 0.75
+  beamWidth 0.5
+  intensity 1
+  on TRUE
+}
+PROTO Caixa[]{
+	Shape {
+		geometry Extrusion	{
+			crossSection [
+				0.03	0,
+				0.025984743	0.014993103,
+				0.015013791	0.025972795,
+				2.38898E-05	0.02999999 ,
+				-0.014972406	0.025996674,
+				-0.025960831	0.015034469 ,
+				-0.029999962	0.0000477796 ,
+				-0.026008589	-0.014951699,
+				-0.015055137	-0.02594885 ,
+				-7.16693E-05	-0.029999914,
+				0.014930983	-0.026020487 ,
+				0.025936853	-0.015075796  ,
+				0.03	0 ,
+				#FORA
+				0.035	0,
+				0.030315533	0.017491954,
+				0.017516089	0.030301594 ,
+				0.0000278714	0.034999989 ,
+				-0.017467807	0.030329453 ,
+				-0.030287636	0.017540214 ,
+				-0.034999956	0.0000557429 ,
+				-0.030343353	-0.017443649,
+				-0.017564327	-0.030273659,
+				-0.0000836142	-0.0349999  ,
+				0.017419481	-0.030357235,
+				0.030259662	-0.017588429,
+				0.035	0
+
+]
+spine [0 0 0, 0 0.10 0]
+solid FALSE
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .6 .47 .23
+				specularColor .76 .62 .49
+				emissiveColor .13 .13 .13
+				ambientIntensity .0733
+				shininess .1
+			}
+		}
+	}
+
+}
+PROTO CaixaBack[]{
+ 	Shape {
+		geometry Extrusion	{
+			crossSection [
+				0.035	0,
+				0.030315533	0.017491954,
+				0.017516089	0.030301594 ,
+				0.0000278714	0.034999989 ,
+				-0.017467807	0.030329453 ,
+				-0.030287636	0.017540214 ,
+				-0.034999956	0.0000557429 ,
+				-0.030343353	-0.017443649,
+				-0.017564327	-0.030273659,
+				-0.0000836142	-0.0349999  ,
+				0.017419481	-0.030357235,
+				0.030259662	-0.017588429,
+				0.035	0
+
+]
+spine [0 0 0, 0 0.01 0]
+solid FALSE
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor .6 .47 .23
+				specularColor .76 .62 .49
+				emissiveColor .13 .13 .13
+				ambientIntensity .0733
+				shininess .1
+			}
+		}
+	}
+
+}
+
+PROTO chao[]{
+	Shape {
+		geometry Box {
+		size 1 0.01 1
+		}
+		appearance Appearance {material Material {diffuseColor 0 1 0}}
+	}
+}
+PROTO Caixilho[]{
+	Transform	{
+		children [
+			Transform {
+				translation	0 0.1 0 
+				children CaixaBack {}}
+			Transform { children Caixa {}}
+			Transform {
+				translation	0 0.02 0
+				scale 0.95 0.95 0.95
+				children lampada {}
+			}
+#			Transform {
+#				translation	0 -0.2 0
+#				children chao {}
+#			}
+		]
+	}
+}
+Caixilho {}

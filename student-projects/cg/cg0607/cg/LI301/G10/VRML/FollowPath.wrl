@@ -1,0 +1,151 @@
+#VRML V2.0 utf8
+
+PROTO FollowPath 
+[
+	field MFVec2f path []
+	field SFFloat curveDist 5
+	eventIn	SFFloat set_fraction
+	eventOut SFVec3f translation
+	eventOut SFRotation	rotation
+]
+{
+
+	# [ 26.5 185 , 26.5 91 , 115 91 , 115 17 , 85 15 , 85 -72 , -67 -70 , -68.5 91 , 17.5 91 , 17.5 185]
+	Script 
+	{
+		field MFVec2f path IS path
+		field SFFloat pathLength 0
+		field MFFloat segmentTime []
+		field MFFloat segmentAngle []
+		field MFFloat segmentBezierFirst []
+		field MFFloat segmentBezierSecond []
+		field SFFloat lasttime 0
+		field SFFloat curveDist IS curveDist
+		field SFInt32 currSeg 1
+		eventIn	SFFloat set_fraction IS	set_fraction
+		eventOut SFVec3f translation IS	translation
+		eventOut SFRotation	rotation IS	rotation
+
+		url	"javascript:
+
+			function precalc()
+			{
+				for(i=1;i<path.length;++i)		
+				{
+					pathLength += Math.sqrt( (path[i].x-path[i-1].x)*(path[i].x-path[i-1].x) +  (path[i].y-path[i-1].y)*(path[i].y-path[i-1].y) );
+				}
+
+				segmentTime[0]=0;	//o 1º ponto é atingido no tempo t=0
+
+				for(i=1;i<path.length;++i)		
+				{
+					segmentTime[i] = segmentTime[i-1]+Math.sqrt( (path[i].x-path[i-1].x)*(path[i].x-path[i-1].x) +  (path[i].y-path[i-1].y)*(path[i].y-path[i-1].y) ) / pathLength;
+					//print(segmentTime[i]);
+				}
+				
+				//segmentBezierFirst[0] = (curveDist)/(pathLength*(segmentTime[i]));	 //neste caso ainda não temos um segmento anterior
+				segmentBezierFirst[0] = -0.1;	//nunca começar a interpolaçao no inicio do 1º segmento
+			
+
+				for(i=1;i<path.length;++i)		
+				{
+					segmentBezierSecond[i] = ((pathLength*(segmentTime[i]-segmentTime[i-1]))-curveDist)/(pathLength*(segmentTime[i]-segmentTime[i-1]));
+					segmentBezierFirst[i] = (curveDist)/(pathLength*(segmentTime[i]-segmentTime[i-1]));
+				}
+
+				segmentBezierFirst[1] = -0.1;
+				segmentBezierSecond[path.length-1] = 1.1;	//nunca começar a interpolaçao no fim do ultimo segmento
+
+				for(i=1;i<path.length;++i)		
+				{
+					//obter angulo a partir do vector
+					segmentAngle[i] =  Math.atan( (path[i].x-path[i-1].x)/(path[i].y-path[i-1].y) );
+					if(path[i].y-path[i-1].y<0) segmentAngle[i]+=Math.PI;	//se estamos no 2º e 3º quadrante, o angulo é o oposto
+					//print(segmentAngle[i]);
+
+				}
+		
+			}
+
+			function initialize()
+			{
+				precalc();
+				rotation.x=0;
+				rotation.y=1;
+				rotation.z=0;
+			}
+
+			function set_fraction(t, timestamp)
+			{
+				if(t<lasttime) currSeg=1;	//se voltamos atras no tempo, voltar para o segmento zero
+				lasttime = t;
+
+				while(t>segmentTime[currSeg]) ++currSeg;	//se ja excedemos o tempo do segmento, procurar o proximo
+
+				//obter um tempo correcto para interpolar entre os dois pontos do segmento corrente
+				var segT = (t-segmentTime[currSeg-1])/(segmentTime[currSeg]-segmentTime[currSeg-1]);	
+				//print(segT+'--'+timestamp);
+				//print(t);
+
+			
+				if(segT>segmentBezierSecond[currSeg])
+				{
+					//print('bez1'+timestamp);
+					var bezT = (segT-segmentBezierSecond[currSeg])/(2*(1-segmentBezierSecond[currSeg]));
+				
+					var p0x=(segmentBezierSecond[currSeg]*path[currSeg].x) + ((1-segmentBezierSecond[currSeg])*path[(currSeg-1)].x);
+					var p0y=(segmentBezierSecond[currSeg]*path[currSeg].y) + ((1-segmentBezierSecond[currSeg])*path[(currSeg-1)].y);
+				
+					var p1x=path[currSeg].x;
+					var p1y=path[currSeg].y;
+				
+					var p2x=(segmentBezierFirst[currSeg+1]*path[currSeg+1].x) + ((1-segmentBezierFirst[currSeg+1])*path[(currSeg)].x);
+					var p2y=(segmentBezierFirst[currSeg+1]*path[currSeg+1].y) + ((1-segmentBezierFirst[currSeg+1])*path[(currSeg)].y);
+					translation.x = ((1-bezT)*(1-bezT)*p0x) +(2*bezT*(1-bezT)*p1x) + (bezT*bezT*p2x);
+					translation.z = ((1-bezT)*(1-bezT)*p0y) +(2*bezT*(1-bezT)*p1y) + (bezT*bezT*p2y);	
+				
+					var dy = ((2*bezT-2)*p0x) + ((2-(4*bezT))*p1x) + (2*bezT*p2x);
+					var dx = ((2*bezT-2)*p0y) + ((2-(4*bezT))*p1y) + (2*bezT*p2y);
+					var m = dy/dx;
+					var rot = Math.atan(m);
+					if(dx<0) rot +=Math.PI;
+					rotation.angle = rot;
+				}
+				else if (segT<segmentBezierFirst[currSeg])
+				{
+					var bezT = (segT/(2*(segmentBezierFirst[currSeg])))+0.5;
+				
+					var p0x=(segmentBezierSecond[currSeg-1]*path[currSeg-1].x) + ((1-segmentBezierSecond[currSeg-1])*path[(currSeg-2)].x);
+					var p0y=(segmentBezierSecond[currSeg-1]*path[currSeg-1].y) + ((1-segmentBezierSecond[currSeg-1])*path[(currSeg-2)].y);
+				
+					var p1x=path[currSeg-1].x;
+					var p1y=path[currSeg-1].y;
+				
+					var p2x=(segmentBezierFirst[currSeg]*path[currSeg].x) + ((1-segmentBezierFirst[currSeg])*path[(currSeg)-1].x);
+					var p2y=(segmentBezierFirst[currSeg]*path[currSeg].y) + ((1-segmentBezierFirst[currSeg])*path[(currSeg)-1].y);
+				
+					translation.x = ((1-bezT)*(1-bezT)*p0x) +(2*bezT*(1-bezT)*p1x) + (bezT*bezT*p2x);
+					translation.z = ((1-bezT)*(1-bezT)*p0y) +(2*bezT*(1-bezT)*p1y) + (bezT*bezT*p2y);		
+				
+					var dy = ((2*bezT-2)*p0x) + ((2-(4*bezT))*p1x) + (2*bezT*p2x);
+					var dx = ((2*bezT-2)*p0y) + ((2-(4*bezT))*p1y) + (2*bezT*p2y);
+					var m = dy/dx;
+					var rot = Math.atan(m);
+					if(dx<0) rot +=Math.PI;
+					rotation.angle = rot;
+				}
+				else
+				{			
+					translation.x = (segT*path[currSeg].x) + ((1-segT)*path[(currSeg-1)].x);
+					translation.y = 0;
+					translation.z = (segT*path[currSeg].y) + ((1-segT)*path[(currSeg-1)].y);
+					rotation.angle = segmentAngle[currSeg];
+				}			
+			
+			
+			}
+		"
+
+
+	}
+}

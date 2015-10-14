@@ -1,0 +1,61 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	interior_janela[] "janela.wrl#interior_janela"
+
+EXTERNPROTO	abrir_janela[]		"janela.wrl#abrir_janela "
+
+EXTERNPROTO	vidro[]		"janela.wrl#vidro "
+
+
+
+PROTO armacao_janela[]{
+		Group {
+			children [
+			
+				Transform	{
+					 scale 1.1 1.1 1
+					children interior_janela {}
+				}
+				 Transform	{
+					 scale 1.1 1.1 1
+				 translation -0.525 0 0 
+					children interior_janela {}
+				}
+				Transform	{
+					scale 1.1 1.1 1
+					translation 0.525 0 0
+					children interior_janela {}
+				}
+			
+			]
+		}				
+
+}
+
+PROTO janela_completa[]{
+	Group {
+
+		children [
+				armacao_janela {}
+			Transform {
+				translation	-0.525 0 0.02
+				children abrir_janela {}
+			}
+			
+			Transform {
+				translation	0.525 0 0.02
+				children abrir_janela {}
+			}
+			Transform {
+				scale 1.1 1.1 1
+				translation	0 0 0.05
+				children vidro {}
+			}
+			
+	
+		]
+	}
+}
+
+
+

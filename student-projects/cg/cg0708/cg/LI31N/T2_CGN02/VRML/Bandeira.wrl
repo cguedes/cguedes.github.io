@@ -1,0 +1,155 @@
+#VRML V2.0 utf8
+#created by Richard Kapuaala (c)1997: ccode@kahunanui.com
+#special thanks to Mike Harris for getting me back on track
+
+
+PROTO Bandeira [field SFVec3f position 0 0 0]{
+
+	Transform {
+		rotation  0 1 0 3.14 
+		translation	IS position
+		scale 2 2 1
+		children [
+			NavigationInfo {
+				avatarSize	[
+					0.25,1.6,0.75 ]
+				type "EXAMINE"
+			}
+#			Background {
+#				skyColor	0 0.5 1
+#			}
+			DEF theflag Transform {
+				translation 0 0 -.6
+				center 1.5 0 0
+				children	Transform {
+					children[
+						Shape {
+						appearance	Appearance {
+							material Material{
+								diffuseColor 1 1 1
+							}
+							texture ImageTexture {
+								url "portugal.gif"
+							}
+						}
+						geometry	IndexedFaceSet {
+							coordIndex	[
+,
+								13,12,10,11,-1,
+								11,10,8,9,-1,
+
+								7,6,8,9,-1,
+
+								5,4,6,7,-1,
+
+								2,1,4,5,-1,
+
+#								5,4,2,3,-1,
+								0,1,2,3,-1
+#								3,2,0,1,-1
+							]
+							normalIndex	-1
+							colorIndex	-1
+							coord	DEF flag Coordinate {
+								point	[
+
+								0		0		0,
+								0		2		0,
+								0.5		0		0,
+								0.5		2		0,
+								1		0		0,
+								1		2		0,
+								1.5		0		0,
+								1.5		2		0,
+								2	 	0		0,
+								2	 	2		0,
+								2.5		0		0,
+								2.5		2		0,
+								3 		0		0,
+								3		2		0 
+
+								]
+							}
+							texCoord	DEF _texCoord2 TextureCoordinate {
+								point	[
+
+										0 0,
+										.1666 0,
+
+										.1666 1,
+										0 1,
+
+										.3332 0,
+										.3332 1,
+
+										.4998 1,
+										.4998 0,
+
+										.6664 0,
+										.6664 1,
+
+										.833 1,
+										.833 0,
+
+										1 0,
+										1 1
+
+								]
+							}
+							texCoordIndex[
+								1,2,3,0,-1,
+								1,2,5,4, -1,
+								7,6,5,4,-1,
+								8,9,6,7,-1,
+								8,9,10,11,-1,
+
+								13,10,11,12,-1
+							]
+							normalPerVertex TRUE
+							ccw	TRUE
+							convex TRUE
+							creaseAngle	.6
+							solid	FALSE
+						}
+					}
+				]
+				}
+			
+			}
+			DEF wave CoordinateInterpolator{
+				key[0, 0.125 ,0.25, 0.375, 0.5, 0.635, 0.75, 0.875, 1]
+				keyValue[
+				-1.5 1 0,       -1 1 0,   -1 -1 0,      -1.5 -1 0,    		-0.5 1 0,   	-0.5 -1 0,      	0 1 0,0 -1 0,		0.5 1 0,    	0.5 -1 0,  		1 .99 0, 	1 -1 0,     	1.5 1 0,	1.5 -1 0,
+				-1.49 1.05 0,   -.99 1 0, -.98 -1 0,    -1.47 -.97 .01, 	-0.46 1 0,   	-0.47 -.91 0,   	0 1 0,0 -1 0,		0.47 1.03 0,	0.47 -.97 .01, 	1 1 0, 		1 -1 0,     	1.49 1 0,	1.49 -1 0,
+				-1.48 1.1 .1,   -.98 1 0, -.97 -1 0,    -1.45 -.95 .02, 	-0.47 1.01 0,  	-0.45 -.93 -.1, 	0 1 0,0 -1 0,		0.45 1.05 0,	0.46 -.95 .03,	1 1 0, 		1 -1 0,     	1.48 1 0,	1.49 -1 0,
+				-1.46 1.05 .1,  -.99 1 0, -.98 -1 0,    -1.47 -.97 .01, 	-0.48 1.03 0,  	-0.48 -.95 -.1, 	0 1 0,0 -1 0,		0.48 1.03 0,	0.45 -.97 .05,	1 .99 0, 	1 -1 -.1,   	1.48 1 0,	1.48 -1 0,
+				-1.45 1 0,      -1 1 0,   -.99 -1 0,    -1.5 -0.99 0, 		-0.47 1.05 0,	-0.45 -.93 -.1, 	0 1 0,0 -1 0,		0.45 1.01 0,	0.45 -.99 .03,	1 .97 .1,	1 -.99 -.15,	1.47 1 0,	1.47 -1 0,
+				-1.46 .95 0,    -1 1 0,   -1 -1 0,      -1.45 -1 -.01,		-0.48 1.03 0,	-0.47 -.91 -.1, 	0 1 0,0 -1 0,		0.48 1 0,		0.46 -1 .1,		1 .95 .1,	1 -.97 -.1,		1.48 1 0,	1.48 -1 0,
+				-1.47 .9 -.1,   -1 1 0,   -1 -1 0,      -1.4 -1.01 -.02,	-0.47 1.01 0,   -0.5 -1 0,      	0 1 0,0 -1 0, 		0.5 1 0,    	0.47 -1 0,  	1 .93 0,   	1 -.95 .2,		1.48 1 0,	1.49 -1 0,
+				-1.49 .95 -.1,  -1 1 0,   -1 -1 0,      -1.45 -1 -.01,		-0.46 1 0,   	-0.5 -1 0,      	0 1 0,0 -1 0, 		0.5 1 0,    	0.48 -1 0,  	1 .95 0,   	1 -.97 .1,		1.49 1 0,	1.49 -1 0,
+				-1.5 1 0,       -1 1 0,   -1 -1 0,      -1.5 -1 0,    		-0.5 1 0,   	-0.5 -1 0,      	0 1 0,0 -1 0,		0.5 1 0,    	0.5 -1 0,  		1 .97 0, 	1 -.99 0,   	1.5 1 0,	1.5 -1 0
+
+				]
+			}
+			DEF flap OrientationInterpolator{
+				key[0, 0.25, 0.5, 0.75, 1]
+				keyValue[0 1 0 0, 0 1 0 -.09, 0 1 0 0, 0 1 0 .1, 0 1 0 0]
+			}
+			DEF wavtime TimeSensor{
+				cycleInterval 1
+				loop TRUE
+				enabled TRUE
+				startTime .1
+				stopTime 0
+			}
+		]
+	}
+	ROUTE wavtime.fraction_changed TO wave.set_fraction
+	ROUTE wave.value_changed TO flag.set_point
+	ROUTE wavtime.fraction_changed TO flap.set_fraction
+	ROUTE flap.value_changed TO theflag.set_rotation
+
+}
+
+
+Bandeira{}

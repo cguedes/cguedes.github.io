@@ -1,0 +1,332 @@
+#VRML V2.0 utf8
+
+# x: 0.82
+# y: ~2.58
+# z: 0.35
+
+EXTERNPROTO	Livros [ 
+]
+"Objectos.wrl#BlocoLivros"
+
+PROTO	Prateleira [
+]{
+	Shape	{
+		geometry Box {
+			size 0.82 0.025  0.35 
+		}
+		appearance Appearance	{ material Material	{ diffuseColor 0 0 0 } }
+	}
+}
+
+PROTO	Base [
+]{
+	Shape	{
+		geometry Box {
+			size 0.82 0.025  0.35 
+		}
+		appearance Appearance	{ material Material	{ diffuseColor 0.3 0.1 0.1 } }
+	}
+}
+
+PROTO	Posterior [
+]{
+	Shape	{
+		geometry Box {
+			size	0.87 2.58 0.025   #lar - 82+2.5+2.5
+		}
+		appearance Appearance	{ material Material	{ diffuseColor 0.3 0.1 0.1 } }
+	}
+}
+
+PROTO	Lateral [
+]{
+	Shape	{
+		geometry Box {
+			size	0.35 2.58 0.025 
+		}
+		appearance Appearance	{ material Material	{ diffuseColor 0.3 0.1 0.1 } }
+	}
+}
+
+PROTO	Vidro [] { 
+	Transform	{
+		translation	0.205 0 0
+		children[
+			Transform	{
+				children
+					Shape	{
+						geometry Box {
+							size 0.41 2.57 0.005
+						}
+						appearance Appearance	{
+							material Material {
+								diffuseColor 1 1 1
+								transparency 0.7
+							} 
+						}	
+					}
+			}
+			Transform	{
+				translation	0.17 0 0
+				children[
+					Transform	{
+						translation	0 0 0.03
+						children[
+							Shape	{
+								geometry Sphere	{	radius 0.02  }
+								appearance Appearance	{ material Material	{ specularColor	0 0 0 } }
+							}
+							
+						]
+					}
+					Transform	{
+						translation	0 0 0.01
+						rotation 1 0 0 1.57
+						children
+							Shape	{
+								geometry Cylinder	{
+									radius 0.01
+									height 0.02
+								}
+								appearance Appearance	{ material Material	{	 specularColor	0 0 0 } }
+							}
+					}
+				]
+			}
+		]
+	}
+}
+
+PROTO	EstanteVidros [
+]{
+	Group	{
+		children [
+			Transform	{
+				translation	0 1.29 -0.1875  
+				children Posterior	{}
+			}
+			Transform	{
+				translation	0.4225 1.29 0
+				rotation 0 1 0 1.57
+				children Lateral	{}
+			}
+			Transform	{
+				translation	-0.4225 1.29 0
+				rotation 0 1 0 1.57
+				children Lateral	{}
+			}
+			Transform	{
+				translation	0 0.0125 0
+				children Base{}
+			}
+			Transform	{
+				translation	0 0.3775 0
+				children Prateleira {}
+			}
+			Transform	{
+				translation	0 0.7425 0
+				children Prateleira {}
+			}
+			Transform	{
+				translation	0 1.1075 0
+				children Prateleira {}
+			}
+			Transform	{
+				translation	0 1.4725 0
+				children Base {}
+			}
+			Transform	{
+				translation	0 1.8375 0
+				children Prateleira {}
+			}
+			Transform	{
+				translation	0 2.2025 0
+				children Prateleira {}
+			}
+			Transform	{
+				translation	0 2.5675 0
+				children Base{}
+			}
+			#livros na estante
+			Transform	{
+				translation	0 0.175 0
+				children Livros{}
+			}
+			Transform	{
+				translation	0 0.54 0
+				children Livros{}
+			}
+			Transform	{
+				translation	0 0.905 0
+				children Livros{}
+			}
+			Transform	{
+				translation	0 1.27 0
+				children Livros{}
+			}	
+		 	Transform	{
+				translation	0 1.635 0
+				children Livros{}
+			}	
+		 	Transform	{
+				translation	0 2 0
+				children Livros{}
+			}	
+		 	Transform	{
+				translation	0 2.365 0
+				children Livros{}
+			}	 	   
+		]
+	}
+}
+
+
+DEF PortaEsqTransform Transform {
+	translation	-0.415 1.29 0.1775
+  children [
+    DEF PortaEsqInstance Vidro{ }
+    DEF TouchStartEsq TouchSensor { }
+  ]
+}
+
+DEF PortaDirTransform Transform {
+	translation	0.415 1.29 0.1775
+	 children [
+		Transform	{
+			rotation 1 0 0 3.14
+			 children [
+				Transform	{
+					rotation 0 1 0 3.14
+					children [
+    				DEF PortaDirInstance Vidro{ }
+		    		DEF TouchStartDir TouchSensor { }
+					]
+				}
+  		]
+		}
+	]
+}			
+DEF	RotEsqInterpolatorOpen OrientationInterpolator{
+	 key [
+  	0.0 1.0 
+	 ]
+	 keyValue [
+  	0.0 1.0 0.0 0.0
+  	0.0 1.0 0.0 -1.571
+	 ]
+}
+
+DEF	RotEsqInterpolatorClose OrientationInterpolator{
+ key [
+  0.0 1.0 
+ ]
+ keyValue [
+  0.0 1.0 0.0 -1.571
+  0.0 1.0 0.0 0.0
+ ] 
+}
+
+DEF	RotDirInterpolatorOpen OrientationInterpolator{
+	 key [
+  	0.0 1.0 
+	 ]
+	 keyValue [
+  	0.0 1.0 0.0 1.571
+  	0.0 1.0 0.0 0.0
+	 ]
+}
+
+DEF	RotDirInterpolatorClose OrientationInterpolator{
+ key [
+  0.0 1.0 
+ ]
+ keyValue [
+  0.0 1.0 0.0 0.0
+  0.0 1.0 0.0 1.571
+ ] 
+}
+
+DEF TimerEsqOpen TimeSensor {
+ cycleInterval 2.000
+ loop FALSE
+ startTime  -1
+}
+
+DEF TimerEsqClose TimeSensor {
+ cycleInterval 2.000
+ loop FALSE
+ startTime  -1
+}
+
+DEF TimerDirOpen TimeSensor {
+ cycleInterval 2.000
+ loop FALSE
+ startTime  -1
+}
+
+DEF TimerDirClose TimeSensor {
+ cycleInterval 2.000
+ loop FALSE
+ startTime  -1
+}
+ 
+DEF InteracaoEsq Script {
+  field  SFBool  estado FALSE  
+  eventIn  SFTime toque
+  eventOut SFTime startClose
+  eventOut SFTime startOpen
+  url "javascript:
+	 function toque(timestamp) {
+  	estado = !estado;
+  	if (estado) 
+		{
+    	startOpen = timestamp;
+    	startClose = -1;
+  	}
+  	else
+  	{
+    	startOpen = -1;
+    	startClose = timestamp;
+  	}
+	 }"
+}
+
+DEF InteracaoDir Script {
+  field  SFBool  estado FALSE  
+  eventIn  SFTime toque
+  eventOut SFTime startClose
+  eventOut SFTime startOpen
+  url "javascript:
+	 function toque(timestamp) {
+  	estado = !estado;
+  	if (estado) 
+		{
+    	startOpen = timestamp;
+    	startClose = -1;
+  	}
+  	else
+  	{
+    	startOpen = -1;
+    	startClose = timestamp;
+  	}
+	 }"
+}
+
+#porta esquerda														 
+ROUTE	TouchStartEsq.touchTime	TO InteracaoEsq.toque
+ROUTE InteracaoEsq.startClose	TO TimerEsqClose.startTime
+ROUTE InteracaoEsq.startOpen TO TimerEsqOpen.startTime
+ROUTE TimerEsqOpen.fraction_changed	TO RotEsqInterpolatorOpen.set_fraction
+ROUTE RotEsqInterpolatorOpen.value_changed TO PortaEsqTransform.set_rotation
+ROUTE TimerEsqClose.fraction_changed	TO RotEsqInterpolatorClose.set_fraction
+ROUTE RotEsqInterpolatorClose.value_changed TO PortaEsqTransform.set_rotation
+#porta direita
+ROUTE	TouchStartDir.touchTime	TO InteracaoDir.toque
+ROUTE InteracaoDir.startClose	TO TimerDirClose.startTime
+ROUTE InteracaoDir.startOpen TO TimerDirOpen.startTime
+ROUTE TimerDirOpen.fraction_changed	TO RotDirInterpolatorClose.set_fraction
+ROUTE RotDirInterpolatorClose.value_changed TO PortaDirTransform.set_rotation
+ROUTE TimerDirClose.fraction_changed	TO RotDirInterpolatorOpen.set_fraction
+ROUTE RotDirInterpolatorOpen.value_changed TO PortaDirTransform.set_rotation
+
+EstanteVidros {}

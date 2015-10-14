@@ -1,0 +1,61 @@
+#VRML V2.0 utf8
+EXTERNPROTO railes [ field SFRotation rot field SFVec3f pos ] "rail100_longe.wrl"
+
+PROTO gradeamento100 [
+	field SFRotation rot 0 0 0 0
+	field SFVec3f pos 0 0 0
+]
+{
+	Transform
+	{
+		children
+		[
+			#tubo cima
+			Transform {
+				children [
+					Shape
+					{
+						geometry Cylinder { height 100 radius 0.06 }
+						appearance Appearance { material Material { diffuseColor 0 0 1 } }
+					}
+				]
+				rotation 0 0 1 1.57079
+			}
+			#tubo c1
+			Transform {
+				children [
+					DEF tubo Shape
+					{
+						geometry Cylinder { height 100 radius 0.04 }
+						appearance Appearance { material Material { diffuseColor 1 1 1 } }
+					}
+				]
+				rotation 0 0 1 1.57079
+				translation	0 -0.3 0
+			}
+			#tubo c2
+			Transform {
+				children USE tubo
+				rotation 0 0 1 1.57079
+				translation	0 -0.6 0
+			}
+			#barra vertical
+			Transform {
+				children [
+					Shape
+					{
+						geometry Box {size 0.1 1 0.1}
+						appearance Appearance { material Material { diffuseColor 1 1 1 } }
+					}
+				]
+				translation	0 -0.5 0 
+			}
+			
+			railes { pos 0 -0.76 0.95 rot 0 1 0 0  }
+		]
+		rotation IS	rot
+		translation	IS pos
+	}
+}
+
+gradeamento100 {}

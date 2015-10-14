@@ -1,0 +1,39 @@
+#VRML V2.0 utf8
+PROTO Chao[]{DEF Chao Inline{url "chao.wrl"}}
+PROTO Divisoria[]{DEF Divisoria Inline{url "Divisoria.wrl"}}
+PROTO Parede_Esquerda[]{DEF Parede_Esquerda Inline{url "Parede_Esquerda.wrl"}}
+PROTO Parede_Frontal[]{DEF Parede_Frontal Inline{url "Parede_Frontal.wrl"}}
+PROTO Parede_Direita[]{DEF Parede_Direita Inline{url "Parede_Direita.wrl"}}
+PROTO Parede_Traseira[]{DEF Parede_Traseira Inline{url "Parede_Frontal.wrl"}}
+PROTO Barra[]{DEF Barra Inline{url "barra.wrl"}}
+
+PROTO Sala[]
+{
+	Transform
+	{
+		children
+		[
+			Chao{}
+
+			Transform{scale 1.06 1 1 translation -0.01 2.575 -0.5 children Divisoria {} }
+		    
+			Transform{scale 1.15 1 1 translation 0 1.68 -7.46 children Parede_Frontal {}}
+	
+			Transform{translation -3.7 2.62 0 children Parede_Esquerda {}}#Y
+	
+			Transform{rotation 0 1 0 -1.57 translation 3.7 1.68 0.9 children Parede_Direita {}}
+		
+			Transform{scale 1.15 1 1 rotation 0 1 0 3.14 translation 0 1.68 7.46 children Parede_Frontal {}}
+		
+			Transform{rotation 0 1 0 3.14 translation 2.3 1.1 7.3 children Barra {}}
+
+			Transform{rotation 0 1 0 3.14 translation 0.8 1.1 7.3 children Barra {}}
+
+			Transform{rotation 0 1 0 3.14 translation -0.7 1.1 7.3 children Barra {}}
+
+			Transform{rotation 0 1 0 3.14 translation -2.2 1.1 7.3 children Barra {}}
+		]
+	}
+}
+
+Sala{}

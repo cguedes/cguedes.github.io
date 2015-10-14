@@ -1,0 +1,66 @@
+#VRML V2.0 utf8
+
+
+PROTO pub [field SFVec3f sz 0.2 1 90]
+{
+	Transform 
+	{
+		children [
+		DEF Pub Transform {
+			children Shape {
+    			geometry Box {
+					size IS	sz
+				}
+    			appearance  Appearance {
+					texture DEF imgTxt ImageTexture { 
+						url "pub_adidas.png"
+					}
+    			}
+			}
+		},
+
+		DEF timer TimeSensor {
+			cycleInterval 1
+			loop TRUE
+			startTime 1
+			stopTime 0
+		},
+			   
+		DEF publicidade Script {
+			eventIn SFTime set_change
+			eventOut MFString saida
+			field SFInt32 idx 0
+			field MFString pub [
+				"pub_adidas.png",
+				"pub_adidas.png",
+				"pub_mix1.png",
+				"pub_mix2.png",
+				"pub_bes.png",
+				"pub_bes.png",
+				"pub_bes.png",
+				"pub_bes.png",
+				"pub_mix2.png",
+				"pub_mix1.png",
+				"pub_adidas.png",
+				"pub_adidas.png"
+			]
+			#field SFNode imagem USE imgTxt
+			#directOutput TRUE
+			url "javascript:function set_change( time, eventTime )
+				{
+					saida[0] = pub[idx%12];
+					++idx;
+				} 
+				"
+
+		}
+		]
+	} 
+
+	ROUTE timer.cycleTime TO publicidade.set_change
+	ROUTE publicidade.saida	TO imgTxt.set_url
+}
+
+						   
+
+

@@ -1,0 +1,74 @@
+#VRML V2.0 utf8
+
+PROTO linha[]{
+	Shape {
+		geometry Cylinder{
+			bottom TRUE
+			height 0.40
+			radius 0.001
+			side TRUE
+			top	TRUE
+		}
+		appearance Appearance {material Material {diffuseColor 0.250 0.250 0.250}}
+	}
+}
+PROTO linhasAlvo[]{
+	#10 linhas 10 rotações em pi, PI/10 = 0.314
+	Transform {children [
+		#1 Pi/10
+		Transform {
+			rotation 0 0 1 0.314
+			children linha {}
+		}
+		#2 2Pi/10
+		Transform {
+			rotation 0 0 1 0.628
+			children linha {}
+		}
+		#3 3Pi/10
+		Transform {
+			rotation 0 0 1 0.942
+			children linha {}
+		}
+		#4 4Pi/10
+		Transform {
+			rotation 0 0 1 1.256
+			children linha {}
+		}
+		#5 5Pi/10
+		Transform {
+			
+			rotation 0 0 1 1.57
+			children linha {}
+		}
+		#6 6Pi/10
+		Transform {
+			
+			rotation 0 0 1 1.884
+			children linha {}
+		}
+		#7 7Pi/10
+		Transform {
+			
+			rotation 0 0 1 2.198
+			children linha {}
+		}
+		#8 8Pi/10
+		Transform {
+			
+			rotation 0 0 1 2.512
+			children linha {}
+		}
+		#9 9Pi/10
+		Transform {
+			
+			rotation 0 0 1 2.826
+			children linha {}
+		}
+		#10	10Pi/10
+		Transform {
+			children linha {}
+		}
+	]}
+}
+linhasAlvo {}

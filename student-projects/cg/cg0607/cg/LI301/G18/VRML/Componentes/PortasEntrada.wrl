@@ -1,0 +1,251 @@
+#VRML V2.0 utf8
+EXTERNPROTO Vidro [
+  field SFVec3f dimVidro 
+	field SFVec3f dimBHor
+	field SFVec3f dimBVert
+	field SFVec3f posBHor
+	field SFVec3f posBVer
+ 
+	field SFVec3f zeroPosition
+  field SFColor corB
+]
+"..\\Componentes\\Vidro.wrl#Vidro"
+
+EXTERNPROTO Controlador[
+	eventIn	SFFloat set_fraction
+	eventOut SFFloat fraction_changed
+	eventIn SFBool start
+	eventOut SFBool	done
+]"Scripts.wrl#Controlador"
+
+EXTERNPROTO Puxador[
+	eventOut SFBool isActive
+	eventIn SFBool set_enabled
+	eventOut SFTime touchTime
+]"Porta.wrl#Puxador"
+
+
+PROTO	CaixilhoPorta[
+]{
+	Group
+	{
+		children[
+			DEF caixilhoporta Transform	{
+				children [
+					Shape	{
+						appearance Appearance	{
+							material Material	{
+								diffuseColor 1 0 0
+							}
+						}
+						geometry Extrusion {
+							crossSection [#1.1 por 1.2
+								0 0
+								0 2.09
+								1.52 2.09
+								1.52 0
+								1.56 0
+								1.56 2.16
+								1.52 2.16
+								0 2.16
+								0 2.54
+								1.52 2.54
+								1.52 2.16
+								1.56 2.16
+								1.56 2.58
+								-0.04 2.58
+								-0.04 0
+								0 0
+
+							]
+							ccw	FALSE
+							solid	FALSE
+							spine	[0 0 0, 0 .045 0]
+						}
+					}
+				]
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation .03 .022 2.15
+				children[
+					
+					DEF vidro_d Vidro	{
+						corB 0 0 0
+						dimVidro	1.55 0.4 .002
+						dimBHor 	1.50 0.005 0.004
+						dimBVert	0.005 0.4 0.004
+						posBVer 	0.77 0 0 
+						posBHor 	0 0.19 0
+						zeroPosition 0.71 0.20 0
+					}		
+				]
+			}
+		]
+	}
+}
+PROTO	Porta[
+	eventIn SFRotation set_rotation
+]{
+	Transform {
+		set_rotation IS	set_rotation
+		children [
+			DEF janela Transform {
+				children [
+					DEF caixilho Transform	{
+						translation	0 0 .02
+						rotation 1 0 0 -1.57
+						children [
+							Shape	{
+								appearance Appearance	{
+									material Material	{
+										diffuseColor 1 0 0
+									}
+								}
+								geometry Extrusion {
+									crossSection [#1.1 por 1.2
+										0 0 
+										0.76 0	 
+										0.76 0.1	
+										0.70 0.1	
+										0.06 0.1	
+										0.06 0.83	
+										0.70 0.83	 
+										0.70 0.1	 
+										0.76 0.1	 
+										
+										0.76 0.83	 
+										0.76 0.95	  
+										0.70 0.95	   
+										0.06 0.95	 
+										0.06 2.02	 
+										0.70 2.02	 
+										0.70 0.95	 
+										0.76 0.95	  
+
+										0.76 2.02	
+										0.76 2.08	
+										0.0 2.08,	 
+										0 0
+									]
+									ccw	FALSE
+									solid	FALSE
+									spine	[0 0 0, 0 .045 0]
+								}
+							}
+						]
+					}
+					DEF Vidro Transform	{
+						children [
+							Transform {
+								translation	.061 .101 .002
+								children[
+									
+									DEF vidro_d Vidro	{
+										corB 0 0 0
+										dimVidro	0.64 0.74 .002
+										dimBHor 	0.64 0.005 0.004
+										dimBVert	0.005 0.74 0.004
+										posBVer 0.32 0 0 
+										posBHor 0 0.37 0#0 .57 0  #bem
+										zeroPosition .32 .37 0
+
+									}		
+								]
+							}
+							Transform {
+								translation	.06 .95 .002
+								children DEF vidro_u Vidro	{
+									corB 0 0 0
+									dimVidro	0.64 1.07 .002
+
+									dimBHor 	0.64 0.005 0.004
+									dimBVert	0.005 1.07 0.004
+
+									posBVer 0.32 0 0 
+								
+									posBHor 0 0.535 0#0 .57 0  #bem
+									zeroPosition .32 .53 0
+
+								}
+							}
+						]
+					}
+				]
+    	}
+		]
+	}
+}
+PROTO	Porta1[			
+	eventIn SFRotation set_rotation
+	eventOut SFTime touchTime
+	eventOut SFBool isActive
+	eventIn SFBool set_enabled
+] {
+	Transform {
+
+		center .76 0 0
+		set_rotation IS	set_rotation
+		children [
+
+			Porta	{ }
+			Transform {
+				rotation 1 0 0 1.57
+				translation	.10 .89 0
+				children DEF puxador Puxador{ 
+					touchTime IS touchTime 
+					isActive IS	isActive
+					set_enabled	IS set_enabled
+				}
+			}
+		]
+	}
+}
+
+
+PROTO	PortasEntrada [
+]{
+	Group {
+		children [
+			Transform	{
+				rotation 1 0 0 -1.57
+				children CaixilhoPorta	{}
+			}
+			DEF p1 Porta {}
+			Transform {
+				translation	  0.764 0 0
+				children [
+					DEF p2 Porta1{}
+				]
+			}
+			DEF controladoresMovimento Group	{
+				children [
+					DEF	clock TimeSensor {
+						cycleInterval	2
+					}
+					DEF OInterpolar1 OrientationInterpolator	{
+						key	[0 1]
+						keyValue [0 0 0 0 0 1 0 1.57]
+					}
+					DEF OInterpolar2 OrientationInterpolator	{
+						key	[0 1]
+						keyValue [0 0 0 0 0 1 0 -1.57]
+					}
+					DEF	controlador Controlador	{}
+				]
+			}
+		]
+		ROUTE	p2.isActive TO	controlador.start
+		ROUTE	p2.touchTime	TO clock.startTime
+		ROUTE	controlador.done TO	p2.set_enabled
+		ROUTE	clock.fraction_changed TO	controlador.set_fraction
+		ROUTE	controlador.fraction_changed TO	OInterpolar1.set_fraction
+		ROUTE	controlador.fraction_changed TO	OInterpolar2.set_fraction
+		ROUTE	OInterpolar1.value_changed TO	p1.set_rotation
+		ROUTE	OInterpolar2.value_changed TO	p2.set_rotation
+	}
+}
+#PortasEntrada	{}
+#Inline {
+#  url ["eixos.wrl"]
+#}

@@ -1,0 +1,661 @@
+#VRML V2.0 utf8
+
+
+Viewpoint {
+	position 8 1.5 8
+}
+
+####################################
+# Ambiente (fundo e céu)            
+####################################
+Background {
+    skyColor [
+        0.0 0.2 0.7,
+        0.0 0.5 1.0,
+        1.0 1.0 1.0
+    ]
+    skyAngle [ 1.309, 1.571 ]
+    groundColor [
+        0.1 0.10 0.0,
+        0.4 0.25 0.2,
+        0.6 0.60 0.6,
+    ]
+    groundAngle [ 1.309, 1.571 ]
+}
+
+####################################
+#		Porta                       
+####################################
+PROTO PortaAbreDir []
+{
+	Group {
+		children [
+		   Transform {
+			translation	0.5 1.125 0
+			children  Shape {
+				geometry Box { size 1 2.25 0.1 }
+				appearance Appearance {
+					material Material {	
+						diffuseColor .9 .41 0
+						emissiveColor .1 .04 0
+						ambientIntensity .11
+						shininess .08					
+					}
+				}	
+			}
+		   }
+		   Transform {
+			   translation 0.1 1 0.1
+			   children	Shape {
+					geometry	Sphere { radius 0.05 }
+					appearance Appearance { material Material { diffuseColor 0.8 0.8 0.8} }
+				}
+		   }
+		   Transform {
+			   translation 0.1 1 -0.1
+			   children	Shape {
+				   geometry	Sphere { radius 0.05 }
+				   appearance Appearance { material	Material { diffuseColor	0.8 0.8 0.8 } }
+			   }
+		   }
+		]
+	}				
+}
+
+PROTO PortaAbreEsq []
+{
+	Group {
+		children [
+		   Transform {
+			translation	0.5 1.125 0
+			children  Shape {
+				geometry Box { size 1 2.25 0.1 }
+				appearance Appearance {
+					material Material {	
+						diffuseColor .9 .41 0
+						emissiveColor .1 .04 0
+						ambientIntensity .11
+						shininess .08					
+					}
+				}	
+			}
+		   }
+		   Transform {
+			   translation 0.9 1 0.1
+			   children	Shape {
+					geometry	Sphere { radius 0.05 }
+					appearance Appearance { material Material { diffuseColor 0.8 0.8 0.8} }
+				}
+		   }
+		   Transform {
+			   translation 0.9 1 -0.1
+			   children	Shape {
+				   geometry	Sphere { radius 0.05 }
+				   appearance Appearance { material	Material { diffuseColor	0.8 0.8 0.8 } }
+			   }
+		   }
+		]
+	}
+}
+
+PROTO PortaEntrada []{
+   Transform {
+		translation	0.5 1.125 -0.05
+		children  Shape {
+			geometry Box { size 0.6 2.25 0.1 }
+			appearance Appearance {
+				material Material {	}
+				texture	ImageTexture { url "imagens/portaEntrada.jpg" }
+			}	
+		}
+	}
+}
+
+PROTO PortaCasaBanho []{
+	Group {
+		children [
+		   Transform {
+			translation	0.5 1.125 -0.05
+			children  Shape {
+				geometry Box { size 0.8 2.25 0.1 }
+				appearance Appearance {
+					material Material {	
+						diffuseColor .9 .41 0
+						emissiveColor .1 .04 0
+						ambientIntensity .11
+						shininess .08					
+					}
+				}	
+			}
+		   }
+		   Transform {
+			   translation 0.8 1 0
+			   children	Shape {
+					geometry	Sphere { radius 0.05 }
+					appearance Appearance { material Material { diffuseColor 0.8 0.8 0.8} }
+				}
+		   }
+		   Transform {
+			   translation 0.8 1 -0.1
+			   children	Shape {
+				   geometry	Sphere { radius 0.05 }
+				   appearance Appearance { material	Material { diffuseColor	0.8 0.8 0.8 } }
+			   }
+		   }
+		]
+	}
+}
+
+PROTO paredes [exposedField MFString papelParede "imagens/parede.jpg"]{
+	Transform {
+		translation	0 1.75 0
+		children Shape {
+			geometry Box {
+				size 2 3.5 0.01
+			}
+			appearance Appearance {
+				material Material {}
+				texture	ImageTexture { url IS papelParede }
+			}
+		}
+	}
+}
+
+PROTO coluna []{
+	Transform {
+		translation	0 1.75 0
+		children Shape {
+			geometry Box {
+				size 0.2 3.5 0.05
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor .9 .41 0
+					emissiveColor .1 .04 0
+					ambientIntensity .11
+					shininess .08
+				}
+			}
+		}
+	}
+}
+
+
+PROTO AquiEstuda-se []{
+	Group {
+# Parede frontal
+		children [
+			Shape {
+				geometry Extrusion {
+					crossSection [0 0, 4.5 0, 4.5 2.25, 6.5 2.25, 6.5 0, 9 0, 9 3.5, 0 3.5, 0 0]
+					spine [0 0 0, 0 0 -0.1]
+					ccw	FALSE
+				}
+				appearance Appearance {	material Material { diffuseColor 1 1 1 } }
+			}
+			Shape {
+				geometry Extrusion {
+					crossSection [2.25 0, 2.25 2, 3.5 2, 3.5 0, 2.25 0]
+					spine [0 0 0, -0.01 0 0]
+				}
+				appearance Appearance {	material Material { diffuseColor 1 1 1 } }
+			}
+
+# Parede à esquerda
+			  Shape {
+					geometry Extrusion {
+						crossSection [0 2, 4.45 2, 4.45 4.16, 4.44 4.16 4.44 2.1, 0 2.1, 0 2]
+						spine [0 0 0, 0 3.5 0]
+        				solid TRUE
+        				convex FALSE
+        				ccw FALSE 
+        			}
+					appearance Appearance {	material Material { diffuseColor 1 1 1} }
+				}		
+
+# Parede à direita	
+				Shape {
+					geometry Extrusion {
+						crossSection [9 0, 9 4.2, 8.9 4.2, 8.9 0 ,9 0]
+						spine [0 0 0, 0 3.5 0]
+						ccw	FALSE
+        				solid TRUE
+        			}
+ 					appearance Appearance { material Material { diffuseColor 1 1 1}}
+				}
+
+# Parede atras
+				  Transform	{
+					  translation 0 0 4.2
+					  children	Shape	{
+						  geometry Extrusion {
+							  crossSection [4.45 0, 4.5 0, 4.5 2.25, 5.3 2.25, 5.3 0, 7.15 0, 7.15 2.25, 8.95 2.25, 8.95 0, 9 0, 9 3.5, 4.45 3.5, 4.45 0]
+								spine [0 0 0, 0 0 -0.1]
+        						solid TRUE
+        						convex FALSE
+        						ccw FALSE 			 
+							}
+							 appearance Appearance { material Material { diffuseColor 1 1 1} }
+						}
+				  }
+
+				  Shape {
+					  geometry Extrusion {
+						  crossSection [6.35 4.2, 6.35 7, 6.3 7, 6.3 4.2, 6.35 4.2]
+						  spine [0 0 0, 0 3.5 0]
+        				  solid TRUE
+        				  convex FALSE
+        				  ccw FALSE 			 
+					  }
+					  appearance Appearance { material Material { diffuseColor 1 1 1} }
+				 }
+
+			# Papel de Parede
+				 Group {
+					 children 
+					 [
+						Transform {
+							translation	1 0 0
+							children paredes {}
+						}
+						Transform {
+							translation 2.1 0 0
+							children coluna {}
+						}
+						Transform {
+							translation 3.1 0 0
+							children paredes {}
+						}
+						Transform {
+							translation	4.2 0 0
+							children coluna	{}
+						}
+						Transform {
+							translation	5.7 0 0
+							scale 1.5 1 1
+							children paredes {}
+						}
+						Transform {
+							translation	7.3 0 0
+							children coluna	{}
+						}
+						Transform {
+							translation	8.1 0 0
+							scale 0.8 1 1
+							children paredes {}
+						}
+						Transform {
+							translation	8.9 0 0
+							rotation 0 1 0 1.57
+							scale 4 0.35 1
+							children paredes {}
+						}
+					 ]
+				 }
+
+				 Transform {
+					 translation 6.8 1.75 4.2
+					 children Shape	{
+						 geometry Box {
+							 size 0.3 3.5 0.1
+						 }
+						 appearance	Appearance { material Material { diffuseColor 1 1 1} }
+					 }
+				 }
+
+				 Transform {
+					 translation 7.89 2.38 4.2
+					 children Shape	{
+						 geometry Box {
+							 size 2.2 0.2 0.1
+						 }
+						 appearance	Appearance { material Material { diffuseColor 1 1 1} }
+					 }
+				 }
+
+				 Transform {
+					 translation 7.89 3.25 4.2
+					 children Shape	{
+						 geometry Box {
+							 size 2.2 0.2 0.1
+						 }
+						 appearance	Appearance { material Material { diffuseColor 1 1 1} }
+					 }
+				 }
+
+				 # Placares
+				 Transform {
+					 translation 3 1.5 0.02
+					 children Shape	{
+						 geometry Box { size 0.9 0.6 0.02 }
+						 appearance	Appearance {
+							 material Material {}
+							 texture ImageTexture { url "imagens/placar1.jpg" }
+						 }
+					 }
+				 }
+
+				 Transform {
+					 translation 7.7 1.7 0.02
+					 children Shape	{
+						 geometry Box { size 1.1 1.1 0.02 }
+						 appearance	Appearance {
+							 material Material {}
+							 texture ImageTexture { url "imagens/placar2.jpg"}
+						 }
+					 }
+				 }
+
+				 Transform {
+					 translation 8.9 1.5 2.5
+					 rotation 0 1 0 1.57
+					 children Shape	{
+						 geometry Box { size 1.2 0.9 0.02 }
+						 appearance	Appearance {
+							 material Material	{}
+							 texture ImageTexture { url "imagens/placar3.jpg" }
+						 }
+					 }
+				 }
+
+# Portas
+		  # Porta esq ginásio
+		  Transform	{
+			  translation 4.5 0 0
+			  children PortaAbreEsq {}
+		  }
+
+		  # Porta dir ginásio
+		  Transform	{
+			  translation 5.5 0 0
+			  children PortaAbreDir {}
+		  }
+
+		  # Portas entrada
+		  Transform	{
+			translation 6.95 0 4.2
+			children PortaEntrada {}
+		  }
+		  Transform	{
+			translation 8.1 0 4.2
+			children PortaEntrada {}
+		  }
+
+		  # Porta p/ sala de estudo
+		  Transform	{
+			  translation 0 0 1
+			  rotation 0 1 0 1.57
+			  children PortaAbreDir	{ }
+		  }
+		  Transform	{
+			  translation 0 0 2
+			  rotation 0 1 0 1.57
+			  children PortaAbreEsq	{ }
+		  }
+
+
+		  # Porta casa de banho
+		  Transform	{
+			  translation 4.4 0 4.2
+			  children  PortaCasaBanho {}
+		  }
+
+			Transform {
+				translation	8.1 2.8 4.15
+				children Shape {
+					geometry Box { size 1.8 0.5 0.15 }							  
+					appearance Appearance {
+						material Material { }
+						texture	ImageTexture { url	"imagens/janela.jpg"}
+					}
+				}
+
+			}
+
+
+ #Chão
+		 # Dentro do edificio
+		   Shape {
+			  geometry Extrusion {
+				crossSection [0 0, 9 0, 9 4.2, 4.45 4.2, 4.45 2, 0 2, 0 0]
+				spine [0 0 0, 0 0.01 0 ]
+        		solid TRUE
+        		convex FALSE
+        		ccw FALSE 	
+			  }
+			  appearance Appearance { 
+				  material Material { }
+			      texture ImageTexture {url "imagens/chao.jpg"}
+			  }
+		 }
+
+#Tecto
+		 # Dentro do edificio
+		 Transform {
+			 translation 0 3.5 0 
+			 children Shape {
+				  geometry Extrusion {
+					crossSection [0 0, 9 0, 9 4.2, 4.45 4.2, 4.45 2, 0 2, 0 0]
+					spine [0 0 0, 0 0.01 0 ]
+        			solid TRUE
+        			convex FALSE
+        			ccw FALSE 	
+				  }
+				  appearance Appearance { 
+					  material Material { }
+			    	  texture ImageTexture {url "imagens/tecto.jpg"}
+				  }
+			 }
+		 }
+
+
+		 #Fora do edificio
+		  Shape	{
+			  geometry Extrusion {
+					crossSection [ -50 -50, 50 -50 , 50 50, -50 50, -50 -50]
+					spine [0 0 0, 0 -0.02 0 ]
+        			solid TRUE
+        			convex FALSE
+        			ccw FALSE 	
+			  }
+        	  appearance Appearance { material Material { diffuseColor .32 .54 .26 } }
+		  }
+
+# Segurança
+		  Transform	{
+			  translation 7.7 0.7 0.3
+			  children Inline { url "Seguranca.wrl" }
+		  }
+
+# Mesa do segurança
+		Transform {
+			translation	7.7 0 0.5
+			children Inline	{ url "MesaSeg.wrl" }
+		}
+
+# Mesa do computador
+		Transform {
+			translation	8.4 0 2.5 
+			rotation 0 1 0 1.57
+			children Inline	{ url "Mesa.wrl" }
+		}
+
+# Cadeira
+		Transform {
+			translation	8.24 0 2.5
+			rotation 0 1 0 1.57
+			children Inline	{ url "Cadeira.wrl" }
+		}
+
+# Maquina da comida
+		Transform {
+			translation 6.25 0 4.1
+			rotation 0 1 0 3.14
+			children [
+				Inline { url "MaquinaComida.wrl" }
+				Inline { url "MaquinaCafe.wrl" }
+
+
+# Caixotes do Lixo
+				Transform {
+					translation	-0.5 0.5 -0.5
+					children [
+						Transform {
+							translation	0 0.4 0
+							children Shape {
+								geometry Cylinder {
+									height 0.5
+									radius 0.2
+								
+								}
+								appearance Appearance {material Material {diffuseColor 0.5 0.5 0.5}	}
+							}
+						}
+						Transform {
+							translation	-0.2 0 0
+							children Shape {
+								geometry Cylinder {
+									height 1
+									radius 0.02
+								}
+								appearance Appearance {material Material {diffuseColor 0.5 0.5 0.5}	}
+							}
+						}
+						Transform {
+							translation	0.2 0 0
+							children Shape {
+								geometry Cylinder {
+									height 1
+									radius 0.02
+								}
+								appearance Appearance {material Material {diffuseColor 0.5 0.5 0.5}	}
+							}
+						}
+
+					]
+				}
+
+				Transform {
+					translation	-0.5 0.125 3.9
+					children Shape {
+						geometry Cylinder {
+							height 0.25
+							radius 0.1
+						}
+						appearance Appearance {material Material {diffuseColor 0 0 0}	}
+					}
+				}
+				Transform {
+					translation	-2.5 0.125 1.2
+					children Shape {
+						geometry Cylinder {
+							height 0.25
+							radius 0.1
+						}
+						appearance Appearance {material Material {diffuseColor 0 0 0}	}
+					}
+				}
+			] 
+		}
+
+
+# Luz
+		PointLight	{
+			location 0 4 0
+			color 1 1 1
+			intensity 0.5
+			ambientIntensity 0
+		}  
+
+		]
+	}																					  
+}
+
+# Armadura com luzes 
+PROTO ARMADURA_LUZES [ field SFVec3f translation 5 2.9 -18 field SFBool lampON TRUE ]{
+
+  Transform  {
+    translation IS translation
+    rotation 1 0 0 1.57
+    children [
+      Shape {
+        geometry Box {
+          size 0.2 1 0.05
+        }
+        appearance Appearance { material Material { diffuseColor 0.9 0.9 0.9  transparency 0.7 } }
+      }
+
+      Shape {
+        geometry Extrusion {
+          crossSection [-0.1 0.025, -0.1 -0.025, 0.1 -0.025, 0.1 0.025, 0.090 0.025, 0.080 -0.015, -0.080 -0.015, -0.090 0.025]
+          spine [0 -0.5 0, 0 0.5 0]
+          convex FALSE
+          ccw FALSE
+        }
+        appearance Appearance { material Material { diffuseColor 0.6 0.6 0.6 } }
+      }
+
+      Transform {
+        translation 0.045 0 0.005
+        children DEF Lampada_Armadura Shape {
+          geometry Cylinder {
+            radius 0.015
+            height 1
+          }
+          appearance Appearance { material Material { diffuseColor 0.95 0.95 0.85 } }
+        }
+      }
+
+      Transform {
+        translation -0.045 0 0.005
+        children USE Lampada_Armadura
+      }
+
+      # Luz associada a esta lampada
+      Transform {
+        translation 0 -0.5 0
+        children
+          DEF LampLight PointLight {
+            location 0 0 0
+            color 0.95 0.95 0.85
+            intensity 0.5
+            radius 10
+            ambientIntensity 0.2
+            on IS lampON
+          }
+      }
+
+      DEF LightSwitch TouchSensor {}
+      DEF Toggle Script {
+	      field    SFBool on TRUE
+	      eventIn  SFBool set_active
+	      eventOut SFBool on_changed
+
+	      # use 'javascript' on newer browsers
+	      url "vrmlscript:
+		      function set_active( b, tm ) {
+			      // ignore button releases
+			      if ( b == FALSE ) return;
+
+			      // toggle on button presses
+			      if ( on == TRUE ) on = FALSE;
+			      else              on = TRUE;
+			      on_changed = on;
+		      }"
+      }
+    ]
+    ROUTE LightSwitch.isActive TO Toggle.set_active
+    ROUTE Toggle.on_changed    TO LampLight.set_on
+  }
+
+}
+
+ARMADURA_LUZES { translation 0.5 3.4 1	lampON TRUE }
+ARMADURA_LUZES { translation 3.5 3.4 1	lampON TRUE }
+ARMADURA_LUZES { translation 6 3.4 1	lampON TRUE }
+ARMADURA_LUZES { translation 6 3.4 3	lampON TRUE }
+
+
+
+AquiEstuda-se { }
+

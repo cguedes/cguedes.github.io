@@ -1,0 +1,180 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	candeeiros[field SFVec3f pos field SFRotation rot] "../outros/candeeiros_2.wrl"
+
+EXTERNPROTO	pilar[ field SFVec3f pos 	field SFRotation rot	field SFVec3f escala	field SFVec3f posBase
+] "../pilares/pilar_14m.wrl"
+
+EXTERNPROTO telefone_SOS [ field SFVec3f pos ] "suporte_vias/telefone_SOS.wrl"
+
+EXTERNPROTO grad10  [ field SFRotation rot field SFVec3f pos ] "gradeamento_rails/gradeamento10_novo.wrl"
+EXTERNPROTO grad100 [ field SFRotation rot	field SFVec3f pos ] "gradeamento_rails/gradeamento100_novo.wrl"
+EXTERNPROTO grad200 [ field SFRotation rot field SFVec3f pos ] "gradeamento_rails/gradeamento200_novo.wrl"
+
+PROTO tabuleiro_alto[
+	field SFRotation rot 0 0 0 0 field	SFVec3f	pos 0 0 0
+]
+{
+	Transform {
+		children [
+			NavigationInfo {}
+
+			### Tabuleiro ###
+			Shape
+			{
+				geometry Extrusion {
+					crossSection [
+						1 -15.55, .5 -15.35, .5 -14.15, 1 -14.15, 1 -.15, .6 -.1, 0 -.1,
+						0 .1, .6 .1, 1 .15, 1 14.15, .5 14.15, .5 15.35, 1 15.55, 1 15.15,
+						2 15.15, 2 13.45, 6 11.35, 6 -11.55, 2 -13.55, 2 -15.15, 1 -15.15,
+						1 -15.55
+					]
+					spine [
+						0 0 0, 0 0 10, 0 2 50, 0 27 450, 0 29 480, 0 30 500, 
+						0 30 1e3, 0 29 1020, 0 27.0933 1050, 0 2 1450, 0 0 1490,
+						0 0 1500
+					]
+				}
+				appearance Appearance { 
+					textureTransform TextureTransform { scale 5 10 }
+					texture ImageTexture { url "../imagens/betao.jpg"  } 
+				}
+			}
+			############################################
+
+			### Estrada ###	
+			Transform
+			{
+				children
+				[
+					Shape
+					{
+						geometry Extrusion {
+							crossSection [ 1.1 -14.15, 1 -14.15, 1 14.15, 1.1 14.15, 1.1 -14.15	]
+							spine [
+								0 0 0, 0 0 10, 0 2 50, 0 27 450, 0 29 480, 0 30 500,
+								0 30 1e3, 0 29 1020, 0 27.0933 1050, 0 2 1450, 0 0 1490,
+								0 0 1500
+							]
+						}
+						appearance Appearance { 
+							textureTransform TextureTransform { scale 4 80 }
+							texture ImageTexture { url "../imagens/estrada.jpg"  } 
+							material Material {emissiveColor .6 .6 .6 }
+						}
+					}
+				]
+				translation	0 0.08 0
+			}
+			############################################
+
+			### Candeeiros ###
+			candeeiros { pos 13.6 0.5 1470 }			
+			candeeiros { pos 13.6 2.73 1430 }
+			candeeiros { pos 13.6 5.23 1390 }
+			candeeiros { pos 13.6 7.73 1350 }			
+			candeeiros { pos 13.6 10.25 1310 }
+			candeeiros { pos 13.6 12.76 1270 }			
+			candeeiros { pos 13.6 15.27 1230 }
+			candeeiros { pos 13.6 17.8 1190 }
+			candeeiros { pos 13.6 20.3 1150 }
+			candeeiros { pos 13.6 22.85 1110 }			
+			candeeiros { pos 13.6 25.35 1070 }
+			candeeiros { pos 13.6 27.85 1030 }	# fim da subida		
+			candeeiros { pos 13.6 29.5  990 }
+			candeeiros { pos 13.6 29.5  950 }
+			candeeiros { pos 13.6 29.5  910 }
+			candeeiros { pos 13.6 29.5  870 }
+			candeeiros { pos 13.6 29.5  830 }
+			candeeiros { pos 13.6 29.5  790 }
+			candeeiros { pos 13.6 29.5  750 }  # meio
+			candeeiros { pos 13.6 29.5  710 }
+			candeeiros { pos 13.6 29.5  670 }
+			candeeiros { pos 13.6 29.5  630 }
+			candeeiros { pos 13.6 29.5  590 }
+			candeeiros { pos 13.6 29.5  550 }
+			candeeiros { pos 13.6 29.5  510 }
+			candeeiros { pos 13.6 27.85  470 } # começa a descer
+			candeeiros { pos 13.6 25.35 430 }
+			candeeiros { pos 13.6 22.85 390 }
+			candeeiros { pos 13.6 20.3 350 }			
+			candeeiros { pos 13.6 17.8 310 }
+			candeeiros { pos 13.6 15.27 270 }
+			candeeiros { pos 13.6 12.76 230 }
+			candeeiros { pos 13.6 10.25 190 }
+			candeeiros { pos 13.6 7.73 150 }
+			candeeiros { pos 13.6 5.23 110 }
+			candeeiros { pos 13.6 2.73 70 }
+			candeeiros { pos 13.6 0.5 30 }
+
+			## Pilar ##
+			pilar { pos -15.5 -14 1490 }
+			
+			pilar { pos -15.5 -14 1340 escala 1 2.5 1}
+			pilar { pos -15.5  -8 1190 escala 1 3.5 1 posBase 0 -6 0}
+		    pilar { pos -15.5  -3 1040 escala 1 5 1   posBase 0 -11 0}
+			pilar { pos -15.5  -3 890  escala 1 5 1   posBase 0 -11 0} 
+			pilar { pos -15.5  -3 740  escala 1 5 1   posBase 0 -11 0}
+			pilar { pos -15.5  -3 590  escala 1 5 1   posBase 0 -11 0}
+			pilar { pos -15.5  -3 440  escala 1 5 1   posBase 0 -11 0}
+			pilar { pos -15.5  -8 290  escala 1 3.5 1 posBase 0 -6 0}
+			pilar { pos -15.5 -14 140  escala 1 2.5 1}
+
+			pilar { pos -15.5 -14 10 }
+
+			################################
+
+			### Telefone SOS ###
+			telefone_SOS { pos 14.7 19.1 1170 }
+			telefone_SOS { pos -14.5 19.1 1170 }
+			telefone_SOS { pos 14.7 29.5 760 }
+			telefone_SOS { pos -14.5 29.5 760 }
+			telefone_SOS { pos 14.7 19 330 }
+			telefone_SOS { pos -14.5 19 330 }
+
+			### Gradeamento ###
+			grad10  {pos -15.2 0.5 5 rot 0 1 0 1.57079 }
+			grad10  {pos  15.2 0.5 5 rot 0 1 0 -1.57079 }
+			
+			Transform { scale 1 1 4 rotation 1 0 0 -0.05 translation -15.2 1.5 30 children grad10 { rot 0 1 0 1.57079} }
+			Transform { scale 1 1 4 rotation 1 0 0 -0.05 translation 15.2 1.5 30 children grad10 { rot 0 1 0 -1.57079} }
+			
+			Transform { rotation 1 0 0 -0.0621 translation -15.2 8.7 150  children grad200 { rot 0 1 0 1.57079} }
+			Transform { rotation 1 0 0 -0.0621 translation 15.2 8.7 150  children grad200 { rot 0 1 0 -1.57079} }
+			Transform { rotation 1 0 0 -0.0621 translation -15.2 21.2 350  children grad200 { rot 0 1 0 1.57079} }
+			Transform { rotation 1 0 0 -0.0621 translation 15.2 21.2 350  children grad200 { rot 0 1 0 -1.57079} }
+			
+			Transform { scale 1 1 3 rotation 1 0 0 -0.066 translation -15.2 28.4 465 children grad10 { rot 0 1 0 1.57079} }
+			Transform { scale 1 1 3 rotation 1 0 0 -0.066 translation 15.2 28.4 465 children grad10 { rot 0 1 0 -1.57079} }
+			Transform { scale 1 1 2 rotation 1 0 0 -0.055 translation -15.2 29.95 490 children grad10 { rot 0 1 0 1.57079} }
+			Transform { scale 1 1 2 rotation 1 0 0 -0.055 translation 15.2 29.95 490 children grad10 { rot 0 1 0 -1.57079} }
+
+			grad200	{pos -15.2 30.5 600 rot 0 1 0 1.57079}
+			grad200	{pos  15.2 30.5 600 rot 0 1 0 -1.57079}
+			grad200	{pos -15.2 30.5 800 rot 0 1 0 1.57079}
+			grad200	{pos  15.2 30.5 800 rot 0 1 0 -1.57079}
+			grad100	{pos -15.2 30.5 950 rot 0 1 0 1.57079}
+			grad100	{pos  15.2 30.5 950 rot 0 1 0 -1.57079}
+			
+			Transform { scale 1 1 2 rotation 1 0 0 0.055 translation -15.2 29.95 1010 children grad10 { rot 0 1 0 1.57079} }
+			Transform { scale 1 1 2 rotation 1 0 0 0.055 translation 15.2 29.95 1010 children grad10 { rot 0 1 0 -1.57079} }
+			Transform { scale 1 1 3 rotation 1 0 0 0.066 translation -15.2 28.4 1035 children grad10 { rot 0 1 0 1.57079} }
+			Transform { scale 1 1 3 rotation 1 0 0 0.066 translation 15.2 28.4 1035 children grad10 { rot 0 1 0 -1.57079} }
+
+			Transform { rotation 1 0 0 0.0621 translation -15.2 21.2 1150  children grad200 { rot 0 1 0 1.57079} }
+			Transform { rotation 1 0 0 0.0621 translation 15.2 21.2 1150  children grad200 { rot 0 1 0 -1.57079} }
+			Transform { rotation 1 0 0 0.0621 translation -15.2 8.7 1350  children grad200 { rot 0 1 0 1.57079} }
+			Transform { rotation 1 0 0 0.0621 translation 15.2 8.7 1350  children grad200 { rot 0 1 0 -1.57079} }
+			
+			Transform { scale 1 1 4 rotation 1 0 0 0.05 translation -15.2 1.5 1470 children grad10 { rot 0 1 0 1.57079} }
+			Transform { scale 1 1 4 rotation 1 0 0 0.05 translation 15.2 1.5 1470 children grad10 { rot 0 1 0 -1.57079} }
+
+			grad10  {pos -15.2 0.5 1495 rot 0 1 0 1.57079 }
+			grad10  {pos  15.2 0.5 1495 rot 0 1 0 -1.57079 }
+
+		]
+		rotation IS	rot
+		translation	IS pos
+	}
+}
+tabuleiro_alto {}

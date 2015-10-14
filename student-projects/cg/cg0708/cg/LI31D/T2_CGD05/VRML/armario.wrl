@@ -1,0 +1,93 @@
+#VRML V2.0 utf8
+
+
+PROTO BOX 
+[
+	field SFVec3f SIZE 1 1.53 0.4
+	field SFColor COLOR 0 0 0
+]
+{
+	Shape {
+		geometry Box { size IS SIZE}
+		appearance Appearance { 
+			material Material {diffuseColor IS COLOR}
+	    }
+	}
+}
+
+PROTO Armario[]
+{
+	Group{
+		children[
+			Transform {
+				translation	0.5 0.772 0.2
+				children BOX{}
+			}
+			DEF X Transform {
+				translation	0.015 -0.028 0.015
+				children [
+					Transform{
+						children BOX{SIZE 0.03 0.07 0.03}
+					}
+					Transform{
+						translation	0 0 0.37
+						children BOX{SIZE 0.03 0.07 0.03}
+					}
+				]
+			}
+			Transform{
+				translation	0.97 0 0
+				children USE X
+			}
+			DEF Y Transform{			 
+				translation	0.175 0.75 0.4
+				children BOX{SIZE 0.29 1.50 0.03 COLOR 0.9 0.9 0.9}
+			}
+			Transform {
+				translation	0.32 0 0
+				children [
+					Transform{
+						children USE Y
+					}
+					Transform {
+						translation	0.32 0 0
+						children USE Y
+					}
+				]
+			} 
+			DEF Z Transform{
+				rotation 1 0 0 -0.2
+				translation	0.175 1.4 0.431
+				children [
+					Transform{
+						children BOX{SIZE 0.09 0.01 0.002 COLOR 0.9 0.9 0.9}
+					}
+					Transform{
+						translation	0 -0.02 0
+						children[
+							Transform {
+								children BOX{SIZE 0.09 0.01 0.002 COLOR 0.9 0.9 0.9}
+							}
+							Transform{
+								translation	0 -0.02 0
+								children BOX{SIZE 0.09 0.01 0.002 COLOR 0.9 0.9 0.9}
+							}
+						]
+					}
+				]
+			}
+			Transform{
+				translation	0.32 0 0
+				children[
+					Transform{ 
+						children USE Z
+					}
+					Transform{
+						translation	0.32 0 0
+						children USE Z
+					}
+				]
+			}
+		]
+	}
+} 

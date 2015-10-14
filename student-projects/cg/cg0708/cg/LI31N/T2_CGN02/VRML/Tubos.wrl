@@ -1,0 +1,820 @@
+#VRML V2.0 utf8
+
+
+PROTO Cone_T [	field SFVec3f position 0 0 0
+				field SFFloat raio 1
+				field SFFloat altura 1
+				field SFRotation rotacao 0 0 0 0]{
+	Transform {
+		translation	IS position
+		rotation  IS rotacao
+		children
+		Shape {
+			geometry Cone{ bottomRadius IS raio height IS altura }
+			appearance Appearance {
+				material Material {
+					diffuseColor 1 1 1
+				}
+			}
+		}
+	}
+}
+
+
+
+
+PROTO TuboMaior[field SFVec3f position 0 0 0]{
+	Transform {
+		translation IS position
+
+		children 
+			Shape {  
+
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+		    		}
+				}
+				geometry Extrusion{
+					crossSection [				   
+					   
+0.75		0,
+0.724425	0.1941,
+0.6495		0.375,
+0.530325	0.530325,
+0.375		0.6495,
+0.1941		0.724425,
+
+0			0.75,
+-0.1941		0.724425,
+-0.375		0.6495,
+-0.530325	0.530325,
+-0.6495		0.375,
+-0.724425	0.1941,
+
+-0.75		0,
+-0.724425	-0.1941,
+-0.6495		-0.375,
+-0.530325	-0.530325,
+-0.375		-0.6495,
+-0.1941		-0.724425,
+
+0			-0.75,
+0.1941		-0.724425,
+0.375		-0.6495,
+0.530325	-0.530325,
+0.6495		-0.375,
+0.724425	-0.1941,
+0.75		0.0
+]
+					orientation [0 0 1 0, 0 0 1 0, 0 0 1 0]
+					scale [1 1 ]
+					spine [
+#						0	0		15.5,
+						0	-1		15.5,
+						0	15.5	22,
+						0	30.1	25.2,
+						0	44.7	26.5,
+#						0	59.3	25.6,
+#						0	73.9	22.5,
+#						0	88.5	17.3,
+#						0	105.3	8.7,
+#						0	114	-0.5
+					]
+					beginCap TRUE
+					endCap TRUE
+					ccw FALSE
+					convex TRUE
+					solid TRUE
+					creaseAngle 1
+
+				}
+			}
+	}
+}
+
+ 
+
+
+PROTO TuboMaior_Meio[field SFVec3f position 0 0 0]{
+	Transform {
+		translation IS position
+
+		children 
+			Shape {  
+
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+		    		}
+				}
+				geometry Extrusion{
+					crossSection [				   
+					   
+0.6	0
+0.57954	0.15528
+0.5196	0.3
+0.42426	0.42426
+0.3	0.5196
+0.15528	0.57954
+0	0.6
+-0.15528	0.57954
+-0.3	0.5196
+-0.42426	0.42426
+-0.5196	0.3
+-0.57954	0.15528
+-0.6	0
+-0.57954	-0.15528
+-0.5196	-0.3
+-0.42426	-0.42426
+-0.3	-0.5196
+-0.15528	-0.57954
+0	-0.6
+0.15528	-0.57954
+0.3	-0.5196
+0.42426	-0.42426
+0.5196	-0.3
+0.57954	-0.15528
+0.6	0
+
+]
+					orientation [0 0 1 0, 0 0 1 0, 0 0 1 0]
+					scale [1 1 ]
+					spine [
+#						0	0		15.5,
+#						0	15.5	22,
+#						0	30.1	25.2,
+						0	44.7	26.5,
+						0	59.3	25.6,
+						0	73.9	22.5,
+						0	88.5	17.3,
+#						0	105.3	8.7,
+#						0	114	-0.5
+					]
+					beginCap TRUE
+					endCap TRUE
+					ccw FALSE
+					convex TRUE
+					solid TRUE
+					creaseAngle 1
+
+				}
+			}
+	}
+}
+
+
+
+PROTO TuboMaior_Fino[field SFVec3f position 0 0 0]{
+	Transform {
+		translation IS position
+
+		children 
+			Shape {  
+
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+		    		}
+				}
+				geometry Extrusion{
+					crossSection [				   
+					   
+					    0.5	 0,
+						0.48295	 0.1294,
+				    	0.433	 0.25,
+						0.35355	 0.35355,
+						0.25	0.433,
+						0.1294	 0.48295,
+						0	 0.5,
+						-0.1294	 0.48295,
+						-0.25	 0.433,
+						-0.35355	 0.35355,
+						-0.433	 0.25
+						-0.48295	 0.1294,
+				    	-0.5	 0,
+						-0.48295	 -0.1294,
+						-0.433	 -0.25 
+						-0.35355	 -0.35355,
+						-0.25	 -0.433
+						-0.1294	 -0.48295,
+				    	0	 -0.5,
+						0.1294	 -0.48295,
+						0.25	 -0.433
+						0.35355	 -0.35355,
+						0.433	 -0.25
+						0.48295	 -0.1294,
+				    	0.5	 0
+]
+					orientation [0 0 1 0, 0 0 1 0, 0 0 1 0]
+					scale [1 1 ]
+					spine [
+#						0	0		15.5,
+#						0	15.5	22,
+#						0	30.1	25.2,
+#						0	44.7	26.5,
+#						0	59.3	25.6,
+#						0	73.9	22.5,
+						0	88.5	17.3,
+						0	105.3	8.7,
+						0	114	-0.5
+					]
+					beginCap TRUE
+					endCap TRUE
+					ccw FALSE
+					convex TRUE
+					solid TRUE
+					creaseAngle 1
+
+				}
+			}
+	}
+}
+
+
+
+
+
+
+PROTO Tapatubosuperior[field SFVec3f position 0 0 0]{
+	Transform {
+		translation IS position
+
+		children 
+			Shape {  
+
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+		    		}
+				}
+				geometry Extrusion{
+					crossSection [				   	   
+0.75	0
+0.724425	0.1941
+0.6495	0.375
+0.530325	0.530325
+0.375	0.6495
+0.1941	0.724425
+0	0.75
+-0.1941	0.724425
+-0.375	0.6495
+-0.530325	0.530325
+-0.6495	0.375
+-0.724425	0.1941
+-0.75	0
+-0.724425	-0.1941
+-0.6495	-0.375
+-0.530325	-0.530325
+-0.375	-0.6495
+-0.1941	-0.724425
+0	-0.75
+0.1941	-0.724425
+0.375	-0.6495
+0.530325	-0.530325
+0.6495	-0.375
+0.724425	-0.1941
+0.75	0
+
+]
+					orientation [0 0 1 0, 0 0 1 0, 0 0 1 0]
+					scale [1 1 ]
+					spine [
+						0	112.7 	1
+						0	113.6	0
+						0	113.9	-0.9
+					]
+					beginCap TRUE
+					endCap TRUE
+					ccw FALSE
+					convex TRUE
+					solid TRUE
+					creaseAngle 1
+				}
+			}
+	}
+}
+
+
+
+PROTO TuboHorizontal[
+	field SFVec3f position1 0 0 0
+	field MFVec3f espinha 0 0 0]{
+	Transform {
+		translation IS position1
+
+		children 
+			Shape {  
+
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+		    		}
+				}
+				geometry Extrusion{
+					crossSection [
+					    0.5	 0,
+						0.48295	 0.1294,
+				    	0.433	 0.25,
+						0.35355	 0.35355,
+						0.25	0.433,
+						0.1294	 0.48295,
+						0	 0.5,
+						-0.1294	 0.48295,
+						-0.25	 0.433,
+						-0.35355	 0.35355,
+						-0.433	 0.25
+						-0.48295	 0.1294,
+				    	-0.5	 0,
+						-0.48295	 -0.1294,
+						-0.433	 -0.25 
+						-0.35355	 -0.35355,
+						-0.25	 -0.433
+						-0.1294	 -0.48295,
+				    	0	 -0.5,
+						0.1294	 -0.48295,
+						0.25	 -0.433
+						0.35355	 -0.35355,
+						0.433	 -0.25
+						0.48295	 -0.1294,
+				    	0.5	 0
+					]
+					orientation [0 0 1 0, 0 0 1 0, 0 0 1 0]
+					scale [1 1 ]
+					spine IS espinha
+
+#						[0.25	0	22,
+						
+#						1.3	0	20,
+#						2.5	0	17,
+#						3.5	0	13,
+#						4.5	0	7,
+
+#						5.5	0	0
+#					]
+					beginCap TRUE
+					endCap TRUE
+					ccw FALSE
+					convex TRUE
+					solid TRUE
+					creaseAngle 1
+
+				}
+			}
+	}
+}
+
+
+
+
+
+
+
+PROTO TuboDiagonal[
+	field SFVec3f position1 0 0 0
+	field MFVec3f espinha 0 0 0]{
+	Transform {
+		translation IS position1
+
+		children 
+			Shape {  
+
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+		    		}
+				}
+				geometry Extrusion{
+					crossSection [
+							0.25		0,
+							0.241475	0.0647,
+							0.2165		0.125,
+							0.176775	0.176775,
+							0.125		0.2165,
+							0.0647		0.241475,
+							0			0.25,
+							-0.0647		0.241475,
+							-0.125		0.2165,
+							-0.176775	0.176775,
+							-0.2165		0.125,
+							-0.241475	0.0647,
+							-0.25		0,
+							-0.241475	-0.0647,
+							-0.2165		-0.125,
+							-0.176775	-0.176775,
+							-0.125		-0.2165,
+							-0.0647		-0.241475,
+							0			-0.25,
+							0.0647		-0.241475,
+							0.125		-0.2165,
+							0.176775	-0.176775,
+							0.2165		-0.125,
+							0.241475	-0.0647,
+							0.25		0
+					]
+					orientation [0 0 1 0, 0 0 1 0, 0 0 1 0]
+					scale [1 1 ]
+					spine IS espinha
+
+#						[0.25	0	22,
+						
+#						1.3	0	20,
+#						2.5	0	17,
+#						3.5	0	13,
+#						4.5	0	7,
+
+#						5.5	0	0
+#					]
+					beginCap TRUE
+					endCap TRUE
+					ccw FALSE
+					convex TRUE
+					solid TRUE
+					creaseAngle 1
+
+				}
+			}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+PROTO Tubos[]{
+	Transform {
+		children [
+			TuboHorizontal {#1º direito
+				position1 0 15.5 0
+				espinha [
+						0.25	0	22,
+						1.3		0	20,
+						2.5		0	17,
+						3.5		0	13,
+						4.5		0	7,
+						5.5		0	0
+				]
+			}
+			TuboHorizontal {#1º esquerdo
+				position1 0 15.5 0
+				espinha [
+						-0.25	0	22,
+						-1.3	0	20,
+						-2.5	0	17,
+						-3.5	0	13,
+						-4.5	0	7,
+						-5.5	0	0
+				]
+			}
+			TuboHorizontal {#2º direito
+				position1 0 30.1 0
+				espinha	[
+						0.25	0	25.2,
+						1.3		0	23,
+						2.5		0	20,
+						3.5		0	15,
+						4.5		0	8.5,
+						5.5		0	0
+				]
+			}
+			TuboHorizontal {#2º esquerdo
+				position1 0 30.1 0
+				espinha	[
+						-0.25	0	25.2,
+						-1.3	0	23,
+						-2.5	0	20,
+						-3.5	0	15,
+						-4.5	0	8.5,
+						-5.5	0	0
+				]
+			}
+			TuboHorizontal {#3º direito
+				position1 0 44.7 0
+				espinha [									
+						0.18	0	26.5,		#teste 0.25	0	26.5,
+						1.3		0	24.3,
+						2.5		0	21.2,
+						3.5		0	16,
+						4.5		0	8.5,
+						5.5		0	0
+				]
+			}
+			TuboHorizontal {#3º esquerdo
+				position1 0 44.7 0
+				espinha [									
+						-0.18	0	26.5,
+						-1.3	0	24.3,
+						-2.5	0	21.2,
+						-3.5	0	16,
+						-4.5	0	8.5,
+						-5.5	0	0
+				]
+			}
+			TuboHorizontal {#4º direito
+				position1 0 59.3 0
+				espinha	[
+						0.10	0	25.6,
+						1.3		0	23.4,
+						2.5		0	20.1,
+						3.5		0	15.7,
+						4.5		0	8,
+						5.5		0	0
+				]
+			}
+			TuboHorizontal {#4º esquerdo
+				position1 0 59.3 0
+				espinha	[
+						-0.10	0	25.6,
+						-1.3	0	23.4,
+						-2.5	0	20.1,
+						-3.5	0	15.7,
+						-4.5	0	8,
+						-5.5	0	0
+				]
+			}
+			TuboHorizontal {#5º direito
+				position1 0 73.9 0
+				espinha	[
+						0.10	0	22.5,
+						1.3		0	20.5,
+						2.5		0	17.4,
+						3.5		0	13.3,
+						4.5		0	7.2,
+						5.5		0	0
+				]
+			}
+			TuboHorizontal {#5º esquerdo
+				position1 0 73.9 0
+				espinha	[
+						-0.10	0	22.5,
+						-1.3	0	20.5,
+						-2.5	0	17.4,
+						-3.5	0	13.3,
+						-4.5	0	7.2,
+						-5.5	0	0
+				]
+			}
+			TuboHorizontal {#6º direito
+				position1 0 88.5 0
+				espinha	[
+						0.08	0	17.3,
+						1.3		0	15.3,
+						2.6		0	12.5,
+						3.4		0	10.5,
+						4.5		0	6,
+						5.5		0	0
+				]
+			}
+			TuboHorizontal {#6º esquerdo
+				position1 0 88.5 0
+				espinha	[
+						-0.08	0	17.3,
+						-1.3	0	15.3,
+						-2.6	0	12.5,
+						-3.4	0	10.5,
+						-4.5	0	6,
+						-5.5	0	0
+				]
+			}
+			TuboHorizontal {#7º direito
+				position1 0 105.3 0
+				espinha [
+						0.1		0	8.6,		  # 0    0   9
+						1.1		0	8.2,	  # 1.1  0   8.2
+						2.6		0	7,
+						3.5		0	5.5,
+						5		0	2.2,
+						5.3		0	1.5
+						5.5		0	0
+				]
+			}
+			TuboHorizontal {#7º esquerdo
+				position1 0 105.3 0
+				espinha [
+						-0.1	0	8.6,
+						-1.1	0	8.2,
+						-2.6	0	7,
+						-3.5	0	5.5,
+						-5		0	2.2,
+						-5.3	0	1.5
+						-5.5	0	0
+				]
+			}
+
+
+			TuboDiagonal {#diagonal 0-1 direita
+				position1 0 0 0
+				espinha[
+						1		-1		13.5
+						5.6		16	0 
+				]
+			}
+			TuboDiagonal {#diagonal 0-1 esquerda
+				position1 0 0 0
+				espinha[
+						-1		-1		13.5
+						-5.6	16	0 
+				]
+			}
+
+			TuboDiagonal {#diagonal 1-0 direita
+				position1 0 0 0
+				espinha[
+						0.5		15	21.8			  #teste
+						5.5		-1		2 
+				]
+			}
+			TuboDiagonal {#diagonal 1-0 esquerda
+				position1 0 0 0
+				espinha[
+						-0.5	15	21.8			 #teste
+						-5.5	-1		2 
+				]
+			}
+
+
+
+
+			TuboDiagonal {#diagonal 1-2 direita
+				position1 0 0 0
+				espinha[
+						0.5		16		22
+						5.5		30.1	0 
+				]
+			}
+			TuboDiagonal {#diagonal 1-2 esquerda
+				position1 0 0 0
+				espinha[
+						-0.5	16		22
+						-5.5	30.1	0 
+				]
+			}
+			TuboDiagonal {#diagonal 2-1 direita
+				position1 0 0 0
+				espinha[
+						0.48		29.6	25.2
+						5.5		15.5	0 
+				]
+			}
+			TuboDiagonal {#diagonal 2-1 esquerda
+				position1 0 0 0
+				espinha[
+						-0.48	29.6	25.2
+						-5.5	15.5	0 
+				]
+			}
+			TuboDiagonal {#diagonal 2-3 direita
+				position1 0 0 0
+				espinha[
+						0.5		30.6	25.2
+						5.5		44.7	0 
+				]
+			}
+			TuboDiagonal {#diagonal 2-3 esquerda
+				position1 0 0 0
+				espinha[
+						-0.5	30.6	25.2
+						-5.5	44.7	0 
+				]
+			}
+			TuboDiagonal {#diagonal 3-2 direita
+				position1 0 0 0
+				espinha[
+						0.49	44.2	26.5
+						5.5		30.1	0 
+				]
+			}
+			TuboDiagonal {#diagonal 3-2 esquerda
+				position1 0 0 0
+				espinha[
+						-0.49	44.2	26.5
+						-5.5	30.1	0 
+				]
+			}
+			TuboDiagonal {#diagonal 3-4 direita				##teste
+				position1 0 0 0
+				espinha[
+#						0.5		45.2	26.5
+#						5.5		59.3	0 
+						0.34	45.2	26.5
+						5.5		59.3	0 
+				]
+			}
+			TuboDiagonal {#diagonal 3-4 esquerda		  #teste
+				position1 0 0 0
+				espinha[
+						-0.34	45.2	26.5
+						-5.5	59.3	0 
+				]
+			}
+			TuboDiagonal {#diagonal 4-3 direita
+				position1 0 0 0
+				espinha[
+						0.34		58.8	25.6
+						5.5		44.7	0 
+				]
+			}
+			TuboDiagonal {#diagonal 4-3 esquerda
+				position1 0 0 0
+				espinha[
+						-0.34	58.8	25.6
+						-5.5	44.7	0 
+				]
+			}
+			TuboDiagonal {#diagonal 4-5 direita
+				position1 0 0 0
+				espinha[
+						0.34		59.8	25.6
+						5.5		73.9	0 
+				]
+			}
+			TuboDiagonal {#diagonal 4-5 esquerda
+				position1 0 0 0
+				espinha[
+						-0.34	59.8	25.6
+						-5.5	73.9	0 
+				]
+			}
+			TuboDiagonal {#diagonal 5-4 direita
+				position1 0 0 0
+				espinha[
+						0.35		73.4	22.6
+						5.5		59.3	0
+				]
+			}
+			TuboDiagonal {#diagonal 5-4 esquerda
+				position1 0 0 0
+				espinha[
+						-0.35	73.4	22.6
+						-5.5	59.3	0 
+				]
+			}
+			TuboDiagonal {#diagonal 5-6 direita
+				position1 0 0 0
+				espinha[
+						0.31		74.4	22.4
+						5.5		88.5	0 
+				]
+			}
+			TuboDiagonal {#diagonal 5-6 esquerda
+				position1 0 0 0
+				espinha[
+						-0.31	74.4	22.4
+						-5.5	88.5	0 
+				]
+			}
+			TuboDiagonal {#diagonal 6-5 direita
+				position1 0 0 0
+				espinha[
+						0.34		88		17.3
+						5.5		73.9	0
+				]
+			}
+			TuboDiagonal {#diagonal 6-5 esquerda
+				position1 0 0 0
+				espinha[
+						-0.34	88		17.3
+						-5.5	73.9	0 
+				]
+			}
+
+
+
+			Cone_T {position 0 89.4 16.90
+					raio 0.6
+					altura 2
+					rotacao 1 0 0 -0.4}					
+			Cone_T {position  0 45.62 26.48
+					raio 0.75
+					altura 2}
+			TuboMaior {}
+			TuboMaior_Meio {}
+			TuboMaior_Fino {}
+			Tapatubosuperior {}
+		]
+	}
+}
+
+
+NavigationInfo {
+	headlight TRUE
+}
+
+
+
+Tubos {}
+
+
+
+
+
+
+
+

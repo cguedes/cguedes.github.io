@@ -1,0 +1,90 @@
+#VRML V2.0 utf8  
+
+# Mesa em VRML
+# Coordenadas dos objectos em m
+
+
+PROTO Tampo 
+[
+]
+{
+  Shape { 
+    geometry Box {
+      size 1.5 0.07 0.9
+    }
+    appearance Appearance { material Material { } }
+  }
+}
+
+PROTO Base[]
+{	
+	Transform
+	{
+		children
+		[	
+			#Parte esquerda
+			Transform {	translation	-0.62 -0.5 -0.15
+				children Shape {
+					geometry Box{size 0.1 0.9 0.3}
+					appearance Appearance {material Material {diffuseColor 0.4 0.4 0.4}}
+				}
+			}
+
+			Transform{rotation 0 1 0 1.57 translation -0.62 -0.08 0 children 
+				Shape {
+					geometry Box{size 0.79 0.1 0.1}
+					appearance Appearance {material Material {diffuseColor 0.4 0.4 0.4}}
+				}
+			}
+
+			Transform{rotation 0 1 0 1.57 translation -0.62 -0.91 0 children
+				Shape{
+					geometry Box {size 0.79 0.1 0.1}
+					appearance Appearance {material  Material {diffuseColor 0.4 0.4 0.4}}
+				}
+			}
+
+			#parte direita
+
+			Transform {	translation	0.62 -0.5 -0.15
+				children Shape {
+					geometry Box{size 0.1 0.9 0.3}
+					appearance Appearance {material Material {diffuseColor 0.4 0.4 0.4}}
+				}
+			}
+
+			Transform{rotation 0 1 0 1.57 translation 0.62 -0.08 0 children 
+				Shape {
+					geometry Box{size 0.79 0.10 0.10}
+					appearance Appearance {material Material {diffuseColor 0.4 0.4 0.4}}
+				}
+			}
+
+			Transform{rotation 0 1 0 1.57 translation 0.62 -0.91 0 children
+				Shape{
+					geometry Box {size 0.79 0.1 0.1}
+					appearance Appearance {material  Material {diffuseColor 0.4 0.4 0.4}}
+				}
+			}
+
+			#Barra Central
+			Transform{translation 0 -0.25 -0.17 children
+				Shape {
+					geometry Box{size 1.24 0.15 0.1}
+					appearance Appearance {material Material {diffuseColor 0.4 0.4 0.4}}
+				}
+			}
+			
+		]
+	}
+}
+
+
+PROTO Mesa[]
+{
+	Transform{children[Tampo{} Base{}]}
+	
+}
+
+
+Mesa { }

@@ -1,0 +1,284 @@
+#VRML V2.0 utf8
+
+PROTO RectaTampo[
+	field SFColor diffuseColor 0 0 0
+	field SFColor specularColor .5 .5 .5
+	field SFColor emissiveColor 0 0 0
+	field SFFloat ambientIntensity 0]{
+	Shape{
+		geometry Extrusion{
+			crossSection[0 0, 0 -.02, -.25 -.02, -.25 0. 0 0]
+			spine [ 0 0 0, .266 0 0]
+		}
+		appearance Appearance{
+			material Material{
+				diffuseColor IS	diffuseColor
+				specularColor IS specularColor
+				emissiveColor IS emissiveColor
+				ambientIntensity IS	ambientIntensity
+			}
+		}
+	}
+}
+
+PROTO CurvaturaTampo[
+	field SFColor diffuseColor 0 0 0
+	field SFColor specularColor .5 .5 .5
+    field SFColor emissiveColor 0 0 0
+    field SFFloat ambientIntensity 0]{
+	Shape{
+		geometry Extrusion{
+			crossSection[
+				0	0	,
+				0.0025	0.005492137	,
+				0.005	0.010950413	,
+				0.0075	0.016341175	,
+				0.01	0.02163119	,
+				0.0125	0.02678784	,
+				0.015	0.031779335	,
+				0.0175	0.0365749	,
+				0.02	0.041144968	,
+				0.0225	0.045461363	,
+				0.025	0.049497475	,
+				0.0275	0.053228418	,
+				0.03	0.05663119	,
+				0.0325	0.059684812	,
+				0.035	0.062370457	,
+				0.0375	0.064671567	,
+				0.04	0.066573956	,
+				0.0425	0.068065894	,
+				0.045	0.069138184	,
+				0.0475	0.069784213	,
+				0.05	0.07,
+
+				0.216	0.07,
+
+				0.216	0.07	,
+				0.2185	0.069784213	,
+				0.221	0.069138184	,
+				0.2235	0.068065894	,
+				0.226	0.066573956	,
+				0.2285	0.064671567	,
+				0.231	0.062370457	,
+				0.2335	0.059684812	,
+				0.236	0.05663119	,
+				0.2385	0.053228418	,
+				0.241	0.049497475	,
+				0.2435	0.045461363	,
+				0.246	0.041144968	,
+				0.2485	0.0365749	,
+				0.251	0.031779335	,
+				0.2535	0.02678784	,
+				0.256	0.02163119	,
+				0.2585	0.016341175	,
+				0.261	0.010950413	,
+				0.2635	0.005492137	,
+				0.266	0,
+
+				0 0
+			]
+			spine [ 0 0 0, .02 0 0]
+		}
+		appearance Appearance{
+			material Material{
+				diffuseColor IS	diffuseColor
+				specularColor IS specularColor
+				emissiveColor IS emissiveColor
+				ambientIntensity IS	ambientIntensity
+			}
+		}
+	}
+}
+
+PROTO Tampo[
+	field SFColor diffuseColor 0 0 0
+	field SFColor specularColor .5 .5 .5
+    field SFColor emissiveColor 0 0 0#.15 .15 .15
+    field SFFloat ambientIntensity 0]{
+	Group{
+		children[
+			RectaTampo{diffuseColor IS diffuseColor, specularColor IS specularColor, emissiveColor IS emissiveColor, ambientIntensity IS ambientIntensity}
+			Transform{
+				rotation 0 0 1 1.5708
+				children
+				Transform{
+					translation	0 0 -.02
+					rotation 0 1 0 -1.396263402
+					children
+					CurvaturaTampo{diffuseColor IS diffuseColor, specularColor IS specularColor, emissiveColor IS emissiveColor, ambientIntensity IS ambientIntensity}
+				}
+			}
+			Transform{
+				translation	0 .245 0
+				rotation 0 0 1 1.5708
+				children
+				Transform{
+					rotation 0 1 0 1.396263402
+					children
+					CurvaturaTampo{diffuseColor IS diffuseColor, specularColor IS specularColor, emissiveColor IS emissiveColor, ambientIntensity IS ambientIntensity}
+				}
+			}
+		]
+	}
+}
+
+
+#AS PERNAS
+
+PROTO PernaSingle[]{
+	Group{
+		children[
+			Shape{
+				geometry Cylinder{
+					radius .01
+					height .6
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor .61 .61 .61
+						specularColor .39 .39 .39
+						ambientIntensity .25
+						shininess .11
+					}
+				}
+			}
+			Transform{
+				translation	0 -.3 0
+				children
+				Shape{
+					geometry Cylinder{
+						radius .011
+						height .02
+					}
+					appearance Appearance {
+						material Material {
+							diffuseColor .38 .38 .38
+							specularColor 1 .86 .46
+							ambientIntensity 0
+							shininess .23
+						}
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO SuportePes[]{
+	Group{
+		children[
+			Shape{
+				geometry Cylinder{
+					radius .007
+					height .325
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor .61 .61 .61
+						specularColor .39 .39 .39
+						ambientIntensity .25
+						shininess .11
+					}
+				}
+			}
+			Shape{
+				geometry Cylinder{
+					radius .008
+					height .20
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor 0 0 0
+						specularColor .63 .92 1
+						ambientIntensity 0
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO PernaHalf[]{
+	Group{
+		children[
+			Transform{
+				rotation 0 0 1 -.043633231
+				children
+				PernaSingle{}
+			}
+			Transform{
+				rotation 0 0 1 .043633231
+				translation	.22 0 0
+				children
+				PernaSingle{}
+			}
+			Transform{
+				translation	.11 -.2 0
+				rotation 0 0 1 1.5708
+				children
+				Shape{
+						geometry Cylinder{
+							radius .007
+							height .22
+					}
+					appearance Appearance {
+						material Material {
+							diffuseColor .61 .61 .61
+							specularColor .39 .39 .39
+							ambientIntensity .25
+							shininess .11
+						}
+					}
+				}
+			}
+			
+		]
+	}
+}
+
+PROTO PernaComplet[]{
+	Group{
+		children[
+			Transform{
+				rotation 1 0 0 .13962634
+				children
+				PernaHalf{}
+			}
+			Transform{
+				translation	.1 -.2 .14
+				rotation 1 0 0 1.5708
+				children
+				SuportePes{}
+			}
+			Transform{
+				translation	0 0 .28
+				rotation 1 0 0 -.13962634
+				children
+				PernaHalf{}
+			}
+		]
+	}
+}
+
+PROTO Banco[
+	field SFColor diffuseColor 0 0 0
+    field SFColor specularColor .5 .5 .5
+    field SFColor emissiveColor 0 0 0
+    field SFFloat ambientIntensity 0
+	field SFVec3f translation 0 0 0
+	field SFRotation rotation 0 0 1 0
+]{
+	Transform{
+		rotation IS	rotation
+		translation	IS translation
+		children[
+			Transform{
+				translation	-.021 .31 .265
+				rotation 1 0 0 -1.5708
+				children
+				Tampo{diffuseColor IS diffuseColor, specularColor IS specularColor, emissiveColor IS emissiveColor, ambientIntensity IS ambientIntensity}
+			}
+			PernaComplet{}
+		]
+	}
+}

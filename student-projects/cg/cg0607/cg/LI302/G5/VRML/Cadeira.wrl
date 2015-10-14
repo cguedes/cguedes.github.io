@@ -1,0 +1,309 @@
+#VRML V2.0 utf8
+
+# Cadeira em VRML
+# Coordenadas dos objectos em CM
+
+
+
+
+#Diversos Elementos da cadeira
+
+
+
+
+
+PROTO Acento 
+[
+]
+{
+  Shape { 
+    geometry Box {
+      size 2.8 0.6 2.8
+    }
+    appearance Appearance { material Material {diffuseColor 0.200 0.200 0.02}texture ImageTexture {
+			url "madeira.jpg"
+		}  }
+  }
+}
+
+PROTO Perna 
+[
+]
+{
+  Transform {
+    rotation 0 1 0 0
+    scale 0.1 0.1 0.1
+    children
+      Shape {
+        geometry Cylinder {
+          bottom TRUE  top TRUE  side TRUE height 10 radius 0.4
+        }
+        appearance Appearance { material Material {diffuseColor 0 0 1} }
+      }
+    }
+  }
+
+  PROTO Barra 
+[
+]
+{
+  Transform {
+
+	rotation 1 0 0 -1.57
+    scale 0.1 0.1 0.1
+    children
+      Shape {
+        geometry Cylinder {
+          bottom TRUE  top TRUE  side TRUE height 7 radius 0.4
+        }
+        appearance Appearance { material Material {diffuseColor 0 0 1} }
+      }
+    }
+  }
+
+
+
+    PROTO Barra1 
+[
+]
+{
+  Transform {
+
+	rotation 1 0 0 -1.57
+    scale 0.1 0.1 0.1
+    children
+      Shape {
+        geometry Cylinder {
+          bottom TRUE  top TRUE  side TRUE height 7 radius 0.2
+        }
+        appearance Appearance { material Material {diffuseColor 0 0 1} }
+      }
+    }
+  }
+
+
+
+
+ PROTO Pino 
+[
+]
+{
+  Transform {
+    rotation 0 1 0 0
+    scale 0.1 0.1 0.1
+    children
+      Shape {
+        geometry Cylinder {
+          bottom TRUE  top TRUE  side TRUE height 0.3 radius 0.4
+        }
+        appearance Appearance { material Material {diffuseColor 1 1 1} }
+      }
+    }
+  }
+
+
+
+
+  PROTO Costas 
+[
+]
+{
+  Shape { 
+    geometry Box {
+      size 1 0.6 2.3
+    }
+    appearance Appearance { material Material {diffuseColor 0.200 0.200 0.02}texture ImageTexture {
+			url "madeira.jpg"
+		} }
+  }
+}
+
+
+
+ PROTO Tubo 
+[
+]
+{
+  Transform {
+    rotation 0 1 0 0
+    scale 0.1 0.1 0.1
+    children
+      Shape {
+        geometry Cylinder {
+          bottom TRUE  top TRUE  side TRUE height 8 radius 0.4
+        }
+        appearance Appearance { material Material {diffuseColor 0 0 1} }
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+#  Cadeira
+
+
+
+PROTO Chair 
+[
+]
+{
+  Transform {
+    
+    children 
+    [
+      Transform {
+        scale 0.3 0.1 0.3
+        children Acento { }
+      }
+      Transform {
+
+		  translation -0.37 -0.5 0.37
+        children Perna { }
+      }
+      Transform {
+
+		translation	0.37 -0.5 0.37
+        children Perna { }
+      }
+      Transform {
+
+		  translation 0.37 -0.5 -0.37
+        children Perna { }
+      }
+      Transform {
+
+		  translation -0.37 -0.5 -0.37
+        children Perna { }
+      }
+
+	  Transform {
+
+		  
+		  translation -0.37 -0.20 0
+		  children Barra1 {}
+
+	  }
+
+
+	  Transform {
+
+		  rotation 0 1 0 1.57
+		  translation 0 -0.06 0.37
+		  children Barra {}
+
+	  }
+
+ 
+	  Transform {
+
+		  rotation 0 1 0 1.57
+		  translation 0 -0.06 -0.37
+		  children Barra {}
+
+	  }
+
+
+	 	  Transform {
+
+		  translation 0.37 -0.5 0
+		  children Barra1 {}
+
+	  }
+
+
+
+	  Transform	{
+		
+		  translation -0.37 -1 0.37
+		  children	Pino{}
+
+	  }
+
+	  	  Transform	{
+								  
+		  translation	0.37 -1 0.37
+		  children	Pino{}
+
+	  }
+
+	  	  Transform	{
+
+
+		  translation 0.37 -1 -0.37
+		  children	Pino{}
+
+	  }
+
+	  	  Transform	{
+
+		  translation -0.37 -1 -0.37
+		  children	Pino{}
+
+	  }
+
+
+	  	  Transform	{
+
+		  translation 0.37 0.6 0
+		  rotation 0 0 1 1.57
+		  scale 0.3 0.1 0.3
+		  children	Costas{}
+
+	  }
+
+
+
+		 Transform	{
+
+		 translation	0.37 0.4 0.37
+     	 children Tubo { }
+
+	 	 }
+
+
+		 Transform	{
+
+		 translation	0.37 0.4 -0.37
+     	 children Tubo { }
+
+	 	 }
+
+
+
+
+		Transform	{
+
+
+		  translation 0.37 0.815 -0.37
+		  children	Pino{}
+
+	  }
+	
+	   	Transform	{
+
+
+		  translation 0.37 0.815 0.37
+		  children	Pino{}
+
+	  }
+
+
+
+
+
+
+    ]
+  }
+}
+
+
+Chair { }

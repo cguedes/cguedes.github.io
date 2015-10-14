@@ -1,0 +1,238 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO eixo [] ["eixo.wrl"]
+#Transform {
+#	children [ eixo {} ]				
+#}
+
+PROTO Chao [] {
+	Transform { # CHAO
+		children [
+			Shape {
+				geometry Box {
+					size 16.85 .2 17.85
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor .404 .424 .427
+						emissiveColor .05 .05 .05
+						ambientIntensity .1
+						shininess .04
+						specularColor .04 .03 .1
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO Parede []	{
+	Transform { # Parede
+		children [
+			Shape {
+				geometry Box {
+					size 14.3 4.35 .2
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor .404 .424 .427
+						emissiveColor .05 .05 .05
+						ambientIntensity .1
+						shininess .04
+						specularColor .04 .03 .1
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO ParedeEsq []	{
+	Transform { # Parede
+		children [
+			Transform { # Parede Esq
+				scale 1.25 1.07 1
+				rotation 0 1 0 1.57
+				translation	-6.56 4.63 2.25
+				children [
+					Parede {}
+				]
+			}
+			Transform {
+				scale .04 .55 1
+				rotation 0 1 0 1.57
+				translation	-6.56 1.12 10.89
+				children [
+					Parede {}
+				]
+			}
+			Transform {
+				scale 1.07 .55 1
+				rotation 0 1 0 1.57
+				translation	-6.56 1.12 .965
+				children [
+					Parede {}
+				]
+			}
+		]
+	}
+}
+
+PROTO Backwall [] {
+	Transform {
+		children [
+
+			Transform { # Backwall 1 (baixo)
+				translation	0.5 2.09 -6.58
+				children [
+					Parede {}
+				]
+		
+			}
+
+			Transform { # Backwall 2  (cima)
+				scale 1 0.3 1
+				translation	0.5 6.34 -6.58
+				children [
+					Parede {}
+				]
+			}
+
+			Transform { # Backwall 3 (esq)
+				scale 0.4 0.34 1
+				translation	-3.8 5 -6.58
+				children [
+					Parede {}
+				]
+			}
+
+			Transform { # Backwall 3 (dir)
+				scale 0.47 0.34 1
+				translation	4.3 5 -6.58
+				children [
+					Parede {}
+				]
+			}
+		]
+	}
+}
+
+
+PROTO Walls [] {
+	Transform {
+		children [
+
+#			Transform { #Projector
+#				translation	0 5 -6.55
+#				children [
+#					Shape {
+#						geometry Box {
+#							size 2 1.5 .5
+#						}
+#					}
+#				]
+#			}
+
+			Transform { # CHAO
+				translation	1.75 0 2.25
+				children [
+					Chao {}
+				]
+			}
+
+			Transform { # TECTO
+				translation	1.75 6.9 2.25
+				children [
+					Chao {}
+				]
+			}
+
+			Transform { # Parede Esq
+				children [
+					ParedeEsq {}
+				]
+			}
+			
+			Transform { #Parede interior
+				children[
+					Shape {
+						geometry Extrusion {
+							crossSection [
+								1.1 11.9, 3.2 0, 0 0, 0 11.9, 1.1 11.9
+							]
+							spine [
+								0 0 0, 0 .4 0
+							]
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor .404 .424 .427
+								emissiveColor .05 .05 .05
+								ambientIntensity .1
+								shininess .04
+								specularColor .04 .03 .1
+							}
+						
+						}
+					}				
+				]	
+				rotation 0 0 1 1.57
+				translation	6.9 0.1 -6.48
+			}
+
+			Transform { # Parede Dir
+				scale 1.25 1.63 1
+				rotation 0 1 0 1.57
+				translation	10.1 3.45 2.25
+				children [
+					Parede {}
+				]
+			}
+
+			Transform { # Parede Frente
+				scale 1.167 1.63 1
+				rotation 0 0 0 1.57
+				translation	1.729 3.45 11.123
+				children [
+					Parede {}
+				]
+			}
+
+			Transform { # Backwall 
+				children [
+					Backwall {}
+				]
+				
+			}
+
+			Transform { # Parede porta tras cima
+				scale .18 1.085 1
+				translation	8.9 4.63 -6.58
+				children [
+					Parede {}
+				]
+			}
+
+			Transform { # Parede Tras porta
+				translation	9.9 1.1 -6.58
+				children [
+					Shape {
+						geometry Box { size	.5 2.4 .2 }
+						appearance Appearance {
+							material Material {
+								diffuseColor .404 .424 .427
+								emissiveColor .05 .05 .05
+								ambientIntensity .1
+								shininess .04
+								specularColor .04 .03 .1
+
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+Walls {}

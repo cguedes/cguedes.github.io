@@ -1,0 +1,135 @@
+#VRML V2.0 utf8
+
+#Auditorio
+
+
+NavigationInfo {
+  type ["STUDY"]
+  headlight TRUE
+  avatarSize [0.05, 1.7, 0.25]
+  speed 2
+}
+
+Viewpoint {
+	description	"Vista do palco"
+	position 5 1.5 1
+	orientation	0 1 0 -3.14
+}
+
+Viewpoint {
+	description	"Vista geral"
+	position 7 4.5 19.2
+	orientation	1 0 0 -0.305398163
+}
+
+
+EXTERNPROTO Axis [] "Axis.wrl#Axis"
+Transform {
+  scale 0.25 0.25 0.25
+  children Axis {}
+}
+
+
+EXTERNPROTO	Palco [] "Palco.wrl#Palco_Completo"
+Transform {
+  translation 7.5 0 1.25
+  children Palco {}
+}
+
+EXTERNPROTO	Bancada[] "Bancada.wrl#Bancada"
+Transform {
+	children Bancada {}
+}
+
+
+EXTERNPROTO	Parede[] "Paredes.wrl#Paredes"
+Transform {
+	children Parede {}
+}
+
+EXTERNPROTO	Porta_Principal [] "portas.wrl#Portas_final"
+Transform {
+	rotation 0 1 0 -1.57
+	translation	0.05 2.8 17.8
+	children Porta_Principal {}
+}
+
+
+EXTERNPROTO	Porta_Palco [] "porta_palco.wrl#Porta_final"
+Transform {
+	rotation 0 1 0 1.57
+	translation 0 0 3.3
+	children Porta_Palco {}
+}
+Transform {	
+	rotation 0 1 0 -1.57
+	translation 15 0 2.4
+	children Porta_Palco {}
+}
+Transform {	
+	rotation 0 1 0 -1.57
+	translation 12.5 2.8 18.2
+	children Porta_Palco {}
+}
+
+
+EXTERNPROTO	tecto [] "tecto.wrl#tecto"
+Transform {
+	rotation 0 1 0 -3.14
+	translation	15 5 19.5
+
+	children tecto {}
+}
+
+EXTERNPROTO	retroproj[] "retroprojector.wrl#retro"
+Transform {
+	translation	7 3.4 12
+	children retroproj { }
+}
+Transform {
+	translation 12.45 3.9 19.24
+	children Shape {
+		geometry Box { size 0.1 2.3 0.5 }
+		appearance Appearance { material Material { diffuseColor 1 1 1} }
+	}
+}
+
+Transform {
+	translation 12.45 3.9 17.94
+	children Shape {
+		geometry Box { size 0.1 2.3 0.5 }
+		appearance Appearance { material Material { diffuseColor 1 1 1} }
+	}
+}
+
+Transform {
+	translation 12.45 4.9 18.59
+	children Shape {
+		geometry Box { size 0.1 0.15 0.8 }
+		appearance Appearance { material Material { diffuseColor 1 1 1} }
+	}
+}
+
+Transform {
+	translation 0 3.8 19.45
+	children Shape {
+		geometry Box { size 0.1 2 0.1 }
+		appearance Appearance { material Material { diffuseColor 1 1 1} }
+	}
+}
+
+Transform {
+	translation 0 3.8 17.74
+	children Shape {
+		geometry Box { size 0.1 2 0.1 }
+		appearance Appearance { material Material { diffuseColor 1 1 1} }
+	}
+}
+
+Transform {
+	translation 0 4.9 18.6
+	children Shape {
+		geometry Box { size 0.1 0.18 1.8 }
+		appearance Appearance { material Material { diffuseColor 1 1 1} }
+	}
+}

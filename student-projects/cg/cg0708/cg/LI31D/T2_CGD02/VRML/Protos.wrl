@@ -1,0 +1,431 @@
+#VRML V2.0 utf8
+
+PROTO myBox [ 
+	field SFVec3f size 0 0 0
+	field SFColor cor 0 0 0
+	] {
+	Shape {
+		appearance Appearance {
+			material Material {
+				diffuseColor IS	cor
+				transparency 0
+			}
+		}
+		geometry Box { size IS size }
+	}
+}
+
+
+#############################################################################################
+#                                                                                           #
+#                                                                                           #
+#                                         Cabine                                            #
+#                                                                                           #
+#                                                                                           #
+#############################################################################################
+PROTO cabineLigacaoGrua [field	SFColor	cor 0 0 0 ] {
+	Group {
+		children [
+			myBox { cor	IS cor  size 2 0.25 0.25 }
+			Transform {
+				translation	0 0 2
+				children myBox { cor	IS cor  size 2 0.25 0.25 }
+			}
+			Transform {
+				rotation 0 1 0 1.57
+				translation	0 -0.25 1
+				children [
+					Transform {
+						translation	0 0 0.88
+						children myBox { cor IS cor size 2.25 0.25 0.25 }
+					}
+					Transform {
+						translation	0 0 -0.87
+						children myBox { cor IS cor size 2.25 0.25 0.25 }
+					}
+				]
+			}
+		]
+	}
+}
+
+PROTO cabine [ field SFColor cor 0 0 0 ] {
+	Group {
+		children [
+			Viewpoint {
+				description	"Dentro da Cabine"
+				position 2.9 1 -.8
+				orientation	0 1 0 -1.8
+
+#				orientation	1 0 0 1#-1.57
+			}
+			Transform {
+				rotation 1 0 0 -1.57
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor IS	cor
+								transparency 0.2
+							}
+						}
+						geometry Extrusion {
+							crossSection [ 0   0, 
+										   4   0, 
+										   4.5 0, 
+										   5   2,
+										   4   2.5, 
+										   0   2.5,
+										   0   0 ]
+							spine [0 0 0, 0 2 0]
+							ccw	FALSE
+						}
+					}
+				]
+			}
+		 	Transform {
+				translation	4.25 0.55 -.55
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.4 0.4 0.4
+								transparency 0
+							}
+						}
+						geometry Extrusion {
+							crossSection [0.15 0.2, 0.15 -0.2, -0.075 -0.2, -0.15 -0.175,
+					    					-0.15 -0.075, 0 0.025, 0.075 0.2, 0.15 0.2]
+							spine [0 0 0.15, 0 0 -0.15]
+						}
+					}
+					DEF suporte Transform {
+						translation	0 -0.35 0 
+						children [
+							Shape {
+								appearance Appearance {
+									material Material {
+										diffuseColor 0 0 1
+										transparency 0
+									}
+								}
+								geometry Cylinder {
+									radius 0.025
+									height 0.40
+								}
+							}
+						]
+					}
+	
+					Transform {
+						translation	-0.5 0.1 -0.5
+						children [
+							Shape {
+								appearance Appearance {
+									material Material {
+										diffuseColor 0.5 0.5 0.5
+										transparency 0
+									}
+								}
+								geometry Extrusion {
+									crossSection [-0.25 0.25, -0.22 0.25, -0.22 -0.22, 0.25 -0.22,
+												 0.25 -0.25, -0.25 -0.25, -0.25 0.25]
+									spine [0 0 0.2, 0 0 -0.20]
+								}
+							}
+						]
+					}
+					Transform {
+						translation	-0.5 0 -0.5
+						children [USE suporte ]
+					}
+				]
+			}
+		]
+	}
+}
+
+cabine {cor 1 1 0}
+
+
+#############################################################################################
+#                                                                                           #
+#                                                                                           #
+#                                   Main Struct                                             #
+#                                                                                           #
+#                                                                                           #
+#############################################################################################
+PROTO Triangulo [ field  SFColor cor 0 0 0] {
+	Shape {
+		appearance Appearance {
+			material Material {		   
+				diffuseColor IS	cor
+				transparency 0
+			}
+		}
+		geometry Extrusion {
+			crossSection [ # X         Z
+							0.1767	   -2.875,
+							4.0		   -0.3017,
+							4.0		   -0.125,
+							3.8233	   -0.125,
+							0		   -2.6983,
+							-3.8233	   -0.125,
+							-4.0	   -0.125,
+							-4.0	   -0.3017,
+							-0.1767    -2.875,
+							0.1767	   -2.875,
+		    ]
+			spine [ 0 0.25 0, 0 0 0 ]
+			ccw	FALSE
+		}
+	}
+}
+
+PROTO Base [ field SFColor cor 0 0 0 ] {
+	Shape {
+		appearance Appearance {
+			material Material {
+				diffuseColor IS	cor
+				transparency 0
+			}
+		}
+		geometry Extrusion {
+			crossSection [ # X         Z
+							0.0000	6.0104,
+							0.1767	5.8332,
+							0.1767	4.8332,
+							4.8332	0.1767,
+							5.8332	0.1767,
+							6.0104	0.0000,
+	
+							5.8332	-0.1767,
+							4.8332	-0.1767,
+							0.1767	-4.8332,
+							0.1767	-5.8332,
+							0.0000  -6.0104,
+
+							-0.1767	-5.8332,
+							-0.1767	-4.8332,
+							-4.8332	-0.1767,
+							-5.8332	-0.1767,
+							-6.0104  0.0000,
+	
+							-5.8332 0.1767,
+							-4.8332 0.1767,
+							-0.1767 4.8332,
+							-0.1767 5.8332,
+							 0.0000 6.0104,
+
+							 0 4,
+							 4 0,
+							 0 -4,
+							 -4 0,
+							 0 4
+						    ]
+			spine [ 0 0 0, 0 3 0 ]
+			ccw	TRUE
+		}
+	}		
+}
+
+PROTO TrianguloTotal [ field SFVec3f posi 0 0 0 ] {
+	Group {
+		children [
+			Transform {
+				translation	IS posi
+				children [
+					myBox { cor 1 0 0 size 8 0.25 0.25 }
+					Transform {
+						rotation 1 0 0 -1.570795
+						translation	0 0 0.125
+						children Triangulo { cor	1 0 0 }
+					}
+				]
+			}
+		]
+	}
+}
+
+PROTO StructTotal[ field SFVec3f posi 0 0 0 field SFVec3f escala 1 1 1] {
+	Transform {
+		translation	IS posi
+		scale IS escala
+		children [
+			DEF	Struct Group {
+				children [
+					TrianguloTotal { posi 0 0 4.125 }
+					TrianguloTotal { posi 0 3 4.125 }
+					TrianguloTotal { posi 0 6 4.125 }
+					TrianguloTotal { posi 0 9 4.125 }
+				]
+			}
+			DEF	Pau Group {
+				children [
+					Transform {
+						rotation 0 0 1 1.570795
+						translation	4.125 3.125 4.125
+						children myBox { cor 1 0 0 size	12 0.25 0.25 }
+					}
+				]
+			}
+			Transform {
+				rotation 0 1 0 1.570795
+				children [
+					USE Struct
+					USE	Pau
+				]
+			}
+			Transform {
+				rotation 0 1 0 3.14159
+				children [
+					USE Struct
+					USE	Pau
+				]
+			}
+			Transform {
+				rotation 0 1 0 4.71254
+				children [
+					USE Struct
+					USE	Pau
+				]
+			}
+		]
+	}
+}
+
+
+#############################################################################################
+#                                                                                           #
+#                                                                                           #
+#                                      Elevador                                             #
+#                                                                                           #
+#                                                                                           #
+#############################################################################################
+PROTO Elevador [ field SFColor cor 0 0 0 
+#eventOut SFBool enabled_changed
+] 
+{
+	DEF	protecao Transform {
+		children [
+			Viewpoint {
+				position -18.0  0.0 -18.0
+				orientation	0 1 0 -2.2665
+				description	"Dentro do Elevador"
+			}
+			Transform {
+				children [
+					DEF	Barra Group	{
+						children [
+							Shape {
+								appearance Appearance {
+									material Material {
+										diffuseColor IS	cor
+										transparency 0
+									}
+								}
+								geometry Extrusion {
+									crossSection [ 0       0,
+					    						   0.8     0,
+												   0.8	   0.8,
+												   0.75	   0.8,
+												   0.75	   0.05,
+												   0.05	   0.05,
+												   0.05	   0.8,
+												   0	   0.8,
+												   0	   0
+												 ]
+									spine [0 0 0,0 0.05 0]
+									ccw	FALSE
+								}
+							}
+						]
+					}
+					Transform {
+						translation	0 -0.25 0
+						children USE Barra
+					}
+					DEF	caixa Group	{
+						children [
+							Transform {
+								translation	0.4 -1.25 0.4
+								children myBox { size 0.8 1.5 0.8 cor IS cor }
+							}
+						]
+					}
+					DEF	barrasUniao Group {
+						children [
+							Transform {
+								translation	0.025 -0.225 0.025
+								children myBox { cor IS cor size 0.05 0.55 0.05 }
+							}
+						]
+					}
+					Transform {
+						translation	0.75 0 0
+						children USE barrasUniao
+					}
+					Transform {
+						translation	0.75 0 0.75
+						children USE barrasUniao
+					}
+					Transform {
+						translation	0 0 0.75
+						children USE barrasUniao
+					}
+###################################################
+#											      #
+#				   Animação 2.0				      #
+#												  #
+###################################################
+					DEF	touch TouchSensor {
+						enabled	TRUE
+						}
+					DEF	Time TimeSensor	{
+						enabled TRUE
+						cycleInterval 15.0
+						stopTime 1
+						startTime 0
+						loop FALSE
+					}
+					DEF	RotationPath PositionInterpolator {
+						key [0.0 0.5 1.0]
+						keyValue [
+							0.0 0.0 0.0,
+							0.0 -75.0 0.0,
+							0.0 0.0 0.0
+						]
+					}
+					]
+				}
+			]
+		}
+	ROUTE touch.touchTime TO Time.startTime
+	ROUTE Time.fraction_changed	TO RotationPath.set_fraction
+	ROUTE RotationPath.value_changed TO	protecao.translation
+}
+###################################################
+#											      #
+#				   Animação 1.0				      #
+#												  #
+###################################################
+#DEF	Time TimeSensor	{
+#	enabled TRUE
+#	cycleInterval 15.0
+#	loop TRUE
+#}
+#DEF	RotationPath PositionInterpolator {
+#	key [0.0 0.5 1.0]
+#	keyValue [
+#		0.0 0.0 0.0,
+#		0.0 -80.0 0.0,
+#		0.0 0.0 0.0
+#	]
+#}
+#				]
+#			}
+#		]
+#	}
+#	ROUTE Time.fraction_changed	TO RotationPath.set_fraction
+#	ROUTE RotationPath.value_changed TO	protecao.translation
+#}

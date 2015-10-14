@@ -1,0 +1,112 @@
+#VRML V2.0 utf8
+
+
+EXTERNPROTO	Cilindro [
+	field SFBool bottom
+	field SFBool top
+	field SFBool side
+	field SFFloat height
+	field SFFloat radius
+	field SFFloat radiusBottom
+	field SFBool IsScale
+	field SFColor color
+]
+"res/Cylinder.wrl#Cilindro"
+
+PROTO posteBranco [
+
+]{
+
+	Group {
+		children [
+		Transform {
+			translation	0 .1 0
+		
+			children [ 
+				Shape {
+					appearance Appearance {
+						material Material {
+							ambientIntensity .14
+							diffuseColor .612 .612 .612
+							specularColor .773 .761 .761
+							shininess .9
+						}
+					}
+					geometry Box {
+						size .5 .2 .5
+					}
+
+				}
+				Transform {
+					translation	0 .115 0
+					children [
+						Cilindro {
+							height .03
+							bottom FALSE
+							radius .08
+
+						}
+
+
+						
+					]
+				}
+				Transform {
+					translation	0 4.13 0
+					children [
+						Cilindro {
+							height 8
+							bottom FALSE
+							top	FALSE
+							radiusBottom .06
+							IsScale	TRUE
+							radius .03
+
+						}
+
+
+						
+					]
+				}
+				Transform {
+					translation	0 8.145 0
+					children [
+					 Cilindro {
+						height .03
+						radiusBottom .03
+						radius .08
+						top	FALSE
+						IsScale	TRUE
+					 }
+					
+					
+					
+					]
+				}
+				Transform {
+					translation	0 8.175 0
+					children [
+					 Cilindro {
+						height .03
+						radiusBottom .08
+						radius .03
+						bottom	FALSE
+						IsScale	TRUE
+					 }
+					
+					
+					
+					]
+				}
+			]
+		}
+		
+	
+		]
+	}
+}
+
+posteBranco	{
+
+}
+

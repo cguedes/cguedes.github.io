@@ -1,0 +1,92 @@
+#VRML V2.0 utf8
+
+PROTO Candeeiro [] {
+	Transform { # Candeeiro
+		children [
+			Shape {
+				appearance Appearance {
+					texture	ImageTexture {
+						url	"vermelho.jpg"
+						repeatS	TRUE
+						repeatT	TRUE
+					}
+				}
+				geometry Extrusion {
+					crossSection [
+						.7 .56, .66 .51, .611114 .48, .522222 .44, .38889 .4, .3 .4, .21111 .4,
+						.077778 .44, -.01111 .48, -.08 .52, -.1 .56, -.1 .6, -.055556 .6,
+						-.055556 .6, -.055556 .56, -.02 .52, .06 .48, .14 .45, .22 .43, .38 .43,
+						.46 .45, .54 .48, .62 .52, .655556 .56, .655556 .6, .7 .6, .7 .56
+					]
+					spine [
+						0 0 0, 0 .4 0
+					]
+				}
+
+			}
+			Transform {
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor .57 .58 .58
+								specularColor .67 .46 .44
+								ambientIntensity .137
+								shininess .039
+							}
+						}
+						geometry Extrusion {
+							crossSection [
+								.681818 .56, .627273 .51, .582831 .48, .50202 .44, .380809 .4, .3 .4,
+								.219191 .4, .09798 .44, .0171727 .48, -.0454545 .52, -.0818182 .56,
+								-.1 .6, -.0636364 .6, -.0454545 .56, .00909092 .52, .0818182 .48,
+								.154545 .45, .227273 .43, .372727 .43, .445455 .45, .518182 .48,
+								.590909 .52, .645455 .56, .663636 .6, .7 .6, .681818 .56
+							]
+							spine [
+								0 0 0, 0 .4 0
+							]
+						}
+
+					}
+				]
+				scale .7 .8 .5
+				translation	.091 0.02 .235
+			}
+			Transform {
+				children [
+					Transform {
+						children [
+							Shape {
+								geometry Sphere	{
+									radius 0.05
+								}
+								appearance Appearance {
+									material Material {
+										diffuseColor .36 .36 .36
+										specularColor .94 .94 .94
+										emissiveColor 0 .36 .27
+										ambientIntensity 0
+										shininess .23
+										transparency .68
+									}
+								}
+				
+							}
+						]
+					}
+					PointLight {
+					    on TRUE  
+    					intensity 1
+    					ambientIntensity 1 
+    					color 1 1 1 
+    					location 0 0 0 
+    					attenuation 0 0 0 
+    					radius 4 
+					}
+				]
+				translation	0.3 0.18 0.52
+			}
+		]
+	}
+}

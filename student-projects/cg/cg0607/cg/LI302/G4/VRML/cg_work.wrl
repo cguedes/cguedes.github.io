@@ -1,0 +1,601 @@
+#VRML V2.0 utf8
+Viewpoint {
+    position 0.0 1.65 10
+    orientation 1.0 0.0 0.0 0
+    description "Entry View"
+}
+Viewpoint {
+    position 7.05 1.65 7.05
+    orientation 0.0 1.0 0.0  0.785
+    description "side"
+}
+Viewpoint {
+    position 0 7 0
+    orientation 1 0.0 0.0  -1.7
+    description "upview"
+}
+Viewpoint {
+	position 0 0 3
+	orientation	0 0 0 0
+	description	"door"
+}
+NavigationInfo { headlight FALSE type ["EXAMINE", "WALK", "ANY"] }
+#lampada
+Transform {
+	children [
+		Shape {
+			geometry Cylinder {
+				side TRUE
+				radius 0.1
+				bottom TRUE
+				top	TRUE
+				height 0.2
+			}
+			appearance Appearance{
+				material Material {
+					specularColor 0.5 0.5 0.5
+				}
+			}
+		}
+		Shape {
+			geometry Cone {
+				side TRUE
+				bottom FALSE
+				bottomRadius 0.5
+				height 0.5
+			}
+			appearance Appearance {
+				material Material {
+					transparency 0.5
+					specularColor 0.5 0.5 0.5
+				}
+			}
+		}
+
+	]
+	translation 0 4 -1
+}
+DEF LampLight SpotLight { 
+	location 0 3.8 -1
+	beamWidth 5
+	attenuation	0 0 0
+	radius 10
+	ambientIntensity 1
+    intensity 1
+    direction 0 -1 0
+    color 1 1 1
+    on FALSE
+}
+Transform {
+	translation 4 -1 0
+      children [
+        DEF LightSwitch TouchSensor { }
+        Shape {
+          geometry Box { size 0.05 0.1 0.2 }
+          appearance Appearance { material Material { emissiveColor 1 1 0 } }
+        }
+	  ]
+}
+
+DEF ToogleButton Script {
+  field    SFBool on FALSE
+  eventIn  SFBool set_active
+  eventOut SFBool on_changed
+  url "javascript:
+   function set_active( set, timestamp ) {
+     if(set == FALSE) return;
+     if(on == TRUE)   on = FALSE;
+     else             on = TRUE;
+     on_changed = on;
+  }"
+}
+
+DEF ColorSelector Script {
+  field    SFColor onColor  1 1 1 # ON - cor branca
+  field    SFColor offColor 0 0 0 # OFF - cor preta
+  field    SFBool on FALSE
+  eventIn  SFBool set_selection
+  eventOut SFColor color_changed
+  
+  url "javascript: 
+    function set_selection(b, timestamp) {
+      if(b == TRUE) color_changed = onColor;
+      else          color_changed = offColor;
+    }
+  "
+}
+
+DirectionalLight {
+  color 1 1 1
+  direction -1 -1 -1
+  intensity 1
+  ambientIntensity 0.1
+  on FALSE
+}
+
+ROUTE LightSwitch.isActive TO ToogleButton.set_active
+ROUTE ToogleButton.on_changed TO LampLight.on
+ROUTE ToogleButton.on_changed TO ColorSelector.set_selection
+
+#texturas
+
+#maquina
+PROTO upperMachine [
+	field SFColor machineColor 1 1 1
+]{
+	
+	Shape{
+		geometry Box {
+			size 2 2 1
+		}
+		appearance Appearance {
+			material Material {
+				specularColor IS machineColor
+			}
+		}
+	}
+}
+PROTO middleMachine [
+	field SFColor machineColor 1 1 1
+]{
+	Shape {
+		geometry Box {
+			size 0.7 0.7 1
+		}
+		appearance Appearance {
+			material Material {
+				specularColor IS machineColor
+			}
+		}
+	}
+}
+
+PROTO downMachine[
+	field SFColor machineColor 1 1 1
+]{
+	Shape {
+		geometry Box {
+			size 2 1 1
+		}
+		appearance Appearance {
+			material  Material {
+				specularColor IS machineColor
+			}
+		}
+	}
+}
+
+PROTO backMachine[
+	field SFColor machineColor 1 1 1
+]{
+	Shape{
+		geometry Box {
+			size 2 3.7 0.2
+		}
+		appearance Appearance {
+			material Material {
+				specularColor IS machineColor
+			}
+		}
+	}
+}
+
+PROTO roundShelf[
+	field SFColor machineColor 1 1 1
+]{
+	Shape {
+		geometry Cylinder {
+			radius 0.2
+			height 0.05
+		}
+		appearance Appearance {
+			material Material {
+				specularColor IS machineColor
+			}
+		}
+	}
+}
+
+PROTO straightShelf[
+field SFColor machineColor 1 1 1 
+]{
+		Shape {
+		geometry Box {
+			
+			size 0.8 0.05 0.4
+		}
+		appearance Appearance {
+			material Material {
+				specularColor IS machineColor
+			}
+		}
+		
+	}
+}
+PROTO Shelf[
+	field SFColor MaC 0 0 0
+]{
+	Group {
+		children [
+			Transform{
+				translation	-0.4 0 0
+				children roundShelf	{machineColor IS MaC}
+			}
+			Transform{
+				translation	0 0 0
+				children straightShelf {machineColor IS MaC }
+			}
+			Transform {
+				translation	0.4 0 0
+				children roundShelf	{machineColor IS MaC }
+			}
+		]
+	}
+}
+PROTO upperCircle[
+	field SFColor machineColor 1 1 1
+]
+{
+	Shape {
+		geometry Cylinder {
+			height 0.1
+			radius 0.4
+		}
+		appearance Appearance {
+			material Material {
+				specularColor IS machineColor
+			}
+		}
+	}
+}
+
+PROTO button1[
+	field SFColor buttonColor 0 1 1
+]{
+	Shape {
+		geometry Cylinder {
+			height 0.1
+			radius 0.0295
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor IS	buttonColor
+			}
+		}
+	}
+}
+
+PROTO button2[
+	field SFColor buttonColor 144 149 153
+]
+{
+	Shape {
+		geometry Sphere	{
+			radius 0.032
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor IS	buttonColor
+			}
+		}
+	}
+}
+
+PROTO ButtonFinal[]
+{
+	Group {
+		children [
+			Transform {
+				translation	0 0 0
+				children button1 {}
+			}
+			Transform {
+				translation	0 0.038 0
+				children button2 {}
+			}
+		]
+	}
+}
+
+PROTO coin[]
+{
+	Shape{
+		geometry Box {
+			size  0.01 0.1 0.2
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 0 0 0
+			}
+		}
+	}
+}
+DEF CUP Transform {
+	children [
+			DEF	sensorCup TouchSensor {}
+			Shape {
+				geometry Cylinder {
+					top	FALSE
+					radius 0.1
+					bottom TRUE
+					height 0.3
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+						transparency 0.3
+					}
+				}
+			
+			}
+			Transform {
+				children [
+					Shape {
+						geometry Cylinder {
+						radius 0.08
+						height 0.2
+						}
+						appearance Appearance {
+							material Material {
+								shininess 30
+								diffuseColor 0.1 0 0
+							}
+						}
+					}
+				]
+				translation	0 -0.045 0
+			}
+	]
+		translation	0 0 0.1
+}
+DEF PosInterpolator PositionInterpolator {
+  key      [0.0    0.5]
+  keyValue [0 0 0.1, 0 0 1]
+}
+
+DEF Timer TimeSensor {
+  cycleInterval 5.0
+  loop          FALSE
+}
+
+ROUTE sensorCup.touchTime TO Timer.startTime
+ROUTE Timer.fraction_changed TO	PosInterpolator.set_fraction
+ROUTE PosInterpolator.value_changed	TO CUP.translation
+
+
+DEF	door Transform {
+	children [
+		DEF	sensorDoor TouchSensor {}
+		Shape {
+			geometry Box {
+				size 0.6 0.7 0.05
+			}
+			appearance Appearance {
+				material Material {
+					transparency 0.2
+					diffuseColor 0 0 0
+				}
+			}
+			
+		}
+	]
+	translation	0 0.2 0.4
+}
+
+DEF PosDoor PositionInterpolator {
+  key      [0.0    0.25 ]
+  keyValue [0 0.2 0.4, 0 1 0.4]
+}
+DEF TimerDoor TimeSensor {
+  cycleInterval 5.0
+  loop          FALSE
+}
+
+ROUTE sensorDoor.touchTime TO TimerDoor.startTime 
+ROUTE TimerDoor.fraction_changed TO	PosDoor.set_fraction
+ROUTE PosDoor.value_changed	TO door.translation
+
+PROTO textura1[]{
+	Group {
+		children[
+			Shape {
+				geometry Box {
+					size  0.2 0.2 0.1
+				}
+				appearance Appearance {
+					texture	ImageTexture {
+						url	"fotos/informacao.jpg"
+					}
+					material Material {
+						specularColor 1 1 1
+					}
+				}
+			}
+		]
+	}
+}
+PROTO textura2[]{
+	Group {
+		children[
+			Shape {
+				geometry Box {
+					size  1.4 1.8 0.1
+				}
+				appearance Appearance {
+					texture	ImageTexture {
+						url	"fotos/TexturaFrontal.png"
+					}
+					material Material {
+						specularColor 1 1 1
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO textura3[]{
+	Group {
+		children[
+			Shape {
+				geometry Box {
+					size  0.4 0.2 0.1
+				}
+				appearance Appearance {
+					texture	ImageTexture {
+						url	"fotos/moedas.jpg"
+					}
+					material Material {
+						specularColor 1 1 1
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO textura4[]{
+	Group {
+		children[
+			Shape {
+				geometry Box {
+					size  0.2 0.6 0.1
+				}
+				appearance Appearance {
+					texture	ImageTexture {
+						url	"fotos/legendas.jpg"
+					}
+					material Material {
+						specularColor 1 1 1
+					}
+				}
+			}
+		]
+	}
+}
+
+
+PROTO Machine[
+	field SFColor MachineC 0.7 0.7 0.7
+]
+{
+	Group {
+	
+		children	[
+			Transform {
+				translation	0.9 0.7 0.41
+				children coin {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0.9 1 0.44
+				children ButtonFinal {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0.9 1.05 0.44
+				children ButtonFinal {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0.9 1.1 0.44
+				children ButtonFinal {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0.9 1.15 0.44
+				children ButtonFinal {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0.9 1.2 0.44
+				children ButtonFinal {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0.9 1.25 0.44
+				children ButtonFinal {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0.9 1.3 0.44
+				children ButtonFinal {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0.9 1.35 0.44
+				children ButtonFinal {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0.9 1.4 0.44
+				children ButtonFinal {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0.9 1.45 0.44
+				children ButtonFinal {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0.9 1.5 0.44
+				children ButtonFinal {}
+			}
+			Transform {
+				rotation 1 0 0 1.57
+				translation	0.9 1.55 0.44
+				children ButtonFinal {}
+			}
+			Transform {
+ 				translation	-0.6 2.44 0.3
+				children upperCircle {machineColor IS MachineC}
+			}
+			Transform {
+				translation 0 1.5 0
+				children upperMachine{machineColor IS MachineC }
+			}
+			Transform {
+				translation	0.65 0.15 0
+				children middleMachine {machineColor IS MachineC }
+			}	
+			Transform {
+				translation	-0.65 0.15 0
+				children middleMachine {machineColor IS MachineC }
+			}
+			Transform {
+				translation	0 -0.7 0
+				children downMachine {machineColor IS MachineC }
+			}
+			Transform {
+				translation	0 0.65 -0.4
+				children backMachine {machineColor IS MachineC }
+			}
+			Transform {
+				translation	-0.2 -0.2 0.5
+				children Shelf {MaC IS MachineC }
+			}
+			Transform {
+				translation	-0.15 1.45 0.46
+				children textura2 {}
+			}
+			Transform {
+				translation	0.7 1.8 0.46
+				children textura1 {}
+			}
+			Transform {
+				translation	0.7 0.45 0.46
+				children textura3 {}
+			}
+			Transform {
+				translation	0.75 1.28 0.46
+				children textura4 {}
+			}
+		]
+	}
+}
+
+Collision {
+	children Machine {}
+	collide	TRUE
+}
+Machine	{}

@@ -1,0 +1,199 @@
+#VRML V2.0 utf8
+
+#Mesa tipo escritorio do Laboratorio
+#Medidas em CM
+
+# Importa a definição do prototipo AXIS, localizada no ficheiro axis.wrl
+EXTERNPROTO Eixo []
+"eixo.wrl#Eixos"
+
+EXTERNPROTO Paralelipipedo[field SFColor cor_par, field	SFVec3f	size_par,
+	field MFString textura_pr, field SFVec2f text_scale]
+"mesa_laboratorio.wrl#Paralelipipedo"
+
+EXTERNPROTO	ConjuntoCompleto[]
+"Instrumentos.wrl#ConjuntoCompleto"
+
+#width = 112.5, height = 3.5 + 31 = 34.5, depth = 55
+#segue norma HMN
+PROTO Tampo_M3[field SFColor cor_ts 0.5 0.5 0.5 ]
+{
+	Group {
+		children [
+			Transform {
+				translation	56.25 1.75 27.75
+				children Paralelipipedo { cor_par IS cor_ts , size_par 112.5 3.5 55,
+					textura_pr "Texturas\Mesas\marmore.jpg", text_scale 5 5} 
+			}
+			Transform	{
+				translation	48.25 3.5 19.5
+				children ConjuntoCompleto {}
+			}
+		]
+	}
+}
+ 
+#width = 3, height = 85, depth = 7
+#segue norma HMN
+PROTO Perna_Mesa[]
+{
+	Transform {
+		translation	1.5 42.5 3.5
+		children Paralelipipedo { cor_par 0.76 0.42 0.08, size_par 3 85 7, 
+			textura_pr "Texturas\Mesas\madeira_prateleira.jpg" } 
+	}
+}
+
+##width = 108.5, height = 12.5, depth = 51
+##segue norma HMN
+PROTO Gavetas_Mesa[]
+{
+	Group {
+		children [
+			Shape {
+				appearance Appearance { 
+					material Material {diffuseColor 0.76 0.42 0.08}
+					texture	ImageTexture { url "Texturas\Mesas\madeira.jpg" }
+				}
+				geometry Extrusion {
+					crossSection [2.5 0,2.5 6.5,0 6.5, 0 44.5, 2.5 44.5, 2.5 51, 106 51, 106 44.5, 108.5 44.5, 108.5 6.5, 106 6.5, 
+								  106 0, 2.5 0]
+					spine [ 0 0 0, 0 12.5 0]
+				}		
+			}
+
+			#width = 41, height = 8 
+			#autoculante 1
+			Transform {
+				translation	28.5 6.5 51.1
+				children Shape{ 
+					appearance Appearance { 
+						material Material {diffuseColor 0.76 0.42 0.08}
+						texture	ImageTexture { url "Texturas\Mesas\gaveta_m3.jpg" }
+					}
+					geometry Box { size 41 8 0.01}}						
+			}
+
+			Transform {
+				translation	77.5 6.5 51.1
+				children Shape{ 
+					appearance Appearance { 
+						material Material {diffuseColor 0.76 0.42 0.08}
+						texture	ImageTexture { url "Texturas\Mesas\gaveta_m3.jpg" }
+					}
+					geometry Box { size 41 8 0.01}}						
+			}
+		]
+	}
+}
+
+#width = 109.5, height = 2, depth = 20
+#segue norma HMN
+PROTO Prateleira_Mesa[]
+{
+		Shape {
+		appearance Appearance { 
+			material Material {diffuseColor 0.76 0.42 0.08}
+			texture	ImageTexture { url "Texturas\Mesas\madeira.jpg" }
+		}
+		geometry Extrusion {
+			crossSection [2.5 0,2.5 6.5,0 6.5, 0 25.5, 108.5 25.5, 108.5 6.5,106 6.5, 106 0, 2.5 0]
+			spine [ 0 0 0, 0 2 0]
+		}		
+	}
+
+
+}
+
+#width = 2, height = 4, depth = 38
+#segue norma HMN
+PROTO Suporte_Prateleira[]
+{
+	Transform {
+		translation	1 2 19
+		children Paralelipipedo	{ cor_par 0.76 0.42 0.08, size_par 2 4 38, textura_pr "Texturas\Mesas\madeira_prateleira.jpg"}
+	}
+}
+
+#width = 112,5 height = 88.5, depth = 55
+PROTO Mesa_3[]
+{
+	Group {
+		children [
+			Transform {
+				translation	0 85 0
+				children Tampo_M3 { cor_ts 0.2 0.2 0.2 }
+			}
+
+			Transform {
+				translation	2 72.5 2
+				children Gavetas_Mesa {}
+			}
+
+			Transform {
+				translation	1.5 0 1.5
+				children Perna_Mesa	{}
+			}
+
+			Transform {
+				translation	108 0 1.5
+				children Perna_Mesa	{}
+			}
+
+			Transform {
+				translation	1.5 0 46.5
+				children Perna_Mesa	{}
+			}
+
+			Transform {
+				translation	108 0 46.5
+				children Perna_Mesa	{}
+			}
+
+			#suporte lateral 1
+			Transform {
+				translation	2 48 8.5
+				children Suporte_Prateleira	{}				
+			}
+
+			#suporte lateral 2
+			Transform {
+				translation	108.5 48 8.5
+				children Suporte_Prateleira	{}				
+			}
+
+			#suporte traseiro
+			Transform {
+				#translation 4.5 48 2
+				translation	56.25 50 5
+				children Paralelipipedo	{ cor_par 0.76 0.42 0.08, size_par 103.5 4 6, textura_pr "Texturas\Mesas\madeira_prateleira.jpg" }
+				
+			}
+
+			#prateleira
+			Transform {
+				translation 2 52 2
+				children Prateleira_Mesa {}
+			}
+
+		]	
+	}
+}
+
+Background {
+	skyColor 1 1 1
+}
+
+
+
+Transform {
+	scale 0.01 0.01 0.01
+	children[
+		Mesa_3 {}
+	#	Eixo{}
+	]
+}
+
+NavigationInfo {
+	type ["EXAMINE", "ANY"]
+}

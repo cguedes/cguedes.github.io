@@ -1,0 +1,180 @@
+#VRML V2.0 utf8
+
+PROTO esferico 
+[field SFColor boxColour 1 1 0
+]
+{
+  Shape { 
+    geometry Sphere {
+      radius 0.5
+    }
+    appearance Appearance { material Material {diffuseColor IS boxColour  } }
+  }
+}
+
+
+PROTO cilindro [ field SFColor boxColour 1 0 0 ]
+
+
+{
+	
+Shape{
+	
+   geometry	Cylinder {
+    radius 0.2
+    height 5.0
+    side TRUE
+    bottom TRUE
+    top TRUE
+		}
+		appearance Appearance{ material Material{diffuseColor IS boxColour} }
+	}
+}
+
+ PROTO cone[field SFColor boxColour 1 0 0]
+{
+	Shape{
+	
+   geometry	Cone {
+    bottomRadius 0.4
+    height 2
+    side TRUE
+    bottom TRUE
+		}
+	   appearance Appearance{ material Material{diffuseColor IS boxColour} }
+	}
+
+}
+
+PROTO linhax[field SFColor boxColour 1 0 0]
+{
+
+Shape{
+	
+   geometry	Cylinder {
+    radius 0.02
+    height 50.0
+    side TRUE
+    bottom TRUE
+    top TRUE
+		}
+	
+	  appearance Appearance{ material Material{diffuseColor IS boxColour} }
+	}
+}
+
+
+
+PROTO textoX
+[	field SFColor boxColour 1 0 0
+	field MFString text  "x"
+   field SFRotation rot 0 0 0 1.57
+
+]
+{
+	Transform {
+			 translation	7 0 0
+			 rotation IS rot
+	   children
+
+Shape{
+  geometry Text {
+	string   IS text 
+	length    1 
+	fontStyle FontStyle { 
+		family       	"VERDANA"
+		horizontal   	TRUE
+		justify      	"BEGIN"
+		language     	""
+		leftToRight  	TRUE
+		size         	1          
+		spacing      	1.0          
+		style        	"BOLD"
+		topToBottom  	TRUE
+	}
+	
+ }
+ appearance Appearance{ material Material{diffuseColor IS boxColour} }
+}
+
+}
+}
+
+
+
+
+   PROTO eixoX
+[field SFColor boxColour 1 0 0
+  field SFRotation rot 0 0 0 1.57
+  field	MFString text "x"
+]
+{
+
+   Transform {
+    
+    children 
+    [
+
+		Transform {
+			children textoX	{rot IS rot boxColour IS boxColour text IS text }
+		}
+
+      Transform {
+        translation	2.9 0 0
+		rotation 0 0 1 1.57
+
+        children cilindro {boxColour IS boxColour }
+
+		
+      }
+      Transform {
+        translation	5.9 0 0
+		rotation 0 0 1 -1.57
+        children cone { boxColour IS boxColour }
+      }
+      Transform {
+       rotation 0 0 1 1.57
+        children linhax { boxColour IS boxColour }
+      }
+      
+    ]
+  }
+
+}
+
+
+ 
+
+  PROTO coors
+[
+]
+{
+	 Transform {
+    
+    children 
+    [	 
+		Transform {
+			children esferico { }
+		}
+	
+		Transform {
+			rotation 0 0 1 1.57
+			children eixoX{boxColour 0 1 0}		#eixo Y
+		}
+	
+		Transform {
+		   rotation	0 1 0 -1.57
+		   children	eixoX {boxColour 0 0 1 rot 0 1 0 1.57 text "z"}	 #eixo Z
+		}
+	
+		Transform {
+			children eixoX {text "y"}	  #eixo X
+		}
+	
+	]}
+
+}
+
+
+
+coors {}

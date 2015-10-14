@@ -1,0 +1,308 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Vidro 
+[
+	field SFVec3f dimVidro
+	field SFVec3f translacaoVidro 
+	field SFRotation rotacaoVidro
+]
+"Janelas&Portas.wrl#Vidro"
+
+
+## Paredes ##
+
+
+# ParedeLateral_1
+Transform {
+	translation	0.2 0 0
+	children 
+	Inline {
+		url	["ParedeLateral_1.wrl"]
+	}
+
+}
+
+# ParedeLateral_2
+
+Transform {
+	translation	0.2 0 8.9
+	rotation 1 0 0 -1.571
+	children 
+		Shape  {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0.9 0.8 0.4
+					ambientIntensity 0.5
+				}
+			}
+			geometry Extrusion {
+				crossSection [0 0, 0 3.3, 18.3 3.3, 18.3 0, 17.5 0, 17.5 2.3, 12.5 2.3, 12.5 0, 12.1 0, 12.1 2.3,
+							  6.1 2.3, 6.1 0, 4.75 0, 4.75 2.1, 3.1 2.1, 3.1 0, 0 0 ]
+				spine [0 0 0, 0 0.2 0]
+				solid FALSE
+			}
+		}	
+}
+
+
+# ParedeFundo_1
+Transform {
+	rotation 0 1 0 -1.57079
+	children[
+		Transform {
+			rotation 1 0 0 -1.57079
+			children[
+				Shape {
+					appearance Appearance	{
+						material Material {
+        					diffuseColor 0.9 0.8 0.4
+							ambientIntensity 0.5
+    					}
+					}
+					geometry Extrusion  {
+						crossSection [ 0 0, 0 6.9, 5 6.9, 5 3.3, 8.9 3.3, 8.9 0, 8.7 0, 8.7 2.9, 6.2 2.9, 6.2 0, 0 0] 
+						spine [0 0 0,0 0.2 0]
+						solid FALSE
+					}
+
+				}
+			]
+		}
+		Transform {
+			translation	2.5 3.45 -0.2
+			children[
+			Shape {
+				geometry Box {
+					size 4.8 6.7 0.01
+				}
+				appearance Appearance {
+					material Material {}
+					texture	ImageTexture {
+						url	["textura_parede_escadas.jpg"]
+					}
+					textureTransform TextureTransform {
+						scale 8 8
+					}
+				}
+			}
+			]
+		}
+	]
+}
+
+# ParedeFundo_2
+Transform {
+	translation	18.6 1.65 4.45
+	children
+	Shape {
+		appearance Appearance {
+			material Material {
+				diffuseColor 0.7 0.7 0.4
+				ambientIntensity 0.4
+			}
+		}
+		geometry Box {
+			size 0.2 3.3 8.9
+		}
+	}
+}
+
+#Pilar Suporte 1
+
+Transform {
+		  rotation 0 0 1 -1.57
+		  translation 12.3 3.3 0.2 
+	children
+	Shape {
+		appearance Appearance {
+			material Material {
+				diffuseColor 0.5 0.6 0.3
+			}
+		}
+
+		geometry Extrusion {
+				crossSection [0 0 , 0 8.5, 3.3 8.5, 3.3 8.3, 0.4 8.3, 0.4 5.3, 3.3 5.3, 3.3 4.9
+								,0.4 4.9, 0.4 0, 0 0]
+				solid FALSE
+				spine [0 0 0,0 0.4 0]
+		
+		}
+	}
+}
+
+# Pilar suporte 2
+
+Transform {
+	rotation 0 0 1 1.57
+	translation 6.2 0 0.2 
+	children
+	Shape {
+		appearance Appearance {
+			material Material {
+				diffuseColor 0.5 0.6 0.3
+			}
+		}
+
+		geometry Extrusion {
+			crossSection [0 0, 0 0.01, 3 0.01, 3 4.8, 0 4.8, 0 5.4, 3 5.4, 3 8.2, 0 8.2, 0 8.5,
+							3.3 8.5, 3.3 0, 0 0]
+			solid FALSE
+			spine [0 0 0,0 0.4 0]
+		
+		}
+	}
+}
+
+###
+
+Transform {
+	translation	0.2 3.1 2.5
+	children [
+		Shape {
+			geometry Box {
+				size 0.05 0.4 4.85
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor 0.5 0.6 0.3
+				}
+			}
+		}
+	]
+}
+
+# Parede Portaria X
+PROTO Fita [
+	field SFVec3f szFita 0 0 0
+	field SFVec3f trFita 0 0 0
+]{
+	Transform {
+		translation	IS trFita	
+		 children [
+			 DEF FitaV1 Shape {
+				 appearance	Appearance {
+					 material Material {
+						 diffuseColor 0.5 0.5 0.5
+					 }
+				 }
+				 geometry Box {
+					 size IS szFita # 0.04 3.3 0.02
+				 }
+			 }
+		 ]
+	}
+}
+
+Transform {
+	rotation 0 1 0 3.1416
+	translation	18.5 0 5.1
+	children [
+		Vidro { dimVidro 0.5 1.3 0.02, translacaoVidro 0.3 1.65 -0.05}
+		Vidro { dimVidro 0.9 1.3 0.02, translacaoVidro 2.9 1.65 -0.05}
+		Vidro { dimVidro 0.3 1.3 0.02, translacaoVidro 5.6 1.65 -0.05}
+		###	
+		Fita{ trFita 0.02 1.65 0, szFita 0.04 3.3 0.02 }
+		Fita{ trFita 0.6 1.65 0, szFita 0.04 3.3 0.02 }
+		Fita{ trFita 1.5 1.65 0, szFita 0.04 3.3 0.02 }
+		Fita{ trFita 2.4 1.65 0, szFita 0.04 3.3 0.02 }
+		Fita{ trFita 3.4 1.65 0, szFita 0.04 3.3 0.02 }
+		Fita{ trFita 5.4 1.65 0, szFita 0.04 3.3 0.02 }
+		Fita{ trFita 5.78 1.65 0, szFita 0.04 3.3 0.02 }
+		Fita{ trFita 4.4 0.49 0, szFita 0.04 0.94 0.02 }	
+		Fita{ trFita 4.4 2.81 0, szFita 0.04 0.94 0.02 }
+		###
+		Fita{ trFita 2.9 2.34 0, szFita 5.8 0.04 0.02 }
+		Fita{ trFita 2.9 3.28 0, szFita 5.8 0.04 0.02 }
+		Fita{ trFita 0.3 0.02 0, szFita 0.6 0.04 0.02 }
+		Fita{ trFita 0.3 0.96 0, szFita 0.6 0.04 0.02 }
+		Fita{ trFita 1.5 0.02 0, szFita 0.2 0.04 0.02 }
+		Fita{ trFita 4.1 0.02 0, szFita 3.4 0.04 0.02 }
+		Fita{ trFita 4.1 0.96 0, szFita 3.4 0.04 0.02 }
+		###
+		Transform {
+			rotation 1 0 0 -1.5708
+			children [
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.9 0.9 0.7
+							shininess 0.3
+							specularColor 0.9 0.9 0.8
+						}
+					}
+					geometry Extrusion {
+						crossSection [0 0,0.65 0, 0.65 2.3,0.55 2.3,0.55 1, 0.05 1,0.05 2.3,1.35 2.3,
+									  1.35 0,1.65 0,1.65 2.3,5.75 2.3,5.75 1,5.45 1, 5.45 2.3, 5.35 2.3,
+									  5.35 1, 3.45 1, 3.45 2.3, 3.35 2.3, 3.35 1, 2.45 1,2.45 2.3,2.35 2.3,
+									  2.35 1,2.35 1,2.35 0, 5.8 0,5.8 3.3,0 3.3,0 0]	
+						solid	FALSE	
+						spine[0 0 0, 0 0.1 0]		
+					}
+				}
+			]
+		}
+	]
+}
+
+# Parede Portaria Y
+
+Transform {
+	rotation 0 1 0 -1.5708
+	translation	12.3 0 5.5
+	children [
+		Vidro { dimVidro 0.9 1.3 0.02, translacaoVidro 0.5 1.65 -0.05}
+		Vidro { dimVidro 0.9 1.3 0.02, translacaoVidro 2.5 1.65 -0.05}
+		###
+		Fita{ szFita 0.04 2.9 0.02, trFita 1 1.45 0}
+		Fita{ szFita 0.04 2.9 0.02, trFita 2 1.45 0}
+		Fita{ szFita 0.04 2.9 0.02, trFita 0.02 1.45 0}
+		Fita{ szFita 0.04 2.9 0.02, trFita 2.98 1.45 0}
+		###
+		Fita{ szFita 3 0.04 0.02, trFita 1.5 0.96 0 }
+		Fita{ szFita 3 0.04 0.02, trFita 1.5 2.34 0 }
+		Fita{ szFita 3 0.04 0.02, trFita 1.5 0.02 0 }
+		Fita{ szFita 3 0.04 0.02, trFita 1.5 2.88 0 }
+		###
+		Transform {
+			rotation 1 0 0 -1.5708
+			children [
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.9 0.9 0.7
+							shininess 0.3
+							specularColor 0.9 0.9 0.8
+						}
+					}
+					geometry Extrusion {
+						crossSection [0 0, 3 0, 3 1, 2.95 1, 0.05 1, 0.05 2.3, 0.95 2.3, 0.95 1, 1.05 1, 1.05 2.3,
+									  1.95 2.3, 1.95 1, 2.05 1, 2.05 2.3, 2.95 2.3, 2.95 1, 3 1, 3 2.9, 0 2.9, 0 0 ]	
+						solid	FALSE	
+						spine[0 0 0, 0 0.1 0]		
+					}
+				}
+			]
+		}
+	]
+}
+
+#Parede interna Portaria
+
+Transform {
+	translation	17 1.65 7.025
+	children
+	Shape {
+		geometry Box {
+			size 0.1 3.3 3.65 
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 0.9 0.9 0.7
+				shininess 0.3
+				specularColor 0.9 0.9 0.8
+			}
+		}
+	}
+}
+
+

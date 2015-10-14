@@ -1,0 +1,155 @@
+#VRML V2.0 utf8
+
+PROTO Bola[
+	field MFString file "bola8.jpg" 
+	field SFVec3f translation 0 0 0]{
+	Transform{
+		translation	IS translation
+		children
+		Shape{
+			geometry Sphere{
+				radius 0.03
+			}
+			appearance Appearance {
+				texture	ImageTexture {
+					url IS file
+				}
+			}
+		}
+	}
+}
+
+PROTO BolaAnim[
+	field MFString file "" 
+	field SFVec3f translation  0.45 0 .02]{
+	Group{
+		children [
+			DEF BolaBranca Transform{
+				translation	IS translation
+				children
+				Shape{
+					geometry Sphere{
+						radius .03
+					}
+					appearance Appearance {
+						texture	ImageTexture {
+							url IS file
+						}
+					}
+				}
+			}
+
+			DEF	TS TouchSensor {}						   
+			
+			DEF PosInterpolator PositionInterpolator {
+				key      [0.0 0.1 0.2 0.3 0.4 0.5 0.7 0.75] 
+				keyValue [0.45 0 .02,
+						  0.35 0 .12, 
+						  0.25 0 .22, 
+						  0.15 0 .32,
+						  0.05 0 .42,
+						  -.05 0 .52,
+						  0 0  .54
+						  0 -.05 .54
+					     ]
+			}
+		]
+	}
+	
+	DEF Timer TimeSensor {
+
+		cycleInterval 5.0 
+		loop FALSE
+		startTime 0.0
+		stopTime 0.0
+	}
+	
+
+	ROUTE TS.touchTime TO Timer.startTime
+	ROUTE Timer.fraction_changed TO PosInterpolator.set_fraction 
+	ROUTE PosInterpolator.value_changed TO BolaBranca.translation 
+}
+	
+
+	 
+
+
+
+PROTO BolasEspalhadas [
+	field SFVec3f translation 0 0 0
+] {
+	Transform {
+		translation	IS translation
+		children[
+			Bola {file "bola1.jpg" translation -.35 0 .02}
+			Bola {file "bola2.jpg" translation 0.3 0 0.4}
+			Bola {file "bola3.jpg" translation -0.9 0 0.1}
+			Bola {file "bola4.jpg" translation 0.6 0 -0.47}
+			Bola {file "bola5.jpg" translation -.94 0 .42}
+			Bola {file "bola6.jpg" translation -.8 0 -.05}
+			Bola {file "bola7.jpg" translation 0.1 0 0.4}
+			Bola {translation -.41 0 0}
+			Bola {file "bola9.jpg" translation -.4 0 -.25}
+			Bola {file "bola10.jpg" translation -.2 0 .4}
+			Bola {file "bola11.jpg" translation 0.5 0 0.3}
+			Bola {file "bola12.jpg" translation 0.4 0 -0.2}
+			Bola {file "bola13.jpg" translation -.1 0 0.18}
+			Bola {file "bola14.jpg" translation -.7 0 .2}
+			Bola {file "bola15.jpg" translation 1.0 0 0.2}
+			Bola {file "bolaBranca.jpg" translation -.1 0 .25}
+		]
+	}
+}
+
+PROTO BolasFimJogo [
+	field SFVec3f translation 0 0 0
+] {
+	Transform {
+		translation	IS translation
+		children[
+			Bola {file "bola1.jpg" translation -1.1 -.14 .55}
+			Bola {file "bola2.jpg" translation 1.1 -.14 -.55}
+			Bola {file "bola3.jpg" translation -1.1 -.08 -.55}
+			Bola {file "bola4.jpg" translation -1.1 -.14 -.55}
+			Bola {file "bola5.jpg" translation 1.1 -.14 .55}
+			Bola {file "bola6.jpg" translation 0 -.08 -.55}
+			Bola {file "bola7.jpg" translation 0 -.08 .55}
+			Bola {translation -1.1 -.08 .55}
+			Bola {file "bola9.jpg" translation -.1 0 -.45}
+			Bola {file "bola10.jpg" translation -.2 0 .4}
+			Bola {file "bola11.jpg" translation 1.03 0 -.42}
+			Bola {file "bola12.jpg" translation 0 -.14 -.55}
+			Bola {file "bola13.jpg" translation 0 -.14 .55}
+			Bola {file "bola14.jpg" translation 1.1 -.08 -.55}
+			Bola {file "bola15.jpg" translation 1.1 -.08 .55}
+			Bola {file "bolaBranca.jpg" translation -.9 0 .25}
+		]
+	}
+}
+
+PROTO BolasInicioJogo [
+	field SFVec3f translation 0 0 0
+] {
+	Transform {
+		translation	IS translation
+		children[
+			Bola {file "bola1.jpg" translation -.52 0 0}
+			Bola {file "bola2.jpg" translation -.58 0 .03}
+			Bola {file "bola3.jpg" translation -.64 0 -.06}
+			Bola {file "bola4.jpg" translation -.64 0 .06}
+			Bola {file "bola5.jpg" translation -.7 0 .03}
+			Bola {file "bola6.jpg" translation -.7 0 -.03}
+			Bola {file "bola7.jpg" translation -.76 0 .06}
+			Bola {translation -.64 0 0}
+			Bola {file "bola9.jpg" translation -.58 0 -.03}
+			Bola {file "bola10.jpg" translation -.7 0 -.09}
+			Bola {file "bola11.jpg" translation -.7 0 .09}
+			Bola {file "bola12.jpg" translation -.76 0 0}
+			Bola {file "bola13.jpg" translation -.76 0 -.06}
+			Bola {file "bola14.jpg" translation -.76 0 -.12}
+			Bola {file "bola15.jpg" translation -.76 0 .12}
+			Bola {file "bolaBranca.jpg" translation 0.5 0 0}
+		]
+	}
+}
+

@@ -1,0 +1,248 @@
+#VRML V2.0 utf8
+
+#####################################
+#	Proto externa para o parafuso	#
+#####################################
+
+EXTERNPROTO Screw []
+"Parafuso.wrl#Screw"
+
+EXTERNPROTO eixo [] ["eixo.wrl"]
+
+
+PROTO Cadeira [] {	
+	Transform {
+		children [
+
+			Transform {
+				rotation 1 0 0 -1.7
+				translation	0 -0.025 0.08
+				children [
+					Shape { # Assento					
+						geometry Extrusion {
+							spine [
+								-.3 0 0, .3 0 0
+							]
+							crossSection [
+								.288108 .0800104, .292432 .0605405, .292432 .0291892, .289425 -.016452, .282887 -.0351163, .276246 -.0518678, .263426 -.0659363, .238878 -.0769256,
+								.213938 -.0866977, .184014 -.0929259, .142432 -.1, -.157568 -.1, -.204349 -.0982917, -.237955 -.0952976, -.257313 -.0915825, -.273638 -.0835611,
+								-.285314 -.0753501, -.292091 -.0652738, -.299946 -.0451187, -.3 .0139452, -.29566 .0282272, -.282735 .043297, -.270417 .0531518, -.253828 .0669712,
+								-.23966 .0726063, -.223456 .0811904, -.208414 .0892209, -.176411 .0967806, -.157568 .1, .142432 .1, .15904 .101044, .174914 .10682, .190398 .112099,
+								.214829 .114883, .241149 .11121, .262115 .104007, .278428 .0919122, .288108 .0800104
+							]
+						}		
+						appearance Appearance {
+							material Material {
+								diffuseColor .349 .098 .098
+								specularColor .369 .0588 .0588
+								emissiveColor .1 .03 .03
+								ambientIntensity .0233
+								shininess .06
+							}
+						}
+					}
+				]				
+			}
+
+			Transform {
+				rotation 1 0 0 -1.882
+				translation	0 .25 -.331
+				children [
+					Shape { # Encosto
+						geometry Extrusion {
+							spine [
+								.3 0 0, -.3 0 0
+							]
+							crossSection [
+								.1 .5, .1 .4, .1 .3, .1 .25, .1 .2, .1 .15, .1 .1, .1 .05, .1 0,
+								.1 -.05, .1 -.1, .1 -.15, .1 -.2, .1 -.25, .0989516 -.279919,
+								.0947581 -.287419, .0912786 -.294308, .0796774 -.298952, .0615323 -.301048,
+								.0289967 -.286542, -.00701613 -.2675, -.0398655 -.250848,
+								-.072434 -.231562, -.086371 -.222258, -.0947581 -.214355,
+								-.1 -.2, -.1 -.15, -.095455 -.128031, -.0895161 -.105242,
+								-.0829486 -.0804069, -.0769355 -.05, -.0716935 -.0220161,
+								-.0675 .0167742, -.0633014 .0531469, -.0593705 .111938, -.061208 .152426,
+								-.0601545 .201413, -.0604777 .260421, -.0649908 .316077, -.0694971 .345525,
+								-.0761356 .378831, -.087443 .420481, -.0941195 .454639, -.100698 .486285,
+								-.101913 .512162, -.103172 .535629, -.102183 .560449, -.0968498 .586671,
+								-.0895881 .601814, -.0813231 .611254, -.0681147 .624079, -.0388626 .632216,
+								-.0102124 .635621, .017205 .634571, .0447496 .633521, .0672428 .627687,
+								.0843507 .618618, .0951533 .609451, .1 .6, .1 .5
+							]
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor .349 .098 .098
+								specularColor .369 .0588 .0588
+								emissiveColor .1 .03 .03
+								ambientIntensity .0233
+								shininess .06
+							}
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation	0 -.25 0
+				children [
+					Shape { # Pé					
+						geometry Box { size	.2 .5 .2 }
+						appearance Appearance {
+							material Material {
+								diffuseColor .37 .37 .37
+								specularColor .72 .89 .89
+								ambientIntensity .1
+								shininess .13
+							}
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation	0 -.49 0
+				children [
+					Shape { # Pé					
+						geometry Box { size	.35 .02 .35 }
+						appearance Appearance {
+							material Material {
+								diffuseColor .37 .37 .37
+								specularColor .72 .89 .89
+								ambientIntensity .1
+								shininess .13
+							}
+						}
+					}
+				]
+			}
+
+			Transform {
+				rotation 0 1 0 3.14
+				translation	.02 -.1 .0
+				children [
+					Shape { # suporte Encosto
+						geometry Extrusion {
+							spine [
+								.1 0 0, -.05 0 0
+							]
+							crossSection [
+								-.07 -.05, -.0700002 .2, -.0695132 .216829, -.0629362 .227951,
+								-.0546412 .236697, -.0400002 .24, .79 .52, .79 .53, -.0400002 .25,
+								-.0542282 .246342, -.0657722 .240084, -.0747372 .230488,
+								-.08 .22, -.0800002 .2, -.08 -.05, -.07 -.05
+							]
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor .37 .37 .37
+								specularColor .72 .89 .89
+								ambientIntensity .1
+								shininess .13
+							}
+						}
+					}
+				]
+			}
+
+			Transform {
+				rotation 0 1 0 -1.57
+				translation	-.1 -.1 .0
+				children [
+					Shape { # suporte braço
+						geometry Extrusion {
+							spine [
+								.1 0 0, -.05 0 0
+							]
+							crossSection [
+								-.07 -.15, -.0700002 .2, -.0695132 .216829, -.0629362 .227951,
+								-.0546412 .236697, -.0400002 .24, .26 .24, .26 .25, -.0400002 .25,
+								-.0542282 .246342, -.0657722 .240084, -.0747372 .230488,
+								-.0807322 .218358, -.0800002 .2, -.08 -.15, -.07 -.15
+							]
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor .37 .37 .37
+								specularColor .72 .89 .89
+								ambientIntensity .1
+								shininess .13
+							}
+						}
+					}
+				]
+			}
+
+			Transform {
+				scale .9 1 1.4
+				translation	-.36 .21 .05
+				children [
+					Shape { # almofada braço
+						geometry Extrusion {
+							spine [
+								.05 0 0, -.05 0 0
+							]
+							crossSection [
+								.0954718 .116827, .1 .1, .1 .05, .1 -.05, .1 -.1, .094489 -.119532,
+								.0814852 -.132707, .0649586 -.141453, .0445806 -.147677,
+								.0246067 -.15019, 0 -.15, -.06 -.15, -.0735484 -.15, -.0851613 -.149226,
+								-.0938065 -.143806, -.1 -.132387, -.100095 -.105286,
+								-.1 .0854516, -.0998532 .130793, -.0969032 .138581,
+								-.092029 .143496, -.0851613 .146903, -.0720675 .149968,
+								-.06 .15, 0 .15, .0279531 .150357, .0525905 .147529,
+								.071264 .143426, .0882113 .133399, .0954718 .116827
+							]
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor .349 .098 .098
+								specularColor .369 .0588 .0588
+								emissiveColor .1 .03 .03
+								ambientIntensity .0233
+								shininess .06
+							}
+						}
+					}
+				]
+			}
+
+#			Transform { #parafuso 1
+#				 scale 0.05 0.05 0.05
+#				 rotation 1 0 0 1.57
+#				 translation .13 -.47 .13
+#				 children [
+#					 Screw {}
+#				 ]
+#			}
+
+#			Transform { #parafuso 2
+#				 scale 0.05 0.05 0.05
+#				 rotation 1 0 0 1.57
+#				 translation -.13 -.47 .13
+#				 children [
+#					 Screw {}
+#				 ]
+#			}
+
+#			Transform { #parafuso 3
+#				 scale 0.05 0.05 0.05
+#				 rotation 1 0 0 1.57
+#				 translation .13 -.47 -.13
+#				 children [
+#					 Screw {}
+#				 ]
+#			}
+
+#			Transform { #parafuso 4
+#				 scale 0.05 0.05 0.05
+#				 rotation 1 0 0 1.57
+#				 translation -.13 -.47 -.13
+#				 children [
+#					 Screw {}
+#				 ]
+#			}
+		]
+	}
+}
+
+

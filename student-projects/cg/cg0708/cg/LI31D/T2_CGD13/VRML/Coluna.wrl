@@ -1,0 +1,47 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Membrana []["Membrana.wrl"]
+EXTERNPROTO	ColFrame []["ColFrame.wrl#ColFrame"]
+
+PROTO Coluna [] {
+	Transform {
+		rotation 1 0 0 .15
+		children [
+						
+			Transform {
+				children [
+					ColFrame {}
+				]
+			}
+
+			Transform {
+				children [
+					Membrana {}
+				]
+			}
+			Transform {
+				scale .7 .7 .7
+				translation	0 -.35 .075
+				children [
+					Membrana {}
+				]
+			}
+			Transform {
+				translation	0 .4 -0.35
+				children [
+					Shape {
+						geometry Box { size	.1 .1 .3 }
+						appearance Appearance {
+							material Material {
+								diffuseColor .4 .4 .4
+								specularColor .77 .77 .77
+								ambientIntensity .25
+								shininess .6
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}

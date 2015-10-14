@@ -1,0 +1,132 @@
+#VRML V2.0 utf8
+
+PROTO ar_condicionado
+[
+]
+{
+  Shape {
+  geometry Extrusion { 
+      crossSection [0.15 0.1, 0.15 -0.2, -0.15 -0.2, -0.12 0.1,0.15 0.1 ]
+    spine [0 0 -0.5, 0 0 0.5]
+    scale [1 1]
+    orientation 0 0 1 0
+    endCap TRUE
+    beginCap TRUE
+    solid FALSE
+    ccw TRUE
+    convex TRUE
+    creaseAngle 0
+	
+  }
+  appearance Appearance { 
+		material Material { 
+			diffuseColor  0.9 0.9 0.9	 
+	    }
+		texture ImageTexture	{
+			url	"wstlt1_5_on.png"
+		}
+		textureTransform TextureTransform {
+			scale 50 1
+		}
+	}
+ }
+
+}
+
+PROTO Lateral[
+]
+{
+	Shape {
+		geometry Extrusion { 
+    	  crossSection [0.15 0.1, 0.15 -0.2, -0.15 -0.2, -0.12 0.1,0.15 0.1 ]
+    		spine [0 0 -0.01, 0 0 0.01]
+		}
+		appearance Appearance { 
+			material Material { 
+				diffuseColor  0.9 0.9 0.9	 
+	    	}
+		}
+
+	}
+}
+PROTO Tampa[]{
+	Shape {
+		geometry Box {
+			size  0.3 0.01 1.02
+		}
+		appearance Appearance { 
+			material Material { 
+				diffuseColor  0.9 0.9 0.9	 
+	    	}
+		}
+	}
+
+}
+PROTO ar_condicionado2
+[
+]
+{
+  Shape {
+  geometry Extrusion { 
+      crossSection [-0.12 0.1, -0.1 0.2, 0.15 0.2, 0.15 0.1,-0.12 0.1]
+    spine [0 0 -0.5, 0 0 0.5]
+    scale [1 1]
+    orientation 0 0 1 0
+    endCap TRUE
+    beginCap TRUE
+    solid FALSE
+    ccw TRUE
+    convex TRUE
+    creaseAngle 0
+  }
+  appearance Appearance { 
+	  material Material { diffuseColor  0.9 0.9 0.9	 } 
+	  texture ImageTexture {
+		url "exaust.jpg"
+		  
+	  }
+	  textureTransform TextureTransform {
+		  rotation  -1.57
+	  }
+  }
+ }
+
+}
+
+
+PROTO ar_c_f[
+]
+{
+
+ Transform {
+    
+    children 
+    [
+	  Transform	{ 
+        children ar_condicionado { } 
+	  }
+      
+	  Transform	{	   
+        children ar_condicionado2 { }
+	  
+	  }
+	  Transform	{
+		translation	0 0 0.5
+		children Lateral {}
+	  }
+	  Transform	{
+		translation	0 0 -0.5
+		children Lateral {}
+	  }
+	  Transform	{
+		  translation 0 0.20 0
+		  children Tampa {}
+	  }
+    ]
+  }
+}
+
+#ar_condicionado	{}
+#ar_condicionado2 {}
+
+ar_c_f {}

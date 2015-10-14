@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Semana Informática 2007</title>
+        <link type="text/css" rel="stylesheet" href="style/common.css" />
+        <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+        </script>
+        <script type="text/javascript">
+            _uacct = "UA-826167-3";
+            urchinTracker();
+        </script>
+        <script type="text/ecmascript">
+        //<![CDATA[			
+			var imagem = null;
+			var ligacao1 = null;
+			var ligacao2 = null;
+			var local = null;
+			var autores = null;
+			var info = null;
+			var turmas = ['LI301', 'LI302', 'LI351'];
+			var dados = [];
+			var selectedMenu = null;
+			
+			function Info(local, autores)
+			{
+				this.GetLocal = function () { return local; };
+				this.GetAutores = function () { return autores; };
+			}
+			
+			dados[0] = [
+				new Info('Sala de Jogos', 'Bruno Machado, Nuno Balseiro, André Leal'),
+				new Info('Átrio do DEETC', 'Carlos Vicente, Eduardo Loureiro, Rui Ferrão'),
+				new Info('Átrio da Secretaria', 'Luís Gonçalves, Filipe Nascimento, João Cordeiro'),
+				new Info('Casa de banho DEETC', 'João Antunes, José Costa, Alexandre Sarabuga'),
+				new Info('Laboratório de Quimica', 'Tiago Freitas, Manuel Felício, João Neto'),
+				new Info('Carro', 'Nuno Paz, Marisa Jorge, André Santinho'),
+				new Info('Auditório Principal', 'Ivo Baião, Tiago Santos, Rui Taborda'),
+				new Info('Papelaria', 'Telmo Miranda, Hugo Jesus, Nuno Rodrigues'),
+				new Info('Pavilhão G', 'Luís Cunha, Tiago Ramalho, Emanuel Carvalho'),
+				new Info('Entrada Principal', 'Rui Mourato, João Ferreira, Tiago Gusmão'),
+				new Info('Aqui Estuda-se', 'Ana Almeida, Rui Aires, Filipe Serra'),
+				new Info('Bar Sala 13', 'Hugo Gabriel, Pedro Trigo'),
+				new Info('Animação actual CCISEL -> novo CCISEL', 'Gonçalo Monteiro, Alexandre Viseu'),
+				new Info('Refeitório', 'Jorge Cardoso, Valter Silva, Luís Silvares'),
+				new Info('Ginásio Aqui Estuda-se', 'Vítor Sezefredo, Fábio Franco'),
+				new Info(null, null),
+				new Info('Biblioteca', 'Vírginia Ramalho, Tony Tam'),
+				new Info('Sala LH3', 'Raul Costa, Ruben Gonçalves, Pedro Amaral')];
+			
+			dados[1] = [
+				new Info('Auditório DEEA', 'Luís Brás, Nuno Miguel, Vitor Chão'),
+				new Info('Sala C0.1', 'Carina Gomes, Nuno Maurício'),
+				new Info('Elevador DEETC', 'Bruna Marques, Vera Jesus, Miguel Cardoso'),
+				new Info('Máquina Café do DEETC', 'Daniel Almeida, Luís Costa'),
+				new Info('Sala LS1', 'Ricardo Santinho, David Vitorino, Hélio Miranda'),
+				new Info('Átrio Principal', 'David Macedo, Nuno Coelho'),
+				new Info('Câmara', 'José Costa, Leonardo Chung, Nuno Chaves'),
+				new Info('Cabine Segurança', 'José Daroeira, Pedro Tendeiro, Sara Jorge'),
+				new Info('Sala G2.7', 'Carlos Belo, Rui Teixeira, Ivo Coimbra')];
+				
+			dados[2] = [
+				new Info('Secretaria', 'Ernani Junior, Andreia Nóbrega'),
+				new Info(null, null),
+				new Info(null, null),
+				new Info(null, null),
+				new Info('Máquina de café e comida do Aqui Estuda-se', 'Ana Carvalho')];
+        
+			function Load()
+			{
+				imagem = document.getElementById("currentImage");
+				ligacao1 = document.getElementById("ligacao1");
+				ligacao2 = document.getElementById("ligacao2");
+				local = document.getElementById("local");
+				autores = document.getElementById("autores");
+				info = document.getElementById("info");
+			}
+			
+			function changeSelected(obj)
+			{
+				obj.className = "groupSelected";
+			}
+			
+			function changeRegular(obj)
+			{
+				if (obj === selectedMenu)
+				{
+					return;
+				}
+				obj.className = "group";
+			}
+			
+			function selectGroup(menu, turma, grupo)
+			{
+				var informacao = dados[turma][grupo - 1];
+				if (informacao.GetLocal() === null)
+				{
+					info.style.display = "none";
+					imagem.src = "images/si.png";
+					return;
+				}
+				info.style.display = "block";
+				imagem.src = "cg/" + turmas[turma] + "/G" + grupo + "/image.png";
+				ligacao1.href = ligacao2.href = "cg/" + turmas[turma] + "/G" + grupo + "/index.wrl";
+				local.replaceChild(
+					document.createTextNode(informacao.GetLocal()),
+					local.childNodes[0]);
+				autores.replaceChild(
+					document.createTextNode(informacao.GetAutores()),
+					autores.childNodes[0]);
+				if (null !== selectedMenu)
+				{
+					selectedMenu.className = "group";
+				}
+				selectedMenu = menu;
+				selectedMenu.className = "groupSelected";
+			}
+        //]]>
+        </script>
+        
+        <style type="text/css">
+			#groupMenu
+			{
+				text-align: center;
+				float: left;
+				width: 120px;
+				background-color: #F1EDED;
+				margin-right: 20px;
+				padding: 10px;
+				border: solid 1px #CBCBCB;
+			}
+        
+			.group
+			{
+				padding-top: 5px;
+				padding-bottom: 5px;
+				padding-left: 1px;
+				padding-right: 1px;
+				cursor: pointer;
+			}
+			
+			.groupSelected
+			{
+				padding-top: 4px;
+				padding-bottom: 4px;
+				font-weight: bold;
+				background-color: #CBCBCB;
+				border: solid 1px gray;
+				cursor: pointer;
+			}
+			
+			h5
+			{
+				border-bottom: solid 1px gray;
+			}
+        </style>
+    </head>
+    <body onload="Load()">        
+		<div style="padding-left: 60px; float: left; padding-top: 15px; border-bottom: solid 1px gray; width: 100%">
+				<span style="float: left"><img src="images/logo_isel.png" alt="ISEL" /></span>
+				<span style="float: left; padding-top: 20px; padding-left: 30px; text-align: center">
+					<h2>Instituto Superior de Engenharia de Lisboa</h2>
+					<h3>Engenharia Informática e de Computadores</h3>
+				</span>
+			</div>
+        <div style="clear: left; padding-left: 30px">
+			<h3>Trabalhos em Computação Gráfica</h3>
+			<h4>Semestre Inverno 2006/2007</h4>
+			<p>
+				<b>Nota:</b> Para visualizar os trabalhos é necessário instalar um
+				cliente de VRML como, por exemplo, o
+				<a href="cortvrml.zip">Parallel Graphics' Cortona</a>.
+			</p>
+			<div style="min-width: 754px">
+				<div id="groupMenu">
+					<h4>TURMAS</h4>
+					<div style="width: 40px; float: left;">
+						<h5>LI301</h5>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 1)">G01</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 2)">G02</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 3)">G03</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 4)">G04</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 5)">G05</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 6)">G06</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 7)">G07</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 8)">G08</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 9)">G09</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 10)">G10</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 11)">G11</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 12)">G12</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 13)">G13</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 14)">G14</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 15)">G15</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 17)">G17</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 0, 18)">G18</div>
+					</div>
+					<div style="width: 40px; float: left;">
+						<h5>LI302</h5>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 1, 1)">G01</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 1, 2)">G02</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 1, 3)">G03</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 1, 4)">G04</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 1, 5)">G05</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 1, 6)">G06</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 1, 7)">G07</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 1, 8)">G08</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 1, 9)">G09</div>
+					</div>
+					<div style="width: 40px; float: left;">
+						<h5>LI351</h5>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 2, 1)">G01</div>
+						<div class="group" onmouseover="changeSelected(this)" onmouseout="changeRegular(this)" onclick="selectGroup(this, 2, 5)">G05</div>
+					</div>
+				</div>
+				<div style="margin-left: 160px">
+					<a href="#" id="ligacao1"><img alt="Trabalho em computação gráfica" id="currentImage" src="images/si.png" style="border: solid 1px gray" /></a><br />
+					<div id="info" style="display: none">
+					<a id="ligacao2" href="#">Ver trabalho &gt;</a><br />
+					<p><b>Local:</b> <span id="local">Local</span><br />
+					<b>Autores:</b> <span id="autores">Autores</span>
+					</p>
+					</div>
+				</div>
+			</div>
+        </div>
+	</body>
+</html>

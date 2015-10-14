@@ -1,0 +1,410 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO eixo []
+"Eixo.wrl#Referencial"
+
+EXTERNPROTO PortaPrincipalH []
+"Portas.wrl#PortaPrincipalH"
+
+EXTERNPROTO PortaWCPequenoH []
+"Portas.wrl#PortaWCPequenoH"
+
+EXTERNPROTO PortaWCGrandeH []
+"Portas.wrl#PortaWCGrandeH"
+
+EXTERNPROTO bancada_lavatorio_H []
+"Lavatorios.wrl#bancada_lavatorio_H"
+
+EXTERNPROTO espelho [field MFString urlstr]
+"Espelho.wrl#espelho"
+
+EXTERNPROTO CaixaPapelHigienico []
+"CaixaPapelHigienico.wrl#CaixaPapelHigienico"
+
+EXTERNPROTO caixapapeis []
+"caixapapeis.wrl#caixapapeis"
+
+EXTERNPROTO secadormaos []
+"secadormaos.wrl#secadormaos"
+
+EXTERNPROTO separadorurinol []
+"separadorurinol.wrl#separadorurinol"
+
+EXTERNPROTO urinol []
+"Urinol.wrl#urinol"
+
+EXTERNPROTO Chao []
+"Chao.wrl#Chao_H"
+
+EXTERNPROTO Tecto[]
+"Tecto.wrl#TectoIluminadoH"
+
+EXTERNPROTO LuzLavatorio[]
+"LuzLavatorio.wrl#LuzLavatorio"
+
+EXTERNPROTO sanita_autocolismo_wcPeq []
+"Sanita_autocolismo.wrl#sanita_autocolismo_wcPeq"
+
+EXTERNPROTO sanita_autocolismo_wcGra []
+"Sanita_autocolismo.wrl#sanita_autocolismo_wcGra"
+
+EXTERNPROTO torneira_aut_wcPeq_H []
+"torneira_autocolismo.wrl#torneira_aut_wcPeq_H"
+
+EXTERNPROTO torneira_aut_wcGra []
+"torneira_autocolismo.wrl#torneira_aut_wcGra"
+
+EXTERNPROTO Sabonete []
+"Sabonete.wrl#Sabonete"
+
+PROTO WCH[] {
+	Group {
+		children [
+			Chao{}
+			Transform {
+				translation	0 2.4 0
+				children Tecto {}
+			}
+	#*****************CASA DE BANHO PEQUENA********************* 
+			
+			#Parede  WC peq. ligar à parede curva
+			Transform {
+				translation	1.9 1.2 3.65	  
+				children [
+					Shape {
+    					geometry Box {size 0.2 2.4 0.20}
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor 1 1 1 
+							}
+    					}
+					}
+				]
+			}
+			#Parede 1 WC peq.	 DONE
+			Transform {
+				rotation 0 1 0 -1.57
+				translation	0.5 1.2 2.925 	  
+				children [
+					Shape {
+    					geometry Box {size 0.75 2.4 0.20}
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor 1 1 1  
+							}
+    					}
+					}
+				]
+			}
+
+			#Parede 3 WC Peq.  DONE
+			Transform {
+				rotation 0 1 0 -1.57
+				translation	 1.9 1.2 2.65  	  #x #y->1.2 (metade da altura)  
+				children [
+					Shape {
+    					geometry Box {size 0.20 2.4 0.20}	#x + 0.20 para fazer canto
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor 1 1 1 
+							}
+    					}
+					}
+				]
+			}
+	#*****************CASA DE BANHO GRANDE********************* 
+			
+			#Parede 1 WC Grande  DONE
+			Transform {
+				rotation 0 1 0 -1.57
+				translation	0.10 1.2 1.05  	  #x encostado ao eixo #y->1.2 (metade da altura) #z-> 0.85 
+				children [
+					Shape {
+    					geometry Box {size 1.7 2.4 0.20}
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor 1 1 1  
+							}
+    					}
+					}
+				]
+			}
+			#Parede 2 WC Grande e Parede principal NORTE	DONE
+			Transform {
+				translation	2.2675 1.2 0.1  	  
+				children [
+					Shape {
+    					geometry Box {size 4.535 2.4 0.20}
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor 1 1 1  
+							}
+    					}
+					}
+				]
+			}
+
+			#CAIXA 1 entre parede 2 e 3	WC Grande		DONE
+			Transform {
+				translation	1.7 1.2 0.5  	  
+				children [
+					Shape {
+    					geometry Box {size 0.6 2.4 0.6}
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor 1 1 1  
+							}
+    					}
+					}
+				]
+			}
+
+			#CAIXA 2 entre WC grande e peq.			  DONE
+			Transform {
+				translation	1 1.2 2.225  	  
+				children [
+					Shape {
+    					geometry Box {size 2 2.4 0.65}
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor 1 1 1 
+							}
+    					}
+					}
+				]
+			}
+
+			#Parede Lateral (DIREITA)	 DONE
+			Transform {
+				rotation 0 1 0 -1.57
+				translation	4.4925 1.2 2.15  
+				children [
+					Shape {
+    					geometry Box {size 3.90 2.4 0.085}
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor 1 1 1 
+							}
+    					}
+					}
+				]
+			}
+
+			#Caixa 3	 DONE
+			Transform {
+				translation	4.15 1.2 0.4  	  
+				children [
+					Shape {
+    					geometry Box {size 0.6 2.4 0.4}
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor 1 1 1 
+							}
+    					}
+					}
+				]
+			}
+
+			Transform {
+				translation	4.15 1.075 1.625
+				children separadorurinol	{}
+			}
+
+			#Caixa 5	 DONE
+			Transform {
+				translation	4.15 1.2 2.75 	  
+				children [
+					Shape {
+    					geometry Box {size 0.6 2.4 0.2}
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor 1 1 1 
+							}
+    					}
+					}
+				]
+			}
+
+			#Caixa 6   DONE
+			Transform {
+				translation	3.95 1.2 2.925  	  
+				children [
+					Shape {
+    					geometry Box {size 1 2.4 0.15}
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor 1 1 1 
+							}
+    					}
+					}
+				]
+			}
+
+			#Porta Principal
+			Transform{
+				translation	3.9025 1.05 4
+				children PortaPrincipalH{}
+			}
+
+			#Parede de CIMA
+			Transform {
+				translation	3.9025 2.25 4
+				children [
+					Shape {
+    					geometry Box { size 1.1 0.3 0.2 }
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor   1 1 1 
+							}
+    					}
+					}
+				]
+			}
+
+			#Porta WC Grande
+			Transform{
+				rotation 0 1 0 1.57
+				translation	1.9 1.05 1.35 
+				children PortaWCGrandeH{}
+			}
+
+			#Parede de cima
+			Transform {
+				translation	1.9 2.25 1.35
+				children [
+					Shape {
+    					geometry Box { size 0.2 0.3 1.1 }
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor  1 1 1 
+							}
+    					}
+					}
+				]
+			}
+
+			#Porta WC Pequena
+			Transform{
+				rotation 0 1 0 1.57
+				translation	1.9 1.05 3.15
+				children PortaWCPequenoH	{}
+			}
+
+			#parede cima
+			Transform {
+				translation	1.9 2.25 3.15
+				children [
+					Shape {
+    					geometry Box { size 0.2 0.3 0.8 }
+    					appearance Appearance {
+        					material Material { 
+								diffuseColor  1 1 1 
+							}
+    					}
+					}
+				]
+			}
+
+			#lavatorios
+			Transform {
+				translation	2.925 0.7 0.5
+				children bancada_lavatorio_H	{}
+			}
+			
+			#espelho esquerdo
+			Transform {
+				translation	2.35 1.15 0.205
+				children espelho	{urlstr "imagens\1h.png"}
+			}
+		
+			#espelho direito
+			Transform {
+				translation	3.2 1.15 0.205
+				children espelho	{urlstr "imagens\2h.png"}
+			}
+		
+			#Caixa papel higienico wc peq
+			Transform {
+				translation	1.55 0.8 2.6
+				children CaixaPapelHigienico {}
+			}
+
+			#Caixa papel higienico wc grande
+			Transform {
+				rotation 0 1 0 1.57
+				translation	0.2575 0.8 0.8
+				children CaixaPapelHigienico	{}
+			}
+
+			#Caixa papel limpar maos
+			Transform {
+				rotation 0 1 0 1.57
+				translation	2 1.35 0.55
+				children caixapapeis	{}
+			}
+
+			#secador maos
+			Transform {
+				rotation 0 1 0 1.57
+				translation	2 1.33 2.3 
+				children secadormaos	{}
+			}
+
+			#urinol
+			Transform {
+				translation	4.35 0.75 2.15
+				rotation 0 1 0 -1.57
+				children urinol {}
+			}
+		
+			#urinol
+			Transform {
+				translation	4.35 0.75 1.1
+				rotation 0 1 0 -1.57
+				children urinol {}
+			}
+
+			#sanita wc grande
+			Transform {
+				translation	0.8 0 0.75
+				children sanita_autocolismo_wcGra {}
+			}
+
+			Transform {
+				translation	1.1 0.65 0.2
+				rotation 0 1 0 1.5706
+				children torneira_aut_wcGra{}
+			}
+
+			#sanita wc peq.
+			Transform {
+				translation	0.95 0 2.9
+				rotation 0 1 0 1.5706
+				children sanita_autocolismo_wcPeq {}
+			}
+
+			Transform {
+				translation	0.775 0.7 2.55
+				rotation 0 1 0 1.5706
+				children torneira_aut_wcPeq_H {}
+			}
+		
+			Transform {
+				translation	0 2.4 0
+				children  Tecto	{}
+			}
+
+			Transform {
+				translation	2.925 2 0.2
+				children LuzLavatorio {}
+			}
+
+			Transform {
+				translation	2.935 1.38 0.2
+				children Sabonete {}
+			}
+		]
+	}
+}
+
+WCH{}

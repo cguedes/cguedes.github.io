@@ -1,0 +1,267 @@
+#VRML V2.0 utf8
+
+PROTO torneira_autocolismo [] {
+	Group	{
+		children [
+			Transform {
+				translation	-0.0325 0 0
+				children [
+					#torneira abrir agua
+					Transform {
+						scale 0.01 0.01 0.01
+						children[
+							Shape{
+								  appearance Appearance {	
+									   material Material { 
+											diffuseColor 0.8 0.8 0.8 
+									   }
+								   }
+								   geometry Box { size 2.5 3 3 }
+							}
+						]	
+					}
+					#torneira abrir agua 2
+					Transform {
+						scale 0.01 0.01 0.01
+						rotation 1 0 0 -0.7854
+						children[
+							Shape{
+								  appearance Appearance {	
+									   material Material { 
+											diffuseColor 0.8 0.8 0.8 
+									   }
+								   }
+								   geometry Box { size 2.5 3 3 }
+							}
+						]	
+					}
+				]
+			}
+
+			Transform {
+				translation 0 0 0
+				rotation 0 0 1 -1.57
+				children [				
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 0.01
+								radius 0.02
+								side TRUE 
+								top TRUE  }
+					}
+				]
+			}
+	
+			Transform {
+				translation -0.01 0 0
+				rotation 0 0 1 -1.57
+				children [				
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 0.02
+								radius 0.01
+								side TRUE 
+								top TRUE  }
+					}
+				]
+			}
+		]	
+	}
+}
+
+PROTO ligacao_tubos []{
+   Transform {
+		scale 0.01 0.01 0.01
+		children[
+			Shape{
+				  appearance Appearance {	
+					   material Material { 
+							diffuseColor 0.8 0.8 0.8 
+					   }
+				   }
+				   geometry Extrusion {
+						crossSection[0.50		0.00	, 0.48		0.13	, 0.43		0.25	, 0.35		0.35	, 0.25		0.43	, 0.13		0.48	, 0.00		0.50	, -0.13		0.48	, -0.25		0.43	, -0.35		0.35	, -0.43		0.25	, -0.48		0.13	, -0.50		0.00	, -0.48		-0.13	, -0.43		-0.25	, -0.35		-0.35	, -0.25		-0.43	, -0.13		-0.48	, 0.00		-0.50	, 0.13		-0.48	, 0.25		-0.43	, 0.35		-0.35	, 0.43		-0.25	, 0.48		-0.13	, 0.50		0.00]	
+						spine[2.90	0.00	-0.78, 3.00	0.00	0.00	, 2.90	0.00	0.78	, 2.60	0.00	1.50	, 2.12	0.00	2.12	, 1.50	0.00	2.60	, 0.78	0.00	2.90	, 0.00	0.00	3.00 ]
+						beginCap FALSE
+						endCap FALSE
+						solid FALSE
+						creaseAngle	1
+				   }  
+			}
+		]	
+	}
+}
+
+PROTO torneira_aut_wcPeq_H []{
+
+	Group {
+		children [
+
+			torneira_autocolismo {}
+
+			# da torneira ate primeira curva
+			Transform {
+				scale 0.01 0.01 0.01
+				translation	-0.0125 0.03 0
+				children [					
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 6
+								radius 0.5
+								side TRUE 
+								top TRUE  }
+					}
+				]
+			}
+
+   			Transform {
+				rotation 1 0 0 -1.5708
+				translation	-0.0125 0.05 -0.029					 
+				children[
+					Transform {
+						rotation 0 0 1 -1.5708
+						children ligacao_tubos {}
+					}
+
+				]
+			}
+			#da primeira curva à segunda
+			Transform {
+				scale 0.01 0.01 0.01
+				rotation 1 0 0 1.57
+				translation	-0.0125 0.0795 -0.06
+				children [					
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 8
+								radius 0.5
+								side TRUE 
+								top TRUE  }
+					}
+				]
+			}
+	
+			Transform {
+				rotation 1 0 0 -1.5708
+				translation	-0.0425 0.0795 -0.1						 
+				children[
+					Transform {
+						rotation 1 0 0 -1.5708
+						children ligacao_tubos {}
+					}
+
+				]
+			}
+			
+			#até ao autocolismo
+			Transform {
+				scale 0.01 0.01 0.01
+				rotation 0 0 1 1.57
+				translation	-0.09 0.0795 -0.13
+				children [					
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 10
+								radius 0.5
+								side TRUE 
+								top TRUE  }
+					}
+				]
+			}
+		]
+	}
+}
+
+PROTO torneira_aut_wcGra[] {
+
+	Group {
+		children [
+			torneira_autocolismo {}	
+
+			#da torneira até à curva
+			Transform {
+				scale 0.01 0.01 0.01
+				translation	-0.0125 0.03 0
+				children [					
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 6
+								radius 0.5
+								side TRUE 
+								top TRUE  }
+					}
+				]
+			}
+
+			Transform {
+				rotation 1 0 0 -1.5708
+				translation	-0.0125 0.05 -0.029				 
+				children[
+					Transform {
+						rotation 0 0 1 -1.5708
+						children ligacao_tubos {}
+					}
+				]
+			}
+
+			Transform {
+				scale 0.01 0.01 0.01
+				rotation 1 0 0 1.57
+				translation	-0.0125 0.0795 -0.06
+				children [					
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 0.8 0.8 0.8 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 8
+								radius 0.5
+								side TRUE 
+								top TRUE  }
+					}
+				]
+			}
+		]
+	}
+}
+
+torneira_aut_wcGra {}

@@ -1,0 +1,208 @@
+#VRML V2.0 utf8
+EXTERNPROTO Eixos [] "eixo.wrl#Eixos"
+
+EXTERNPROTO Canto_cano [
+	field SFColor cor
+]
+"chuveiro.wrl#Canto_cano"
+EXTERNPROTO Tubo [ 
+	field SFFloat altura, field SFFloat raio, field SFRotation rot, field SFColor cor
+]
+"chuveiro.wrl#Tubo"
+
+
+# ESTE BANCO RESPEITA
+# QUASE A NORMA HMN, a origem ta centrada na perna inferior eskerda
+
+PROTO Tampo
+[]
+{
+	Shape {
+		appearance Appearance { 
+			texture	ImageTexture { url "Texturas\mesas\madeira.jpg" }#repeatS TRUE repeatT TRUE}
+			material Material {diffuseColor 0.36 0.24 0.14}
+		}
+		geometry Cylinder {
+			radius 12
+			height 2
+			bottom TRUE	side TRUE top TRUE
+		}
+	}
+}
+
+
+PROTO Suporte_Pes	#o "tubo" tem 1cm de raio, e a circunferencia do meio tem 9cm de raio
+[]
+{
+	Shape {
+		appearance Appearance {
+			material Material {
+				diffuseColor 0.25 0.25 0.25
+			}
+		}
+		geometry Extrusion {
+			crossSection [1	0,0.984807753	0.173648178	,0.939692621	0.342020143	,0.866025404	0.5	,0.766044443	0.64278761	,0.64278761	0.766044443	,0.5	0.866025404	,
+							0.342020143	0.939692621	,0.173648178	0.984807753	,6.12574E-17	1	,-0.173648178	0.984807753	,-0.342020143	0.939692621	,-0.5	0.866025404	,
+							-0.64278761	0.766044443	,-0.766044443	0.64278761	,-0.866025404	0.5	,-0.939692621	0.342020143	,-0.984807753	0.173648178	,-1	1.22515E-16	,
+							-0.984807753	-0.173648178	,-0.939692621	-0.342020143	,-0.866025404	-0.5	,-0.766044443	-0.64278761,-0.64278761	-0.766044443,
+							-0.5	-0.866025404,-0.342020143	-0.939692621	,-0.173648178	-0.984807753,-1.83772E-16	-1	,0.173648178	-0.984807753	,0.342020143	-0.939692621,
+							0.5	-0.866025404	,0.64278761	-0.766044443	,0.766044443	-0.64278761	,0.866025404	-0.5	,0.939692621	-0.342020143	,0.984807753	-0.173648178	,1	0]
+			spine [
+				 10.0 0.0  0.00,   9.25 0.0 3.85,
+				 7.05 0.0  7.05,   3.85 0.0 9.25,
+				 0.00 0.0  10.0,  -3.85 0.0 9.25,
+				-7.05 0.0  7.05,  -9.25 0.0 3.85,
+				-10.0 0.0  0.00,  -9.25 0.0 -3.85,
+				-7.05 0.0 -7.05,  -3.85 0.0 -9.25,
+				 0.00 0.0 -10.0,   3.85 0.0 -9.25,
+				 7.05 0.0 -7.05,   9.25 0.0 -3.85,
+				 10.0 0.0  0.00,
+			]
+			
+			creaseAngle 0.5
+			beginCap TRUE
+			endCap   TRUE
+			solid FALSE
+		}
+	}
+}
+
+PROTO Perna_Arco				  #medidas nao confirmadas
+[]
+{
+	Group {
+		children [
+			Transform {
+				translation	0 20 0
+				children Tubo{altura 40, raio 1, rot	0 0 0 0, cor 0.5 0.5 0.5}
+			}
+			Transform {
+				translation	-1 40 -1
+				children Canto_cano	{cor 0.5 0.5 0.5}
+			}
+			Transform {
+				translation	8 43.5 0
+				rotation 0 0 1 1.57
+				children Tubo{altura 10, raio 1, rot	0 0 0 0, cor 0.5 0.5 0.5}
+			}
+			Transform	{			
+				translation	16 40 0
+				rotation 0 1 0 3.1416
+				children 
+				Transform {
+					translation	-1 0 -1
+					children Canto_cano	{cor 0.5 0.5 0.5}
+				}
+			}
+			Transform {
+				translation	16 20 0
+				children Tubo{altura 40, raio 1, rot	0 0 0 0, cor 0.5 0.5 0.5}
+			}
+		]
+	}
+}
+
+PROTO Pernas
+[]
+{
+	Group {
+		children [
+			Perna_Arco {}
+			Transform {
+				translation	8 0 8
+				rotation 0 1 0 1.57
+				children Perna_Arco {}
+			}
+			Transform {
+				translation	8 41.5 0
+				children Tubo {altura 25, raio 1.5, rot 0 0 0 0, cor 0.25 0.25 0.25}
+			}
+		]
+	}
+}
+
+PROTO Banco
+[]
+{
+	Transform {
+		translation	4 0 12
+		# X = 4
+		children [
+			Pernas{}
+			Transform {
+				translation	8 54.5 0
+				children Tampo {}
+			}
+			Transform {
+				translation	8 12 0
+				children Suporte_Pes {}
+			}
+		]
+	}
+}
+
+
+PROTO FilaDeBancos[
+]
+{
+	Group {
+		children
+		[
+			Transform {
+				children Banco {}
+			}
+#			Transform {
+#				translation	0 0 44
+#				children Banco {}
+#			}
+			Transform {
+				translation	0 0 88
+				children Banco {}
+			}
+#			Transform {
+#				translation	0 0 132
+#				children Banco {}
+#			}
+			Transform {
+				translation	0 0 176
+				children Banco {}
+			}
+#			Transform {
+#				translation	0 0 220
+#				children Banco {}
+#			}
+			Transform {
+				translation	0 0 264
+				children Banco {}
+			}
+#			Transform {
+#				translation	0 0 308
+#				children Banco {}
+#			}
+				Transform {
+				translation	0 0 352
+				children Banco {}
+			}
+#				Transform {
+#				translation	0 0 396
+#				children Banco {}
+#			}
+
+
+		]
+	}
+
+}
+
+
+
+
+
+
+FilaDeBancos {}
+
+
+Transform {
+	scale 10 10 10
+	children Eixos {}
+}

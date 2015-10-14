@@ -1,0 +1,328 @@
+#VRML V2.0 utf8
+
+PROTO retroprojector[
+	exposedField SFBool on TRUE
+]
+{
+	Transform	{
+	children 
+		[
+			Shape {
+				geometry Box {size 0.01 0.07 0.45}
+				appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+			}
+
+
+			Transform {translation -0.44 0 0 children
+				Shape {
+					geometry Box {size 0.01 0.07 0.45}
+					appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+				}
+			}
+
+			Transform {translation -0.22 0 -0.22 children
+				Shape {
+					geometry Box {size 0.45 0.07 0.01}
+					appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+				}
+			}
+
+			Transform {translation -0.22 0 0.22 children
+				Shape {
+					geometry Box {size 0.45 0.07 0.01}
+					appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+				}
+			}
+
+			Transform{translation -0.22 -0.035 0 children
+				Shape{
+					geometry Box {size 0.45 0.01 0.45}
+					appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+				}
+			}
+
+			Transform {translation 0 0.07 0 children
+				Shape {
+					geometry Box {size 0.01 0.07 0.45}
+					appearance Appearance {material Material {diffuseColor 0 0 0}}
+				}
+			}
+
+			Transform {translation -0.44 0.07 0 children
+				Shape {
+					geometry Box {size 0.01 0.07 0.45}
+					appearance Appearance {material Material {diffuseColor 0 0 0}}
+				}
+			}
+
+			Transform {translation -0.22 0.07 -0.22 children
+				Shape {
+					geometry Box {size 0.45 0.07 0.01}
+					appearance Appearance {material Material {diffuseColor 0 0 0}}
+				}
+			}
+
+			Transform {translation -0.22 0.07 0.22 children
+				Shape {
+					geometry Box {size 0.45 0.07 0.01}
+					appearance Appearance {material Material {diffuseColor 0 0 0}}
+				}
+			}
+
+			Transform {translation 0 0.18 0 children
+				Shape {
+					geometry Box {size 0.01 0.15 0.45}
+					appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+				}
+			}
+
+			Transform {translation -0.44 0.18 0 children
+				Shape {
+					geometry Box {size 0.01 0.15 0.45}
+					appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+				}
+			}
+
+			Transform {translation -0.22 0.18 -0.22 children
+				Shape {
+					geometry Box {size 0.45 0.15 0.01}
+					appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+				}
+			}
+
+			Transform {translation -0.22 0.18 0.22 children
+				Shape {
+					geometry Box {size 0.45 0.15 0.01}
+					appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+				}
+			}
+
+			Group {children	[
+				DEF	LUZ DirectionalLight {
+				   on IS on
+				   color 1 1 0
+				   direction 0 -1.57 0
+				   intensity 10 
+				   ambientIntensity	2
+		   
+			   }
+
+			 
+				Transform {
+					translation -0.22 0.01 0 children
+					Shape{
+						geometry Cylinder	{height 0.05 radius 0.02}
+						appearance Appearance {material  Material {emissiveColor 0 0 0 }}
+					}
+
+				}
+
+				Transform {	rotation 1 0 0 3.14
+							translation -0.22 0.04 0 children 
+					Shape {
+						geometry Cone {height 0.07 bottomRadius 0.05}
+						appearance Appearance {material  Material {emissiveColor 0 0 0 }}
+					}
+				}
+			] }
+			Transform {
+				translation	-0.22 0.25 0.21 children
+				Shape{
+					geometry Box { size 0.45 0.01 0.03}
+					appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+				}
+			}
+
+			Transform {
+				translation	-0.22 0.25 -0.21 children
+				Shape{
+					geometry Box { size 0.45 0.01 0.03}
+					appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+				}
+			}
+
+			Transform{
+				translation	-0.42 0.25 0 children
+				Shape{
+					geometry Box{size 0.03 0.01 0.45}
+					appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+				}
+			}
+
+			Transform{
+				translation	-0.01 0.25 0 children
+				Shape{
+					geometry Box{size 0.03 0.01 0.45}
+					appearance Appearance {material Material {diffuseColor 0.65 0 0}}
+				}
+			}
+#			Transform{
+				
+#				translation	-0.215 0.25 0 children
+#				Shape {
+#					geometry Box{size 0.38 0.01 0.39}
+#					appearance Appearance {material Material {diffuseColor 1 1 1 transparency 0.8}}
+				
+#				}
+#			}
+		
+
+			Transform{
+				translation	0.025 0.1 0 children
+				Shape{
+					geometry Box {size 0.04 0.15 0.05}
+					appearance Appearance {material Material {diffuseColor 0.65 0.65 0.65}}
+				}
+			}
+
+			Transform{
+				translation	0.025 0.27 0 children
+				Shape{
+					geometry Box {size 0.03 0.45 0.04}
+					appearance Appearance {material Material {diffuseColor 0.65 0.65 0.65}}
+				}
+			}
+
+			Transform{
+				translation	-0.05 0.5 0 children
+				Shape{
+					geometry Box {size 0.18 0.03 0.04}
+					appearance Appearance {material Material {diffuseColor 0.65 0.65 0.65}}
+				}
+			}
+
+			Transform
+			{
+				translation	-0.19 0.495 0 children
+				Shape {
+					geometry Box{size 0.1 0.007 0.1}
+					appearance Appearance {material Material {diffuseColor 1 1 1}}
+				}
+			}
+
+			Transform
+			{
+				translation -0.19 0.50 -0.049 children
+				Shape{
+					geometry Box{size 0.1 0.01 0.003}
+					appearance Appearance {material Material {diffuseColor 1 1 1}}
+				}
+			}
+
+			Transform 
+			{
+				translation	-0.24 0.5 0 children
+				Shape{
+					geometry Box {size 0.003 0.01 0.1}
+					appearance Appearance {material Material {diffuseColor 1 1 1}}
+				}
+			}
+
+			Transform 
+			{
+				translation	-0.142 0.5 0 children
+				Shape{
+					geometry Box {size 0.003 0.01 0.1}
+					appearance Appearance {material Material {diffuseColor 1 1 1}}
+				}
+			}
+
+			Transform
+			{
+				translation	-0.191 0.542 0 rotation 1 0 0 -0.785 children
+				Shape{
+					geometry Box {size 0.094 0.003 0.12}
+					appearance Appearance {material Material {diffuseColor 1 1 1}}
+				}
+			}
+
+			Transform
+			{
+				translation	-0.19 0.495 0 children
+				Shape {
+					geometry Cylinder {height 0.025 radius 0.03 bottom FALSE top FALSE }
+					appearance Appearance {material Material {diffuseColor 0 0 0}}
+				}
+			}
+
+			Transform 
+			{
+				scale 1 0.3 1
+				translation	-0.19 0.495 0 children
+				Shape {
+					geometry Sphere	{radius 0.03}											   
+					appearance Appearance {material Material {diffuseColor 1 1 1 transparency 0.8}}
+				}
+			}
+
+			Transform 
+			{
+				rotation 0 0 1 1.57
+				translation	0.035 0.08 0 children
+				Shape {
+					geometry Cylinder {radius 0.02 height 0.07}
+					appearance Appearance {material Material {diffuseColor 0.55 0 0}}
+
+				}
+			}
+
+			Transform 
+			{
+				rotation 0 0 1 1.57
+				translation	0.075 0.08 0 children
+				Shape {
+					geometry Cylinder {radius 0.03 height 0.01}
+					appearance Appearance {material Material {diffuseColor 0.55 0 0}}
+
+				}
+			}
+
+		]
+  
+	}	
+
+}
+
+
+Group {
+	children [
+		DEF	TS TouchSensor {}
+
+		Transform{
+						
+			translation	-0.215 0.25 0 children
+			Shape {
+				geometry Box{size 0.38 0.01 0.39}
+				appearance Appearance {material Material {diffuseColor 1 1 1 transparency 0.8}}
+			}
+		}
+	]
+}
+
+
+DEF R retroprojector {on FALSE }
+
+
+
+DEF	StateS Script {
+	
+	
+	field SFBool state FALSE
+	eventIn	SFBool Touch
+	eventOut SFBool	state_changed
+	
+
+	url	"javascript:
+
+	function Touch( val, timestamp){
+		if(val==false) return;
+		state=!state;
+		state_changed=state;
+			
+	}
+	
+	  "
+  }
+
+ROUTE TS.isActive TO StateS.Touch
+ROUTE StateS.state_changed TO R.on

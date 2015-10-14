@@ -1,0 +1,532 @@
+#VRML V2.0 utf8
+
+#####################################################################
+#			RESTAURANTE												#
+#####################################################################
+#Janela do restaurante
+PROTO Janela[]{
+	Transform {
+		children [
+			Transform {
+				translation 0.805 0 0
+				children DEF BarraVertival Shape {
+					geometry Box {size 0.1 3 0.05}
+					appearance Appearance {
+						material Material {
+							diffuseColor .61 .61 .61
+							specularColor .39 .39 .39
+							ambientIntensity .25
+							shininess .11
+						}
+					}
+				}
+			}
+			Transform {
+				translation -0.805 0 0
+				children USE BarraVertival
+			}
+			DEF	Vidro Shape	{
+				geometry Box {size 1.71 3 0.03}
+				appearance Appearance {
+					material Material {
+						diffuseColor .05 .46 .73
+						specularColor 1 1 1
+						ambientIntensity 0
+						shininess .31
+						transparency .59
+						emissiveColor .03 .04 .2
+					}
+				}
+			}
+			Transform {
+				translation	0 0.5 0
+				children DEF	BarraHorizontal Shape {
+					geometry Box {size 1.70 0.1 0.04}
+					appearance Appearance {
+						material Material {
+							diffuseColor .61 .61 .61
+							specularColor .39 .39 .39
+							ambientIntensity .25
+							shininess .11
+						}
+					}
+				}
+			}
+			Transform {
+				translation	0 -0.5 0
+				children USE BarraHorizontal 
+			}
+			DEF BarraH Transform {
+				scale 0.55 1 1
+				children Transform {
+					rotation 0 0 1 1.57
+					translation	0 1.45 0
+					children USE BarraVertival
+				}
+			}
+			Transform {
+				translation	0 -2.9 0
+				children USE BarraH
+			}
+		]
+	}
+}
+
+
+
+#Conjunto de janela com chão em forma de queijo
+PROTO JanelaChao[]{
+Transform {
+	children [
+ 		Transform {
+			translation	0 0 -10.95
+			children Janela {}
+		}	  
+ 		Transform {	#Chão
+			translation	0 -2.5 0
+			children Shape {
+				geometry Extrusion {
+					crossSection [0 0, 0.86 -11, -0.86 -11, 0 0]
+					spine [0 0 0, 0 1 0]
+					beginCap TRUE
+					endCap TRUE
+					ccw	TRUE
+					solid TRUE
+					convex TRUE
+				}
+				appearance Appearance{
+					material Material {
+						diffuseColor .992 1 1
+						specularColor .482 .506 .475
+						emissiveColor .18 .169 .129
+						ambientIntensity .522
+						shininess .671
+					}
+					texture	ImageTexture {
+					  url "concrete.jpg"
+					}
+				}
+			}
+		}
+	]
+}
+}
+
+#Conjunto circular do restaurante
+PROTO Restaurante[]{
+	Transform {
+		children [
+			DEF Quadrante Group { #Quadrante 2
+				children [
+					JanelaChao {}
+					Transform {
+						rotation 0 1 0 0.155
+						children JanelaChao	{}
+					}
+					Transform {
+						rotation 0 1 0 0.31
+						children JanelaChao	{}
+					}
+					Transform {
+						rotation 0 1 0 0.465
+						children JanelaChao	{}
+					}
+					Transform {
+						rotation 0 1 0 0.620
+						children JanelaChao	{}
+					}
+					Transform {
+						rotation 0 1 0 0.775
+						children JanelaChao	{}
+					}
+					Transform {
+						rotation 0 1 0 0.930
+						children JanelaChao	{}
+					}
+					Transform {
+						rotation 0 1 0 1.085
+						children JanelaChao	{}
+					}
+					Transform {
+						rotation 0 1 0 1.24
+						children JanelaChao	{}
+					}
+					Transform {
+						rotation 0 1 0 1.395
+						children JanelaChao	{}
+					}
+				]
+			}
+			Transform { #Quadrante 3
+				rotation 0 1 0 1.55
+				children USE Quadrante
+			}
+			Transform {	#Quadrante 4
+				rotation 0 1 0 3.10
+				children USE Quadrante
+			}
+			Transform {	#Quadrante 1
+				rotation 0 1 0 4.65
+				children USE Quadrante
+			}
+			Transform {	#Janela + pequena
+				scale 0.6 1 1
+				rotation 0 1 0 -0.12
+				children JanelaChao	{}
+			}
+		]
+	}
+}
+
+
+#####################################################################
+#		PISO PANORÂMICO												#
+#####################################################################
+#Rede de Protecção
+PROTO Rede[]{
+	Transform {
+ 		children [
+			DEF Tubo Transform {
+				translation	-0.86 0 0
+				children Shape {
+					geometry Cylinder {radius 0.03 height 2}
+					appearance Appearance {
+						material Material {
+							diffuseColor .76 .73 .54
+							specularColor .38 .38 .27
+							emissiveColor .18 .17 .13
+							ambientIntensity .0533
+							shininess .19
+						}
+					}
+				}
+			}
+			Transform {
+				translation	0.86 0 0
+				children USE Tubo
+			}
+			DEF Vertical Transform {
+				translation	-0.15 0 0
+				children Shape {
+					geometry Cylinder {radius 0.005 height 2}
+					appearance Appearance {
+						material Material {
+							diffuseColor .76 .73 .54
+							specularColor .38 .38 .27
+							emissiveColor .18 .17 .13
+							ambientIntensity .0533
+							shininess .19
+						}
+					}
+				}
+			}
+			Transform {
+				translation	-0.15 0 0
+				children USE Vertical
+			}
+			Transform {
+				translation	-0.30 0 0
+				children USE Vertical
+			}
+			Transform {
+				translation	-0.45 0 0
+				children USE Vertical
+			}
+			Transform {
+				translation	-0.60 0 0
+				children USE Vertical
+			}
+			Transform {
+				translation	0.15 0 0
+				children USE Vertical
+			}
+			Transform {
+				translation	0.30 0 0
+				children USE Vertical
+			}
+			Transform {
+				translation	0.45 0 0
+				children USE Vertical
+			}
+			Transform {
+				translation	0.60 0 0
+				children USE Vertical
+			}
+			Transform {
+				translation	0.75 0 0
+				children USE Vertical
+			}
+			
+			DEF Horizontal Transform {
+				scale 0.85 1 1
+				children Transform {
+						rotation 0 0 1 1.57
+						children USE Vertical
+					}
+			}
+			Transform {				 
+				translation	0 0.15 0
+				children USE Horizontal
+			}
+			Transform {				 
+				translation	0 0.30 0
+				children USE Horizontal
+			}
+			Transform {				 
+				translation	0 0.45 0
+				children USE Horizontal
+			}
+			Transform {				 
+				translation	0 0.60 0
+				children USE Horizontal
+			}
+			Transform {				 
+				translation	0 0.75 0
+				children USE Horizontal
+			}
+			Transform {				 
+				translation	0 0.90 0
+				children USE Horizontal
+			}
+			Transform {				 
+				translation	0 1.05 0
+				children USE Horizontal
+			}
+			Transform {				 
+				translation	0 -0.15 0
+				children USE Horizontal
+			}
+			Transform {				 
+				translation	0 -0.3 0
+				children USE Horizontal
+			}
+			Transform {				 
+				translation	0 -0.45 0
+				children USE Horizontal
+			}
+			Transform {				 
+				translation	0 -0.6 0
+				children USE Horizontal
+			}
+			Transform {				 
+				translation	0 -0.75 0
+				children USE Horizontal
+			}
+		]
+	}
+}
+
+#Parede de protecção + rede
+PROTO ParedeProteccao[]{
+	Transform {
+		children[
+	    	DEF Chao Shape {
+				geometry Extrusion {
+					crossSection [0.60 -7.5, 0.86 -10.5, -0.86 -10.5, -0.6 -7.5 , 0.6 -7.5]
+					spine [0 0 0, 0 0.95 0]
+					beginCap TRUE
+					endCap TRUE
+					ccw	TRUE
+					solid TRUE
+					convex TRUE
+				}
+				appearance Appearance {
+					texture	ImageTexture {
+						url "concrete.jpg"
+					}
+				}
+			}
+			DEF PisoPedra Shape {
+				geometry Extrusion {
+					crossSection [0.60 -7.5, 0.86 -10.5, -0.86 -10.5, -0.6 -7.5 , 0.6 -7.5]
+					spine [0 0.95 0, 0 1 0]
+					beginCap TRUE
+					endCap TRUE
+					ccw	TRUE
+					solid TRUE
+					convex TRUE
+				}
+				appearance Appearance {
+					texture	ImageTexture {
+						url	"floor1.jpg"
+					}
+				}
+			}
+
+			Transform {
+				translation	0 1 -10.75
+				children Shape {
+					geometry Box {size 1.72 2 0.5}
+					appearance Appearance {
+						material Material {
+							ambientIntensity .416
+							diffuseColor .992 1 1
+							specularColor .38 .38 .27
+							emissiveColor .18 .17 .13
+							shininess .694
+						}
+					texture	ImageTexture {
+					  url "concrete.jpg"
+					}
+
+					}
+				}
+			}
+			Transform {
+				translation	0 3 -10.70
+				children Rede {}
+			}
+		]
+	}
+}
+
+#Área central de acesso à vista panorâmica
+PROTO Central[]{
+	Transform {
+		children Shape {
+			geometry Cylinder { radius 7.6 height 4}
+			appearance Appearance {
+				texture	ImageTexture {
+					url	"CN-049.JPG"
+				}
+			}
+		}
+	}
+}
+
+#Proto de conjugação do Piso Panorâmico
+PROTO PisoPanoramico[field SFVec3f posicao 0 0 0]{
+	Transform {
+		translation	IS posicao
+		children [
+			DEF Quadrante Group {
+				children [
+					ParedeProteccao {}
+					Transform {
+						rotation 0 1 0 0.155
+						children ParedeProteccao	{}
+					}
+					Transform {
+						rotation 0 1 0 0.31
+						children ParedeProteccao	{}
+					}
+					Transform {
+						rotation 0 1 0 0.465
+						children ParedeProteccao	{}
+					}
+					Transform {
+						rotation 0 1 0 0.620
+						children ParedeProteccao	{}
+					}
+					Transform {
+						rotation 0 1 0 0.775
+						children ParedeProteccao	{}
+					}
+					Transform {
+						rotation 0 1 0 0.930
+						children ParedeProteccao	{}
+					}
+					Transform {
+						rotation 0 1 0 1.085
+						children ParedeProteccao	{}
+					}
+					Transform {
+						rotation 0 1 0 1.24
+						children ParedeProteccao	{}
+					}
+					Transform {
+						rotation 0 1 0 1.395
+						children ParedeProteccao	{}
+					}
+				]
+			}
+			Transform {
+				rotation 0 1 0 1.55
+				children USE Quadrante
+			}
+			Transform {
+				rotation 0 1 0 3.10
+				children USE Quadrante
+			}
+			Transform {
+				rotation 0 1 0 4.65
+				children USE Quadrante
+			}
+			Transform {
+				scale 0.6 1 1
+				rotation 0 1 0 -0.12
+				children ParedeProteccao	{}
+			}
+			Transform {
+				translation	0 2 0
+				children Central	{}
+			}
+		]
+	}
+}
+
+
+#####################################################################
+#		PISO TÉCNICO												#
+#####################################################################
+PROTO PisoTecnico[field SFVec3f posicao 0 0 0]{
+	Transform {
+		translation	IS posicao
+		children [
+			Shape {
+				geometry Cylinder {radius 6.19 height 5.5}
+				appearance Appearance {
+					texture	ImageTexture {
+					  url "concrete.jpg"
+					}
+				}
+			}
+		]
+	}
+}
+
+
+
+PROTO ProjectorTecto[field SFVec3f localizacao 0 0 0 field SFVec3f direccao 0 0 0]{
+Transform {
+	children SpotLight {
+		location IS	localizacao
+		color 1 1 1
+		intensity 1
+		direction IS direccao
+		cutOffAngle	0.95
+		attenuation	.01 .1 0
+		ambientIntensity .5
+		on TRUE
+	}
+}
+}
+
+PROTO Light [field SFVec3f localizacao 0 0 0]{
+	Transform{
+		children PointLight	{
+			on TRUE
+			radius 10
+			location IS	localizacao
+			color 1 1 1
+			ambientIntensity 1
+			intensity 1
+		}
+	}
+}
+
+
+PROTO VistaPanoramica[field SFVec3f posicao 0 0 0]{
+	Transform {
+		translation	IS posicao
+		children [
+			Restaurante {}
+			PisoPanoramico {posicao 0 1.5 0}
+			PisoTecnico	{posicao 0 8 0}
+			Light {localizacao 0 1 0}
+		]
+	}
+}
+
+
+VistaPanoramica	{}

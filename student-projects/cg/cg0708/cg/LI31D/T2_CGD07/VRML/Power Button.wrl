@@ -1,0 +1,34 @@
+#VRML V2.0 utf8
+
+
+PROTO PowerButton[] {
+	Group {
+		children [
+			Transform {
+				translation	0 0.001 0
+				children [
+					Shape {
+						appearance Appearance {
+							texture	ImageTexture {
+								url "power.gif"
+							}
+						}
+						geometry Box {size 0.5 0.049 0.39}
+					}
+				]
+			}
+			Shape {
+				appearance Appearance {
+					material Material {
+						diffuseColor .79 .79 .79
+						specularColor .67 .46 .44
+						ambientIntensity .137
+						shininess .17
+					}
+				}
+				geometry Box { size	2.4 0.049 0.4}
+			}
+		]
+	}
+}
+

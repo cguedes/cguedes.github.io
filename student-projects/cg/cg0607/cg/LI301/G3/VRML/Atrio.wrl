@@ -1,0 +1,194 @@
+#VRML V2.0 utf8
+
+# Atrio
+#EXTERNPROTO	Eixo[]
+#"eixo.wrl#tresEixos"
+
+#Eixo{}
+
+NavigationInfo {
+	headlight FALSE
+}
+Inline {
+	url	["Paredes.wrl"]
+}
+
+Inline {
+	url	["Escada.wrl"]
+}
+Inline {
+	url	["Janelas&Portas.wrl"]
+}
+Inline {
+	url	["Objectos.wrl"]
+}
+Inline {
+	url	["HUD.wrl"]
+}
+
+
+Group {
+	children [
+		Shape {
+			appearance Appearance {
+				material Material	{} 	
+				texture	ImageTexture {
+					url ["textura_chao.jpg"]
+
+				}
+				textureTransform TextureTransform {
+					scale 20 20
+				}
+			}
+			geometry ElevationGrid {
+				height [0.01]
+				xDimension 187
+				xSpacing 0.1
+				zDimension 90
+				zSpacing 0.1
+			}
+		}
+		Transform {
+			translation 7.6 0 -2.5
+			children [
+				Shape {
+					appearance Appearance {	 	
+						material Material {}
+						texture	ImageTexture {
+							url ["textura_chao.jpg"]
+						}
+						textureTransform TextureTransform {
+							scale 3.3 3.3
+							translation -0.26 0
+						}
+					}
+					geometry ElevationGrid {
+						height [0.01]
+						xDimension 31
+						xSpacing 0.1
+						zDimension 27
+						zSpacing 0.1
+					}
+				}
+			]
+		}
+		############
+		Transform {
+			rotation 0 0 1 3.1416
+			translation	18.7 3.3 0
+			children [
+				Shape {
+					appearance Appearance {	 	
+						material Material {
+							diffuseColor 1 1 0.8
+						}
+					}
+					geometry ElevationGrid {
+						height [0.01]
+						xDimension 131
+						xSpacing 0.1
+						zDimension 90
+						zSpacing 0.1
+					}
+				}
+			]
+		}
+		Transform {
+			rotation 0 0 1 3.1416
+			translation 10.7 3.3 -2.5
+			children [
+				Shape {
+					appearance Appearance {	 	
+						material Material { 
+							diffuseColor 1 1 0.8
+						}
+					}
+					geometry ElevationGrid {
+						height [0.01]
+						xDimension 31
+						xSpacing 0.1
+						zDimension 27
+						zSpacing 0.1
+					}
+				}
+			]
+		}
+		Transform {
+			rotation 0 0 1 3.1416
+			translation 6 3.3 5.1
+			children [
+				Shape {
+					appearance Appearance {	 	
+						material Material { 
+							diffuseColor 1 1 0.8
+						}
+					}
+					geometry ElevationGrid {
+						height [0.01]
+						xDimension 60
+						xSpacing 0.1
+						zDimension 37
+						zSpacing 0.1
+					}
+				}
+			]
+		}
+	]
+}
+
+Viewpoint {
+	description	"Grupo 3: Vista Atrio - Frontal"
+	orientation -0.14837907640215386 0.9880383881319521 0.041997538780941375 0.5579942147723601
+	position 20 2.3 22
+	jump FALSE
+}
+
+Viewpoint {
+	description	"Grupo 3: Vista Atrio - Traseira"
+	orientation -0.0030695228660313698 -0.9986234610481382 -0.0523618284021185 3.02464474
+	position 7 3 -17
+	jump FALSE
+}
+
+Viewpoint {
+	description	"Grupo 3: Vista Atrio - Superior"
+	orientation -0.37796447300922686 0.9124869568340755 0.15655801081562196 0.8522498021960196
+	position 25 8 16
+	jump FALSE
+}
+
+Viewpoint {
+	description	"Grupo 3: Vista Atrio - Interior 1"
+	orientation -0.016724937685274218 0.9995821964235246 0.023573481977552 1.9078655487468545
+	position 17 1.5 1.5
+	jump FALSE
+}
+
+Viewpoint {
+	description	"Grupo 3: Vista Atrio - Interior 2"
+	orientation -0.03308868539289874 0.9988204535966151 0.03553646544075926 1.6432809850782044
+	position 11 1.5 6
+	jump FALSE
+}
+
+Viewpoint {
+	description	"Grupo 3: Vista Atrio - Interior 3"
+	orientation 0 -1 0 1.8417431771333173
+	position 6 1.5 1.5
+	jump FALSE
+}
+
+Viewpoint {
+	description	"Grupo 3: Vista Atrio - Interior 4"
+	orientation -0.13962472687161173 -0.9475135128297234 -0.2876162002584445 2.2793561319568743
+	position 0.3 5 0.3
+	jump FALSE
+}
+
+
+Viewpoint {
+	description	"Grupo 3: Vista Atrio - Pormenor Porta de Vidro"
+	orientation -0.8688219539566033 0.48759326811514014 0.08603032727952585 0.4007070202162961
+	position 10 2.3 12
+	jump FALSE
+}

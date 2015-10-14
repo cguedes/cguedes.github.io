@@ -1,0 +1,301 @@
+#VRML V2.0 utf8
+
+PROTO	BlocoLivros [
+	field MFString livros [""]
+]{
+	Group	{
+		children [
+			Transform	{
+				children
+				Shape	{
+					appearance Appearance	{	material	Material {	diffuseColor 0.7 0.6 0.1 } }
+					geometry Box { size 0.80 0.30 0.30 }		
+				}						   
+			    	
+			}
+			Transform	{
+				translation	0 0 0.1505
+				children
+				Shape	{
+					appearance Appearance	{	texture	ImageTexture {	url	IS livros	}	}
+					geometry Box {
+						size 0.80 0.30 0.001
+					}
+				}	
+			}	
+			Transform	{
+				translation	0 0.1505 0
+				children
+				Shape	{
+					appearance Appearance	{	
+						texture	ImageTexture {	url	"imagens/s2.jpg"	}
+						textureTransform	TextureTransform { 	scale	13 1 }
+					}
+					geometry Box {
+						size 0.80 0.001	0.30
+					}
+				}	
+			}	
+		]
+	}
+}
+
+#BlocoLivros{livros "imagens/livros1.jpg"}
+
+PROTO	LivroFechado [
+field MFString capa [""]
+field MFString lombada [""]
+]{
+	Group	{
+		children [
+		#livro
+		Transform	{
+			children
+			Shape	{
+				geometry Box {
+					size 0.22 0.03 0.30 
+				}
+				appearance Appearance	{texture ImageTexture { url "imagens/obj_a.jpg"} }
+			}
+		}
+		#capa do livro
+		Transform	{
+			translation	0 0.0155 0
+			children
+			Shape	{
+				geometry Box {
+					size 0.22 0.001 0.30 
+				}
+				appearance Appearance	{
+					texture	ImageTexture { url IS capa }
+				}
+			}
+			
+		}
+
+		#folhas lombada
+		Transform	{
+			translation -0.1105 0 0
+			children
+			Shape	{
+				geometry Box {
+					size  0.001 0.03 0.3  
+				}
+			 appearance Appearance	{
+					texture	ImageTexture { url IS lombada}
+				} 
+			}
+		}
+
+		#folhas laterais
+		Transform	{
+			translation 0.1105 0 0
+			children
+			Shape	{
+				geometry Box {
+					size  0.001 0.03 0.3  
+				}
+			 appearance Appearance	{
+					texture	ImageTexture { url "imagens/obj_f1.jpg" }
+				} 
+			}
+		}
+
+		#folhas superiores
+		Transform	{
+			translation 0 0 0.1505
+			children
+			Shape	{
+				geometry Box {
+					size 0.22 0.03 0.001
+				} 
+				appearance Appearance	{
+					texture	ImageTexture { url "imagens/obj_f1.jpg" }
+				}
+			}
+		}
+		#folhas inferiores
+		Transform	{
+			translation 0 0 -0.1505
+			children
+			Shape	{
+				geometry Box {
+					size 0.22 0.03 0.001
+				}
+			 appearance Appearance	{
+					texture	ImageTexture { url "imagens/obj_f1.jpg" }
+				} 
+			}
+		}
+		
+		]
+	}
+	
+}
+
+#LivroFechado {capa "imagens/obj_c1.jpg" lombada "imagens/obj_l1.jpg"}
+#LivroFechado {capa "imagens/obj_c2.jpg" lombada "imagens/obj_l2.jpg"}
+#LivroFechado {capa "imagens/obj_c3.jpg" lombada "imagens/obj_l3.jpg"}
+#LivroFechado {capa "imagens/obj_c4.jpg" lombada "imagens/obj_l4.jpg"}
+
+PROTO	Computador [
+]{
+	Group{
+		children [
+		 
+			Transform{		#Torre
+				translation	-0.45 0.21 0
+				children [
+					Transform	{
+						children
+						Shape	{
+							geometry Box {
+								 size	0.19 0.42 0.48
+							}
+							appearance Appearance	{material	Material { emissiveColor 0 0 0 } }
+						}
+					}
+					Transform	{
+						translation	0 0 0.2405
+						children
+						Shape	{
+							geometry Box {
+								 size	0.19 0.42 0.001
+							}
+							appearance Appearance	{
+					  		texture	ImageTexture { url "imagens/caixaPC.jpg" }
+							}
+						}
+					}
+				]
+			}
+	
+			Transform	{
+				translation	0 0 -0.1
+				children[
+					Transform { #ecran
+						translation	0 0.005 0
+						children
+						Shape	{
+							geometry Cylinder	{
+								radius 0.05
+								height 0.01
+							}
+							appearance Appearance	{material	Material { emissiveColor 0 0 0 } } 
+						}
+					}
+					Transform	{
+						translation	0 0.10 0
+						children
+						Shape	{
+							geometry Box { 	size 0.06 0.18 0.02	 	}
+							appearance Appearance	{material	Material { emissiveColor 0 0 0 } }
+						}
+					}
+					Transform	{
+						translation	0 0.19 0.01 
+						children
+						Shape	{
+							geometry Box { 	size 0.06 0.02 0.04	}
+							appearance Appearance	{material	Material { emissiveColor 0 0 0 } }
+						}
+					}
+					Transform	{ 
+						translation	0 0.2 0.025
+						rotation 1 0 0 -0.15
+						children[
+							Transform	{
+								children
+								Shape	{
+									geometry Box { size	0.35 0.28 0.03 }
+									appearance Appearance	{material	Material { emissiveColor 0 0 0 } }
+								}
+							}
+							Transform	{
+								translation	 0 0 0.0155
+								children
+								Shape	{
+									geometry Box { size	0.35 0.28 0.001 }
+									appearance Appearance	{ texture ImageTexture {url "imagens/ecran.jpg"}}
+								}
+							}
+							Transform	{
+								translation	 0 0 0.016
+								children
+								Shape	{
+									geometry Box { size	0.325 0.245 0.001 }
+#									appearance Appearance	{ 
+#										texture	MovieTexture {
+#											loop TRUE
+#											url	"imagens/filme.mov"
+#										}
+#									}
+								}
+							}
+						]
+					}
+				]
+			}
+			
+			Transform	{ #teclado
+				translation	0 0.0075 0.15
+				children[
+					Transform { 
+						children
+						Shape	{
+							geometry Box { size 0.4 0.015 0.1	}
+							appearance Appearance	{material	Material { emissiveColor 0 0 0 } }
+						}
+					}
+					Transform {
+						translation	0 0.0075 0
+						children
+						Shape	{
+							geometry Box { size 0.4 0.001 0.1	}
+							appearance Appearance	{ texture ImageTexture {url "imagens/teclado.jpg"}}
+						}
+					}
+				]
+			}
+			Transform	{ #rato
+				translation	0.28 0.01 0.15
+				children[
+					Transform {
+						children 
+						Shape	{
+							geometry Box { size 0.04 0.02 0.06}
+							appearance Appearance	{material	Material { emissiveColor 0 0 0 } }
+						}
+					}
+					Transform {
+						translation 0 0.008 -0.02
+						children
+						Shape	{
+							geometry Sphere	{	radius 0.005 }
+							appearance Appearance	{material	Material { emissiveColor  0.5 0.5 0.5 } }
+						}
+					}
+					Transform {
+						 translation 0.012 0.01	-0.015
+						 children
+						 Shape {
+							 geometry	Box	{ size 0.01 0.0001 0.02 }
+							 appearance Appearance	{material	Material { emissiveColor 0.5 0.5 0.5 } }
+						 }
+					 }
+					 Transform {
+						 translation -0.012 0.01	-0.015
+						 children
+						 Shape {
+							 geometry	Box	{ size 0.01 0.0001 0.02 }
+							 appearance Appearance	{material	Material { emissiveColor 0.5 0.5 0.5 } }
+						 }
+					 }
+				]
+			}
+		]
+	}
+}
+
+
+#Computador {}

@@ -1,0 +1,172 @@
+#VRML V2.0 utf8
+
+#Proto de uma janela generica
+
+
+#Proto do vidro
+PROTO Glass[
+	field SFColor glasscolor 1 1 1
+	field SFVec3f glassTrans 0 0 0
+	field SFVec3f glassSize 0 0 0
+] {
+	Transform {
+		translation	IS glassTrans
+		rotation 0 0 0 0
+		children Shape {
+				appearance Appearance {
+					material Material {
+						transparency 0.94
+						shininess 0.9
+						diffuseColor IS	glasscolor
+					}
+				}
+				geometry Box {
+					size IS glassSize 
+				}
+		}
+	}
+}
+
+#Proto de um lado da moldura da janela
+PROTO FrameSide[
+	field SFColor framesdcolor 1 0 0.3 
+	field SFRotation framesdrot 0 0 0 0 
+	field SFVec3f framesdtrans 0 0 0 
+	field SFVec3f frameSize 0 0 0
+] {
+	Transform {
+		translation	IS framesdtrans
+		rotation IS	framesdrot
+		children Shape {
+			appearance Appearance {
+				material Material {
+					transparency 0
+					shininess 0
+					diffuseColor IS framesdcolor
+				}
+			}
+			geometry Box {
+				size IS frameSize
+			}
+		}
+	}
+}
+
+#Proto da moldura completa
+PROTO Frame[]{
+	Group {
+		children [
+			#Lado 1 (esquerda)
+			Transform {
+				translation	0 0 0
+				rotation 0 0 0 0
+				children FrameSide {
+					framesdtrans 0.015 0 0
+					frameSize 0.03 1.161 0.01
+				}
+			}
+			#Lado 2	(cima)
+			Transform {
+				translation 0 0 0
+				rotation 0 0 0 0
+				children FrameSide {
+					framesdrot 0 0 1 1.5708
+					framesdtrans 0.7425 0.5655 0
+					frameSize 0.03 1.485 0.01
+				}
+			}
+			#Lado 3	(direita)
+			Transform {
+				translation 0 0 0
+				rotation 0 0 0 0
+				children FrameSide {
+					framesdrot 0 0 0 0
+					framesdtrans 1.485 0 0
+				    frameSize 0.03 1.161 0.01 
+				}
+			}
+			#Lado 4	(baixo)
+			Transform {
+				translation	0 0 0
+				rotation 0 0 0 0
+				children FrameSide {
+					framesdtrans 0.7425 -0.5655 0
+					framesdrot 0 0 1 1.5708
+					frameSize 0.03 1.485 0.01
+				}
+			}
+			#Separador central
+			 Transform {
+				translation	0 0 0
+				rotation 0 0 0 0
+				children FrameSide {
+					framesdtrans 0.7425 0 0
+					frameSize 0.03 1.161 0.01
+				}
+			 }
+		]
+	}
+}
+
+#Proto do acrescento em cima da janela
+PROTO Add[]{
+	Group {
+		children [
+			Transform {
+				translation	0 0.2415 0
+				children FrameSide {
+					frameSize 0.03 1.5 0.01
+					framesdrot 0 0 1 1.5708
+				}
+			}
+
+			Transform {
+				translation	0 -0.2415 0
+				children FrameSide {
+					frameSize 0.03 1.5 0.01
+					framesdrot 0 0 1 1.5708
+				}
+			}
+
+			Transform {
+				translation 0.735 0 0
+				children FrameSide {
+					frameSize 0.03 0.453 0.01
+				}
+			}
+
+			Transform {
+				translation -0.735 0 0
+				children FrameSide {
+					frameSize 0.03 0.453 0.01
+				}
+			}
+
+			Transform {
+				children Glass {
+					glassSize 1.43 0.453 0.001
+				}
+			}
+		]
+	}
+}
+
+#Proto da janela completa
+PROTO Window[] {
+	Group {
+		children [
+			Glass { 
+				glassSize 1.485 1.101 0.001 
+				glassTrans 0.7425 0 0
+			}
+			Frame {}
+
+			Transform {
+				translation	0.75 0.837 0
+				children Add {}
+			}
+		]
+	}
+}
+
+Window{}

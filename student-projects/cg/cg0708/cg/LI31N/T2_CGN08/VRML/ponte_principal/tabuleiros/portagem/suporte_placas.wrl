@@ -1,0 +1,71 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	placas [ field SFVec3f pos ] "Placas.wrl"
+
+PROTO Suporte[field SFVec3f pos 0 0 0]{
+	Transform {
+		children [ 
+			Transform {
+				children [
+					Shape {
+						geometry Box{ size 66 0.3 0.3 }
+						appearance Appearance { 
+							material Material { 
+								diffuseColor .61 .61 .61 		
+							} 
+						}
+					}	
+				]
+				translation	0.8 5.4 0
+			}
+
+			Transform {
+				children [
+					DEF barra Shape {
+						geometry Box{ size 0.3 8 0.3 }
+						appearance Appearance { 
+							material Material { 
+								diffuseColor .61 .61 .61 		
+							} 
+						}
+					}	
+				]
+				translation	-26.75 1.5 0
+			}
+			Transform {children USE  barra 
+				translation	 -15.75 1.5 0
+			}
+			Transform {children USE  barra 
+				translation	 -4.75 1.5 0
+			}
+			Transform {children USE  barra 
+				translation	 6.25 1.5 0
+			}
+			Transform {children USE  barra 
+				translation	 17.25 1.5 0
+			}
+			Transform {children USE  barra 
+				translation	 28.25 1.5 0
+			}
+
+			placas {pos -29.5 5.4 0.2}
+			placas {pos -24 5.4 0.2}
+			placas {pos -18.5 5.4 0.2}
+			placas {pos -13 5.4 0.2}
+			placas {pos -7.5 5.4 0.2}
+			placas {pos -2 5.4 0.2}
+			placas {pos 3.5 5.4 0.2}
+			placas {pos 9 5.4 0.2}
+			placas {pos 14.4 5.4 0.2}
+			placas {pos 20 5.4 0.2}
+			placas {pos 25.5 5.4 0.2}
+			placas {pos 31 5.4 0.2}
+			
+
+		
+		]
+	 translation IS	pos
+	}
+}
+
+Suporte{}

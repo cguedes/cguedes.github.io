@@ -1,0 +1,133 @@
+#VRML V2.0 utf8
+
+
+PROTO lata[field MFString type "coke.jpg"]	  {
+	Group {
+		children [
+		
+Shape {
+    appearance Appearance {
+	material Material { }
+	texture ImageTexture { url "cantop.jpg" }
+    }
+    geometry Cylinder {
+	height	0.1
+	radius 0.037
+	side	FALSE
+	bottom	FALSE
+    }
+}
+Shape {
+    appearance Appearance {
+	material Material { }
+	texture ImageTexture { url "canbot.jpg" }
+    }
+    geometry Cylinder {
+	height	0.1
+	radius	0.037
+	side	FALSE
+	top	FALSE
+    }
+}
+
+Shape {
+    	appearance Appearance {
+		material Material { }
+		texture ImageTexture { url IS type}
+		textureTransform TextureTransform {scale 2 1}
+    	}
+    	geometry Cylinder {
+		height	0.1
+		radius 0.037
+		top	FALSE
+		bottom	FALSE
+    	}
+	}
+]
+}
+}
+
+
+PROTO filaLatas[field MFString tipo "coke.jpg"]{
+	Group	{
+		children [
+			lata{type IS tipo}
+
+			Transform {
+				translation 0.075 0 0  
+				rotation 0 1 0 1.571
+				children lata{type IS tipo}
+			}
+
+			Transform {
+				translation 0.155 0 0  
+				children lata{type IS tipo}
+			}
+			Transform {
+				translation 0.23 0 0  
+				rotation 0 1 0 1
+				children lata{type IS tipo}
+			}
+			Transform {
+				translation 0.31 0 0  
+				rotation 0 1 0 1.2
+				children lata{type IS tipo}
+			}
+			Transform {
+				translation 0 0 -0.075  
+				rotation 0 1 0 1.571
+				children lata{type IS tipo}
+			}
+				Transform {
+				translation 0.075 0 -0.075  
+				rotation 0 1 0 1.571
+				children lata{type IS tipo}
+			}
+
+			Transform {
+				translation 0.155 0 -0.075  
+				children lata{type IS tipo}
+			}
+			Transform {
+				translation 0.23 0 -0.075  
+				rotation 0 1 0 1
+				children lata{type IS tipo}
+			}
+			Transform {
+				translation 0.31 0 -0.075  
+				rotation 0 1 0 1.2
+				children lata{type IS tipo}
+			}
+			Transform {
+				translation 0 0 -0.155  
+				rotation 0 1 0 1.571
+				children lata{type IS tipo}
+			}
+				Transform {
+				translation 0.075 0 -0.155 
+				rotation 0 1 0 1.571
+				children lata{type IS tipo}
+			}
+
+			Transform {
+				translation 0.155 0 -0.155  
+				children lata{type IS tipo}
+			}
+			Transform {
+				translation 0.23 0 -0.155 
+				rotation 0 1 0 1
+				children lata{type IS tipo}
+			}
+			Transform {
+				translation 0.31 0 -0.155  
+				rotation 0 1 0 1.2
+				children lata{type IS tipo}
+			}
+
+
+		]
+	}
+
+}
+
+   filaLatas{}

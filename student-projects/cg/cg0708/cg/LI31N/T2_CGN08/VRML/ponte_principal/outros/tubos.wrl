@@ -1,0 +1,43 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	tubo [field SFRotation rot field SFVec3f pos field SFFloat tam field SFVec3f posC] "tubo.wrl"
+
+
+
+PROTO tubos [
+	field SFRotation rota 0 0 0 0
+	field SFVec3f posi 0 0 0
+]
+{
+	Transform
+	{
+		children
+		[
+			
+			tubo {rot 1 0 0 -0.4   pos 45 70 8   tam 50  posC 0  -22.2   0}
+			tubo {rot 1 0 0 -0.6   pos 45 73 16  tam 60  posC 0  -28.6   0}
+			tubo {rot 1 0 0 -0.7   pos 45 73 24  tam 70  posC 0 -31.2  0}
+			tubo {rot 1 0 0 -0.8   pos 45 73 32  tam 80  posC 0 -34.5  0}
+			tubo {rot 1 0 0 -0.88  pos 45 75 36  tam 88  posC 0  -40.9   0}
+			tubo {rot 1 0 0 -0.92  pos 45 74 44  tam 98  posC 0 -41.8  0}
+			tubo {rot 1 0 0 -0.96  pos 45 77 48  tam 105 posC 0  -49.25   0}
+			tubo {rot 1 0 0 -1     pos 45 79 52  tam 128 posC 0  -56.1   0}
+			tubo {rot 1 0 0 -1.02  pos 45 80 57  tam 124 posC 0 -60  0}
+			tubo {rot 1 0 0 -1.05  pos 45 82 60  tam 150 posC 0  -67.5   0}
+			tubo {rot 1 0 0 -1.07  pos 45 82 66  tam 150 posC 0  -70   0}
+			tubo {rot 1 0 0 -1.08  pos 45 82 71  tam 150 posC 0  -71   0}
+			tubo {rot 1 0 0 -1.09  pos 45 82 77  tam 162 posC 0  -72.7   0}
+			tubo {rot 1 0 0 -1.10  pos 45 83 81  tam 171 posC 0  -76.4   0}
+			tubo {rot 1 0 0 -1.11  pos 45 84 85  tam 178 posC 0  -79.9   0}
+			tubo {rot 1 0 0 -1.121 pos 45 85 89  tam 187 posC 0  -84.3   0}
+			tubo {rot 1 0 0 -1.13  pos 45 86 93  tam 195 posC 0  -88.2   0}
+			tubo {rot 1 0 0 -1.132 pos 45 87 97  tam 202 posC 0 -90.9  0}
+			tubo {rot 1 0 0 -1.138 pos 45 89 97  tam 210 posC 0 -96.8  0}
+			tubo {rot 1 0 0 -1.14  pos 45 91 99  tam 220 posC 0 -102.1  0}
+			tubo {rot 1 0 0 -1.142 pos 45 92 103 tam 225 posC 0 -105.1 0}			
+		]
+		rotation IS	rota
+		translation	IS posi
+	}
+}
+tubos {}

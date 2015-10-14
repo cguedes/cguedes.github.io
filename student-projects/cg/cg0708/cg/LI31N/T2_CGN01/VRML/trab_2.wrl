@@ -1,0 +1,2546 @@
+#VRML V2.0 utf8
+
+#VRML V2.0 utf8	CGN01_T2_BMarques_FMilando_I0708
+
+##------------------- PROTO --------------------------
+
+PROTO _axis [ field SFColor _color 0 1 0, field MFString _name "Y" ]{
+	
+	Transform {
+		children [
+			Transform {
+				translation	0 12.5 0
+				children [
+					Shape {
+						geometry Cylinder {
+							radius .1
+							height 25
+							top	TRUE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor IS _color
+								transparency .7
+							}
+						}
+					}
+
+					Transform {
+						translation	0 10 0
+						children [
+							Shape {
+								geometry Text {
+									string IS _name
+									length 1
+									fontStyle FontStyle	{
+										style "BOLD"
+										family "ARIAL"
+										size 2
+									}
+								}
+								appearance Appearance {
+									material Material {
+										diffuseColor 1 1 1
+									}
+								}
+							}
+						]
+					}
+
+				]
+			}
+
+			Transform {
+				translation	0 25 0
+				children [
+					Shape {
+						geometry Cone {
+						   bottomRadius	.3
+						   height 1.5
+						   bottom FALSE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor IS _color
+								transparency .7
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+
+PROTO _cube[field SFVec3f _size 2 .2 2 exposedField MFString _texture "", 
+			field SFFloat _transparencia 0,
+			field SFColor _color .8 .8 .8 ]{
+	
+	Shape {
+		geometry Box {
+			size IS	_size
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor IS	_color
+				transparency IS	_transparencia
+			}
+			texture	ImageTexture {
+				url	IS _texture
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+PROTO _rodape_escadas[]{
+
+	Shape {
+
+		geometry Extrusion {
+			crossSection  [ 0 11, 1.5 11, 1.5 10, 3 10, 3 9, 4.5 9, 4.5 8, 6 8, 6 7, 7.5 7, 7.5 6, 9 6, 9 5, 10.5 5,
+							10.5 4, 12 4, 12 3, 13.5 3, 13.5 2, 15 2, 15 1, 16.5 1, 16.5 0, 20 0,
+
+							20 .4, 16.9 .4, 16.9 1.4, 15.4 1.4, 15.4 2.4, 13.9 2.4, 13.9 3.4, 12.4 3.4, 12.4 4.4,
+							10.9 4.4, 10.9 5.4, 9.4 5.4, 9.4 6.4, 7.9 6.4, 7.9 7.4, 6.4 7.4, 6.4 8.4, 4.9 8.4, 4.9 9.4,
+							3.4 9.4, 3.4 10.4, 1.9 10.4, 1.9 11.4, 0 11.4, 0 11 ]
+
+			spine [0 0 0, 0 .2 0]
+			ccw	FALSE
+		}
+		appearance Appearance {
+			texture	ImageTexture {
+				url	"texture\marmore.jpg"
+			}
+			material Material {
+				diffuseColor 0.8 0.8 0.8
+			}
+
+		}
+	}
+
+}
+
+
+PROTO _corrimao[]{
+
+	PROTO _cp_corrimao []{
+		Shape {
+			geometry Extrusion {
+				crossSection [ 0 13, 1.5 13, 17.5 2, 17.5 2.045 , 1.5 13.045, 0 13.045, 0 13]
+				ccw	TRUE
+				spine [0 0 0, 0 .15 0]
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor .35 .38 .32
+					specularColor .8 1 .83
+					ambientIntensity 0
+					shininess .12
+				}
+			}
+		}
+	}
+
+
+	PROTO _cyl_corrimao [ field SFFloat _height 2, field SFFloat _radius .15] {
+
+		Shape {
+			geometry Cylinder {
+				radius IS _radius
+				height IS _height
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor .35 .38 .32
+					specularColor .8 1 .83
+					ambientIntensity 0
+					shininess .12
+				}
+			}
+		}
+	}
+
+
+
+	Transform {
+		translation	.75 .55 13.05
+		children [
+		
+			#mastro..
+			Transform {
+				translation	0 0 -1
+				children [ 
+					_cube { _size .045 .15 4.5 }
+					Transform {
+						translation	0 0 -.98
+						children [ _cube { _size .15 .3 .070} ] #base
+					}
+					
+				]
+			}
+		
+			#mastro..
+			Transform {
+				translation	4.5 0 -4
+				children [ 
+					_cube { _size .045 .15 4.7 }
+					Transform {
+						translation	0 0 -.98
+						children [ _cube { _size .15 .3 .070} ] #base
+					} 
+				]	
+			}
+		
+			#mastro..
+			Transform {
+				translation	7.5 0 -6
+				children [ 
+					_cube { _size .045 .15 4.7 }
+					Transform {
+						translation	0 0 -.98
+						children [ _cube { _size .15 .3 .070} ] #base
+					}
+				]	
+				
+			}
+
+			Transform {
+				translation	9 0 -7
+				children [ 
+					_cube { _size .045 .15 4.7 } 
+					Transform {
+						translation	0 0 -.98
+						children [ _cube { _size .15 .3 .070} ] #base
+					}
+				]	#mastro..
+			}
+		
+			#mastro..
+			Transform {
+				translation	12 0 -9
+				children [ 
+					_cube { _size .045 .15 4.7 } 
+					Transform {
+						translation	0 0 -.98
+						children [ _cube { _size .15 .3 .070} ] #base
+					}
+				]	
+			}
+
+			Transform {
+				translation	16.5 0 -11.5
+				children [ _cube { _size .045 .15 3.5 } ]	#mastro..
+			}
+
+
+			Transform {
+				translation	-1 -.08 -14
+				children [ _cp_corrimao {} ]
+			}
+
+			Transform {
+				translation	-1 -.08 -13.3
+				children [ _cp_corrimao {} ]
+			}
+
+			Transform {
+				translation	-1 -.08 -12.7
+				children [ _cp_corrimao {} ]
+			}
+
+			Transform {
+				translation	-.5 0 1.25
+				rotation 0 0 1 -1.570796327	#Rotaçao de -90º sobre z
+				children [ _cyl_corrimao { _height 2.07, _radius .145} ]
+			}
+		
+			Transform {
+				rotation 0 1 0 .593411945 #Rotaçao de -33.99(9)6º sobre y
+				children [
+					Transform {
+						translation	9.45 0 1.3
+						rotation 0 0 1 -1.570796327 #Rotaçao de -90º sobre z
+						children [ _cyl_corrimao { _height 19.5} ]
+					}
+				]
+			}
+
+		]
+	}
+
+
+}
+
+### ............................... DO IT GOOD!!...................... #
+PROTO _corrimao_ext[]{
+
+	Transform {
+		children [
+			Shape {
+				geometry Extrusion {
+					crossSection [ -3.075 0, -2.925 0, -2.925 .8, 0 .8, 0 .95, -2.925 .95,
+									-2.925 1.5, 0 1.5, 0 1.65, -2.925 1.65,
+									 -2.925 2.45, 0 2.45, 0 2.6, -2.925 2.6,
+							          -2.925 3.3, -3.075 3.3, -3.075 2.6, -6 2.6,
+								       -6 2.45, -3.075 2.45, -3.075 1.65, -6 1.65,
+								        -6 1.5, -3.075 1.5, -3.075 .95, -6 .95, -6 .8, 
+										 -3.075 .8, -3.075 0 ]
+					solid FALSE
+					spine [0 0 0, -.15 0 0]
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor .35 .38 .32
+						specularColor .8 1 .83
+						ambientIntensity 0
+						shininess .12
+				    }
+				}
+			}
+		]
+	}
+
+}
+
+
+PROTO _marmore_escadas[ field MFString _texture "texture\marmore_escadas.jpg", field SFVec3f _width 1.5 25.1 .15]{
+
+	Transform {
+		translation .75 10 0
+		children [
+			Transform {
+				translation	0.01 0 11
+				children [ _cube {_size IS _width , _texture IS _texture } ]
+			}
+
+			Transform {
+				translation	1.51 0 10
+				children [ _cube {_size IS _width, _texture IS _texture} ]
+			}
+
+			Transform {
+				translation	3.01 0 9
+				children [ _cube {_size IS _width, _texture IS _texture} ]
+			}
+
+			Transform {
+				translation	4.51 0 8
+				children [ _cube {_size IS _width, _texture IS _texture} ]
+			}
+
+			Transform {
+				translation	6.01 0 7
+				children [ _cube {_size IS _width, _texture IS _texture} ]
+			}
+
+			Transform {
+				translation	7.51 0 6
+				children [ _cube {_size IS _width, _texture IS _texture} ]
+			}
+
+			Transform {
+				translation	9.01 0 5
+				children [ _cube {_size IS _width, _texture IS _texture} ]
+			}
+
+			Transform {
+				translation	10.51 0 4
+				children [ _cube {_size IS _width, _texture IS _texture} ]
+			}
+
+			Transform {
+				translation	12.01 0 3
+				children [ _cube {_size IS _width, _texture IS _texture} ]
+			}
+
+			Transform {
+				translation	13.51 0 2
+				children [ _cube {_size IS _width, _texture IS _texture} ]
+			}
+
+			Transform {
+				translation	15.01 0 1
+				children [ _cube {_size IS _width, _texture IS _texture} ]
+			}
+
+		]
+	}
+
+}
+
+
+PROTO _escadas[ field MFString _texture "texture\parede_branca.jpg"]{
+
+# degraus..
+	Transform {
+		children [
+			Shape {
+				geometry Extrusion {
+					crossSection [ 0 0, 0 11, 1.5 11, 1.5 10, 3 10, 3 9, 4.5 9, 4.5 8, 6 8, 6 7, 7.5 7, 
+						7.5 6, 9 6, 9 5, 10.5 5, 10.5 4, 12 4, 12 3, 13.5 3, 13.5 2, 15 2, 15 1, 16.5 1, 16.5 0, 0 0 ]
+					spine [0 0 0, 0 25 0]
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor .38 .38 .42
+						shininess .93
+						specularColor .53 .53 .53
+						ambientIntensity .0933
+					}
+					texture	ImageTexture {
+						url	IS _texture
+					}
+				}
+			}
+		 ]
+	}
+}
+
+
+PROTO _escadas_alt[ field MFString _texture "texture\parede_branca.jpg" ]{
+	
+	Transform {
+		children [
+			Shape {
+				geometry Extrusion {
+					crossSection [ 0 9, 0 11, 1.5 11, 1.5 10, 3 10, 3 9, 4.5 9, 4.5 8, 6 8, 6 7, 7.5 7, 
+						7.5 6, 9 6, 9 5, 10.5 5, 10.5 4, 12 4, 12 3, 13.5 3, 13.5 2, 15 2, 15 1, 16.5 1, 16.5 -1, 13.5 -1, 0 9 ]
+					spine [0 0 0, 0 25 0]
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor .38 .38 .42
+						shininess .93
+						specularColor .53 .53 .53
+						ambientIntensity .0933
+					}
+					texture	ImageTexture {
+						url	IS _texture
+					}
+				}
+			}
+
+			Transform {
+				children [ 
+					_rodape_escadas {}
+					Transform {
+						translation	0 2.7 0
+						children [ _marmore_escadas {} ]
+					}
+					
+					Transform {
+						translation	0 24 0
+						children [ _corrimao {} ]
+					}
+					
+				]
+			}
+
+		 ]
+	}	
+}
+
+PROTO _parede_t[ field MFVec3f _spine [0 0 0,0 0 -.5]  , field MFString _texture "texture\parede_branca.jpg" ]{
+	Transform {
+		translation	0 0 1
+		children [
+			Shape {
+				appearance Appearance {
+					material Material {
+						diffuseColor 0.8 0.8 0.8
+					}
+					texture	ImageTexture {
+						url	IS _texture
+					}
+				}
+				geometry Extrusion {
+				   crossSection	[ 0 15, 16.8 15, 16.8 0, 38.6 0, 38.6 15, 55 15, 55 23, 0 23, 0 15 ]
+				   spine IS	_spine
+				   solid FALSE
+				}
+			}
+		]
+	}
+}
+
+
+PROTO _glass[ field SFVec3f _size 7 13.6 .008 ]{
+	Shape {
+		geometry Box {
+			size IS _size
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 1 1 1
+				transparency .6
+				specularColor .941 .941 .941
+				ambientIntensity 0
+				shininess .23
+				emissiveColor .408 .392 .392
+			}
+		}
+	}
+}
+
+
+PROTO _fech_base[ field SFVec3f _translation 0 0 0 ]{
+
+	Transform {
+		translation	.2 -6.5 .5
+		children [
+			DEF _suporte Shape	{
+				geometry Extrusion {
+					crossSection [ 0 0, 1.5 0, 1.5 .2, .85 .6, .45 .6, 0 .35, 0 0 ]
+					spine [0 0 0, .25 0 0]
+					solid FALSE
+				}
+				appearance Appearance {
+					material Material { 
+						diffuseColor 0 0 0 
+						specularColor .29 .3 .29
+						ambientIntensity 0
+						shininess .08
+					}
+					texture	ImageTexture {
+
+					}
+				}
+			}
+
+
+			Transform {
+				translation	-7.6 0 0
+				children [ USE _suporte ]
+			}
+
+			Transform {
+				translation	IS _translation	# -7.6 0 0 muda a vara para o lado esquero
+				children [
+					Transform {
+						translation	.12 -1 .1
+						children [
+						   Shape {
+								geometry Cylinder {
+								   radius .045
+								   height 14
+								}
+								appearance Appearance {
+									material Material { diffuseColor 0 0 0 
+									specularColor .63 .92 1
+									ambientIntensity 0
+								}
+								}
+							}
+						]
+					}
+
+					DEF _bases Shape{
+						geometry Extrusion {
+							crossSection [ 0 0, .7 0, .7 .15, .4 .3, .09 .3, 0 0  ]
+							spine [0 0 0, .25 0 0]
+							ccw	FALSE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0 0 0
+								specularColor .29 .3 .29
+								ambientIntensity 0
+								shininess .08
+							}
+						}
+					}
+
+					Transform {
+						translation	0 6.3 0
+						children [ USE _bases ]
+					}
+
+					Transform {
+						translation	.25 -8.4 0
+						rotation 0 0 1 3.1416
+						children [ USE _bases ]
+					}
+
+			
+
+					Transform {
+						translation	.02 3 0
+						children [ 
+							DEF	_no Shape {
+								geometry Extrusion {
+									crossSection [ 0 0, .2 0, .2 .13, .16 .17, .04 .17, 0 .13, 0 0 ]
+									spine [0 0 0, 0 .08 0]
+									solid FALSE
+								}
+								appearance Appearance {
+									material Material {
+										diffuseColor 0 0 0
+										specularColor .29 .3 .29
+										ambientIntensity 0
+										shininess .08
+									}
+								}
+							}
+
+							Transform {
+								translation	0 -7.5 0
+								children [ USE _no ]
+							}	
+						]
+					}
+				]
+			}
+		]
+	}
+}
+
+
+PROTO _puxador[]{
+
+	PROTO _puxador_base[]{
+		Shape {
+			geometry Extrusion {
+				crossSection [ 0 1, 0 .6, .12 .4, .12 0, .2 0, .2 .4, .06 .6, .06 1, 0 1  ]
+				spine [ 0 0 0, 0 .25 0 ]
+				solid FALSE
+			}
+			appearance Appearance {
+				material Material { 
+					diffuseColor 0 0 0
+					specularColor .29 .3 .29
+					ambientIntensity 0
+					shininess .08
+				}
+			}
+		}
+	}
+	
+	Transform {	
+		children [ 
+			Transform {
+				translation 0 .25 0
+				rotation	0 0 1 3.1416
+				children [ _puxador_base {}  ] 
+			}
+
+			Transform {
+				translation 7 0 0
+				children [ _puxador_base {}  ] 
+			}
+			
+			Transform {
+				translation	3.5 .14 .89
+				rotation 0 0 1 -1.571
+				children [
+					Shape	{
+						geometry Cylinder {
+							height 7
+							radius .11
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor .37 .37 .37
+								specularColor .72 .89 .89
+								ambientIntensity .1
+								shininess .13
+							}
+						}
+					}			
+				]
+			}
+
+			
+		]
+	}
+
+}
+
+
+PROTO _porta[  field SFVec3f _translation 0 0 0, field MFString _texture "texture\parede_madeira.jpg" field MFVec3f _spine [0 0 0, 0 0 .4] ]{
+		
+	Transform {
+		rotation 0 1 0 3.1416
+		children [
+			Shape {
+				geometry Extrusion {
+					crossSection [ 0 0, 8.4 0, 8.4 15, 0 15, 0 0, .8 .8, 7.6 .8, 7.6 14.2, .8 14.2, .8 .8 ]
+					spine IS _spine
+					solid FALSE
+				}
+				appearance Appearance {
+					material Material { }
+					texture	ImageTexture {
+						url	IS _texture
+					}
+				}
+			}
+
+			Transform{ 
+				translation	4.2 -7.5 .15
+				children [_glass {} ] 
+			}
+
+			Transform {
+
+				children [ 
+#					Transform { children [  ] } # _fech_base {}
+					Transform { 
+						translation	7.7 0 -.1
+						children [ _fech_base { _translation IS _translation } ] 
+					}				
+				]
+			}
+
+			Transform {
+				translation	.75 -7.4 .9
+				rotation 1 0 0 .7854
+				children [ _puxador {} ]
+			}
+
+		]
+	}
+
+}
+
+
+
+PROTO _moldura[]{
+	Transform {
+		children [
+			Transform {
+				translation	0 5.1 0
+				children [
+					Shape {
+						geometry Extrusion {
+							crossSection [ 0 0, 0 5, 16.8 5, 16.8 0, 0 0, .8 .8, .8 4.2, 16 4.2, 16 .8, .8 .8, 0 0 ]
+							spine [0 0 0, 0 0 .5]
+							solid FALSE
+						}
+						appearance Appearance {
+							material Material {}
+						}
+					}
+				]
+			}
+			
+			Transform {
+				translation	8.5 2.5 .3
+				children [ _cube { _size 16.5 4 .2, _transparencia .6 } ]
+			}
+
+		]
+	}
+}
+
+
+
+PROTO _porta_entrada[  field SFVec3f _posicao_vara 0 0 0, field MFString _texture "texture\parede.jpg" field MFVec3f _spine [0 0 0, 0 0 .4] ]{
+	# mudar a posiçao da vara.. _posicao_vara -7.6 0 0		
+	Transform {
+		rotation 0 1 0 3.1416
+		children [
+
+			Shape {
+				geometry Extrusion {
+					crossSection [ 0 0, 8.4 0, 8.4 15, 0 15, 0 0, .8 .8, 7.6 .8, 7.6 14.2, .8 14.2, .8 .8 ]
+					spine IS _spine
+					solid FALSE
+				}
+				appearance Appearance {
+					material Material { }
+					texture	ImageTexture {
+						url	IS _texture
+					}
+				}
+			}
+
+			Transform{ 
+				translation	4.2 -7.5 .3
+				children [ _cube { _size 8 13.5 .3, _transparencia .6 } ] 
+			}
+
+			Transform {
+
+				children [ 
+#					Transform { children [  ] } # _fech_base {}
+					Transform { 
+						translation	7.7 0 -.1
+						children [ _fech_base { _translation IS _posicao_vara } ] 
+					}				
+				]
+			}
+
+			Transform {
+				translation	.75 -7.4 .9
+				rotation 1 0 0 -.7854
+				children [ _puxador {} ]
+			}
+
+			# Separadores Centrais...
+			Transform {
+				children [
+					Transform {
+						translation	4.2 -3 .2
+						children [ _cube { _size 7 .8 .4 } ] 
+					}
+
+					Transform {
+						translation	4.2 -6 .2
+						children [ _cube { _size 7 .8 .4 } ] 
+					}
+
+					Transform {
+						translation	4.2 -9 .2
+						children [ _cube { _size 7 .8 .4 } ] 
+					}
+
+					Transform {
+						translation	4.2 -11.8 .2
+						children [ _cube { _size 7 .8 .4 } ] 
+					}
+				]
+			}
+
+		]
+	}
+
+}
+
+
+
+
+PROTO _estores[ field SFColor _ripasColor 0.9 0.9 0.8, field SFFloat _transparencia 0 ]{
+	Transform {
+		children [
+
+			# Uma ripa dos estores a ser replicado #
+			DEF _ripa Transform {
+			   rotation 1 0 0 1.047
+			   children	[
+				   Shape {
+						geometry Box {
+							size 4 .02 .5
+						}
+						appearance Appearance {
+							material Material { 
+								diffuseColor IS _ripasColor 
+								transparency IS	_transparencia
+							}
+						}
+					}
+			   ]
+
+			}
+
+			# Definição dos estores propriamente dito... 
+			Transform { 
+				translation	0 .12 0
+				children [ USE _ripa ] 
+			}
+
+			Transform { 
+				translation	0 .22 0
+				children [ USE _ripa ] 
+			}
+
+			Transform { 
+				translation	0 .32 0
+				children [ USE _ripa ] 
+			}
+
+			Transform { 
+				translation	0 .42 0
+				children [ USE _ripa ] 
+			}
+
+			Transform { 
+				translation	0 .52 0
+				children [ USE _ripa ] 
+			}
+
+			Transform { 
+				translation	0 .62 0
+				children [ USE _ripa ] 
+			}
+
+			Transform { 
+				translation	0 .72 0
+				children [ USE _ripa ] 
+			}
+
+			Transform { 
+				translation	0 .82 0
+				children [ USE _ripa ] 
+			}
+
+			Transform { 
+				translation	0 .92 0
+				children [ USE _ripa ] 
+			}
+
+		]
+	}
+}
+
+PROTO _puxador_pequeno[ field SFColor _cor_do_puxador .8 .8 .8 ]{
+	Transform {
+		children [
+		
+			# Base cilindrica..  parte mais pequena do 'L' #
+			Transform {
+				rotation 1 0 0 1.57
+				children [
+					Shape {
+						geometry Cylinder {
+							height .35
+							radius .04
+						}
+						appearance Appearance {
+							material Material { diffuseColor IS _cor_do_puxador }
+						}
+					}
+				]
+			}
+
+			# Parte Horizontal.. parte maior do 'L' #
+			Transform {
+				translation	.37 0 .2
+				rotation 0 0 1 1.57
+				children [
+					Shape {
+						geometry Cylinder {
+							height .8
+							radius .042
+						}
+						appearance Appearance {
+							material Material { diffuseColor IS _cor_do_puxador }
+						}
+					}
+				]
+			}
+
+			# Base do puxador.. #
+			Transform {
+				translation	0 0 0
+				children [ 
+					Shape {
+						geometry Box {
+							size .2 1 .02
+						}
+						appearance Appearance {
+							material Material { diffuseColor IS _cor_do_puxador }
+						}
+					}
+				]
+			}
+	
+		]
+	}
+}
+
+
+PROTO _porta_pequena[ field SFColor _frameColor 0.5 0.5 0.5,  field SFColor _ripasColor 0.9 0.9 0.8 ]{
+
+	Transform {
+		children [
+
+			# ... #
+			Shape {
+				geometry Extrusion {
+					crossSection [ -6 0, -5.55 0, -5.55 8.55, -.47 8.55, -.47 0, 0 0, 0 9, -6 9, -6 0  ]
+					ccw	FALSE
+					spine [0 0 0, 0 0 -.5]
+
+				}
+				appearance Appearance {
+					material Material { }
+				}
+			}
+
+			# 'Porta sem 'estores'.. #
+			Transform {
+				translation	0 8.5 -.5
+				children [ 
+					Shape {
+						geometry Extrusion {
+							crossSection [ -5.5 0, -.5 0, -.5 8.5, -5.5 8.5, -5.5 0,
+											-5 .5, -1 .5, -1 3.5, -5 3.5, -5 .5,
+											-5 4, -1 4, -1 8, -5 8, -5 4,	-5 .5 ]
+							solid FALSE
+							spine [0 0 0, 0 0 .5]
+						}
+						appearance Appearance {
+							material Material { diffuseColor IS _frameColor }
+						}
+					}			   
+			    ]
+			}
+
+			# 'estores.. da pporta'.. reutilizando o  PROTO _estores #
+			Transform {
+				translation	-3 7.3 -.27
+				children [ _estores{ _ripasColor IS _ripasColor } ]
+			}
+
+			Transform {
+				translation	-3 6.7 -.27
+				children [ _estores{_ripasColor IS _ripasColor} ]
+			}
+
+			Transform {
+				translation	-3 5.7 -.27
+				children [ _estores{_ripasColor IS _ripasColor} ]
+			}
+
+			Transform {
+				translation	-3 4.7 -.27
+				children [ _estores{_ripasColor IS _ripasColor} ]
+			}
+
+			Transform {
+				translation	-3 3.7 -.27
+				children [ _estores{_ripasColor IS _ripasColor} ]
+			}
+
+			Transform {
+				translation	-3 2.7 -.27
+				children [ _estores{_ripasColor IS _ripasColor} ]
+			}
+
+			Transform {
+				translation	-3 1.7 -.27
+				children [ _estores{_ripasColor IS _ripasColor} ]
+			}
+
+			Transform {
+				translation	-3 .7 -.27
+				children [ _estores{_ripasColor IS _ripasColor} ]
+			}
+
+
+			# Puxador.. #
+			Transform {
+			   translation -5.2 5.05 0
+			   children	[ _puxador_pequeno	{} ]
+			}
+				
+		]
+	}
+
+}
+
+
+PROTO _escadas_ext_frente[]{
+	Group {
+		children[
+			Transform {
+				rotation 0 1 0 -1.570796327 #Rotaçao de -90º sobre y
+				children [
+					Transform {
+						rotation 1 0 0 -1.570796327	#Rotaçao de -90º sobre x
+						children [
+				
+							_escadas {}
+							_corrimao {}
+							Transform {
+								translation	0 2.4 0
+								children [ _marmore_escadas {} ]
+							}
+
+							Transform {
+								translation	0 -6 14.25
+								rotation 1 0 0 3.1415
+								scale 1 1.15 1
+								children [ _corrimao_ext {} ]
+							}
+
+							Transform {
+								translation	0 23.8 -.1
+								children [ _rodape_escadas {} ]
+							}
+						]
+					}
+				]
+			}
+
+			Transform {
+				translation	-6 10 16.5
+				rotation 0 1 0 1.570796327 # Rotação de 90º sobre y
+				children [
+					Transform {
+						rotation 1 0 0 -1.570796327	 # Rotação de 90º sobre x
+						children [ 
+							_escadas_alt {}
+			    
+							Transform {
+								translation	0 2.4 0
+								children [ _marmore_escadas {} ]
+							}
+
+							Transform {
+								scale 1 1.05 1.05
+								children [ _corrimao {} ]
+							}
+				
+							Transform {
+								translation	0 24.8 -.1
+								children [ _rodape_escadas {} ]
+							}
+
+						]
+					}
+				]
+			}
+
+			Transform {
+			#	rotation 1 0 0 -1.570796327	 # Rotação de 90º sobre x
+				children [ 
+					Shape {
+						geometry Extrusion {
+							crossSection [ 0 0, 25 0, 25 11, -31.02 11, -31.02 0, -6 0, -6 9, 0 9, 0 0 ]
+							spine [ 0 0 0, 0 0 -7 ]
+							ccw	FALSE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor .38 .38 .42
+							}
+							texture	ImageTexture {
+								url	"texture\parede_branca.jpg"
+							}
+						}
+					}
+
+					# Placa de mármore.. #
+					Transform {
+						translation	-3 11 -3.5
+						children [ _cube { _size 56 .15 7, _texture "texture\marmore.jpg" } ]
+					}
+
+					# Rodapé depois do primeiro lanço de escadas.. #
+					Transform {
+						translation	0 11 0
+						children [
+							Shape {
+								geometry Extrusion {
+									crossSection [-30.8 0, -30.8 -6.8, 23.8 -6.8, 23.8 0, 24 0, 24 -7, -31 -7, -31 0 ,-30.8 0]
+									spine [0 0 0, 0 .3 0]
+								}
+								appearance Appearance {
+									material Material {
+										diffuseColor .33 .26 .21
+									}
+									texture	ImageTexture {
+										url	"texture\marmore.jpg"
+									}
+								}
+							}			
+						]
+					}
+
+
+					# Porta pequena tirando partido do PROTO _porta_pequena #
+					Transform {
+						children [ _porta_pequena {} ]
+					}
+
+				]
+			}
+
+
+			Transform {
+				children [
+					Transform {
+						translation	25 15 11
+						children	[ _cube{ _size 2 30 40, _texture "texture\parede_branca.jpg" } ]
+					}
+
+					Transform {
+						translation	-32 15 11
+						children	[ _cube{ _size 2 30 40, _texture "texture\parede_branca.jpg" } ]
+					}
+
+					Transform {
+						translation	-31 0 30
+						children [ _parede_t { _spine [ 0 0 0, 0 0 -.05 ], _texture "texture\parede_madeira.jpg" } ]
+					}
+		
+					Transform {
+						translation	-31 0 29.95
+						children [ _parede_t {} ]
+					}
+
+					Transform {
+						translation	15.55 15 31
+						children [ _porta { _translation -7.6 0 0 } ]
+					}
+
+					Transform {
+						translation	23.95 15 31
+#						rotation 0 1 0 2.094395102
+						children [ _porta {} ]
+					}
+
+					Transform {
+						translation	-25.7 0 0
+						children [
+							Transform {
+								translation	3.1 15 31
+								children [ _porta { _translation -7.6 0 0 } ]
+							}
+
+							Transform {
+								translation	11.5 15 31
+#								rotation 0 1 0 2.6180
+								children [ _porta { } ]
+							}
+			
+						]
+					}
+
+				]
+			}
+		]
+	}
+}
+
+
+
+PROTO _puxador_porta[]{
+
+		PROTO _cyl[ field SFFloat _altura .35, field SFFloat _raio .04 ]{
+			Shape {
+				geometry Cylinder {
+					height IS _altura
+					radius IS _raio
+				}
+				appearance Appearance {
+					material Material { 
+						diffuseColor .37 .37 .37
+						specularColor .89 .89 .89
+						ambientIntensity .1
+						shininess .13
+					}
+				}
+			}	
+		}
+
+		Transform {
+			children [
+	
+				# Base cilindrica..  parte mais pequena do 'L' #
+				Transform {
+					rotation 1 0 0 1.57
+					children [ _cyl	{} ]
+				}
+
+				# Parte Horizontal.. parte maior do 'L' #
+				Transform {
+					translation	.37 0 .2
+					rotation 0 0 1 1.57
+					children [ _cyl { _altura .8, _raio .042 } ]
+				}
+
+				# Base do puxador.. #
+				Transform {
+					translation	0 0 0
+					rotation 0 1 0 1.57
+					children [ 
+
+						Transform {
+							rotation 0 0 1 1.57
+							children [ _cyl{ _altura .02, _raio .2} ]
+						}
+
+						Transform {
+							translation	0 -.7 0
+							rotation 0 0 1 1.57
+							children [
+								_cyl { _altura .04, _raio .1 }
+								_cyl { _altura .02, _raio .2 }
+							]
+						}
+			
+					]
+				}
+
+			]
+		}
+}
+
+
+
+PROTO _porta_sala_de_aula[ field SFRotation _rotacao_porta 0 1 0 0, field SFRotation _rotacao 0 1 0 0, field SFVec3f  _translaccao 0 0 0 ]{
+
+	Transform {
+		rotation IS _rotacao
+		children [
+			Transform	{
+				translation	0 18.5 -1.6
+				children [
+					Shape {
+						geometry Extrusion {
+							crossSection [ 0 0, 15 0, 15 4, 0 4, 0 0, .7 .7, 14.3 .7, 14.3 3.3, .7 3.3, .7 .7 ]
+							solid FALSE
+							spine [0 0 0, 0 0 1.6]
+						}
+						appearance Appearance {
+							material Material {}
+							texture	ImageTexture { url "texture\porta_madeira2.jpg"}  #..textura da madeira da porta..
+						}
+					}
+				
+					Transform {
+						translation	7.5 -2 .8
+						children [ _glass { _size 14 3 .3 } ]
+					}
+					
+				]
+			}		
+				
+			Transform {
+				children [
+					 Shape {
+						geometry Extrusion {
+							crossSection [ 0 0, .7 0, .7 14.3, 11 14.3, 11 0, 15 0, 15 15, 11 15, 
+											11.7 14.3, 11.7 .7, 14.3 .7, 14.3 14.3, 11.7 14.3, 11 15,
+											 0 15, 0 0 ]
+							solid FALSE
+							spine [0 0 0, 0 0 -1.6]
+						}
+						appearance Appearance {
+							material Material { }
+							texture	ImageTexture { url "texture\porta_madeira.jpg"}
+						}
+					}
+
+					# vidro.. #
+					Transform {
+						translation	13 7.5 -.8
+						children [ _glass { _size 2.7 13.6 .3 } ]
+					}
+				]
+			}
+
+
+			# Porta propriamente dita.. #
+			Transform {
+				translation	5.85 7.15 -.8
+				rotation IS _rotacao_porta
+				children [
+					Shape {
+						geometry Box {
+							size 10.2 14.3 1
+						}
+						appearance Appearance {
+							material Material {}
+							texture	ImageTexture { url "texture\porta_madeira.jpg" }
+						}
+					}
+					
+					Transform {
+						translation	3.5 -1 -.5
+						rotation 0 1 0 3.1417
+						children [ _puxador_porta {} ]
+					}
+
+				]
+			}
+				
+
+		]
+	}
+}
+
+
+
+PROTO _sala_de_aula[ field SFRotation _rotacao_porta 0 1 0 3.1417, 
+					 field SFVec3f _translaccao_porta -45 -19 -.3, 
+					 field SFVec3f _translacao_rodape 0 -17.5 0,
+					 field SFRotation _porta_moldura 0 0 1 0,
+					 field MFVec2f _crossSectionParede 
+							[ 0 0, 45 0, 45 1, 1 1, 1 79, 64 79, 
+								64 1, 60 1, 60 0, 65 0, 65 80, 0 80, 0 0 ],
+					 field MFVec2f _crossSectionRodape 
+							[ -.2 -.2, 45.2 -.2, 45.2 1.2, 1.2 1.2, 1.2 78.8, 63.8 78.8, 
+						           63.8 1.2, 60 1.2, 60 -.2, 65.2 -.2, 65.2 80.2, -.2 80.2, -.2 -.2 ],
+				   ]{
+
+	# Sala com a porta no lado esquerdo #
+	# _translaccao_porta  -60 0 1.3
+	# _rotacao_porta 0 0 1 3.1417
+	# _translaccao_rodape 0 0 0
+
+	# Sala com a porta do lado direito  #
+	# _translaccao_rodape 0 -17.5 0
+	# _translaccao_porta -75 -19 1.3
+	# _rotacao_porta 0 0 1 0
+
+
+	# Configuraçao para sala quadrada..
+	# crossSection [ 0 0, 45 0, 45 1, 1 1, 1 64, 64 64, 
+	#               64 1, 60 1, 60 0, 65 0, 65 65, 0 65, 0 0 ]
+
+	# Configuraçao para sala Rectangular
+	# crossSection [ 0 0, 45 0, 45 1, 1 1, 1 79, 64 79, 
+	#               64 1, 60 1, 60 0, 65 0, 65 80, 0 80, 0 0 ]
+
+	# Rodapé para sala quadrada..
+	# crossSection [ -.2 -.2, 45.2 -.2, 45.2 1.2, 1.2 1.2, 1.2 63.8, 63.8 63.8, 
+	#                63.8 1.2, 60 1.2, 60 -.2, 65.2 -.2, 65.2 65.2, -.2 65.2, -.2 -.2 ]
+
+	# Rodapé para sala rectagular..
+	# crossSection [ -.2 -.2, 45.2 -.2, 45.2 1.2, 1.2 1.2, 1.2 78.8, 63.8 78.8, 
+	#                63.8 1.2, 60 1.2, 60 -.2, 65.2 -.2, 65.2 80.2, -.2 80.2, -.2 -.2 ]
+
+	Transform {
+		children [
+			DEF _forma_sala Shape {
+				geometry Extrusion {
+
+
+					crossSection IS	_crossSectionParede
+					solid FALSE
+					spine [0 0 0, 0 -19 0]
+				}
+				appearance Appearance {
+					material Material {}
+				}
+			}
+
+			# Rodapé... #
+			Transform {
+				translation	IS _translacao_rodape
+				children [ 
+					Shape {
+						geometry Extrusion {
+							crossSection IS	_crossSectionRodape
+							solid FALSE
+							spine [0 0 0, 0 -1.5 0]
+						}
+						appearance Appearance {
+							material Material { diffuseColor 1 0.5 0 }
+							texture	ImageTexture { url "texture\porta_madeira.jpg"	}
+						}
+						
+					}
+			    ]
+			}
+
+			Transform {
+				translation	IS _translaccao_porta #-75 -19 1.3
+				rotation IS	_rotacao_porta
+				children [ _porta_sala_de_aula { _rotacao_porta IS _rotacao_porta } ]
+			}
+
+		]
+	}
+}
+
+
+
+
+PROTO _escadas_ext[ field MFString _marmore_chao "texture\marmore_escadas_ext.jpg"]{
+	Transform {
+		children[
+			Transform {
+				translation	6 -12 0
+				children [ 
+					Transform {
+						translation	-45 -16 .6
+						children [
+							Shape {
+								geometry Extrusion {
+									crossSection [ 0 0, 0 16, 36 16, 36 0, 26.4 0, 26.4 15, 9.6 15, 9.6 0, -4 0 ]
+									spine [0 0 0, 0 0 -.5]
+								}
+								appearance Appearance {
+									material Material {}
+									texture	ImageTexture { url "texture\porta_madeira.jpg" }
+								}
+
+							}
+
+							Transform {
+								translation	17.5 19 1.05
+								children [ _cube { _size 36 6.5 .2 } ]
+							}
+
+							DEF _placa Transform {
+								translation	5.95 19.1 -.2
+								children [ _cube { _size 12 6 .5, _texture "texture\porta_madeira.jpg" } ]
+							}
+
+							Transform {
+								translation	12.05 0 0
+								children [ USE _placa ]
+							}
+
+							Transform {
+								translation	24.1 0 0
+								children [ USE _placa  ]
+							}
+
+						]
+					}
+			
+					#Porta da esquerda
+					Transform {
+						translation	-11.5 -1 -4.5
+						rotation 0 1 0 .52
+						children [ _porta { _translation -7.6 0 0 } ]
+					}
+
+					#Porta da direita
+					Transform {
+						translation	-35 -1 -.5
+						rotation 0 1 0 -.52
+						children [ _porta {} ]
+					}
+
+					#....
+
+			
+				]
+			}
+
+			Transform {
+				scale .8 1 1
+				children [
+
+					Transform {
+						translation	-.25 -6 .25
+						children [
+							Shape {
+								geometry Extrusion {
+									crossSection [ -2 0, 15.5 0, 15.5 1, 1 1, 1 55, 51 55, 
+						            				51 1, 36.5 1, 36.5 0, 54 0, 54 60, -2 60, -2 0 ]
+									solid FALSE
+									spine [0 0 0, 0 -35 0]
+								}
+								appearance Appearance {
+									material Material {}
+								}
+							}	
+						]
+					}
+
+		#			 Rodapé... #		 REBUILD THIS OUT!!!
+					Transform {
+						translation	0 -27.5 0
+						children [ 
+							Shape {
+								geometry Extrusion {
+									crossSection [ -2.5 0, 16 0, 16 1, -1 1, -1 59, 53 59, 
+						            				53 1, 36 1, 36 0, 54.5 0, 54.5 60.5, -2 60.5, -2 0 ]
+
+									solid FALSE
+									spine [0 0 0, 0 -1.5 0]
+								}
+								appearance Appearance {
+									material Material { diffuseColor 1 0.5 0 }
+									texture	ImageTexture { url "texture\porta_madeira.jpg"	}
+								}
+						
+							}
+			    		]
+					}
+
+					# Escadas... #
+					Transform {
+						translation	-1.2 -28 35
+						rotation 1 0 0 -1.57
+						children [ 
+							Transform {
+								rotation 0 0 1 1.57
+								children [ _escadas_alt {} ]
+							}
+
+							Transform {
+								translation	-50 16 -12
+								rotation 0 0 1 -1.57
+								children [ _escadas_alt {} ]
+							}
+
+							Transform {
+								translation	-50 16.5 10
+								rotation 0 0 1 -1.57
+								children [ _escadas_alt {} ]
+							}
+
+							# Chao Piso 1
+							Transform {
+								translation	-25 25 20
+								children [ _cube { _size 50 17.5 2, _texture IS _marmore_chao } ]
+							}
+
+							# Chao Piso > 0 Piso < 1 #
+							Transform {
+								translation	-25 -10 10
+								children [ 
+									_cube { _size 50 20 2, _texture IS _marmore_chao } 
+						
+									Transform {
+										translation	-25 10 1
+										children [
+											# Rodapé.. #
+											Shape {
+												geometry Extrusion {
+													crossSection [ 0 0, .2 0, .2 19.8, 49.8 19.8, 49.8 0, 50 0, 50 20, 0 20, 0 0  ]
+													spine [0 0 0, 0 0 .4]
+													solid FALSE
+												}
+												appearance Appearance {
+													material Material { }
+													texture	ImageTexture { url	"texture\marmore.jpg" }
+												}
+											}
+										]
+
+									}
+						
+								]
+							}
+
+							# Chao Piso 0 #
+							Transform {
+								translation	-25 25.5 -.5
+								children [
+							
+									Transform {
+										translation	25 -10.5 .5
+										rotation 0 0 1 3.1417
+										children [
+											# Rodapé.. #
+											DEF _rodape Shape {
+												geometry Extrusion {
+													#crossSection [ 0 0, .2 0, .2 19.8, 49.8 19.8, 49.8 0, 50 0, 50 20, 0 20, 0 0  ]
+													crossSection [ 0 5, .2 5, .2 18.7, 11 18.7, 11 19, 0 19, 0 5  ]
+													spine [0 0 0, 0 0 .4]
+													solid FALSE
+												}
+												appearance Appearance {
+													material Material {  }
+													texture	ImageTexture { url	"texture\marmore.jpg" }
+												}
+											}
+
+											Transform {
+												translation	50 0 .4
+												rotation 0 1 0 3.1417
+												children [ USE _rodape ]
+											}
+
+											Transform {
+												translation	50 -5.05 -.5
+												rotation 0 0 1 1.57
+												children [ 
+													Shape {
+														geometry Extrusion {
+															crossSection [ 0 .5, 4 .5, 4 -.5, 4.5 -.5, 4.5 .9, 0 .9, 0 .5 ]
+															spine [0 0 0, 0 .2 0]
+															solid FALSE
+														}
+														appearance Appearance { 
+															material Material {} 
+															texture	ImageTexture { url	"texture\marmore.jpg"}
+														}
+													}
+									    		]
+											}
+
+										]
+									}
+							
+						    
+									_cube { _size 50 19 1, _texture IS _marmore_chao  } ]
+							}
+
+							# Chao Piso -1 #
+							Transform {
+								translation	-25 6 -12
+								children [ _cube { _size 50 58 2, _texture IS _marmore_chao  } ]
+							}
+
+						]
+					}
+
+				]
+			}
+		]
+	}
+}
+
+
+
+
+PROTO _balcao[]{
+
+	PROTO _bloco[ field SFVec3f _escala 1 1 1, field MFVec3f _spine [0 0 0, 0 4 0] ]{
+		Transform	{
+			scale IS _escala
+#			rotation 0 1 0 3.1417
+			children [
+				Shape {
+					geometry Extrusion {
+						crossSection [ 0 0, 0 12.5, 6 12.5, 6 6.3, 5.7 6.3, 5.7 6.1, 6 6.1, 6 .25, 5.8 .2, 5.8 0, 0 0 ]
+						spine IS _spine
+						solid FALSE
+
+					}
+					appearance Appearance { 
+						material Material { }
+						texture	ImageTexture { url	"texture\porta_madeira.jpg" }
+					}	
+				}
+			]
+		}
+	}
+
+
+	#### PARTE DA FRENTE DO BALCAO ####
+	Transform {
+		rotation 0 0 1 3.1417
+		
+		children [
+			
+			# 4(pequenos) blocos de cima.. #
+			Transform {
+				children [ _bloco {_spine [0 0 0, 0 15.8 0]} ]
+			}
+
+			Transform {
+				translation	0 0 -12.5
+				children [ _bloco {_spine [0 0 0, 0 15.8 0] } ]
+			}
+
+			Transform {
+				translation	0 0 -25
+				children [ _bloco {_spine [0 0 0, 0 15.8 0]} ]
+			}
+
+			Transform {
+				translation	0 0 -37.5
+				children [ _bloco { _escala .2 1 1, _spine [0 0 0, 0 15.8 0]} ]
+			}
+
+			# 4(grandes) blocos de baixo  #
+		   Transform {
+			translation	0 -4.1 0
+				children [ _bloco { } ]
+			}
+
+			Transform {
+				translation	0 -4.1 -12.5
+				children [ _bloco {  } ]
+			}
+
+			Transform {
+				translation	0 -4.1 -25
+				children [ _bloco {  } ]
+			}
+
+			Transform {
+				translation	0 -4.1 -37.5
+				children [ _bloco { _escala .2 1 1 } ]
+			}
+
+
+			# #
+
+
+			Transform {
+				translation	15 10.9 12.48
+				rotation 0 1 0 -1.57
+				scale 1.12 .7 .8
+				children [
+					Transform {
+						rotation 0 0 1 3.1417
+						children [
+							Shape {
+								geometry Extrusion {
+									crossSection [ 0 0, 0 5, 36 5, 36 0, 35 0, 35 4, 1 4, 1 0, 0 0 ]
+									spine [0 0 0, 0 0 -5]
+								}
+								appearance Appearance {
+									material Material { }
+									texture	ImageTexture { url	"texture\porta_madeira.jpg" }
+								}
+							}
+
+							# Separador Horizontal..
+							Transform {
+								rotation 0 1 0 1.57
+								translation	18 2.2 -2.5
+								children [ _cube { _size 4.5 .8 34, _texture "texture\porta_madeira.jpg"}]
+							}
+
+						    #Separador Vertical 1
+							Transform {
+								rotation 0 1 0 1.57
+								translation	8 2 -2.5
+								children [ _cube { _size 5 4 .5, _texture "texture\porta_madeira.jpg"}]
+							}
+
+							#Separador Vertical 2
+							Transform {
+								rotation 0 1 0 1.57
+								translation	17 2 -2.5
+								children [ _cube { _size 5 4 .5, _texture "texture\porta_madeira.jpg"}]
+							}
+
+							#Separador Vertical 3
+							Transform {
+								rotation 0 1 0 1.57
+								translation	26 2 -2.5
+								children [ _cube { _size 5 4 .5, _texture "texture\parede_madeira.jpg"}]
+							}
+
+							#Fundo..
+							Transform {
+								rotation 0 1 0 1.57
+								translation	18 2.5 -4.75
+								children [ _cube { _size 1 5 36, _texture "texture\porta_madeira.jpg"}]
+							}
+
+							Transform {
+								rotation 0 1 0 1.57
+								translation	18 -3.5 -4.4
+								children [ _cube { _size .4 7 36, _texture "texture\porta_madeira.jpg"}]
+							}
+
+
+							##-----------------
+							Transform {
+								translation	0 -7 1.5
+								children [
+									Shape {
+										geometry Extrusion {
+											crossSection [ 0 0, 0 7, 36 7, 36 0, 34 0, 34 5, 2 5, 2 0, 0 0 ]
+											spine [0 0 0, 0 0 -6]
+										}
+										appearance Appearance {
+											material Material { }
+											texture	ImageTexture { url	"texture\porta_madeira.jpg" }
+										}
+									}
+								]
+							}
+
+
+							Transform {
+								translation	0 -7 11.4
+								children [
+								   Shape {
+									   geometry	Extrusion {
+											crossSection [ 0 0, 0 7, 0 7, 3 7 ,3 6, .5 6, .5 0, 0 0 ]
+											spine	[0 0 0, 0 0 -9.9]
+									   }
+									   appearance Appearance {
+										   material	Material {}
+										   texture ImageTexture	{ url "texture\porta_madeira.jpg"}
+									   }
+								   }
+									
+							    ]
+							}
+
+
+
+							## Vidros..
+							Transform {
+								translation	12.5 12.5 14.5
+								rotation 0 1 0 -1.57
+								children [
+									Transform {
+										rotation 0 0 1 3.1415
+										children [
+											Transform	{
+												translation	17.1 -.1 6
+												children [ _cube { _size .15 15.5 12, _transparencia .5 } ]
+											}
+		
+											Transform	{
+												translation	17.1 -.1 -17.5
+												children [ _cube { _size .15 15.5 12, _transparencia .5 } ]
+											}
+		
+											## Vidro lateral..
+											Transform	{
+												translation	10.1 4.5 12
+												rotation 0 1 0 1.57
+												children [ _cube { _size .15 15.5 14, _transparencia .5 } ]
+											}
+
+											## Vidro Central..
+											Transform {
+												translation	17.05 7.6 .03
+												rotation 0 1 0 1.57
+												children [
+													Shape {
+														geometry Extrusion {
+															crossSection [ 0 0, 0 15.5, 11.55 15.5, 11.55 0, 6.5 0, 6.5 1, 5.5 1, 5.5 0, 0 0 ]
+															spine [0 0 0, 0 0 .15]
+														}
+														appearance Appearance {
+															material Material {
+																transparency .5
+															}
+														}
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+
+						]
+					}
+
+				]
+			}
+
+		]
+	}
+
+
+}
+
+
+PROTO _grelha[]{
+
+	Group {
+		children [
+
+			Transform {
+				translation	1.55 -.1 8.7
+				children [
+					Shape {
+						geometry Extrusion {
+							crossSection [ 0 0, 0 4, 4 4, 4 0, 0 0, .3 .3, .3 3.7, 3.7 3.7, 3.7 .3, .3 .3, 0 0 ]
+							spine [0 0 0, 0 .15 0]
+							solid FALSE
+						}
+						appearance Appearance {
+							material Material { diffuseColor 1 1 1 }
+						}
+					}
+				]
+			}
+
+			Transform {
+				translation	3.55 -.1 8.8
+				rotation 1 0 0 1.57
+				scale .9 1.16 1
+				children [ 
+					_estores { _ripasColor 1 1 1} 
+					Transform { 
+						translation	0 1.03 0
+						children [ _estores {_ripasColor 1 1 1} ] 
+					}
+
+					Transform { 
+						translation	0 2.06 0
+						children [ _estores {_ripasColor 1 1 1} ] 
+					}
+				]
+			}
+		]
+	}
+
+}
+
+
+PROTO _porta_normal[ ]{
+	Transform {
+		children [
+			Shape	{
+				geometry Extrusion {
+					crossSection [ 0 0, 7.4 0, 7.4 15, 0 15, 0 0, .8 .8, 6.6 .8, 6.6 14.2, .8 14.2, .8 .8 ]
+					solid FALSE
+					spine [0 0 0, 0 .4 0]
+				}
+				appearance Appearance {
+					material Material {}
+					texture	ImageTexture { url	"texture\porta_madeira.jpg" }
+				}
+			}
+
+			Transform {
+				translation	0 .4 .5
+				children [
+
+					_grelha	{}
+
+					Transform {
+						translation	3.7 -.2 7
+						children [ _cube{ _size 6 .39 14, _texture "texture\porta_madeira.jpg" } ]
+					}
+
+
+					Transform {
+						translation	.4 0 6
+						rotation 1 0 0 -1.57
+						children [ _puxador_porta { } ] 
+					}
+
+					
+				]
+			}
+
+			Transform {
+				translation	0 .5 15.05
+				rotation 1 0 0 3.1417
+				children [
+					Shape {
+						geometry Extrusion {
+							crossSection [ -1 0, -1 19, 8.4 19, 8.4 0, 7.5 0, 7.5 15.1, -.1 15.1, 
+											-.1 16, -.1 18.1, 7.5 18.1, 7.5 16, -.1 16, -.1 0, -.1 0 ]
+							spine [0 0 0, 0 1 0]
+							solid FALSE
+
+						}
+						appearance Appearance {
+							material Material {}
+							texture	ImageTexture { url "texture\porta_madeira.jpg"}
+						}
+					}
+
+					Transform {
+						translation	3.5 .5 17
+						children [ _cube { _size 7.7 .3 2.3, _transparencia .5 } ]
+					}
+				]
+			}
+
+		]
+	}
+}
+
+
+
+PROTO _window[]{
+	Transform {
+		children [
+
+			DEF _line Transform {
+				children [ 
+					_moldura{}
+					Transform {
+						translation	16 0 0
+						children [ _moldura {} ]
+					}
+					Transform {
+						translation	8.4 2.5 .25
+						children [ _cube { _size .8 4 .5 } ]
+					}
+					Transform {
+						translation	25.2 2.5 .25
+						children [ _cube { _size .8 4 .5 } ]
+					}
+
+					Transform {
+						translation	16.4 1.3 .8
+						scale 8 3.3 1.4
+						children [ _estores { _transparencia .5, _ripasColor 0.55 0.6 0.55 } ]
+					}
+
+					DEF _vline Transform {
+						translation	8.4 2.7 .8
+						children [ _cube { _size .05 4.5 .1, _color 0 0 0 } ]
+					}
+
+					Transform {
+						translation	8.4 0 0
+						children [ USE _vline ]
+					}
+
+					Transform {
+						translation	16.8 0 0
+						children [ USE _vline ]
+					}
+
+    			]
+			}
+
+			Transform {
+				translation	0 4 0
+				children [ USE _line ]
+			}
+
+			Transform {
+				translation	0 8 0
+				children [ USE _line ]
+			}
+
+		]
+	}
+}
+
+
+PROTO _janela_grande[ field SFColor _cor_da_parede .9 .9 .9 ]{
+	Transform {
+		children [
+			Shape	{
+				geometry Extrusion {
+					crossSection [ 0 0, 0 22, 3 22, 3 8.7, 36.05 8.7, 36.05 22, 39.05 22, 39.2 8.7,
+									72.2 8.7, 72.2 22, 75.5 22, 75.2 0, 0 0 ]
+									spine [0 0 0, 0 0 -1.5]
+					solid FALSE
+				}
+				appearance Appearance {
+					material Material { diffuseColor IS _cor_da_parede }
+				}
+			}
+
+			DEF _w Transform {
+				translation	3.05 8.8 -1.1
+				children [ _window {} ]
+			}
+
+			Transform {
+				translation	36.5 0 0
+				children [ USE  _w ]
+			}
+
+		]
+	}
+}
+
+
+
+
+
+
+
+##----------------------- CENARIO --------------------------
+#####################  ISTO VAI PARA O GRAFO ##############
+
+
+
+Transform {
+	children [
+	    #Escadas para o piso 1, em frente à entrada..  (NÓ DO GRAFO)
+		Transform {
+			translation	-4 0 2
+			scale .88 1 1
+			children [ _escadas_ext_frente {} ]
+		}
+	   
+	    
+		# Sala de Aulas... #
+		#(NÓ DO GRAFO) - composto por dois sub-nós..
+		Transform {
+			translation	15 0 0
+			children [
+
+			   #(NÓ DO GRAFO)
+			   Transform {
+					translation	-113 19 26
+					rotation 0 1 0 3.1417
+					children [_sala_de_aula { _rotacao_porta 0 1 0 0, _translaccao_porta -59.9 -19 1.3 } ] 
+				}
+
+				#(NÓ DO GRAFO)
+				Transform {
+					translation	-177 19 26
+					rotation 0 1 0 3.1417
+					children [_sala_de_aula { _rotacao_porta 0 1 0 0, _translaccao_porta -59.9 -19 1.3 } ] 
+				}
+			]
+		}	
+
+
+		#(NÓ DO GRAFO) - composto por dois sub-nós
+		Transform {
+			translation	35 20 0
+			rotation 0 0 1 3.1417
+			children [
+
+				#(NÓ DO GRAFO)	
+			   Transform {
+					translation	-113 19 26
+					rotation 0 1 0 3.1417
+					children [
+						_sala_de_aula { _translacao_rodape 0 0 0,  
+										_translaccao_porta -60 0 -.3,
+										_rotacao_porta 1 0 0 3.1417
+								    } 
+					] 
+				}
+
+				#(NÓ DO GRAFO)
+				Transform {
+					translation	-49 19 26
+					rotation 0 1 0 3.1417
+					children [
+						_sala_de_aula { _translacao_rodape 0 0 0,  
+										_translaccao_porta -60 0 -.3,
+										_rotacao_porta 1 0 0 3.1417
+							    	  }
+					] 
+				}
+			]
+		}
+		
+	# Configuraçao para sala quadrada..
+	# crossSection [ 0 0, 45 0, 45 1, 1 1, 1 64, 64 64, 
+	#               64 1, 60 1, 60 0, 65 0, 65 65, 0 65, 0 0 ]
+
+	# Configuraçao para sala Rectangular
+	# crossSection [ 0 0, 45 0, 45 1, 1 1, 1 79, 64 79, 
+	#               64 1, 60 1, 60 0, 65 0, 65 80, 0 80, 0 0 ]
+
+	# Rodapé para sala quadrada..
+	# crossSection [ -.2 -.2, 45.2 -.2, 45.2 1.2, 1.2 1.2, 1.2 63.8, 63.8 63.8, 
+	#                63.8 1.2, 60 1.2, 60 -.2, 65.2 -.2, 65.2 65.2, -.2 65.2, -.2 -.2 ]
+
+	# Rodapé para sala rectagular..
+	# crossSection [ -.2 -.2, 45.2 -.2, 45.2 1.2, 1.2 1.2, 1.2 78.8, 63.8 78.8, 
+	#                63.8 1.2, 60 1.2, 60 -.2, 65.2 -.2, 65.2 80.2, -.2 80.2, -.2 -.2 ] 
+
+		# Salas Quadradas..
+		#(NÓ DO GRAFO) - composto por dois sub-nós..
+		Transform {
+			translation	-9 -1 166
+			rotation 0 1 0 3.1417
+			children [
+		
+				Transform {
+
+					#(NÓ DO GRAFO) - composto por dois sub-nós. A translation desta parte é
+					# somado ao da parte de cima: translation 42 20 0 + translation -9 -1 166
+					translation	42 20 0
+					rotation 0 0 1 3.1417
+					children [
+
+					   #(NÓ DO GRAFO)
+					   Transform {
+							translation	-113 19 26
+							rotation 0 1 0 3.1417
+							children [
+								_sala_de_aula { _translacao_rodape 0 0 0,  
+												_translaccao_porta -60 0 -.3,
+												_rotacao_porta 1 0 0 3.1417,
+												_crossSectionParede [ 0 0, 45 0, 45 1, 1 1, 1 64, 64 64, 64 1,
+											    						60 1, 60 0, 65 0, 65 65, 0 65, 0 0 ],
+												_crossSectionRodape	[ -.2 -.2, 45.2 -.2, 45.2 1.2, 1.2 1.2, 1.2 63.8, 63.8 63.8, 
+	                													63.8 1.2, 60 1.2, 60 -.2, 65.2 -.2, 65.2 65.2, -.2 65.2, -.2 -.2 ]
+								    		} 
+							] 
+						}
+
+						#(NÓ DO GRAFO)
+						Transform {
+							translation	-49 19 26
+							rotation 0 1 0 3.1417
+							children [
+								_sala_de_aula { _translacao_rodape 0 0 0,  
+												_translaccao_porta -60 0 -.3,
+												_rotacao_porta 1 0 0 3.1417,
+												_crossSectionParede [ 0 0, 45 0, 45 1, 1 1, 1 64, 64 64, 64 1,
+											    						60 1, 60 0, 65 0, 65 65, 0 65, 0 0 ],
+												_crossSectionRodape	[ -.2 -.2, 45.2 -.2, 45.2 1.2, 1.2 1.2, 1.2 63.8, 63.8 63.8, 
+	                													63.8 1.2, 60 1.2, 60 -.2, 65.2 -.2, 65.2 65.2, -.2 65.2, -.2 -.2 ]
+								    		}
+							] 
+						}
+					]
+				}
+		
+			]
+		}
+
+
+		# Salas Quadradas..
+		#(NÓ DO GRAFO) - com um sub-nó. pode-se juntar esta tranformaçao com o nó filho.
+		Transform {
+			translation	-8 20 166
+			rotation 1 0 0 3.1417
+			children [
+
+				#(NÓ DO GRAFO) - composto por dois sub-nós..
+				Transform {
+					translation	41 20 0
+					rotation 0 0 1 3.1417
+					children [
+
+						#(NÓ DO GRAFO)
+					   Transform {
+							translation	-113 19 26
+							rotation 0 1 0 3.1417
+							children [
+								_sala_de_aula { _translacao_rodape 0 -17.5 0,  
+												_translaccao_porta -59.9 -19 1.3,
+												_rotacao_porta 1 0 0 0,
+												_crossSectionParede [ 0 0, 45 0, 45 1, 1 1, 1 64, 64 64, 64 1,
+											    						60 1, 60 0, 65 0, 65 65, 0 65, 0 0 ],
+												_crossSectionRodape	[ -.2 -.2, 45.2 -.2, 45.2 1.2, 1.2 1.2, 1.2 63.8, 63.8 63.8, 
+	                													63.8 1.2, 60 1.2, 60 -.2, 65.2 -.2, 65.2 65.2, -.2 65.2, -.2 -.2 ]
+								    		} 
+							] 
+						}
+
+						 #(NÓ DO GRAFO)
+						Transform {
+							translation	-49 19 26
+							rotation 0 1 0 3.1417
+							children [	   #_rotacao_porta 0 1 0 0, _translaccao_porta -59.9 -19 1.3
+								_sala_de_aula { _translacao_rodape 0 -17.5 0,  
+												_translaccao_porta -59.9 -19 1.3,
+												_rotacao_porta 1 0 0 0,
+												_crossSectionParede [ 0 0, 45 0, 45 1, 1 1, 1 64, 64 64, 64 1,
+											    						60 1, 60 0, 65 0, 65 65, 0 65, 0 0 ],
+												_crossSectionRodape	[ -.2 -.2, 45.2 -.2, 45.2 1.2, 1.2 1.2, 1.2 63.8, 63.8 63.8, 
+	                													63.8 1.2, 60 1.2, 60 -.2, 65.2 -.2, 65.2 65.2, -.2 65.2, -.2 -.2 ]
+								    		}
+							] 
+						}
+					]
+				}
+		
+			]
+		
+		}		
+
+
+		
+		
+
+		# Sala com a porta no lado esquerdo #
+		# _translaccao_porta  -60 0 1.3
+		# _rotacao_porta 0 0 1 3.1417
+		# _translaccao_rodape 0 0 0
+
+		# Sala com a porta do lado direito  #
+		# _translaccao_rodape 0 -17.5 0
+		# _translaccao_porta -45 -19 .3
+		# _rotacao_porta 0 0 1 0
+
+
+		# Zona de escadas... #
+		#(NÓ DO GRAFO)
+		Transform { 
+			translation	90 29 57
+			rotation 0 1 0 1.57
+			children [ _escadas_ext {} ] 
+		}
+
+		#(NÓ DO GRAFO)
+		Transform { 
+			translation	-98 29 107
+			rotation 0 1 0 -1.57
+			children [ _escadas_ext {} ] 
+		}
+
+		#(NÓ DO GRAFO)
+		Transform {
+			translation	-35 15 154.5
+			rotation 0 1 0 3.1417
+			scale 1 .95 1.15
+			children [ _balcao {} ]
+		}
+
+		
+		# Portas da entrada principal...
+		Transform {
+			#(NÓ DO GRAFO)
+			translation	0 -.5 0
+			children [
+				DEF _posicL Transform {
+					translation	-34 1 205
+					rotation 0 0 1 3.1417
+					children [ 
+						_porta_entrada {} 
+						Transform {
+							translation	-8 -7 0
+							children [ _puxador_pequeno { _cor_do_puxador .2 .2 .2} ]
+						}
+					]
+				}
+
+				DEF	_posicR Transform {
+					translation	-25.55 1 205
+					rotation 0 0 1 3.1417
+					children [ _porta_entrada { _posicao_vara -7.6 0 0 } ]
+				}
+
+				DEF _posicT Transform {
+					translation	-34 16 204.55
+					children [ _moldura {} ]
+				}
+
+				Transform {
+					translation	16.9 0 0
+					children [ 
+						USE _posicL 
+						USE	_posicR
+						USE	_posicT
+					]
+				}
+
+				Transform {
+					translation	33.8 0 0
+					children [
+						USE	_posicL
+						USE	_posicR
+						USE	_posicT
+					]
+				}
+
+				Transform {
+					translation	-35 1 205.5
+					children [
+						Shape {
+							geometry Extrusion {
+								crossSection [ 0 0, 0 21, 52 21, 52 0, 51 0, 51 20, 1 20, 1 0, 0 0 ]
+								spine [0 0 0, 0 0 -1]
+								solid FALSE
+							}
+							appearance Appearance {
+								material Material { diffuseColor 0.7 0.7 0.7 }
+							}
+						}
+					]
+				}
+
+			]
+		}
+
+
+		# Parte de fora da entrada..
+		Transform {
+			translation	-163.5 0 207
+			children [
+				DEF	_wdw Transform {
+					children [
+						Transform {
+							scale 1.71 1 1
+							children [ _janela_grande {} ]
+						}
+				
+						Transform {
+							scale 1.71 1 1
+							translation	180 0 0
+							children [ _janela_grande {} ]
+						}
+
+
+						Transform {
+							translation	155 33.2 5
+							children [ _cube { _size 310 25 15} ]
+						}
+					]
+				}
+			]
+		}
+
+
+
+
+		# Chao global.. #
+
+
+	]
+}
+
+
+
+
+
+#######################################################################################
+# Usado apenas como referência.. para saber o sentido positivo de cada um dos eixos.. #
+Transform { 
+	rotation 0 0 1 -1.570796327
+	children [ _axis { _color 1 0 0, _name "X"} ]
+}
+
+Transform {
+	rotation 1 0 0 1.570796327
+	children [ _axis { _color  0 0 1, _name "Z"} ]
+}
+
+Transform {
+	children [ _axis { } ]
+}
+
+
+###############################################################################################
+#CHÃO
+#############################################################################################
+
+	#(NÓ DO GRAFO)
+	Transform {
+		translation	-300 0 -49
+		rotation 1 0 0 1.57
+		children [
+
+			Shape {
+				geometry Extrusion {	 
+					crossSection [0 0, 0 300, 190 300, 190 152, 138 152, 138 110, 190 110, 190 -10, 0 -10]
+					spine [0 0 0, 0 0 -0.5]
+					solid FALSE
+				}
+				appearance Appearance {	 
+					material Material {
+					}
+					texture	ImageTexture {url"texture\chaoInteriorEntrada.jpg" }
+				}
+	
+			}
+		]
+	}
+
+#	(NÓ DO GRAFO)
+	Transform {
+		translation	0 0 -50
+		rotation 1 0 0 1.57
+		children [
+
+			Shape {
+				geometry Extrusion {	 
+					crossSection [25 -10, 25 105, 150 105, 150 150, -110 150, -110 300, 300 300, 300 -10]
+					spine [0 0 0, 0 0 -0.5]
+					solid FALSE
+				}
+				appearance Appearance {	 
+					material Material {
+					}
+					texture	ImageTexture {url"texture\chaoInteriorEntrada.jpg" }
+				}
+	
+			}
+		]
+	}
+
+
+	Transform {
+		translation	-110 0 -48
+		rotation 1 0 0 1.57
+		children [
+
+			Shape {
+	
+
+				geometry Extrusion {	 
+					crossSection [0 -10, 133 -10, 133 40, 70 40, 70 80, 133 80, 133 100, 220 100, 220 158, 0 158 0 0]
+					spine [0 0 0, 0 0 -0.5]
+					solid FALSE
+				}
+				appearance Appearance {	 
+					material Material {
+					}
+					texture	ImageTexture { url"texture\chaoInteriorEntrada.jpg" }
+				}
+	
+			}
+		]
+	}

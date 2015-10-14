@@ -1,0 +1,280 @@
+#VRML V2.0 utf8
+
+#Ficheiro para definição de paredes
+
+#PROTO do eixo importado
+EXTERNPROTO	axle[]
+"Coordinate axle.wrl#CoordinateAxle"
+axle{}
+
+EXTERNPROTO	Curve[
+	field MFVec2f cross
+	field MFVec3f spi
+]
+"Curve.wrl#Curve"
+
+#PROTO de uma parede utilizando extrusion, parametro -> cross section da parede
+PROTO Wall [
+	field MFVec2f crossWall [0 0]
+]{
+	Shape {
+		appearance Appearance {
+			material Material {
+				diffuseColor  1 1 1
+			}
+		}
+
+		geometry Extrusion {
+			beginCap          TRUE
+			crossSection      IS crossWall
+			endCap            TRUE
+			scale             1 1
+			solid             TRUE
+			spine             [0 0 0, 0 0.2 0]
+
+		}
+	}
+}
+
+#PROTO de uma parede Vertical(desenho)
+PROTO HorizontalWall[
+	field MFVec2f crossHorizontalWall [0 0]
+]{
+	Transform {
+		rotation 0 1 0 -1.5708
+		children Transform {
+			rotation 1 0 0 1.5708
+			children Wall {crossWall IS crossHorizontalWall}
+		}
+	}
+}
+
+#PROTO de uma parede Horizontal(desenho)
+PROTO VerticalWall[
+	field MFVec2f crossVerticalWall [0 0]
+]{
+	Transform {
+		rotation 1 0 0 1.5708
+		children Wall {crossWall IS crossVerticalWall}
+	}
+}
+
+
+PROTO WallSet[]{
+	Group {
+		children [
+			#Parede da entrada
+			Transform {
+				translation 0 3 0
+				#rotation 1 0 0 1.57
+				#children Wall {crossWall [0 0, 0 3, 0.386 3, 0.386 0.45, 2.785 0.45, 2.785 3, 3.753 3, 3.753 0.45, 5.337 0.45, 5.337 3, 5.487 3, 5.487 0, 0 0]}
+				children VerticalWall {crossVerticalWall [0 0, 0 3, 0.386 3, 0.386 0.45, 2.785 0.45, 2.785 3, 3.753 3, 3.753 0.45, 5.337 0.45, 5.337 3, 5.487 3, 5.487 0, 0 0]}
+			}
+
+			#Parede placar de testes
+			Transform {
+				translation 5.687 3 0.2
+			#	rotation 0 1 0 -1.57
+			#	children Transform {
+			#		rotation 1 0 0 1.57
+			#		children Wall {crossWall [0 0, 0 3, 1.308 3, 1.308 0, 0 0]}
+			#	}
+				children HorizontalWall	{crossHorizontalWall [0 0, 0 3, 1.314 3, 1.314 0, 0 0]}
+			}
+
+			#Parede tras Ecobox
+			Transform {
+				translation	5.487 3 1.314
+			#	rotation 1 0 0 1.57
+			#	children Wall {crossWall [0 0, 0 3, 0.887 3, 0.887 0, 0 0]}
+				children VerticalWall {crossVerticalWall [0 0, 0 3, 0.887 3, 0.887 0, 0 0]}
+			}
+
+			#Parede porta laboratorios
+			Transform {	
+				translation	6.574 3 1.514
+			#	rotation 0 1 0 -1.57
+			#	children Transform {
+			#		rotation 1 0 0 1.57
+			#		children Wall {crossWall [0 0, 0 3, 0.104 3, 0.104 0.45, 1.688 0.45, 1.688 3, 1.792 3, 1.792 0, 0 0]}
+			#	}
+				children HorizontalWall	{crossHorizontalWall [0 0, 0 3, 0.104 3, 0.104 0.45, 1.688 0.45, 1.688 3, 1.792 3, 1.792 0, 0 0]}
+			}
+
+			#Parede frente Ecobox
+			Transform {
+				translation	5.487 3 3.305
+			#	rotation 1 0 0 1.57
+			#	children Wall {crossWall [0 0, 0 3, 0.887 3, 0.887 0, 0 0]}
+				children VerticalWall {crossVerticalWall [0 0, 0 3, 0.887 3, 0.887 0, 0 0]}
+			}
+
+			#Parede lado esquerdo
+			Transform {
+				translation	5.687 3 3.305
+			#	rotation 0 1 0 -1.57
+			#	children Transform {
+			#		rotation 1 0 0 1.57
+			#		children Wall {crossWall [0 0, 0 3, 0.614 3, 0.614 0, 0 0]}
+			#	}
+				children HorizontalWall	{crossHorizontalWall [0 0, 0 3, 0.614 3, 0.614 0, 0 0]}
+			}
+
+			#Parede lado direito
+			Transform {
+				translation	5.687 3 4.941
+				children HorizontalWall	{crossHorizontalWall [0 0, 0 3, 0.38 3, 0.38 0, 0 0]}
+			}
+
+			#Parede com placares esquerda lab eletronica
+			Transform {
+				translation 0 3 0.2
+				children HorizontalWall	{crossHorizontalWall [0 0, 0 3, 4.605 3, 4.605 0, 0 0]}
+			}
+
+			#Parede entre ombreira eletronica e parede#1
+			Transform {
+				translation	0 3 4.805
+				children HorizontalWall	{crossHorizontalWall [0 0, 0 0.89, 1.954 0.89, 1.954 3, 1.989 3, 1.989 0, 0 0]}
+			}
+
+			#parede#1
+			Transform {
+				translation	0 3 6.794
+				children VerticalWall {crossVerticalWall [0 0, 0 3 0.925 3, 0.925 0, 0 0]}
+			}
+
+			#Parede com placares em frente casas d banho
+			Transform {
+				translation	0.925 3 6.794
+				children HorizontalWall {crossHorizontalWall [0 0, 0 3, 3.395 3, 3.395 0, 0 0]}
+			}
+
+			#Parede	lado esquerdo porta pa gabinetes
+			Transform {
+				translation	0.078 3 9.989
+				children VerticalWall {crossVerticalWall [0 0, 0 3, 0.847 3, 0.847 0, 0 0]}
+			}
+
+			#Parede de acesso aos gabinetes
+			Transform {
+				translation	0.078 3 10.189
+				children HorizontalWall	{crossHorizontalWall [0 0, 0 3, 0.05 3, 0.05 0.89, 1.77 0.89, 1.77 3, 1.81 3, 1.81 0, 0 0]}
+			}
+
+			#Parede	lado direito porta pa gabinetes
+			Transform {
+				translation	0.078 3 11.999
+				children VerticalWall {crossVerticalWall [0 0, 0 3, 0.847 3, 0.847 0, 0 0]}
+			}
+
+			#Parede atras das maquinas
+			Transform {
+				translation	0.925 3 11.999
+				children HorizontalWall	{crossHorizontalWall [0 0, 0 3, 2.295 3, 2.295 0, 0 0]}
+			}
+
+			#Parede com janela total
+			Transform {
+				translation	3.062 3 14.494
+				rotation 0 1 0 3.1416
+				children [
+					#Parede com janela 1
+					Transform {
+						translation	0.497 0 0
+						children VerticalWall {crossVerticalWall [0 0, 0 0.45, 1.485 0.45, 1.485 3, 1.64 3, 1.64 0, 0 0]}
+					}
+
+					#Parede com janela 2
+					Transform {
+						translation	0 0 0
+						children VerticalWall {crossVerticalWall [0 0, 0 3, 1.982 3, 1.982 2.124, 0.497 2.124, 0.497 0, 0 0]}
+					}
+				]
+			}
+		
+			#Parede da porta ao lado da janela
+			Transform {
+				translation	3.062 3 14.294
+				children VerticalWall {crossVerticalWall [0 0, 0 0.45, 1.76 0.45, 1.76 0, 0 0]}
+			}
+
+			#Parede ao lado esquerdo da curva
+			Transform {
+				translation	5.022 3 13.741
+				children HorizontalWall	{crossHorizontalWall [0 0, 0 3, 0.553 3, 0.553 0, 0 0]}
+			}
+
+			#Parede curva do lado esquerdo casa d banho homens
+			Transform {
+				translation	18.38 0 10.6
+				scale 0.99 0.99 0.99
+				rotation 0 1 0 2.9935
+				children Curve {
+					cross [14.1000		0.0000	,14.0979		0.2461	,14.0914		0.4921	,14.0807		0.7379	,14.0657		0.9836	,14.0463		1.2289	,14.0228		1.4739	,13.9949		1.7184	,13.9628		1.9623	,13.9264		2.2057	,13.8858		2.4484	,13.8409		2.6904	,13.7919		2.9316	,13.7386		3.1718	,13.6812		3.4111, 13.4871		 3.36   	,13.5437		 3.13   	,13.5963		 2.89   	,13.6446		 2.65   	,13.6888		 2.41   	,13.7289		 2.17   	,13.7647		 1.93   	,13.7964		 1.69   	,13.8239		 1.45   	,13.8471		 1.21   	,13.8661		 0.97   	,13.8810		 0.73   	,13.8915		 0.49   	,13.8979		 0.24   	,13.9000		 0.00, 14.1000		0.0000]
+					spi	[0 0 0, 0 3.03 0]
+				}
+			}
+
+			#Parede curva do lado direito casa d banho mulheres
+			Transform {
+				translation	18.38 0 10.6
+				scale 0.99 0.99 0.99
+				rotation 0 1 0 3.3738
+				children Curve {
+					cross [14.1000		0.0000	,14.0979		0.2461	,14.0914		0.4921	,14.0807		0.7379	,14.0657		0.9836	,14.0463		1.2289	,14.0228		1.4739	,13.9949		1.7184	,13.9628		1.9623	,13.9264		2.2057	,13.8858		2.4484	,13.8409		2.6904	,13.7919		2.9316, 13.5963		 2.89   	,13.6446		 2.65   	,13.6888		 2.41   	,13.7289		 2.17   	,13.7647		 1.93   	,13.7964		 1.69   	,13.8239		 1.45   	,13.8471		 1.21   	,13.8661		 0.97   	,13.8810		 0.73   	,13.8915		 0.49   	,13.8979		 0.24   	,13.9000		 0.00, 14.1000		0.0000]
+					spi	[0 0 0, 0 3.03 0]
+				}
+			}
+
+			#Parede entre casas d banho
+			Transform {
+				translation	4.65 3 9.65
+				children HorizontalWall	{crossHorizontalWall [0 0, 0 3, 0.17 3, 0.17 0, 0 0]}
+			}
+
+			#Parede cima porta casa d banho homens
+			Transform {
+				translation	18.38 2.11 10.6
+				scale 0.99 0.99 0.99
+				rotation 0 1 0 3.08
+				children Curve {
+					cross [14.1000		0.0000	, 14.0979		0.2461	, 14.0914		0.4921	, 14.0807		0.7379	, 14.0657		0.9836	, 14.0463		1.2289	,  13.8471		 1.21   	, 13.8661		 0.97   	, 13.8810		 0.73   	, 13.8915		 0.49   	, 13.8979		 0.24   	, 13.9000		 0.00 , 14.1000		0.0000]
+					spi	[0 0 0, 0 0.9 0]
+				}
+			}
+
+			#Parede cima porta casa d banho mulheres
+			Transform {
+				translation	18.38 2.11 10.6
+				scale 0.99 0.99 0.99
+				rotation 0 1 0 3.17
+				children Curve {
+					cross [14.1000		0.0000	, 14.0979		0.2461	, 14.0914		0.4921	, 14.0807		0.7379	, 14.0657		0.9836	, 14.0463		1.2289	,  13.8471		 1.21   	, 13.8661		 0.97   	, 13.8810		 0.73   	, 13.8915		 0.49   	, 13.8979		 0.24   	, 13.9000		 0.00 , 14.1000		0.0000]
+					spi	[0 0 0, 0 0.9 0]
+				}
+			}
+
+			#Canto da porta ao lado da janela
+			Transform {
+				translation	4.822 3 14.294
+				children VerticalWall {crossVerticalWall [0 0, 0 3, 0.2 3, 0.2 0, 0 0]}
+			}
+
+			#Parede por cima do elevador
+			Transform {
+				translation	5.687 3 3.919
+				children HorizontalWall	{crossHorizontalWall [0 0, 0 0.79, 1.022 0.79, 1.022 0, 0 0]}
+			}
+		]
+	}
+}
+
+WallSet	{}
+
+#Viewpoint {
+#	position 3 30 9
+#	orientation	1 0 0 -1.57
+#	fieldOfView	0.785
+#	description	"Camara 1"
+#}

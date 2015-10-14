@@ -1,0 +1,1386 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	LuzFluorescente[
+	field SFVec3f posicaoLuzFluorescente
+	eventIn	SFBool changeOnOff
+]"Luzes&Som.wrl#LuzFluorescente"
+
+# Ecrã Plasma
+
+PROTO Plasma
+[
+	field SFVec3f trPlasma 0 0 0 
+	field SFRotation rotPlasma 0 0 0 0
+]
+{
+
+	Transform{
+		translation	IS trPlasma
+		rotation IS	rotPlasma
+		children[
+			Transform{
+				rotation 1 0 0 1.571
+				children 
+				Shape  {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 0 0
+						}
+					}
+					geometry Extrusion {
+						crossSection [-0.75 -0.4, 0.75 -0.4, 0.75 0.4, -0.75 0.4, -0.75 -0.4]
+						spine [0 0 0, 0 0.08 0]
+						scale [ 1 1, 0.7 0.7]
+						solid FALSE
+					}
+				}	
+			}
+
+			Group{
+				children 
+				Shape  {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 0 0
+						}
+					}
+					geometry Box {
+								size 1.5 0.8 0.02
+					}
+				}	
+			}
+
+
+			Transform{
+				translation 0 0.02 -0.008
+				children 
+					Shape {
+					 appearance Appearance {
+    					texture ImageTexture {
+    					  url ["imagem_LCD.jpg"]
+		  
+    					} 
+					}
+					geometry Box {
+								size 1.35 0.65 0.005
+					}
+				}	
+			}
+
+			Transform{
+				translation 0 -0.36 -0.008
+				children 
+				Shape {
+					appearance Appearance {
+    					texture ImageTexture {
+    						url ["panasonic.jpg"]
+    					} 
+					}
+					geometry Box {
+						size 0.15 0.08 0.005
+					}
+				}	
+			}	
+
+			Transform{
+				rotation 1 0 0 1.571
+				translation 0.5 -0.36 -0.006
+				children 
+					Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 1 0
+						} 
+					}
+					geometry Cylinder {
+						bottom TRUE
+						height 0.01
+						radius 0.008
+						side TRUE
+						top	TRUE
+					}
+				}	
+			}	
+		]
+	}   
+}
+
+Plasma {trPlasma 0.25 4.6 2.5 rotPlasma 0 1 0 -1.571}
+
+# Sinal de Saída
+
+PROTO SinalSaida [
+	field SFVec3f trSinalSaida 0 0 0
+	field SFRotation rotSinalSaida 0 0 1 0
+]{
+	Transform {
+		rotation IS	rotSinalSaida
+		translation IS trSinalSaida
+		children [
+			Shape {
+				appearance Appearance {
+					material Material {
+						diffuseColor 0.9 0.9 0.9
+					}
+				}
+				geometry Box {
+					size 0.3 0.1 0.05
+				}
+			}
+			Transform {
+				translation 0 0 0.0255
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {}
+							texture	ImageTexture {
+								url	["textura_sinal_saida.jpg"]
+							}
+						}
+						geometry Box {
+							size 0.3 0.1 0.001
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+SinalSaida { rotSinalSaida 0 1 0 1.571, trSinalSaida 0.2 3.8 2.5}
+SinalSaida { trSinalSaida 9.15 2.4 -2.25 }
+SinalSaida { rotSinalSaida 0 1 0 3.1416, trSinalSaida 9.3 2.4 8.65}
+
+##################################################################################################
+# Lampada
+
+# Armação Lampada
+
+PROTO Barra1[field SFVec3f transBarra 0 0 0]
+{
+
+	Transform{
+		translation IS transBarra
+		children 
+		Shape  {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0.8 0.8 0.8
+					shininess 0.9
+				}
+			}
+			geometry Box { size 0.3 0.05 0.005}
+			
+			}
+		}	
+	}
+
+PROTO Barra2[field SFVec3f transBarra 0 0 0]
+{
+
+	Transform{
+		translation IS transBarra
+		children 
+		Shape  {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0.8 0.8 0.8
+					shininess 0.9
+				}
+			}
+			geometry Box { size 0.005 0.05 1.2}
+			
+			}
+		}	
+	}
+
+#Grelha
+
+PROTO LightGrid [
+	field SFVec3f trGrid 0 0 0
+]
+{
+	
+	Transform {
+		translation	IS trGrid
+		children[
+			Barra1{transBarra 0 0 0.05}
+			Barra1{transBarra 0 0 0.1}
+			Barra1{transBarra 0 0 0.15}
+			Barra1{transBarra 0 0 0.2}
+			Barra1{transBarra 0 0 0.25}
+			Barra1{transBarra 0 0 0.3}
+			Barra1{transBarra 0 0 0.35}
+			Barra1{transBarra 0 0 0.4}
+			Barra1{transBarra 0 0 0.45}
+			Barra1{transBarra 0 0 0.5}
+			Barra1{transBarra 0 0 0.55}
+			Barra1{transBarra 0 0 0.6}
+			Barra1{transBarra 0 0 0.65}
+			Barra1{transBarra 0 0 0.7}
+			Barra1{transBarra 0 0 0.75}
+			Barra1{transBarra 0 0 0.8}
+			Barra1{transBarra 0 0 0.85}
+			Barra1{transBarra 0 0 0.9}
+			Barra1{transBarra 0 0 0.95}
+			Barra1{transBarra 0 0 1}
+			Barra1{transBarra 0 0 1.05}
+			Barra1{transBarra 0 0 1.1}
+			Barra1{transBarra 0 0 1.15}
+			Barra2{transBarra 0 0 0.6}
+
+
+
+		]
+	}
+}
+
+
+#Lampadas
+
+PROTO Lampadas[
+	field SFVec3f trLampadas 0 0 0
+]{
+	
+	Transform {
+		translation	IS trLampadas
+		children [
+			Transform {
+				rotation 0 0 1 1.5708
+				translation 0.62 0.005 0.005	
+				children[
+					Shape {
+						geometry Cylinder {
+							bottom TRUE
+							radius 0.02
+							height 1.1
+							side TRUE
+							top	TRUE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor 1 1 1
+							}
+						}
+					}
+				]
+			}
+			Transform {
+				rotation 0 0 1 1.5708
+				translation 0.62 0.005 0.155	
+				children[
+					Shape {
+						geometry Cylinder {
+							bottom TRUE
+							radius 0.02
+							height 1.1
+							side TRUE
+							top	TRUE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor 1 1 1
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+#Armação + Lampadas + Luz
+
+PROTO ArmacaoLampada [
+	field SFVec3f trArmacaoLampada  0 0 0
+	field SFRotation rotArmacaoLampada 0 0 0 0
+	eventIn	SFBool luzOnOff
+]{
+	Transform {
+		translation	IS trArmacaoLampada
+		rotation IS	rotArmacaoLampada
+		children[
+			Transform {
+				rotation 0 1 0 -1.5708
+				translation	0.34 0 0
+				children [
+					Transform {
+						translation	0.62 0.0805 0.17
+						children[
+							Shape{
+								geometry Box {
+									size 1.24 0.01 0.34
+								}
+								appearance Appearance {
+									material Material {
+										diffuseColor 0.8 0.8 0.8
+									}
+								}
+							}
+						]
+					}
+					Shape  {
+						appearance Appearance {
+							material Material {
+								diffuseColor 1 1 1
+							}
+						}
+						geometry Extrusion {
+							crossSection [0 0, 0.02 0.02, 1.22 0.02, 1.22 0.32, 0.02 0.32,
+								0.02 0.02, 0 0, 1.24 0, 1.24 0.34, 0 0.34, 0 0]
+							spine [0 0 0, 0 0.08 0]
+							solid FALSE
+						}
+					}
+					Lampadas { trLampadas 0.01 0.06 0.09}
+				]
+			}
+			LuzFluorescente{ posicaoLuzFluorescente 0.17 0.04 0.62, changeOnOff IS luzOnOff }	
+			LightGrid{ trGrid 0.17 0.025 0.02 }
+		]	
+	}
+}
+
+##################################################################################################
+# Placards
+
+PROTO Placard 
+[
+	field MFString UrlImagem ""
+	field SFRotation rotPlacard 0 0 0 0
+	field SFVec3f trPlacard 0 0 0
+]{
+	Transform{
+		translation	IS trPlacard
+		rotation  IS rotPlacard
+		children [
+			Transform {
+				translation 1 0.45 0.05
+				children[
+					Shape {
+						geometry Box {
+							size 2 0.9 0.1
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor 1 1 1
+							}
+						}
+					}
+
+					Transform {
+						translation	0 0 0.0505
+						children[
+							Shape {
+								geometry Box {
+									size 1.9 0.8 0.001
+								}
+								appearance Appearance {
+									material Material {
+									}
+									texture	ImageTexture {
+										url	IS UrlImagem
+									}
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}
+
+Placard{trPlacard 14.2 1.1 0.2 UrlImagem ["placard 1.jpg"]}
+Placard{trPlacard 16.3 1.1 0.2 UrlImagem ["placard 2.jpg"]}
+Placard{rotPlacard 0 1 0 -1.5708 trPlacard 18.5 1.1 0.6 UrlImagem ["placard 3.jpg"]}
+Placard{rotPlacard 0 1 0 -1.5708 trPlacard 18.5 1.1 2.7 UrlImagem ["placard 4.jpg"]}
+Placard{trPlacard 2.7 1.1 8.7 rotPlacard 0 1 0 3.1416 UrlImagem ["placard 5.jpg"]}
+
+##############################################################################################
+# Separador das Filas para a secretaria
+
+PROTO PilarSeparador 
+[
+	field SFVec3f trSeparador 0 0 0
+]
+{
+	Transform {
+		translation	IS trSeparador
+		children[
+			Transform {
+				translation	0.15 0.015 0.15
+				children
+				Shape {
+					geometry Cylinder {
+						radius 0.15
+						side TRUE
+						height 0.03
+						bottom TRUE
+						top	TRUE
+					}
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.2 0.2 0.2
+						}
+					}
+				}	
+			}
+			Transform {
+				translation 0.15 0.53 0.15
+				children
+				Shape {
+					geometry Cylinder {
+						radius	0.04
+						side TRUE
+						height 1
+						bottom TRUE
+						top	TRUE
+
+					}
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.2 0.2 0.2
+						}
+					}
+				}
+			}
+			Transform {
+				translation	0.15 0.97 0.15 
+				children
+				Shape {
+					geometry Box {
+						size 0.1 0.08 0.02
+					}
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.2 0.2 0.2
+						}
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO SeparadorFilas
+[
+	field SFVec3f trSeparadorFilas 0 0 0
+]
+{
+	Transform {
+		translation	IS trSeparadorFilas
+		children[
+			PilarSeparador{trSeparador 5.5 0 0}
+			PilarSeparador{trSeparador 4.0 0 0}
+			PilarSeparador{trSeparador 2.5 0 0}
+			PilarSeparador{trSeparador 1.0 0 0}
+			Transform {
+				translation	3.4 0.97 0.15
+				children
+				Shape {
+					geometry Box {
+						size 4.5 0.06 0.01
+					}
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.8 0 0
+						}
+					}
+				}
+			}	
+		
+		]
+	}
+}
+
+SeparadorFilas{trSeparadorFilas 0 0 7.3}
+
+################################
+# Placard Pilar Grande
+
+PROTO PlacardLateral [
+	field SFVec3f trPlacard 0 0 0
+	field SFRotation rotPlacard 0 0 0 0
+	field MFString url ""
+]{
+	Transform {
+		rotation IS	rotPlacard
+		translation	IS trPlacard
+		children [
+			Shape {
+				geometry Box {
+					size 0.7 0.7 0.001
+				}
+				appearance Appearance {
+					material Material {}
+					texture	ImageTexture {
+						url	IS url
+					}
+				}
+			}
+		]
+	}
+	
+}
+
+PROTO PlacardPilarGrande [
+	field SFVec3f trPlacard 0 0 0
+]{
+	Transform {
+		translation	IS trPlacard
+		children [
+			Shape {
+				geometry Box {
+					size 0.8 0.8 0.8
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor 0.9 0.9 0.9
+					}
+				}
+			}
+			PlacardLateral { trPlacard 0 0 0.4, url "placardPilar2.jpg" }
+			PlacardLateral { rotPlacard 0 1 0 1.5708, trPlacard 0.4 0 0, url "placardPilar1.jpg" }
+			PlacardLateral { trPlacard 0 0 -0.4, url "placardPilar2.jpg"}
+			PlacardLateral { rotPlacard 0 1 0 1.5708, trPlacard -0.4 0 0, url "placardPilar1.jpg" }
+		]
+	}
+}
+
+PlacardPilarGrande {trPlacard 6 1.2 5.3}
+
+#############################
+# Maquina dos cartões
+
+Transform {
+	rotation 0 1 0 1
+	translation	0.65 0 5.1
+	children [
+		Transform {
+			rotation 0 0 1 1.5708
+			children [
+				Shape  {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.4 0.4 0.4
+							shininess 0.7
+						}
+					}
+					geometry Extrusion {
+						crossSection [0 0, 1.3 0, 1.5 0.4, 1.1 0.6, 0.9 0.4, 0.11 0.4, 0.08 0.5, 0 0.5,0 0 ]
+						spine [0 0 0, 0 0.6 0]
+						solid FALSE
+					}
+				}
+			]
+		}
+		Transform {
+			rotation  1 0 0 -0.45
+			translation	-0.3 1.3 0.5
+			children [
+				Transform {
+					rotation 1 0 0 1.5708
+					children
+					Shape  {
+						appearance Appearance {
+							material Material {}
+							texture	ImageTexture {
+								url	["textura_metal.jpg"]
+							}
+						}
+						geometry Extrusion {
+							crossSection [ 0.32 -0.23, 0.32 0.23, -0.32 0.23, -0.32 -0.23, -0.28 -0.18,
+											0.28 -0.18, 0.28 0.18 -0.28 0.18, -0.28 -0.18, -0.32 -0.23, 0.32 -0.23]
+							spine [0 0 0, 0 0.04 0]
+							solid FALSE
+						}
+					}
+				}
+				Group	{
+					children [
+						Shape  {
+							 appearance Appearance {
+								texture	DEF imagemMaquina ImageTexture {
+									url	["maquina_1.jpg"]
+								}
+							}
+							geometry Box {
+								size 0.56 0.36 0.01 
+							}
+						}
+						DEF	sensorToqueEcra TouchSensor	{}
+						DEF	scriptAnimEcra Script {
+							eventIn	SFTime ecraTocado
+							eventOut MFString novo_url_imagem
+							field SFInt32 idxImg 1
+							field MFString urls ["maquina_1.jpg","maquina_2.jpg","maquina_3.jpg"]
+							url	"javascript:
+								function ecraTocado( frac, timestamp ) {
+									novo_url_imagem[0] = urls[idxImg];
+									idxImg = (++idxImg)%urls.length;
+								}
+						
+							"
+						}
+					]
+					ROUTE sensorToqueEcra.touchTime	TO scriptAnimEcra.ecraTocado
+					ROUTE scriptAnimEcra.novo_url_imagem TO	imagemMaquina.url
+				}
+				
+			]
+		}
+	]
+}
+
+###################################################
+# PlacardAnuncios
+
+Transform {
+	translation	6.75 1.8 0.25
+	children[
+		Shape {
+			geometry Box {
+				size 1.9 2.2 0.1
+			}
+			appearance Appearance {
+				material Material {
+					diffuseColor 1 1 1
+				}
+			}
+		}
+		Transform {
+			translation	0 0 0.0505
+			children[
+				Shape {
+					geometry Box {
+						size 1.8 2.1 0.001
+					}
+					appearance Appearance {
+						material Material {}
+						texture	ImageTexture {
+							url ["placard 6.jpg"]
+						}
+					}
+				}
+			]
+		}
+	]
+}
+
+###############################################
+# Placard Achados e Informativa
+
+PROTO PlacardAchadosInfo
+[
+	field SFVec3f trPlacardAchadosInfo 0 0 0
+	field SFRotation rotPlacardAchadosInfo 0 0 0 0
+	field MFString urlTextura ""
+]{
+	Transform {
+		translation	IS trPlacardAchadosInfo
+		rotation IS	rotPlacardAchadosInfo
+		children[
+			Shape {
+				geometry Box {
+					size 0.1 0.8 0.8
+				}
+				appearance Appearance {
+					material Material {
+					}
+					texture	ImageTexture {
+						url	["textura_madeira.jpg"]
+					}
+				}
+			}
+			Transform {
+				translation	0.0505 0 0
+				children[
+					Shape {
+						geometry Box {
+							size 0.001 0.7 0.7
+						}
+						appearance Appearance {
+							material Material {}
+							texture	ImageTexture {
+								url IS urlTextura
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}
+
+PlacardAchadosInfo{rotPlacardAchadosInfo 0 1 0 3.1416 trPlacardAchadosInfo 10.45 1.5 -1.8 urlTextura ["placard 7.jpg"]}
+PlacardAchadosInfo{trPlacardAchadosInfo 7.85 1.5 -1.8 urlTextura ["placard 8.jpg"]}
+
+#Ficheiro para definicao de um extintor
+
+PROTO Extintor
+[
+	field SFVec3f trExtintor 0 0 0
+]{
+	Transform {
+		translation	IS trExtintor
+		children [
+			Shape {
+				appearance Appearance {material	Material {diffuseColor 1 0 0}}
+				geometry Cylinder {
+					radius 0.0625
+					height 0.385
+				}
+			}
+
+			Transform {
+				translation	0 0.1925 0
+				scale 0.0625 0.0625 0.0625
+				children Shape {
+					appearance Appearance {material	Material {diffuseColor 1 0 0}}
+					geometry Extrusion {
+						#crossSection [1.00	0.00	,0.87	0.50	,0.50	0.87	,0.00	1.00	,-0.50	0.87	,-0.87	0.50	,-1.00	0.00	,-0.87	-0.50	,-0.50	-0.87	,0.00	-1.00	,0.50	-0.87	,0.87	-0.50	,1.00	0.00]
+						crossSection [1.00	0.00, 0.98	0.17, 0.94	0.34, 0.87	0.50, 0.77	0.64, 0.64	0.77, 0.50	0.87, 0.34	0.94, 0.17	0.98, 0.00	1.00, -0.17	0.98, -0.34	0.94, -0.50	0.87, -0.64	0.77, -0.77	0.64, -0.87	0.50, -0.94	0.34, -0.98	0.17, -1.00	0.00, -0.98	-0.17, -0.94	-0.34, -0.87	-0.50, -0.77	-0.64, -0.64	-0.77, -0.50	-0.87, -0.34	-0.94, -0.17	-0.98, 0.00	-1.00, 0.17	-0.98, 0.34	-0.94, 0.50	-0.87, 0.64	-0.77, 0.77	-0.64, 0.87	-0.50, 0.94	-0.34, 0.98	-0.17, 1.00	0.00]
+						spine [0 0 0, 0 0.1 0, 0 0.15 0, 0 0.2 0, 0 0.25 0, 0 0.3 0, 0 0.35 0, 0 0.4 0, 0 0.45 0, 0 0.5 0, 0 0.55 0, 0 0.6 0, 0 0.65 0, 0 0.7 0, 0 0.75 0, 0 0.8 0, 0 0.85 0, 0 0.9 0, 0 0.95 0, 0 1 0]
+						solid FALSE
+						creaseAngle	1
+						scale [1 1, 0.95 0.95, 0.9 0.9, 0.85 0.85, 0.8 0.8, 0.75 0.75, 0.7 0.7, 0.65 0.65, 0.6 0.6, 0.5 0.5, 0.3 0.3, 0.2 0.2, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0]
+					}
+				}
+			}
+
+			Transform {
+				translation	0 0.2375 0
+				children Shape {
+					appearance Appearance {material	Material {diffuseColor 0.5 0.5 0.5}}
+					geometry Cylinder {
+						radius 0.01
+						height 0.03
+					}
+				}
+			}
+
+			Transform {
+				rotation 0 1 0 -1.57
+				children Transform {
+					translation	0 0.24 0.016
+					rotation 0 1 0 1.57
+					children Transform {
+						rotation 0 0 1 1.57
+						children Shape {
+							appearance Appearance {material	Material {diffuseColor 0.5 0.5 0.5}}
+							geometry Cylinder {
+								radius 0.005
+								height 0.015
+							}
+						}
+					}
+				}
+			}
+
+			Transform {
+				rotation 0 1 0 -1.57
+				children Transform {
+					translation	0 0.24 0.022
+					rotation 0 1 0 1.57
+					children Transform {
+						rotation 0 0 1 1.57
+						children Shape {
+							appearance Appearance {material	Material {diffuseColor 0.5 0.5 0.5}}
+							geometry Cylinder {
+								radius 0.008
+								height 0.005
+							}
+						}
+					}
+				}
+			}
+
+			Transform {
+				translation	0 0.24 -0.016
+				rotation 0 1 0 1.57
+				children Transform {
+					rotation 0 0 1 1.57
+					children Shape {
+						appearance Appearance {material	Material {diffuseColor 0.5 0.5 0.5}}
+						geometry Cylinder {
+							radius 0.005
+							height 0.015
+						}
+					}
+				}
+			}
+
+			Transform {
+				translation	0 0.24 -0.046
+				rotation 0 1 0 1.57
+				children Transform {
+					rotation 0 0 1 1.57
+					children Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor 0 0 0
+							}
+						}
+						geometry Cylinder {
+							radius 0.004
+							height 0.0487
+						}
+					}
+				}
+			}
+
+			Transform {
+				translation	0 0.2359 -0.07
+				rotation 0 1 0 1.57
+				scale 0.004 0.004 0.004
+				children Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 0 0
+						}
+					}
+					geometry Extrusion {
+						crossSection [1.00		0.00	, 0.98		0.17	, 0.94		0.34	, 0.87		0.50	, 0.77		0.64	, 0.64		0.77	, 0.50		0.87	, 0.34		0.94	, 0.17		0.98	, 0.00		1.00	, -0.17		0.98	, -0.34		0.94	, -0.50		0.87	, -0.64		0.77	, -0.77		0.64	, -0.87		0.50	, -0.94		0.34	, -0.98		0.17	, -1.00		0.00	, -0.98		-0.17	, -0.94		-0.34	, -0.87		-0.50	, -0.77		-0.64	, -0.64		-0.77	, -0.50		-0.87	, -0.34		-0.94	, -0.17		-0.98	, 0.00		-1.00	, 0.17		-0.98	, 0.34		-0.94	, 0.50		-0.87	, 0.64		-0.77	, 0.77		-0.64	, 0.87		-0.50	, 0.94		-0.34	, 0.98		-0.17	, 1.00		0.00 ]
+						spine[1.00	0.00	0	, 0.98	0.17	0	, 0.94	0.34	0	, 0.87	0.50	0	, 0.77	0.64	0	, 0.64	0.77	0	, 0.50	0.87	0	, 0.34	0.94	0	, 0.17	0.98	0	, 0.00	1.00	0]
+						solid FALSE
+						creaseAngle	1
+					}
+				}
+			}
+
+			Transform {
+				translation	0 0.1115 -0.074
+				children Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 0 0
+						}
+					}
+					geometry Cylinder {
+						radius 0.004
+						height 0.25
+					}
+				}
+			}
+
+			Transform {
+				translation	0 -0.064 -0.074
+				children Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.8 0.8 0.8}}
+					geometry Extrusion {
+						crossSection [0.01	0.00, 0.0098	0.0017, 0.0094	0.0034	, 0.0087		0.0050	, 0.0077		0.0064	, 0.0064		0.0077	, 0.0050		0.0087	, 0.0034		0.0094	, 0.0017		0.0098	, 0.00		0.01	, -0.0017		0.0098	, -0.0034		0.0094	, -0.0050		0.0087	, -0.0064		0.0077	, -0.0077		0.0064	, -0.0087		0.0050	, -0.0094		0.0034	, -0.0098		0.0017	, -0.01		0.00	, -0.0098		-0.0017	, -0.0094		-0.0034	, -0.0087		-0.0050	, -0.0077		-0.0064	, -0.0064		-0.0077	, -0.0050		-0.0087	, -0.0034	-0.0094, -0.0017	-0.0098, 0.00 -0.01, 0.0017	-0.0098, 0.0034	-0.0094, 0.0050	-0.0087, 0.0064	-0.0077, 0.0077	-0.0064, 0.0087	-0.0050, 0.0094	-0.0034, 0.0098 -0.0017, 0.01	0.00]
+						spine [0 0 0, 0 0.05 0]
+						solid FALSE
+						scale [1 1, 0.6 0.6]
+						creaseAngle	1
+					}
+				}
+			}
+
+			Transform {
+				translation	0 0.255 0.02
+				children Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 0 0}
+						}
+					geometry Box { size 0.01 0.005 0.06}
+				}
+			}
+
+			Transform {
+				translation	-0.005 0.263 0.02
+				rotation 1 0 0 -0.2618
+				children Transform {
+					translation	0.005 0 0
+					children Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor 0 0 0}}
+						geometry Box { size 0.01 0.005 0.06}
+					}
+				}
+			}
+
+			Transform {
+				translation	 0 0.2565 0
+				rotation 0 0 1 1.57
+				scale 0.3 0.3 0.3
+				children Group {
+					children [
+						Transform {
+							children Shape {
+								appearance Appearance {material	Material {diffuseColor 1 0 0}}
+								geometry Cylinder {
+									radius 0.005
+									height 0.05
+								}
+							}
+						}
+
+						Transform {
+							translation	0 0.0275 0
+							children Shape {
+								appearance Appearance {material	Material {diffuseColor 1 0 0}}
+								geometry Cylinder {
+									radius 0.013
+									height 0.005
+								}
+							}
+						}
+
+						Transform {
+							translation	0 -0.029 0
+							rotation 1 0 0 3.1416
+							children Shape {
+								appearance Appearance {material	Material {diffuseColor 1 0 0}}
+								geometry Cone {
+									bottomRadius 0.005
+									height 0.008
+								}
+							}
+						}
+					]
+				}
+			}
+		]
+	}
+}
+
+Transform {
+	translation	18.45 1.7 4.89
+	children			
+	Shape {
+		geometry Box {
+			size 0.07 0.02 0.02
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor 0.6 0.6 0.6
+			}
+		}
+	}
+}
+
+Extintor {trExtintor 18.38 1.5 4.90}
+
+
+
+######################################################################################
+# Multibanco
+
+
+PROTO Multibanco 
+[
+	field SFVec3f trMultibanco 0 0 0
+
+]
+{
+	Transform {
+		translation	IS trMultibanco
+		children[
+			Transform {
+				translation 0.35 0.5 0
+				rotation 1 0 0 -1.5708
+				children[
+					Shape {
+						geometry Extrusion {
+							crossSection [-0.35 -0.5, -0.25 -0.4, 0.25 -0.4, 0.25 0.4, -0.25 0.4, -0.25 -0.4, -0.35 -0.5, 0.35 -0.5, 0.35 0.5, -0.35 0.5, -0.35 -0.5]
+							solid FALSE
+							spine [0 0 0, 0 0.05 0]
+						}
+						appearance Appearance {
+							material Material {
+							}
+							texture	ImageTexture {
+								url	["textura_metal.jpg"]
+							}
+						}			
+					}
+
+					Shape {
+						geometry Extrusion {
+							crossSection [-0.25 -0.4, 0.25 -0.4, 0.25 0.4, -0.25 0.4, -0.25 -0.4]
+							spine[0 0 0, 0 0.05 0, 0 0.25 0]
+							scale[1 1, 1 1, 0.7 0.6]
+							endCap  FALSE
+							solid FALSE
+							beginCap FALSE
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor 0.6 0.6 0.6
+								shininess 0.4
+							}
+						}
+					}
+
+					Transform {
+						translation	0 0.25 0 
+						children
+						Shape {
+							geometry Box {
+								size 0.35 0.001 0.48
+							}
+							appearance Appearance {
+								material Material {
+								}
+								texture	ImageTexture {
+									url	["ecraMultibanco.jpg"]
+								}
+							}
+						}
+					}
+				]
+				
+			}
+
+			Transform {
+				rotation 1 0 0 -2.4715926535897932384626433832795
+				translation	0.35 0.18 -0.15
+				children
+				Shape {
+					geometry Box {
+						size 0.35 0.001 0.25
+					}
+					appearance Appearance {
+						material Material {
+						}
+						texture	ImageTexture {
+							url	["tecladoMultibanco.jpg"]
+						}
+					}
+				}
+			}
+		]
+	}
+}
+
+Multibanco {trMultibanco 12.7 1 0.25}
+
+
+
+
+############################################################################################
+# Suporte dos anuncios do meio
+
+PROTO Pilar [ field SFVec3f transPilar 0 0 0 ]
+{
+
+	Transform {
+	translation	IS transPilar
+	rotation 1 0 0 -1.571
+		children 
+		Shape  {
+			appearance Appearance {
+				material Material {
+					diffuseColor 0.6 0.6 0.6
+					shininess 0.8
+				}
+			}
+			geometry Extrusion {
+				crossSection [0 0, 0.03 0, 0.03 0.03, 0.45 0.03, 0.45 0, 0.5 0, 0.5 0.07, 0.3 0.07, 0.3 2.2, 0.2 2.2, 0.2 0.07, 0 0.07, 0 0 ]
+				spine [0 0 0, 0 0.05 0]
+				solid FALSE
+			}
+		}	
+	}
+}
+
+PROTO Suporte
+[
+	field SFVec3f trSuporte 0 0 0
+	field SFVec3f sSuporte 1 1 1
+	field SFRotation rotSuporte 0 0 0 0
+]
+{
+	Transform {
+		scale IS sSuporte
+		rotation IS	rotSuporte
+		translation	IS trSuporte
+		children[
+			Pilar {}
+			Pilar {transPilar 0 0 2}
+			Pilar {transPilar 0 0 4}
+
+			Transform {
+			translation	0.25 1.1 1.975
+				children
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.6 0.6 0.6
+							shininess 0.8
+						}
+					}
+					geometry Box {
+						size 1 0.05 4.1
+					}
+				}
+			}
+
+			Transform {
+				translation	0.25 1.13 1.975
+				children
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 0 0
+							shininess 0.3
+						}
+					}
+					geometry Box {
+						size 0.9 0.01 4.0
+					}
+				}
+			}
+
+			Transform {
+				translation	0.25 1.65 1.975
+				children
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.6 0.6 0.6
+							shininess 0.8
+						}
+					}
+					geometry Box {
+						size 0.1 1.1 4
+					}
+				}
+			}
+
+			Transform {
+				translation	0.2 1.67 3
+				children
+				Shape {
+					appearance Appearance {
+						material Material {}
+						texture ImageTexture {
+    					url ["painel.jpg"]
+		  
+    					} 
+					}
+					geometry Box {
+						size 0.01 1 1.9
+					}
+				}
+			}
+
+			Transform {
+				translation	0.3 1.67 3
+				children
+				Shape {
+					appearance Appearance {
+						material Material {}
+						texture ImageTexture {
+    						url ["painel.jpg"]
+    					} 
+					}
+					geometry Box {
+						size 0.01 1 1.9
+					}
+				}
+			}
+
+			Transform {
+				translation	0.2 1.67 0.95
+				children
+				Shape {
+					appearance Appearance {
+						material Material {}
+						texture ImageTexture {
+    			  url ["painel1.jpg"]
+		  
+    			} 
+					}
+					geometry Box {
+						size 0.01 1 1.9
+					}
+				}
+			}
+
+			Transform {
+				translation	0.3 1.67 0.95
+				children
+				Shape {
+					appearance Appearance {
+						material Material {}
+						texture ImageTexture {
+    						url ["painel1.jpg"]
+		  
+    					} 
+					}
+		
+					geometry Box {
+						size 0.01 1 1.9
+					}
+				}
+			}
+		]
+	}
+}
+
+Suporte	{trSuporte 13 0 3.4 sSuporte 0.9 0.9 0.9 rotSuporte 0 1 0 1.571}
+
+############################
+# Caixote de Lixo
+
+PROTO CaixoteLixo [ field SFVec3f transCaixote 0 0 0
+					field SFRotation rotCaixote 0 0 0 0
+
+]
+{
+	Transform {
+		translation	IS transCaixote
+		rotation IS	rotCaixote
+		children[
+			Transform {
+				rotation 1 0 0 -1.571
+				children 
+				Shape  {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.8 0.8 0.8
+							shininess 0.8
+						}
+					}
+					geometry Extrusion {
+						crossSection [0 0, 0.2 0, 0.2 0.5, 0.13 0.5, 0.13 0.6, 0.2 0.6, 0.2 0.61 , 0 0.61 , 0 0]
+						spine [0 0 0, 0 0.25 0]
+						solid FALSE
+					}
+				}	
+			}
+			
+	 		Transform {
+				translation	0 0.61 -0.25
+				children 
+				Shape  {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0.8 0.8 0.8
+							shininess 0.8
+						}
+					}
+					geometry Extrusion {
+						crossSection [0 0, 0.2 0, 0.2 0.25, 0 0.25, 0 0]
+						spine [0 0 0, 0 0.05 0]
+						endCap FALSE
+						solid FALSE
+					}
+				}	
+			}
+
+
+			Transform {
+				translation	0.005 0.611 -0.245
+				children 
+				Shape  {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 0 0
+							shininess 0.3
+						}
+					}
+					geometry Extrusion {
+						crossSection [0 0, 0.19 0, 0.19 0.24, 0 0.24, 0 0]
+						spine [0 0 0, 0 0.049 0]
+						endCap FALSE
+						solid FALSE
+					}
+				}	
+			}
+
+			Transform {
+				translation	 0.13 0.55 -0.125
+				children
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 0 0
+							shininess 0.3
+						}
+					}
+					geometry Box {
+						size 0.01 0.1 0.23
+					}
+				}
+			}
+
+			Transform {
+				translation	 0.14 0.5 -0.125
+				rotation 0 0 1 1.571
+				children
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 0 0
+							shininess 0.3
+						}
+					}
+					geometry Box {
+						size 0.01 0.1 0.23
+					}
+				}
+			}
+
+			Transform {
+				translation	 0.14 0.6 -0.125
+				rotation 0 0 1 1.57
+				children
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 0 0 0
+							shininess 0.3
+						}
+					}
+					geometry Box {
+						size 0.01 0.1 0.23
+					}
+				}
+			}
+		]
+	}
+}
+
+CaixoteLixo	{transCaixote 2 0 8.65	rotCaixote 0 1 0 1.571}
+CaixoteLixo	{transCaixote 12.2 0 5.5	rotCaixote 0 1 0 3.1416}
+CaixoteLixo	{transCaixote 12 0 0.2 rotCaixote 0 1 0 -1.571}
+   
+
+##########################################################################################
+
+PROTO Telefone[	field SFVec3f transTelefone 0 0 0
+				
+]
+{
+	Transform {
+		translation	IS transTelefone	
+		children
+		Shape {
+			appearance Appearance {
+				material Material {}
+				texture ImageTexture {
+    				url ["telefone.jpg"]
+    			} 
+			}
+			geometry Box {
+				size 0.25 0.55 0.01
+			}
+		}
+	}
+}
+
+Telefone { transTelefone 11 1.5 0.2 }
+Telefone { transTelefone 11.7 1.5 0.2 }
+
+
+
+
+

@@ -1,0 +1,930 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Axis [ ] "axis_prof.wrl#Axis"
+#Transform {
+#	scale 1 1 1
+#	children Axis {  }
+#} 
+EXTERNPROTO	Pilar [ ] "pilar.wrl#Pilar"
+EXTERNPROTO Secretaria [] "secretaria.wrl#Secretaria"
+EXTERNPROTO	Simbolo_ISEL [] "simbolo_isel.wrl#Simbolo_ISEL"
+EXTERNPROTO	Estante [] "Estante.wrl#Estante"
+EXTERNPROTO	Mesa_computador [] "MesaPC.wrl#Mesa_computador"
+EXTERNPROTO	MesaECadeiras [] "MesaECadeiras.wrl#MesaECadeiras"
+EXTERNPROTO	Tecto_Grande [] "tecto_grande.wrl#Tecto_Grande"
+EXTERNPROTO	VitrineAlta [] "VitrineAlta.wrl#Vitrine_Alta"
+EXTERNPROTO	Vitrine [] "Vitrine.wrl#Vitrine"
+EXTERNPROTO	EstanteVidros [] "EstanteVidros.wrl#EstanteVidros"
+
+EXTERNPROTO	PilarSimples [ ] "LOD1\pilar.wrl#Pilar"
+EXTERNPROTO SecretariaSimples [] "LOD1\secretaria.wrl#Secretaria"
+EXTERNPROTO	EstanteSimples [] "LOD1\Estante.wrl#Estante"
+EXTERNPROTO	Mesa_computadorSimples [] "LOD1\MesaPC.wrl#Mesa_computador"
+EXTERNPROTO	VitrineAltaSimples [] "LOD1\VitrineAlta.wrl#Vitrine_Alta"
+EXTERNPROTO	VitrineSimples [] "LOD1\Vitrine.wrl#Vitrine"
+EXTERNPROTO	EstanteVidrosSimples [] "LOD1\EstanteVidros.wrl#EstanteVidros"
+
+PROTO Fila_de_Estantes7[] {
+	# 6.9375
+	Group {
+		children [
+			Transform {
+				translation	-0.4625 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-1.3875 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-2.3125 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-3.2375 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-4.1625 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-5.0875 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-6.0125 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+		]
+	}
+}
+
+PROTO Fila_de_Estantes8[] {
+	# 7.4
+	Group {
+		children [
+			Transform {
+				translation	-0.4625 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-1.3875 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}						 
+			Transform {
+				translation	-2.3125 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-3.2375 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-4.1625 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-5.0875 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-6.0125 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	-6.9375 0 0.200
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+		]
+	}
+}
+
+PROTO Chao[] {
+	Shape {
+		geometry Extrusion {
+			crossSection [
+				0		0,
+				0		7.5,
+				-0.2	7.5,
+				-0.2	10.9,
+				11.95	10.9,
+				11.95	-4.85,
+				7.3		-4.85,
+				7.3		-2.2,
+				0		-2.2,
+				0		0
+			]
+			spine [
+				0 0 0, 
+				0 0.02 0
+			]
+			ccw	FALSE
+		}
+#		appearance Appearance {
+#			texture	ImageTexture { url	["imagens/sala_grande_chao.jpg"] }
+#			textureTransform TextureTransform { scale 10 10 }
+#		}
+		appearance Appearance { material Material { diffuseColor 0.83 0.73 0.07 } }
+	}
+}
+
+PROTO WC [] {
+	# dimensões:
+	# x: 4.76
+	# y: 3.00
+	# z: 8.33
+	Transform {
+		translation	0 1.5 0
+		children [
+			Shape {
+				geometry Box {
+					size 4.76 3 8.33
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+					}
+				}
+			}
+		]
+	}
+}
+
+PROTO Sala_Grande [] {
+
+	Group {
+		children [
+			#------------------------------[ 
+			Transform {
+				scale 2.38 0 2.38
+				children[Chao { }]
+			}
+			Transform {
+				translation	0 3 0
+				children[Tecto_Grande { }]
+			}
+			Transform {
+				# p(2.38, 0, 9.0444)
+				translation	4.76 0 13.209
+				children [WC { }]
+			}
+			Transform {
+				translation	2 0 0
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Secretaria { } , SecretariaSimples { }]
+				}
+			}
+			Transform {
+				translation	8.925 0 -2.38
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[VitrineAlta { } , VitrineAltaSimples { }]
+				}
+			}
+			Transform {
+				translation	3.57 0 -4.931
+				children
+				LOD {
+					range[4.0],
+					level[Vitrine { } , VitrineSimples { }]
+				}
+			}
+			Transform {
+				translation	16.065 0 -4.931
+				children
+				LOD {
+					range[4.0],
+					level[Vitrine { } , VitrineSimples { }]
+				}
+			}
+			Transform {
+				translation	4.76 1.9 9.044
+				children [Simbolo_ISEL { }]
+			}
+
+			#------------------------------[ PILARES
+			Transform {	# pilar A
+				translation	9.52 0 -2.38
+				children
+				LOD {
+					range[4.0],
+					level[Pilar { } , PilarSimples { }]
+				}
+			}
+			Transform {	# pilar C
+				translation	9.52 0 7.14
+				children
+				LOD {
+					range[4.0],
+					level[Pilar { } , PilarSimples { }]
+				}
+			}
+			Transform {	# pilar E
+				translation	9.52 0 17.14
+				children
+				LOD {
+					range[4.0],
+					level[Pilar { } , PilarSimples { }]
+				}
+			}
+			Transform {	# pilar B
+				translation	19.4 0 -2.38
+				children
+				LOD {
+					range[4.0],
+					level[Pilar { } , PilarSimples { }]
+				}
+			}
+			Transform {	# pilar D
+				translation	19.4 0 7.14
+				children
+				LOD {
+					range[4.0],
+					level[Pilar { } , PilarSimples { }]
+				}
+			}
+			Transform {	# pilar F
+				translation	19.4 0 17.14
+				children
+				LOD {
+					range[4.0],
+					level[Pilar { } , PilarSimples { }]
+				}
+			}
+			
+			#------------------------------[ MESAS DOS PCs
+			Transform {
+				translation	3.50 0 8.60
+				rotation 0 1 0 3.14
+				children
+				LOD {
+					range[4.0],
+					level[Mesa_computador { } , Mesa_computadorSimples { }]
+				}
+			}
+			Transform {
+				translation	4.76 0 8.60
+				rotation 0 1 0 3.14
+				children
+				LOD {
+					range[4.0],
+					level[Mesa_computador { } , Mesa_computadorSimples { }]
+				}
+			}
+			Transform {
+				translation	6.00 0 8.60
+				rotation 0 1 0 3.14
+				children
+				LOD {
+					range[4.0],
+					level[Mesa_computador { } , Mesa_computadorSimples { }]
+				}
+			}
+
+
+			#------------------------------[ ESTANTES (ZONA 1 - 1º fila horizontal)
+			Transform {#			 1º fila
+				translation	7.115 0.0125 9.05
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {
+				translation	7.315 0.0125 16.9125
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}						
+			Transform {#			 2º fila
+				translation	9.115 0 16.45
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {
+				translation	9.115 0 9.05
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {#			 3º fila
+				translation	11.115 0 16.45
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {
+				translation	11.115 0 9.05
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {#			 4º fila
+				translation	13.115 0 16.45
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {
+				translation	13.115 0 9.05
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {#			 5º fila
+				translation	15.115 0 16.45
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {
+				translation	15.115 0 9.05
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {#			 6º fila
+				translation	17.115 0 16.45
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {
+				translation	17.115 0 9.05
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {#			 7º fila
+				translation	19.115 0 16.45
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {
+				translation	19.115 0 9.05
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {#			 8º fila
+				translation	21.115 0 16.45
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {
+				translation 21.115 0 9.05
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {#			 9º fila
+				translation	23.115 0 16.45
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {
+				translation	23.115 0 9.05
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {#			 10º fila
+				translation	25.115 0 16.45
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {
+				translation	25.115 0 9.05
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {#			 11º fila
+				translation	27.115 0 16.45
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			
+
+			#------------------------------[ ESTANTES (ZONA 2 - wcs e arredores)
+			Transform {
+				translation	0 0.0250 4.75
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+			Transform {
+				translation	0	0.0250	7.525
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+
+			Transform {
+				translation	0	0.0250	18.25
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes8 { }]
+			}
+
+			# encostados ao wc - vertical
+			Transform {
+				translation	2.1975 0 9.52
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	2.1975	0	10.445
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	2.1975 0 15.975
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	2.1975	0	16.900
+				rotation 0 1 0 1.571
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+
+			# encostados ao wc - horizontal
+			Transform {
+				translation	2.90	0.0125	17.55
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	3.825	0.0125	17.55
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	4.75	0.0125	17.55
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	5.675	0.0125	17.55
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+			Transform {
+				translation	6.6	0.0125	17.55
+				children
+				LOD {
+					range[4.0],
+					level[Estante { } , EstanteSimples { }]
+				}
+			}
+
+			#------------------------------[ ESTANTES (ZONA 3 - 2º fila horizontal)
+			Transform { # 1º fila
+				translation	2.00 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	1.95 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 2º fila
+				translation	4.00 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	3.95 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 3º fila
+				translation	6.00 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	5.95 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 4º fila
+				translation	7.365 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	7.115 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 5º fila
+				translation	9.465 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	9.115 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 6º fila
+				translation	11.465 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	11.115 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 7º fila
+				translation	13.465 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	13.115 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 8º fila
+				translation	15.465 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	15.115 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 9º fila
+				translation	17.465 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	17.115 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 10º fila
+				translation	19.465 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	19.115 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 11º fila
+				translation	21.465 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	21.115 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 12º fila
+				translation	23.465 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	23.115 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 13º fila
+				translation	25.465 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {
+				translation	25.115 0.0125 18.625
+				rotation 0 1 0 1.571
+				children [Fila_de_Estantes7 { }]
+			}
+			Transform {	# 14º fila
+				translation	27.115 0.0125 25.1
+				rotation 0 1 0 -1.571
+				children [Fila_de_Estantes7 { }]
+			}
+
+			#------------------------------[ MESAS E CADEIRAS
+			Transform { #A
+				translation	4.76 0 5
+				children [MesaECadeiras { }]
+			}
+			Transform { #B
+				translation	9.25 0 -1
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform { #C
+				translation	9.25 0 2.25
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform { #D
+				translation	9.25 0 5.75
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform { #E
+				translation	12.25 0 -2
+				children [MesaECadeiras { }]
+			}
+			Transform { #F
+				translation	12.25 0 0.75
+				children [MesaECadeiras { }]
+			}
+			Transform { #G
+				translation	12.25 0 4
+				children [MesaECadeiras { }]
+			}
+			Transform { #H
+				translation	12.25 0 7
+				children [MesaECadeiras { }]
+			}
+			Transform { #I
+				translation	15.25 0 -2
+				children [MesaECadeiras { }]
+			}
+			Transform { #J
+				translation	15.25 0 0.75
+				children [MesaECadeiras { }]
+			}
+			Transform { #K
+				translation	15.25 0 4
+				children [MesaECadeiras { }]
+			}
+			Transform { #L
+				translation	15.25 0 7
+				children [MesaECadeiras { }]
+			}
+			Transform { #M
+				translation	18.25 0 -2
+				children [MesaECadeiras { }]
+			}
+			Transform { #N
+				translation	18.25 0 0.75
+				children [MesaECadeiras { }]
+			}
+			Transform { #O
+				translation	18.25 0 4
+				children [MesaECadeiras { }]
+			}
+			Transform { #P
+				translation	18.25 0 7
+				children [MesaECadeiras { }]
+			}
+			Transform { #Q
+				translation	21.25 0 -2
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform { #R
+				translation	21.25 0 0.75
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform { #S
+				translation	21.25 0 4
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform { #T
+				translation	21.25 0 7
+				children [MesaECadeiras { }]
+			}
+			Transform { #U
+				translation	24 0 -2
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform { #V
+				translation	24 0 0.75
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform { #W
+				translation	24 0 4
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform { #X
+				translation	24 0 7
+				children [MesaECadeiras { }]
+			}
+			Transform { #Y
+				translation	27 0 -2
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform { #Z
+				translation	27 0 0.75
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+			Transform { #ZZ
+				translation	27 0 4
+				rotation 0 1 0 1.571
+				children [MesaECadeiras { }]
+			}
+
+			#------------------------------[ ESTANTES DE VIDRO
+			Transform {
+				scale 1 0.67 1
+				children [
+					Transform {
+						translation	19.45 0 -5.467
+						children
+						LOD {
+							range[4.0],
+							level[EstanteVidros { } , EstanteVidrosSimples { }]
+						}
+					}
+					Transform {
+						translation	20.27 0 -5.467
+						children
+						LOD {
+							range[4.0],
+							level[EstanteVidros { } , EstanteVidrosSimples { }]
+						}
+					}
+					Transform {
+						translation	20.27 0 -5.467
+						children
+						LOD {
+							range[4.0],
+							level[EstanteVidros { } , EstanteVidrosSimples { }]
+						}
+					}
+					Transform {
+						translation	21.09 0 -5.467
+						children
+						LOD {
+							range[4.0],
+							level[EstanteVidros { } , EstanteVidrosSimples { }]
+						}
+					}
+					Transform {
+						translation	21.91 0 -5.467
+						children
+						LOD {
+							range[4.0],
+							level[EstanteVidros { } , EstanteVidrosSimples { }]
+						}
+					}
+					Transform {
+						translation	22.73 0 -5.467
+						children
+						LOD {
+							range[4.0],
+							level[EstanteVidros { } , EstanteVidrosSimples { }]
+						}
+					}
+					Transform {
+						translation	23.55 0 -5.467
+						children
+						LOD {
+							range[4.0],
+							level[EstanteVidros { } , EstanteVidrosSimples { }]
+						}
+					}
+					Transform {
+						translation	24.37 0 -5.467
+						children
+						LOD {
+							range[4.0],
+							level[EstanteVidros { } , EstanteVidrosSimples { }]
+						}
+					}
+					Transform {
+						translation	25.19 0 -5.467
+						children
+						LOD {
+							range[4.0],
+							level[EstanteVidros { } , EstanteVidrosSimples { }]
+						}
+					}
+					Transform {
+						translation	26.01 0 -5.467
+						children
+						LOD {
+							range[4.0],
+							level[EstanteVidros { } , EstanteVidrosSimples { }]
+						}
+					}
+					Transform {
+						translation	26.83 0 -5.467
+						children
+						LOD {
+							range[4.0],
+							level[EstanteVidros { } , EstanteVidrosSimples { }]
+						}
+					}
+					Transform {
+						translation	27.65 0 -5.467
+						children
+						LOD {
+							range[4.0],
+							level[EstanteVidros { } , EstanteVidrosSimples { }]
+						}
+					}
+				]
+			}
+		]
+	}
+
+}
+
+Transform {
+	scale 0.1 0.1 0.1
+	children [Sala_Grande	{ }]
+}

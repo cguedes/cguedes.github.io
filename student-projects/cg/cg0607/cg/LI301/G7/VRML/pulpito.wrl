@@ -1,0 +1,88 @@
+#VRML V2.0 utf8
+#Pulpito
+
+
+ #dimensoes: altura: 1.25 m, largura: 0.6 x 0.6 m
+
+
+
+EXTERNPROTO Axis [] "Axis.wrl#Axis"
+Transform {
+  scale 0.25 0.25 0.25
+  children Axis {}
+}
+				  
+EXTERNPROTO	Fundo_1 [] "pulpito_pequeno.wrl#fundo_1"
+
+
+
+EXTERNPROTO	Fundo [] "pulpito_pequeno.wrl#fundo"
+
+ 
+PROTO coluna
+[
+]
+{  
+	Shape {
+		geometry Box {size 0.3 1 0.3}
+    	appearance Appearance {
+			material Material { }
+        	texture ImageTexture { url "textura parede.png" }
+    	}
+    }
+ }	
+
+PROTO tampo1
+[
+] 
+{ 
+	Shape { 
+		geometry Extrusion { 
+    		crossSection [0 0, 0 0.6, 0.2 0.6, 0 0] 
+    		spine [0 0 0, 0 .6 0] 
+			orientation 0 0 1 0
+    		endCap TRUE
+    		beginCap TRUE
+    		solid TRUE
+    		ccw TRUE
+    		convex TRUE
+    		creaseAngle 0	 	
+		} 
+		appearance Appearance	{
+			material Material { }
+	        	texture ImageTexture { url "textura parede.png" }
+		}
+	}
+}
+
+			 
+PROTO pulpito
+[
+]
+{
+	Transform {
+		children [
+			Transform {
+				translation	0 1.025 0
+				children Fundo	{}
+			}
+			Transform {
+				translation	0 1.055 0
+				children Fundo_1 {}
+			}
+			Transform {
+				translation	0 1.55 0
+				children coluna	{}
+			}
+			Transform {
+				rotation 0 0 1 1.57
+				translation	0.30 2 -0.31
+				children tampo1 {} 			
+			}	
+		]		
+	}
+}
+	
+  
+#pulpito{}
+#Axis {}

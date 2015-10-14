@@ -1,0 +1,399 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO buraco []
+"Lavatorios.wrl#buraco_ralo"
+
+
+PROTO tubo_sanita[]{
+
+	Group {
+		children [
+  			Transform {
+				scale 0.01 0.01 0.01
+				translation	0 0.005 0.0010
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 1 1 1 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE
+								height 20
+								radius 3
+								side TRUE 
+								top TRUE 
+							}
+					}
+				]	
+			}
+
+			# ligaçao
+			Transform {
+				rotation 1 0 0 1.5708
+				translation	0 -0.08 0.0295
+				children[
+					Transform {
+						scale 0.01 0.01 0.01
+						rotation 0 0 1 -1.5708
+						children[
+							Shape{
+								  appearance Appearance {	
+									   material Material { 
+											diffuseColor 1 1 1 
+									   }
+								   }
+								   geometry Extrusion {
+										crossSection[3.00	0.00	, 2.95	0.52	, 2.82	1.03	, 2.60	1.50	, 2.30	1.93	, 1.93	2.30	, 1.50	2.60	, 1.03	2.82	, 0.52	2.95	, 0.00	3.00	, -0.52	2.95	, -1.03	2.82	, -1.50	2.60	, -1.93	2.30	, -2.30	1.93	, -2.60	1.50	, -2.82	1.03	, -2.95	0.52	, -3.00	0.00	, -2.95	-0.52	, -2.82	-1.03	, -2.60	-1.50	, -2.30	-1.93	, -1.93	-2.30	, -1.50	-2.60	, -1.03	-2.82	, -0.52	-2.95	, 0.00	-3.00	, 0.52	-2.95	, 1.03	-2.82	, 1.50	-2.60	, 1.93	-2.30	, 2.30	-1.93	, 2.60	-1.50	, 2.82	-1.03	, 2.95	-0.52	, 3.00	0.00]	
+										spine[2.90	0.00	-0.78, 3.00	0.00	0.00	, 2.90	0.00	0.78	, 2.60	0.00	1.50	, 2.12	0.00	2.12	, 1.50	0.00	2.60	, 0.78	0.00	2.90	, 0.00	0.00	3.00 ]
+										beginCap FALSE
+										endCap FALSE
+										solid FALSE
+										creaseAngle	1
+								   }  
+							}
+						]	
+					}
+				]
+			}
+
+			#para sanita
+			Transform {
+				rotation 1 0 0 -1.57
+				scale 0.01 0.01 0.01
+				translation	0 -0.11 0.15
+				children[
+	
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 1 1 1 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 25
+								radius 3
+								side TRUE 
+								top TRUE  }
+					}
+				]	
+			}
+		]
+	}
+}
+
+PROTO tubo_sanita_wcPeq[]{
+
+	Group {
+		children [
+  			Transform {
+				scale 0.01 0.01 0.01
+				translation	0 0.005 0.0010
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 1 1 1 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE
+								height 20
+								radius 3
+								side TRUE 
+								top TRUE 
+							
+							}
+					}
+				]	
+			}
+
+			# ligaçao
+			Transform {
+				rotation 1 0 0 1.5708
+				translation	0 -0.08 0.0295
+				children[
+					Transform {
+						scale 0.01 0.01 0.01
+						rotation 0 0 1 -1.5708
+						children[
+							Shape{
+								  appearance Appearance {	
+									   material Material { 
+											diffuseColor 1 1 1 
+									   }
+								   }
+								   geometry Extrusion {
+										crossSection[3.00	0.00	, 2.95	0.52	, 2.82	1.03	, 2.60	1.50	, 2.30	1.93	, 1.93	2.30	, 1.50	2.60	, 1.03	2.82	, 0.52	2.95	, 0.00	3.00	, -0.52	2.95	, -1.03	2.82	, -1.50	2.60	, -1.93	2.30	, -2.30	1.93	, -2.60	1.50	, -2.82	1.03	, -2.95	0.52	, -3.00	0.00	, -2.95	-0.52	, -2.82	-1.03	, -2.60	-1.50	, -2.30	-1.93	, -1.93	-2.30	, -1.50	-2.60	, -1.03	-2.82	, -0.52	-2.95	, 0.00	-3.00	, 0.52	-2.95	, 1.03	-2.82	, 1.50	-2.60	, 1.93	-2.30	, 2.30	-1.93	, 2.60	-1.50	, 2.82	-1.03	, 2.95	-0.52	, 3.00	0.00]	
+										spine[2.90	0.00	-0.78, 3.00	0.00	0.00	, 2.90	0.00	0.78	, 2.60	0.00	1.50	, 2.12	0.00	2.12	, 1.50	0.00	2.60	, 0.78	0.00	2.90	, 0.00	0.00	3.00 ]
+										beginCap FALSE
+										endCap FALSE
+										solid FALSE
+										creaseAngle	1
+								   }  
+							}
+						]	
+					}
+				]
+			}
+
+			#para sanita
+			Transform {
+				rotation 1 0 0 -1.57
+				scale 0.01 0.01 0.01
+				translation	0 -0.11 0.075
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 1 1 1 
+							   }
+						   }
+						   geometry Cylinder { 						
+					    		bottom TRUE 
+								height 10
+								radius 3
+								side TRUE 
+								top TRUE  }
+					}
+				]	
+			}
+		]
+	}
+}
+
+PROTO tampo[] {
+	Group {
+		children [
+			Transform {
+				scale 0.01 0.01 0.01
+				translation	0 0.305 0
+				children[
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 1 1 1 
+							   }
+						   }
+						   geometry Extrusion {
+    						  crossSection [-23.25 4.5, -23.25 -4.5, 23.25 -4.5, 23.25 -3.5, 8.25 -3.5, 8.25 3.5, 23.25 3.5, 23.25 4.5, -23.25 4.5]
+    						  spine [0 0 0, 0 5 0]
+							  beginCap TRUE
+							  endCap TRUE
+							  solid	FALSE
+						   }  
+					}
+				]	
+			}
+
+			#botao autocolismo
+			DEF botao_aut Transform {
+				center 0.1575 0.3375 0
+				children[
+					Transform {
+						scale 0.01 0.01 0.01
+						translation	0.1575 0.3375  0
+						children[
+							Shape{
+								  appearance Appearance {	
+									   material Material { 
+											diffuseColor 0.9 0.9 0.9 
+									   }
+								   }
+								   geometry Box { size 15 3.5 7 }
+							}
+					
+							DEF	TSbotao_autocolismo TouchSensor {
+									enabled	TRUE
+							}											
+						]	
+					}
+				]
+			}
+			
+			DEF	botaoTimer TimeSensor	{
+				cycleInterval 3 #segundos - tempo de abrir
+				loop FALSE
+				startTime 0
+				stopTime 0
+			}
+			DEF PosInterpolator OrientationInterpolator {
+				key      [0.0   0.5   1.0]
+				keyValue [0 0 1 0, 0 0 1 -0.5, 0 0 1 0]
+			}
+			Sound {
+				source DEF	SomAutocolismo AudioClip {
+				url	"Sons\autocolismo.wav"
+				loop FALSE
+			}
+			}
+		]
+	}
+	ROUTE TSbotao_autocolismo.touchTime TO botaoTimer.startTime
+	ROUTE botaoTimer.fraction_changed	TO PosInterpolator.set_fraction
+	ROUTE PosInterpolator.value_changed TO botao_aut.rotation
+	ROUTE TSbotao_autocolismo.touchTime	TO SomAutocolismo.startTime
+}
+
+PROTO autocolismo [] {
+	Group {
+		children [
+			Transform {
+				scale 0.01 0.01 0.01	  #passar extrusion para centimetros
+				rotation 0 1 0 -1.57
+				children [
+
+					Shape{
+					   appearance Appearance {	
+						   material Material { 
+								diffuseColor 1 1 1 
+
+ 						   }
+					   }
+					   geometry Extrusion {
+    					  crossSection [-4 19, 4 19, 4 -19, -4 -19, -4 19]
+    					  spine [0 0 0, 0 5 0, 0 10 0, 0 20 0, 0 30.5 0]
+						  scale	[1 1, 1 1.1, 1 1.15, 1 1.2, 1 1.2]
+						  beginCap TRUE
+						  endCap TRUE
+						  solid	FALSE
+					   }
+					}
+				]
+			}
+		
+			Transform {
+				children [
+					tampo {}
+				]
+			}
+		]
+	}
+
+}			
+
+PROTO autocolismo_tubo_wcPeq[]{
+	Group {
+		children [
+			Transform {
+				translation	0 -0.1 0
+				children [
+					tubo_sanita_wcPeq {}
+				]
+			}
+			Transform {
+				translation	0 -0.1 0
+				children [
+					autocolismo {}
+				]
+			}
+		]
+	}
+}
+
+PROTO autocolismo_tubo_wcGra[]{
+	Group {
+		children [
+			Transform {
+				translation	0 -0.1 0
+				children [
+					tubo_sanita {}
+				]
+			}
+			Transform {
+				translation	0 -0.1 0
+				children [
+					autocolismo {}
+				]
+			}
+		]
+	}
+}
+
+
+PROTO sanita[] {
+	 Group {
+		 children[
+	
+			Shape{
+				  appearance Appearance {	
+					   material Material { 
+							diffuseColor 1 1 1 
+					   }
+				   }
+				   geometry Extrusion {
+    				  crossSection [0.175		0.000	, 0.169		0.045	, 0.152		0.088	, 0.124		0.124	, 0.088		0.152	, 0.045		0.169	, 0.000		0.175	, -0.045		0.169	, -0.088		0.152	, -0.124		0.124	, -0.152		0.088	, -0.169		0.045	, -0.175		0.000	, -0.169		-0.045	, -0.152		-0.088	, -0.124		-0.124	, -0.088		-0.152	, -0.045		-0.169	, 0.000		-0.175	, 0.045		-0.169	, 0.088		-0.152	, 0.124		-0.124	, 0.152		-0.088	, 0.169		-0.045	, 0.175		0.000,
+					  0.125		0.000	, 0.13		0.00	, 0.12		-0.03	, 0.11		-0.06	, 0.09		-0.09	, 0.06		-0.11	, 0.03		-0.12	, 0.00		-0.13	, -0.03		-0.12	, -0.06		-0.11	, -0.09		-0.09	, -0.11		-0.06	, -0.12		-0.03	, -0.13		0.00	, -0.12		0.03	, -0.11		0.06	, -0.09		0.09	, -0.06		0.11	, -0.03		0.12	, 0.00		0.13	, 0.03		0.12	, 0.06		0.11	, 0.09		0.09	, 0.11		0.06	, 0.12		0.03	, 0.13		0.00
+					  ]
+    				  spine [0 0 0,   0 0.05 0,     0 0.1 0,    0 0.15 0,    0 0.20 0,    0 0.25 0,    0 0.3 0,    0 0.35 0,     0 0.4 0]
+					  scale	[0.5 0.9, 0.45 0.85,    0.4 0.8,    0.35 0.75,   0.30 0.7,    0.5 0.8,     0.7 0.85,   0.8 0.9,       1 1.2]
+					  beginCap TRUE
+					  endCap TRUE
+					  solid	FALSE
+					  creaseAngle 1
+				   }  
+			 }
+
+			Transform {
+				translation	 0 0.36 -0.17
+				children [
+				
+					Shape{
+						  appearance Appearance {	
+							   material Material { 
+									diffuseColor 1 1 1 
+							   }
+						   }
+						   geometry Box { size 0.2 0.08 0.1}
+					}
+				]
+			}
+
+			Transform {
+				scale 0.03 0.03 0.03
+				translation	-0.06 0.4 -0.19
+				children [
+					buraco {}
+				]
+			}
+			
+			Transform {
+				scale 0.03 0.03 0.03
+				translation	0.06 0.4 -0.19
+				children [
+					buraco {}
+				]
+			}
+
+		]
+	}
+}
+
+PROTO sanita_autocolismo_wcGra[]{
+	Group {
+		children [
+			sanita {}
+			Transform {
+				translation	0 0.575 -0.5
+				children [
+					autocolismo_tubo_wcGra {}
+				]
+			}
+		]
+	}
+}
+PROTO sanita_autocolismo_wcPeq[]{
+	Group {
+		children [
+			sanita {}
+			Transform {
+				translation	0 0.575 -0.3
+				children [
+					autocolismo_tubo_wcPeq	{}
+				]
+			}
+		]
+	}
+}

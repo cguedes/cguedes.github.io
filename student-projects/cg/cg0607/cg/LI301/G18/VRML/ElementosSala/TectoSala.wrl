@@ -1,0 +1,115 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO ConjuntoLuz[eventIn SFBool set_on]"..\\componentes\\Luz.wrl#ConjuntoLuz"
+EXTERNPROTO Interruptor[eventOut SFBool switch_on]"..\\componentes\\Interruptor.wrl#Interruptor"
+EXTERNPROTO	EstruturaTecto[] "..\\componentes\\Tecto.wrl#EstruturaTecto"
+
+EXTERNPROTO ArCondicionado [
+	field	SFVec3f position_ac
+	field	SFVec3f position_ac2
+	field	SFVec3f position_ac3
+	field	SFVec3f position_bt
+]"..\\componentes\\ArCondicionado.wrl#SistemaArCondicionado"
+
+
+PROTO LuzesInterruptores
+[
+	field	SFVec3f	posicao_interruptor 2 -3 0.12
+]{
+	Group {
+  	children [
+    	Transform {
+      	children [
+        	Transform	{
+						translation	IS  posicao_interruptor
+						children DEF interruptor Interruptor {}
+					}
+					Transform	{
+						rotation 0 1 0 1.57
+						translation	1.24 .10 1.88
+						children 
+						[
+							DEF	luz ConjuntoLuz	{}
+							DEF fila Transform	
+							{
+								translation	 -2.5 0 0
+								children 
+								[
+									USE	luz
+									Transform	
+									{
+										translation	 -2.5 0 0
+										children 
+										[
+											USE	luz
+											Transform	
+											{
+												translation	 -2.5 0 0
+												children 
+												[
+													USE	luz
+												]
+											}
+										]
+									}
+								]
+							}
+							Transform	{
+								translation	 0 0 1.55
+								children 
+								[
+									USE	luz
+									USE	fila
+									Transform	{
+						
+										translation	 0 0 1.55
+										children 
+										[
+											USE	luz
+											USE	fila
+											Transform	{
+						
+												translation	 0 0 1.55
+												children 
+												[
+													USE	luz
+													USE	fila
+
+												]
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+		  	]							 
+    	}
+  	]
+  	ROUTE interruptor.switch_on TO luz.set_on
+	}
+}
+
+
+
+
+PROTO	TectoSala[field SFVec3f posicao_interruptor 2 -3 0.12]
+{
+	Transform	{
+		translation	0 4 0
+		children [
+			EstruturaTecto{}
+			LuzesInterruptores{posicao_interruptor IS posicao_interruptor }
+			ArCondicionado{
+				position_ac 3.75 0 2.5, 
+				position_ac2 3.75 0 5, 
+				position_ac3 3.75 0 7.5, 
+				position_bt 2.1 -3 0.12}
+		]
+	}
+}
+
+TectoSala{}
+Inline {
+	url	["..\\Componentes\\eixos.wrl"]
+}

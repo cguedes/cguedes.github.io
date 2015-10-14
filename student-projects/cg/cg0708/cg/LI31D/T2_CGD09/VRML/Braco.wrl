@@ -1,0 +1,231 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO	Lupa[]
+"Reflector.wrl#Peca_completa"
+
+EXTERNPROTO	Peca_Total []
+"Peca_Braco.wrl#Peca_Total"
+
+#Braco
+
+PROTO Braco[] {
+		 
+		DEF bracoRecto Transform {
+			children [
+				Shape {
+					geometry Box {size 2 53 2}
+					appearance Appearance {material Material {diffuseColor 0.57 0.58 0.58
+																specularColor 0.67 0.46 0.44
+																ambientIntensity 0.137
+																shininess 0.17
+															  }	
+											}
+				}
+
+		]
+
+	}
+	   
+}
+
+
+PROTO Braco_amovivel [] {
+	
+	Group {
+		
+		
+		children[
+
+			
+			DEF	bracoCurvo Transform {
+				 
+				children [ 
+					
+					Shape {
+	
+						geometry Extrusion {
+		
+								crossSection [			
+								 
+			
+										1.00		0.00	,
+										1.00		0.09	,
+										0.98		0.17	,
+										0.97		0.26	,
+										0.94		0.34	,
+										0.91		0.42	,
+										0.87		0.50	,
+										0.82		0.57	,
+										0.77		0.64	,
+										0.71		0.71	,
+										0.64		0.77	,
+										0.57		0.82	,
+										0.50		0.87	,
+										0.42		0.91	,
+										0.34		0.94	,
+										0.26		0.97	,
+										0.17		0.98	,
+										0.09		1.00	,
+										0.00		1.00	,
+										-0.09		1.00	,
+										-0.17		0.98	,
+										-0.26		0.97	,
+										-0.34		0.94	,
+										-0.42		0.91	,
+										-0.50		0.87	,
+										-0.57		0.82	,
+										-0.64		0.77	,
+										-0.71		0.71	,
+										-0.77		0.64	,
+										-0.82		0.57	,
+										-0.87		0.50	,
+										-0.91		0.42	,
+										-0.94		0.34	,
+										-0.97		0.26	,
+										-0.98		0.17	,
+										-1.00		0.09	,
+										-1.00		0.00	,
+										-1.00		-0.09	,
+										-0.98		-0.17	,
+										-0.97		-0.26	,
+										-0.94		-0.34	,
+										-0.91		-0.42	,
+										-0.87		-0.50	,
+										-0.82		-0.57	,
+										-0.77		-0.64	,
+										-0.71		-0.71	,
+										-0.64		-0.77	,
+										-0.57		-0.82	,
+										-0.50		-0.87	,
+										-0.42		-0.91	,
+										-0.34		-0.94	,
+										-0.26		-0.97	,
+										-0.17		-0.98	,
+										-0.09		-1.00	,
+										0.00		-1.00	,
+										0.09		-1.00	,
+										0.17		-0.98	,
+										0.26		-0.97	,
+										0.34		-0.94	,
+										0.42		-0.91	,
+										0.50		-0.87	,
+										0.57		-0.82	,
+										0.64		-0.77	,
+										0.71		-0.71	,
+										0.77		-0.64	,
+										0.82		-0.57	,
+										0.87		-0.50	,
+										0.91		-0.42	,
+										0.94		-0.34	,
+										0.97		-0.26	,
+										0.98		-0.17	,
+										1.00		-0.09	,
+										1.00		0.00	,
+		
+								]
+
+											spine [2.99	0	-17 , 3.00 	0.00	0.00	, 2.90	0.00	0.78	, 2.60	0.00	1.50	, 2.12	0.00	2.12	, 1.50	0.00	2.60	, 0.78	0.00	2.90	, 0.00	0.00	3.00 , -0.26	0.00	2.99, -15.5	0.00	2.99]
+											solid FALSE
+											creaseAngle	 .5
+											beginCap TRUE
+											endCap TRUE
+						
+						
+		
+		
+							}
+	
+							appearance Appearance {material Material {	diffuseColor 0.57 0.58 0.58
+																		specularColor 0.67 0.46 0.44
+																		ambientIntensity 0.137
+																		shininess 0.17
+																	  }
+													}
+					}
+				]
+
+				rotation 0 0 1 1.98
+				 translation -8 15 -3
+
+			}
+
+			DEF	Peca_Lupa Transform	{
+			
+				translation	-15.7 16.3 -10
+			
+				children Lupa {}
+			
+			}
+
+			DEF	Peca_Braco Transform {
+			
+				translation -6 0 1
+			
+				children Peca_Total	{}
+			
+			
+			}
+
+			
+			
+			
+		]
+	}
+
+	
+	
+
+		}
+
+		    
+
+PROTO Moving_braco [] {
+
+	Group {
+
+		children [
+
+		DEF Move_braco Transform {
+	
+		children Braco_amovivel	{}
+	
+	}  DEF	UP TouchSensor {enabled TRUE }
+]
+	
+
+}
+	DEF	timer TimeSensor {cycleInterval 2 loop FALSE startTime 0 stopTime 0}
+
+	
+	DEF	prog Script{
+		
+		eventIn  SFFloat set_position
+	    eventOut SFVec3f coord
+		field	 SFFloat init  3.0
+		field SFBool status FALSE
+		
+		url	 "braco.js"
+		ROUTE	UP.touchTime TO timer.startTime
+		ROUTE	timer.fraction_changed TO prog.set_position
+		ROUTE	prog.coord TO Move_braco.translation
+
+
+
+}
+
+}
+	
+PROTO Braco_Total[]{
+
+	Group {
+		children [
+	Transform {children Moving_braco {}}
+	Transform {children Braco {}}
+
+]
+}
+}
+
+
+
+Braco_Total	{}

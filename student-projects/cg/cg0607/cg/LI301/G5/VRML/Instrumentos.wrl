@@ -1,0 +1,435 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Tubo [ 
+	field SFFloat altura, field SFFloat raio, field SFRotation rot, field SFColor cor
+]
+"chuveiro.wrl#Tubo"
+
+EXTERNPROTO Eixos [] "eixo.wrl#Eixos"
+
+PROTO Liquido
+[field SFFloat altura 1, field SFFloat raio 1, field SFColor cor 0.5 0.8 0.2, field SFFloat transp 0.5]
+{
+	Shape {
+		appearance Appearance {
+			material Material {
+				diffuseColor IS cor
+				shininess 0.5
+				transparency IS	transp #para ver o fundo, da a sensaçao de liquido
+			}
+		}
+		geometry Cylinder {
+			radius IS raio	
+			height IS altura
+			top	TRUE bottom	FALSE side FALSE
+		}
+	}	
+}
+
+PROTO TuboEnsaio
+[]
+{
+	Shape {
+		appearance Appearance { 
+			material Material { 
+				diffuseColor 0.95 0.95 0.95 
+				#transparency 0.55
+			} 
+		}
+		geometry Extrusion {
+    		crossSection [1 0, 0.984807753	0.173648178, 0.939692621 0.342020143, 0.866025404 0.5,
+					0.766044443	0.64278761, 0.64278761 0.766044443, 0.5	0.866025404,
+					0.342020143	0.939692621, 0.173648178 0.984807753,
+					6.12574E-17	1, -0.173648178	0.984807753, -0.342020143 0.939692621,
+					-0.5 0.866025404, -0.64278761 0.766044443, -0.766044443	0.64278761,
+					-0.866025404 0.5, -0.939692621 0.342020143, -0.984807753 0.173648178,
+					-1 1.22515E-16, -0.984807753 -0.173648178, -0.939692621	-0.342020143,
+					-0.866025404 -0.5, -0.766044443	-0.64278761, -0.64278761 -0.766044443,
+					-0.5 -0.866025404, -0.342020143	-0.939692621, -0.173648178 -0.984807753,
+					-1.83772E-16 -1, 0.173648178 -0.984807753, 0.342020143 -0.939692621,
+					0.5	-0.866025404, 0.64278761 -0.766044443, 0.766044443 -0.64278761,
+					0.866025404	-0.5, 0.939692621 -0.342020143,
+					1 0]
+			creaseAngle 0.5
+		
+			spine[0 0 0, 0 0.1 0, 0 0.2 0, 0 0.45 0, 0 8 0]
+			scale[0.1 0.1, 0.5 0.5, 0.75 0.75, 1 1, 1 1]
+			
+			endCap FALSE
+			beginCap TRUE
+			solid FALSE
+			ccw	FALSE
+		}
+	}
+}
+
+PROTO FrascoEnsaio
+[]
+{
+	Shape {
+		appearance Appearance { 
+			material Material { 
+				diffuseColor 0.95 0.95 0.95 
+				#transparency 0.01
+				#shininess 0.8
+			} 
+		}
+		geometry Extrusion {
+    		crossSection [1 0, 0.984807753	0.173648178, 0.939692621 0.342020143, 0.866025404 0.5,
+				0.766044443	0.64278761, 0.64278761 0.766044443, 0.5	0.866025404,
+				0.342020143	0.939692621, 0.173648178 0.984807753,
+				6.12574E-17	1, -0.173648178	0.984807753, -0.342020143 0.939692621,
+				-0.5 0.866025404, -0.64278761 0.766044443, -0.766044443	0.64278761,
+				-0.866025404 0.5, -0.939692621 0.342020143, -0.984807753 0.173648178,
+				-1 1.22515E-16, -0.984807753 -0.173648178, -0.939692621	-0.342020143,
+				-0.866025404 -0.5, -0.766044443	-0.64278761, -0.64278761 -0.766044443,
+				-0.5 -0.866025404, -0.342020143	-0.939692621, -0.173648178 -0.984807753,
+				-1.83772E-16 -1, 0.173648178 -0.984807753, 0.342020143 -0.939692621,
+				0.5	-0.866025404, 0.64278761 -0.766044443, 0.766044443 -0.64278761,
+				0.866025404	-0.5, 0.939692621 -0.342020143,
+				1 0]
+			creaseAngle 0.5
+			spine[0 0 0, 0 0.35 0,0 1 0, 0 2 0, 0 3 0, 0 5 0, 0 8.5 0, 0 9 0 0 9.25 0, 0 9.5 0]
+			scale[3.75 3.75,4 4 ,3.5 3.5, 3 3, 2.5 2.5, 2 2, 2 2, 2.2 2.2, 2.2 2.2, 2.1 2.1]
+			endCap FALSE
+			beginCap TRUE
+			solid FALSE
+			ccw	FALSE
+		}
+	}
+}
+
+
+PROTO FrascoAberto
+[]
+{
+	Shape {
+		appearance Appearance { 
+			material Material { 
+				diffuseColor 0.5 0.4 0.3 
+				#diffuseColor 0.8 0.8 0.8
+				#transparency 0.01
+				#shininess 0.8
+			} 
+		}
+		geometry Extrusion {
+    		crossSection [1 0, 0.984807753	0.173648178, 0.939692621 0.342020143, 0.866025404 0.5,
+				0.766044443	0.64278761, 0.64278761 0.766044443, 0.5	0.866025404,
+				0.342020143	0.939692621, 0.173648178 0.984807753,
+				6.12574E-17	1, -0.173648178	0.984807753, -0.342020143 0.939692621,
+				-0.5 0.866025404, -0.64278761 0.766044443, -0.766044443	0.64278761,
+				-0.866025404 0.5, -0.939692621 0.342020143, -0.984807753 0.173648178,
+				-1 1.22515E-16, -0.984807753 -0.173648178, -0.939692621	-0.342020143,
+				-0.866025404 -0.5, -0.766044443	-0.64278761, -0.64278761 -0.766044443,
+				-0.5 -0.866025404, -0.342020143	-0.939692621, -0.173648178 -0.984807753,
+				-1.83772E-16 -1, 0.173648178 -0.984807753, 0.342020143 -0.939692621,
+				0.5	-0.866025404, 0.64278761 -0.766044443, 0.766044443 -0.64278761,
+				0.866025404	-0.5, 0.939692621 -0.342020143,
+				1 0]
+			creaseAngle 0.5
+			spine[0 0 0, 0 0.35 0,0 7 0, 0 7.25 0, 0 7.35 0, 0 7.50 0 ] 
+			scale[3.75 3.75,4 4 ,4 4, 4.2 4.2, 4.2 4.2, 4 4	]
+			endCap FALSE
+			beginCap TRUE
+			solid FALSE
+			ccw	FALSE
+		}
+	}
+	
+}
+
+
+#HMN
+PROTO FrascoComTampa
+[]
+{
+	Group {
+		children [ 
+			FrascoAberto	{}
+		    Transform {
+				translation	0 7.7 0 #7.45 + 0.5/2
+				children Tubo {altura 0.5, raio 4.25, cor 0.5 0 0, rot 0 0 0 0}
+			}
+		]
+	}
+}
+
+#HMN
+PROTO FrascoEnsaioLiquido
+[field SFColor corLiquido 0.5 0.8 0.2]
+{
+
+	Group {
+		children [
+			FrascoEnsaio {}
+			Transform {
+				translation	0 5 0 
+				children Liquido {altura 4, raio 1.99, cor IS corLiquido }
+			}
+		]
+	}
+}
+
+
+
+
+
+
+
+#HMN					
+PROTO FrascoLiquido
+[field SFColor corLiquido 0.2 0.3 0.4]
+{
+	Group {
+		children [ 
+			FrascoAberto	{}
+			Transform {
+				translation	0 2.35 0 #2 + 0.35 da base do frasco
+				children Liquido {altura 4, raio 3.95, cor IS corLiquido }
+			}
+		]
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PROTO TuboEnsaioLiquido
+[field SFColor corLiquido 0.2 0.3 0.4]
+{
+	Group {
+		children [
+			TuboEnsaio {}
+			Transform {
+				translation	0 3.5 0
+				children Liquido { altura 7, raio 1, cor IS	corLiquido, transp 0}
+			}
+		]
+	}
+}
+
+
+PROTO Suporte_TubosEnsaio
+[field SFColor corSuporte 0.5 0.4 0.3]
+{
+	Group {
+		children [
+			Transform {
+				translation	0 15 0
+				children Tubo {altura 30, raio 0.5, cor IS corSuporte , rot 0 0 0 0}
+			}
+
+ 			Tubo {altura 1, raio 8, cor	IS corSuporte , rot 0 0 0 0}
+
+
+			Transform {
+				translation	0 10 0
+				children Tubo {altura 1, raio 8, cor	IS corSuporte , rot 0 0 0 0}
+			}
+
+			Transform {
+				translation	0 20 0
+				children Tubo {altura 1, raio 8, cor	IS corSuporte , rot 0 0 0 0}
+			}
+		]
+	}
+}
+
+
+
+
+
+
+PROTO OitoTubos
+[]
+{
+	Group {
+		children [
+			Transform {
+				translation	0 0 4
+				children TuboEnsaioLiquido	{ corLiquido 1 1 0}
+			}
+			Transform {
+				translation	0 0 -4
+				children TuboEnsaioLiquido	{corLiquido 1 1 0}
+			}
+			Transform {
+				translation	4 0 4
+				children TuboEnsaioLiquido	{corLiquido 1 0 0}
+			}
+			Transform {
+				translation	-4 0 4
+				children TuboEnsaioLiquido	{corLiquido 1 0 0}
+			}
+			Transform {
+				translation	4 0 -4
+				children TuboEnsaioLiquido	{corLiquido 0 1 0}
+			}
+			Transform {
+				translation	-4 0 -4
+				children TuboEnsaioLiquido	{corLiquido 0 1 0}
+			}
+			Transform {
+				translation	4 0 0
+				children TuboEnsaioLiquido	{}
+			}
+			Transform {
+				translation	-4 0 0
+				children TuboEnsaioLiquido	{}
+			}
+		]
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#GRUPOS DE INSTRUMENTOS
+
+
+PROTO ConjuntoCompleto	 #NORMA HMN
+[]
+{
+	Group {
+		children [
+			Transform {
+				#translation 5.656854249 0.5 5.656854249 # sqrt(2)/2 * raio , raio = 8
+				translation	8 0.5 8
+				children [
+					Suporte_TubosEnsaio	{}
+					Transform {
+						translation 0 5.5 0
+						children OitoTubos {}
+					}
+					Transform {
+						translation 0 15.5 0
+						children OitoTubos {}
+					}
+					
+				]
+			}
+			Eixos {}
+		]
+	}
+}
+
+PROTO TresFrascosComTampa
+[]
+{
+	Group {
+		children [
+			FrascoComTampa {}
+			Transform {
+				translation	-20 0 0
+				children FrascoComTampa	{}
+			}
+			Transform {
+				translation	20 0 0
+				children FrascoComTampa	{}
+			}
+		]
+	}
+}		  
+
+PROTO TresFrascosEnsaioLiquido
+[field SFColor cor 0 0 0]
+{
+	Group {
+		children [
+			FrascoEnsaioLiquido	{corLiquido	IS cor}
+			Transform {
+				translation	-20 0 0
+				children FrascoEnsaioLiquido	{corLiquido	IS cor}
+			}
+			Transform {
+				translation	20 0 0
+				children FrascoEnsaioLiquido	{corLiquido	IS cor}
+			}
+		]
+	}
+}
+
+
+
+PROTO SeisFrascosComTampa
+[]
+{
+	Transform {
+		translation	24 0 -5
+		children [
+			TresFrascosComTampa {}
+			Transform {
+				translation	0 0 10
+				children TresFrascosComTampa	{}
+			}
+		]
+	}
+}
+
+PROTO SeisFrascosEnsaioLiquido
+[field SFColor corL 0 0 0]
+{
+	Transform {
+		translation	24 0 -5
+		children [
+			TresFrascosEnsaioLiquido	{cor IS corL}
+			Transform {
+				translation	0 0 10
+				children TresFrascosEnsaioLiquido {cor IS corL}
+			}
+		]
+	}
+}
+
+
+
+
+
+
+#SeisFrascosEnsaioLiquido {corL 1 0 1}
+#SeisFrascosComTampa {}
+
+Eixos {}
+
+
+Transform {
+	scale 0.01 0.01 0.01
+	children ConjuntoCompleto {}
+}

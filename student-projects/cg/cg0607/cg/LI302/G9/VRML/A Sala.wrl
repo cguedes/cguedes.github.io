@@ -1,0 +1,474 @@
+#VRML V2.0 utf8
+# A Sala
+
+Viewpoint {
+	orientation	0 1 0 1.57
+	position 12 1.5 -9.2
+	description	"1"
+}
+Viewpoint {
+	position 4 1.6 -5
+	description	"2"
+}
+Viewpoint {
+	orientation	0 1 0 -0.7825
+	position 0.5 1.5 -0.5
+	description	"3"
+}
+Viewpoint {
+	orientation	0 1 0 0.7825
+	position 9 1.5 -0.5
+	description	"4"
+}
+Viewpoint {		
+	orientation	0 1 0 2.3525
+	position 9 1.5 -9.5
+	description	"5"											 
+}
+Viewpoint {
+	orientation	0 1 0 -2.3525
+	position 0.5 1.5 -9.5
+	description	"6"					   
+}
+
+
+Inline {
+	url	"sala.wrl"
+}
+
+Transform {
+	rotation 0 1 0 -1.57
+	translation	10 1.03 -9.42
+children Inline {url "porta.wrl"}
+}
+
+############################################ quadro ####################################
+
+Transform {
+	translation	4.72 1.57 -10.64
+	children Inline	{url "quadro.wrl" }
+}
+Transform {
+	translation	2.7 1.57 -10.64
+	children Inline	{url "quadro.wrl" }
+}
+############################################ candeeiro #################################
+PROTO luzes []{
+PointLight {
+	ambientIntensity 1
+	attenuation	4 0 0
+	color 1 1 1
+	intensity 1
+	on TRUE
+	radius 10
+	location 0 0 0
+}
+}
+Transform{
+	translation 13 1.5 -9.2
+	children luzes{}
+}
+DEF	myLights Transform {
+	children [
+DEF	l Group	{
+	children [
+Transform {
+	translation	2.2 2.78 -9.14
+	children DEF l1 PointLight {
+	ambientIntensity 1
+	attenuation	4 0 0
+	color 1 1 1
+	intensity 1
+	on FALSE
+	radius 10
+	location 0 0 0
+}
+}
+Transform {
+	translation	2.2 2.78 -6.14
+	children DEF l2 PointLight {
+	ambientIntensity 1
+	attenuation	4 0 0
+	color 1 1 1
+	intensity 1
+	on FALSE
+	radius 10
+	location 0 0 0
+}
+}
+Transform {
+	translation	2.2 2.78 -3.14
+	children DEF l3 PointLight {
+	ambientIntensity 1
+	attenuation	4 0 0
+	color 1 1 1
+	intensity 1
+	on FALSE
+	radius 10
+	location 0 0 0
+}
+}
+Transform {
+	translation	6 3.36 -9.14
+	children DEF l4 PointLight {
+	ambientIntensity 1
+	attenuation	4 0 0
+	color 1 1 1
+	intensity 1
+	on FALSE
+	radius 10
+	location 0 0 0
+}
+}
+Transform {
+	translation	6 3.36 -6.14
+	children DEF l5 PointLight {
+	ambientIntensity 1
+	attenuation	4 0 0
+	color 1 1 1
+	intensity 1
+	on FALSE
+	radius 10
+	location 0 0 0
+}
+}
+Transform {
+	translation	6 3.36 -3.14
+	children DEF l6 PointLight {
+	ambientIntensity 1
+	attenuation	4 0 0
+	color 1 1 1
+	intensity 1
+	on FALSE
+	radius 10
+	location 0 0 0
+}
+}
+]}
+]}
+
+DEF	t Group	{
+	children [
+DEF	myTouchLightSwitchOn TouchSensor {}
+Transform {			  
+	rotation 0 1 0  3.14
+	translation	9.84 1.6 -8.25
+	children Inline	{url "Interruptor.wrl" }
+}
+]}
+
+DEF	EnableSwitch Script	{
+	eventIn	SFTime touch
+	eventOut SFBool	on1
+	eventOut SFBool	on2
+	field SFInt32 state 0
+
+	url	"javascript:
+	function touch(value) {
+		++state;
+		if(state>3) state =0;
+		if(state==0){
+			on1 = FALSE;
+			on2 = FALSE;
+		}
+		if(state==1){
+			on1 = TRUE;
+			on2 = FALSE;
+		}
+		if(state==2){
+			on1 = TRUE;
+			on2 = TRUE;
+		}
+		if(state==3){
+			on1 = FALSE;
+			on2 = TRUE;
+		}
+	}
+	"
+}
+
+ROUTE myTouchLightSwitchOn.touchTime  TO EnableSwitch.touch
+ROUTE EnableSwitch.on1    TO l1.on
+ROUTE EnableSwitch.on1    TO l4.on
+ROUTE EnableSwitch.on2    TO l2.on
+ROUTE EnableSwitch.on2    TO l3.on
+ROUTE EnableSwitch.on2    TO l5.on
+ROUTE EnableSwitch.on2    TO l6.on
+
+Transform {			  #left
+	rotation 0 0 1  0.15
+	translation	2.2 2.78 -9.14
+	children Inline	{url "candeeiro.wrl" }
+}
+Transform {
+	rotation 0 0 1  0.15
+	translation	2.2 2.78 -6.14
+	children Inline	{url "candeeiro.wrl" }
+}
+Transform {
+	rotation 0 0 1  0.15
+	translation	2.2 2.78 -3.14
+	children Inline	{url "candeeiro.wrl" }
+}
+Transform {			  #right
+	rotation 0 0 1  0.15
+	translation	6 3.36 -9.14
+	children Inline	{url "candeeiro.wrl" }
+}
+Transform {
+	rotation 0 0 1  0.15
+	translation	6 3.36 -6.14
+	children Inline	{url "candeeiro.wrl" }
+}
+Transform {
+	rotation 0 0 1  0.15
+	translation	6 3.36 -3.14
+	children Inline	{url "candeeiro.wrl" }
+}
+
+############################################# janelas ######################################
+
+Transform {
+	translation	0 1.02 -1.99
+	children Inline	{
+		url	"JanelasDeBaixo.wrl"
+	}
+}
+Transform {
+	translation	0 1.02 -5.45
+	children Inline	{
+		url	"JanelasDeBaixo.wrl"
+	}
+}
+Transform {
+	translation	0 1.02 -8.94
+	children Inline	{
+		url	"JanelasDeBaixo.wrl"
+	}
+}
+
+
+############################################ mini janelas #################################
+
+Transform {
+	translation	9.84 3.325 -1.99
+	children Inline	{
+		url	"JanelasDeCima.wrl"
+	}
+}
+Transform {
+	translation	9.84 3.325 -5.45
+	children Inline	{
+		url	"JanelasDeCima.wrl"
+	}
+}
+Transform {
+	translation	9.84 3.325 -8.94
+	children Inline	{
+		url	"JanelasDeCima.wrl"
+	}
+}
+
+
+
+############################################ cortinas #####################################
+
+Transform {
+	translation	0.2 1.5 -1.99
+	children Inline	{
+		url	"Cortina.wrl"
+	}
+}
+Transform {
+	translation	0.2 1.5 -5.45
+	children Inline	{
+		url	"Cortina.wrl"
+	}
+}
+Transform {
+	translation	0.2 1.5 -8.94
+	children Inline	{
+		url	"Cortina.wrl"
+	}
+}
+
+
+############################################ mesas ##################################
+
+PROTO g8 [] {
+DEF	grupo8 Group {
+children [
+Transform {
+	translation	0 0.05 -1.5
+	children DEF mesa Inline{ url "mesa.wrl" }
+}
+Transform {
+	translation	0.755 0.05 -1.5
+	children USE mesa
+}
+Transform {
+	translation	1.51 0.05 -1.5
+	children USE mesa
+}
+Transform {
+	translation	2.265 0.05 -1.5
+	children USE mesa
+}
+Transform {
+	translation	3.02 0.05 -1.5
+	children USE mesa
+}
+Transform {
+	translation	3.775 0.05 -1.5
+	children USE mesa
+}
+Transform {
+	translation	4.53 0.05 -1.5
+	children USE mesa
+}
+Transform {
+	translation	5.285 0.05 -1.5
+	children USE mesa
+}
+]}
+}
+PROTO g7 [] {
+DEF	grupo7 Group {
+children [
+Transform {
+	translation	0 0.05 -1.5
+	children DEF mesa Inline{ url "mesa.wrl" }
+}
+Transform {
+	translation	0.755 0.05 -1.5
+	children USE mesa
+}
+Transform {
+	translation	1.51 0.05 -1.5
+	children USE mesa
+}
+Transform {
+	translation	2.265 0.05 -1.5
+	children USE mesa
+}
+Transform {
+	translation	3.02 0.05 -1.5
+	children USE mesa
+}
+Transform {
+	translation	3.775 0.05 -1.5
+	children USE mesa
+}
+Transform {
+	translation	4.53 0.05 -1.5
+	children USE mesa
+}
+]}
+}
+PROTO g3 [] {
+DEF	grupo3 Group {
+children [
+Transform {
+	translation	0 0.05 -1.5
+	children DEF mesa Inline{ url "mesa.wrl" }
+}
+Transform {
+	translation	0.755 0.05 -1.5
+	children USE mesa
+}
+Transform {
+	translation	1.51 0.05 -1.5
+	children USE mesa
+}
+]}
+}
+PROTO g2 [] {
+DEF	grupo2 Group {
+children [
+Transform {
+	translation	0 0.05 -1.5
+	children DEF mesa Inline{ url "mesa.wrl" }
+}
+Transform {
+	translation	0.755 0.05 -1.5
+	children USE mesa
+}
+]}
+}
+
+
+
+###################################### mesas ################3
+Transform {
+	rotation 0 1 0 3.14
+	translation	3.5 0.95 -9.35
+	children Inline {
+			url	"projector.wrl"
+		}
+}
+
+Transform {
+	translation	3.5 0.85 -9.35
+	children Inline {
+			url	"MesaDif.wrl"
+		}
+}
+#Esquerda
+#1ª linha
+Transform {
+	translation	0 0 -7.48
+	children g8	{}
+}
+#2ª linha
+Transform {
+	translation	0.6 0 -5.95
+	children g7	{}
+}
+#3ª linha
+Transform {
+	translation	0 0 -4.3
+	children g8	{}
+}
+#4ª linha
+Transform {
+	translation	0.6 0 -2.9
+	children g7	{}
+}
+#5ª linha
+Transform {
+	translation	0 0 -1.5
+	children g8	{}
+}
+
+#ultima linha
+Transform {
+	translation	0 0 0
+	children g8	{}
+}
+
+#Direita
+#1ª linha
+Transform {
+	translation	7.7 0 -6.2
+	children g2	{}
+}
+#2ª linha
+Transform {
+	translation	7.5 0 -4.9
+	children g3	{}
+}
+#3ª linha
+Transform {
+	translation	7.5 0 -3.6
+	children g3	{}
+}
+#4ª linha
+Transform {
+	translation	7.5 0 -1.9
+	children g3	{}
+}
+#5ª linha
+Transform {
+	translation	8.2 0 -0.5
+	children g2	{}
+}

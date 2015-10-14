@@ -1,0 +1,112 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO ecra	[] "PC.wrl#ecra"
+EXTERNPROTO torrePC [] "PC.wrl#torrePC"
+
+#-----------------------tampo da mesa-----------------------
+PROTO tampoMesa [ field SFVec3f sizeTampo 1.6 0.025 0.8
+				  field SFColor corTampo .36 .25 .11
+				] {
+
+	Shape {
+		geometry Box { size	IS sizeTampo }
+		appearance Appearance {
+			material Material {	
+				diffuseColor IS corTampo
+				shininess 0.1
+			}
+		}
+	}
+}
+
+#-----------------------perna da mesa-----------------------
+PROTO pernaMesa [ field SFColor corPerna .36 .25 .11 ] {
+	Group {
+	
+		children [
+			Transform {
+				translation	0.10 0 0
+				children
+					Shape {
+						geometry Box { size	0.23 0.655 0.03 }
+						appearance Appearance {
+							material Material {	diffuseColor IS corPerna }
+						}
+					}
+			},
+			Transform {
+				translation	0 -0.3575 0
+				children
+					Shape {
+						geometry Box { size	0.64 0.06 0.03	}
+						appearance Appearance {
+							material Material {	diffuseColor IS corPerna }
+						}
+					}
+			}
+		]
+	}
+
+}
+
+#-----------------------saia da mesa-----------------------
+PROTO saiaMesa [ field SFColor corSaia .5 .5 .5 ] {
+	Shape {
+		geometry Box { size	1.54 0.4 0.01}
+		appearance Appearance {
+			material Material {	diffuseColor IS corSaia }
+		}
+	}
+
+}
+							 
+#----------------------------mesa--------------------------
+PROTO mesa [ ]{
+	Group {
+		children [
+			#TAMPO
+			Transform {
+				translation	0 0.7275 0		#0.7275 = 0.74-0.0125 (0.0125=(0.025)/2)
+				#children tampoMesa {corTampo 1 1 1}
+				children tampoMesa {corTampo .36 .25 .11}
+			},
+			#PERNA (lado direito)
+			Transform {
+				translation	0.785 0.3875 0		#0.3875 = 32.75 + 0.06 (0.3275=(65.5)/2)
+				rotation 0 1 0 1.57
+				#children pernaMesa { corPerna .5 .5 .5}
+				children pernaMesa { corPerna 0 0 0 }
+			},
+			#PERNA (lado esquerdo)
+			Transform {
+				translation	-0.785 0.3875 0		#0.3875 = 32.75 + 0.06 (0.3275=(65.5)/2)
+				rotation 0 1 0 1.57
+				#children pernaMesa { corPerna .5 .5 .5}
+				children pernaMesa { corPerna 0 0 0 }
+			},
+			#SAIA
+			Transform {
+				translation	0 0.515 -0.21			#0.21=0.23-(0.03/2)-(0.01/2); 
+													#0.515 = (0.40/2)+(0.74-0.025-0.4)
+				#children saiaMesa { corSaia .5 .5 .5}
+				children saiaMesa { corSaia 0 0 0 }
+			},
+			#torrePC
+			Transform {
+				translation	-0.6 0 0			#0.21=0.23-(0.03/2)-(0.01/2); 
+												#0.515 = (0.40/2)+(0.74-0.025-0.4)
+				children torrePC {}
+			},
+			#ecra
+			Transform {
+				translation	0 0.74 -0.2			#0.21=0.23-(0.03/2)-(0.01/2); 
+												#0.515 = (0.40/2)+(0.74-0.025-0.4)
+				children ecra {}
+			}
+			
+		]
+	}
+}
+
+
+#mesa {}

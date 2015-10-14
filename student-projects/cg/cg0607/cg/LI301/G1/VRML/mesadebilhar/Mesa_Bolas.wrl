@@ -1,0 +1,133 @@
+#VRML V2.0 utf8
+
+
+EXTERNPROTO	eixo[]"Eixo.wrl#eixo"
+EXTERNPROTO	Mesa[]"Tampo.wrl#Mesa"
+EXTERNPROTO bola[field MFString path]"Bola.wrl#bola"
+
+PROTO mesa_bola[]{
+	
+	Transform {
+		translation 0.85 0.65 0.52
+		children [
+			Transform{scale 1. 1.1 1. children Mesa {}}
+			Transform {
+				scale 0.8 0.8 0.8
+				translation	0.52 0.03 0.007
+				children bola {}
+			
+			}
+			Transform {
+				scale 0.8 0.8 0.8
+				translation	-0.47 0.03 0.007
+				children bola {path "..\mesadebilhar\bola1.png"}
+			
+			}
+			Transform {
+			rotation 1 0 0 -1
+				scale 0.8 0.8 0.8
+				translation	-0.52 0.03 -0.03
+				children bola {path "..\mesadebilhar\bola15.png"}
+			
+			}
+			Transform {
+				scale 0.8 0.8 0.8
+				translation	-0.52 0.03 0.04
+				children bola {path "..\mesadebilhar\bola2.png"}
+			
+			}
+			Transform {
+				rotation 1 0 0 -1
+				scale 0.8 0.8 0.8
+				translation	-0.58 0.03 0.007
+				children bola {path "..\mesadebilhar\bola8.png"}
+			
+			}
+			Transform {
+			rotation 1 0 0 -1
+				scale 0.8 0.8 0.8
+				translation	-0.58 0.03 -0.06
+				children bola {path "..\mesadebilhar\bola11.png"}
+			
+			}
+			Transform {
+				scale 0.8 0.8 0.8
+				translation	-0.58 0.03 0.07
+				children bola {path "..\mesadebilhar\bola9.png"}
+			
+			}
+		
+
+			Transform {
+				rotation 1 0 0 -1
+				scale 0.8 0.8 0.8
+				translation	-0.64 0.03 0.105
+				children bola {path "..\mesadebilhar\bola3.png"}
+			
+			}
+			Transform {
+				scale 0.8 0.8 0.8
+				translation	-0.64 0.03 0.04
+				children bola {path "..\mesadebilhar\bola10.png"}
+			
+			}
+			Transform {
+				rotation 1 0 0 -1
+				scale 0.8 0.8 0.8
+				translation	-0.64 0.03 -0.03
+				children bola {path "..\mesadebilhar\bola4.png"}
+			
+			}
+			Transform {
+				scale 0.8 0.8 0.8
+				translation	-0.64 0.03 -0.095
+				children bola {path "..\mesadebilhar\bola13.png"}
+			
+			}
+
+
+			Transform {
+				rotation 1 0 0 -1
+				scale 0.8 0.8 0.8
+				translation	-0.7 0.03 0.06
+				children bola {path "..\mesadebilhar\bola14.png"}
+			
+			}
+			Transform {
+				rotation 1 0 0 -1
+				scale 0.8 0.8 0.8
+				translation	-0.7 0.03 0.13
+				children bola {path "..\mesadebilhar\bola12.png"}
+			
+			}
+			Transform {
+				scale 0.8 0.8 0.8
+				translation	-0.7 0.03 0.0
+				children bola {path "..\mesadebilhar\bola5.png"}
+			
+			}
+			Transform {
+				scale 0.8 0.8 0.8
+				translation	-0.7 0.03 -0.065
+				children bola {path "..\mesadebilhar\bola7.png"}
+			
+			}
+			Transform {
+				rotation 1 0 0 -1
+				scale 0.8 0.8 0.8
+				translation	-0.7 0.03 -0.13
+				children bola {path "..\mesadebilhar\bola6.png"}
+			
+			}
+		]
+															   
+	
+	
+	}
+
+
+
+
+}
+#eixo {}
+mesa_bola {}

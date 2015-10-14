@@ -1,0 +1,179 @@
+#VRML V2.0 utf8
+
+# Monitor em VRML
+# Coordenadas dos objectos em CM
+
+
+
+ PROTO Base 
+[
+]
+{
+  Shape { 
+    geometry Sphere {
+    	radius 0.3
+		
+    }
+    appearance Appearance { material Material {diffuseColor 1 0 0 } texture ImageTexture {
+			url "pvc.jpg"
+		}}
+  }
+}
+
+
+  PROTO Juncao 
+[
+]
+{
+  Shape { 
+    geometry Sphere {
+    	radius 0.2
+		
+    }
+    appearance Appearance { material Material {diffuseColor 1 0 0 } texture ImageTexture {
+			url "pvc.jpg"
+		} }
+  }
+}
+
+
+
+PROTO Caixa 
+[
+]
+
+{
+Shape {  
+	appearance Appearance { 
+		material Material { 
+			diffuseColor 1 0 0	 # azul 
+		
+		}
+		 texture ImageTexture {
+			url "pvc.jpg"
+		}
+
+
+	}
+	geometry Extrusion{
+		crossSection [ 
+					-1 -1, -1  1, 
+					 1  1,  1 -1, -1 -1 ]
+		spine [0 -1 0 , 0 1 0 ] 
+		# escala no ponto final
+		orientation [0 1 0 0, 0 1 0 0] 
+		scale [1 1, .5 .5 ]				  
+	}
+}
+
+}
+  
+
+PROTO Vidro 
+[
+]
+{
+  Shape { 
+    geometry Box {
+    	size 0.3 0.3 0.3 
+    }
+    appearance Appearance { material Material {}texture ImageTexture {
+			url "vidro.jpg"
+		} }
+
+  }
+}
+
+
+PROTO Botao 
+[
+]
+{
+  Shape { 
+    geometry Cylinder {
+    	bottom TRUE	 top TRUE  height 0.1 radius 0.1 side TRUE
+    }
+    appearance Appearance { material Material {emissiveColor 0 1 0}#texture ImageTexture {
+			#url "vidro.jpg"
+	#	} 
+	}
+
+  }
+}
+
+
+#  Monitor
+
+
+
+PROTO Monitor 
+[
+]
+{
+  Transform {
+    
+    children 
+    [
+      Transform {
+       
+		 
+		scale 1 0.1 1
+        children Base { }
+      }
+    
+		Transform {
+    
+ 		  
+		  scale 0.7 0.7 0.7 
+		  translation 0 0.15 0
+
+    	 children Juncao {}
+      
+	}
+
+
+	Transform {
+    
+ 		  
+		rotation 1 0 0 -1.75
+		  scale 0.3 0.3 0.3
+		  translation 0 0.35 0
+
+    	 children Caixa {}
+      
+	}
+
+
+	Transform {
+    
+ 		  
+		rotation 1 0 0 -0.175
+		 scale 1.6 1.6 0.1
+		 translation 0 0.4 0.2849 
+
+    	 children Vidro {}
+      
+	}
+
+
+	Transform {
+    
+ 		  
+		rotation 1 0 0 -1.75 
+		 scale 0.05 0.05 0.05
+		 translation 0.25 0.14 0.343   
+		
+    	 children Botao {}
+      
+	}
+
+
+
+
+
+    ]
+  }
+}
+
+
+Monitor {}

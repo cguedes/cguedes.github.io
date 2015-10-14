@@ -1,0 +1,265 @@
+#VRML V2.0 utf8
+PROTO bola[]{
+DEF BallTransform Transform {
+   translation 0 1 0
+    children Shape { 
+     geometry Sphere {
+	 radius 0.1
+ } 
+     appearance Appearance { material Material { diffuseColor 1 1 0 } }
+  }
+}
+}
+
+
+PROTO saco [ field SFColor boxColour 1 0 0 ]
+
+
+{
+	
+Shape{
+	
+   geometry	Cylinder {
+    radius 0.14
+    height 1.25
+    side TRUE
+    bottom TRUE
+    top TRUE
+		}
+		appearance Appearance{ material Material{diffuseColor IS boxColour} }
+	}
+}
+
+PROTO esferico 
+[field SFColor boxColour 0.5 0.5 0.5
+]
+{
+  Shape { 
+    geometry Sphere {
+      radius 0.02
+    }
+    appearance Appearance { material Material {diffuseColor IS boxColour  } }
+  }
+}
+
+PROTO corrente [ field SFColor boxColour 0.5 0.5 0.5 ]
+													  
+
+{
+	
+Shape{
+	
+   geometry	Cylinder {
+    radius 0.001
+    height 0.35
+    side TRUE
+    bottom TRUE
+    top TRUE
+		}
+		appearance Appearance{ material Material{diffuseColor IS boxColour} }
+	}
+}
+
+
+
+
+PROTO suporte[]
+{
+
+
+	Transform {
+		rotation 0 1 0 1.57
+		children
+	Shape {
+  geometry Extrusion { 
+      crossSection [0.25 0.5,0.25 -0.5, -0.25 -0.5, -0.25 -0.45, 0.20 -0.45, 0.20 0.5, 0.25 0.5 ]
+    spine [0 0 -0.025, 0 0 0.025]
+    scale [1 1]
+    orientation 0 0 1 0
+    endCap TRUE
+    beginCap TRUE
+    solid FALSE
+    ccw TRUE
+    convex TRUE
+    creaseAngle 0
+  }
+  appearance Appearance { material Material { diffuseColor  1 0 0.1	 } }
+ }
+}
+
+}
+
+PROTO fixador[]
+{
+
+   Shape { 
+    geometry Box {
+      size 0.15 0.1 0.02
+    }
+    appearance Appearance { material Material { diffuseColor  1 0 0.1	 } }
+  }
+
+
+
+
+}
+
+  PROTO fixadorC 
+[
+]
+{
+  Transform {
+    
+    children 
+    [
+		Transform {
+			 translation 0 0.5 0
+			children suporte {}
+		}
+      Transform {
+        translation	0 0.05 -0.24
+        children fixador { }
+      }
+
+	  Transform	{
+	  
+		   translation	0 0.95 -0.24
+        children fixador { }
+	  
+	  }
+      
+    ]
+  }
+}
+
+
+
+
+PROTO sacoC	[
+]
+{
+  Transform {
+    children 
+    [
+
+	
+
+		Transform {
+				 translation 0 0.73 0
+			children esferico {}
+		}
+		   Transform {
+			 translation  0 0.68 0.07
+			 rotation  1 0 0 -0.78
+			 scale  1 0.5	1
+			 children corrente {}
+		}
+			Transform {
+			 translation  0 0.68 -0.07
+			 rotation  1 0 0 0.78
+			 scale  1 0.5	1
+			 children corrente {}
+		}
+		Transform {
+			 translation -0.07 0.68 0
+			 rotation  0 0 1 -0.78
+			 scale  1 0.5	1
+			 children corrente {}
+		}
+		Transform {
+			 translation 0.07 0.68 0
+			 rotation  0 0 1 0.78
+			 scale  1 0.5	1
+			children corrente {}
+		}
+		Transform {
+			 translation 0 0.8 0
+			children corrente {}
+		}
+     
+	    Transform {
+        children saco { }
+      }
+		 
+	 
+    ]
+	 
+	
+  }
+
+ 
+}
+
+
+
+PROTO sacoA[]{
+	Transform	{
+		children [
+		
+			   DEF	 sacom Transform {
+	translation	0 0 0
+	children
+DEF	 bt Group {
+	children
+DEF  dbagG Transform {
+	translation	0 0.975 0
+	children [
+DEF	bagG Group	{
+	children[
+
+DEF	bag Transform {
+	   translation 0 -0.975 0
+	children[
+		sacoC {}
+			DEF	touch TouchSensor {} 
+	]
+
+}]}]}} }
+
+		DEF Timer1 TimeSensor { cycleInterval 3 loop TRUE stopTime 1 }
+		DEF RotIInterpolator OrientationInterpolator {  
+			key [0  0.5 1]
+			keyValue [ 0 0 1 -0.30, 0 0 1 0.30, 0 0 1 -0.30]
+		}
+]
+
+ROUTE touch.touchTime TO Timer1.startTime
+ROUTE Timer1.fraction_changed TO RotIInterpolator.set_fraction
+ROUTE RotIInterpolator.value_changed TO dbagG.rotation
+	
+	}
+
+
+
+}
+
+
+
+
+
+
+
+PROTO sacoA_suporte	[
+]
+{
+  Transform {
+    children 
+    [
+
+	
+
+		Transform {	
+			translation	0 0 0
+			children sacoA {}
+		}
+
+		Transform {
+			translation	0 0.025 -0.20
+			children fixadorC {}
+		}
+
+	]
+}
+}
+
+sacoA_suporte {}

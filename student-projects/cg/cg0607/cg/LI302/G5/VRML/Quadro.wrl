@@ -1,0 +1,95 @@
+#VRML V2.0 utf8
+
+PROTO Quadro[]
+{
+	Transform
+	{
+		children
+		[
+			Shape{
+				geometry Box{size 2.7 1.2 0.08}
+				appearance Appearance {material Material {diffuseColor 1 1 1}}
+			
+			}
+
+			Transform
+			{
+				translation	-1.35 0 0 children
+				Shape {
+					geometry Box{size 0.08 1.13 0.082}
+					appearance Appearance {material Material {diffuseColor 0.8 0.8 0.8}texture ImageTexture {url "aluminio.jpg"}}
+				
+				}
+			}
+
+			Transform
+			{
+				translation	1.35 0 0 children
+				Shape {
+					geometry Box{size 0.08 1.13 0.082}
+					appearance Appearance {material Material {diffuseColor 0.8 0.8 0.8}texture ImageTexture {url "aluminio.jpg"}}
+				
+				}
+			}
+
+			Transform
+			{	rotation 0 0 1 1.57
+				translation	0 0.6 0 children
+				Shape {
+					geometry Box{size 0.08 2.6 0.082}
+					appearance Appearance {material Material {diffuseColor 0.8 0.8 0.8}texture ImageTexture {url "aluminio.jpg"}}
+				
+				}
+			}
+
+			Transform
+			{	rotation 0 0 1 1.57
+				translation	0 -0.6 0 children
+				Shape {
+					geometry Box{size 0.08 2.6 0.082}
+					appearance Appearance {material Material {diffuseColor 0.8 0.8 0.8}texture ImageTexture {url "aluminio.jpg"}}
+				
+				}
+			}
+
+			Transform
+			{
+				translation	 -1.335 -0.6 0 children
+				Shape{
+					geometry Box{size 0.11 0.08 0.082 }
+					appearance Appearance {material Material {diffuseColor 1 0 0}}
+				}
+			}
+
+			Transform
+			{
+				translation	 1.335 -0.6 0 children
+				Shape{
+					geometry Box{size 0.11 0.08 0.082 }
+					appearance Appearance {material Material {diffuseColor 1 0 0}}
+				}
+			}
+
+			Transform
+			{
+				translation	 -1.335 0.6 0 children
+				Shape{
+					geometry Box{size 0.11 0.08 0.082 }
+					appearance Appearance {material Material {diffuseColor 1 0 0}}
+				}
+			}
+
+			Transform
+			{
+				translation	 1.335 0.6 0 children
+				Shape{
+					geometry Box{size 0.11 0.08 0.082 }
+					appearance Appearance {material Material {diffuseColor 1 0 0}}
+				}
+			}
+
+		]
+	}
+}
+
+Quadro{}

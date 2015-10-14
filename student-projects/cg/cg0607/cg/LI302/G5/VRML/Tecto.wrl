@@ -1,0 +1,700 @@
+#VRML V2.0 utf8
+
+
+PROTO grid[]
+{
+	Transform 
+	{
+		children
+		[
+			Shape
+			{
+				geometry Box{size 0.02 0.04 0.8}
+				appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+			}
+
+			Shape
+			{
+				geometry Box {size 0.25 0.04 0.01}
+				appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+			}
+
+			Transform {
+				translation 0 0 -0.05 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 0.05 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 -0.1 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 0.1 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 -0.15 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 0.15 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 0.2 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 -0.2 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 -0.25 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 0.25 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 -0.3 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 0.3 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 -0.35 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 0.35 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 -0.4 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+			Transform {
+				translation 0 0 0.4 children 
+					Shape
+					{
+						geometry Box {size 0.25 0.04 0.01}
+						appearance Appearance {material Material {diffuseColor 0.9 0.9 0.9}}
+					}
+			}
+
+		]
+	}
+}
+
+
+
+PROTO base[]
+{
+	Transform 
+	{
+		children 
+		[
+			Shape{
+				geometry Box {size 0.3 0.01 0.85}
+				appearance Appearance {material Material {diffuseColor 1 1 1}}
+			}
+
+			Transform
+			{
+				rotation 1 0 0 1.57 translation -0.15 -0.055 0 children
+				Shape{geometry Box{size 0.01 0.85 0.12} 
+				appearance Appearance {material Material {diffuseColor 1 1 1}}
+				}
+			}
+
+			Transform
+			{
+				rotation 1 0 0 1.57 translation 0.15 -0.055 0 children
+				Shape{geometry Box{size 0.01 0.85 0.12} 
+				appearance Appearance {material Material {diffuseColor 1 1 1}}
+				}
+			}
+
+			Transform
+			{
+				rotation 0 1 0 1.57 translation 0 -0.055 -0.43 children
+				Shape{geometry Box{size 0.01 0.12 0.31} 
+				appearance Appearance {material Material {diffuseColor 1 1 1}}
+				}
+			}
+
+			Transform
+			{
+				rotation 0 1 0 1.57 translation 0 -0.055 0.43 children
+				Shape{geometry Box{size 0.01 0.12 0.31} 
+				appearance Appearance {material Material {diffuseColor 1 1 1}}
+				}
+			}
+		]
+	}
+}
+
+
+PROTO Luzes[
+	exposedField SFBool on FALSE 
+	eventIn SFColor emissiveColor_changed
+]{
+
+	Group {
+		children [
+		DEF	LUZ PointLight {
+		   
+				on IS on
+    			location 0.0 0.0 0.0
+    			intensity 0.05
+    			color 1.0 1.0 1.0
+				ambientIntensity 0.02
+				
+				
+		   
+	   }				
+	  
+			DEF	luz Transform{	
+
+			rotation 1 0 0 1.57
+			translation	-0.08 -0.025 0 children
+		
+			Shape
+				{
+					geometry Cylinder {height 0.82 radius 0.025}
+					appearance Appearance {material DEF Lcolor Material {emissiveColor IS emissiveColor_changed }	 }
+				}
+			}
+	
+	]
+}																 
+}
+PROTO Candeeiro2[
+	exposedField SFBool on FALSE
+	eventIn SFColor emissiveColor_changed
+]
+{
+	
+	Transform
+	{
+		children 
+		[
+			base{}
+			
+			Luzes{ on IS on 
+					emissiveColor_changed IS emissiveColor_changed }
+			
+		Transform
+		{
+			translation	0 -0.1 0 children grid{}
+		}
+		Transform {
+			translation	0.15 -0.025 0 children Luzes { on IS on
+														emissiveColor_changed IS emissiveColor_changed}
+		}
+		
+	
+	]
+
+
+	}
+}
+
+
+
+PROTO Ar_condicionado[]{DEF Ar_condicionado Inline {url "Ar_condicionado.wrl"}}
+
+
+PROTO alarme[]{DEF alarme Inline {url "alarme.wrl"}}
+
+
+PROTO lateral[]{
+
+	Shape {
+		
+		geometry Box { size 1 0.2 7.5}
+		appearance Appearance {material Material {diffuseColor 0.98 0.98 0.98}}
+
+	}
+
+}
+
+PROTO lateral_fundo[]{
+
+	Shape {
+		
+		geometry Box { size 6.6 0.2 1.45}
+		appearance Appearance {material Material {diffuseColor 0.98 0.98 0.98}}
+
+	}
+
+}
+
+
+PROTO meio1[]{
+
+	   	Shape {
+		
+		geometry Box { size 0.7 0.2 0.85}
+		appearance Appearance {material Material {diffuseColor 0.98 0.98 0.98}}
+
+	}
+
+}
+
+
+PROTO meio2[]{
+
+	   	Shape {
+		
+		geometry Box { size 2 0.2 0.65}
+		appearance Appearance {material Material {diffuseColor 0.98 0.98 0.98}}
+
+	}
+
+}
+
+
+PROTO meio3[]{
+
+	   	Shape {
+		
+		geometry Box { size 0.3 0.2 0.85}
+		appearance Appearance {material Material {diffuseColor 0.98 0.98 0.98}}
+
+	}
+
+}
+
+
+PROTO meio4[]{
+
+	   	Shape {
+		
+		geometry Box { size 1.6 0.2 0.65}
+		appearance Appearance {material Material {diffuseColor 0.98 0.98 0.98}}
+
+	}
+
+}
+
+PROTO meio5[]{
+
+	   	Shape {
+		
+		geometry Box { size 0.65 0.2 0.52}
+		appearance Appearance {material Material {diffuseColor 0.98 0.98 0.98}}
+
+	}
+
+}
+
+PROTO meio6[]{
+
+	   	Shape {
+		
+		geometry Box { size 0.85 0.2 0.52}
+		appearance Appearance {material Material {diffuseColor 0.98 0.98 0.98}}
+
+	}
+
+}
+PROTO meio7[]{
+
+	   	Shape {
+		
+		geometry Box { size 1.5 0.2 0.25 }
+		appearance Appearance {material Material {diffuseColor 0.98 0.98 0.98}}
+
+	}
+
+}
+PROTO meio8[]{
+
+	   	Shape {
+		
+		geometry Box { size 5 0.2 2.3 }
+		appearance Appearance {material Material {diffuseColor 0.98 0.98 0.98 }}
+
+	}
+
+}
+
+ 
+PROTO teste[]{
+
+	Transform {
+		scale 1 1 1.4 
+		children [
+
+		   	Transform {
+				translation -1.65 0 -2.325 
+				children meio1 {}
+			}
+				Transform {
+				translation 1.65 0 -2.325 
+				children meio1 {}
+			}
+
+					Transform {
+				translation -2.155 0.019 -2.325 
+				children DEF Can1 Candeeiro2 {}
+			}
+
+					Transform {
+				translation 2.155 0.019 -2.325 
+				children DEF Can2 Candeeiro2 {}
+			}
+
+					Transform {
+				translation -1.15 0.019 -2.325 
+				children DEF Can3 Candeeiro2 {}
+			}
+					Transform {
+				translation 1.15 0.019 -2.325 
+				children DEF Can4 Candeeiro2 {}
+			}
+
+				Transform {
+				translation 0 0 -2.5 
+				children meio2 {}
+			}
+
+
+			Transform {
+				rotation 1 0 0 1.57
+				translation 0 -0.05 -1.92 
+				children Ar_condicionado {}
+			}
+			 Transform {
+				
+				translation -0.575 0 -1.92  
+				children meio6 {}
+			}
+			 Transform {
+				
+				translation 0.575 0 -1.92  
+				children meio6 {}
+			}
+			Transform {
+				
+				translation -1.55 0 -1.785    
+				children meio7 {}
+			}
+			Transform {
+				
+				translation 1.55 0 -1.785    
+				children meio7 {}
+			}
+
+			#Segunda metado do tecto
+
+			Transform {
+				translation 2.155 0.019 0.625 
+				children DEF Can5 Candeeiro2 {}
+			}
+
+			Transform {
+				translation -2.155 0.019 0.625 
+				children DEF Can6 Candeeiro2 {}
+			}
+				Transform {
+				translation -1.855 0 0.625 
+				children meio3 {}
+			}
+				Transform {
+				translation 1.855 0 0.625 
+				children meio3 {}
+			}
+
+				Transform {
+				translation -1.555 0.019 0.625
+				children DEF Can7 Candeeiro2 {}
+			}
+				Transform {
+				translation 1.555 0.019 0.625 
+				children DEF Can8 Candeeiro2 {}
+			}
+				Transform {
+				translation 1.255 0 0.625 
+				children meio3 {}
+			}
+				Transform {
+				translation -1.255 0 0.625 
+				children meio3 {}
+			}
+
+					Transform {
+				translation 0.955 0.019 0.625
+				children DEF Can9 Candeeiro2 {}
+			}
+				Transform {
+				translation -0.955 0.019 0.625 
+				children DEF Can10 Candeeiro2 {}
+			}
+				Transform {
+				translation 0 0 0.8
+				children meio4 {}
+			}
+
+				Transform {
+				rotation 1 0 0 1.57
+				translation 0 -0.05 0.22 
+				children Ar_condicionado {}
+			}
+		
+
+			Transform {
+				
+				translation -0.475 0 .22 
+				children meio5 {}	  
+			}
+			Transform {
+				
+				translation 0.475 0 0.22 
+				children meio5 {}
+			}
+			Transform {
+				
+				translation 1.55 0 .095 
+				children meio7 {}
+			}
+			Transform {
+				
+				translation -1.55 0 .095 
+				children meio7 {}
+			}
+		
+######################################################################################
+#																					 #
+#						Botão de ligar as luzes										 #
+######################################################################################
+	Group {																			 
+		children [
+			DEF	TS TouchSensor {}
+						 
+			Transform{
+				translation	0 -1 0
+				children
+				[
+					Shape
+					{
+						geometry Box
+						{
+							size 0.07 0.07 0.02
+						}
+						appearance	Appearance{ texture ImageTexture {url "pvc.jpg"}}
+					}
+
+					Transform { rotation 0 1 0 3.14 translation 0.035 -0.01 -0.01 children
+						Shape 
+						{
+							geometry Text { string "Luz" fontStyle FontStyle {size 0.05}}
+							appearance Appearance {material Material {emissiveColor 1 0 0}}
+						}
+					}
+				]
+
+			}
+		]
+	}
+######################################################################################
+DEF	StateS Script {
+	
+	field MFColor cor [0 0 0, 1 1 1]
+	field SFBool state FALSE
+	eventIn	SFBool Touch
+	eventOut SFBool	state_changed
+	eventOut SFColor color_changed
+
+	url	"javascript:
+
+	function Touch( val, timestamp){
+		if(val==false) return;
+		state=!state;
+		state_changed=state;		
+		color_changed=cor[state]
+	}
+	
+	  "
+  }		
+		
+		]
+
+
+
+ROUTE TS.isActive TO StateS.Touch
+ROUTE StateS.state_changed TO Can1.on
+ROUTE StateS.state_changed TO Can2.on
+ROUTE StateS.state_changed TO Can3.on
+ROUTE StateS.state_changed TO Can4.on
+ROUTE StateS.state_changed TO Can5.on
+ROUTE StateS.state_changed TO Can6.on
+ROUTE StateS.state_changed TO Can7.on
+ROUTE StateS.state_changed TO Can8.on
+ROUTE StateS.state_changed TO Can9.on
+ROUTE StateS.state_changed TO Can10.on
+}
+	}
+
+
+
+
+PROTO sub_tecto []{
+
+	Transform {
+	
+		children [
+				
+			Transform {
+				translation	-2.8 0 0 
+				children lateral {}
+			}
+
+
+			Transform {
+				translation 2.8 0 0 
+				children lateral {}
+			}
+
+				Transform {
+				translation 0 0 3.25 
+				children lateral_fundo {}
+			}
+
+				Transform {
+				translation 0 0 -3.45 
+				children lateral_fundo {}
+			}
+
+
+			Transform {
+				 translation  0 0 1.1 
+				children	teste{}
+
+		}
+				
+			Transform {
+				scale 0.1 0.1 0.1
+				translation	0 -0.1 0
+				children alarme {}
+
+		}
+
+
+		Transform {
+			translation	0 0 -0.09
+			children meio8{}
+		}
+	]
+	
+	}
+	
+}
+
+
+PROTO Tecto_completo[]{
+	Group {
+		children [
+			sub_tecto {}
+
+			Transform {
+				rotation 0 1 0 3.14159265
+				translation	0 0 7.5
+				children sub_tecto {}
+			}
+		]
+	}
+}
+
+ 
+
+ Tecto_completo {} 
+  
+
+
+
+
+
+  

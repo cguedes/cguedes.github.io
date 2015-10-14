@@ -1,0 +1,79 @@
+#VRML V2.0 utf8
+
+PROTO Sabonete[] {
+	Transform {
+		scale 0.01 0.01 0.01
+		rotation 1 0 0 1.57
+		children [
+		
+			Shape {
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+					}
+				}
+
+				geometry Extrusion {
+					crossSection [ -5 -11 , 5 -11, 5 11, -5 11, -5 -11]
+					spine  [ 0 0 0, 0 4 0, 0 10 0]
+					scale [1 1, 1  1,  0.9  0.77]
+					solid FALSE
+					beginCap TRUE
+					endCap  TRUE
+					creaseAngle	0
+				}
+			}
+
+			Transform {
+				translation	0 2 14
+				children
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 1 1 1
+						}
+					}
+
+					geometry Box {
+					   size	10 4 6
+					}
+				}
+			}
+
+			Transform {
+				translation	0 5 13
+				children
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 1 1 1
+						}
+					}
+
+					geometry Box {
+					   size	4 2 6
+					}
+				}
+			}
+
+			Transform {
+				translation 0 6.25 14
+				children
+				Shape {
+					appearance Appearance {
+						material Material {
+							diffuseColor 1 1 1
+						}
+					}
+
+					geometry Box {
+					   size	2 .5 2
+					}
+				}
+			}
+		]
+	}
+
+}
+
+Sabonete{}

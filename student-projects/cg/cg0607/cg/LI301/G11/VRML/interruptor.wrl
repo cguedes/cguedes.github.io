@@ -1,0 +1,38 @@
+#VRML V2.0 utf8
+
+PROTO tras_interruptor[]{
+
+	Shape {
+	
+		geometry Box {size 0.05 0.05 0.03}
+		appearance Appearance {material Material {diffuseColor  0.5 0.5 0.5 }}
+	}
+
+
+}	 
+
+PROTO botao[]{
+	Shape {
+		geometry Box {size 0.04 0.04 0.002}
+		appearance Appearance {material Material {diffuseColor 0 0 1}}
+	}
+
+}
+
+PROTO	interruptor[]{
+	Group {
+		children [
+	Transform {
+
+		children tras_interruptor {}
+	}
+	Transform {
+		translation	0 0 0.016
+		children botao {}
+	}
+
+	]
+	}
+}					
+
+					

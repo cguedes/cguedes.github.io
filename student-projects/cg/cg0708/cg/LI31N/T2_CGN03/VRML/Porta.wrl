@@ -1,0 +1,205 @@
+#VRML V2.0 utf8
+
+
+EXTERNPROTO	Aro_Porta[]
+"Aro_Porta.wrl#Aro_Porta"
+
+PROTO Dobradica[]{
+	Transform  {
+		children Shape {
+			geometry Box {size 0.022 0.085 0.002}	#tamanho dobradiça
+			appearance Appearance {material Material {diffuseColor 0.753 0.753 0.753 }}
+		}
+	}
+}
+
+PROTO Trinco[]{
+	Transform {
+		children Shape {
+			geometry Box {size 0.005 0.01 0.01}	#tamanho botao trinco
+			appearance Appearance {material Material {diffuseColor 0 0 0}}
+		}
+	}
+}
+
+PROTO Rot_Dobradica[]{
+	Transform {
+		children Shape {
+			geometry Cylinder {height 0.085 radius 0.004}
+			appearance Appearance {material  Material {diffuseColor 0.753 0.753 0.753}}
+		}
+	}
+}
+
+PROTO Placa_Porta[]{
+	Transform {
+		children Shape {
+			geometry Box {size 0.119 0.067 0.005}
+			appearance Appearance {material  Material {diffuseColor 0.663 0.663 0.663}}
+		}
+	}
+}
+
+PROTO Numero_Quarto[field MFString numero ""]{
+	Transform {
+		children Shape {
+				geometry Text {string IS numero length  0.05 fontStyle FontStyle {size 0.05}}
+				appearance Appearance {material  Material {diffuseColor 0 0 0}}
+			}
+	}
+}
+
+PROTO Conjunto_Porta[field MFString num ""]{
+	Group {
+		children [		
+			DEF _Porta Transform {
+				center -0.4225 0 0
+				children [
+					Transform	{
+						children Shape{
+							geometry Box {size 0.845 1.978 0.035}	  #tamanho da porta	 1.978 altura 0.845 largura
+							appearance Appearance {material Material {}texture ImageTexture {url ["porta.jpg"]}}
+						}
+					}	
+					#macaneta
+					Transform {
+						translation	0.3825 0 0
+						rotation 1 0 0 1.5707
+						children Shape {
+							geometry Cylinder {height 0.1  radius 0.0275}	#tamanho maçaneta
+							appearance Appearance {material Material {diffuseColor 0.753 0.753 0.753}}
+						}
+					}
+					#trinco
+					Transform {
+						translation	0.3825 0 0.05175
+						children  Trinco {}
+					}
+					Transform {
+						translation	0.3825 0 -0.05175
+						children Trinco {}	
+					}
+					Transform {
+						translation	0.4225 0 0
+						children Shape	{
+							geometry Box {size 0.01 0.02 0.005}
+							appearance Appearance {material Material {diffuseColor  0.753 0.753 0.753}}
+	
+						}
+					}
+					#dobradiça
+					Transform {
+						translation	-0.4235 0.819 0
+						rotation 0 1 0 1.5707	
+						children  Dobradica{}
+					}
+					Transform {
+						translation	-0.4235 -0.799 0
+						rotation 0 1 0 1.5707
+						children  Dobradica	 {}
+					}
+					Transform {
+						translation	-0.4235 0 0
+						rotation 0 1 0 1.5707
+						children  Dobradica	 {}
+					}
+					#perpendicular à dobradiça
+					Transform {
+						translation	-0.4235 0.819 0				
+						children  Dobradica{}
+					}
+					Transform {
+						translation	-0.4235 -0.799 0	
+						children  Dobradica	 {}
+					}
+					Transform {
+						translation	-0.4235 0 0
+						children  Dobradica	 {}
+					}
+					#rot_dobradica
+					  Transform {
+						translation	-0.435 0.819 0	
+						children  Rot_Dobradica	 {}
+					}
+					  Transform {
+						translation	-0.435 -0.799 0	
+						children  Rot_Dobradica	 {}
+					}
+					  Transform {
+						translation	-0.435 0 0	
+						children  Rot_Dobradica	 {}
+					}
+
+					#placa porta
+					Transform {
+						translation	0 0.649 0.0175
+						children Placa_Porta {}
+					}
+					Transform {
+						translation	-0.02 0.63 0.025
+						children Numero_Quarto {numero IS num}
+					}
+
+				]
+			}
+			#Definição da abertura da porta########
+
+			DEF	SensorToque TouchSensor	{}
+
+			DEF Clock1 TimeSensor {
+				cycleInterval	1
+				startTime	0
+				}
+			DEF	InterpoladorOrientacao OrientationInterpolator {
+				key[0.0, 0.5, 1]
+				keyValue [0 0.5 0 0
+						  0 0.5 0 0.785
+					      0 0.5 0 1.5708]
+			}
+
+			DEF	Clock2 TimeSensor {
+				cycleInterval 1
+				startTime 0
+			}
+
+			DEF	InterpoladorOrientacao2 OrientationInterpolator {
+				key[0.0, 0.5, 1]
+				keyValue [0 1 0 1.5708
+						  0 1 0 0.785
+					      0 1 1 0]
+			}
+			
+			######################################
+			Transform {
+				children Aro_Porta {}
+			
+			}
+			DEF gate_8 Script {
+				  eventOut	  SFTime	  one
+				  eventOut	  SFTime	  two
+				  eventIn	  SFTime	  touchTime
+				  field	  SFBool	  state	FALSE
+				  url	"vrmlscript:function touchTime(value, time)
+			{
+			   state = !state;
+			   if (state) {
+    			 one = time;
+			   }
+			   else {
+    			 two = time;
+			   }
+			}
+			"
+				}
+		]
+		ROUTE gate_8.one TO	Clock1.startTime
+		ROUTE Clock1.fraction_changed TO InterpoladorOrientacao.set_fraction
+		ROUTE gate_8.two TO	Clock2.startTime
+		ROUTE Clock2.fraction_changed TO InterpoladorOrientacao2.set_fraction
+		ROUTE SensorToque.touchTime	TO gate_8.touchTime	
+		ROUTE InterpoladorOrientacao.value_changed TO _Porta.set_rotation
+		ROUTE InterpoladorOrientacao2.value_changed TO _Porta.set_rotation
+	}
+}
+Conjunto_Porta	{num "49"}
+

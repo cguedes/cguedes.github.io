@@ -1,0 +1,206 @@
+#VRML V2.0 utf8
+
+EXTERNPROTO Porta [
+	field SFVec3f translation
+	field SFNode corOmbreira
+	#field SFNode corPorta NULL
+]
+"Porta.wrl#Porta"
+ 
+# Forma dos rodapes dos degraus, é parecida ao dos degraus do chao
+PROTO RodapeDegraus [
+	field SFVec3f translation 0 0 0
+	field SFNode RodapeAppearance NULL
+
+]{
+	Transform {
+		translation IS translation
+		children
+		Shape {
+			geometry Extrusion {
+				crossSection [1314.5 95.5,1214 95.5,1214 86,1123.5 86,1123.5 76.5,1033 76.5,1033 67,942.5 67,942.5 57.5,852 57.5,852 48,761.5 48,761.5 38.5,671 38.5,671 29, 580.5 29,580.5 19.5,490 19.5,490 10,330 10,330 0,1314.5 0]
+				spine [0 0 0, 0 0 -1]
+				ccw	FALSE
+			}
+			appearance IS RodapeAppearance
+		}
+	}
+}
+
+PROTO Rodape [
+	exposedField SFVec3f translation 0 0 0
+	field SFNode corOmbreira NULL
+
+]{
+	Transform {
+		translation	IS translation
+		children [
+			# Aparência dos rodapés
+			 DEF RodapeAppearance Appearance {
+				material Material {
+					diffuseColor 238 44 44 
+				}
+				texture	ImageTexture {
+					url	[
+						"Porta.jpg"
+					]
+				}
+				textureTransform TextureTransform {
+					scale 4 1
+				}
+			}
+			# Rodape dos degraus
+			RodapeDegraus {
+				translation	0 0 0
+				RodapeAppearance USE RodapeAppearance
+			}
+			RodapeDegraus {
+				translation	0 0 -599
+				RodapeAppearance USE RodapeAppearance
+			}
+			#Rodape principal (Parede da tela e lateral ate a porta e ate aos degraus do outro lado)
+			Shape {
+				geometry Extrusion {
+					crossSection [
+						90 -599, 1 -599, 1 -1, 330 -1, 330 0, 0 0, 0 -600, 90 -600,
+						90 -599
+					]
+					spine [
+						0 0 0, 0 0 0, 0 10 0
+					]
+					ccw	FALSE
+				}
+				appearance USE RodapeAppearance
+			}
+			#Rodape na parede que da para a biblioteca
+			Transform {
+				translation	0.5 207 23
+				children
+				DEF rodPilar Shape	{
+					geometry Box {
+						size 1 206 10
+					}
+					appearance USE RodapeAppearance
+				}
+			}
+			#Rodape no fim da sala na parede que separa do CGD
+			Transform {
+				translation	1337.5 207 -599.5
+				rotation 0 1 0 1.57
+				children USE rodPilar
+			}
+			#Rodape no fundo da sala
+			Transform {
+				translation	1314 90.5 -300
+				rotation 1 0 0 1.57
+				scale 1 2.91 1
+				children USE rodPilar
+			}
+			#Rodape junto as janelas
+			Transform {
+				translation	0 103 28
+				#rotation 0 1 0 3.14
+				children
+				Shape {
+					geometry Extrusion {
+						spine [
+							0 0 0, 0 2 0
+						]
+						crossSection [
+							1342.5 0, 1342.5 -628, 1313.5 -628, 1313.5 -276.5, 1329.5 -276.5, 1329.5 -261.5, 1313.5 -261.5,
+							1313.5 -28, 1329.5 -28, 1329.5 -14, 1314.5 -14, 1314.5 -29, 1074 -29, 1074 -14,
+							1059 -14, 1059 -29, 716 -29, 716 -14, 701 -14, 701 -29, 358 -29, 358 -14,
+							343 -14, 343 -29, 0 -29, 0 0, 1342.5 0
+						]
+						ccw	TRUE
+						beginCap TRUE 
+						endCap TRUE
+					}
+					appearance USE RodapeAppearance
+				}
+			}
+			#Rodape pilares da parede interior
+			# No meio da parede interior
+			Transform {
+				translation	708.5 155 -596.25
+				children [	
+					Transform	{
+						translation 40.25 0.5 14.75
+						scale 1 1.5 1
+						children USE rodPilar
+					}
+					Transform {
+						translation -40.25 0.5 14.75
+						scale 1 1.5 1
+						children USE rodPilar
+					}
+					Transform {
+						translation -35.25 0.5 19.25
+						rotation 0 1 0 1.57
+						scale 1 1.5 1
+						children USE rodPilar
+					}
+					Transform {
+						translation 35.25 0.5 19.25
+						rotation 0 1 0 1.57
+						scale 1 1.5 1
+						children USE rodPilar
+					}
+					Transform {
+						translation	-.5 -135.75 19.25
+						rotation 0 1 0 1.57
+						scale 1 0.187 6.2
+						children USE rodPilar
+					}
+					Transform {
+						translation	40 -135.75 1
+						scale 1 0.187 1.75
+						children USE rodPilar
+					}
+					Transform {
+						translation	-40 -140.5 1
+						scale 1 0.14077 1.75
+						children USE rodPilar
+					}
+				]		 
+			}
+			# No canto da sala junto à entrada
+			Transform {
+				translation	0 155 -596.25
+				children [	
+					Transform	{
+						translation 15.5 0.5 14.75
+						scale 1 1.51 1
+						children USE rodPilar
+					}
+					Transform {
+						translation 10 0.5 19.25
+						rotation 0 1 0 1.57
+						scale 1 1.51 1
+						children USE rodPilar
+					}
+					Transform {
+						translation	0 -150 19.25
+						rotation 0 1 0 1.57
+						scale 1 0.048 1
+						children USE rodPilar
+					}
+					Transform {
+						translation	15.5 -150 1
+						scale 1 0.048 1.75
+						children USE rodPilar
+					}
+				]		 
+			}
+			# Inserção da porta, é neste local para passar a textura para a Ombreira da porta
+			Porta {
+				translation 90 0 -599
+				corOmbreira	USE	RodapeAppearance
+			}
+		]
+	}
+}
+
+Rodape {
+
+}

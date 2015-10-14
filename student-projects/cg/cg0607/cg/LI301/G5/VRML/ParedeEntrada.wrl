@@ -1,0 +1,281 @@
+#VRML V2.0 utf8
+
+                        #VRML V2.0 utf8  
+
+# Mesa em VRML
+# Coordenadas dos objectos em CM
+
+
+
+
+# Importar a definição do prototipo AXIS, localizada no ficheiro axis.wrl
+EXTERNPROTO Eixo [
+
+
+]
+"eixo.wrl#Eixos"
+
+EXTERNPROTO Porta [
+]
+"Porta.wrl#Porta2"
+
+PROTO Parede1
+[
+]
+{
+
+	Transform {
+	rotation 1 0 0 -1.57
+	translation	 0 0 18
+	children
+		Shape {
+			geometry Extrusion{	
+				crossSection [0 0, 84 0, 84 212, 180 212, 180 0, 1216 0, 1216 390, 1208 390, 1208 328,944 328, 944 390,896 390, 896 328, 632 328, 632 390,584 390, 584 328, 320 328, 320 390, 272 390, 272 328, 8 328, 8 390, 0 390, 0 0 ]            	
+				spine [0 0 0, 0 18 0]
+				solid FALSE
+				}		  
+			appearance Appearance {
+				material Material { diffuseColor  0.6 0.706 0.63 }
+				texture	ImageTexture {
+				   	repeatS TRUE
+					repeatT	TRUE
+					url "Texturas\Sala\parede.JPG" 
+				}
+				textureTransform  TextureTransform {  
+					scale 100 100
+					rotation 0 
+					center 0 0 
+					translation 0 0  
+				}
+	    	}
+		}
+
+	
+	}
+}
+
+
+
+
+
+
+PROTO ParedeCima
+[
+]
+{
+	Transform {
+		translation	 132 31 9
+		children
+		Shape {
+			geometry Box {
+				size 264  62 18
+			}
+			appearance Appearance {
+				material Material { specularColor 0 0 0 }
+			  	texture	ImageTexture {
+				repeatS TRUE
+				repeatT	TRUE
+				url "Texturas\Sala\paredeDeCima.JPG" 
+
+			}
+			 textureTransform  TextureTransform {  
+				scale 100 100
+				rotation 0 
+				center 0 0 
+				translation 0 0  
+			}
+	    }
+		
+	  }
+  }
+}
+
+
+
+PROTO MolduraVidro
+[
+]
+{	
+	Group {
+		children [
+
+			Transform {
+				rotation 1 0 0 -1.57
+				translation	 0 0 18
+				children
+				Shape {
+					geometry Extrusion{	
+						crossSection [0 0, 264 0,264 62, 0 62, 0 0, 5 5, 259 5,259 57,5 57, 5 5, 0 0 ]            	
+						spine [0 0 0, 0 18 0]
+						solid FALSE
+						}
+		 			appearance Appearance {
+			    		material  Material	{
+							diffuseColor 1 1 1
+						}
+	    			}
+
+			  }
+		  }
+		  	Transform {
+				translation	 132 31 9
+				children
+				Shape {
+					geometry Box{	
+						  size	254 52 12
+						}
+		 			appearance Appearance {
+			    		material  Material	{
+							diffuseColor 1 1 1
+							transparency 0.5
+						}
+	    			}
+				
+			  }
+		  }
+
+
+
+	  ]
+	}
+}
+
+
+
+PROTO Pilar
+[
+]
+{
+	Transform {
+		translation	 24 195 24
+		children
+		Shape {
+			geometry Box {
+				size 48 390 48
+			}
+		 	appearance Appearance {
+				material Material { diffuseColor  0.6 0.706 0.63 }
+				texture	ImageTexture {
+			    	repeatS TRUE
+					repeatT	TRUE
+					url "Texturas\Sala\pilar.JPG" 
+				}
+				textureTransform  TextureTransform {  
+					scale 50.5 40.5 
+					rotation 0 
+					center 0 0 
+					translation 0 0  
+				}
+	    	}
+		}
+	}
+}
+
+PROTO manta_contra_fogo[]
+{
+	Group {
+		children [
+			Transform {
+				translation	8 15 2.5
+	    		children  Shape	{
+					geometry Box { size 16 30 5 }
+					appearance Appearance { material Material {	diffuseColor  0.78 0.27 0.06 }}
+				}	 
+			}
+			Transform {
+			   translation 8 15 5 
+			   children Shape	{
+	  				geometry Box { size 16 30 0.1 }
+					appearance Appearance   {
+						material Material {	diffuseColor  0.78 0.27 0.06 }
+						texture	ImageTexture { url "Texturas\Acessorios\manta_contra_fogo.jpg" }   
+					}
+				}
+			}
+		]
+	}
+}      
+
+PROTO ParedeDaEntrada
+[
+]
+{
+	Group	{
+	 children
+	 [
+		 Parede1 {}
+		 Transform {
+			translation  0 0 18
+			scale		 0.1666 1 1
+			children Pilar	{}
+		 }
+		 Transform {
+			translation  272 0 18
+			children Pilar	{}
+		 }
+		 Transform {
+			translation  584 0 18
+			children Pilar	{}
+		 }
+		 Transform {
+			translation  896 0 18
+			children Pilar	{}
+		 }
+		 Transform {
+			scale		 0.1666 1 1
+			translation  1208 0 18
+			children Pilar	{}
+		 }
+		 Transform {
+			translation	8 270 18
+			 children ParedeCima {}
+		 }
+		 Transform {
+			translation	320 270 18
+			 children ParedeCima {}
+		 }
+		 Transform {
+			translation	632 270 18
+			 children ParedeCima {}
+		 }
+		 Transform {
+			translation	944 270 18
+			 children ParedeCima {}
+		 }
+		 Transform {
+			translation	8 328 0
+			 children MolduraVidro {}
+		 }
+		 Transform {
+			translation	320 328 0
+			children MolduraVidro {}
+		 }
+		 Transform {
+			translation	632 328 0
+			children MolduraVidro {}
+		 }
+		 Transform {
+			translation	944 328 0
+			children MolduraVidro {}
+		 }
+		 Transform {
+			translation	84 0 6
+			children Porta {}
+		 }
+		 Transform {
+			translation	616 152 66
+			children manta_contra_fogo{}
+		 }
+	]
+	}
+}
+
+Transform {
+				
+	scale 0.01 0.01 0.01
+	children ParedeDaEntrada {}
+}
+
+
+
+Eixo {}

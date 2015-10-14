@@ -1,0 +1,146 @@
+#VRML V2.0 utf8
+
+#PROTO da uma linha de um eixo
+PROTO line[ field SFColor lineColor 1 0 0 ]{
+	Shape {
+		appearance Appearance {
+			material Material {
+				diffuseColor IS	lineColor
+			}
+		}
+		geometry Cylinder {
+			bottom TRUE
+			height 20
+			radius 0.01
+			side TRUE
+			top	TRUE
+		}
+	}
+}
+
+#PROTO de um nome de um eixo
+PROTO axleName[ 
+	field SFColor nameColor 1 0 0
+	field MFString name "X"
+]{
+	Shape {
+		geometry Text {
+			string IS name
+			fontStyle FontStyle	{
+				size 0.6
+			}
+		}
+		appearance Appearance {
+			material Material {
+				diffuseColor IS nameColor
+			}
+		}
+	}
+}
+
+#PROTO de um eixo
+PROTO axle[
+	field SFColor axleColor 1 0 0 
+	field SFRotation nameRot 0 0 0 0
+	field MFString name "X"
+]{
+	Group {
+		children [
+
+			Shape{
+				appearance Appearance {
+					material Material {
+						diffuseColor IS	axleColor
+					}
+				}
+				geometry Cylinder {
+					height 3
+					radius 0.1
+					bottom TRUE
+					side TRUE
+					top	TRUE
+				}
+			}
+
+			Transform {
+				translation	0 1.65 0
+				children
+					Shape {
+						geometry Cone {
+							bottomRadius 0.15
+							height 0.3
+						}
+						appearance Appearance {
+							material Material {
+								diffuseColor IS	axleColor
+							}
+						}
+					}
+			}
+
+			Transform {
+				translation	0 1.75 0
+				children
+				Transform {
+					rotation IS	nameRot
+					children axleName { 
+						name IS name
+						nameColor IS axleColor
+			    	}
+				}
+			}
+
+			line { lineColor IS axleColor }
+		]
+	}
+}
+
+#PROTO do eixo de coordenadas
+PROTO CoordinateAxle[]{
+	Group {
+		children [
+			#Eixo X
+			Transform {
+				rotation 0 0 1 -1.57
+				translation	1.5 0 0
+				children axle {
+					nameRot	0 0 1 1.57
+				}
+			}
+
+			#Eixo Y
+			Transform {
+				translation 0 1.5 0
+				children axle { 
+					axleColor 0 1 0 
+					name "Y"
+				}
+			}
+
+			#Eixo Z
+			Transform{
+				rotation 1 0 0 1.57
+				translation 0 0 1.5
+				children axle {	
+					axleColor 0 0 1
+					name "Z"
+					nameRot	1 0 0 -1.57
+				}
+			}
+
+			#Origem
+			Shape {
+				geometry Sphere	{
+					radius 0.2
+				}
+				appearance Appearance {
+					material Material {
+						diffuseColor 1 1 1
+					}
+				}
+			}
+		]
+	}
+}
+
+CoordinateAxle {}

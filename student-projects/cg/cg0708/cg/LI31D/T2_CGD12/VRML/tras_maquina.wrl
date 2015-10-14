@@ -1,0 +1,126 @@
+#VRML V2.0 utf8
+
+
+PROTO topospartetras
+[
+	field SFColor cor_superficie 1 0 0
+]
+{
+	Shape
+	{
+		appearance Appearance 
+		{
+			material Material {diffuseColor IS cor_superficie }
+		}
+		geometry Extrusion 
+		{
+			crossSection [0 0 ,1.7261 0.0216 , 3.4416 0.0862 , 5.1358 0.1934 , 6.7984 0.3426 , 8.4190 0.5328 , 9.9878 0.7630 , 11.4950 1.0315 , 12.9313 1.3369 , 14.2879 1.6772 , 15.5563 2.0503 , 16.7289 2.4539 , 17.7984 2.8855 , 18.7581 3.3425 , 19.6021 3.8221 , 20.3253 4.3212 , 20.9232 4.8369 , 21.3921 5.3659 , 21.7291 5.9050 , 21.9322 6.4508 , 22.0000 7.0000 , 0 7 , 0 0]
+			spine[0 0 0 , 0 45 0]
+			ccw FALSE
+		}
+	}
+}
+
+
+
+PROTO partetras
+[
+	field SFColor cor_superficie 0.6 0.6 0.6
+	field SFColor cor_botoes 0 0 1
+]
+{
+	Transform
+	{
+	children [
+		Transform	
+		{
+			translation	 45 0 0
+		children [
+			Transform
+			{
+				rotation  0 1 0 1.57
+			children [
+				#cimo
+				Transform
+				{
+					rotation 1 0 0 1.57
+					translation	0 93 -45
+					children  topospartetras { cor_superficie IS cor_superficie }
+				}
+
+				#fundo
+				Transform
+				{
+					rotation 1 0 0 -1.57
+					children  topospartetras { cor_superficie IS cor_superficie }
+				}
+			]
+			}
+		]
+		}
+
+		#caixa entre topos
+		Transform
+		{
+			translation 22.5 46.5 -11 
+			children
+			Shape 
+			{	##79+1 para não se notar a união
+				geometry Box{size 45 80 22}
+				appearance Appearance {material Material {diffuseColor IS cor_superficie }}
+			}
+		}
+	]
+	}
+}
+
+
+PROTO medalhoes 
+[
+	field SFVec3f translacao 0 0 0
+]
+{
+	Transform {
+		rotation 0 0 1 1.57
+	    translation	IS translacao
+		children Shape {
+			appearance Appearance { material Material { diffuseColor 0.5 0.5 0.5 } }
+			geometry Cylinder { radius 1.75 height 1 }
+		}
+	}
+
+}
+
+
+
+PROTO tras_maquina []
+{	Transform {
+		children
+	    [
+			medalhoes { translacao 0 14 -11 }
+			medalhoes { translacao 45 14 -11 }
+			medalhoes { translacao 0 79.5 -11 }
+			medalhoes { translacao 45 79.5 -11 }
+			partetras {}
+		]
+	}
+}
+
+
+##noção de origem TEST ONLY
+
+#	Shape 
+#	{
+#		geometry Box{size 10 1 1}
+#		appearance Appearance {material Material {diffuseColor 1 0 0 }}
+#	}
+#	Shape 
+#	{
+#		geometry Box{size 1 10 1}
+#		appearance Appearance {material Material {diffuseColor 0 1 0 }}
+#	}
+#	Shape 
+#	{
+#		geometry Box{size 1 1 10}
+#		appearance Appearance {material Material {diffuseColor 0 0 1 }}
+#	}

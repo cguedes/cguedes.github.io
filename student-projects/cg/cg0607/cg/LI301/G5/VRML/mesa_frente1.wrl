@@ -1,0 +1,516 @@
+#VRML V2.0 utf8
+
+#Mesa Grande de Laboratorio
+#Medidas em CM
+
+# Importa a definição do prototipo AXIS, localizada no ficheiro axis.wrl
+EXTERNPROTO Eixo []
+"eixo.wrl#Eixos"
+
+EXTERNPROTO Paralelipipedo[field SFColor cor_par, field	SFVec3f	size_par,
+	field MFString textura_pr, field SFVec2f text_scale]
+"mesa_laboratorio.wrl#Paralelipipedo"
+
+EXTERNPROTO	Suporte_Pes[field SFColor cor_sp, field SFFloat sp_height]
+"mesa_laboratorio.wrl#Suporte_Pes"
+
+EXTERNPROTO	Cano [field MFVec3f height, field SFColor cor_canos]
+"mesa_laboratorio.wrl#Cano"
+
+EXTERNPROTO	Cano_T [field MFVec3f spine_cano_t]
+"mesa_laboratorio.wrl#Cano_T"
+
+EXTERNPROTO	Canto_Cano[field SFColor  cor_canto_cano]
+"mesa_laboratorio.wrl#Canto_cano"
+
+#CRIAR PERNA COM PIA E TAMPO COM TORNEIRA
+
+
+#width=16, Height=25, Depth = 1.5
+#segue norma HMN							
+PROTO Dobra_Torneira[field SFColor cor_dobra_torneira 0.5 0.5 0.5 ]
+{
+	Transform {
+		translation	8 17 0.75
+		children Shape {
+			appearance Appearance {material Material { diffuseColor IS cor_dobra_torneira}}
+			geometry Extrusion {
+				crossSection [ 0.75	0	,0.704769466	0.256515107	,0.574533332	0.482090707	,0.375	0.649519053	,
+					0.130236133	0.738605815	,-0.130236133	0.738605815	,-0.256515107	0.704769466	,
+					-0.375	0.649519053	,-0.574533332	0.482090707	,-0.704769466	0.256515107	,
+					-0.75	9.18861E-17	,-0.704769466	-0.256515107	,-0.574533332	-0.482090707,
+					-0.375	-0.649519053	,-0.130236133	-0.738605815	,0.130236133	-0.738605815,
+					0.375	-0.649519053	,0.574533332	-0.482090707	,0.704769466	-0.256515107, 0.75	0
+				]
+				spine [7.25 -4 0,	7.25	0	0	,6.812771501	2.479646039	0	,5.553822213	4.66021017	0	,
+					3.625	6.278684177	0	,1.258949288	7.11	0, 0 7.3 0, -1.258949288	7.11	0	,
+					-2.479646039	6.812771501	0	,-3.625	6.278684177	0	,-5.553822213	4.66021017	0	,
+					-6.812771501	2.479646039	0	,-7.25	0	0, -7.25 -17 0 
+				]
+				creaseAngle	1
+				ccw	FALSE
+				beginCap FALSE
+				solid FALSE
+			}
+		}
+	}
+}
+
+#width = 3, height = 0.25, height = 3
+#segue norma HMN
+PROTO Roda_Torneira[field SFColor cor_roda_torneira 0.5 0.5 0.5]
+{
+	Transform {
+		translation	3 0.125 3
+		children Shape {
+			appearance Appearance {material Material { diffuseColor IS cor_roda_torneira }}
+			geometry Cylinder	{
+				height 0.25
+				radius 3
+			}
+		}	
+	}
+}
+
+#width = 13, height = 11, depth = 4
+#segue norma HMN
+PROTO Canhao_Torneira[field SFColor cor_canhao_torneira 0.5 0.5 0.5]
+{
+	Transform {
+		translation	2 0 2
+		children Shape {
+			appearance Appearance { material Material { diffuseColor IS cor_canhao_torneira }}
+			geometry Extrusion {
+				crossSection [2	0	,1.879385242	0.684040287	,1.532088886	1.285575219	,1	1.732050808	,
+					0.347296355	1.969615506	,1.22515E-16	2	,-0.347296355	1.969615506	,-0.684040287	1.879385242,
+					-1	1.732050808	,-1.532088886	1.285575219	,-1.879385242	0.684040287	,-2	2.4503E-16	,
+					-1.879385242	-0.684040287	,-1.532088886	-1.285575219	,-1	-1.732050808	,
+					-0.347296355	-1.969615506	,0.347296355	-1.969615506	,1	-1.732050808	,
+					1.532088886	-1.285575219	,1.879385242	-0.684040287	,2	0]
+					spine [0 11 0, 0 0 0, 0 5.5 0, 10 5.5 0, 10.1 5.5 0, 11 5.5 0]
+				ccw	FALSE
+				solid FALSE
+				convex TRUE
+				creaseAngle	1
+				scale [1 1, 1 1, 1 1, 0.5 0.5, 0.25 0.25, 0.25 0.25]
+			}		
+		}
+	}
+}
+
+#width = 26.5, height = 36.25, depth  = 6
+#usa HMN
+PROTO Torneira[field SFColor cor_torneira 0.5 0.5 0.5]
+{
+	Transform {
+		translation	12.25 0 0 #12.25
+		children [
+			Roda_Torneira { cor_roda_torneira IS cor_torneira }
+			
+			#canha da torneira
+			Transform {
+				translation	1 0.25 1
+				children Canhao_Torneira { cor_canhao_torneira	IS cor_torneira}		
+			}
+
+			#cano da torneira
+			Transform {
+				translation	-4.25 23.75 3
+				rotation 0 1 0 3.14
+				children Transform {
+					translation	-8 -12.5 -0.75
+					children Dobra_Torneira	{ cor_dobra_torneira IS cor_torneira}
+				}
+			}
+
+			#valvula da torneira
+			Transform {
+				translation	14.125 6 3
+				rotation 0 0 1 1.57
+				children Transform {
+					translation	-3 -0.125 -3
+					children Roda_Torneira { cor_roda_torneira IS cor_torneira }
+				}
+			}
+		]
+	}
+}
+
+#segue norma HMN, no entanto e relativamente e mesa e nao a torneira
+PROTO Tampo_M1[field SFColor cor_ts 0.5 0.5 0.5 ]
+{
+	Group {
+		children [
+			Transform {
+				translation	77.5 1.5 40.25
+				children Paralelipipedo { cor_par IS cor_ts , size_par 155 3 80.5, 
+					textura_pr "Texturas\Mesas\marmore.jpg", text_scale 5 5 } 
+			}
+
+			Transform	{
+				translation	-6.75 3 37.25
+				children Torneira { cor_torneira 0.2 0.2 0.2 }
+			}
+		]
+	}
+}
+
+#segue norma HMN
+PROTO Tampo_M2[field SFColor cor_ts 0.5 0.5 0.5 ]
+{
+	Transform {
+		translation	43.75 1.5 40.25
+		children Paralelipipedo { cor_par IS cor_ts , size_par 87.5 3 80.5,
+			textura_pr "Texturas\Mesas\marmore.jpg", text_scale 5 5} 
+	}	
+}
+
+#segue norma HMN
+PROTO Perna[]
+{
+	Transform {
+		translation	3 40.5 37.75
+		children Paralelipipedo { cor_par 0.76 0.42 0.08, size_par 6 81 75.5, 
+			textura_pr "Texturas\Mesas\madeira_prateleira.jpg"} 
+	}	
+}
+
+#mudar para indexed face set->
+#segue norma HMN
+PROTO Tabua_Mesa[]
+{
+	Transform {
+		translation	70.5 8 2.5
+		children Paralelipipedo { cor_par 0.76 0.42 0.08, size_par 141 16 5,
+			textura_pr "Texturas\Mesas\madeira_prateleira.jpg"} 
+	}
+}
+
+#segue norma HMN
+PROTO Suporte_Pes_Mf1[]
+{
+	Transform {
+		translation	70.5 2.5 2.5
+		rotation 0 0 1 1.57
+		children Suporte_Pes { cor_sp 0 0 0, sp_height 141} 
+	}
+}
+
+
+
+#width = 31, height = 30, depth = 47
+#segue norma HMN
+PROTO Bide_Pia[]
+{
+	Transform {
+		translation	8 0 23.5	#ver se traslaçao esta bem feita
+		children Shape	{
+			appearance Appearance { material Material {diffuseColor 1 1 1 } }
+			geometry Extrusion {
+				crossSection [8	22	,4.080732175	23.1429822	,-4.080732175	23.1429822	,
+					-11.75	20.35159699	,-18.00204441	15.10550883	,-22.08277659	8.037473368	,-23.5	2.8791E-15	,
+					-22.08277659	-8.037473368	,-18.00204441	-15.10550883	,-11.75	-20.35159699	,
+					-4.080732175	-23.1429822	,4.080732175	-23.1429822	,8.037473368	-22.08277659, 8 22,
+					#### borda interior
+					8	20	,3.73343582	21.17336669	,-3.73343582	21.17336669	,-10.75	18.61954618	,
+					-16.46995553	13.81993361	,-20.20339135	7.353433082	,-21.5	2.63407E-15	,-20.20339135	-7.353433082,
+					-16.46995553	-13.81993361	,-10.75	-18.61954618	,-3.73343582	-21.17336669	,
+					3.73343582	-21.17336669	,8	-19.94847946, 8 20
+				]
+	
+				spine [0 30 0, 0 22.5 0, 0 15 0, 0 10.125 0, 0 7.5 0, 0 6 0, 0 4.5 0, 0 2 0, 0 0 0]
+				scale [1 1, 0.95 0.95, 0.9 0.9, 0.75 0.75, 0.65 0.65, 0.6 0.6, 0.55 0.55, 0.45 0.45, 0.3 0.3]  
+				
+				ccw	FALSE
+				creaseAngle	1
+				solid FALSE
+			}	
+		}
+	}
+}
+
+#width = 2, height = 47, depth = 47
+#segue norma HMN
+PROTO Placa_Pia[]
+{
+	Transform{
+		translation	1 23.5 23.5
+		rotation 0 1 0 1.57
+		children Transform {
+			rotation 1 0 0 -1.57
+			children Shape {
+				appearance Appearance { material Material {diffuseColor 1 1 1 } }
+				geometry Extrusion {
+					crossSection [-23.5	0,-22.08277659	-8.037473368	,-18.00204441	-15.10550883	,
+						-11.75	-20.35159699	,-4.080732175	-23.1429822	, 0 -23.5, 4.080732175	-23.1429822	,
+						11.75	-20.35159699	,18.00204441	-15.10550883	,22.08277659	-8.037473368,
+						23.5	0, 23.5 23.5, -23.5 23.5, -23.5 0
+					]
+					spine [0 -1 0, 0 1 0]
+					ccw	FALSE
+					creaseAngle	1	
+				}
+			}			
+		}
+	}
+}
+
+#segue HMN
+PROTO Cano_Adptador[]
+{
+	Transform {
+		translation	2.32 3.5 7.25
+		scale 1 7 1
+		children Shape {
+			appearance Appearance { material Material {diffuseColor 0.5 0.5 0.5}	}
+			geometry Extrusion {
+				crossSection [
+					2.320848167	6.868490648	,1.258949288	7.139856209	,-1.258949288	7.139856209	,
+					-2.479646039	6.812771501	,-3.625	6.278684177	,-5.553822213	4.66021017,
+					-6.812771501	2.479646039	,-7.25	8.88233E-16	,-6.812771501	-2.479646039,
+					-5.553822213	-4.66021017	,-3.625	-6.278684177	,-1.258949288	-7.139856209,
+					1.258949288	-7.139856209	,2.320848167	-6.868490648, 2.320848167	6.868490648
+				]
+				spine [0 0.5 0, 0 0.25 0, 0 0.2501 0, 0 -0.5 0]
+				scale [1 1, 1 1, 0.5 0.5, 0.5 0.5]
+				ccw	FALSE
+				solid FALSE
+				creaseAngle	1
+				beginCap FALSE
+				endCap FALSE
+			}
+		}
+	}
+}
+
+#width = 33, height = 47//mudar, depth = 47
+#segue norma HMN
+PROTO Bide[]
+{
+	Group{
+		children [
+			#placa de encosto
+			Transform {
+				translation	0 34 0
+				children Placa_Pia {}
+			}
+			
+			#Pia
+			Transform {
+				translation	2 34 0
+				children Bide_Pia {}
+			}
+
+			#Cano adptador
+			Transform {
+				translation	7.5 27 16.5
+				children Cano_Adptador {}
+			}
+
+			#Cano T
+			Transform	{
+				translation	10 19.5 23.75
+				scale 1.14 1 1.29
+				rotation 0 1 0 3.14
+				children Transform{
+					translation	-3.75 -7.5 -3.5 
+					#width = 7.5
+					children  Cano_T { spine_cano_t [0 -7.5 0, 0 7.5 0, 0 0 0,4 0 0]}
+				}
+			}
+		
+			#Cano de curva
+			Transform {
+				translation	3 18 23.8
+				scale 1.5 1.5 1.5 
+				#rotation 0 1 0 3.14
+
+				children Transform {				
+					translation	-2 -2.5 -1
+					children Canto_Cano	{ cor_canto_cano  0.5 0.5 0.5 }
+				}
+			}
+
+			#cano final
+			Transform {
+				translation 1.5 7.5 23.8	
+				scale 1.5 1.5 1.5
+			   
+				children Transform {
+					translation	-1 -4.5 -1
+					children Cano { height [0 0 0 ,0 9 0], cor_canos 0.5 0.5 0.5}
+				}
+			}
+		]
+	}
+} 
+
+#width = 186(158+28(pia-5)), height = 84, depth = 80.5
+#segue norma HMN
+PROTO Mesa_Frente1[]
+{	
+	Group {		
+		children [
+			Transform {
+				translation	28 81 0
+				children Tampo_M1{ cor_ts 0.2 0.2 0.2 }		
+			}
+			
+			Transform{
+				translation	33 0 2.5
+				children Perna {}
+			}
+
+			Transform {
+				translation	16.5 23.5 40.25
+ 				rotation 0 1 0 3.14 
+				children Transform {
+					translation -16.5 -23.5 -23.5
+					children Bide {}
+				}
+			}
+
+			Transform{
+				translation	180 0 2.5
+				children Perna {}
+			}
+
+			Transform{
+				translation	39 65 3
+				children Tabua_Mesa	{}
+			}
+
+			Transform{
+				translation	39 65 72.5
+				children Tabua_Mesa	{}
+			}
+
+			Transform{
+				translation	39 17 37.75
+				children Suporte_Pes_Mf1 {}
+			}
+		]	
+	}
+}
+
+#mudar para index multi set
+#segue norma HMN
+PROTO Gaveta_mf2[]
+{
+	Group{
+		children [
+			Transform {
+				translation	40.75 8 34.5 
+				children Paralelipipedo { cor_par 0.76 0.42 0.08, size_par 81.5 16 69,
+	    		textura_pr "Texturas\Mesas\madeira_prateleira.jpg" }
+			}
+			
+			#width = 37, height = 11
+
+			#gaveta 1
+			Transform {
+				translation	21 8 69.1
+				children Shape {
+					appearance Appearance { 
+						material Material { diffuseColor 0.76 0.42 0.08 } 
+						texture	ImageTexture { url "Texturas\Mesas\gaveta_m2.jpg"}
+					}
+					geometry Box { size	37 11 0.01 }		
+				}
+			}
+
+			#gaveta 2->REFAZER textura, tirar mais medidas
+			Transform {
+				translation	60.5 8 69.1
+				children Shape {
+					appearance Appearance { 
+						material Material { diffuseColor 0.76 0.42 0.08 } 
+						texture	ImageTexture { url "Texturas\Mesas\gaveta_m2.jpg"}
+					}
+					geometry Box { size	37 11 0.01 }		
+				}
+			}
+		]
+	}
+}
+
+#segue norma HMN
+PROTO Mesa_Frente2[]
+{
+	Group {
+		children [
+			Transform {
+				translation	0 81 0
+				children Tampo_M2 { cor_ts 0.2 0.2 0.2}
+			}
+
+			#Parte de trás
+			Transform {
+				translation	43.75 40.5 5.5
+				children Paralelipipedo {cor_par 0.76 0.42 0.08, 
+					size_par 81.5 81 4.5, textura_pr "Texturas\Mesas\madeira_prateleira.jpg"}
+			}
+
+			#Gavetas
+			Transform {
+				translation	3 65 8.5
+				children Gaveta_mf2	{}
+			}
+		]
+	}	
+}
+
+#81.5
+#width = 453.5, Height = 120.25, depth = 80.5
+#segue norma HMN
+PROTO Mesa_Total[]
+{
+	Group {
+		children[
+			#mesa frente 1 esquerda
+			Mesa_Frente1 {}			
+
+			#mesa frente 1 direita
+			Transform{
+				translation	360.5 42 40.25
+				rotation 0 1 0 3.14
+				children[
+					Transform{
+						translation	-93 -42 -40.25
+						children Mesa_Frente1 {}
+					}
+				]
+			}
+
+			#mesa frente 2
+			Group {
+				children[
+					Transform {
+						translation	183 0 0
+						children Mesa_Frente2 {}
+					}
+				]
+			}
+		]		
+	}
+}
+
+#converte as coordenadas de CM para M
+Transform {
+	scale 0.01 0.01 0.01
+	children Mesa_Total {}
+}
+
+NavigationInfo {
+	type ["EXAMINE", "ANY"]
+}
+
+Background {
+	skyColor 1 1 1
+}
+
+#Transform {
+#	scale 0.1 0.1 0.1
+#	children	Eixo{}
+#}
+
