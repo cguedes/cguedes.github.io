@@ -1,6 +1,8 @@
 # Node modules
 node_modules
 
+dist
+
 # generated files
 src/_includes/css
 src/_includes/scripts
