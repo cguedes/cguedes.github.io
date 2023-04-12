@@ -1,0 +1,9 @@
+
+/* TEAM */
+Developer: Carlos Guedes
+Contact: cguedes@gmail.com
+Site: https://cguedes.net
+
+
+/* SITE */
+Doctype: HTML5
