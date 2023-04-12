@@ -6,7 +6,7 @@ layout: page
 youtube: false
 ---
 
-Carlos Guedes is a Dad, Husband and Software Engineer that lives in the europe’s west coast, Portugal. With more than 10 year experience in teaching and software development has strong skills in full stack development with extensive knowledge in web technologies.
+Carlos Guedes is a Dad, Husband and Software Engineer that lives in the europe’s west coast, Portugal. With +15 years experience in teaching and software development has strong skills in full stack development with extensive knowledge in web technologies.
 
 Throughout his career, Carlos has demonstrated a deep understanding of the key concepts and practices involved in software development. His expertise in full-stack development is particularly noteworthy, having worked with a wide range of technologies and frameworks. In addition to his technical skills, Carlos has strong communication and teaching abilities. With 10 years of teaching experience, he has developed a talent for conveying complex ideas and collaborating effectively with both colleagues and clients alike.
 
