@@ -1,0 +1,17 @@
+[
+  {
+    "platform": "github",
+    "url": "https://github.com/cguedes",
+    "icon": "github.svg"
+  },
+  {
+    "platform": "linkedin",
+    "url": "https://www.linkedin.com/in/cguedes/",
+    "icon": "linkedin.svg"
+  },
+  {
+    "platform": "twitter",
+    "url": "https://www.twitter.com/cguedes/",
+    "icon": "twitter.svg"
+  }
+]

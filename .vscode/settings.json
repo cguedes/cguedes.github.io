@@ -1,0 +1,123 @@
+{
+  "npm.packageManager": "yarn",
+  "files.exclude": {
+    "**/node_modules/": true,
+    "client/build": true,
+    "client/dist": true,
+    "dist": true,
+    "models/**/*.d.ts": true,
+    "models/**/*.js": true,
+    "server/dist": true,
+    "**/*.umd.*": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "dist": true,
+    "client/build": true,
+    "client/dist": true,
+    "client/public/vendor/": true,
+    "server/dist": true,
+    "*.umd.js": true
+  },
+  "editor.rulers": [120],
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "explorer.openEditors.visible": 3,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#474d65",
+    "activityBar.activeBorder": "#ff00e5",
+    "activityBar.background": "#474d65",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#251a1d",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "statusBar.background": "#323647",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#474d65",
+    "titleBar.activeBackground": "#323647",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#32364799",
+    "titleBar.inactiveForeground": "#e7e7e799",
+    "sash.hoverBorder": "#474d65",
+    "statusBarItem.remoteBackground": "#323647",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "commandCenter.border": "#e7e7e799"
+  },
+  "files.associations": {
+    "*.env": "ini",
+    ".env.*.public": "ini",
+    ".env.*.secrets": "ini",
+    ".env": "dotenv",
+    ".env.stage.local": "ini",
+    ".env.dev": "ini",
+    ".env.stage": "ini",
+    ".env.prod.local": "ini",
+    ".env.prod": "ini",
+    ".env.dev.local": "ini"
+  },
+  "peacock.color": "#323647",
+  "svg.preview.background": "white",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[handlebars]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "githubPullRequests.ignoredPullRequestBranches": ["staging"],
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "git.pruneOnFetch": true,
+  "git.autofetch": true,
+  "gitlens.plusFeatures.enabled": false,
+  "gitlens.showWelcomeOnInstall": false,
+  "gitlens.showWhatsNewAfterUpgrades": false,
+  "gitlens.views.branches.branches.layout": "tree",
+  "gitlens.views.branches.files.compact": true,
+  "gitlens.views.branches.pullRequests.enabled": false,
+  "gitlens.views.branches.pullRequests.showForBranches": false,
+  "gitlens.views.branches.pullRequests.showForCommits": false,
+  "gitlens.currentLine.pullRequests.enabled": false,
+  "gitlens.statusBar.pullRequests.enabled": false,
+  "gitlens.hovers.pullRequests.enabled": false,
+  "gitlens.views.commits.pullRequests.enabled": false,
+  "gitlens.views.commits.pullRequests.showForBranches": false,
+  "gitlens.views.commits.pullRequests.showForCommits": false,
+  "gitlens.views.commitDetails.pullRequests.enabled": false,
+  "gitlens.views.repositories.pullRequests.enabled": false,
+  "gitlens.views.remotes.pullRequests.showForBranches": false,
+  "gitlens.views.remotes.pullRequests.showForCommits": false,
+  "gitlens.views.worktrees.pullRequests.showForBranches": false,
+  "gitlens.views.worktrees.pullRequests.enabled": false,
+  "gitlens.views.worktrees.pullRequests.showForCommits": false,
+  "gitlens.views.contributors.pullRequests.enabled": false,
+  "gitlens.views.contributors.pullRequests.showForCommits": false,
+  "gitlens.views.searchAndCompare.pullRequests.enabled": false,
+  "gitlens.views.searchAndCompare.pullRequests.showForCommits": false,
+  "gitlens.views.repositories.pullRequests.showForCommits": false,
+  "gitlens.views.repositories.pullRequests.showForBranches": false,
+  "gitlens.views.remotes.pullRequests.enabled": false,
+  "gitlens.views.repositories.showBranches": true,
+  "gitlens.advanced.repositorySearchDepth": 10,
+  "scm.autoReveal": true,
+  "rest-client.previewOption": "exchange",
+  "githubPullRequests.experimental.quickDiff": true,
+  "[nunjucks]": {
+    "editor.defaultFormatter": "okitavera.vscode-nunjucks-formatter"
+  }
+}

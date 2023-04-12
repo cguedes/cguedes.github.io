@@ -1,0 +1,110 @@
+---
+layout: base
+---
+
+<header class="section spot-color-primary border">
+  <div class="section__inner">
+    <div class="wrapper flow region flex xdebug-childs-blue">
+      <h2 class="font-normal flex flex-col items-center justify-center md:flex md:flex-row xdebug-childs" style="gap:1ch; max-width:25ch">
+        <img class="border-solid" src="/assets/images/CarlosGuedes-Profile.jpeg" width="150" height="150" alt="Me"/>
+        <div>
+          <strong class="font-black" style="color: #fec25d">Full-stack Software Engineer</strong>, based in Lisbon.
+        </div>
+      </h2>
+    </div>
+  </div>
+  {% include 'svg/divider-waves.svg' %}
+</header>
+
+<article class="region " style="--region-space-top: var(--space-s); --region-space-bottom: var(--space-s);">
+  <div class="wrapper flow prose">
+    <p class="text-justify mt-m-l" >
+        I'm a <strong>senior principal software engineer</strong> that lives in Europe’s west coast, Portugal. With more than {{ global.yearsExperience() }} years of experience in teaching and software development, I have strong skills in full-stack development with extensive knowledge in web technologies.
+        I loves to write clean code both in backend and frontend using TypeScript, JavaScript, React and Node.
+        </p>
+  </div>
+</article>
+
+<article class="region " style="--region-space-top: var(--space-s); --region-space-bottom: var(--space-s);">
+  <div class="wrapper flow prose">
+    <h2>Skills</h2>
+    <div class="flex flex-wrap" style="gap: 10px;">
+      {% for skill in skills %}
+        <span class="flex items-stretch border-solid px-xs hover:bg-primary-glare select-none whitespace-nowrap" style="border-radius:10px; border-width:1px; gap: 10px">
+          {{skill.name}}
+        </span>
+      {% endfor %}
+    </div>
+  </article>
+
+  <article class="region" style="--region-space-top: var(--space-s); --region-space-bottom: var(--space-s);">
+    <div class="wrapper flow prose">
+
+      <h2>Projects</h2>
+
+      {% for project in projects.slice(0, 3) %}
+        <section class="mb-2xl" >
+          <h3 class="text-step-2 mb-m">{{project.role}}
+            <small>
+         @ <em>{{project.company}}</em>
+              <code>{{project.when}}</code>
+            </small>
+          </h3>
+          {% set orderUL = 1 if loop.index0 % 2 === 0 else 
+            2 %}
+          {% set orderIMG = 2 if loop.index0 % 2 === 0 else 
+            1 %}
+          <div class="flex flex-col items-center md:flex-row md:items-start text-step-1" style="gap: 2ch; ">
+            <ul style="margin: 0; order: {{orderUL}};">
+              {% for task in project.tasks %}
+                <li class="task-item">{{task | safe }}</li>
+              {% endfor %}
+            </ul>
+            {% if project.cover %}
+              <img
+                src="{{project.cover}}"
+                style="order: {{orderIMG}}; filter: drop-shadow(0 0 0.25rem #323647);"
+                width="400"
+                height="300"
+                alt="Project"/>
+            {% endif %}
+          </div>
+        </section>
+      {% endfor %}
+      <a href="/projects">See more projects</a>
+
+    </div>
+  </article>
+
+  <article class="hidden region">
+    <div class="wrapper flow prose">
+      {{ content | safe }}
+    </div>
+  </article>
+
+  <article class="hidden region" style="--region-space-top: var(--space-s)">
+    <div class="wrapper flow prose">
+      <h2>{{ blog.title }}</h2>
+      <!-- blog intro text is optional. -->
+      {% if blog.intro %}
+        <p>{{ blog.intro }}</p>
+      {% endif %}
+    </div>
+    <!-- TODO: duplicate of partials/blog.njk -->
+
+    <ul class="wrapper grid mt-l-xl" role="list" data-rows="masonry" data-layout="50-50">
+      {% set postslist = collections.posts %}
+      {% for post in postslist.slice(0, 4) %}
+
+        <li class="card flow overflow-hidden">
+          <h3>
+            <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+          </h3>
+          {% set definedDate = post.date %}
+          {% include "partials/date.njk" %}
+          <p>{{ post.data.description }}</p>
+        </li>
+
+      {% endfor %}
+    </ul>
+  </article>

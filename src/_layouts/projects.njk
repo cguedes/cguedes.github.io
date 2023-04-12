@@ -1,0 +1,51 @@
+---
+layout: base
+---
+
+<header class="section spot-color-secondary">
+  <div class="section__inner region">
+    <div class="wrapper flow">
+      <section class="prose text-center">
+        <h1 class="fade-in">{{ title }}</h1>
+      </section>
+    </div>
+  </div>
+
+  {% include 'svg/divider-edgy.svg' %}
+</header>
+
+<article class="wrapper region">
+  {% for project in projects %}
+    <section class="card flow overflow-hidden mb-2xl">
+      <h3 class="text-step-2 mb-m">{{project.role}}
+        <small>
+         @ <em>{{project.company}}</em>
+          <code>{{project.when}}</code>
+        </small>
+      </h3>
+      <div class="flex items-start  text-step-1" style="gap: 2ch">
+        <ul style="margin: 0">
+          {% for task in project.tasks %}
+            <li class="task-item">{{task | safe }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  {% endfor %}
+
+</article>
+{# <ul class="grid mt-l-xl" role="list" data-rows="masonry" data-layout="50-50">
+    {% set projectslist = collections.projects %}
+    {% for post in projectslist %}
+
+      <li class="card flow overflow-hidden">
+        <h2>
+          <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+        </h2>
+        {% set definedDate = post.date %}
+        {% include "partials/date.njk" %}
+        <p>{{ post.data.description }}</p>
+      </li>
+
+    {% endfor %}
+  </ul> #}
